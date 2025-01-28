@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DJ.h" />
+    <ClInclude Include="src\Entities\Creatures\Creature.h" />
     <ClInclude Include="src\Entities\UI\Button.h" />
     <ClInclude Include="src\Entities\UI\Picker.h" />
     <ClInclude Include="src\Entities\UI\Slider.h" />

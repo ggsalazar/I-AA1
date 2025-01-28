@@ -110,6 +110,9 @@
     <ClInclude Include="src\Utils\Enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entities\Creatures\Creature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\ToDo.txt" />
