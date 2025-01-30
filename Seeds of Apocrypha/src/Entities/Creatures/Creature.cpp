@@ -1,6 +1,6 @@
 #include "Creature.h"
 
-Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t, const Creature::Stats& init_stats, const int init_dfc) :
+Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t, const Stats& init_stats, const int init_dfc) :
 	Entity(s, a_i, t, init_dfc), stats(init_stats) {
 	/*struct Stats {
 		string name = "";
@@ -34,5 +34,7 @@ Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Tra
 		float total_weight = 0;
 		float less_act_time = 0;
 	};*/
+
+	//Calculate the derived stats
 
 }
