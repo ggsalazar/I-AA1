@@ -1,17 +1,17 @@
 #include "Entity.h"
 
-Entity::Entity(const Entity::Structure& s, const Animation::AnimInfo& a_i, const Animation::Transform& t, int init_dfc) :
-    pos(t.x, t.y), game(s.game), window(s.window), scene(*s.scene),
-    dfc(init_dfc), sound(sb), anim(make_unique<Animation>(game, window, this, a_i, t)) {
+Entity::Entity(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t, int init_dfc) :
+    structure(s), pos(t.x, t.y),
+    dfc(init_dfc), sound(sb), anim(make_unique<Animation>(structure.game, structure.window, this, a_i, t)) {
 
     SetBBox();
     bbox_debug.setFillColor(sf::Color(0, 255, 0, 127)); //Green, 50% opacity
-    pos_debug.setSize(sf::Vector2f(game.GetResScale(), game.GetResScale()));
+    pos_debug.setSize(sf::Vector2f(structure.game.GetResScale(), structure.game.GetResScale()));
     pos_debug.setFillColor(sf::Color(255, 0, 0, 127)); //Red, 50% opacity
 }
 
 void Entity::SetBBox() {
-    pos_debug.setPosition(sf::Vector2f(pos.x - game.GetResScale()*.5, pos.y - game.GetResScale()*.5));
+    pos_debug.setPosition(sf::Vector2f(pos.x - structure.game.GetResScale() * .5, pos.y - structure.game.GetResScale() * .5));
 
     w = anim->GetSpriteW() * anim->sprite.getScale().x;
     h = anim->GetSpriteH() * anim->sprite.getScale().y;
@@ -21,7 +21,7 @@ void Entity::SetBBox() {
     bbox.position.y = pos.y - anim->GetOrigin().y * h;
     bbox.size.x = w;
     bbox.size.y = h;
-    
+
     //bbox debug
     bbox_debug.setPosition(bbox.position);
     bbox_debug.setSize(bbox.size);
@@ -31,8 +31,8 @@ void Entity::Draw(const bool debug) {
     anim->Draw();
 
     if (debug) {
-        window.draw(bbox_debug);
-        window.draw(pos_debug);
+        structure.window.draw(bbox_debug);
+        structure.window.draw(pos_debug);
     }
 }
 

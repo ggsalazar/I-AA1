@@ -13,7 +13,7 @@ public:
 
     sf::Text label;
 
-    UI(const Entity::Structure& s, Menu& m, const Animation::AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc = 0);
+    UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc = 0);
 
     virtual void GetInput() override;
     virtual void Draw(const bool debug = false) override {}

@@ -10,21 +10,16 @@
 
 using namespace std;
 
-class Entity : public enable_shared_from_this<Entity> {
-public:
-    //Structure
-    struct Structure {
-        Game& game;
-        sf::RenderWindow& window;
-        //This allows the Scene of an object to be changed
-        Scene* scene;
-    };
-
-    //Game Structure - UNNECESSARY???
+struct Structure {
     Game& game;
     sf::RenderWindow& window;
-    Scene& scene;
+    //This allows the Scene of an object to be changed
+    Scene* scene;
+};
 
+class Entity : public enable_shared_from_this<Entity> {
+    friend class Animation;
+public:
     //Variables
     sf::Vector2f pos;
     sf::RectangleShape pos_debug;
@@ -39,8 +34,8 @@ public:
     sf::SoundBuffer sb;
     sf::Sound sound;
 
-                 //Structure MUST be strictly inilitiazed, but this should have been the case anyway so it's a non-issue
-    Entity(const Entity::Structure& s, const Animation::AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
+    //Structure MUST be strictly inilitiazed, but this should have been the case anyway so it's a non-issue
+    Entity(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
     virtual ~Entity() = default;
 
     void SetBBox();
@@ -53,6 +48,7 @@ public:
     void PlaySound();
 
 protected:
-    unique_ptr<Animation> anim;
+    Structure structure;
 
+    unique_ptr<Animation> anim;
 };
