@@ -12,7 +12,6 @@ using namespace std;
 
 class Entity : public enable_shared_from_this<Entity> {
 public:
-    //Initialization structs
     //Structure
     struct Structure {
         Game& game;
@@ -21,13 +20,10 @@ public:
         Scene* scene;
     };
 
-    //Game Structure
+    //Game Structure - UNNECESSARY???
     Game& game;
     sf::RenderWindow& window;
     Scene& scene;
-
-    //This should be private/protected BUT I DON'T FUCKING CARE ANYMORE
-    unique_ptr<Animation> anim;
 
     //Variables
     sf::Vector2f pos;
@@ -55,5 +51,8 @@ public:
     virtual void Move();
 
     void PlaySound();
+
+protected:
+    unique_ptr<Animation> anim;
 
 };

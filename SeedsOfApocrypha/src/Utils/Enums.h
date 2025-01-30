@@ -1,7 +1,29 @@
 #pragma once
 
+enum class A_Skills {
+	APPRAISAL,
+	ARCANA,
+	BEAST_HANDLING,
+	BEGUILEMENT,
+	CLIMB,
+	INSIGHT,
+	INTIMIDATION,
+	LORE,
+	MECHANICS,
+	MEDICINE,
+	NATURE,
+	NAVIGATION,
+	PERCEPTION,
+	PERSUASION,
+	SOH,
+	STEALTH,
+	SURVIVAL,
+	SWIM
+};
+
 enum class Actions {
-	ATTACK,
+	ATTACK_M,
+	ATTACK_R,
 	AOO,
 	CHANGE_EQUIP,
 	DISENGAGE,
@@ -18,21 +40,38 @@ enum class Actions {
 };
 
 enum class Classes {
+	NONE,
 	ARCANIST,
 	ROGUE,
 	WARRIOR
 };
 
+enum class Conditions {
+	BLIND,
+	CHARMED,
+	DEAF,
+	PRONE,
+	SICK,
+	STUNNED,
+	UNCONSCIOUS
+};
+
+enum class Items {
+
+};
+
 enum class Menus {
 	GO,
-	LEVSEL,
+	INVENTORY,
 	MAIN,
 	OPTIONS,
 	PAUSE
 };
 
 enum class Scenes {
-	GAME,
+	CUTSCENE,
+	DUNGEON,
+	TOWN,
 	TITLE
 };
 
@@ -45,6 +84,16 @@ enum class Sizes {
 	HUGE,
 	MASSIVE,
 	COLOSSAL
+};
+
+enum class T_Skills {
+	MED_KITS,
+	THIEVING_KITS
+};
+
+enum class Terrain {
+	NORMAL,
+	ROUGH
 };
 
 enum class UIElems {
@@ -63,4 +112,19 @@ enum class UIElems {
 	RESOLUTION,
 	RESUME,
 	SFXV
+};
+
+enum class W_Skills {
+	ARCHERY,
+	FIREARM,
+	LARGE,
+	MED,
+	POLEARM,
+	SMALL,
+	THROWING,
+	UNARMED
+};
+
+enum class Weathers {
+	CLEAR
 };
