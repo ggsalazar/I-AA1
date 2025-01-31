@@ -21,6 +21,16 @@ enum class A_Skills {
 	SWIM
 };
 
+enum class Ab_Scores {
+	STR,
+	CON,
+	AGI,
+	DEX,
+	INT,
+	WIS,
+	CHA
+};
+
 enum class Actions {
 	ATTACK_M,
 	ATTACK_R,
