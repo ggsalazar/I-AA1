@@ -1,7 +1,7 @@
 #pragma once
 #include "../Entity.h"
 
-class Creature : public Entity {
+class Item : public Entity {
 public:
 
-}
+};

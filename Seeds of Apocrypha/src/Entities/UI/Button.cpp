@@ -2,15 +2,15 @@
 
 void Button::Draw(const bool debug) {
     if (active and Selected(MOUSEPOS))
-        window.draw(bbox_debug);
+        structure.window.draw(bbox_debug);
 
     Entity::Draw(debug);
-    window.draw(label);
+    structure.window.draw(label);
 }
 
 void Button::Move() {
     Entity::Move();
-    label_offset = game.GetResScale();
+    label_offset = structure.game.GetResScale();
     label.setPosition({ pos.x, pos.y - label_offset });
 }
 
@@ -23,72 +23,57 @@ void Button::Released() {
         case UIElems::APPLY:
             if (menu.label == Menus::OPTIONS) {
                 //Set the game's current resolution to the scale determined by the resolution picker OR set it to fullscreen if that toggle is clicked
-                bool flscrn = menu.GetUIElemStatus(UIElems::FULLSCREEN);
-                if (flscrn)
-                    game.SetResolution(sf::Vector2u(SCREENW(), SCREENH()));
+                if (menu.GetUIElemStatus(UIElems::FULLSCREEN) == "True")
+                    structure.game.SetResolution(sf::Vector2u(SCREENW(), SCREENH()));
                 else {
-                    uint new_scale = menu.GetUIElemStatus(UIElems::RESOLUTION);
-                    uint old_scale = game.GetResScale();
+                    uint new_scale = stoi(menu.GetUIElemStatus(UIElems::RESOLUTION));
+                    uint old_scale = structure.game.GetResScale();
                     if (new_scale != old_scale)
-                        game.SetResolution(new_scale);
+                        structure.game.SetResolution(new_scale);
                 }
                 SetActive(false);
             }
         break;
 
         case UIElems::BACK:
-            //Close current menu
             menu.open = false;
-
-            //Re-open the MM
-            scene.OpenMenu(Menus::MAIN);
+            structure.scene->OpenMenu(Menus::MAIN);
         break;
 
-        case UIElems::LEVSEL:
-            scene.OpenMenu(Menus::LEVSEL);
+        case UIElems::CHARCREA:
             menu.open = false;
+            structure.scene->OpenMenu(Menus::CHARCREA);
+        break;
+
+        case UIElems::CREATE:
+            auto quit_btn = make_shared<Button>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ window.getSize().x * .5f, window.getSize().y * .8f, .5f, .5f, res_scalar },
+                UI::Style{ UIElems::QUIT, style_size });
+            auto new_party_mem = make_shared<PartyMember>
         break;
 
         case UIElems::OPTIONS:
-            scene.OpenMenu(Menus::OPTIONS);
             menu.open = false;
-        break;
-
-        case UIElems::LEV1:
-            game.level = 1;
-            game.game_scene->AddEntity(shared_from_this());
-            //Switch active scene to game_scene (handles closing menus and deleting entities)
-            game.SetScene(Scenes::GAME);
-        break;
-
-        case UIElems::LEV2:
-            game.level = 2;
-            game.game_scene->AddEntity(shared_from_this());
-            //Switch active scene to game_scene (handles closing menus and deleting entities)
-            game.SetScene(Scenes::GAME);
-        break;
-
-        case UIElems::LEV3:
-            game.level = 3;
-            game.game_scene->AddEntity(shared_from_this());
-            //Switch active scene to game_scene (handles closing menus and deleting entities)
-            game.SetScene(Scenes::GAME);
+            structure.scene->OpenMenu(Menus::OPTIONS);
         break;
 
         case UIElems::MAINMENU:
-            game.paused = false;
-            game.game_over = false;
-            game.title_scene->AddEntity(shared_from_this());
-            game.SetScene(Scenes::TITLE);
+            menu.open = false;
+            structure.game.paused = false;
+            structure.game.game_over = false;
+            structure.game.title_scene->AddEntity(shared_from_this());
+            structure.game.SetScene(Scenes::TITLE);
         break;
 
         case UIElems::QUIT:
-            window.close();
+            structure.window.close();
         break;
 
         case UIElems::RESUME:
-            game.paused = false;
             menu.open = false;
+            structure.game.paused = false;
         break;
     }
 }

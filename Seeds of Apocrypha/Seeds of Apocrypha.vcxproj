@@ -155,11 +155,13 @@
     <ClCompile Include="src\Structure\main.cpp" />
     <ClCompile Include="src\Structure\Scene.cpp" />
     <ClCompile Include="src\Utils\Input.cpp" />
+    <ClCompile Include="src\Utils\Text.cpp" />
     <ClCompile Include="src\Utils\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DJ.h" />
     <ClInclude Include="src\Entities\Creatures\Creature.h" />
+    <ClInclude Include="src\Entities\Creatures\PartyMember.h" />
     <ClInclude Include="src\Entities\Items\Item.h" />
     <ClInclude Include="src\Entities\UI\Button.h" />
     <ClInclude Include="src\Entities\UI\Picker.h" />
@@ -175,6 +177,7 @@
     <ClInclude Include="src\Utils\Enums.h" />
     <ClInclude Include="src\Utils\Input.h" />
     <ClInclude Include="src\Utils\Macros.h" />
+    <ClInclude Include="src\Utils\Text.h" />
     <ClInclude Include="src\Utils\Util.h" />
   </ItemGroup>
   <ItemGroup>

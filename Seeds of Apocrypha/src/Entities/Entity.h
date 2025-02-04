@@ -3,6 +3,7 @@
 #include "../Structure/Game.h"
 #include "../Structure/Scene.h"
 #include "../Utils/Util.h"
+#include "../Utils/Text.h"
 #include "../Utils/Collision.h"
 #include "../Utils/Animation.h"
 #include "../Utils/Input.h"

@@ -1,5 +1,16 @@
 #pragma once
 
+//Skills & Scores
+enum class Ab_Scores {
+	STR,
+	CON,
+	AGI,
+	DEX,
+	INT,
+	WIS,
+	CHA
+};
+
 enum class A_Skills {
 	APPRAISAL,
 	ARCANA,
@@ -21,16 +32,24 @@ enum class A_Skills {
 	SWIM
 };
 
-enum class Ab_Scores {
-	STR,
-	CON,
-	AGI,
-	DEX,
-	INT,
-	WIS,
-	CHA
+enum class T_Skills {
+	MED_KITS,
+	THIEVING_KITS
 };
 
+enum class W_Skills {
+	ARCHERY,
+	FIREARM,
+	LARGE,
+	MED,
+	POLEARM,
+	SMALL,
+	THROWING,
+	UNARMED
+};
+
+
+//Mechanics
 enum class Actions {
 	ATTACK_M,
 	ATTACK_R,
@@ -49,13 +68,6 @@ enum class Actions {
 	THROW_ITEM
 };
 
-enum class Classes {
-	NONE,
-	ARCANIST,
-	ROGUE,
-	WARRIOR
-};
-
 enum class Conditions {
 	BLIND,
 	CHARMED,
@@ -66,23 +78,33 @@ enum class Conditions {
 	UNCONSCIOUS
 };
 
+enum class Classes {
+	NONE,
+	ARCANIST,
+	ROGUE,
+	WARRIOR
+};
+
+enum class Genus {
+	BEAST,
+	MONSTROSITY,
+	OTHER,
+	SCORCHED,
+	SENTIENT,
+	UNDEAD
+};
+
 enum class Items {
 
 };
 
-enum class Menus {
-	GO,
-	INVENTORY,
-	MAIN,
-	OPTIONS,
-	PAUSE
-};
-
-enum class Scenes {
-	CUTSCENE,
-	DUNGEON,
-	TOWN,
-	TITLE
+enum class Races {
+	AUTOMATON,
+	DWARF,
+	ELF,
+	GNOME,
+	HUMAN,
+	KOBOLD
 };
 
 enum class Sizes {
@@ -96,45 +118,56 @@ enum class Sizes {
 	COLOSSAL
 };
 
-enum class T_Skills {
-	MED_KITS,
-	THIEVING_KITS
-};
-
 enum class Terrain {
 	NORMAL,
 	ROUGH
 };
 
-enum class UIElems {
-	DEFAULT,
-	APPLY,
-	BACK,
-	FULLSCREEN,
-	LEVSEL,
-	LEV1,
-	LEV2,
-	LEV3,
-	MAINMENU,
-	MUSICV,
-	OPTIONS,
-	QUIT,
-	RESOLUTION,
-	RESUME,
-	SFXV
-};
-
-enum class W_Skills {
-	ARCHERY,
-	FIREARM,
-	LARGE,
-	MED,
-	POLEARM,
-	SMALL,
-	THROWING,
-	UNARMED
-};
-
 enum class Weathers {
 	CLEAR
+};
+
+
+//Game Structure
+enum class Menus {
+	CHARCREA,
+	GO,
+	INVENTORY,
+	LEVELUP,
+	LOAD,
+	MAIN,
+	OPTIONS,
+	PAUSE
+};
+
+enum class Scenes {
+	CUTSCENE,
+	DUNGEON,
+	TOWN,
+	TITLE
+};
+
+enum class UIElems {
+	DEFAULT,
+	//Buttons
+	APPLY,
+	BACK,
+	CHARCREA,
+	CREATE,
+	FULLSCREEN,
+	LOAD,
+	MAINMENU,
+	OPTIONS,
+	QUIT,
+	RESUME,
+	//Pickers
+	BACKGROUND,
+	CLASS,
+	RACE,
+	RESOLUTION,
+	SEX,
+	SIZE,
+	//Sliders
+	MUSICV,
+	SFXV
 };

@@ -1,12 +1,15 @@
 #pragma once
 #include "../Entity.h"
-
-class Item;
+#include "../Items/Item.h"
 
 struct Stats {
 	string name = "Default";
-	Sizes size = Sizes::TINY;
+	Sizes size = Sizes::MED;
+	Genus genus = Genus::SENTIENT;
+	Races race = Races::HUMAN;
 	Classes clss = Classes::NONE;
+	uint level = 0;
+	bool sex = 0; //0 = F, 1 = M
 	//Ability scores, or primary stats
 	float str = 0;
 	float con = 0;
@@ -22,6 +25,7 @@ struct Stats {
 	float tw_per_hlth = 0;
 	float tn_per_hlth = 0;
 	float dodge = 0;
+	float armor = 0;
 	float nat_armor = 0;
 	float worn_armor = 0;
 	float m_def = 0;
@@ -29,6 +33,7 @@ struct Stats {
 	float fort = 0;
 	float ref = 0;
 	float will = 0;
+	float base_spd = 0;
 	float w_spd = 0;
 	float f_spd = 0;
 	float self_weight = 0;
@@ -42,26 +47,43 @@ class Creature : public Entity {
 public:
 	bool w_rsted = true;
 
-	Creature(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats,
+	Creature(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats = {},
 		const bool init_biped = true, const bool init_winged = false, const int init_dfc = 0);
 
+	//Primary stats
 	void SetAbilityScore(Ab_Scores a_s, float new_score);
 	float GetAbilityScore(Ab_Scores a_s);
 
-	void SetMaxHealth(float new_max);
+	//Derived stats
+	void SetMaxHealth();
 	float GetMaxHealth() const { return stats.max_hlth; }
 
 	void SetHealth(float new_hlth);
 	float GetHealth() const { return stats.hlth; }
 
+	void SetNatArmor(float n_a);
+	uint GetNatArmor() const { return stats.nat_armor; }
+
+	void SetWornArmor(float w_a);
+	float GetWornArmor() const { return stats.worn_armor; }
+
+	void SetFlySpeed() { if (winged and can_fly) stats.f_spd = stats.base_spd + (.5 * stats.str); }
+	float GetFlySpeed() const { return stats.f_spd; }
+
+	//Functions that interact with protected members
+	string GetName() const { return stats.name; }
 	sf::Vector2f GetDEF() const { return { stats.m_def, stats.r_def }; }
 	sf::Vector3f GetSaves() const { return { stats.fort, stats.ref, stats.will }; }
+
+	void SetCanFly(bool c_f = true) { can_fly = c_f; SetFlySpeed(); }
 
 protected:
 	Stats stats;
 	bool biped = true;
 	bool winged = false;
+	bool can_fly = false;
 	float action_carryover = 0;
+	int dodge_penalty = 0;
 
 	unordered_map<Items, unique_ptr<Item>> inv;
 	unordered_map<Items, unique_ptr<Item>> equipment;

@@ -52,7 +52,9 @@ public:
     weak_ptr<Scene> active_scene;
     weak_ptr<Scene> old_scene;
     shared_ptr<Scene> title_scene;
-    shared_ptr<Scene> game_scene;
+    shared_ptr<Scene> cutscene_scene;
+    shared_ptr<Scene> town_scene;
+    shared_ptr<Scene> dungeon_scene;
 
 private:
     //Variables

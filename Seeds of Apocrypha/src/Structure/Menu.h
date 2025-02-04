@@ -28,7 +28,7 @@ public:
     bool CheckUIElem(const UIElems ui);
     bool GetUIElemActive(const UIElems ui);
     void SetUIElemActive(const UIElems ui, const bool a = true);
-    int GetUIElemStatus(const UIElems ui);
+    string GetUIElemStatus(const UIElems ui);
 
 private:
     sf::Text menu_text;

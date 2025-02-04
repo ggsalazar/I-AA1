@@ -2,10 +2,10 @@
 
 void Toggle::Draw(const bool debug) {
 	if (active and Selected(MOUSEPOS))
-		window.draw(bbox_debug);
+		structure.window.draw(bbox_debug);
 
 	Entity::Draw(debug);
-	window.draw(label);
+	structure.window.draw(label);
 
 	if (on)
 		anim->SetCurrFrame(1);
@@ -14,9 +14,9 @@ void Toggle::Draw(const bool debug) {
 
 void Toggle::Move() {
 	Entity::Move();
-	label.setCharacterSize(game.GetResScale() * 12);
-	label_offset = game.GetResScale() * 5;
-	Util::SetTextOrigin(label, 1.f);
+	label.setCharacterSize(structure.game.GetResScale() * 12);
+	label_offset = structure.game.GetResScale() * 5;
+	Text::SetOrigin(label, { 1.f, .5f });
 	label.setPosition({ pos.x - label_offset, pos.y });
 }
 

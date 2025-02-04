@@ -32,6 +32,8 @@ public:
     
     void AddEntity(shared_ptr<Entity> e) { entities.push_back(e); }
 
+    void CreatePartyMember();
+
 private:
     bool open = false;
 

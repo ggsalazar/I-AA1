@@ -8,13 +8,13 @@
 using uint = unsigned int;
 
 //Resolution
-constexpr uint MINRESW = 320;
-constexpr uint MINRESH = 180;
+constexpr uint MINRESW = 640;
+constexpr uint MINRESH = 360;
 inline uint SCREENW() { return sf::VideoMode::getDesktopMode().size.x; }
 inline uint SCREENH() { return sf::VideoMode::getDesktopMode().size.y; }
 
 //Mouse input
-#define MOUSEPOS sf::Mouse::getPosition(window)
+#define MOUSEPOS sf::Mouse::getPosition(structure.window)
 constexpr sf::Mouse::Button LMB = sf::Mouse::Button::Left;
 constexpr sf::Mouse::Button RMB = sf::Mouse::Button::Right;
 inline bool LMBDOWN() { return sf::Mouse::isButtonPressed(LMB); }

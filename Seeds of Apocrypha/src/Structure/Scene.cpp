@@ -3,6 +3,7 @@
 #include "Menu.h"
 #include "../Entities/Entity.h"
 #include "../Entities/UI/UI.h"
+#include "../Entities/Creatures/PartyMember.h"
 
 void Scene::GetInput() {
 	for (auto& e : entities) {
@@ -58,8 +59,16 @@ void Scene::Open() {
 
 	//Each scene is comprised of Menus & Entities
 	if (label == Scenes::TITLE) {
-	}
-	else if (label == Scenes::GAME) {
+		auto main_menu = make_unique<Menu>(game, window, *this, Menus::MAIN);
+		auto char_crea_menu = make_unique<Menu>(game, window, *this, Menus::CHARCREA);
+		auto load_menu = make_unique<Menu>(game, window, *this, Menus::LOAD);
+		auto options_menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS);
+
+		main_menu->open = true;
+		menus.insert(make_pair(Menus::MAIN, move(main_menu)));
+		menus.insert(make_pair(Menus::CHARCREA, move(char_crea_menu)));
+		menus.insert(make_pair(Menus::LOAD, move(load_menu)));
+		menus.insert(make_pair(Menus::OPTIONS, move(options_menu)));
 	}
 }
 
@@ -90,7 +99,7 @@ bool Scene::MenuOpen(Menus menu) {
 			break;
 		}
 	}
-	cout << "That Menu does not exist in this Scene " << endl;
+	cout << "That Menu does not exist in this Scene" << endl;
 	return false;
 }
 
@@ -106,4 +115,16 @@ void Scene::CloseMenu(Menus menu) {
 void Scene::ResizeMenus() {
 	for (const auto& m : menus)
 		m.second->Resize();
+}
+
+void Scene::CreatePartyMember() {
+	auto quit_btn = make_shared<Button>(
+		Structure{ game, window, &scene }, *this,
+		AnimInfo{ "UI/Button", 93, 26 },
+		Animation::Transform{ window.getSize().x * .5f, window.getSize().y * .8f, .5f, .5f, res_scalar },
+		UI::Style{ UIElems::QUIT, style_size });
+
+	auto new_party_mem = make_shared<PartyMember>(
+
+	)
 }

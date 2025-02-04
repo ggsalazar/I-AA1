@@ -21,6 +21,8 @@ struct AnimInfo {
 class Animation {
 	friend class Entity;
 public:
+	sf::Sprite sprite;
+
 	//Position and scale
 	struct Transform {
 		float x = .0f;
@@ -68,7 +70,6 @@ private:
 	sf::Image img;
 	sf::Texture texture;
 	sf::IntRect tex_rect;
-	sf::Sprite sprite;
 
 	Game& game;
 	sf::RenderWindow& window;

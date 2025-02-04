@@ -1,9 +1,9 @@
 #include "Picker.h"
 
-Picker::Picker(const Entity::Structure& s, Menu& m, const Animation::AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
-    UI(s, m, a_i, t, style, init_dfc), picking(game.default_font) {
+Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
+    UI(s, m, a_i, t, style, init_dfc), picking(structure.game.default_font) {
 
-    label_offset = game.GetResScale()*5;
+    label_offset = structure.game.GetResScale()*5;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Set up position.x bbox
@@ -28,11 +28,57 @@ Picker::Picker(const Entity::Structure& s, Menu& m, const Animation::AnimInfo& a
 
     //What exactly ARE we picking?
     picking = label;
-    if (elem == UIElems::RESOLUTION) {
-        picking.setString(to_string((int)game.GetResScale()));
-        Util::SetTextOrigin(picking);
-        picking.setPosition(pos);
+    string picking_str = "";
+    switch (elem) {
+        case UIElems::BACKGROUND:
+            options.push_back("Artist");
+            options.push_back("Divine");
+            options.push_back("Farmer");
+            options.push_back("Innkeeper");
+            options.push_back("Mechanic");
+            options.push_back("Sailor");
+            options.push_back("Soldier");
+            options.push_back("Tradesman");
+            picking_str = "Tradesman";
+            option_picked = options.end()-1;
+        break;
+
+        case UIElems::CLASS:
+            options.push_back("Arcanist");
+            options.push_back("Rogue");
+            options.push_back("Warrior");
+            picking_str = "Warrior";
+            option_picked = options.end()-1;
+        break;
+
+        case UIElems::RACE:
+            options.push_back("Automaton");
+            options.push_back("Dwarf");
+            options.push_back("Elf");
+            options.push_back("Gnome");
+            options.push_back("Human");
+            picking_str = "Human";
+            option_picked = options.end()-1;
+        break;
+
+        case UIElems::RESOLUTION:
+            picking_str = to_string((int)structure.game.GetResScale());
+        break;
+
+        case UIElems::SEX:
+            picking_str = rand()%2 ? "Male" : "Female";
+        break;
+
+        case UIElems::SIZE:
+            options.push_back("Small");
+            options.push_back("Medium");
+            options.push_back("Large");
+            picking_str = "Medium";
+            option_picked = options.begin()+1;
+        break;
     }
+    Text::SetStr(picking, picking_str);
+    picking.setPosition(pos);
 }
 
 void Picker::GetInput() {
@@ -57,24 +103,31 @@ void Picker::GetInput() {
 
 void Picker::Draw(const bool debug) {
     if (active and Selected(MOUSEPOS))
-        window.draw(bbox_debug);
+        structure.window.draw(bbox_debug);
 
     Entity::Draw(debug);
-    window.draw(label);
+    structure.window.draw(label);
 
-    window.draw(picking);
+    structure.window.draw(picking);
 
     if (active) {
         if (LeftSelected(MOUSEPOS))
-            window.draw(l_bbox_debug);
+            structure.window.draw(l_bbox_debug);
         else if (RightSelected(MOUSEPOS))
-            window.draw(r_bbox_debug);
+            structure.window.draw(r_bbox_debug);
+
+        else if (elem == UIElems::SEX and picking.getString() == "-") {
+            string new_sex = rand() % 2 ? "Male" : "Female";
+            Text::SetStr(picking, new_sex);
+        }
     }
+    else
+        Text::SetStr(picking, "-");
 }
 
 void Picker::Move() {
     Entity::Move();
-    label_offset = game.GetResScale() * 5;
+    label_offset = structure.game.GetResScale() * 5;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Move position.x bbox+debug
@@ -97,47 +150,79 @@ void Picker::Move() {
     r_bbox_debug.setSize(sf::Vector2f(r_bbox.size.x, r_bbox.size.y));
     r_bbox_debug.setFillColor(sf::Color(0, 0, 255, 127)); //Blue, 50% opacity
 
-    //What exactly ARE we picking?
-    picking = label;
-    if (elem == UIElems::RESOLUTION) {
-        picking.setString(to_string((int)game.GetResScale()));
-        Util::SetTextOrigin(picking);
-        picking.setPosition(pos);
-    }
-}
-
-int Picker::GetPicking() {
-    string pckng = picking.getString();
-    int p = stoi(pckng);
-    return p;
+    picking.setPosition(pos);
 }
 
 void Picker::LeftReleased() {
-    if (elem == UIElems::RESOLUTION) {
-        string c_r = picking.getString();
-        uint curr_res = stoi(c_r);
-        
-        if (--curr_res < 1)
-            curr_res = floor(SCREENW() / MINRESW);
+    string p = picking.getString();
+    switch (elem) {
+        case UIElems::BACKGROUND:
+        case UIElems::CLASS:
+        case UIElems::RACE:
+            if (option_picked == options.begin())
+                option_picked = options.end()-1;
+            else --option_picked;
 
-        picking.setString(to_string(curr_res));
+            p = *option_picked;
+            if (p == "Automaton")
+                menu.SetUIElemActive(UIElems::SEX, false);
+            else menu.SetUIElemActive(UIElems::SEX);
+        break;
 
-        //Set the Apply button to active
-        menu.SetUIElemActive(UIElems::APPLY);
+        case UIElems::RESOLUTION: {
+            uint curr_res = stoi(p);
+
+            if (--curr_res < 1)
+                curr_res = floor(SCREENW() / MINRESW);
+
+            p = to_string(curr_res);
+
+            //Set the Apply button to active
+            menu.SetUIElemActive(UIElems::APPLY);
+            break;
+        }
+
+        case UIElems::SEX:
+            p = p == "Male" ? "Female" : "Male";
+        break;
     }
+
+    Text::SetStr(picking, p);
 }
 
 void Picker::RightReleased() {
-    if (elem == UIElems::RESOLUTION) {
-        string c_r = picking.getString();
-        uint curr_res = stoi(c_r);
+    string p = picking.getString();
+    switch (elem) {
+        case UIElems::BACKGROUND:
+        case UIElems::CLASS:
+        case UIElems::RACE:
+            if (option_picked == options.end()-1)
+                option_picked = options.begin();
+            else ++option_picked;
+
+            p = *option_picked;
+            if (p == "Automaton")
+                menu.SetUIElemActive(UIElems::SEX, false);
+            else menu.SetUIElemActive(UIElems::SEX);
+        break;
+
+    case UIElems::RESOLUTION: {
+        uint curr_res = stoi(p);
 
         if (++curr_res > floor(SCREENW() / MINRESW))
             curr_res = 1;
 
-        picking.setString(to_string(curr_res));
+        p = to_string(curr_res);
 
         //Set the Apply button to active
         menu.SetUIElemActive(UIElems::APPLY);
+        break;
     }
+
+        case UIElems::SEX:
+            p = p == "Male" ? "Female" : "Male";
+        break;
+    }
+
+    Text::SetStr(picking, p);
 }

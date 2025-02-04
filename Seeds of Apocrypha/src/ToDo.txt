@@ -1,0 +1,17 @@
+Left off: Character creation - implementing size picker in Menu.cpp and CreatePartyMember in Scene.cpp
+
+
+Prototype:
+	-Main Menu
+		--Character creation
+			---Create 2nd text object stating which character is being made
+			---Make Pre-Gen characters?
+		--Continue/Load game
+			---Will require implementation of saving/loading system
+		--Options
+			---Set resolution/fullscreen
+			---Change volumes
+	-Character+Party Creation
+		--It's a Menu in Title scene
+	-Town
+	-Trow Cave

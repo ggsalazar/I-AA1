@@ -21,13 +21,15 @@ Game::Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullsc
         cerr << "Failed to load font 'm5x7.ttf'!" << endl;
 
     //Initialize the DJ's tracks
-    //Play the title track
+    //Play the title track - TO-DO
 
     //Initialize Scenes
     title_scene = make_unique<Scene>(*this, window, Scenes::TITLE);
-    game_scene = make_unique<Scene>(*this, window, Scenes::GAME);
+    cutscene_scene = make_unique<Scene>(*this, window, Scenes::CUTSCENE);
+    town_scene = make_unique<Scene>(*this, window, Scenes::TOWN);
+    dungeon_scene = make_unique<Scene>(*this, window, Scenes::DUNGEON);
     scenes.insert(make_pair(Scenes::TITLE, title_scene));
-    scenes.insert(make_pair(Scenes::GAME, game_scene));
+    scenes.insert(make_pair(Scenes::DUNGEON, dungeon_scene));
     active_scene = title_scene;
 }
 
@@ -39,7 +41,7 @@ void Game::HandleEvents() {
 
         else if (event->is<sf::Event::FocusLost>()) {
             auto scn = active_scene.lock();
-            if (scn->label == Scenes::GAME) {
+            if (scn->label != Scenes::TITLE) {
                 paused = true;
                 if (!scn->MenuOpen(Menus::PAUSE))
                     scn->OpenMenu(Menus::PAUSE);

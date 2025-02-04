@@ -15,24 +15,26 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Back";
         break;
 
+        case UIElems::BACKGROUND:
+            l_str = "Background";
+        break;
+
+        case UIElems::CHARCREA:
+            l_str = "Embark";
+        break;
+
+        case UIElems::CLASS:
+            l_str = "Class";
+        break;
+
         case UIElems::FULLSCREEN:
             l_str = "Fullscreen";
         break;
 
-        case UIElems::LEVSEL:
-            l_str = "Level Select";
-        break;
-
-        case UIElems::LEV1:
-            l_str = "Level 1";
-        break;
-
-        case UIElems::LEV2:
-            l_str = "Level 2";
-        break;
-
-        case UIElems::LEV3:
-            l_str = "Level 3";
+        case UIElems::LOAD:
+            l_str = "Continue";
+            //Check to see if an existing save files exists before setting (in)active - TO-DO
+            SetActive(false);
         break;
 
         case UIElems::MAINMENU:
@@ -51,6 +53,10 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Quit";
         break;
 
+        case UIElems::RACE:
+            l_str = "Race";
+        break;
+
         case UIElems::RESOLUTION:
             l_str = "Resolution";
         break;
@@ -59,11 +65,15 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Resume";
         break;
 
+        case UIElems::SEX:
+            l_str = "Sex";
+        break;
+
         case UIElems::SFXV:
             l_str = "SFX Volume";
         break;
     }
-    Util::InitText(label, game.default_font, style.font_size, pos.x, pos.y, l_str);
+    Text::Init(label, structure.game.default_font, style.font_size, pos, l_str);
 
     //Sound
     {
@@ -72,7 +82,7 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             return;
         }
         sound.setBuffer(sb);
-        sound.setVolume(game.GetSFXVolume());
+        sound.setVolume(structure.game.GetSFXVolume());
     }
 }
 
@@ -98,7 +108,7 @@ void UI::Resize(uint r_s) {
     //Adjust label size
     label.setCharacterSize(r_s * 16);
     //Reset the origin
-    Util::SetTextOrigin(label);
+    Text::SetOrigin(label);
     //Label offset and position are handled in children
 }
 

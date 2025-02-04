@@ -3,7 +3,7 @@
 
 class Slider : public UI {
 public:
-    Slider(const Entity::Structure& s, Menu& m, const Animation::AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc=0);
+    Slider(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc=0);
 
     void GetInput() override;
     void Draw(const bool debug = false) override;

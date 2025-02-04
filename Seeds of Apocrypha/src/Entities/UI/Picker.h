@@ -1,15 +1,17 @@
 #pragma once
+#include <vector>
 #include "UI.h"
+
 
 class Picker : public UI {
 public:
-    Picker(const Entity::Structure& s, Menu& m, const Animation::AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc=0);
+    Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc=0);
 
     void GetInput() override;
     void Draw(const bool debug = false) override;
     void Move() override;
 
-    int GetPicking();
+    string GetPicking() { return picking.getString(); }
 
 private:
     //Variables
@@ -21,6 +23,8 @@ private:
     bool r_primed = false;
 
     sf::Text picking;
+    vector<string> options;
+    vector<string>::iterator option_picked;
 
     //Functions
     bool LeftSelected(const sf::Vector2i& mouse_pos) { return l_bbox.contains(sf::Vector2f(mouse_pos)); }

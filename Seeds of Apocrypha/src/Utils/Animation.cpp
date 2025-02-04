@@ -2,7 +2,7 @@
 #include "../Entities/Entity.h"
 
 Animation::Animation(Game& g, sf::RenderWindow& w, Entity* e, const AnimInfo& a_i, const Transform& t) :
-    game(g), window(w), sprite(texture) {
+    game(g), window(w), anim_info(a_i), sprite(texture) {
 
     //Img/Tex/Spr
     SetSprite(anim_info.img_name);
