@@ -59,6 +59,11 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             //TO-DO: SKILLS, ABILITY SCORES, EQUIPMENT
 
 
+            auto create_btn = make_shared<Button>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ window.getSize().x * .5f, window.getSize().y * .8f, .5f, .5f, res_scalar },
+                UI::Style{ UIElems::CREATE, style_size });
             auto back_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
@@ -70,6 +75,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             ui_elems.insert(make_pair(UIElems::SEX, sex_picker));
             ui_elems.insert(make_pair(UIElems::CLASS, class_picker));
             ui_elems.insert(make_pair(UIElems::BACKGROUND, bg_picker));
+            ui_elems.insert(make_pair(UIElems::CREATE, create_btn));
             ui_elems.insert(make_pair(UIElems::BACK, back_btn));
             break;
         }

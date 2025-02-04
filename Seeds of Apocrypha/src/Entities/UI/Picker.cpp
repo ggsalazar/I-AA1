@@ -57,8 +57,9 @@ Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
             options.push_back("Elf");
             options.push_back("Gnome");
             options.push_back("Human");
+            options.push_back("Kobold");
             picking_str = "Human";
-            option_picked = options.end()-1;
+            option_picked = options.end()-2;
         break;
 
         case UIElems::RESOLUTION:
@@ -72,7 +73,7 @@ Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
         case UIElems::SIZE:
             options.push_back("Small");
             options.push_back("Medium");
-            options.push_back("Large");
+            options.push_back("Big");
             picking_str = "Medium";
             option_picked = options.begin()+1;
         break;
@@ -167,6 +168,11 @@ void Picker::LeftReleased() {
             if (p == "Automaton")
                 menu.SetUIElemActive(UIElems::SEX, false);
             else menu.SetUIElemActive(UIElems::SEX);
+            if (p == "Gnome" or p == "Kobold") {
+                menu.SetUIElemActive(UIElems::SIZE, false);
+                //SIZE also needs to be set to "Small" - TO-DO
+            }
+            else menu.SetUIElemActive(UIElems::SIZE);
         break;
 
         case UIElems::RESOLUTION: {
@@ -185,6 +191,32 @@ void Picker::LeftReleased() {
         case UIElems::SEX:
             p = p == "Male" ? "Female" : "Male";
         break;
+
+
+        case UIElems::SIZE:
+            //What Size you can be depends on your race
+            string race = menu.GetUIElemStatus(UIElems::RACE);
+            //Automata and Humans can be S/M/B
+            if (race == "Automaton" or race == "Human") {
+                if (option_picked == options.begin())
+                    option_picked = options.end() - 1;
+                else --option_picked;
+            }
+            //Dwarves can be Small or Med
+            else if (race == "Dwarf") {
+                if (option_picked == options.begin())
+                    option_picked = options.end() - 2;
+                else --option_picked;
+            }
+            //Elves can be Med or Big
+            else if (race == "Elf") {
+                if (option_picked == options.begin()+1)
+                    option_picked = options.end() - 1;
+                else --option_picked;
+            }
+            //Gnomes and Kobolds can only be Small (Set in RACE - TO-DO)
+            p = *option_picked;
+        break;
     }
 
     Text::SetStr(picking, p);
@@ -196,6 +228,7 @@ void Picker::RightReleased() {
         case UIElems::BACKGROUND:
         case UIElems::CLASS:
         case UIElems::RACE:
+        case UIElems::SIZE:
             if (option_picked == options.end()-1)
                 option_picked = options.begin();
             else ++option_picked;

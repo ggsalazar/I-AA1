@@ -1,5 +1,6 @@
-Left off: Character creation - implementing size picker in Menu.cpp and CreatePartyMember in Scene.cpp
+Left off: Character creation - implementing SIZE in Picker.cpp and CreatePartyMember in Scene.cpp
 
+To-do: Set Size picker to Small if Race is Gnome or Kobold
 
 Prototype:
 	-Main Menu
