@@ -221,6 +221,10 @@ void Menu::SetUIElemActive(const UIElems ui, const bool a) {
         ui_elems[ui]->SetActive(a);
 }
 
+void Menu::SetUIElemStatus(const UIElems ui, const string new_status) {
+    if (CheckUIElem(ui))
+}
+
 string Menu::GetUIElemStatus(const UIElems ui) {
     if (CheckUIElem(ui)) {
         if (auto picker = dynamic_cast<Picker*>(ui_elems[ui].get()))

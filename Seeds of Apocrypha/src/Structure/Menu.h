@@ -28,6 +28,7 @@ public:
     bool CheckUIElem(const UIElems ui);
     bool GetUIElemActive(const UIElems ui);
     void SetUIElemActive(const UIElems ui, const bool a = true);
+    void SetUIElemStatus(const UIElems ui, const string new_status);
     string GetUIElemStatus(const UIElems ui);
 
 private:

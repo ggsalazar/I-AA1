@@ -165,9 +165,12 @@ void Picker::LeftReleased() {
             else --option_picked;
 
             p = *option_picked;
+            //Automata do not have a sex
             if (p == "Automaton")
                 menu.SetUIElemActive(UIElems::SEX, false);
             else menu.SetUIElemActive(UIElems::SEX);
+
+            //Gnomes and Kobolds can only be small
             if (p == "Gnome" or p == "Kobold") {
                 menu.SetUIElemActive(UIElems::SIZE, false);
                 //SIZE also needs to be set to "Small" - TO-DO
