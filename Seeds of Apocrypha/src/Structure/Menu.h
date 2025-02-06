@@ -25,6 +25,7 @@ public:
 
     //UI Elements
     void Resize();
+    //LastSelected();
     bool CheckUIElem(const UIElems ui);
     bool GetUIElemActive(const UIElems ui);
     void SetUIElemActive(const UIElems ui, const bool a = true);
@@ -34,6 +35,7 @@ public:
 private:
     sf::Text menu_text;
 
+    vector<unique_ptr<sf::Text>> sup_texts; //Supplementary texts
     unordered_map<UIElems, shared_ptr<UI>> ui_elems;
 
     //Game structure pointers

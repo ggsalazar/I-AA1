@@ -11,6 +11,7 @@ public:
     void Draw(const bool debug = false) override;
     void Move() override;
 
+    void SetPicking(const string new_p);
     string GetPicking() { return picking.getString(); }
 
 private:

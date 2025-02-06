@@ -36,6 +36,7 @@ void Button::Released() {
         break;
 
         case UIElems::BACK:
+            cout << "Button L39" << endl;
             menu.open = false;
             structure.scene->OpenMenu(Menus::MAIN);
         break;
@@ -45,14 +46,15 @@ void Button::Released() {
             structure.scene->OpenMenu(Menus::CHARCREA);
         break;
 
-        case UIElems::CREATE:
-            auto quit_btn = make_shared<Button>(
+        case UIElems::CREATE: {
+            /*auto quit_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ window.getSize().x * .5f, window.getSize().y * .8f, .5f, .5f, res_scalar },
-                UI::Style{ UIElems::QUIT, style_size });
-            auto new_party_mem = make_shared<PartyMember>
-        break;
+                UI::Style{ UIElems::QUIT, style_size });*/
+            //auto new_party_mem = make_shared<PartyMember>
+            break;
+        }
 
         case UIElems::OPTIONS:
             menu.open = false;

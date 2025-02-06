@@ -55,46 +55,46 @@ C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 -
 C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(23,33): warning C4244:         [
 C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(23,33): warning C4244:             T=float
 C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(23,33): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(122,49): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(126,41): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(126,41): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(126,41): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(126,41): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(126,41): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(127,41): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(127,41): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(127,41): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(127,41): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(127,41): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(128,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(128,33): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(128,33): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(128,33): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(128,33): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(129,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(129,33): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(129,33): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(129,33): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(129,33): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,41): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,41): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,41): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,41): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,41): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(137,41): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(137,41): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(137,41): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(137,41): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(137,41): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(138,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(138,33): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(138,33): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(138,33): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(138,33): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(139,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(139,33): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(139,33): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(139,33): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(139,33): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(168,33): warning C4244: '=': conversion from 'double' to 'uint', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(129,49): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(133,41): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(133,41): warning C4244:         with
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(133,41): warning C4244:         [
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(133,41): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(133,41): warning C4244:         ]
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(134,41): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(134,41): warning C4244:         with
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(134,41): warning C4244:         [
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(134,41): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(134,41): warning C4244:         ]
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(135,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(135,33): warning C4244:         with
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(135,33): warning C4244:         [
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(135,33): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(135,33): warning C4244:         ]
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,33): warning C4244:         with
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,33): warning C4244:         [
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,33): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(136,33): warning C4244:         ]
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(143,41): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(143,41): warning C4244:         with
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(143,41): warning C4244:         [
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(143,41): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(143,41): warning C4244:         ]
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(144,41): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(144,41): warning C4244:         with
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(144,41): warning C4244:         [
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(144,41): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(144,41): warning C4244:         ]
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(145,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(145,33): warning C4244:         with
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(145,33): warning C4244:         [
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(145,33): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(145,33): warning C4244:         ]
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(146,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(146,33): warning C4244:         with
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(146,33): warning C4244:         [
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(146,33): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(146,33): warning C4244:         ]
+C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(208,33): warning C4244: '=': conversion from 'double' to 'uint', possible loss of data
   Seeds of Apocrypha.vcxproj -> C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe

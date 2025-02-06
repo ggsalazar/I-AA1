@@ -16,8 +16,9 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
     //What we do depends on our label
     switch (label) {
         case Menus::CHARCREA: {
-            /*Things to determine: (NOT CURRENTLY IN ORDER)
+            /*Things to determine:
             Race/Racial features (aesthetics + mechanics),
+            Size,
             Sex,
             Class,
             Background,
@@ -31,32 +32,35 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             Text::SetStr(menu_text, "Create Your Party");
             //Create a second text object that says "Character 1/2/3/4" - TO-DO
             
+            float picker_x = window.getSize().x * .2f;
+
             auto race_picker = make_shared<Picker>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ window.getSize().x * .25f, window.getSize().y * .3f, .5f, .5f, res_scalar },
+                Animation::Transform{ picker_x, window.getSize().y * .2f, .5f, .5f, res_scalar },
                 UI::Style{ UIElems::RACE, style_size });
             auto size_picker = make_shared<Picker>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ window.getSize().x * .25f, window.getSize().y * .4f, .5f, .5f, res_scalar },
+                Animation::Transform{ picker_x, window.getSize().y * .28f, .5f, .5f, res_scalar },
                 UI::Style{ UIElems::SIZE, style_size });
             auto sex_picker = make_shared<Picker>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ window.getSize().x * .25f, window.getSize().y * .5f, .5f, .5f, res_scalar },
+                Animation::Transform{ picker_x, window.getSize().y * .36f, .5f, .5f, res_scalar },
                 UI::Style{ UIElems::SEX, style_size });
-            auto class_picker = make_shared<Picker>(
-                Structure{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ window.getSize().x * .25f, window.getSize().y * .6f, .5f, .5f, res_scalar },
-                UI::Style{ UIElems::CLASS, style_size });
             auto bg_picker = make_shared<Picker>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ window.getSize().x * .25f, window.getSize().y * .7f, .5f, .5f, res_scalar },
+                Animation::Transform{ picker_x, window.getSize().y * .44f, .5f, .5f, res_scalar },
                 UI::Style{ UIElems::BACKGROUND, style_size });
+            auto class_picker = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ picker_x, window.getSize().y * .52f, .5f, .5f, res_scalar },
+                UI::Style{ UIElems::CLASS, style_size });
             //TO-DO: SKILLS, ABILITY SCORES, EQUIPMENT
+            //THEN: WARRIOR FIGHTING-STYLE SELECTION, ROGUE EXPERTISE SELECTION, ARCANIST SPELL SELECTION
 
 
             auto create_btn = make_shared<Button>(
@@ -67,14 +71,14 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             auto back_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ window.getSize().x * .5f, window.getSize().y * .8f, .5f, .5f, res_scalar },
+                Animation::Transform{ window.getSize().x * .5f, window.getSize().y * .9f, .5f, .5f, res_scalar },
                 UI::Style{ UIElems::BACK, style_size });
 
             ui_elems.insert(make_pair(UIElems::RACE, race_picker));
             ui_elems.insert(make_pair(UIElems::SIZE, size_picker));
             ui_elems.insert(make_pair(UIElems::SEX, sex_picker));
-            ui_elems.insert(make_pair(UIElems::CLASS, class_picker));
             ui_elems.insert(make_pair(UIElems::BACKGROUND, bg_picker));
+            ui_elems.insert(make_pair(UIElems::CLASS, class_picker));
             ui_elems.insert(make_pair(UIElems::CREATE, create_btn));
             ui_elems.insert(make_pair(UIElems::BACK, back_btn));
             break;
@@ -222,7 +226,10 @@ void Menu::SetUIElemActive(const UIElems ui, const bool a) {
 }
 
 void Menu::SetUIElemStatus(const UIElems ui, const string new_status) {
-    if (CheckUIElem(ui))
+    if (CheckUIElem(ui)) {
+        if (auto picker = dynamic_cast<Picker*>(ui_elems[ui].get()))
+            picker->SetPicking(new_status);
+    }
 }
 
 string Menu::GetUIElemStatus(const UIElems ui) {

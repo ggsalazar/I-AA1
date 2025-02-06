@@ -4,7 +4,7 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
 	Entity(s, a_i, t, init_dfc), menu(m), elem(style.elem), label(structure.game.default_font) {
     
     //Label
-    string l_str = "Default";
+    string l_str = "DEFAULT";
     switch (elem) {
         case UIElems::APPLY:
             l_str = "Apply";
@@ -25,6 +25,10 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
 
         case UIElems::CLASS:
             l_str = "Class";
+        break;
+
+        case UIElems::CREATE:
+            l_str = "Create";
         break;
 
         case UIElems::FULLSCREEN:
@@ -67,6 +71,10 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
 
         case UIElems::SEX:
             l_str = "Sex";
+        break;
+
+        case UIElems::SIZE:
+            l_str = "Size";
         break;
 
         case UIElems::SFXV:

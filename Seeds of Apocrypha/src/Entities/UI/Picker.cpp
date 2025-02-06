@@ -3,7 +3,7 @@
 Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
     UI(s, m, a_i, t, style, init_dfc), picking(structure.game.default_font) {
 
-    label_offset = structure.game.GetResScale()*5;
+    label_offset = structure.game.GetResScale()*8;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Set up position.x bbox
@@ -117,13 +117,11 @@ void Picker::Draw(const bool debug) {
         else if (RightSelected(MOUSEPOS))
             structure.window.draw(r_bbox_debug);
 
-        else if (elem == UIElems::SEX and picking.getString() == "-") {
+        if (elem == UIElems::SEX and picking.getString() == "-") {
             string new_sex = rand() % 2 ? "Male" : "Female";
             Text::SetStr(picking, new_sex);
         }
     }
-    else
-        Text::SetStr(picking, "-");
 }
 
 void Picker::Move() {
@@ -154,6 +152,15 @@ void Picker::Move() {
     picking.setPosition(pos);
 }
 
+void Picker::SetPicking(const string new_p) {
+    Text::SetStr(picking, new_p);
+    if (elem == UIElems::SIZE) {
+        if (new_p == "Small") option_picked = options.begin();
+        else if (new_p == "Medium") option_picked = options.begin() + 1;
+        else option_picked = options.end() - 1;
+    }
+}
+
 void Picker::LeftReleased() {
     string p = picking.getString();
     switch (elem) {
@@ -165,15 +172,31 @@ void Picker::LeftReleased() {
             else --option_picked;
 
             p = *option_picked;
-            //Automata do not have a sex
-            if (p == "Automaton")
-                menu.SetUIElemActive(UIElems::SEX, false);
-            else menu.SetUIElemActive(UIElems::SEX);
 
-            //Gnomes and Kobolds can only be small
-            if (p == "Gnome" or p == "Kobold") {
+            //Automata do not have a sex
+            if (p == "Automaton") {
+                menu.SetUIElemActive(UIElems::SEX, false);
+                menu.SetUIElemStatus(UIElems::SEX, "-");
+            }
+            else
+                menu.SetUIElemActive(UIElems::SEX);
+
+            //Dwarves can be Small or Med
+            if (p == "Dwarf") {
+                menu.SetUIElemActive(UIElems::SIZE);
+                if (menu.GetUIElemStatus(UIElems::SIZE) == "Big")
+                    menu.SetUIElemStatus(UIElems::SIZE, "Medium");
+            }
+            //Elves can be Med or Big
+            else if (p == "Elf") {
+                menu.SetUIElemActive(UIElems::SIZE);
+                if (menu.GetUIElemStatus(UIElems::SIZE) == "Small")
+                    menu.SetUIElemStatus(UIElems::SIZE, "Medium");
+            }
+            //Gnomes and Kobolds can only be Small
+            else if (p == "Gnome" or p == "Kobold") {
                 menu.SetUIElemActive(UIElems::SIZE, false);
-                //SIZE also needs to be set to "Small" - TO-DO
+                menu.SetUIElemStatus(UIElems::SIZE, "Small");
             }
             else menu.SetUIElemActive(UIElems::SIZE);
         break;
@@ -199,6 +222,7 @@ void Picker::LeftReleased() {
         case UIElems::SIZE:
             //What Size you can be depends on your race
             string race = menu.GetUIElemStatus(UIElems::RACE);
+
             //Automata and Humans can be S/M/B
             if (race == "Automaton" or race == "Human") {
                 if (option_picked == options.begin())
@@ -231,33 +255,83 @@ void Picker::RightReleased() {
         case UIElems::BACKGROUND:
         case UIElems::CLASS:
         case UIElems::RACE:
-        case UIElems::SIZE:
             if (option_picked == options.end()-1)
                 option_picked = options.begin();
             else ++option_picked;
 
             p = *option_picked;
-            if (p == "Automaton")
+
+            //Automata do not have a sex
+            if (p == "Automaton") {
                 menu.SetUIElemActive(UIElems::SEX, false);
-            else menu.SetUIElemActive(UIElems::SEX);
+                menu.SetUIElemStatus(UIElems::SEX, "-");
+            }
+            else 
+                menu.SetUIElemActive(UIElems::SEX);
+
+            //Dwarves can be Small or Med
+            if (p == "Dwarf") {
+                menu.SetUIElemActive(UIElems::SIZE);
+                if (menu.GetUIElemStatus(UIElems::SIZE) == "Big")
+                    menu.SetUIElemStatus(UIElems::SIZE, "Medium");
+            }
+            //Elves can be Med or Big
+            else if (p == "Elf") {
+                menu.SetUIElemActive(UIElems::SIZE);
+                if (menu.GetUIElemStatus(UIElems::SIZE) == "Small")
+                    menu.SetUIElemStatus(UIElems::SIZE, "Medium");
+            }
+            //Gnomes and Kobolds can only be Small
+            else if (p == "Gnome" or p == "Kobold") {
+                menu.SetUIElemActive(UIElems::SIZE, false);
+                menu.SetUIElemStatus(UIElems::SIZE, "Small");
+            }
+            else menu.SetUIElemActive(UIElems::SIZE);
         break;
 
-    case UIElems::RESOLUTION: {
-        uint curr_res = stoi(p);
+        case UIElems::RESOLUTION: {
+            uint curr_res = stoi(p);
 
-        if (++curr_res > floor(SCREENW() / MINRESW))
-            curr_res = 1;
+            if (++curr_res > floor(SCREENW() / MINRESW))
+                curr_res = 1;
 
-        p = to_string(curr_res);
+            p = to_string(curr_res);
 
-        //Set the Apply button to active
-        menu.SetUIElemActive(UIElems::APPLY);
-        break;
-    }
+            //Set the Apply button to active
+            menu.SetUIElemActive(UIElems::APPLY);
+            break;
+        }
 
         case UIElems::SEX:
             p = p == "Male" ? "Female" : "Male";
         break;
+
+
+        case UIElems::SIZE:
+            //What Size you can be depends on your race
+            string race = menu.GetUIElemStatus(UIElems::RACE);
+
+            //Automata and Humans can be S/M/B
+            if (race == "Automaton" or race == "Human") {
+                if (option_picked == options.end()-1)
+                    option_picked = options.begin();
+                else ++option_picked;
+            }
+            //Dwarves can be Small or Med
+            else if (race == "Dwarf") {
+                if (option_picked == options.end()-2)
+                    option_picked = options.begin();
+                else ++option_picked;
+            }
+            //Elves can be Med or Big
+            else if (race == "Elf") {
+                if (option_picked == options.end() - 1)
+                    option_picked = options.end() - 2;
+                else ++option_picked;
+            }
+            //Gnomes and Kobolds can only be Small (Set in RACE - TO-DO)
+            p = *option_picked;
+            break;
     }
 
     Text::SetStr(picking, p);

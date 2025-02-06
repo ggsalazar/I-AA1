@@ -118,6 +118,7 @@ void Scene::ResizeMenus() {
 }
 
 void Scene::CreatePartyMember() {
+	/*
 	auto quit_btn = make_shared<Button>(
 		Structure{ game, window, &scene }, *this,
 		AnimInfo{ "UI/Button", 93, 26 },
@@ -127,4 +128,5 @@ void Scene::CreatePartyMember() {
 	auto new_party_mem = make_shared<PartyMember>(
 
 	)
+	*/
 }
