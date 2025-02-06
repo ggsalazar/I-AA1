@@ -7,6 +7,7 @@ Prototype:
 			---Also in the middle(?), whatever sub-thing they are picking (aesthetics, features, skills, etc.)
 			---On the right, the character currently being made/characters already made
 			---Pre-Gen characters
+			---Random characters
 			---CreatePartyMember in Scene.cpp
 		--Continue/Load game
 			---Will require implementation of saving/loading system
