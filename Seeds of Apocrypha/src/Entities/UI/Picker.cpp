@@ -31,6 +31,7 @@ Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
     string picking_str = "";
     switch (elem) {
         case UIElems::BACKGROUND:
+            options.push_back("Custom");
             options.push_back("Artist");
             options.push_back("Divine");
             options.push_back("Farmer");
@@ -241,7 +242,7 @@ void Picker::LeftReleased() {
                     option_picked = options.end() - 1;
                 else --option_picked;
             }
-            //Gnomes and Kobolds can only be Small (Set in RACE - TO-DO)
+            //Gnomes and Kobolds can only be Small (Set in RACE)
             p = *option_picked;
         break;
     }
@@ -329,7 +330,7 @@ void Picker::RightReleased() {
                     option_picked = options.end() - 2;
                 else ++option_picked;
             }
-            //Gnomes and Kobolds can only be Small (Set in RACE - TO-DO)
+            //Gnomes and Kobolds can only be Small (Set in RACE)
             p = *option_picked;
             break;
     }

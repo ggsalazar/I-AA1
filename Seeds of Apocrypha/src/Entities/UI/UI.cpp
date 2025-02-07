@@ -11,6 +11,10 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             SetActive(false);
         break;
 
+        case UIElems::AS:
+            l_str = "Ability Scores";
+        break;
+
         case UIElems::BACK:
             l_str = "Back";
         break;
@@ -20,7 +24,7 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
         break;
 
         case UIElems::CHARCREA:
-            l_str = "Embark";
+            l_str = "New Adventure";
         break;
 
         case UIElems::CLASS:
@@ -31,12 +35,16 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Create";
         break;
 
+        case UIElems::EQUIPMENTCC:
+            l_str = "Equipment";
+        break;
+
         case UIElems::FULLSCREEN:
             l_str = "Fullscreen";
         break;
 
         case UIElems::LOAD:
-            l_str = "Continue";
+            l_str = "Continue Adventure";
             //Check to see if an existing save files exists before setting (in)active - TO-DO
             SetActive(false);
         break;
@@ -77,6 +85,10 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Size";
         break;
 
+        case UIElems::SKILLS:
+            l_str = "Skills";
+        break;
+
         case UIElems::SFXV:
             l_str = "SFX Volume";
         break;
@@ -112,7 +124,7 @@ void UI::Resize(uint r_s) {
     //Set sprite w/h
     anim->sprite.setScale({ r_s*1.f, r_s*1.f });
     //Set new sprite origin
-    anim->SetOrigin(old_origin.x, old_origin.y);
+    anim->SetOrigin(old_origin);
     //Adjust label size
     label.setCharacterSize(r_s * 16);
     //Reset the origin

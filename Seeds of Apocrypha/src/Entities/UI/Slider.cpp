@@ -18,8 +18,8 @@ Slider::Slider(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
     knob_spr.setTexture(knob_tex);
 
     //Set the origin/anchor, scale, and position
-    knob_spr.setOrigin({ t.origin_x * 3.f, t.origin_y * 9.f }); //The knob is 3px wide & 9px high
-    knob_spr.setScale({ t.scale_w, t.scale_h });
+    knob_spr.setOrigin({ t.origin.x * 3.f, t.origin.y * 9.f }); //The knob is 3px wide & 9px high
+    knob_spr.setScale(t.scale);
     knob_pos_max = bbox.position.x + bbox.size.x * .9f;
     knob_pos_min = bbox.position.x + bbox.size.x * .1f;
     knob_pos = knob_pos_max;

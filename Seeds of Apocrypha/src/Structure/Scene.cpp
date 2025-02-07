@@ -9,7 +9,7 @@ void Scene::GetInput() {
 	for (auto& e : entities) {
 		//Only get input for UI elements if the corresponding menu is open
 		if (auto ui = dynamic_cast<UI*>(e.get())) {
-			if (ui->menu.open)
+			if (ui->menu.GetOpen())
 				ui->GetInput();
 		}
 		else
@@ -37,7 +37,7 @@ void Scene::Draw() {
 	for (auto& e : entities) {
 		//Only draw UI elements if the corresponding menu is open
 		if (auto ui = dynamic_cast<UI*>(e.get())) {
-			if (ui->menu.open)
+			if (ui->menu.GetOpen())
 				ui->Draw();
 		}
 		else
@@ -64,7 +64,7 @@ void Scene::Open() {
 		auto load_menu = make_unique<Menu>(game, window, *this, Menus::LOAD);
 		auto options_menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS);
 
-		main_menu->open = true;
+		main_menu->Open();
 		menus.insert(make_pair(Menus::MAIN, move(main_menu)));
 		menus.insert(make_pair(Menus::CHARCREA, move(char_crea_menu)));
 		menus.insert(make_pair(Menus::LOAD, move(load_menu)));
@@ -78,7 +78,7 @@ void Scene::Close() {
 	// which now belongs to the new scene and is immediately deleted when that scene is opened
 	//Should I make an "entities_to_keep" vector?
 	for (const auto& m : menus)
-		m.second->open = false;
+		m.second->Open(false);
 	menus.clear();
 	entities.clear();
 }
@@ -86,7 +86,7 @@ void Scene::Close() {
 void Scene::OpenMenu(Menus menu) {
 	for (const auto& m : menus) {
 		if (m.first == menu) {
-			m.second->open = true;
+			m.second->Open();
 			break;
 		}
 	}
@@ -95,7 +95,7 @@ void Scene::OpenMenu(Menus menu) {
 bool Scene::MenuOpen(Menus menu) {
 	for (const auto& m : menus) {
 		if (m.first == menu) {
-			return m.second->open;
+			return m.second->GetOpen();
 			break;
 		}
 	}
@@ -106,7 +106,7 @@ bool Scene::MenuOpen(Menus menu) {
 void Scene::CloseMenu(Menus menu) {
 	for (const auto& m : menus) {
 		if (m.first == menu) {
-			m.second->open = false;
+			m.second->Open(false);
 			break;
 		}
 	}

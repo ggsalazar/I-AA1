@@ -128,6 +128,16 @@ enum class Weathers {
 };
 
 
+//Game details
+enum class Cutscenes {
+
+};
+
+enum class Areas {
+
+};
+
+
 //Game Structure
 enum class Menus {
 	CHARCREA,
@@ -137,13 +147,20 @@ enum class Menus {
 	LOAD,
 	MAIN,
 	OPTIONS,
-	PAUSE
+	PAUSE,
+	//Sub-Menus
+	//CC
+	CCAS,
+	CCBG,
+	CCCLASS,
+	CCEQUIP,
+	CCRACE,
+	CCSKILLS
 };
 
 enum class Scenes {
 	CUTSCENE,
-	DUNGEON,
-	TOWN,
+	AREA,
 	TITLE
 };
 
@@ -151,15 +168,18 @@ enum class UIElems {
 	DEFAULT,
 	//Buttons
 	APPLY,
+	AS,
 	BACK,
 	CHARCREA,
 	CREATE,
+	EQUIPMENTCC,
 	FULLSCREEN,
 	LOAD,
 	MAINMENU,
 	OPTIONS,
 	QUIT,
 	RESUME,
+	SKILLS,
 	//Pickers
 	BACKGROUND,
 	CLASS,

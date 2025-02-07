@@ -16,12 +16,15 @@ class Menu {
 public:
     //Variables
     Menus label;
-    bool open = false;
 
     Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label);
 
     //Game
-    void Draw() { if (open) window.draw(menu_text); }
+    void Draw();
+
+    //Self and Sub-Menus
+    void Open(const bool o = true);
+    bool GetOpen() const { return open; }
 
     //UI Elements
     void Resize();
@@ -34,9 +37,13 @@ public:
 
 private:
     sf::Text menu_text;
+    sf::Text sup_text; //Supplementary text
+    bool open = false;
 
-    vector<unique_ptr<sf::Text>> sup_texts; //Supplementary texts
+    unordered_map<Menus, unique_ptr<Menu>> sub_menus;
     unordered_map<UIElems, shared_ptr<UI>> ui_elems;
+    sf::Vector2f ui_ori = { .5f, .5f };
+    sf::Vector2f ui_size = { 1.f, 1.f };
 
     //Game structure pointers
     Game& game;

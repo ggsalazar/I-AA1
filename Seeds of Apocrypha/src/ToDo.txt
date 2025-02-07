@@ -1,23 +1,39 @@
-Left off: Character creation - Ability Scores!
+Left off: Character creation - Each option in CC should open a sub-menu that allows the player to pick details of their character
+								
+To-do:
+	-Add Width parameter to Text::SetStr that will add in a newline character if the string exceeds a 
+	 specified pixel width (default argument is window width)
+	-Make Pre-Made characters and the option to add them to party
+	-Where should Tutorial button go? What about rules/manual?
 
-Prototype:
-	-Main Menu
-		--Character creation
-			---In the middle, descriptive text of the thing being picked & the options the player can pick from (maybe implemented primed for pickers)
-			---Also in the middle(?), whatever sub-thing they are picking (aesthetics, features, skills, etc.)
-			---On the right, the character currently being made/characters already made
-			---Pre-Gen characters
-			---Random characters
-			---CreatePartyMember in Scene.cpp
-		--Continue/Load game
-			---Will require implementation of saving/loading system
-		--Options
-			---Set resolution/fullscreen
-			---Change volumes
+Main Menu
+	-Character creation
+		--In the middle, descriptive text of the thing being picked & the options the player can pick from (maybe implemented primed for pickers)
+		--Also in the middle(?), whatever sub-thing they are picking (aesthetics, features, skills, etc.)
+		--On the right, the character currently being made/characters already made
+		--Pre-Gen characters
+		--Random characters
+		--CreatePartyMember in Scene.cpp
+	-Continue/Load game
+		--Will require implementation of saving/loading system
+	-Options
+		--Set resolution/fullscreen
+		--Change volumes
+		--Automatic journalling
+Tutorial
 	-Town
 	-Trow Cave
-
+Prologue
+	-Train
+		--Intro "Cutscene"
+		--NPCs
+		--Bad guys
+			---How many?
+			---Spacing?
+			---Boss?
+			---Motives?
+				----Connection to overarching plot?
 
 Game starts on train! Train heist
-	-Establish magic and tech coexist, then illustrate that magic is going *wrong*, and how and why that's a problem - all within first 1-2 hours! Then expand on those two things throughout the
-	 rest of the game
+	-Establish magic and tech coexist, then illustrate that magic is going *wrong*, and how and why that's a problem
+	 all within first 1-2 hours! Then expand on those two things throughout the rest of the game

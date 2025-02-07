@@ -26,10 +26,9 @@ Game::Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullsc
     //Initialize Scenes
     title_scene = make_unique<Scene>(*this, window, Scenes::TITLE);
     cutscene_scene = make_unique<Scene>(*this, window, Scenes::CUTSCENE);
-    town_scene = make_unique<Scene>(*this, window, Scenes::TOWN);
-    dungeon_scene = make_unique<Scene>(*this, window, Scenes::DUNGEON);
+    area_scene = make_unique<Scene>(*this, window, Scenes::AREA);
     scenes.insert(make_pair(Scenes::TITLE, title_scene));
-    scenes.insert(make_pair(Scenes::DUNGEON, dungeon_scene));
+    scenes.insert(make_pair(Scenes::AREA, area_scene));
     active_scene = title_scene;
 }
 

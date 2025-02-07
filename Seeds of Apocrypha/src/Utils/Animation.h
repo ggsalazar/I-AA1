@@ -23,14 +23,11 @@ class Animation {
 public:
 	sf::Sprite sprite;
 
-	//Position and scale
+	//Position, origin, and scale
 	struct Transform {
-		float x = .0f;
-		float y = .0f;
-		float origin_x = .0f;
-		float origin_y = .0f;
-		float scale_w = 1.f;
-		float scale_h = scale_w;
+		sf::Vector2f pos = { .0f, .0f };
+		sf::Vector2f origin = { .0f, .0f };
+		sf::Vector2f scale = { 1.f, 1.f };
 	};
 
 
@@ -60,7 +57,7 @@ public:
 	uint GetFPS() const { return anim_info.fps; }
 
 
-	void SetOrigin(float x = .5f, float y = .5f);
+	void SetOrigin(sf::Vector2f new_ori = { .5f, .5f });
 	//Returns origin from 0-1
 	sf::Vector2f GetOrigin() { return sf::Vector2f(sprite.getOrigin().x / anim_info.sprite_w, sprite.getOrigin().y / anim_info.sprite_h); }
 

@@ -22,6 +22,7 @@ public:
 
     void SetActive(const bool new_active = true);
     bool GetActive() const { return active; }
+    bool GetActivated() const { return activated; }
 
 protected:
     //Variables
@@ -29,6 +30,7 @@ protected:
     UIElems elem = UIElems::DEFAULT;
     bool active = true;
     bool primed = false;
+    bool activated = false;
 
     //Functions
     bool Selected(const sf::Vector2i& mouse_pos) { return bbox.contains(sf::Vector2f(mouse_pos)); }

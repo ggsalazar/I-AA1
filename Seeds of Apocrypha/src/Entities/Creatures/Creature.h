@@ -84,6 +84,7 @@ protected:
 	bool can_fly = false;
 	float action_carryover = 0;
 	int dodge_penalty = 0;
+	bool encumbered = false;
 
 	unordered_map<Items, unique_ptr<Item>> inv;
 	unordered_map<Items, unique_ptr<Item>> equipment;

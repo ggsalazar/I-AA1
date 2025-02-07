@@ -37,12 +37,12 @@ void Button::Released() {
 
         case UIElems::BACK:
             cout << "Button L39" << endl;
-            menu.open = false;
+            menu.Open(false);
             structure.scene->OpenMenu(Menus::MAIN);
         break;
 
         case UIElems::CHARCREA:
-            menu.open = false;
+            menu.Open(false);
             structure.scene->OpenMenu(Menus::CHARCREA);
         break;
 
@@ -57,12 +57,12 @@ void Button::Released() {
         }
 
         case UIElems::OPTIONS:
-            menu.open = false;
+            menu.Open(false);
             structure.scene->OpenMenu(Menus::OPTIONS);
         break;
 
         case UIElems::MAINMENU:
-            menu.open = false;
+            menu.Open(false);
             structure.game.paused = false;
             structure.game.game_over = false;
             structure.game.title_scene->AddEntity(shared_from_this());
@@ -74,7 +74,7 @@ void Button::Released() {
         break;
 
         case UIElems::RESUME:
-            menu.open = false;
+            menu.Open(false);
             structure.game.paused = false;
         break;
     }

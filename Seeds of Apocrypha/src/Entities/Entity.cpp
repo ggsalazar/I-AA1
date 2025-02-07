@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t, int init_dfc) :
-    structure(s), pos(t.x, t.y),
+    structure(s), pos(t.pos),
     dfc(init_dfc), sound(sb), anim(make_unique<Animation>(structure.game, structure.window, this, a_i, t)) {
 
     SetBBox();

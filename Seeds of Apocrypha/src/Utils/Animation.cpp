@@ -14,9 +14,9 @@ Animation::Animation(Game& g, sf::RenderWindow& w, Entity* e, const AnimInfo& a_
     SetFPS(anim_info.fps);
 
     //Set the origin/anchor, scale, and position
-    SetOrigin(t.origin_x, t.origin_y);
-    sprite.setScale({ t.scale_w, t.scale_h });
-    sprite.setPosition({ t.x, t.y });
+    SetOrigin(t.origin);
+    sprite.setScale(t.scale);
+    sprite.setPosition(t.pos);
 
     //Entity MUST be initialized at the end due it being referenced in SetSpriteW/H
     entity = e;
@@ -59,7 +59,7 @@ void Animation::SetSpriteW(const uint new_s_w) {
 
         if (entity)
             entity->SetBBox();
-        SetOrigin(old_ori.x, old_ori.y);
+        SetOrigin(old_ori);
     }
     else {
         cout << "Sprite width must be > 0!" << endl;
@@ -75,7 +75,7 @@ void Animation::SetSpriteH(const uint new_s_h) {
 
         if (entity)
             entity->SetBBox();
-        SetOrigin(old_ori.x, old_ori.y);
+        SetOrigin(old_ori);
     }
     else {
         cout << "Sprite height must be > 0!" << endl;
@@ -122,16 +122,16 @@ void Animation::SetFPS(const int new_fps) {
     else anim_info.anim_length = 0;
 }
 
-void Animation::SetOrigin(float x, float y) {
+void Animation::SetOrigin(sf::Vector2f new_ori) {
     //Origin/anchor needs to be set based on sprite w/h before scaling is applied - in other words, the literal, actual w/h of the png
     //Use get local bounds?
-    if (x > 1.f)
-        x = anim_info.sprite_w * .5;
-    else x *= anim_info.sprite_w;
+    if (new_ori.x > 1.f)
+        new_ori.x = anim_info.sprite_w * .5;
+    else new_ori.x *= anim_info.sprite_w;
 
-    if (y > 1.0f)
-        y = anim_info.sprite_h * .5;
-    else y *= anim_info.sprite_h;
+    if (new_ori.y > 1.0f)
+        new_ori.y = anim_info.sprite_h * .5;
+    else new_ori.y *= anim_info.sprite_h;
 
-    sprite.setOrigin({ x, y });
+    sprite.setOrigin(new_ori);
 }
