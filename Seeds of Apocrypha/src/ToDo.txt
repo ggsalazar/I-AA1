@@ -2,7 +2,7 @@ Left off: Character creation - Each option in CC should open a sub-menu that all
 								
 To-do:
 	-Add Width parameter to Text::SetStr that will add in a newline character if the string exceeds a 
-	 specified pixel width (default argument is window width)
+	 specified pixel width (default argument is window width) - LEFT OFF HERE
 	-Make Pre-Made characters and the option to add them to party
 	-Where should Tutorial button go? What about rules/manual?
 

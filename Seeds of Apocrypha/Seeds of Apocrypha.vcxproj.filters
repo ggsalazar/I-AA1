@@ -128,6 +128,9 @@
     <ClInclude Include="src\Entities\Creatures\PartyMember.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entities\Tooltip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\ToDo.txt" />

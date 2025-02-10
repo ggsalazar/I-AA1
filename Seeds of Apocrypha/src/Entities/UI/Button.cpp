@@ -19,6 +19,7 @@ void Button::Pressed() {
 }
 
 void Button::Released() {
+    activated = true;
     switch (elem) {
         case UIElems::APPLY:
             if (menu.label == Menus::OPTIONS) {
@@ -35,26 +36,34 @@ void Button::Released() {
             }
         break;
 
+        case UIElems::AS:
+            //Close whatever other sub-menu is open - TO-DO
+            //Open Ability Score sub-menu
+        break;
+        
         case UIElems::BACK:
-            cout << "Button L39" << endl;
+            //If creating a character, ask to confirm and if yes, wipe party creation
             menu.Open(false);
             structure.scene->OpenMenu(Menus::MAIN);
         break;
 
         case UIElems::CHARCREA:
             menu.Open(false);
+            
+            structure.scene->CreatePartyMember();
             structure.scene->OpenMenu(Menus::CHARCREA);
         break;
 
         case UIElems::CREATE: {
-            /*auto quit_btn = make_shared<Button>(
-                Structure{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ window.getSize().x * .5f, window.getSize().y * .8f, .5f, .5f, res_scalar },
-                UI::Style{ UIElems::QUIT, style_size });*/
-            //auto new_party_mem = make_shared<PartyMember>
+            //Spawn Name entry box and "Finish/OK" button
             break;
         }
+        
+        case UIElems::RACE_B:
+            //Close whatever other sub-menu is open - TO-DO
+            //Open Race sub-menu
+            menu.OpenSM(Menus::CCRACE);
+        break;
 
         case UIElems::OPTIONS:
             menu.Open(false);
@@ -76,6 +85,12 @@ void Button::Released() {
         case UIElems::RESUME:
             menu.Open(false);
             structure.game.paused = false;
+        break;
+
+        case UIElems::TUTORIAL:
+            structure.scene->CreatePreGen(PreGens::DAKN);
+            structure.game.area = Areas::TUTTON;
+            structure.game.SetScene(Scenes::AREA);
         break;
     }
 }

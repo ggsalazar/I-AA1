@@ -16,10 +16,10 @@ class Scene;
 class Game {
 public:
     sf::RenderWindow window;
+    sf::View camera;
     DJ dj;
     bool paused = false;
     bool game_over = false;
-    uint level = 0;
     bool fullscreen = false;
     sf::Font default_font;
 
@@ -54,6 +54,8 @@ public:
     shared_ptr<Scene> title_scene;
     shared_ptr<Scene> cutscene_scene;
     shared_ptr<Scene> area_scene;
+
+    Areas area = Areas::DEFAULT;
 
 private:
     //Variables

@@ -25,6 +25,7 @@ public:
     //Self and Sub-Menus
     void Open(const bool o = true);
     bool GetOpen() const { return open; }
+    void OpenSM(const Menus s_m);
 
     //UI Elements
     void Resize();

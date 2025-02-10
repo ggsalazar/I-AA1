@@ -85,7 +85,7 @@ enum class Classes {
 	WARRIOR
 };
 
-enum class Genus {
+enum class Genuses {
 	BEAST,
 	MONSTROSITY,
 	OTHER,
@@ -96,6 +96,12 @@ enum class Genus {
 
 enum class Items {
 
+};
+
+enum class PreGens {
+	SORINA, //Female Elf Arcanist
+	ESSEK, //Male Kobold Rogue
+	DAKN //Male Dwarf Warrior
 };
 
 enum class Races {
@@ -134,7 +140,8 @@ enum class Cutscenes {
 };
 
 enum class Areas {
-
+	DEFAULT,
+	TUTTON
 };
 
 
@@ -170,24 +177,34 @@ enum class UIElems {
 	APPLY,
 	AS,
 	BACK,
+	BACKGROUND_B,
 	CHARCREA,
 	CREATE,
-	EQUIPMENTCC,
+	EQUIPMENT_CC,
 	FULLSCREEN,
 	LOAD,
 	MAINMENU,
 	OPTIONS,
 	QUIT,
+	RACE_B,
 	RESUME,
 	SKILLS,
+	TUTORIAL,
 	//Pickers
-	BACKGROUND,
+	ASSTR,
+	ASCON,
+	ASAGI,
+	ASDEX,
+	ASINT,
+	ASWIS,
+	ASCHA,
+	BACKGROUND_P,
 	CLASS,
-	RACE,
+	RACE_P,
 	RESOLUTION,
 	SEX,
 	SIZE,
 	//Sliders
-	MUSICV,
-	SFXV
+	MUSIC_V,
+	SFX_V
 };

@@ -33,6 +33,7 @@ public:
     void AddEntity(shared_ptr<Entity> e) { entities.push_back(e); }
 
     void CreatePartyMember();
+    void CreatePreGen(PreGens p_g);
 
 private:
     bool open = false;

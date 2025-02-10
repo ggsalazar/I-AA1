@@ -30,7 +30,7 @@ Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
     picking = label;
     string picking_str = "";
     switch (elem) {
-        case UIElems::BACKGROUND:
+        case UIElems::BACKGROUND_P:
             options.push_back("Custom");
             options.push_back("Artist");
             options.push_back("Divine");
@@ -52,7 +52,7 @@ Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
             option_picked = options.end()-1;
         break;
 
-        case UIElems::RACE:
+        case UIElems::RACE_P:
             options.push_back("Automaton");
             options.push_back("Dwarf");
             options.push_back("Elf");
@@ -165,9 +165,9 @@ void Picker::SetPicking(const string new_p) {
 void Picker::LeftReleased() {
     string p = picking.getString();
     switch (elem) {
-        case UIElems::BACKGROUND:
+        case UIElems::BACKGROUND_P:
         case UIElems::CLASS:
-        case UIElems::RACE:
+        case UIElems::RACE_P:
             if (option_picked == options.begin())
                 option_picked = options.end()-1;
             else --option_picked;
@@ -222,7 +222,7 @@ void Picker::LeftReleased() {
 
         case UIElems::SIZE:
             //What Size you can be depends on your race
-            string race = menu.GetUIElemStatus(UIElems::RACE);
+            string race = menu.GetUIElemStatus(UIElems::RACE_P);
 
             //Automata and Humans can be S/M/B
             if (race == "Automaton" or race == "Human") {
@@ -253,9 +253,9 @@ void Picker::LeftReleased() {
 void Picker::RightReleased() {
     string p = picking.getString();
     switch (elem) {
-        case UIElems::BACKGROUND:
+        case UIElems::BACKGROUND_P:
         case UIElems::CLASS:
-        case UIElems::RACE:
+        case UIElems::RACE_P:
             if (option_picked == options.end()-1)
                 option_picked = options.begin();
             else ++option_picked;
@@ -310,7 +310,7 @@ void Picker::RightReleased() {
 
         case UIElems::SIZE:
             //What Size you can be depends on your race
-            string race = menu.GetUIElemStatus(UIElems::RACE);
+            string race = menu.GetUIElemStatus(UIElems::RACE_P);
 
             //Automata and Humans can be S/M/B
             if (race == "Automaton" or race == "Human") {

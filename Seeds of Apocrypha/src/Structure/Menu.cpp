@@ -20,13 +20,11 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
         //Menus
         case Menus::CHARCREA: {
             /*Things to determine:
-            Race/Racial features (aesthetics + mechanics),
-            Size,
-            Sex,
+            Race (aesthetics & mechanics),
             Class,
             Background,
-            Skills,
             Ability scores,
+            Skills,
             Starting equipment,
             Name
             */
@@ -40,56 +38,55 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             sup_text.setPosition({ window.getSize().x * .5f, window.getSize().y * .13f });
             Text::SetStr(sup_text, "Use the options below to create your party of 4 adventurers");
             
-            sf::Vector2f picker_pos = { window.getSize().x * .2f, window.getSize().y * .2f };
-            float p_y_buffer = window.getSize().y*.12f;
+            sf::Vector2f btn_pos = { window.getSize().x * .2f, window.getSize().y * .25f };
+            float b_y_buffer = window.getSize().y*.1f;
 
-            auto race_picker = make_shared<Picker>(
+            auto race_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ picker_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::RACE, style_size });
+                Animation::Transform{ btn_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::RACE_B, style_size });
             auto race_sm = make_unique<Menu>(game, window, scene, Menus::CCRACE);
 
-            picker_pos.y += p_y_buffer;
-            auto bg_picker = make_shared<Picker>(
+            btn_pos.y += b_y_buffer;
+            auto bg_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ picker_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::BACKGROUND, style_size });
+                Animation::Transform{ btn_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::BACKGROUND_B, style_size });
             auto bg_sm = make_unique<Menu>(game, window, scene, Menus::CCBG);
 
-            picker_pos.y += p_y_buffer;
-            auto class_picker = make_shared<Picker>(
+            btn_pos.y += b_y_buffer;
+            auto class_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ picker_pos, ui_ori, ui_size },
+                Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::CLASS, style_size });
             auto class_sm = make_unique<Menu>(game, window, scene, Menus::CCCLASS);
 
-            picker_pos.y += p_y_buffer;
+            btn_pos.y += b_y_buffer;
             auto ab_sc_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ picker_pos, ui_ori, ui_size },
+                Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::AS, style_size });
             auto ab_sc_sm = make_unique<Menu>(game, window, scene, Menus::CCAS);
 
-            picker_pos.y += p_y_buffer;
+            btn_pos.y += b_y_buffer;
             auto skills_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ picker_pos, ui_ori, ui_size },
+                Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::SKILLS, style_size });
             auto skills_sm = make_unique<Menu>(game, window, scene, Menus::CCSKILLS);
 
-            picker_pos.y += p_y_buffer;
+            btn_pos.y += b_y_buffer;
             auto equip_btn = make_shared<Button>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ picker_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::EQUIPMENTCC, style_size });
+                Animation::Transform{ btn_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::EQUIPMENT_CC, style_size });
             auto equip_sm = make_unique<Menu>(game, window, scene, Menus::CCEQUIP);
-            //THEN: RACE MECHANICS, RACE AESTHETICS, WARRIOR FIGHTING-STYLE SELECTION, ROGUE EXPERTISE SELECTION, ARCANIST SPELL SELECTION
 
 
             auto create_btn = make_shared<Button>(
@@ -103,12 +100,12 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
                 Animation::Transform{ {window.getSize().x * .5f, window.getSize().y * .9f}, ui_ori, ui_size },
                 UI::Style{ UIElems::BACK, style_size });
 
-            ui_elems.insert(make_pair(UIElems::RACE, race_picker));
-            ui_elems.insert(make_pair(UIElems::BACKGROUND, bg_picker));
-            ui_elems.insert(make_pair(UIElems::CLASS, class_picker));
+            ui_elems.insert(make_pair(UIElems::RACE_B, race_btn));
+            ui_elems.insert(make_pair(UIElems::BACKGROUND_B, bg_btn));
+            ui_elems.insert(make_pair(UIElems::CLASS, class_btn));
             ui_elems.insert(make_pair(UIElems::AS, ab_sc_btn));
             ui_elems.insert(make_pair(UIElems::SKILLS, skills_btn));
-            ui_elems.insert(make_pair(UIElems::EQUIPMENTCC, equip_btn));
+            ui_elems.insert(make_pair(UIElems::EQUIPMENT_CC, equip_btn));
 
             ui_elems.insert(make_pair(UIElems::CREATE, create_btn));
             ui_elems.insert(make_pair(UIElems::BACK, back_btn));
@@ -125,7 +122,75 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
         //Character Creation Sub-Menus
         case Menus::CCAS: {
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
-            //Picker for each
+            //Menu text
+            Text::SetCharSize(menu_text, res_scalar * 16);
+            menu_text.setPosition({ window.getSize().x * .5f, window.getSize().y * .2f });
+            Text::SetStr(menu_text, "Determine Your Ability Scores");
+            //Supp. text
+            Text::SetCharSize(sup_text, res_scalar * 12);
+            sup_text.setPosition({ 0.f, 0.f});
+            Text::SetStr(sup_text, "");
+
+            //Pickers
+            sf::Vector2f pkr_pos = { window.getSize().x * .5f, window.getSize().y * .2f };
+            float p_y_buffer = window.getSize().y * .08f;
+
+            auto str_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::ASSTR, style_size });
+
+            pkr_pos.y += p_y_buffer;
+            auto con_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::ASCON, style_size });
+
+            pkr_pos.y += p_y_buffer;
+            auto agi_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::ASAGI, style_size });
+
+            pkr_pos.y += p_y_buffer;
+            auto dex_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::ASDEX, style_size });
+
+            pkr_pos.y += p_y_buffer;
+            auto int_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::ASINT, style_size });
+
+            pkr_pos.y += p_y_buffer;
+            auto wis_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::ASWIS, style_size });
+
+            pkr_pos.y += p_y_buffer;
+            auto cha_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::ASCHA, style_size });
+
+            ui_elems.insert(make_pair(UIElems::ASSTR, str_pkr));
+            ui_elems.insert(make_pair(UIElems::ASCON, con_pkr));
+            ui_elems.insert(make_pair(UIElems::ASAGI, agi_pkr));
+            ui_elems.insert(make_pair(UIElems::ASDEX, dex_pkr));
+            ui_elems.insert(make_pair(UIElems::ASINT, int_pkr));
+            ui_elems.insert(make_pair(UIElems::ASWIS, wis_pkr));
+            ui_elems.insert(make_pair(UIElems::ASCHA, cha_pkr));
+
             break;
         }
 
@@ -141,6 +206,26 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             //Arcanist: 6 / Arcana / Spells
             //Rogue: 8 / Thieving Tools / Expertise
             //Warrior: 10 / 2 PWS / Fighting Style
+            //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
+            //Menu text
+            Text::SetCharSize(menu_text, res_scalar * 16);
+            menu_text.setPosition({ window.getSize().x * .5f, window.getSize().y * .2f });
+            Text::SetStr(menu_text, "Pick Your Class");
+            //Supp. text
+            Text::SetCharSize(sup_text, res_scalar * 12);
+            Text::SetOrigin(sup_text, { .5f, .0f });
+            sup_text.setPosition({ window.getSize().x * .5f, window.getSize().y * .23f });
+            Text::SetStr(sup_text, "Your Class determines your role in combat and the abilities you will learn as you progress.", window.getSize().x * .33f);
+
+            //Pickers
+            sf::Vector2f pkr_pos = { window.getSize().x * .5f, window.getSize().y * .2f };
+            float p_y_buffer = window.getSize().y * .08f;
+
+            auto str_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::ASSTR, style_size });
             break;
         }
 
@@ -159,33 +244,47 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             //Menu text
             Text::SetCharSize(menu_text, res_scalar * 16);
             menu_text.setPosition({ window.getSize().x * .5f, window.getSize().y * .2f });
-            Text::SetStr(menu_text, "Race");
+            Text::SetStr(menu_text, "Pick Your Race");
             //Supp. text
             Text::SetCharSize(sup_text, res_scalar * 12);
             Text::SetOrigin(sup_text, { .5f, .0f });
             sup_text.setPosition({ window.getSize().x * .5f, window.getSize().y * .23f });
-            Text::SetStr(sup_text, "Your Race influences your appearance, some of your capabilities, and how others react to you.");
+            Text::SetStr(sup_text, "Your Race influences your appearance, some of your capabilities, and how others react to you.", window.getSize().x * .33f);
 
-            sf::Vector2f picker_pos = { window.getSize().x * .5f, window.getSize().y * .5f };
-            float p_y_buffer = window.getSize().y * .2f;
+            sf::Vector2f pkr_pos = { window.getSize().x * .5f, window.getSize().y * .4f };
+            float p_y_buffer = window.getSize().y * .1f;
 
-            auto size_picker = make_shared<Picker>(
+            auto race_pkr = make_shared<Picker>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ picker_pos, ui_ori, ui_size },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::RACE_P, style_size });
+
+            pkr_pos.y += p_y_buffer;
+            auto size_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::SIZE, style_size });
 
-            picker_pos.y += p_y_buffer;
-            auto sex_picker = make_shared<Picker>(
+            pkr_pos.y += p_y_buffer;
+            auto sex_pkr = make_shared<Picker>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ picker_pos, ui_ori, ui_size },
+                Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::SEX, style_size });
+
+            ui_elems.insert(make_pair(UIElems::RACE_P, race_pkr));
+            ui_elems.insert(make_pair(UIElems::SIZE, size_pkr));
+            ui_elems.insert(make_pair(UIElems::SEX, sex_pkr));
 
             break;
         }
 
         case Menus::CCSKILLS: {
+            //Action Skills (pickers)
+            //Tool Skills (pickers)
+            //Weapon skill(s) (toggles)
             break;
         }
         //End of CC Sub-Menus
@@ -276,6 +375,13 @@ void Menu::Open(const bool o) {
     }
 }
 
+void Menu::OpenSM(const Menus s_m) {
+    if (sub_menus.count(s_m) > 0) {
+        sub_menus[s_m]->Open();
+    }
+    else cout << "That Sub-Menu does not exist in this Menu!" << endl;
+}
+
 void Menu::Resize() {
     //Resize all text and UI elements according to the new res scalar and window dimensions
     float res_scalar = game.GetResScale();
@@ -315,7 +421,7 @@ void Menu::Resize() {
                 u->pos.y = w_y * .675;
             break;
 
-            case UIElems::MUSICV:
+            case UIElems::MUSIC_V:
                 u->pos.x = w_x * .5;
                 u->pos.y = w_y * .3;
             break;
@@ -335,7 +441,7 @@ void Menu::Resize() {
                 u->pos.y = w_y * .55;
             break;
 
-            case UIElems::SFXV:
+            case UIElems::SFX_V:
                 u->pos.x = w_x * .5;
                 u->pos.y = w_y * .425;
             break;

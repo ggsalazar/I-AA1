@@ -70,6 +70,13 @@ void Scene::Open() {
 		menus.insert(make_pair(Menus::LOAD, move(load_menu)));
 		menus.insert(make_pair(Menus::OPTIONS, move(options_menu)));
 	}
+	else if (label == Scenes::AREA) {
+		switch (game.area) {
+			case Areas::TUTTON:
+				//Import the appropriate tilemap
+			break;
+		}
+	}
 }
 
 void Scene::Close() {
@@ -118,15 +125,85 @@ void Scene::ResizeMenus() {
 }
 
 void Scene::CreatePartyMember() {
-	/*
-	auto quit_btn = make_shared<Button>(
-		Structure{ game, window, &scene }, *this,
-		AnimInfo{ "UI/Button", 93, 26 },
-		Animation::Transform{ window.getSize().x * .5f, window.getSize().y * .8f, .5f, .5f, res_scalar },
-		UI::Style{ UIElems::QUIT, style_size });
+	float res_scalar = game.GetResScale();
 
 	auto new_party_mem = make_shared<PartyMember>(
+		Structure{game, window, this},
+		AnimInfo{"Creatures/Sentients/PMPlaceholder", 32, 64},
+		Animation::Transform{ {window.getSize().x*.75f, window.getSize().y * .5f}, {.5f, .5f}, {res_scalar, res_scalar}}); //The remaining arguments are the defaults
 
-	)
-	*/
+	entities.push_back(new_party_mem);
+}
+
+void Scene::CreatePreGen(PreGens p_g) {
+	float res_scalar = game.GetResScale();
+
+	string name = "Default";
+	Genuses genus = Genuses::SENTIENT;
+	Races race = Races::HUMAN;
+	Sizes size = Sizes::MED;
+	Classes clss = Classes::WARRIOR;
+	uint level = 1;
+	bool sex = 0;
+	float str = 0;
+	float con = 0;
+	float dex = 0;
+	float agi = 0;
+	float intl = 0;
+	float wis = 0;
+	float cha = 0;
+	
+	switch (p_g) {
+		case PreGens::SORINA: //Female Elf Arcanist
+			//Don't forget to change sprite!
+			name = "Sorina";
+			race = Races::ELF;
+			clss = Classes::ARCANIST;
+			str = 1.5;
+			con = 2.5;
+			dex = 3;
+			agi = 2;
+			intl = 4;
+			wis = 3;
+			cha = 1;
+		break;
+
+		case PreGens::ESSEK: //Male Kobold Rogue
+			//Don't forget to change sprite!
+			name = "Essek";
+			race = Races::KOBOLD;
+			size = Sizes::SMALL;
+			clss = Classes::ROGUE;
+			sex = 1;
+			str = 1;
+			con = 2;
+			dex = 4;
+			agi = 3;
+			intl = 2;
+			wis = 2.5;
+			cha = 2.5;
+		break;
+
+		case PreGens::DAKN: //Male Dwarf Warrior
+			//Don't forget to change sprite!
+			name = "Dakn";
+			race = Races::DWARF;
+			sex = 1;
+			str = 4;
+			con = 4;
+			dex = 2.5;
+			agi = 3;
+			intl = 1;
+			wis = 1;
+			cha = 1.5;
+		break;
+	}
+
+	auto pre_gen = make_shared<PartyMember>(
+		Structure{ game, window, this },
+		AnimInfo{ "Creatures/Sentients/PMPlaceholder", 32, 64 },
+		Animation::Transform{ {window.getSize().x * .75f, window.getSize().y * .5f}, {.5f, .5f}, {res_scalar, res_scalar} },
+		Stats{ name, genus, race, size, clss, level, sex, str, con, dex, agi, intl, wis, cha }); //The rest are defaults and handled in Initialization
+
+	entities.push_back(pre_gen);
 }

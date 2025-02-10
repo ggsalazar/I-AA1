@@ -163,6 +163,7 @@
     <ClInclude Include="src\Entities\Creatures\Creature.h" />
     <ClInclude Include="src\Entities\Creatures\PartyMember.h" />
     <ClInclude Include="src\Entities\Items\Item.h" />
+    <ClInclude Include="src\Entities\Tooltip.h" />
     <ClInclude Include="src\Entities\UI\Button.h" />
     <ClInclude Include="src\Entities\UI\Picker.h" />
     <ClInclude Include="src\Entities\UI\Slider.h" />

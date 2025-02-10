@@ -15,11 +15,39 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Ability Scores";
         break;
 
+        case UIElems::ASSTR:
+            l_str = "Strength";
+        break;
+
+        case UIElems::ASCON:
+            l_str = "Constitution";
+        break;
+
+        case UIElems::ASAGI:
+            l_str = "Agility";
+        break;
+
+        case UIElems::ASDEX:
+            l_str = "Dexterity";
+        break;
+
+        case UIElems::ASINT:
+            l_str = "Intelligence";
+        break;
+
+        case UIElems::ASWIS:
+            l_str = "Wisdom";
+        break;
+
+        case UIElems::ASCHA:
+            l_str = "Charisma";
+        break;
+
         case UIElems::BACK:
             l_str = "Back";
         break;
 
-        case UIElems::BACKGROUND:
+        case UIElems::BACKGROUND_B:
             l_str = "Background";
         break;
 
@@ -35,7 +63,7 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Create";
         break;
 
-        case UIElems::EQUIPMENTCC:
+        case UIElems::EQUIPMENT_CC:
             l_str = "Equipment";
         break;
 
@@ -53,7 +81,7 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Main Menu";
         break;
 
-        case UIElems::MUSICV:
+        case UIElems::MUSIC_V:
             l_str = "Music Volume";
         break;
 
@@ -65,8 +93,12 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Quit";
         break;
 
-        case UIElems::RACE:
+        case UIElems::RACE_B:
             l_str = "Race";
+        break;
+
+        case UIElems::RACE_P:
+            l_str = "Racial Appearance";
         break;
 
         case UIElems::RESOLUTION:
@@ -81,16 +113,16 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
             l_str = "Sex";
         break;
 
+        case UIElems::SFX_V:
+            l_str = "SFX Volume";
+        break;
+
         case UIElems::SIZE:
             l_str = "Size";
         break;
 
         case UIElems::SKILLS:
             l_str = "Skills";
-        break;
-
-        case UIElems::SFXV:
-            l_str = "SFX Volume";
         break;
     }
     Text::Init(label, structure.game.default_font, style.font_size, pos, l_str);

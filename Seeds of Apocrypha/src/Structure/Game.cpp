@@ -16,6 +16,11 @@ Game::Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullsc
     fps = init_fps;
     debug_timer = fps;
 
+
+    //Initialize the camera
+    camera.setSize({ window.getSize().x, window.getSize().y });
+    camera.setCenter({ 0.f, 0.f });
+
     //Initialize the fonts
     if (!default_font.openFromFile("assets/Fonts/m5x7.ttf"))
         cerr << "Failed to load font 'm5x7.ttf'!" << endl;
@@ -63,8 +68,6 @@ void Game::ProcessInput() {
 
 //Update the game world
 void Game::Update() {
-
-
     //if (!--debug_timer) {
     //    debug_timer = fps * 3;
     //}
@@ -98,7 +101,7 @@ void Game::SetScene(Scenes scn) {
     if (scenes.count(scn) > 0) {
         //Change active and old scene
         old_scene = active_scene;
-            
+        
         active_scene = scenes[scn];
     }
 }

@@ -45,9 +45,9 @@ void Slider::GetInput() {
         knob_spr.setPosition({ knob_pos, pos.y });
 
         float new_vol = (knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 100;
-        if (elem == UIElems::MUSICV)
+        if (elem == UIElems::MUSIC_V)
             structure.game.SetMusicVolume(new_vol);
-        else if (elem == UIElems::SFXV)
+        else if (elem == UIElems::SFX_V)
             structure.game.SetSFXVolume(new_vol);
 
         string r_val = to_string(new_vol);
@@ -74,9 +74,9 @@ void Slider::Move() {
     knob_pos_max = bbox.position.x + bbox.size.x * .9f;
     knob_pos_min = bbox.position.x + bbox.size.x * .1f;
     //Where to move it to????
-    if (elem == UIElems::MUSICV)
+    if (elem == UIElems::MUSIC_V)
         knob_pos = knob_pos_min + (structure.game.GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
-    else if (elem == UIElems::SFXV)
+    else if (elem == UIElems::SFX_V)
         knob_pos = knob_pos_min + (structure.game.GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
     knob_spr.setPosition({ knob_pos, pos.y });
     //Set the value

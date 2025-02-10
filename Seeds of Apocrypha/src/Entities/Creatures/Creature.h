@@ -4,9 +4,9 @@
 
 struct Stats {
 	string name = "Default";
-	Sizes size = Sizes::MED;
-	Genus genus = Genus::SENTIENT;
+	Genuses genus = Genuses::SENTIENT;
 	Races race = Races::HUMAN;
+	Sizes size = Sizes::MED;
 	Classes clss = Classes::NONE;
 	uint level = 0;
 	bool sex = 0; //0 = F, 1 = M

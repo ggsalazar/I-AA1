@@ -8,7 +8,10 @@ void Text::Init(sf::Text& text, sf::Font& font, const uint char_size, const sf::
     text.setPosition(pos);
 }
 
-void Text::SetStr(sf::Text& text, std::string str) {
+void Text::SetStr(sf::Text& text, std::string str, const float max_width) {
+    //If the string is too long, insert some newline characters
+    //float str_width =
+
     //Get the text origin relative to the old string so we can set it relative to the new string
     sf::Vector2f t_origin = GetOrigin(text);
 
