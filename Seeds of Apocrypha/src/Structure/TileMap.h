@@ -10,12 +10,12 @@ using namespace std;
 
 class TileMap : public sf::Drawable, public sf::Transformable {
 public:
-	TileMap(const string& tileset, sf::Vector2u tile_size, const string& json_file) {
+	bool load(const string& tileset, sf::Vector2u tile_size, const string& json_file) {
 		//Load json file
 		ifstream file(json_file);
 		if (!file.is_open()) {
 			cerr << "Failed to open " << json_file << "!" << endl;
-			return;
+			return false;
 		}
 
 		json tilemap_data;
@@ -67,6 +67,8 @@ public:
 				tri[5].texCoords = sf::Vector2f((tu+1) * tile_size.x, (tv+1) * tile_size.y);
 			}
 		}
+
+		return true;
 	}
 
 private:
