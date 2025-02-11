@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Text.h"
 
 void Text::Init(sf::Text& text, sf::Font& font, const uint char_size, const sf::Vector2f pos, std::string str, const sf::Vector2f ori) {
@@ -9,13 +10,31 @@ void Text::Init(sf::Text& text, sf::Font& font, const uint char_size, const sf::
 }
 
 void Text::SetStr(sf::Text& text, std::string str, const float max_width) {
-    //If the string is too long, insert some newline characters
-    //float str_width =
-
     //Get the text origin relative to the old string so we can set it relative to the new string
     sf::Vector2f t_origin = GetOrigin(text);
 
-    text.setString(str);
+    //If the string is too long, insert some newline characters
+    std::istringstream parser(str);
+    std::ostringstream buffer;
+    std::string word, line_buffer;
+    sf::Text word_text(text), line_text(text);
+    word_text.setString(""); line_text.setString("");
+    while (parser >> word) {
+        word_text.setString(word);
+
+        if (line_text.getLocalBounds().size.x + word_text.getLocalBounds().size.x > max_width) {
+            buffer << line_buffer << "\n";
+            line_buffer = word + " ";
+        }
+        else
+            line_buffer += word + " ";
+
+        line_text.setString(line_buffer);
+    }
+    //Append the last line
+    buffer << line_buffer;
+
+    text.setString(buffer.str());
 
     SetOrigin(text, t_origin);
 }

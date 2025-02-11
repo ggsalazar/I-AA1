@@ -124,6 +124,10 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
         case UIElems::SKILLS:
             l_str = "Skills";
         break;
+
+        case UIElems::TUTORIAL:
+            l_str = "Tutorial";
+        break;
     }
     Text::Init(label, structure.game.default_font, style.font_size, pos, l_str);
 

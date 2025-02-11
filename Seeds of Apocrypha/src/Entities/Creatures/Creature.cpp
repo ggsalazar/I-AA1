@@ -197,7 +197,7 @@ float Creature::GetAbilityScore(Ab_Scores a_s) {
 void Creature::SetMaxHealth() {
 	float old_max = stats.max_hlth;
 	//For sentients, max health depends on class and level
-	if (stats.genus == Genus::SENTIENT) {
+	if (stats.genus == Genuses::SENTIENT) {
 		switch (stats.clss) {
 			case Classes::NONE:
 				stats.max_hlth = 5;

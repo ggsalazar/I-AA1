@@ -131,8 +131,14 @@
     <ClInclude Include="src\Entities\Tooltip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Structure\TileMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\ToDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

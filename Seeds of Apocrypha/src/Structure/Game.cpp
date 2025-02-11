@@ -18,7 +18,7 @@ Game::Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullsc
 
 
     //Initialize the camera
-    camera.setSize({ window.getSize().x, window.getSize().y });
+    camera.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
     camera.setCenter({ 0.f, 0.f });
 
     //Initialize the fonts

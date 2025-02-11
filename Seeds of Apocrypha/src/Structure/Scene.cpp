@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <nlohmann/json.hpp>
 #include "Scene.h"
 #include "Menu.h"
 #include "../Entities/Entity.h"
@@ -71,6 +72,7 @@ void Scene::Open() {
 		menus.insert(make_pair(Menus::OPTIONS, move(options_menu)));
 	}
 	else if (label == Scenes::AREA) {
+		window.setView(game.camera);
 		switch (game.area) {
 			case Areas::TUTTON:
 				//Import the appropriate tilemap
