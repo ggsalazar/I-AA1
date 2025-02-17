@@ -7,7 +7,7 @@ class Game;
 class Entity;
 
 struct AnimInfo {
-	std::string img_name;
+	std::string tex_name;
 	uint sprite_w = 1;
 	uint sprite_h = 1;
 	uint tex_row = 0;
@@ -64,7 +64,6 @@ public:
 private:
 	AnimInfo anim_info;
 
-	sf::Image img;
 	sf::Texture texture;
 	sf::IntRect tex_rect;
 

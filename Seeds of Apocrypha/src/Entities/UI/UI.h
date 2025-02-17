@@ -17,7 +17,7 @@ public:
 
     virtual void GetInput() override;
     virtual void Draw(const bool debug = false) override {}
-    virtual void Move() override {}
+    virtual void Move(sf::Vector2f offset) override {}
     virtual void Resize(uint r_s);
 
     void SetActive(const bool new_active = true);

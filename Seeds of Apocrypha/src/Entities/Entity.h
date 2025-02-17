@@ -22,10 +22,6 @@ class Entity : public enable_shared_from_this<Entity> {
     friend class Animation;
 public:
     //Variables
-    sf::Vector2f pos;
-    sf::RectangleShape pos_debug;
-    sf::FloatRect bbox;
-    sf::RectangleShape bbox_debug;
     uint w = 0;
     uint h = 0;
     bool alive = true;
@@ -44,11 +40,20 @@ public:
     virtual void GetInput() {}
     virtual void Update() {}
     virtual void Draw(const bool debug = false);
-    virtual void Move();
+    virtual void Move(sf::Vector2f offset);
+    virtual void MoveTo(sf::Vector2f new_pos);
+
+    sf::Vector2f GetPos() const { return pos; }
+    sf::FloatRect GetBBox() const { return bbox; }
 
     void PlaySound();
 
 protected:
+    sf::Vector2f pos;
+    sf::RectangleShape pos_debug;
+    sf::FloatRect bbox;
+    sf::RectangleShape bbox_debug;
+
     Structure structure;
 
     unique_ptr<Animation> anim;

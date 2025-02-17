@@ -1,8 +1,15 @@
 #include "Creature.h"
 
 Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t, const Stats& init_stats,
-	const bool init_biped, const bool init_winged, const int init_dfc) :
-	Entity(s, a_i, t, init_dfc), stats(init_stats), biped(init_biped), winged(init_winged) {
+	const string por_name, const bool init_biped, const bool init_winged, const int init_dfc) :
+	Entity(s, a_i, t, init_dfc), 
+	stats(init_stats), biped(init_biped), winged(init_winged), 
+	portrait_tex("assets/Sprites/"+por_name+".png"),
+	portrait(portrait_tex) {
+
+	portrait.setOrigin(sf::Vector2f(portrait_tex.getSize()) * .5f);
+	portrait.setScale({ t.scale.x * 3, t.scale.y * 3 });
+
 	//Set base_spd
 	switch (stats.size) {
 		case Sizes::TINY:
@@ -46,7 +53,7 @@ Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Tra
 	}
 
 	//Calculate the derived stats
-	//SetAbilityScore (also sets saves and ancillary stats, including dodge and self_weight)
+	//SetAbilityScore (also sets saves and ancillary stats)
 	SetAbilityScore(Ab_Scores::STR, stats.str);
 	SetAbilityScore(Ab_Scores::CON, stats.con);
 	SetAbilityScore(Ab_Scores::DEX, stats.dex);
@@ -63,6 +70,18 @@ Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Tra
 	//Natural and worn armor will have to be set manually
 }
 
+void Creature::Draw(const bool debug) {
+	Entity::Draw(debug);
+	//Set the camera to the hud
+	structure.window.setView(structure.game.hud);
+
+	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
+
+
+	//Set the camera back to the world
+	structure.window.setView(structure.game.camera);
+}
+
 void Creature::SetAbilityScore(Ab_Scores a_s, float new_score) {
 	if (new_score < 0) {
 		cout << "Ability scores cannot be <0!" << endl;
@@ -72,7 +91,7 @@ void Creature::SetAbilityScore(Ab_Scores a_s, float new_score) {
 		//Derived stats: fort, self_weight, max_carry_weight, f_spd, and possibly m_def
 		case Ab_Scores::STR:
 			stats.str = new_score;
-			stats.fort = (stats.str+stats.con)*.5;
+			stats.fort = (stats.str+stats.con)*.5f;
 			switch (stats.size) {
 				case Sizes::TINY:
 					stats.self_weight = 1 + (stats.str);
@@ -122,21 +141,21 @@ void Creature::SetAbilityScore(Ab_Scores a_s, float new_score) {
 		//Setting Health is a special case, and is handled in SetMaxHealth()
 		case Ab_Scores::CON:
 			stats.con = new_score;
-			stats.fort = (stats.str + stats.con) * .5;
+			stats.fort = (stats.str + stats.con) * .5f;
 		break;
 
 		//Derived stats: Ref, w_spd, dodge
 		case Ab_Scores::AGI:
 			stats.agi = new_score;
-			stats.ref = (stats.agi + stats.dex) * .5;
-			stats.w_spd = stats.base_spd + (.5 * stats.agi);
+			stats.ref = (stats.agi + stats.dex) * .5f;
+			stats.w_spd = stats.base_spd + (.5f * stats.agi);
 			stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty);
 		break;
 
 		//Derived stats: Ref, less_action_time, dodge
 		case Ab_Scores::DEX:
 			stats.dex = new_score;
-			stats.ref = (stats.agi + stats.dex) * .5;
+			stats.ref = (stats.agi + stats.dex) * .5f;
 			stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty);
 		break;
 
@@ -148,13 +167,13 @@ void Creature::SetAbilityScore(Ab_Scores a_s, float new_score) {
 		//Derived stats: Will
 		case Ab_Scores::WIS:
 			stats.wis = new_score;
-			stats.will = (stats.wis + stats.cha) * .5;
+			stats.will = (stats.wis + stats.cha) * .5f;
 		break;
 
 		//Derived stats: Will
 		case Ab_Scores::CHA:
 			stats.cha = new_score;
-			stats.will = (stats.wis + stats.cha) * .5;
+			stats.will = (stats.wis + stats.cha) * .5f;
 		break;
 	}
 }
@@ -221,9 +240,9 @@ void Creature::SetMaxHealth() {
 	else {}
 
 	//Set the 30/20/10% health threshholds
-	stats.th_per_hlth = stats.max_hlth * .3;
-	stats.tw_per_hlth = stats.max_hlth * .2;
-	stats.tn_per_hlth = stats.max_hlth * .1;
+	stats.th_per_hlth = stats.max_hlth * .3f;
+	stats.tw_per_hlth = stats.max_hlth * .2f;
+	stats.tn_per_hlth = stats.max_hlth * .1f;
 
 	//Set current health
 	stats.hlth += stats.max_hlth - old_max;

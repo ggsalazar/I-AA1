@@ -17,13 +17,16 @@ Game::Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullsc
     debug_timer = fps;
 
 
+    //Initialize the hud view
+    hud = window.getView();
+
     //Initialize the camera
     camera.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
     camera.setCenter({ 0.f, 0.f });
 
     //Initialize the fonts
     if (!default_font.openFromFile("assets/Fonts/m5x7.ttf"))
-        cerr << "Failed to load font 'm5x7.ttf'!" << endl;
+        cerr << "Failed to load font 'm5x7'!" << endl;
 
     //Initialize the DJ's tracks
     //Play the title track - TO-DO
@@ -33,8 +36,9 @@ Game::Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullsc
     cutscene_scene = make_unique<Scene>(*this, window, Scenes::CUTSCENE);
     area_scene = make_unique<Scene>(*this, window, Scenes::AREA);
     scenes.insert(make_pair(Scenes::TITLE, title_scene));
+    scenes.insert(make_pair(Scenes::CUTSCENE, cutscene_scene));
     scenes.insert(make_pair(Scenes::AREA, area_scene));
-    active_scene = title_scene;
+    SetScene(Scenes::TITLE);
 }
 
 //Handle SFML events
@@ -74,13 +78,11 @@ void Game::Update() {
     
     if (++frames_elapsed > fps) frames_elapsed = 0;
 
-    auto scene = active_scene.lock();
-    if (!scene->IsOpen()) {
-        scene->Open();
-        if (auto old_scn = old_scene.lock())
-            old_scn->Close();
-    }
+    //Close the old scene if needed
+    if (auto old_scn = old_scene.lock())
+        old_scn->Close();
 
+    auto scene = active_scene.lock();
     scene->Update();
 }
 
@@ -98,12 +100,21 @@ void Game::Render() {
 }
 
 void Game::SetScene(Scenes scn) {
-    if (scenes.count(scn) > 0) {
-        //Change active and old scene
+    if (scenes.find(scn) != scenes.end()) {
+
         old_scene = active_scene;
-        
+
+        //Open the new scene
         active_scene = scenes[scn];
+        auto scene = active_scene.lock();
+        if (auto o_scn = old_scene.lock())
+            scene->SetPartyMems(o_scn->GetPartyMems());
+        scene->Open();
+
+        //Old scene *must* be closed next frame!
     }
+    else
+        cout << "That Scene does not exist!" << endl;
 }
 
 void Game::SetMusicVolume(float n_v) {

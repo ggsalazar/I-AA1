@@ -3,7 +3,7 @@
 int main() {
 
     //Initialize
-    Game game("Aetherite Engine", 1920, 1080, 60);
+    Game game("Seeds of Apocrypha", 1920, 1080, 60);
 
     //Game loop
     while (game.window.isOpen()) {

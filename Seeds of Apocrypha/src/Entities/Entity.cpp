@@ -36,8 +36,20 @@ void Entity::Draw(const bool debug) {
     }
 }
 
-void Entity::Move() {
+void Entity::Move(sf::Vector2f offset) {
     //Ensure that the bbox and sprite of the entity is always matched to its actual, literal position
+    pos += offset;
+    pos_debug.setPosition(sf::Vector2f(pos.x - 1, pos.y - 1));
+    anim->sprite.setPosition(pos);
+    float ori_x = anim->GetOrigin().x;
+    float ori_y = anim->GetOrigin().y;
+    bbox.position.x = pos.x - (ori_x * w);
+    bbox.position.y = pos.y - (ori_y * h);
+    bbox_debug.setPosition(bbox.position);
+}
+
+void Entity::MoveTo(sf::Vector2f new_pos) {
+    pos = new_pos;
     pos_debug.setPosition(sf::Vector2f(pos.x - 1, pos.y - 1));
     anim->sprite.setPosition(pos);
     float ori_x = anim->GetOrigin().x;

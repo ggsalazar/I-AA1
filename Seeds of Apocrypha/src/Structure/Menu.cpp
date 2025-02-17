@@ -12,8 +12,8 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
     int style_size = res_scalar * 12;
     ui_size = { res_scalar, res_scalar };
 
-    Text::Init(menu_text, game.default_font, res_scalar * 36, { window.getSize().x * .5f, window.getSize().y * .3f }, "DEFAULT");
-    Text::Init(sup_text, game.default_font, res_scalar * 24, { window.getSize().x * .5f, window.getSize().y * .4f }, "SUPPLEMENTARY DEFAULT");
+    Text::Init(menu_text, game.default_font, res_scalar * 36, { window.getSize().x * .5f, window.getSize().y * .15f }, "DEFAULT");
+    Text::Init(sup_text, game.default_font, res_scalar * 24, { window.getSize().x * .5f, window.getSize().y * .2f }, "SUPPLEMENTARY DEFAULT");
 
     //What we do depends on our label
     switch (label) {
@@ -307,9 +307,9 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
 
         case Menus::MAIN: {
             Text::SetStr(menu_text, "Seeds of Apocrypha");
-            Text::SetStr(sup_text, "");
+            Text::SetStr(sup_text, "An Iron & Aether Adventure");
 
-            sf::Vector2f btn_pos = { window.getSize().x * .5f, window.getSize().y * .5f };
+            sf::Vector2f btn_pos = { window.getSize().x * .5f, window.getSize().y * .4f };
             float b_y_buffer = window.getSize().y * .1f;
 
             auto char_crea_btn = make_shared<Button>(
@@ -355,6 +355,14 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
         }
 
         case Menus::OPTIONS: {
+            auto music_sldr = make_shared<Slider>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Slider", 64, 9 },
+                Animation::Transform{ {window.getSize().x*.5f, window.getSize().y*.5f}, ui_ori, ui_size},
+                UI::Style{ UIElems::MUSIC_V, style_size });
+
+            ui_elems.insert(make_pair(UIElems::MUSIC_V, music_sldr));
+
             break;
         }
 
@@ -416,55 +424,49 @@ void Menu::Resize() {
         u->Resize(res_scalar);
 
         //Adjust the positions
+        sf::Vector2f new_pos = { .0f, .0f };
         switch (ui.first) {
             case UIElems::APPLY:
-                u->pos.x = w_x * .5;
-                u->pos.y = w_y * .8;
+                new_pos = { w_x * .5f, w_y * .8f };
             break;
 
             case UIElems::BACK:
-                u->pos.x = w_x * .5;
-                u->pos.y = w_y * .9;
+                new_pos = { w_x * .5f, w_y * .9f };
             break;
 
             case UIElems::FULLSCREEN:
-                u->pos.x = w_x * (.5 + res_scalar * .02);
-                u->pos.y = w_y * .675;
+                new_pos = { w_x * (.5f+res_scalar*.02f), w_y * .675f};
             break;
 
             case UIElems::MUSIC_V:
-                u->pos.x = w_x * .5;
-                u->pos.y = w_y * .3;
+                new_pos = { w_x * .5f, w_y * .3f };
             break;
 
             case UIElems::OPTIONS:
-                u->pos.x = w_x * .5;
-                u->pos.y = w_y * .6;
+                new_pos = { w_x * .5f, w_y * .6f };
             break;
 
             case UIElems::QUIT:
-                u->pos.x = w_x * .5;
-                u->pos.y = w_y * .7;
+                new_pos = { w_x * .5f, w_y * .7f };
             break;
 
             case UIElems::RESOLUTION:
-                u->pos.x = w_x * .5;
-                u->pos.y = w_y * .55;
+                new_pos = { w_x * .5f, w_y * .55f };
             break;
 
             case UIElems::SFX_V:
-                u->pos.x = w_x * .5;
-                u->pos.y = w_y * .425;
+                new_pos = { w_x * .5f, w_y * .425f };
             break;
         }
         u->SetBBox();
-        u->Move();
+        u->MoveTo(new_pos);
     }
 }
 
 bool Menu::CheckUIElem(const UIElems ui) {
-    if (ui_elems.count(ui) > 0) return true;
-    else cout << "That UI Element does not exist!" << endl;
+    if (ui_elems.find(ui) != ui_elems.end()) return true;
+    
+    cout << "That UI Element does not exist!" << endl;
     return false;
 }
 

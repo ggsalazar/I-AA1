@@ -1,15 +1,21 @@
 #include "Button.h"
 
 void Button::Draw(const bool debug) {
-    if (active and Selected(MOUSEPOS))
+    if (active and Selected(MOUSEPOS_S))
         structure.window.draw(bbox_debug);
 
     Entity::Draw(debug);
     structure.window.draw(label);
 }
 
-void Button::Move() {
-    Entity::Move();
+void Button::Move(sf::Vector2f offset) {
+    Entity::Move(offset);
+    label_offset = structure.game.GetResScale();
+    label.setPosition({ pos.x, pos.y - label_offset });
+}
+
+void Button::MoveTo(sf::Vector2f new_pos) {
+    Entity::MoveTo(new_pos);
     label_offset = structure.game.GetResScale();
     label.setPosition({ pos.x, pos.y - label_offset });
 }

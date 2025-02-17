@@ -14,7 +14,8 @@ inline uint SCREENW() { return sf::VideoMode::getDesktopMode().size.x; }
 inline uint SCREENH() { return sf::VideoMode::getDesktopMode().size.y; }
 
 //Mouse input
-#define MOUSEPOS sf::Mouse::getPosition(structure.window)
+#define MOUSEPOS sf::Mouse::getPosition(window)
+#define MOUSEPOS_S sf::Mouse::getPosition(structure.window)
 constexpr sf::Mouse::Button LMB = sf::Mouse::Button::Left;
 constexpr sf::Mouse::Button RMB = sf::Mouse::Button::Right;
 inline bool LMBDOWN() { return sf::Mouse::isButtonPressed(LMB); }
@@ -31,5 +32,7 @@ inline bool DDOWN() { return sf::Keyboard::isKeyPressed(D_K); }
 constexpr sf::Keyboard::Key TAB = sf::Keyboard::Key::Tab;
 inline bool TABDOWN() { return sf::Keyboard::isKeyPressed(TAB); }
 //Arrows
+inline bool UADOWN() { return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up); }
+inline bool DADOWN() { return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down); }
 inline bool LADOWN() { return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left); }
 inline bool RADOWN() { return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right); }

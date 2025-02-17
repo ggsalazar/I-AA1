@@ -143,14 +143,14 @@ UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transf
 }
 
 void UI::GetInput() {
-    if (active and Selected(MOUSEPOS)) {
+    if (active and Selected(MOUSEPOS_S)) {
         if (Input::KeyPressed(LMB))
             Pressed();
 
         if (Input::KeyReleased(LMB) and primed)
             Released();
     }
-    else if (!Selected(MOUSEPOS)) primed = false;
+    else if (!Selected(MOUSEPOS_S)) primed = false;
 }
 
 void UI::Resize(uint r_s) {

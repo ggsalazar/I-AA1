@@ -17,6 +17,8 @@ class Game {
 public:
     sf::RenderWindow window;
     sf::View camera;
+    sf::View hud;
+    float cam_move_spd = 5.f;
     DJ dj;
     bool paused = false;
     bool game_over = false;

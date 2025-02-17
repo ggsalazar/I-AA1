@@ -2,10 +2,8 @@
 #include "../Entities/Entity.h"
 
 Animation::Animation(Game& g, sf::RenderWindow& w, Entity* e, const AnimInfo& a_i, const Transform& t) :
-    game(g), window(w), anim_info(a_i), sprite(texture) {
-
-    //Img/Tex/Spr
-    SetSprite(anim_info.img_name);
+    game(g), window(w), anim_info(a_i), 
+    texture("assets/Sprites/" + anim_info.tex_name + ".png"), sprite(texture) {
 
     SetSpriteW(anim_info.sprite_w);
     SetSpriteH(anim_info.sprite_h);
@@ -39,13 +37,9 @@ void Animation::Draw() {
     window.draw(sprite);
 }
 
-void Animation::SetSprite(const std::string new_im) {
-    if (!img.loadFromFile("assets/Sprites/" + new_im + ".png")) {
-        std::cerr << "Failed to load image for " << new_im << std::endl;
-        return;
-    }
-    if (!texture.loadFromImage(img)) {
-        std::cerr << "Failed to load texture for " << new_im << std::endl;
+void Animation::SetSprite(const std::string new_tex) {
+    if (!texture.loadFromFile("assets/Sprites/" + new_tex + ".png")) {
+        std::cerr << "Failed to load texture for " << new_tex << std::endl;
         return;
     }
     sprite.setTexture(texture);
@@ -84,8 +78,8 @@ void Animation::SetSpriteH(const uint new_s_h) {
 }
 
 void Animation::SetTexRow(int new_t_r, const int new_n_f) {
-    //Dividing the size of the image by the height of the sprite should ALWAYS produce a whole number
-    const unsigned int num_rows = img.getSize().y / anim_info.sprite_h;
+    //Dividing the size of the texture by the height of the sprite should ALWAYS produce a whole number
+    const uint num_rows = texture.getSize().y / anim_info.sprite_h;
     while (0 > new_t_r or new_t_r >= num_rows) {
         if (new_t_r < 0)
             new_t_r += num_rows;

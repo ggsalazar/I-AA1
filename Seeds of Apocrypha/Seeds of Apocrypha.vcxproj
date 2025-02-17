@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="src\DJ.cpp" />
     <ClCompile Include="src\Entities\Creatures\Creature.cpp" />
+    <ClCompile Include="src\Entities\Creatures\PartyMember.cpp" />
     <ClCompile Include="src\Entities\UI\Button.cpp" />
     <ClCompile Include="src\Entities\UI\Picker.cpp" />
     <ClCompile Include="src\Entities\UI\Slider.cpp" />
