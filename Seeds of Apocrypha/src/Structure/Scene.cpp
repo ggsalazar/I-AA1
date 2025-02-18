@@ -21,10 +21,6 @@ void Scene::GetInput() {
 		MoveCamera();
 
 		//Select party members
-		//Two (sort of three?) methods of selection:
-		//1. Click directly on character (portrait)
-		//	 -Deselects all other party mems and only selects the clicked one UNLESS holding shift
-		
 		//2. Click and drag (selection box/area)
 		//	 -Deselects all party mems outside the selection area and only selects the one(s) inside UNLESS holding shift
 

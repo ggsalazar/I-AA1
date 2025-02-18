@@ -29,7 +29,11 @@ inline bool DDOWN() { return sf::Keyboard::isKeyPressed(D_K); }
 
 //Special keys
 //Other
+constexpr sf::Keyboard::Key LCTRL = sf::Keyboard::Key::LControl; constexpr sf::Keyboard::Key RCTRL = sf::Keyboard::Key::RControl;
+constexpr sf::Keyboard::Key LSHIFT = sf::Keyboard::Key::LShift; constexpr sf::Keyboard::Key RSHIFT = sf::Keyboard::Key::RShift;
 constexpr sf::Keyboard::Key TAB = sf::Keyboard::Key::Tab;
+inline bool CTRLDOWN() { return sf::Keyboard::isKeyPressed(LCTRL) or sf::Keyboard::isKeyPressed(RCTRL); }
+inline bool SHIFTDOWN() { return sf::Keyboard::isKeyPressed(LSHIFT) or sf::Keyboard::isKeyPressed(RSHIFT); }
 inline bool TABDOWN() { return sf::Keyboard::isKeyPressed(TAB); }
 //Arrows
 inline bool UADOWN() { return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up); }

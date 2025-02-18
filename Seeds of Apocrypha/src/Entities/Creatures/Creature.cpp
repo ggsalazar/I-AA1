@@ -3,12 +3,21 @@
 Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged, const int init_dfc) :
 	Entity(s, a_i, t, init_dfc), 
-	stats(init_stats), biped(init_biped), winged(init_winged), 
+	stats(init_stats), biped(init_biped), winged(init_winged), nameplate(structure.game.default_font),
 	portrait_tex("assets/Sprites/"+por_name+".png"),
 	portrait(portrait_tex) {
 
 	portrait.setOrigin(sf::Vector2f(portrait_tex.getSize()) * .5f);
 	portrait.setScale({ t.scale.x * 3, t.scale.y * 3 });
+
+	//Portrait bbox
+	por_bbox.size.x = portrait.getGlobalBounds().size.x;
+	por_bbox.size.y = portrait.getGlobalBounds().size.y;
+	por_bbox.position.x = portrait.getPosition().x - por_bbox.size.x * .5f;
+	por_bbox.position.y = portrait.getPosition().y - por_bbox.size.y * .5f;
+	//Initialize our nameplate
+	Text::Init(nameplate, structure.game.default_font, structure.game.GetResScale() * 10, { 0, 0 }, stats.name, { 0, 0 });
+
 
 	//Set base_spd
 	switch (stats.size) {
@@ -68,6 +77,12 @@ Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Tra
 	SetDEF();
 
 	//Natural and worn armor will have to be set manually
+
+
+}
+
+void Creature::Update() {
+	//Position of portrait will be updated here
 }
 
 void Creature::Draw(const bool debug) {
@@ -81,6 +96,7 @@ void Creature::Draw(const bool debug) {
 	//Set the camera back to the world
 	structure.window.setView(structure.game.camera);
 }
+
 
 void Creature::SetAbilityScore(Ab_Scores a_s, float new_score) {
 	if (new_score < 0) {

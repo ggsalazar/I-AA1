@@ -4,19 +4,19 @@ TileMap - at some point, I will need to get the data of which tile is being look
 
 Main Menu
 	-Character creation
-		--In the middle, descriptive text of the thing being picked & the options the player can pick from (maybe implement primed for pickers)
+		--In the middle, descriptive text of the thing being picked & the options the player can pick from
 		--Also in the middle(?), whatever sub-thing they are picking (aesthetics, features, skills, etc.)
 		--On the right, the character currently being made/characters already made
 		--Pre-Gen characters
 		--CreatePartyMember in Scene.cpp
+		--Automatic journalling
+		--Automatic dungeon mapping
 	-Continue/Load game
 		--Will require implementation of saving/loading
 	-Options
 		--Set resolution/fullscreen
-		--Change volumes
+		--Volumes
 		--Camera move speed
-		--Automatic journalling
-		--Automatic dungeon mapping
 Tutorial
 	-Town
 		--NPCs
@@ -26,6 +26,8 @@ Tutorial
 		--Party Members
 			---Sorina
 				----Outside the mine, scared to go in because of dead Trow
+				----Spells
+					-----Magic
 			---Essek
 				----Inside the mine, in a stalement with the last room of Trow
 		--Trow
@@ -35,6 +37,16 @@ Tutorial
 			---Ranged
 				----AI
 				----1
+In-game menus
+	-Inventory
+	-Quest Journal
+	-Map
+	-Settings
+		--Camera scroll speed
+		--Music/SFX volumes
+	-Character Sheets
+	-How to arrange?
+
 Prologue
 	-Train
 		--Intro "Cutscene"

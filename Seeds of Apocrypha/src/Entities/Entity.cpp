@@ -39,7 +39,7 @@ void Entity::Draw(const bool debug) {
 void Entity::Move(sf::Vector2f offset) {
     //Ensure that the bbox and sprite of the entity is always matched to its actual, literal position
     pos += offset;
-    pos_debug.setPosition(sf::Vector2f(pos.x - 1, pos.y - 1));
+    pos_debug.setPosition(sf::Vector2f(pos.x - structure.game.GetResScale() * .5, pos.y - structure.game.GetResScale() * .5));
     anim->sprite.setPosition(pos);
     float ori_x = anim->GetOrigin().x;
     float ori_y = anim->GetOrigin().y;
