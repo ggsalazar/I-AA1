@@ -7,6 +7,46 @@
 #include "../Entities/Creatures/PartyMember.h"
 
 void Scene::GetInput() {
+
+	if (label == Scenes::AREA) {
+		MoveCamera();
+
+		//Select party members
+		//Click and drag (selection box/area)
+		//	 -If holding SHIFT, deselects all party mems outside the selection area and only selects the one(s) inside
+		
+		if (Input::KeyPressed(LMB)) {
+			selec_box.setPosition(window.mapPixelToCoords(MOUSEPOS));
+			selecting = true;
+			//Change cursor sprite to indicate we are now selecting - TO-DO
+		}
+		else if (Input::KeyReleased(LMB) and selecting) {
+			selecting = false;
+			selec_wh = { 0,0 };
+
+			selec_area.position = selec_box.getPosition();
+			selec_area.size = selec_box.getSize();
+
+			for (auto& p_m : party_mems) {
+				if (selec_area.contains(p_m->GetPos())) p_m->selected = true;
+				else if (!SHIFTDOWN()) p_m->selected = false;
+			}
+
+		}
+		if (selecting) {
+			sf::Vector2f mouse_pos = window.mapPixelToCoords(MOUSEPOS);
+			//Selection area w/h
+			selec_wh.x = mouse_pos.x - selec_box.getPosition().x;
+			selec_wh.y = mouse_pos.y - selec_box.getPosition().y;
+
+			selec_box.setSize(selec_wh);
+
+			//Use visual signifiers to indicate which party members are about to be selected - TO-DO
+		}
+		
+		//Move the selected party members
+	}
+
 	for (auto& e : entities) {
 		//Only get input for UI elements if the corresponding menu is open
 		if (auto ui = dynamic_cast<UI*>(e.get())) {
@@ -15,16 +55,6 @@ void Scene::GetInput() {
 		}
 		else
 			e->GetInput();
-	}
-
-	if (label == Scenes::AREA) {
-		MoveCamera();
-
-		//Select party members
-		//2. Click and drag (selection box/area)
-		//	 -Deselects all party mems outside the selection area and only selects the one(s) inside UNLESS holding shift
-
-		//Move the selected party members
 	}
 }
 
@@ -59,6 +89,10 @@ void Scene::Draw() {
 		else
 			e->Draw();
 	}
+
+	//Draw the selection box
+	if (selecting)
+		window.draw(selec_box);
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
@@ -114,8 +148,12 @@ void Scene::Open() {
 		menus.insert(make_pair(Menus::OPTIONS, move(options_menu)));
 	}
 	else if (label == Scenes::AREA) {
-		for (auto& p_m : party_mems)
+		for (auto& p_m : party_mems) {
 			entities.push_back(p_m);
+			p_m->SetScene(this);
+		}
+		//Selection box stuff
+		selec_box.setFillColor(sf::Color::Color(0, 250, 0, 128));
 
 		window.setView(game.camera);
 		

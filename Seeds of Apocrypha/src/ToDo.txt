@@ -1,4 +1,4 @@
-Left off: Tutorial - Get party members moving, add in NPCs, (de)select party members
+Left off: Tutorial - Implement options, get party members moving, add in NPCs
 
 TileMap - at some point, I will need to get the data of which tile is being looked at/stood on, since different types of terrain have different properties, such as elevation
 

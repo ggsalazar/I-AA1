@@ -46,6 +46,8 @@ public:
     sf::Vector2f GetPos() const { return pos; }
     sf::FloatRect GetBBox() const { return bbox; }
 
+    void SetScene(Scene* new_scn) { structure.scene = new_scn; }
+
     void PlaySound();
 
 protected:

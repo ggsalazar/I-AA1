@@ -25,14 +25,15 @@ PartyMember::PartyMember(const Structure& s, const AnimInfo& a_i, const Animatio
 }
 
 void PartyMember::GetInput() {
-
-
-
-
-
 	//Become selected if our bounding box or portrait is clicked on
 	//Bbox uses world mouse coordinates, portrait uses screen mouse coordinates
+	//cout << "bbox coords: " << bbox.position.x << ", " << bbox.position.y << endl;
+	//cout << "mouse coords: " << structure.window.mapPixelToCoords(MOUSEPOS_S).x << ", " << structure.window.mapPixelToCoords(MOUSEPOS_S).y << endl;
 	if ((bbox.contains(structure.window.mapPixelToCoords(MOUSEPOS_S)) or por_bbox.contains(sf::Vector2f(MOUSEPOS_S))) and Input::KeyPressed(LMB)) {
+		//We are not using the area selection function
+		cout << "Scene selecting? " << structure.scene->selecting << endl;
+		structure.scene->selecting = false;
+
 		//If we aren't holding shift, deselect all party members before selecting this one
 		if (!SHIFTDOWN()) {
 			vector<shared_ptr<PartyMember>> p_ms = structure.scene->GetPartyMems();

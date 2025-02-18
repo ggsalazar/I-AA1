@@ -19,9 +19,7 @@ void Input::UpdateVars() {
 bool Input::KeyPressed(sf::Keyboard::Key key) {
     switch (key) {
         case TAB:
-            bool pressed = tab_was_up and TABDOWN();
-            tab_was_up = !TABDOWN();
-            return pressed;
+            return tab_was_up and TABDOWN();
         break;
     }
     return false;
@@ -30,9 +28,7 @@ bool Input::KeyPressed(sf::Keyboard::Key key) {
 bool Input::KeyPressed(sf::Mouse::Button mb) {
     switch (mb) {
         case LMB:
-            bool pressed = lmb_was_up and LMBDOWN();
-            lmb_was_up = !LMBDOWN();
-            return pressed;
+            return lmb_was_up and LMBDOWN();
         break;
     }
     return false;
@@ -45,9 +41,7 @@ bool Input::KeyReleased(sf::Keyboard::Key key) {
 bool Input::KeyReleased(sf::Mouse::Button mb) {
     switch (mb) {
         case LMB:
-            bool released = lmb_was_down and !LMBDOWN();
-            lmb_was_down = LMBDOWN();
-            return released;
+            return lmb_was_down and !LMBDOWN();
         break;
     }
     return false;

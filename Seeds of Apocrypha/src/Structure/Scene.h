@@ -15,6 +15,7 @@ class PartyMember;
 class Scene {
 public:
     Scenes label;
+    bool selecting = false;
 
     Scene(Game& g, sf::RenderWindow& win, Scenes init_label) :
         game(g), window(win), label(init_label) {}
@@ -53,6 +54,10 @@ private:
     unordered_map<Menus, unique_ptr<Menu>> menus;
     vector<shared_ptr<Entity>> entities;
     vector<shared_ptr<PartyMember>> party_mems;
+
+    sf::RectangleShape selec_box;
+    sf::FloatRect selec_area;
+    sf::Vector2f selec_wh = { 0,0 };
 
     //Game structure stuff
     Game& game;
