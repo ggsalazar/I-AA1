@@ -1,4 +1,17 @@
-Left off: Tutorial - Implement options, get party members moving, add in NPCs
+Left off: Options - Redraw Slider, test ui_elems in Menu
+									-Music vol
+									-SFX vol
+									-Resolution change
+									-Fullscreen toggle
+									-Camera speed setter (still need to implement - slider, increments of .25)
+When constructing, get the size of the screen and fullscreen if possible, set to next biggest window size if not
+Set the windows that are created to be close-able but not resizable
+Debugging - Make sure Text (e.g. Main Menu text) is *actually* being centered
+			-Bug in ResizeMenus() (Game::Constructor -> SetResolution() -> ResizeMenus())
+
+Tutorial - Get party members moving, add in NPCs
+
+
 
 TileMap - at some point, I will need to get the data of which tile is being looked at/stood on, since different types of terrain have different properties, such as elevation
 

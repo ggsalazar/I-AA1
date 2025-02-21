@@ -1,258 +1,283 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Scene.cpp
+  Game.cpp
 C:\libs\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
-  (compiling source file 'src/Structure/Scene.cpp')
+  (compiling source file 'src/Structure/Game.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\stdexcept(100,19):
       see declaration of 'std::runtime_error'
       C:\libs\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
       see declaration of 'sf::Exception'
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.h(42,53): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.h(42,53): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.h(42,53): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.h(42,53): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.h(42,53): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(28,31): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(29,31): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,55): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(59,38): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,59): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(60,42): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,59): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(61,38): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,59): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(62,38): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,59): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(63,42): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,63): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(64,42): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,58): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(66,40): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,62): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(67,44): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,62): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(68,40): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,62): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(69,40): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,62): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(70,44): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         ]
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         and
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,66): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\Game.h(43,53): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\Game.h(43,53): warning C4244:         with
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\Game.h(43,53): warning C4244:         [
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\Game.h(43,53): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Structure\Game.h(43,53): warning C4244:         ]
-  (compiling source file 'src/Structure/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\TileMap.h(71,44): warning C4244:         ]
+  (compiling source file 'src/Structure/Game.cpp')
   
-C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\Creatures\Creature.h(74,41): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
-  (compiling source file 'src/Structure/Scene.cpp')
-  
-  Seeds of Apocrypha.vcxproj -> C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,69): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(16,49): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(132,24): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(132,24): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(132,24): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(132,24): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(132,24): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(133,24): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(133,24): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(133,24): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(133,24): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Structure\Game.cpp(133,24): warning C4244:         ]
+  Seeds of Apocrypha.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\x64\Debug\Seeds of Apocrypha.exe

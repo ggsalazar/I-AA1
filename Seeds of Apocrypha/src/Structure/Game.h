@@ -22,7 +22,6 @@ public:
     DJ dj;
     bool paused = false;
     bool game_over = false;
-    bool fullscreen = false;
     sf::Font default_font;
 
     Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullscrn = false);

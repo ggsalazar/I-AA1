@@ -4,7 +4,7 @@ Slider::Slider(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
     UI(s, m, a_i, t, style, init_dfc),
     knob_val(structure.game.default_font), knob_tex("assets/Sprites/UI/SliderKnob.png"), knob_spr(knob_tex) {
 
-    label_offset = structure.game.GetResScale()*6;
+    label_offset = structure.game.GetResScale()*10;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Set the origin/anchor, scale, and position
@@ -55,7 +55,7 @@ void Slider::Draw(const bool debug) {
 
 void Slider::Move(sf::Vector2f offset) {
     Entity::Move(offset);
-    label_offset = structure.game.GetResScale() * 6;
+    label_offset = structure.game.GetResScale() * 10;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Resize and move the knob

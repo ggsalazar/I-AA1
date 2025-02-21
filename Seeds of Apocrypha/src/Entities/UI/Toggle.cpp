@@ -15,7 +15,7 @@ void Toggle::Draw(const bool debug) {
 void Toggle::Move(sf::Vector2f offset) {
 	Entity::Move(offset);
 	label.setCharacterSize(structure.game.GetResScale() * 12);
-	label_offset = structure.game.GetResScale() * 5;
+	label_offset = structure.game.GetResScale() * 10;
 	Text::SetOrigin(label, { 1.f, .5f });
 	label.setPosition({ pos.x - label_offset, pos.y });
 }

@@ -4,25 +4,16 @@
 #include "../Utils/Util.h"
 #include "../Utils/Input.h"
 
-Game::Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullscrn) {
-    resolution = sf::Vector2u(win_w, win_h);
-    fullscreen = fullscrn;
+Game::Game(const char* title, uint win_w, uint win_h, uint init_fps, bool fullscrn) :
+            fps(init_fps), debug_timer(fps), resolution(sf::Vector2u(win_w, win_h)) {
     //Initialize the window
-    if (fullscreen)
-        window.create(sf::VideoMode(resolution), title, sf::Style::Default, sf::State::Fullscreen);
-    else
-        window.create(sf::VideoMode(resolution), title, sf::Style::Default);
-    window.setFramerateLimit(init_fps);
-    fps = init_fps;
-    debug_timer = fps;
-
+    SetResolution(resolution);
 
     //Initialize the hud view
     hud = window.getView();
 
     //Initialize the camera
     camera.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
-    camera.setCenter({ 0.f, 0.f });
 
     //Initialize the fonts
     if (!default_font.openFromFile("assets/Fonts/m5x7.ttf"))
@@ -149,9 +140,9 @@ void Game::SetResolution(float res_scalar) {
 
     window.close();
     if (resolution.x == SCREENW() and resolution.y == SCREENH())
-        window.create(sf::VideoMode(resolution), "Aetherite Engine", sf::Style::Default, sf::State::Fullscreen);
+        window.create(sf::VideoMode(resolution), "Seeds of Apocrypha", sf::Style::Default, sf::State::Fullscreen);
     else
-        window.create(sf::VideoMode(resolution), "Aetherite Engine", sf::Style::Default);
+        window.create(sf::VideoMode(resolution), "Seeds of Apocrypha", sf::Style::Default);
     window.setFramerateLimit(fps);
 
     auto scene = active_scene.lock();
@@ -163,17 +154,16 @@ void Game::SetResolution(sf::Vector2u n_r) {
         n_r.x = n_r.x <= SCREENW() ? n_r.x : SCREENW();
         n_r.y = n_r.y <= SCREENH() ? n_r.y : SCREENH();
 
-        resolution.x = n_r.x;
-        resolution.y = n_r.y;
+        resolution = n_r;
 
         window.close();
         if (resolution.x == SCREENW() and resolution.y == SCREENH())
-            window.create(sf::VideoMode(resolution), "Aetherite Engine", sf::Style::Default, sf::State::Fullscreen);
+            window.create(sf::VideoMode(resolution), "Seeds of Apocrypha", sf::Style::Default, sf::State::Fullscreen);
         else
-            window.create(sf::VideoMode(resolution), "Aetherite Engine", sf::Style::Default);
+            window.create(sf::VideoMode(resolution), "Seeds of Apocrypha", sf::Style::Default);
         window.setFramerateLimit(fps);
 
         auto scene = active_scene.lock();
-        scene->ResizeMenus();
+        //scene->ResizeMenus();
     }
 }

@@ -9,11 +9,11 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             game(g), window(w), scene(s), label(init_label), menu_text(game.default_font), sup_text(game.default_font) {
     
     float res_scalar = game.GetResScale();
-    int style_size = res_scalar * 12;
+    int style_size = res_scalar * 14;
     ui_size = { res_scalar, res_scalar };
 
     Text::Init(menu_text, game.default_font, res_scalar * 36, { window.getSize().x * .5f, window.getSize().y * .15f }, "DEFAULT");
-    Text::Init(sup_text, game.default_font, res_scalar * 24, { window.getSize().x * .5f, window.getSize().y * .2f }, "SUPPLEMENTARY DEFAULT");
+    Text::Init(sup_text, game.default_font, res_scalar * 24, { window.getSize().x * .5f, window.getSize().y * .225f }, "SUPPLEMENTARY DEFAULT");
 
     //What we do depends on our label
     switch (label) {
@@ -355,13 +355,66 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
         }
 
         case Menus::OPTIONS: {
+            Text::SetStr(menu_text, "Seeds of Apocrypha");
+            Text::SetStr(sup_text, "Options");
+
+            sf::Vector2f elem_pos = { window.getSize().x * .5f, window.getSize().y * .3f };
+            float elem_y_buffer = window.getSize().y * .09f;
+
+            //Music and sfx sliders
             auto music_sldr = make_shared<Slider>(
                 Structure{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Slider", 64, 9 },
-                Animation::Transform{ {window.getSize().x*.5f, window.getSize().y*.5f}, ui_ori, ui_size},
+                Animation::Transform{ elem_pos, ui_ori, ui_size},
                 UI::Style{ UIElems::MUSIC_V, style_size });
 
+            elem_pos.y += elem_y_buffer;
+            auto sfx_sldr = make_shared<Slider>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Slider", 64, 9 },
+                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::SFX_V, style_size });
+
+
+            //Resolution picker, fullscreen toggle, and apply button
+            elem_pos.y += elem_y_buffer;
+            auto res_pkr = make_shared<Picker>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::RESOLUTION, style_size });
+
+            elem_pos.y += elem_y_buffer;
+            float f_t_x = elem_pos.x + window.getSize().x * (res_scalar * .01);
+            auto fscrn_tgl = make_shared<Toggle>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Toggle", 24, 24, 0, 2 },
+                Animation::Transform{ {f_t_x, elem_pos.y}, ui_ori, ui_size },
+                UI::Style{ UIElems::FULLSCREEN, style_size });
+
+            elem_pos.y += elem_y_buffer;
+            auto apply_btn = make_shared<Button>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::APPLY, style_size });
+
+
+            //Back button
+            elem_pos.y = window.getSize().y * .9;
+            auto back_btn = make_shared<Button>(
+                Structure{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::BACK, style_size });
+
+
             ui_elems.insert(make_pair(UIElems::MUSIC_V, music_sldr));
+            ui_elems.insert(make_pair(UIElems::SFX_V, sfx_sldr));
+            ui_elems.insert(make_pair(UIElems::RESOLUTION, res_pkr));
+            ui_elems.insert(make_pair(UIElems::FULLSCREEN, fscrn_tgl));
+            ui_elems.insert(make_pair(UIElems::APPLY, apply_btn));
+            ui_elems.insert(make_pair(UIElems::BACK, back_btn));
 
             break;
         }

@@ -16,7 +16,7 @@ int main() {
         //Update game state
         game.Update();
 
-        //Draw the game
+        //Draw the gameS
         game.Render();
     }
 
