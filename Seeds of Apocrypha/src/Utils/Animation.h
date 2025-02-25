@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../Structure/Game.h"
+#include "../Engine/Game.h"
 #include "Util.h"
 
 class Game;

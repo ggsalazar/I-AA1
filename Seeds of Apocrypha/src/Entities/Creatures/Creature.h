@@ -52,7 +52,7 @@ public:
 	sf::Sprite portrait;
 	sf::FloatRect por_bbox;
 
-	Creature(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats = {}, 
+	Creature(const Engine& s, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats = {}, 
 		const string por_name = "Creatures/Portraits/Placeholder", const bool init_biped = true, const bool init_winged = false, const int init_dfc = 0);
 
 	//Game stuff

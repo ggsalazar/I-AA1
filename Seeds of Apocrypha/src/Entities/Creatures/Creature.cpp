@@ -1,6 +1,6 @@
 #include "Creature.h"
 
-Creature::Creature(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t, const Stats& init_stats,
+Creature::Creature(const Engine& s, const AnimInfo& a_i, const Animation::Transform& t, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged, const int init_dfc) :
 	Entity(s, a_i, t, init_dfc), 
 	stats(init_stats), biped(init_biped), winged(init_winged), nameplate(structure.game.default_font),

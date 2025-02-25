@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "../Structure/Game.h"
-#include "../Structure/Scene.h"
+#include "../Engine/Game.h"
+#include "../Engine/Scene.h"
 #include "../Utils/Util.h"
 #include "../Utils/Text.h"
 #include "../Utils/Collision.h"
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-struct Structure {
+struct Engine {
     Game& game;
     sf::RenderWindow& window;
     //This allows the Scene of an object to be changed
@@ -31,8 +31,8 @@ public:
     sf::SoundBuffer sb;
     sf::Sound sound;
 
-    //Structure MUST be strictly inilitiazed, but this should have been the case anyway so it's a non-issue
-    Entity(const Structure& s, const AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
+    //Engine MUST be strictly inilitiazed, but this should have been the case anyway so it's a non-issue
+    Entity(const Engine& s, const AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
     virtual ~Entity() = default;
 
     void SetBBox();
@@ -56,7 +56,7 @@ protected:
     sf::FloatRect bbox;
     sf::RectangleShape bbox_debug;
 
-    Structure structure;
+    Engine structure;
 
     unique_ptr<Animation> anim;
 };

@@ -1,6 +1,6 @@
 #include "UI.h"
 
-UI::UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
+UI::UI(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
 	Entity(s, a_i, t, init_dfc), menu(m), elem(style.elem), label(structure.game.default_font) {
     
     //Label

@@ -1,6 +1,6 @@
 #pragma once
 #include "../Entity.h"
-#include "../../Structure/Menu.h"
+#include "../../Engine/Menu.h"
 
 class UI : public Entity {
 public:
@@ -13,7 +13,7 @@ public:
 
     sf::Text label;
 
-    UI(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc = 0);
+    UI(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc = 0);
 
     virtual void GetInput() override;
     virtual void Draw(const bool debug = false) override {}
