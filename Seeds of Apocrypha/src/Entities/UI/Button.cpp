@@ -1,22 +1,22 @@
 #include "Button.h"
 
-void Button::Draw(const bool debug) {
-    if (active and Selected(MOUSEPOS_S))
-        structure.window.draw(bbox_debug);
+void Button::Draw() {
+    if (active and Selected(MOUSEPOS_E))
+        engine.window.draw(bbox_debug);
 
-    Entity::Draw(debug);
-    structure.window.draw(label);
+    Entity::Draw();
+    engine.window.draw(label);
 }
 
 void Button::Move(sf::Vector2f offset) {
     Entity::Move(offset);
-    label_offset = structure.game.GetResScale();
+    label_offset = engine.game.GetResScale();
     label.setPosition({ pos.x, pos.y - label_offset });
 }
 
 void Button::MoveTo(sf::Vector2f new_pos) {
     Entity::MoveTo(new_pos);
-    label_offset = structure.game.GetResScale();
+    label_offset = engine.game.GetResScale();
     label.setPosition({ pos.x, pos.y - label_offset });
 }
 
@@ -31,12 +31,12 @@ void Button::Released() {
             if (menu.label == Menus::OPTIONS) {
                 //Set the game's current resolution to the scale determined by the resolution picker OR set it to fullscreen if that toggle is clicked
                 if (menu.GetUIElemStatus(UIElems::FULLSCREEN) == "True")
-                    structure.game.SetResolution(sf::Vector2u(SCREENW(), SCREENH()));
+                    engine.game.SetResolution(SCREENSIZE());
                 else {
                     uint new_scale = stoi(menu.GetUIElemStatus(UIElems::RESOLUTION));
-                    uint old_scale = structure.game.GetResScale();
+                    uint old_scale = engine.game.GetResScale();
                     if (new_scale != old_scale)
-                        structure.game.SetResolution(new_scale);
+                        engine.game.SetResolution(new_scale);
                 }
                 SetActive(false);
             }
@@ -50,14 +50,14 @@ void Button::Released() {
         case UIElems::BACK:
             //If creating a character, ask to confirm and if yes, wipe party creation
             menu.Open(false);
-            structure.scene->OpenMenu(Menus::MAIN);
+            engine.scene->OpenMenu(Menus::MAIN);
         break;
 
         case UIElems::CHARCREA:
             menu.Open(false);
             
-            structure.scene->CreatePartyMember();
-            structure.scene->OpenMenu(Menus::CHARCREA);
+            engine.scene->CreatePartyMem();
+            engine.scene->OpenMenu(Menus::CHARCREA);
         break;
 
         case UIElems::CREATE: {
@@ -73,30 +73,30 @@ void Button::Released() {
 
         case UIElems::OPTIONS:
             menu.Open(false);
-            structure.scene->OpenMenu(Menus::OPTIONS);
+            engine.scene->OpenMenu(Menus::OPTIONS);
         break;
 
         case UIElems::MAINMENU:
             menu.Open(false);
-            structure.game.paused = false;
-            structure.game.game_over = false;
-            structure.game.title_scene->AddEntity(shared_from_this());
-            structure.game.SetScene(Scenes::TITLE);
+            engine.game.paused = false;
+            engine.game.game_over = false;
+            engine.game.title_scene->AddEntity(shared_from_this());
+            engine.game.SetScene(Scenes::TITLE);
         break;
 
         case UIElems::QUIT:
-            structure.window.close();
+            engine.window.close();
         break;
 
         case UIElems::RESUME:
             menu.Open(false);
-            structure.game.paused = false;
+            engine.game.paused = false;
         break;
 
         case UIElems::TUTORIAL:
-            structure.scene->CreatePreGen(PreGens::DAKN);
-            structure.game.area = Areas::TUTTON;
-            structure.game.SetScene(Scenes::AREA);
+            engine.scene->CreatePreGen(PreGens::DAKN);
+            engine.game.area = Areas::TUTTON;
+            engine.game.SetScene(Scenes::AREA);
         break;
     }
 }

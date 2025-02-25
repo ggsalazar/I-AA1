@@ -1,7 +1,7 @@
 #include "UI.h"
 
-UI::UI(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
-	Entity(s, a_i, t, init_dfc), menu(m), elem(style.elem), label(structure.game.default_font) {
+UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
+	Entity(e, a_i, t, init_dfc), menu(m), elem(style.elem), label(engine.game.default_font) {
     
     //Label
     string l_str = "DEFAULT";
@@ -129,7 +129,7 @@ UI::UI(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform
             l_str = "Tutorial";
         break;
     }
-    Text::Init(label, structure.game.default_font, style.font_size, pos, l_str);
+    Text::Init(label, engine.game.default_font, style.font_size, pos, l_str);
 
     //Sound
     {
@@ -138,19 +138,19 @@ UI::UI(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform
             return;
         }
         sound.setBuffer(sb);
-        sound.setVolume(structure.game.GetSFXVolume());
+        sound.setVolume(engine.game.GetSFXVolume());
     }
 }
 
 void UI::GetInput() {
-    if (active and Selected(MOUSEPOS_S)) {
+    if (active and Selected(MOUSEPOS_E)) {
         if (Input::KeyPressed(LMB))
             Pressed();
 
         if (Input::KeyReleased(LMB) and primed)
             Released();
     }
-    else if (!Selected(MOUSEPOS_S)) primed = false;
+    else if (!Selected(MOUSEPOS_E)) primed = false;
 }
 
 void UI::Resize(uint r_s) {
@@ -162,7 +162,7 @@ void UI::Resize(uint r_s) {
     //Set new sprite origin
     anim->SetOrigin(old_origin);
     //Adjust label size
-    label.setCharacterSize(r_s * 16);
+    label.setCharacterSize(r_s * 14);
     //Reset the origin
     Text::SetOrigin(label);
     //Label offset and position are handled in children

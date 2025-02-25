@@ -15,34 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Structure\main.cpp">
+    <ClCompile Include="src\Engine\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\Collision.cpp">
+    <ClCompile Include="src\Engine\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\Util.cpp">
+    <ClCompile Include="src\Engine\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Structure\Game.cpp">
+    <ClCompile Include="src\Engine\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Structure\Scene.cpp">
+    <ClCompile Include="src\Engine\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Structure\Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utils\Input.cpp">
+    <ClCompile Include="src\Engine\Utils\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\UI\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\Animation.cpp">
+    <ClCompile Include="src\Engine\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\UI\UI.cpp">
@@ -51,7 +48,7 @@
     <ClCompile Include="src\Entities\UI\Slider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DJ.cpp">
+    <ClCompile Include="src\Engine\DJ.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\UI\Picker.cpp">
@@ -63,7 +60,7 @@
     <ClCompile Include="src\Entities\Creatures\Creature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\Text.cpp">
+    <ClCompile Include="src\Engine\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Creatures\PartyMember.cpp">
@@ -74,31 +71,31 @@
     <ClInclude Include="src\Entities\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Collision.h">
+    <ClInclude Include="src\Engine\Collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Util.h">
+    <ClInclude Include="src\Engine\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Structure\Game.h">
+    <ClInclude Include="src\Engine\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Structure\Scene.h">
+    <ClInclude Include="src\Engine\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Macros.h">
+    <ClInclude Include="src\Engine\Utils\Macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Structure\Menu.h">
+    <ClInclude Include="src\Engine\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Input.h">
+    <ClInclude Include="src\Engine\Utils\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\UI\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Animation.h">
+    <ClInclude Include="src\Engine\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\UI\UI.h">
@@ -107,7 +104,7 @@
     <ClInclude Include="src\Entities\UI\Slider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\DJ.h">
+    <ClInclude Include="src\Engine\DJ.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\UI\Picker.h">
@@ -116,7 +113,7 @@
     <ClInclude Include="src\Entities\UI\Toggle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Enums.h">
+    <ClInclude Include="src\Engine\Utils\Enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Creatures\Creature.h">
@@ -125,7 +122,7 @@
     <ClInclude Include="src\Entities\Items\Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Text.h">
+    <ClInclude Include="src\Engine\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Creatures\PartyMember.h">
@@ -134,7 +131,7 @@
     <ClInclude Include="src\Entities\Tooltip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Structure\TileMap.h">
+    <ClInclude Include="src\Engine\TileMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

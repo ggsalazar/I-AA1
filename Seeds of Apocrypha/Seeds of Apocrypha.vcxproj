@@ -140,7 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\DJ.cpp" />
+    <ClCompile Include="src\Engine\DJ.cpp" />
     <ClCompile Include="src\Entities\Creatures\Creature.cpp" />
     <ClCompile Include="src\Entities\Creatures\PartyMember.cpp" />
     <ClCompile Include="src\Entities\UI\Button.cpp" />
@@ -148,19 +148,18 @@
     <ClCompile Include="src\Entities\UI\Slider.cpp" />
     <ClCompile Include="src\Entities\UI\Toggle.cpp" />
     <ClCompile Include="src\Entities\UI\UI.cpp" />
-    <ClCompile Include="src\Structure\Menu.cpp" />
-    <ClCompile Include="src\Utils\Animation.cpp" />
-    <ClCompile Include="src\Utils\Collision.cpp" />
+    <ClCompile Include="src\Engine\Menu.cpp" />
+    <ClCompile Include="src\Engine\Animation.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
-    <ClCompile Include="src\Structure\Game.cpp" />
-    <ClCompile Include="src\Structure\main.cpp" />
-    <ClCompile Include="src\Structure\Scene.cpp" />
-    <ClCompile Include="src\Utils\Input.cpp" />
-    <ClCompile Include="src\Utils\Text.cpp" />
-    <ClCompile Include="src\Utils\Util.cpp" />
+    <ClCompile Include="src\Engine\Game.cpp" />
+    <ClCompile Include="src\Engine\main.cpp" />
+    <ClCompile Include="src\Engine\Scene.cpp" />
+    <ClCompile Include="src\Engine\Utils\Input.cpp" />
+    <ClCompile Include="src\Engine\Text.cpp" />
+    <ClCompile Include="src\Engine\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\DJ.h" />
+    <ClInclude Include="src\Engine\DJ.h" />
     <ClInclude Include="src\Entities\Creatures\Creature.h" />
     <ClInclude Include="src\Entities\Creatures\PartyMember.h" />
     <ClInclude Include="src\Entities\Items\Item.h" />
@@ -170,18 +169,18 @@
     <ClInclude Include="src\Entities\UI\Slider.h" />
     <ClInclude Include="src\Entities\UI\Toggle.h" />
     <ClInclude Include="src\Entities\UI\UI.h" />
-    <ClInclude Include="src\Structure\Menu.h" />
-    <ClInclude Include="src\Structure\TileMap.h" />
-    <ClInclude Include="src\Utils\Animation.h" />
-    <ClInclude Include="src\Utils\Collision.h" />
+    <ClInclude Include="src\Engine\Menu.h" />
+    <ClInclude Include="src\Engine\TileMap.h" />
+    <ClInclude Include="src\Engine\Animation.h" />
+    <ClInclude Include="src\Engine\Collision.h" />
     <ClInclude Include="src\Entities\Entity.h" />
-    <ClInclude Include="src\Structure\Game.h" />
-    <ClInclude Include="src\Structure\Scene.h" />
-    <ClInclude Include="src\Utils\Enums.h" />
-    <ClInclude Include="src\Utils\Input.h" />
-    <ClInclude Include="src\Utils\Macros.h" />
-    <ClInclude Include="src\Utils\Text.h" />
-    <ClInclude Include="src\Utils\Util.h" />
+    <ClInclude Include="src\Engine\Game.h" />
+    <ClInclude Include="src\Engine\Scene.h" />
+    <ClInclude Include="src\Engine\Utils\Enums.h" />
+    <ClInclude Include="src\Engine\Utils\Input.h" />
+    <ClInclude Include="src\Engine\Utils\Macros.h" />
+    <ClInclude Include="src\Engine\Text.h" />
+    <ClInclude Include="src\Engine\Math.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\ToDo.txt" />

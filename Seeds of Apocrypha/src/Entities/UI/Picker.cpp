@@ -1,9 +1,9 @@
 #include "Picker.h"
 
-Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
-    UI(s, m, a_i, t, style, init_dfc), picking(structure.game.default_font) {
+Picker::Picker(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
+    UI(s, m, a_i, t, style, init_dfc), picking(engine.game.default_font) {
 
-    label_offset = structure.game.GetResScale()*8;
+    label_offset = engine.game.GetResScale()*8;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Set up position.x bbox
@@ -64,7 +64,7 @@ Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
         break;
 
         case UIElems::RESOLUTION:
-            picking_str = to_string((int)structure.game.GetResScale());
+            picking_str = to_string((int)engine.game.GetResScale());
         break;
 
         case UIElems::SEX:
@@ -85,38 +85,38 @@ Picker::Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
 
 void Picker::GetInput() {
     if (active) {
-        if (LeftSelected(MOUSEPOS_S)) {
+        if (LeftSelected(MOUSEPOS_E)) {
             if (Input::KeyPressed(LMB))
                 LeftPressed();
             if (Input::KeyReleased(LMB) and l_primed)
                 LeftReleased();
         }
-        else if (!LeftSelected(MOUSEPOS_S)) l_primed = false;
+        else if (!LeftSelected(MOUSEPOS_E)) l_primed = false;
         
-        if (RightSelected(MOUSEPOS_S)) {
+        if (RightSelected(MOUSEPOS_E)) {
             if (Input::KeyPressed(LMB))
                 RightPressed();
             if (Input::KeyReleased(LMB) and r_primed)
                 RightReleased();
         }
-        else if (!RightSelected(MOUSEPOS_S)) r_primed = false;
+        else if (!RightSelected(MOUSEPOS_E)) r_primed = false;
     }
 }
 
-void Picker::Draw(const bool debug) {
-    if (active and Selected(MOUSEPOS_S))
-        structure.window.draw(bbox_debug);
+void Picker::Draw() {
+    if (active and Selected(MOUSEPOS_E))
+        engine.window.draw(bbox_debug);
 
-    Entity::Draw(debug);
-    structure.window.draw(label);
+    Entity::Draw();
+    engine.window.draw(label);
 
-    structure.window.draw(picking);
+    engine.window.draw(picking);
 
     if (active) {
-        if (LeftSelected(MOUSEPOS_S))
-            structure.window.draw(l_bbox_debug);
-        else if (RightSelected(MOUSEPOS_S))
-            structure.window.draw(r_bbox_debug);
+        if (LeftSelected(MOUSEPOS_E))
+            engine.window.draw(l_bbox_debug);
+        else if (RightSelected(MOUSEPOS_E))
+            engine.window.draw(r_bbox_debug);
 
         if (elem == UIElems::SEX and picking.getString() == "-") {
             string new_sex = rand() % 2 ? "Male" : "Female";
@@ -127,7 +127,7 @@ void Picker::Draw(const bool debug) {
 
 void Picker::MoveTo(sf::Vector2f new_pos) {
     Entity::MoveTo(new_pos);
-    label_offset = structure.game.GetResScale() * 5;
+    label_offset = engine.game.GetResScale() * 5;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Move position.x bbox+debug
@@ -150,12 +150,13 @@ void Picker::MoveTo(sf::Vector2f new_pos) {
     r_bbox_debug.setSize(sf::Vector2f(r_bbox.size.x, r_bbox.size.y));
     r_bbox_debug.setFillColor(sf::Color(0, 0, 255, 127)); //Blue, 50% opacity
 
+    Text::SetCharSize(picking, engine.game.GetResScale() * 12);
     picking.setPosition(pos);
 }
 
 void Picker::Move(sf::Vector2f offset) {
     Entity::Move(offset);
-    label_offset = structure.game.GetResScale() * 5;
+    label_offset = engine.game.GetResScale() * 5;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Move position.x bbox+debug
@@ -178,6 +179,7 @@ void Picker::Move(sf::Vector2f offset) {
     r_bbox_debug.setSize(sf::Vector2f(r_bbox.size.x, r_bbox.size.y));
     r_bbox_debug.setFillColor(sf::Color(0, 0, 255, 127)); //Blue, 50% opacity
 
+    Text::SetCharSize(picking, engine.game.GetResScale() * 12);
     picking.setPosition(pos);
 }
 
@@ -234,7 +236,7 @@ void Picker::LeftReleased() {
             uint curr_res = stoi(p);
 
             if (--curr_res < 1)
-                curr_res = floor(SCREENW() / MINRESW);
+                curr_res = floor(SCREENSIZE().x / MINRES.x);
 
             p = to_string(curr_res);
 
@@ -321,7 +323,7 @@ void Picker::RightReleased() {
         case UIElems::RESOLUTION: {
             uint curr_res = stoi(p);
 
-            if (++curr_res > floor(SCREENW() / MINRESW))
+            if (++curr_res > floor(SCREENSIZE().x / MINRES.x))
                 curr_res = 1;
 
             p = to_string(curr_res);

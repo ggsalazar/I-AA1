@@ -5,10 +5,10 @@
 
 class Picker : public UI {
 public:
-    Picker(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc=0);
+    Picker(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc=0);
 
     void GetInput() override;
-    void Draw(const bool debug = false) override;
+    void Draw() override;
     void Move(sf::Vector2f offset) override;
     void MoveTo(sf::Vector2f new_pos) override;
 

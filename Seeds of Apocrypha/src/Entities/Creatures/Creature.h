@@ -52,12 +52,12 @@ public:
 	sf::Sprite portrait;
 	sf::FloatRect por_bbox;
 
-	Creature(const Engine& s, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats = {}, 
+	Creature(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats = {}, 
 		const string por_name = "Creatures/Portraits/Placeholder", const bool init_biped = true, const bool init_winged = false, const int init_dfc = 0);
 
 	//Game stuff
 	virtual void Update() override;
-	virtual void Draw(const bool debug = false) override;
+	virtual void Draw() override;
 
 	//Primary stats
 	void SetAbilityScore(Ab_Scores a_s, float new_score);

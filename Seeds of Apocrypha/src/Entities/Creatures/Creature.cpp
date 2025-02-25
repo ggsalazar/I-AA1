@@ -1,14 +1,15 @@
 #include "Creature.h"
 
-Creature::Creature(const Engine& s, const AnimInfo& a_i, const Animation::Transform& t, const Stats& init_stats,
+Creature::Creature(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged, const int init_dfc) :
-	Entity(s, a_i, t, init_dfc), 
-	stats(init_stats), biped(init_biped), winged(init_winged), nameplate(structure.game.default_font),
+	Entity(e, a_i, t, init_dfc), 
+	stats(init_stats), biped(init_biped), winged(init_winged), nameplate(engine.game.default_font),
 	portrait_tex("assets/Sprites/"+por_name+".png"),
 	portrait(portrait_tex) {
 
 	portrait.setOrigin(sf::Vector2f(portrait_tex.getSize()) * .5f);
 	portrait.setScale({ t.scale.x * 3, t.scale.y * 3 });
+	portrait_tex.setSmooth(false);
 
 	//Portrait bbox
 	por_bbox.size.x = portrait.getGlobalBounds().size.x;
@@ -16,7 +17,7 @@ Creature::Creature(const Engine& s, const AnimInfo& a_i, const Animation::Transf
 	por_bbox.position.x = portrait.getPosition().x - por_bbox.size.x * .5f;
 	por_bbox.position.y = portrait.getPosition().y - por_bbox.size.y * .5f;
 	//Initialize our nameplate
-	Text::Init(nameplate, structure.game.default_font, structure.game.GetResScale() * 10, { 0, 0 }, stats.name, { 0, 0 });
+	Text::Init(nameplate, engine.game.default_font, engine.game.GetResScale() * 9, { 0, 0 }, stats.name, { 0, 0 });
 
 
 	//Set base_spd
@@ -85,16 +86,16 @@ void Creature::Update() {
 	//Position of portrait will be updated here
 }
 
-void Creature::Draw(const bool debug) {
-	Entity::Draw(debug);
+void Creature::Draw() {
+	Entity::Draw();
 	//Set the camera to the hud
-	structure.window.setView(structure.game.hud);
+	engine.window.setView(engine.game.hud);
 
 	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
 
 
 	//Set the camera back to the world
-	structure.window.setView(structure.game.camera);
+	engine.window.setView(engine.game.camera);
 }
 
 

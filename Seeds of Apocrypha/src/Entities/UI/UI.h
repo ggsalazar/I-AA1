@@ -13,10 +13,10 @@ public:
 
     sf::Text label;
 
-    UI(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc = 0);
+    UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc = 0);
 
     virtual void GetInput() override;
-    virtual void Draw(const bool debug = false) override {}
+    virtual void Draw() override {}
     virtual void Move(sf::Vector2f offset) override {}
     virtual void Resize(uint r_s);
 

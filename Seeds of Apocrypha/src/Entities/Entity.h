@@ -1,13 +1,13 @@
 #pragma once
 #include <iostream>
+#include "../Engine/Utils/Input.h"
+#include "../Engine/Utils/Enums.h"
 #include "../Engine/Game.h"
 #include "../Engine/Scene.h"
-#include "../Utils/Util.h"
-#include "../Utils/Text.h"
-#include "../Utils/Collision.h"
-#include "../Utils/Animation.h"
-#include "../Utils/Input.h"
-#include "../Utils/Enums.h"
+#include "../Engine/Math.h"
+#include "../Engine/Text.h"
+#include "../Engine/Collision.h"
+#include "../Engine/Animation.h"
 
 using namespace std;
 
@@ -32,21 +32,21 @@ public:
     sf::Sound sound;
 
     //Engine MUST be strictly inilitiazed, but this should have been the case anyway so it's a non-issue
-    Entity(const Engine& s, const AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
+    Entity(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
     virtual ~Entity() = default;
 
-    void SetBBox();
 
     virtual void GetInput() {}
     virtual void Update() {}
-    virtual void Draw(const bool debug = false);
+    virtual void Draw();
     virtual void Move(sf::Vector2f offset);
     virtual void MoveTo(sf::Vector2f new_pos);
 
     sf::Vector2f GetPos() const { return pos; }
     sf::FloatRect GetBBox() const { return bbox; }
+    void SetBBox();
 
-    void SetScene(Scene* new_scn) { structure.scene = new_scn; }
+    void SetScene(Scene* new_scn) { engine.scene = new_scn; }
 
     void PlaySound();
 
@@ -56,7 +56,7 @@ protected:
     sf::FloatRect bbox;
     sf::RectangleShape bbox_debug;
 
-    Engine structure;
+    Engine engine;
 
     unique_ptr<Animation> anim;
 };

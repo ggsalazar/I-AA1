@@ -1,14 +1,14 @@
 #include "Slider.h"
 
-Slider::Slider(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
+Slider::Slider(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
     UI(s, m, a_i, t, style, init_dfc),
-    knob_val(structure.game.default_font), knob_tex("assets/Sprites/UI/SliderKnob.png"), knob_spr(knob_tex) {
+    knob_val(engine.game.default_font), knob_tex("assets/Sprites/UI/SliderKnob.png"), knob_spr(knob_tex) {
 
-    label_offset = structure.game.GetResScale()*10;
+    label_offset = engine.game.GetResScale()*10;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Set the origin/anchor, scale, and position
-    knob_spr.setOrigin({ t.origin.x * 3.f, t.origin.y * 9.f }); //The knob is 3px wide & 9px high
+    knob_spr.setOrigin({ t.origin.x * 6.f, t.origin.y * 18.f }); //The knob is 3px wide & 9px high
     knob_spr.setScale(t.scale);
     knob_pos_max = bbox.position.x + bbox.size.x * .9f;
     knob_pos_min = bbox.position.x + bbox.size.x * .1f;
@@ -27,18 +27,18 @@ Slider::Slider(const Structure& s, Menu& m, const AnimInfo& a_i, const Animation
 void Slider::GetInput() {
     UI::GetInput();
 
-    if (active and Selected(MOUSEPOS_S) and LMBDOWN()) {
+    if (active and Selected(MOUSEPOS_E) and LMBDOWN()) {
         
         //Adjust knob position
-        knob_pos = MOUSEPOS_S.x;
-        Util::Clamp(knob_pos, knob_pos_min, knob_pos_max);
+        knob_pos = MOUSEPOS_E.x;
+        Math::Clamp(knob_pos, knob_pos_min, knob_pos_max);
         knob_spr.setPosition({ knob_pos, pos.y });
 
         float new_vol = (knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 100;
         if (elem == UIElems::MUSIC_V)
-            structure.game.SetMusicVolume(new_vol);
+            engine.game.SetMusicVolume(new_vol);
         else if (elem == UIElems::SFX_V)
-            structure.game.SetSFXVolume(new_vol);
+            engine.game.SetSFXVolume(new_vol);
 
         string r_val = to_string(new_vol);
         r_val = r_val.substr(0, r_val.find('.') + 3);
@@ -46,27 +46,27 @@ void Slider::GetInput() {
     }
 }
 
-void Slider::Draw(const bool debug) {
-    Entity::Draw(debug);
-    structure.window.draw(label);
-    structure.window.draw(knob_val);
-    structure.window.draw(knob_spr);
+void Slider::Draw() {
+    Entity::Draw();
+    engine.window.draw(label);
+    engine.window.draw(knob_val);
+    engine.window.draw(knob_spr);
 }
 
 void Slider::Move(sf::Vector2f offset) {
     Entity::Move(offset);
-    label_offset = structure.game.GetResScale() * 10;
+    label_offset = engine.game.GetResScale() * 10;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Resize and move the knob
-    knob_spr.setOrigin({ anim->GetOrigin().x * 3, anim->GetOrigin().y * 9 });
+    knob_spr.setOrigin({ anim->GetOrigin().x * 6, anim->GetOrigin().y * 18 });
     knob_spr.setScale(anim->sprite.getScale());
     knob_pos_max = bbox.position.x + bbox.size.x * .9f;
     knob_pos_min = bbox.position.x + bbox.size.x * .1f;
     if (elem == UIElems::MUSIC_V)
-        knob_pos = knob_pos_min + (structure.game.GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
+        knob_pos = knob_pos_min + (engine.game.GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
     else if (elem == UIElems::SFX_V)
-        knob_pos = knob_pos_min + (structure.game.GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
+        knob_pos = knob_pos_min + (engine.game.GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
     knob_spr.setPosition({ knob_pos, pos.y });
     //Set the value
     knob_val = label;
@@ -79,18 +79,18 @@ void Slider::Move(sf::Vector2f offset) {
 
 void Slider::MoveTo(sf::Vector2f new_pos) {
     Entity::MoveTo(new_pos);
-    label_offset = structure.game.GetResScale() * 6;
+    label_offset = engine.game.GetResScale() * 6;
     label.setPosition({ pos.x, pos.y - label_offset });
 
     //Resize and move the knob
-    knob_spr.setOrigin({ anim->GetOrigin().x * 3, anim->GetOrigin().y * 9 });
+    knob_spr.setOrigin({ anim->GetOrigin().x * 6, anim->GetOrigin().y * 18 });
     knob_spr.setScale(anim->sprite.getScale());
     knob_pos_max = bbox.position.x + bbox.size.x * .9f;
     knob_pos_min = bbox.position.x + bbox.size.x * .1f;
     if (elem == UIElems::MUSIC_V)
-        knob_pos = knob_pos_min + (structure.game.GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
+        knob_pos = knob_pos_min + (engine.game.GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
     else if (elem == UIElems::SFX_V)
-        knob_pos = knob_pos_min + (structure.game.GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
+        knob_pos = knob_pos_min + (engine.game.GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
     knob_spr.setPosition({ knob_pos, pos.y });
     //Set the value
     knob_val = label;
