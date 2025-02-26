@@ -16,6 +16,8 @@ inline sf::Vector2u SCREENSIZE() { return sf::VideoMode::getDesktopMode().size; 
 //Mouse input
 #define MOUSEPOS sf::Mouse::getPosition(window)
 #define MOUSEPOS_E sf::Mouse::getPosition(engine.window)
+#define MOUSEPOS_W window.mapPixelToCoords(sf::Mouse::getPosition(window))
+#define MOUSEPOS_W_E engine.window.mapPixelToCoords(sf::Mouse::getPosition(engine.window))
 constexpr sf::Mouse::Button LMB = sf::Mouse::Button::Left;
 constexpr sf::Mouse::Button RMB = sf::Mouse::Button::Right;
 inline bool BUTTONDOWN(sf::Mouse::Button button) { return sf::Mouse::isButtonPressed(button); }

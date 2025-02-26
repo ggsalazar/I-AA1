@@ -1,7 +1,7 @@
 #include "Button.h"
 
 void Button::Draw() {
-    if (active and Selected(MOUSEPOS_E))
+    if (active and Selected(sf::Vector2i(MOUSEPOS_W_E)))
         engine.window.draw(bbox_debug);
 
     Entity::Draw();

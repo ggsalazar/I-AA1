@@ -377,16 +377,12 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
         }
 
         case Menus::OPTIONS_G: {
-            m_t_size = res_scalar * 18; m_t_pos = { window.getViewport(game.camera).position.x + window.getViewport(game.camera).size.x*.5f, window.getViewport(game.camera).position.y + window.getViewport(game.camera).size.y*.2f}; m_t_str = "Options";
-            s_t_size = res_scalar * 12; s_t_pos = { window.getView().getCenter().x, window.getView().getViewport().position.y + window.getView().getViewport().size.y * .12f}; s_t_str = "Adjust Settings";
-            if (game.debug) {
-                m_t_pos = { window.getViewport(game.hud).position.x + window.getViewport(game.hud).size.x*.5f, window.getViewport(game.hud).position.y + window.getViewport(game.hud).size.y*.2f};
-                s_t_pos = { window.getView().getCenter().x, window.getView().getViewport().position.y + window.getView().getViewport().size.y * .12f};
-            }
+            sf::Vector2f cam_top_left = game.camera.getCenter() - (game.camera.getSize() * .5f);
+            m_t_size = res_scalar * 18; m_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y*.1f }; m_t_str = "Options";
+            s_t_size = res_scalar * 12; s_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12f }; s_t_str = "Adjust Settings";
 
-
-            sf::Vector2f elem_pos = { window.getView().getCenter().x, window.getView().getViewport().position.y + window.getView().getViewport().size.y * .3f };
-            float elem_y_buffer = window.getView().getViewport().size.y* .09f;
+            sf::Vector2f elem_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .35f };
+            float elem_y_buffer = window.getSize().y * .09f;
 
             //Close button
             auto btn = make_shared<Button>(

@@ -23,13 +23,14 @@ void Scene::GetInput() {
 			game.cursor = game.cursors[action].get();
 			if (Input::KeyPressed(LMB)) {
 				switch (action) {
-					case Actions::MOVE:
-						MovePartyMems();
+				case Actions::MOVE:
+					MovePartyMems();
 					break;
 
 				}
 			}
 		}
+		else game.cursor = game.cursors[Actions::DEFAULT].get();
 	}
 
 	for (auto& e : entities) {
@@ -122,7 +123,6 @@ void Scene::MoveCamera() {
 		new_cam_offset.x += game.cam_move_spd;
 
 	game.camera.move(new_cam_offset);
-	game.hud.move(new_cam_offset);
 	window.setView(game.camera);
 }
 
@@ -154,10 +154,9 @@ void Scene::SelectPartyMems() {
 
 	}
 	if (selecting) {
-		sf::Vector2f mouse_pos = window.mapPixelToCoords(MOUSEPOS);
 		//Selection area w/h
-		selec_wh.x = mouse_pos.x - selec_box.getPosition().x;
-		selec_wh.y = mouse_pos.y - selec_box.getPosition().y;
+		selec_wh.x = MOUSEPOS_W.x - selec_box.getPosition().x;
+		selec_wh.y = MOUSEPOS_W.y - selec_box.getPosition().y;
 
 		selec_box.setSize(selec_wh);
 
@@ -167,7 +166,7 @@ void Scene::SelectPartyMems() {
 
 void Scene::MovePartyMems() {
 	//Move each party member according to current marching order
-	party_mems[0]->MoveTo(window.mapPixelToCoords(MOUSEPOS));
+	party_mems[0]->MoveTo(MOUSEPOS_W);
 }
 
 Actions Scene::LMBAction() {
@@ -195,9 +194,8 @@ Actions Scene::LMBAction() {
 	//THIS SPACE INTENTIONALLY LEFT BLANK
 
 	//Convert mouse coordinates from screen to world
-	sf::Vector2f mouse_world_pos = window.mapPixelToCoords(MOUSEPOS);
 	//What tile are we currently pointing at?
-	sf::Vector2f tile_pos = { mouse_world_pos.x / 32.f, mouse_world_pos.y / 32.f };
+	sf::Vector2f tile_pos = { MOUSEPOS_W.x / 32.f, MOUSEPOS_W.y / 32.f };
 	//Party member positions and distances from given tile
 	//vector<float> party_mem_dists;
 	//for (int i = 0; i < party_mems.size(); ++i)
@@ -259,17 +257,9 @@ void Scene::Open(const bool o) {
 			menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS);
 			menus.insert({ Menus::OPTIONS, move(menu) });
 		}
+
+
 		else if (label == Scenes::AREA) {
-			auto menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS_G);
-			menus.insert({ Menus::OPTIONS_G, move(menu) });
-
-			for (auto& p_m : party_mems) {
-				entities.push_back(p_m);
-				p_m->SetScene(this);
-			}
-			//Selection box stuff
-			selec_box.setFillColor(sf::Color::Color(0, 250, 0, 128));
-
 			//Import the appropriate tilemap
 			string json_file = "DEFAULT";
 			switch (game.area) {
@@ -277,6 +267,7 @@ void Scene::Open(const bool o) {
 					json_file = "TuttonStore";
 				break;
 			}
+			//Load that bitch
 			tilemap.load("assets/Sprites/Environments/TileMaps/" + json_file + ".json");
 
 			//Set the camera location and party members
@@ -285,14 +276,24 @@ void Scene::Open(const bool o) {
 					sf::Vector2f area_size = tilemap.GetMapSizePixels();
 					game.camera.setCenter({ area_size.x * .5f, area_size.y * .5f });
 					for (auto& p_m : party_mems) {
+						entities.push_back(p_m);
+						p_m->SetScene(this);
 						p_m->MoveTo(game.camera.getCenter());
 						p_m->selected = true;
 					}
 				break;
 			}
-			game.hud.setCenter(game.camera.getCenter());
+
 			//Set the view
 			window.setView(game.camera);
+
+			//Initialize our menus
+			auto menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS_G);
+			menus.insert({ Menus::OPTIONS_G, move(menu) });
+
+
+			//Initialize selection box
+			selec_box.setFillColor(sf::Color::Color(0, 255, 0, 130));
 		}
 	}
 	else {

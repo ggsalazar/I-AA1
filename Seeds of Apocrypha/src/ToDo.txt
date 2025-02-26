@@ -1,4 +1,5 @@
-Tutorial - Pause menu, get party members moving, add in NPCs
+Tutorial - Options menu, get party members moving, add in NPCs
+Pause menu - Return to Title all buggy
 
 General - Should use visual signifiers to show when an attack/action is at (dis)adv
 

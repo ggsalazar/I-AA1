@@ -17,13 +17,12 @@ class Game {
 public:
     sf::RenderWindow window;
     sf::View camera;
-    sf::View hud;
     float cam_move_spd = 5.f;
     DJ dj;
     bool paused = false;
     bool game_over = false;
     sf::Font default_font;
-    bool debug = true;
+    bool debug = false;
     unordered_map<Actions, std::unique_ptr<sf::Cursor>> cursors;
     sf::Cursor* cursor;
 

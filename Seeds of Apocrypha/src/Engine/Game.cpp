@@ -11,16 +11,14 @@ Game::Game(const char* title, uint init_fps) :
     SetResolution(floor(r_scalar));
     resolution = sf::Vector2u(floor(r_scalar) * sf::Vector2f(MINRES));
 
-    //Initialize the hud view
-    hud = window.getView();
-
-    //Initialize the camera and hud view
-    hud.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
+    //Initialize the camera
     camera.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
+    camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
 
     //Initialize the fonts
     if (!default_font.openFromFile("assets/Fonts/m5x7.ttf"))
         cerr << "Failed to load font 'm5x7'!" << endl;
+    default_font.setSmooth(false);
 
     //Initialize the DJ's tracks
     //Play the title track - TO-DO
@@ -113,7 +111,7 @@ void Game::Render() {
 
     if (debug) {
         sf::RectangleShape cam_pos;
-        cam_pos.setPosition({ hud.getCenter().x - 2, hud.getCenter().y - 2 });
+        cam_pos.setPosition({ camera.getCenter().x - 2, camera.getCenter().y - 2 });
         cam_pos.setSize({ 4, 4 });
         cam_pos.setFillColor({ 0, 0, 255, 200 });
         window.draw(cam_pos);

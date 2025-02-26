@@ -88,14 +88,7 @@ void Creature::Update() {
 
 void Creature::Draw() {
 	Entity::Draw();
-	//Set the camera to the hud
-	engine.window.setView(engine.game.hud);
-
 	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
-
-
-	//Set the camera back to the world
-	engine.window.setView(engine.game.camera);
 }
 
 

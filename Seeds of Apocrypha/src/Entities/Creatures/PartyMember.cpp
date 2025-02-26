@@ -45,8 +45,8 @@ void PartyMember::Update() {
 
 	//Update portrait and related details position
 	//Position is just the bottom left for Seeds of Apocrypha
-	//portrait.setPosition({ engine.game.camera.getViewport().position.x + portrait.getGlobalBounds().size.x, engine.game.camera.getViewport().position.y + engine.game.camera.getSize().y - portrait.getGlobalBounds().size.y });
-	portrait.setPosition({ engine.game.hud.getViewport().getCenter().x, engine.game.hud.getViewport().getCenter().y});
+	sf::Vector2f cam_bot_left = { engine.game.camera.getCenter().x - engine.game.camera.getSize().x * .5f, engine.game.camera.getCenter().y + engine.game.camera.getSize().y * .5f };
+	portrait.setPosition({ cam_bot_left.x + portrait.getGlobalBounds().size.x*1.3f, cam_bot_left.y-portrait.getGlobalBounds().size.y*1.3f});
 	por_bbox.position.x = portrait.getPosition().x - por_bbox.size.x * .5f;
 	por_bbox.position.y = portrait.getPosition().y - por_bbox.size.y * .5f;
 	por_highlight.setPosition(portrait.getPosition());
@@ -60,9 +60,6 @@ void PartyMember::Update() {
 
 void PartyMember::Draw() {
 	Creature::Draw();
-	//Set the camera to the hud
-	engine.window.setView(engine.game.hud);
-	
 	//Party members draw their portraits and health bars at all times
 	//Draw the highlight if selected first, then the portrait
 	if (selected)
@@ -76,9 +73,5 @@ void PartyMember::Draw() {
 
 	//Draw our remaining health numerically last
 	engine.window.draw(hlth_txt);
-	
-
-	//Set the camera back to the world
-	engine.window.setView(engine.game.camera);
 }
 
