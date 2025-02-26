@@ -26,25 +26,24 @@ public:
     void Draw();
 
     //Game functions
+    void OpenInterface();
     void MoveCamera();
     void SelectPartyMems();
     void MovePartyMems();
     Actions LMBAction();
 
     //Scene handling
-    void Open();
-    void Close();
+    void Open(const bool o = true);
     bool IsOpen() const { return open; }
     
     //Menus
-    void OpenMenu(Menus menu);
+    void OpenMenu(Menus menu, const bool o = true);
     bool MenuOpen(Menus menu);
-    void CloseMenu(Menus menu);
     void ResizeMenus();
     
     //Entities
     void AddEntity(shared_ptr<Entity> e) { entities.push_back(e); }
-    void SetEntitySFXVolume(float new_volume);
+    void SetEntitySFXVolume(const float new_volume);
 
     //Party Members
     void CreatePartyMem();
@@ -54,6 +53,7 @@ public:
 
 private:
     bool open = false;
+    Interfaces interface_open = Interfaces::NONE;
     Actions action = Actions::DEFAULT;
 
     TileMap tilemap;

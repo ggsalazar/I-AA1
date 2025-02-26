@@ -9,6 +9,7 @@
 void Scene::GetInput() {
 
 	if (label == Scenes::AREA) {
+		OpenInterface();
 		MoveCamera();
 		SelectPartyMems();
 
@@ -81,6 +82,16 @@ void Scene::Draw() {
 		m.second->Draw();
 }
 
+void Scene::OpenInterface() {
+	//Options Menu/Interface
+	if (Input::KeyPressed(O_K)) {
+		interface_open = Interfaces::OPTIONS;
+		if (!MenuOpen(Menus::OPTIONS_G))
+			OpenMenu(Menus::OPTIONS_G);
+		else
+	}
+}
+
 void Scene::MoveCamera() {
 	//Move the camera
 	sf::Vector2f cam_pos = game.camera.getViewport().position;
@@ -88,13 +99,13 @@ void Scene::MoveCamera() {
 	//Can't move the camera if we are at or past the edge
 	sf::Vector2f new_cam_offset = { 0.f, 0.f };
 	//Move the camera via arrow keys
-	if (UADOWN() and cam_pos.y > 0)
+	if (BUTTONDOWN(UP) and cam_pos.y > 0)
 		new_cam_offset.y -= game.cam_move_spd;
-	else if (DADOWN() and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+	else if (BUTTONDOWN(DOWN) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
 		new_cam_offset.y += game.cam_move_spd;
-	if (LADOWN() and cam_pos.x > 0)
+	if (BUTTONDOWN(LEFT) and cam_pos.x > 0)
 		new_cam_offset.x -= game.cam_move_spd;
-	else if (RADOWN() and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+	else if (BUTTONDOWN(RIGHT) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
 		new_cam_offset.x += game.cam_move_spd;
 
 	//Move the camera via edge panning
@@ -117,7 +128,7 @@ void Scene::SelectPartyMems() {
 	//	 -SHIFT selects all party mems inside the selection area
 	//	 -CTRL deselects all party mems inside the selection area
 
-	if (Input::KeyPressed(LMB) and (SHIFTDOWN() or CTRLDOWN())) {
+	if (Input::KeyPressed(LMB) and (BUTTONDOWN(LSHIFT) or BUTTONDOWN(RSHIFT) or BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL))) {
 		selec_box.setPosition(window.mapPixelToCoords(MOUSEPOS));
 		selecting = true;
 		selec_wh = { 0,0 };
@@ -131,10 +142,10 @@ void Scene::SelectPartyMems() {
 
 		for (auto& p_m : party_mems) {
 			if (selec_area.contains(p_m->GetPos())) {
-				if (SHIFTDOWN()) p_m->selected = true;
-				else if (CTRLDOWN()) p_m->selected = false;
+				if (BUTTONDOWN(LSHIFT) or BUTTONDOWN(RSHIFT)) p_m->selected = true;
+				else if (BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL)) p_m->selected = false;
 			}
-			else if (!CTRLDOWN()) p_m->selected = false;
+			else if (BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL)) p_m->selected = false;
 		}
 
 	}
@@ -228,71 +239,78 @@ Actions Scene::LMBAction() {
 }
 
 //Most *actual* initialization is handled here
-void Scene::Open() {
-	open = true;
+void Scene::Open(const bool o) {
+	open = o;
 	
-	//Each scene is comprised of Menus & Entities
-	if (label == Scenes::TITLE) {
-		auto main_menu = make_unique<Menu>(game, window, *this, Menus::MAIN);
-		auto char_crea_menu = make_unique<Menu>(game, window, *this, Menus::CHARCREA);
-		auto load_menu = make_unique<Menu>(game, window, *this, Menus::LOAD);
-		auto options_menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS);
+	if (open) {
+		//Each scene is comprised of Menus & Entities
+		if (label == Scenes::TITLE) {
+			auto menu = make_unique<Menu>(game, window, *this, Menus::MAIN);
+			menu->Open();
+			menus.insert({ Menus::MAIN, move(menu) });
+			menu = make_unique<Menu>(game, window, *this, Menus::CHARCREA);
+			menus.insert({ Menus::CHARCREA, move(menu) });
+			menu = make_unique<Menu>(game, window, *this, Menus::LOAD);
+			menus.insert({ Menus::LOAD, move(menu) });
+			menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS);
+			menus.insert({ Menus::OPTIONS, move(menu) });
+		}
+		else if (label == Scenes::AREA) {
+			auto menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS_G);
+			menus.insert({ Menus::OPTIONS_G, move(menu) });
 
-		main_menu->Open();
-		menus.insert(make_pair(Menus::MAIN, move(main_menu)));
-		menus.insert(make_pair(Menus::CHARCREA, move(char_crea_menu)));
-		menus.insert(make_pair(Menus::LOAD, move(load_menu)));
-		menus.insert(make_pair(Menus::OPTIONS, move(options_menu)));
+			for (auto& p_m : party_mems) {
+				entities.push_back(p_m);
+				p_m->SetScene(this);
+			}
+			//Selection box stuff
+			selec_box.setFillColor(sf::Color::Color(0, 250, 0, 128));
+
+			//Import the appropriate tilemap
+			string json_file = "DEFAULT";
+			switch (game.area) {
+				case Areas::TUTTON:
+					json_file = "TuttonStore";
+				break;
+			}
+			tilemap.load("assets/Sprites/Environments/TileMaps/" + json_file + ".json");
+
+			//Set the camera location and party members
+			switch (game.area) {
+				case Areas::TUTTON:
+					sf::Vector2f area_size = tilemap.GetMapSizePixels();
+					game.camera.setCenter({ area_size.x * .5f, area_size.y * .5f });
+					for (auto& p_m : party_mems) {
+						p_m->MoveTo(game.camera.getCenter());
+						p_m->selected = true;
+					}
+				break;
+			}
+			//Set the view
+			window.setView(game.camera);
+		}
 	}
-	else if (label == Scenes::AREA) {
-		for (auto& p_m : party_mems) {
-			entities.push_back(p_m);
-			p_m->SetScene(this);
-		}
-		//Selection box stuff
-		selec_box.setFillColor(sf::Color::Color(0, 250, 0, 128));
-
-		window.setView(game.camera);
-		
-		//Import the appropriate tilemap
-		string tileset = "DEFAULT";
-		string json_file = "DEFAULT";
-		switch (game.area) {
-			case Areas::TUTTON:
-				json_file = "TuttonStore";
-			break;
-		}
-
-		tilemap.load("assets/Sprites/Environments/TileMaps/" + json_file + ".json");
-
-		//Set the camera location and party members
-		switch (game.area) {
-			case Areas::TUTTON:
-				sf::Vector2f area_size = tilemap.GetMapSizePixels();
-				game.camera.setCenter({ area_size.x * .5f, area_size.y * .5f });
-				for (auto& p_m : party_mems) {
-					p_m->MoveTo(game.camera.getCenter());
-					p_m->selected = true;
-				}
-			break;
-		}
+	else {
+		//This also deletes the buttons that belong to each menu except for the button that actually changed the scene,
+		// which now belongs to the new scene and is immediately deleted when that scene is opened
+		for (const auto& m : menus)
+			m.second->Open(false);
+		menus.clear();
+		entities.clear();
 	}
 }
 
-void Scene::Close() {
-	open = false;
-	//This also deletes the buttons that belong to each menu except for the button that actually changed the scene,
-	// which now belongs to the new scene and is immediately deleted when that scene is opened
-	for (const auto& m : menus)
-		m.second->Open(false);
-	menus.clear();
-	entities.clear();
-}
-
-void Scene::OpenMenu(Menus menu) {
-	auto m = menus.find(menu);
-	if (m != menus.end())
-		m->second->Open();
+void Scene::OpenMenu(Menus menu, const bool o) {
+	if (o) {
+		auto m = menus.find(menu);
+		if (m != menus.end())
+			m->second->Open();
+	}
+	else {
+		auto m = menus.find(menu);
+		if (m != menus.end())
+			m->second->Open(false);
+	}
 }
 
 bool Scene::MenuOpen(Menus menu) {
@@ -304,18 +322,12 @@ bool Scene::MenuOpen(Menus menu) {
 	return false;
 }
 
-void Scene::CloseMenu(Menus menu) {
-	auto m = menus.find(menu);
-	if (m != menus.end())
-		m->second->Open(false);
-}
-
 void Scene::ResizeMenus() {
 	for (const auto& m : menus)
 		m.second->Resize();
 }
 
-void Scene::SetEntitySFXVolume(float new_volume) {
+void Scene::SetEntitySFXVolume(const float new_volume) {
 	for (auto& e : entities)
 		e->sound.setVolume(new_volume);
 }

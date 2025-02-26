@@ -266,22 +266,6 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
         }
         //End of CC Sub-Menus
 
-        case Menus::GO: {
-            break;
-        }
-
-        case Menus::INVENTORY: {
-            break;
-        }
-
-        case Menus::LEVELUP: {
-            break;
-        }
-
-        case Menus::LOAD: {
-            break;
-        }
-
         case Menus::MAIN: {
             m_t_size = res_scalar * 36; m_t_pos = { window.getSize().x * .5f, window.getSize().y * .15f }; m_t_str = "Seeds of Apocrypha";
             s_t_size = res_scalar * 24; s_t_pos = { window.getSize().x * .5f, window.getSize().y * .225f }; s_t_str = "An Iron & Aether Adventure";
@@ -396,7 +380,11 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             break;
         }
 
-        case Menus::PAUSE: {
+        case Menus::OPTIONS_G: {
+            //Close button
+            //Adjust camera speed
+            //Return to Title
+            //Quit
             break;
         }
     }

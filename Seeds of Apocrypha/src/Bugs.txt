@@ -1,0 +1,1 @@
+Make sure Text (e.g. Main Menu text) is *actually* being centered

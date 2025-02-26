@@ -107,7 +107,7 @@ enum class Items {
 
 enum class PreGens {
 	SPARK, //Automaton Arcanist
-	ESSEK, //Male Kobold Rogue
+	ESSEK, //Female Kobold Rogue
 	DAKN //Male Dwarf Warrior
 };
 
@@ -143,17 +143,28 @@ enum class Weathers {
 
 
 //Game details
-enum class Cutscenes {
-
-};
-
 enum class Areas {
 	DEFAULT,
 	TUTTON
 };
 
+enum class Cutscenes {
 
-//Game Engine
+};
+
+enum class Interfaces {
+	NONE,
+	CHARSHEET, //C
+	INVENTORY, //I
+	JOURNAL,   //J
+	MAP_AREA,  //M
+	MAP_WORLD, 
+	OPTIONS    //O
+};
+
+
+
+//Engine
 enum class Scenes {
 	CUTSCENE,
 	AREA,
@@ -168,6 +179,7 @@ enum class Menus {
 	LOAD,
 	MAIN,
 	OPTIONS,
+	OPTIONS_G,
 	PAUSE,
 	//Sub-Menus
 	//CC

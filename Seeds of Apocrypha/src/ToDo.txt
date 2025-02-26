@@ -1,6 +1,3 @@
-Debugging:  -Make sure Text (e.g. Main Menu text) is *actually* being centered
-			-Getting pixel distortion when changing resolutions from fullscreen (4x base) to smaller (3x, 1x) (still true on smaller monitors?)
-
 Tutorial - Pause menu, get party members moving, add in NPCs
 
 General - Should use visual signifiers to show when an attack/action is at (dis)adv

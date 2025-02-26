@@ -136,9 +136,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="src\ToDo.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
 </Project>
