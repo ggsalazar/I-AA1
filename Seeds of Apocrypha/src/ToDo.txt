@@ -14,7 +14,7 @@ Main Menu
 	-Continue/Load game
 		--Will require implementation of saving/loading
 	-Options
-		--Camera move speed (slider, increments of .25)
+		--Camera move speed (slider, increments of .5)
 Tutorial
 	-Town
 		--NPCs
