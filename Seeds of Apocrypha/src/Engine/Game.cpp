@@ -14,7 +14,8 @@ Game::Game(const char* title, uint init_fps) :
     //Initialize the hud view
     hud = window.getView();
 
-    //Initialize the camera
+    //Initialize the camera and hud view
+    hud.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
     camera.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
 
     //Initialize the fonts
@@ -92,7 +93,7 @@ void Game::Update() {
 
     //Close the old scene if needed
     if (auto old_scn = old_scene.lock())
-        old_scn->Close();
+        old_scn->Open(false);
 
     auto scene = active_scene.lock();
     scene->Update();
@@ -109,6 +110,15 @@ void Game::Render() {
         scene->Draw();
     else
         cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
+
+    if (debug) {
+        sf::RectangleShape cam_pos;
+        cam_pos.setPosition({ hud.getCenter().x - 2, hud.getCenter().y - 2 });
+        cam_pos.setSize({ 4, 4 });
+        cam_pos.setFillColor({ 0, 0, 255, 200 });
+        window.draw(cam_pos);
+    }
+
 
     window.display();
 }

@@ -59,6 +59,10 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
             l_str = "Class";
         break;
 
+        case UIElems::CLOSE:
+            l_str = "Close";
+        break;
+
         case UIElems::CREATE:
             l_str = "Create";
         break;
@@ -75,10 +79,6 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
             l_str = "Continue Adventure";
             //Check to see if an existing save files exists before setting (in)active - TO-DO
             SetActive(false);
-        break;
-
-        case UIElems::MAINMENU:
-            l_str = "Main Menu";
         break;
 
         case UIElems::MUSIC_V:
@@ -125,6 +125,10 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
             l_str = "Skills";
         break;
 
+        case UIElems::TITLE:
+            l_str = "Return to Title";
+        break;
+
         case UIElems::TUTORIAL:
             l_str = "Tutorial";
         break;
@@ -158,7 +162,7 @@ void UI::Resize(uint r_s) {
     sf::Vector2f old_origin = anim->GetOrigin();
 
     //Set sprite w/h
-    anim->sprite.setScale({ r_s*1.f, r_s*1.f });
+    anim->sprite.setScale(sf::Vector2f(r_s, r_s));
     //Set new sprite origin
     anim->SetOrigin(old_origin);
     //Adjust label size

@@ -35,81 +35,79 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             sf::Vector2f btn_pos = { window.getSize().x * .2f, window.getSize().y * .25f };
             float b_y_buffer = window.getSize().y*.1f;
 
-            auto race_btn = make_shared<Button>(
+            auto btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::RACE_B, style_size });
-            auto race_sm = make_unique<Menu>(game, window, scene, Menus::CCRACE);
+            auto sm = make_unique<Menu>(game, window, scene, Menus::CCRACE);
+            ui_elems.insert({ UIElems::RACE_B, btn });
+            sub_menus.insert({ Menus::CCRACE, move(sm) });
 
             btn_pos.y += b_y_buffer;
-            auto bg_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::BACKGROUND_B, style_size });
-            auto bg_sm = make_unique<Menu>(game, window, scene, Menus::CCBG);
+            sm = make_unique<Menu>(game, window, scene, Menus::CCBG);
+            ui_elems.insert({ UIElems::BACKGROUND_B, btn });
+            sub_menus.insert({ Menus::CCBG, move(sm) });
 
             btn_pos.y += b_y_buffer;
-            auto class_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::CLASS, style_size });
-            auto class_sm = make_unique<Menu>(game, window, scene, Menus::CCCLASS);
+            sm = make_unique<Menu>(game, window, scene, Menus::CCCLASS);
+            ui_elems.insert({ UIElems::CLASS, btn });
+            sub_menus.insert({ Menus::CCCLASS, move(sm) });
 
             btn_pos.y += b_y_buffer;
-            auto ab_sc_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::AS, style_size });
-            auto ab_sc_sm = make_unique<Menu>(game, window, scene, Menus::CCAS);
+            sm = make_unique<Menu>(game, window, scene, Menus::CCAS);
+            ui_elems.insert({ UIElems::AS, btn });
+            sub_menus.insert({ Menus::CCAS, move(sm) });
 
             btn_pos.y += b_y_buffer;
-            auto skills_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::SKILLS, style_size });
-            auto skills_sm = make_unique<Menu>(game, window, scene, Menus::CCSKILLS);
+            sm = make_unique<Menu>(game, window, scene, Menus::CCSKILLS);
+            ui_elems.insert({ UIElems::SKILLS, btn });
+            sub_menus.insert({ Menus::CCSKILLS, move(sm) });
 
             btn_pos.y += b_y_buffer;
-            auto equip_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::EQUIPMENT_CC, style_size });
-            auto equip_sm = make_unique<Menu>(game, window, scene, Menus::CCEQUIP);
+            sm = make_unique<Menu>(game, window, scene, Menus::CCEQUIP);
+            ui_elems.insert({ UIElems::EQUIPMENT_CC, btn });
+            sub_menus.insert({ Menus::CCEQUIP, move(sm) });
 
 
-            auto create_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ {window.getSize().x * .5f, window.getSize().y * .8f}, ui_ori, ui_size },
                 UI::Style{ UIElems::CREATE, style_size });
-            auto back_btn = make_shared<Button>(
+            ui_elems.insert({ UIElems::CREATE, btn });
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ {window.getSize().x * .5f, window.getSize().y * .9f}, ui_ori, ui_size },
                 UI::Style{ UIElems::BACK, style_size });
+            ui_elems.insert({ UIElems::BACK, btn });
 
-            ui_elems.insert(make_pair(UIElems::RACE_B, race_btn));
-            ui_elems.insert(make_pair(UIElems::BACKGROUND_B, bg_btn));
-            ui_elems.insert(make_pair(UIElems::CLASS, class_btn));
-            ui_elems.insert(make_pair(UIElems::AS, ab_sc_btn));
-            ui_elems.insert(make_pair(UIElems::SKILLS, skills_btn));
-            ui_elems.insert(make_pair(UIElems::EQUIPMENT_CC, equip_btn));
-
-            ui_elems.insert(make_pair(UIElems::CREATE, create_btn));
-            ui_elems.insert(make_pair(UIElems::BACK, back_btn));
-            
-            sub_menus.insert(make_pair(Menus::CCRACE, move(race_sm)));
-            sub_menus.insert(make_pair(Menus::CCBG, move(bg_sm)));
-            sub_menus.insert(make_pair(Menus::CCCLASS, move(class_sm)));
-            sub_menus.insert(make_pair(Menus::CCAS, move(ab_sc_sm)));
-            sub_menus.insert(make_pair(Menus::CCSKILLS, move(skills_sm)));
-            sub_menus.insert(make_pair(Menus::CCEQUIP, move(equip_sm)));
             break;
         }
 
@@ -323,68 +321,100 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             float elem_y_buffer = window.getSize().y * .09f;
 
             //Music and sfx sliders
-            auto music_sldr = make_shared<Slider>(
+            auto sldr = make_shared<Slider>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Slider", 192, 27 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size},
                 UI::Style{ UIElems::MUSIC_V, style_size });
+            ui_elems.insert({ UIElems::MUSIC_V, sldr });
 
             elem_pos.y += elem_y_buffer;
-            auto sfx_sldr = make_shared<Slider>(
+            sldr = make_shared<Slider>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Slider", 192, 27 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::SFX_V, style_size });
+            ui_elems.insert({ UIElems::SFX_V, sldr });
 
 
             //Resolution picker, fullscreen toggle, and apply button
             elem_pos.y += elem_y_buffer;
-            auto res_pkr = make_shared<Picker>(
+            auto pkr = make_shared<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::RESOLUTION, style_size });
+            ui_elems.insert({ UIElems::RESOLUTION, pkr });
 
             elem_pos.y += elem_y_buffer;
             float f_t_x = elem_pos.x + window.getSize().x * (res_scalar * .01);
-            auto fscrn_tgl = make_shared<Toggle>(
+            auto tgl = make_shared<Toggle>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Toggle", 24, 24, 0, 2 },
                 Animation::Transform{ {f_t_x, elem_pos.y}, ui_ori, ui_size },
                 UI::Style{ UIElems::FULLSCREEN, style_size });
+            ui_elems.insert({ UIElems::FULLSCREEN, tgl });
 
             elem_pos.y += elem_y_buffer;
-            auto apply_btn = make_shared<Button>(
+            auto btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::APPLY, style_size });
+            ui_elems.insert({ UIElems::APPLY, btn });
 
 
             //Back button
             elem_pos.y = window.getSize().y * .9;
-            auto back_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::BACK, style_size });
-
-
-            ui_elems.insert(make_pair(UIElems::MUSIC_V, music_sldr));
-            ui_elems.insert(make_pair(UIElems::SFX_V, sfx_sldr));
-            ui_elems.insert(make_pair(UIElems::RESOLUTION, res_pkr));
-            ui_elems.insert(make_pair(UIElems::FULLSCREEN, fscrn_tgl));
-            ui_elems.insert(make_pair(UIElems::APPLY, apply_btn));
-            ui_elems.insert(make_pair(UIElems::BACK, back_btn));
+            ui_elems.insert({ UIElems::BACK, btn });
 
             break;
         }
 
         case Menus::OPTIONS_G: {
+            m_t_size = res_scalar * 18; m_t_pos = { window.getViewport(game.camera).position.x + window.getViewport(game.camera).size.x*.5f, window.getViewport(game.camera).position.y + window.getViewport(game.camera).size.y*.2f}; m_t_str = "Options";
+            s_t_size = res_scalar * 12; s_t_pos = { window.getView().getCenter().x, window.getView().getViewport().position.y + window.getView().getViewport().size.y * .12f}; s_t_str = "Adjust Settings";
+            if (game.debug) {
+                m_t_pos = { window.getViewport(game.hud).position.x + window.getViewport(game.hud).size.x*.5f, window.getViewport(game.hud).position.y + window.getViewport(game.hud).size.y*.2f};
+                s_t_pos = { window.getView().getCenter().x, window.getView().getViewport().position.y + window.getView().getViewport().size.y * .12f};
+            }
+
+
+            sf::Vector2f elem_pos = { window.getView().getCenter().x, window.getView().getViewport().position.y + window.getView().getViewport().size.y * .3f };
+            float elem_y_buffer = window.getView().getViewport().size.y* .09f;
+
             //Close button
-            //Adjust camera speed
+            auto btn = make_shared<Button>(
+                Engine{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::CLOSE, style_size });
+            ui_elems.insert({ UIElems::CLOSE, btn });
+
+            //Adjust camera speed - TO-DO
+            
             //Return to Title
+            elem_pos.y += elem_y_buffer;
+            btn = make_shared<Button>(
+                Engine{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::TITLE, style_size });
+            ui_elems.insert({ UIElems::TITLE, btn });
+
             //Quit
+            elem_pos.y += elem_y_buffer;
+            btn = make_shared<Button>(
+                Engine{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                UI::Style{ UIElems::QUIT, style_size });
+            ui_elems.insert({ UIElems::QUIT, btn });
             break;
         }
     }
@@ -486,6 +516,7 @@ void Menu::Resize() {
             break;
 
             case UIElems::BACK:
+                new_pos.x = window.getSize().x * .5f;
                 new_pos.y = window.getSize().y * .9f;
             break;
 

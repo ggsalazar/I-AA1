@@ -23,7 +23,7 @@ public:
     bool paused = false;
     bool game_over = false;
     sf::Font default_font;
-    bool debug = false;
+    bool debug = true;
     unordered_map<Actions, std::unique_ptr<sf::Cursor>> cursors;
     sf::Cursor* cursor;
 

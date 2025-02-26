@@ -8,7 +8,7 @@ Creature::Creature(const Engine& e, const AnimInfo& a_i, const Animation::Transf
 	portrait(portrait_tex) {
 
 	portrait.setOrigin(sf::Vector2f(portrait_tex.getSize()) * .5f);
-	portrait.setScale({ t.scale.x * 3, t.scale.y * 3 });
+	portrait.setScale({ t.scale.x * engine.game.GetResScale(), t.scale.y * engine.game.GetResScale()});
 	portrait_tex.setSmooth(false);
 
 	//Portrait bbox

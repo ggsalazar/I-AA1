@@ -11,20 +11,23 @@ void Scene::GetInput() {
 	if (label == Scenes::AREA) {
 		OpenInterface();
 		MoveCamera();
-		SelectPartyMems();
 
-		//The LMB, when clicked, performs a variety of functions; which function it ends up performing will depend on what it is pointed at
-		//Updating action every 10th of a second for performance reasons
-		if (game.GetFramesElapsed() % 6 == 0)
-			action = LMBAction();
-		//Change the cursor according to current lmb action
-		game.cursor = game.cursors[action].get();
-		if (Input::KeyPressed(LMB)) {
-			switch (action) {
-				case Actions::MOVE:
-					MovePartyMems();
-				break;
+		if (!game.paused) {
+			SelectPartyMems();
 
+			//The LMB, when clicked, performs a variety of functions; which function it ends up performing will depend on what it is pointed at
+			//Updating action every 10th of a second for performance reasons
+			if (game.GetFramesElapsed() % 6 == 0)
+				action = LMBAction();
+			//Change the cursor according to current lmb action
+			game.cursor = game.cursors[action].get();
+			if (Input::KeyPressed(LMB)) {
+				switch (action) {
+					case Actions::MOVE:
+						MovePartyMems();
+					break;
+
+				}
 			}
 		}
 	}
@@ -86,9 +89,9 @@ void Scene::OpenInterface() {
 	//Options Menu/Interface
 	if (Input::KeyPressed(O_K)) {
 		interface_open = Interfaces::OPTIONS;
-		if (!MenuOpen(Menus::OPTIONS_G))
-			OpenMenu(Menus::OPTIONS_G);
-		else
+		game.paused = true;
+		//Open the options menu if it isn't already
+		OpenMenu(Menus::OPTIONS_G, !MenuOpen(Menus::OPTIONS_G));
 	}
 }
 
@@ -119,6 +122,7 @@ void Scene::MoveCamera() {
 		new_cam_offset.x += game.cam_move_spd;
 
 	game.camera.move(new_cam_offset);
+	game.hud.move(new_cam_offset);
 	window.setView(game.camera);
 }
 
@@ -286,6 +290,7 @@ void Scene::Open(const bool o) {
 					}
 				break;
 			}
+			game.hud.setCenter(game.camera.getCenter());
 			//Set the view
 			window.setView(game.camera);
 		}

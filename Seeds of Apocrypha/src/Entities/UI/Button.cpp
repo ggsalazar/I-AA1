@@ -60,6 +60,10 @@ void Button::Released() {
             engine.scene->OpenMenu(Menus::CHARCREA);
         break;
 
+        case UIElems::CLOSE:
+            menu.Open(false);
+        break;
+
         case UIElems::CREATE: {
             //Spawn Name entry box and "Finish/OK" button
             break;
@@ -76,14 +80,6 @@ void Button::Released() {
             engine.scene->OpenMenu(Menus::OPTIONS);
         break;
 
-        case UIElems::MAINMENU:
-            menu.Open(false);
-            engine.game.paused = false;
-            engine.game.game_over = false;
-            engine.game.title_scene->AddEntity(shared_from_this());
-            engine.game.SetScene(Scenes::TITLE);
-        break;
-
         case UIElems::QUIT:
             engine.window.close();
         break;
@@ -91,6 +87,14 @@ void Button::Released() {
         case UIElems::RESUME:
             menu.Open(false);
             engine.game.paused = false;
+        break;
+
+        case UIElems::TITLE:
+            menu.Open(false);
+            engine.game.paused = false;
+            engine.game.game_over = false;
+            engine.game.title_scene->AddEntity(shared_from_this());
+            engine.game.SetScene(Scenes::TITLE);
         break;
 
         case UIElems::TUTORIAL:

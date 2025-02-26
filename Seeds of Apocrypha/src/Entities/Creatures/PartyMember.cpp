@@ -32,11 +32,11 @@ void PartyMember::GetInput() {
 		engine.scene->selecting = false;
 
 		//If we aren't holding shift, deselect all party members before selecting this one
-		if (!SHIFTDOWN()) {
+		if (!(BUTTONDOWN(LSHIFT) or BUTTONDOWN(RSHIFT))) {
 			vector<shared_ptr<PartyMember>> p_ms = engine.scene->GetPartyMems();
 			for (auto& p_m : p_ms) p_m->selected = false;
 		}
-		selected = !CTRLDOWN();
+		selected = !(BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL));
 	}
 }
 
@@ -45,7 +45,8 @@ void PartyMember::Update() {
 
 	//Update portrait and related details position
 	//Position is just the bottom left for Seeds of Apocrypha
-	portrait.setPosition({ engine.game.camera.getViewport().position.x + portrait.getGlobalBounds().size.x, engine.game.camera.getViewport().position.y + engine.game.camera.getSize().y - portrait.getGlobalBounds().size.y });
+	//portrait.setPosition({ engine.game.camera.getViewport().position.x + portrait.getGlobalBounds().size.x, engine.game.camera.getViewport().position.y + engine.game.camera.getSize().y - portrait.getGlobalBounds().size.y });
+	portrait.setPosition({ engine.game.hud.getViewport().getCenter().x, engine.game.hud.getViewport().getCenter().y});
 	por_bbox.position.x = portrait.getPosition().x - por_bbox.size.x * .5f;
 	por_bbox.position.y = portrait.getPosition().y - por_bbox.size.y * .5f;
 	por_highlight.setPosition(portrait.getPosition());

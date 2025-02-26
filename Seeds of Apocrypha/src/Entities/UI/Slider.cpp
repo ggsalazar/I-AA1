@@ -27,7 +27,7 @@ Slider::Slider(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::T
 void Slider::GetInput() {
     UI::GetInput();
 
-    if (active and Selected(MOUSEPOS_E) and LMBDOWN()) {
+    if (active and Selected(MOUSEPOS_E) and BUTTONDOWN(LMB)) {
         
         //Adjust knob position
         knob_pos = MOUSEPOS_E.x;
