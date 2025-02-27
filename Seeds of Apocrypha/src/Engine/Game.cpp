@@ -14,6 +14,7 @@ Game::Game(const char* title, uint init_fps) :
     //Initialize the camera
     camera.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
     camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
+    window.setView(camera);
 
     //Initialize the fonts
     if (!default_font.openFromFile("assets/Fonts/m5x7.ttf"))

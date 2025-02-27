@@ -90,10 +90,8 @@ void Button::Released() {
         break;
 
         case UIElems::TITLE:
-            menu.Open(false);
             engine.game.paused = false;
             engine.game.game_over = false;
-            engine.game.title_scene->AddEntity(shared_from_this());
             engine.game.SetScene(Scenes::TITLE);
         break;
 
