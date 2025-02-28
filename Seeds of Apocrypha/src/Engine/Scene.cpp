@@ -247,9 +247,14 @@ void Scene::Open(const bool o) {
 	if (open) {
 		//Each scene is comprised of Menus & Entities
 		if (label == Scenes::TITLE) {
-			cout << "Window center: " << sf::Vector2f(window.getSize())*.5f << endl;
+			//Clear out all pre-existing entities and party members
+			entities.clear();
+			cout << "Scene L252, Party Members size: " << party_mems.size() << endl;
+			party_mems.clear();
+			cout << "Scene L254, Party Members size: " << party_mems.size() << endl;
+
 			game.camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
-			cout << "Camera pos: " << game.camera.getCenter() << endl;
+			window.setView(game.camera);
 			auto menu = make_unique<Menu>(game, window, *this, Menus::MAIN);
 			menu->Open();
 			menus.insert({ Menus::MAIN, move(menu) });
@@ -260,14 +265,6 @@ void Scene::Open(const bool o) {
 			menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS);
 			menus.insert({ Menus::OPTIONS, move(menu) });
 
-			for (const auto& e : entities) {
-				if (auto ui = dynamic_cast<UI*>(e.get())) {
-					if (ui->menu.GetOpen()) {
-						string ui_str = ui->label.getString();
-						cout << ui_str << " pos: " << ui->GetPos() << endl;
-					}
-				}
-			}
 		}
 
 
@@ -308,12 +305,13 @@ void Scene::Open(const bool o) {
 			selec_box.setFillColor(sf::Color::Color(0, 255, 0, 130));
 		}
 	}
+	//Scene is closed
 	else {
-		//This also deletes the buttons that belong to each menu except for the button that actually changed the scene,
-		// which now belongs to the new scene and is immediately deleted when that scene is opened
+		//This also deletes the buttons that belong to each menu
 		for (const auto& m : menus)
 			m.second->Open(false);
 		menus.clear();
+		//This SHOULD be deleting all the entities in the scene that don't belong to any menu
 		entities.clear();
 	}
 }

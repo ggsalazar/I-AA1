@@ -13,8 +13,7 @@ Game::Game(const char* title, uint init_fps) :
 
     //Initialize the camera
     camera.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
-    camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
-    window.setView(camera);
+    //View is set in Scene.cpp
 
     //Initialize the fonts
     if (!default_font.openFromFile("assets/Fonts/m5x7.ttf"))
@@ -91,8 +90,10 @@ void Game::Update() {
     if (++frames_elapsed > fps) frames_elapsed = 0;
 
     //Close the old scene if needed
-    if (auto old_scn = old_scene.lock())
+    if (auto old_scn = old_scene.lock()) {
         old_scn->Open(false);
+        old_scene.reset();
+    }
 
     auto scene = active_scene.lock();
     scene->Update();
@@ -130,8 +131,12 @@ void Game::SetScene(Scenes scn) {
         //Open the new scene
         active_scene = scenes[scn];
         auto scene = active_scene.lock();
-        if (auto o_scn = old_scene.lock())
-            scene->SetPartyMems(o_scn->GetPartyMems());
+        if (auto o_scn = old_scene.lock()) {
+            bool s = scene->label == Scenes::TITLE;
+            if (scene->label != Scenes::TITLE)
+                scene->SetPartyMems(o_scn->GetPartyMems());
+
+        }
         scene->Open();
 
         //Old scene *must* be closed next frame!
