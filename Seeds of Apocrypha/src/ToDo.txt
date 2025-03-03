@@ -1,7 +1,7 @@
-Tutorial - Options menu, get party members moving, add in NPCs
-Pause menu - Return to Title all buggy
+Tutorial - Options menu position (Implement Open() just like you have for Scene), get party members moving, add in NPCs
 
-General - Should use visual signifiers to show when an attack/action is at (dis)adv
+General - Hot reloading
+		 -Visual signifiers to show when an attack/action is at (dis)adv
 
 Main Menu
 	-Character creation
@@ -15,7 +15,7 @@ Main Menu
 	-Continue/Load game
 		--Will require implementation of saving/loading
 	-Options
-		--Camera move speed (slider, increments of .5)
+		--Camera move speed (slider, increments of .5, min 3, max 15)
 Tutorial
 	-Town
 		--NPCs

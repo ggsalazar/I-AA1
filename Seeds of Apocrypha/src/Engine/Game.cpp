@@ -132,10 +132,8 @@ void Game::SetScene(Scenes scn) {
         active_scene = scenes[scn];
         auto scene = active_scene.lock();
         if (auto o_scn = old_scene.lock()) {
-            bool s = scene->label == Scenes::TITLE;
             if (scene->label != Scenes::TITLE)
                 scene->SetPartyMems(o_scn->GetPartyMems());
-
         }
         scene->Open();
 

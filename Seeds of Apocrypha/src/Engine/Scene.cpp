@@ -2,6 +2,7 @@
 #include <nlohmann/json.hpp>
 #include "Scene.h"
 #include "Menu.h"
+#include "Math.h"
 #include "../Entities/Entity.h"
 #include "../Entities/UI/UI.h"
 #include "../Entities/Creatures/PartyMember.h"
@@ -89,8 +90,15 @@ void Scene::Draw() {
 void Scene::OpenInterface() {
 	//Options Menu/Interface
 	if (Input::KeyPressed(O_K)) {
-		interface_open = Interfaces::OPTIONS;
-		game.paused = true;
+		if (interface_open != Interfaces::OPTIONS) {
+			interface_open = Interfaces::OPTIONS;
+			game.paused = true;
+			//Close whatever other menu was open - TO-DO
+		}
+		else {
+			interface_open = Interfaces::NONE;
+			game.paused = false;
+		}
 		//Open the options menu if it isn't already
 		OpenMenu(Menus::OPTIONS_G, !MenuOpen(Menus::OPTIONS_G));
 	}
@@ -98,31 +106,54 @@ void Scene::OpenInterface() {
 
 void Scene::MoveCamera() {
 	//Move the camera
-	sf::Vector2f cam_pos = game.camera.getViewport().position;
+	sf::Vector2f cam_pos = game.camera.getCenter();
 	sf::Vector2f cam_size = game.camera.getSize();
+	cam_pos.x -= cam_size.x * .5f; cam_pos.y -= cam_size.y * .5f;
 	//Can't move the camera if we are at or past the edge
-	sf::Vector2f new_cam_offset = { 0.f, 0.f };
-	//Move the camera via arrow keys
-	if (BUTTONDOWN(UP) and cam_pos.y > 0)
-		new_cam_offset.y -= game.cam_move_spd;
-	else if (BUTTONDOWN(DOWN) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-		new_cam_offset.y += game.cam_move_spd;
-	if (BUTTONDOWN(LEFT) and cam_pos.x > 0)
-		new_cam_offset.x -= game.cam_move_spd;
-	else if (BUTTONDOWN(RIGHT) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-		new_cam_offset.x += game.cam_move_spd;
+	if (!game.cam_locked) {
+		sf::Vector2f new_cam_offset = { 0.f, 0.f };
+		//Move the camera via arrow keys
+		if (BUTTONDOWN(UP) and cam_pos.y > 0)
+			new_cam_offset.y -= game.cam_move_spd;
+		else if (BUTTONDOWN(DOWN) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+			new_cam_offset.y += game.cam_move_spd;
+		if (BUTTONDOWN(LEFT) and cam_pos.x > 0)
+			new_cam_offset.x -= game.cam_move_spd;
+		else if (BUTTONDOWN(RIGHT) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+			new_cam_offset.x += game.cam_move_spd;
 
-	//Move the camera via edge panning
-	if ((MOUSEPOS.y < cam_pos.y + 32 and MOUSEPOS.y > cam_pos.y) and cam_pos.y > 0)
-		new_cam_offset.y -= game.cam_move_spd;
-	if ((MOUSEPOS.y > cam_pos.y + cam_size.y - 32 and MOUSEPOS.y < cam_pos.y + cam_size.y) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-		new_cam_offset.y += game.cam_move_spd;
-	if ((MOUSEPOS.x < cam_pos.x + 32 and MOUSEPOS.x > cam_pos.x) and cam_pos.x > 0)
-		new_cam_offset.x -= game.cam_move_spd;
-	if ((MOUSEPOS.x > cam_pos.x + cam_size.x - 32 and MOUSEPOS.x < cam_pos.x + cam_size.x) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-		new_cam_offset.x += game.cam_move_spd;
+		//Move the camera via edge panning
+		if ((MOUSEPOS_W.y < cam_pos.y + 32 and MOUSEPOS_W.y > cam_pos.y) and cam_pos.y > 0)
+			new_cam_offset.y -= game.cam_move_spd;
+		if ((MOUSEPOS_W.y > cam_pos.y + cam_size.y - 32 and MOUSEPOS_W.y < cam_pos.y + cam_size.y) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+			new_cam_offset.y += game.cam_move_spd;
+		if ((MOUSEPOS_W.x < cam_pos.x + 32 and MOUSEPOS_W.x > cam_pos.x) and cam_pos.x > 0)
+			new_cam_offset.x -= game.cam_move_spd;
+		if ((MOUSEPOS_W.x > cam_pos.x + cam_size.x - 32 and MOUSEPOS_W.x < cam_pos.x + cam_size.x) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+			new_cam_offset.x += game.cam_move_spd;
 
-	game.camera.move(new_cam_offset);
+
+		game.camera.move(new_cam_offset);
+	}
+	//If the camera is locked to the party members, follow them automatically
+	//Get the average of all of their positions and lerp the camera to there
+	else {
+		sf::Vector2f pos_totals = { 0.f, 0.f };
+		uint selected_p_ms = 0;
+		for (const auto& p_m : party_mems) {
+			if (p_m->selected) {
+				++selected_p_ms;
+				pos_totals += p_m->GetPos();
+			}
+		}
+		sf::Vector2f pos_avg = { pos_totals.x / selected_p_ms, pos_totals.y / selected_p_ms};
+
+		Math::Clamp(pos_avg.x, cam_size.x*.5, tilemap.GetMapSizePixels().x - cam_size.x*.5);
+		Math::Clamp(pos_avg.y, cam_size.y*.5, tilemap.GetMapSizePixels().y - cam_size.y * .5);
+
+		game.camera.setCenter(Math::Lerp(game.camera.getCenter(), pos_avg, .1));
+	}
+
 	window.setView(game.camera);
 }
 
@@ -247,11 +278,9 @@ void Scene::Open(const bool o) {
 	if (open) {
 		//Each scene is comprised of Menus & Entities
 		if (label == Scenes::TITLE) {
-			//Clear out all pre-existing entities and party members
+			//Clear out all pre-existing entities and party members (likely unnecessary but keeping around jic)
 			entities.clear();
-			cout << "Scene L252, Party Members size: " << party_mems.size() << endl;
 			party_mems.clear();
-			cout << "Scene L254, Party Members size: " << party_mems.size() << endl;
 
 			game.camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
 			window.setView(game.camera);
@@ -267,13 +296,12 @@ void Scene::Open(const bool o) {
 
 		}
 
-
 		else if (label == Scenes::AREA) {
 			//Import the appropriate tilemap
 			string json_file = "DEFAULT";
 			switch (game.area) {
 				case Areas::TUTTON:
-					json_file = "TuttonStore";
+					json_file = "Tutton";
 				break;
 			}
 			//Load that bitch
@@ -311,8 +339,9 @@ void Scene::Open(const bool o) {
 		for (const auto& m : menus)
 			m.second->Open(false);
 		menus.clear();
-		//This SHOULD be deleting all the entities in the scene that don't belong to any menu
+		//Deletes all the entities in the scene that don't belong to any menu
 		entities.clear();
+		party_mems.clear();
 	}
 }
 
@@ -395,7 +424,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 			cha = 1;
 		break;
 
-		case PreGens::ESSEK: //Male Kobold Rogue
+		case PreGens::ESSEK: //Female Kobold Rogue
 			//Don't forget to change sprite!
 			name = "Essek";
 			race = Races::KOBOLD;

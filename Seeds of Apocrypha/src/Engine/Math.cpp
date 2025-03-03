@@ -19,3 +19,7 @@ float Math::Lerp(const float a, const float b, const float t, const bool angle) 
     else
         return a + t * (b - a);
 }
+
+sf::Vector2f Math::Lerp(const sf::Vector2f a, const sf::Vector2f b, const float t) { 
+    return { Lerp(a.x, b.x, t), Lerp(a.y, b.y, t) };
+}
