@@ -8,8 +8,9 @@
 Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             game(g), window(w), scene(s), label(init_label), menu_text(game.default_font), sup_text(game.default_font) {
     
-    float res_scalar = game.GetResScale();
-    int style_size = res_scalar * 14;
+    //Putting these here instead of the initializer list because this works
+    res_scalar = game.GetResScale();
+    style_size = res_scalar * 14;
     ui_size = { res_scalar, res_scalar };
 
     //Menu and Supp text variables
@@ -20,9 +21,11 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
     sf::Vector2f s_t_pos = { .0f, .0f };
     string s_t_str = "SUPPLEMENTARY DEFAULT";
     float s_t_str_max_w = -1;
+    
+    //UI Element variables
+    sf::Vector2f elem_pos = { .0f, .0f };
+    float elem_y_buffer = 0;
 
-    Text::Init(sup_text, game.default_font, res_scalar * 24, { window.getSize().x * .5f, window.getSize().y * .225f });
-    Text::SetOrigin(sup_text, { .5f, .0f });
 
     //What we do depends on our label
     switch (label) {
@@ -381,8 +384,8 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             m_t_size = res_scalar * 18; m_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y*.1f }; m_t_str = "Options";
             s_t_size = res_scalar * 12; s_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12f }; s_t_str = "Adjust Settings";
 
-            sf::Vector2f elem_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .35f };
-            float elem_y_buffer = window.getSize().y * .09f;
+            elem_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .35f };
+            elem_y_buffer = window.getSize().y * .09f;
 
             //Close button
             auto btn = make_shared<Button>(
@@ -420,11 +423,43 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
     Text::Init(sup_text, game.default_font, s_t_size, s_t_pos, s_t_str, {.5f, .0f});
     if (s_t_str_max_w != -1)
         Text::SetStr(sup_text, s_t_str, s_t_str_max_w);
+    Text::SetOrigin(sup_text, { .5f, .0f });
 
 
     //Add our UI elements to the scene entities vector
     for (const auto& ui : ui_elems)
         scene.AddEntity(ui.second);
+}
+
+void Menu::Update() {
+    if (open) {
+        sf::Vector2f m_t_pos = { .0f, .0f };
+        sf::Vector2f s_t_pos = { .0f, .0f };
+        sf::Vector2f elem_pos = { .0f, .0f };
+        float elem_y_buffer = 0;
+
+        switch (label) {
+            case Menus::OPTIONS_G:
+                sf::Vector2f cam_top_left = game.camera.getCenter() - (game.camera.getSize() * .5f);
+                m_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .1f };
+                s_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12f };
+                menu_text.setPosition(m_t_pos);
+                sup_text.setPosition(s_t_pos);
+
+                elem_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .35f };
+                elem_y_buffer = window.getSize().y * .09f;
+
+                for (auto& ui : ui_elems) {
+                    ui.second->MoveTo(elem_pos);
+                    elem_pos.y += elem_y_buffer;
+                }
+            break;
+        }
+
+        for (auto& s_m : sub_menus)
+            s_m.second->Update();
+    }
+
 }
 
 void Menu::Draw() {
@@ -439,6 +474,7 @@ void Menu::Draw() {
 
 void Menu::Open(const bool o) {
     open = o;
+    
     if (!open) {
         for (const auto& sm : sub_menus)
             sm.second->Open(false);

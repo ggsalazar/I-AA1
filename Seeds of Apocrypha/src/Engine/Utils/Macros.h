@@ -13,6 +13,10 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2<T>& vec) { return o
 constexpr sf::Vector2u MINRES = { 640, 360 };
 inline sf::Vector2u SCREENSIZE() { return sf::VideoMode::getDesktopMode().size; }
 
+//Tile Size
+constexpr uint TS = 16;
+constexpr uint M = 32; //Meter
+
 //Mouse input
 #define MOUSEPOS sf::Mouse::getPosition(window)
 #define MOUSEPOS_E sf::Mouse::getPosition(engine.window)

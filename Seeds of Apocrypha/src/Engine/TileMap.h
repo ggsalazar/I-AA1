@@ -14,10 +14,21 @@ struct Tile {
 	float elevation;
 };
 
+
 class TileMap : public sf::Drawable, public sf::Transformable {
 public:
 
-	bool load(const string& json_file, sf::Vector2u tile_size = {32, 32}) {
+	struct Node {
+		sf::Vector2u pos;
+		bool walkable;
+		//TO-DO: flyable, swimmable
+		float cost = 1.f; //1 for normal ground, .5 for rough terrain, 0 for slightly dangerous, -1 for moderately dangerous, -2 for highly dangerous
+		float g = 0.f, h = 0.f, f = 0.f; //For A* calculations
+		Node* parent = nullptr;
+	};
+
+	//Tiling
+	bool load(const string& json_file) {
 		//Load json file
 		ifstream file(json_file);
 		if (!file.is_open()) {
@@ -30,7 +41,7 @@ public:
 
 		//Map size in tiles/pixels
 		map_size_t = { tilemap_data["width"], tilemap_data["height"] };
-		map_size_p = sf::Vector2f(map_size_t) * 32.f;
+		map_size_p = sf::Vector2f(map_size_t) * static_cast<float>(TS);
 
 		//Resize tile_data to be the size of the map
 		tile_data.resize(map_size_t.x, vector<Tile>(map_size_t.y));
@@ -46,13 +57,13 @@ public:
 
 		//Populate vertex array
 		for (const auto& layer : tilemap_data["layers"]) {
-			for (unsigned int x = 0; x < map_size_t.x; ++x) {
-				for (unsigned int y = 0; y < map_size_t.y; ++y) {
+			for (unsigned int row = 0; row < map_size_t.x; ++row) {
+				for (unsigned int col = 0; col < map_size_t.y; ++col) {
 					//Get current tile ID number
-					const unsigned int global_tile_id = layer["data"][x + y * map_size_t.x];
+					const unsigned int global_tile_id = layer["data"][row + col * map_size_t.x];
 
-					//Skip empty tiles
-					if (!global_tile_id) continue;
+					//Can't skip empty tiles bc of node grid
+					//if (!global_tile_id) continue;
 
 					//Identify the correct tileset for this tile
 					sf::Texture* ts_tex = nullptr;
@@ -67,7 +78,7 @@ public:
 						}
 						else break;
 					}
-					
+
 					//Ensure a tileset was found
 					if (ts_name.empty()) {
 						cerr << "Warning: Tile ID " << global_tile_id << " has no matching tileset!" << endl;
@@ -90,41 +101,79 @@ public:
 					//Add the data of the current tile to the tile_data 2D vector
 					//Add the name of the tileset as a terrain type
 					if (ts_name == "Stone" or ts_name == "Wood" or ts_name == "Grass")
-						tile_data[x][y].terrain = Terrains::NORMAL;
+						tile_data[row][col].terrain = Terrains::NORMAL;
 					else if (ts_name == "Water")
-						tile_data[x][y].terrain = Terrains::WATER;
-					
+						tile_data[row][col].terrain = Terrains::WATER;
+
 					//Get the elevation from the name of the layer (e.g. "Elev 0")
 					string elev = layer["name"]; //Have to remove it from the JSON first
-					tile_data[x][y].elevation = stof(elev.substr(5));
+					tile_data[row][col].elevation = stof(elev.substr(5));
 
 
 					sf::Vector2u tileset_size = ts_tex->getSize();
 
 					//Find the tile's position in the tileset texture
 					const int tiles_per_row = tileset_size.x >> 5; //Equivalent to tileset_size.x / 32
-					const int tu = local_tile_id & (tiles_per_row-1); //Equivalent to local_tile_id % tiles_per_row
+					const int tu = local_tile_id & (tiles_per_row - 1); //Equivalent to local_tile_id % tiles_per_row
 					const int tv = local_tile_id >> 5; //Equivalent to local_tile_id / tiles_per_row
 
 					//Assign vertices for rendering
-					sf::Vertex* tri = &m_vertices_by_tileset[ts_name][(x+y*map_size_t.x) * 6];
+					sf::Vertex* tri = &m_vertices_by_tileset[ts_name][(row + col * map_size_t.x) * 6];
 
-					tri[0].position = sf::Vector2f(round(x * tile_size.x), round(y * tile_size.y));
-					tri[1].position = sf::Vector2f(round((x + 1) * tile_size.x), round(y * tile_size.y));
-					tri[2].position = sf::Vector2f(round(x * tile_size.x), round((y + 1) * tile_size.y));
-					tri[3].position = sf::Vector2f(round(x * tile_size.x), round((y + 1) * tile_size.y));
-					tri[4].position = sf::Vector2f(round((x + 1) * tile_size.x), round(y * tile_size.y));
-					tri[5].position = sf::Vector2f(round((x + 1) * tile_size.x), round((y + 1) * tile_size.y));
+					tri[0].position = sf::Vector2f(round(row * TS), round(col * TS));
+					tri[1].position = sf::Vector2f(round((row + 1) * TS), round(col * TS));
+					tri[2].position = sf::Vector2f(round(row * TS), round((col + 1) * TS));
+					tri[3].position = sf::Vector2f(round(row * TS), round((col + 1) * TS));
+					tri[4].position = sf::Vector2f(round((row + 1) * TS), round(col * TS));
+					tri[5].position = sf::Vector2f(round((row + 1) * TS), round((col + 1) * TS));
 
-					tri[0].texCoords = sf::Vector2f(tu * tile_size.x, tv * tile_size.y);
-					tri[1].texCoords = sf::Vector2f((tu + 1) * tile_size.x, tv * tile_size.y);
-					tri[2].texCoords = sf::Vector2f(tu * tile_size.x, (tv + 1) * tile_size.y);
-					tri[3].texCoords = sf::Vector2f(tu * tile_size.x, (tv + 1) * tile_size.y);
-					tri[4].texCoords = sf::Vector2f((tu + 1) * tile_size.x, tv * tile_size.y);
-					tri[5].texCoords = sf::Vector2f((tu + 1) * tile_size.x, (tv + 1) * tile_size.y);
+					tri[0].texCoords = sf::Vector2f(tu * TS, tv * TS);
+					tri[1].texCoords = sf::Vector2f((tu + 1) * TS, tv * TS);
+					tri[2].texCoords = sf::Vector2f(tu * TS, (tv + 1) * TS);
+					tri[3].texCoords = sf::Vector2f(tu * TS, (tv + 1) * TS);
+					tri[4].texCoords = sf::Vector2f((tu + 1) * TS, tv * TS);
+					tri[5].texCoords = sf::Vector2f((tu + 1) * TS, (tv + 1) * TS);
 				}
 			}
 		}
+
+		//Populate node grid
+		unsigned int xx = map_size_t.x * 3 - (map_size_t.x - 1);
+		unsigned int yy = map_size_t.y * 3 - (map_size_t.y - 1);
+		for (unsigned int row = 0; row < xx; ++row) {
+			for (unsigned int col = 0; col < yy; ++col) {
+				/*
+				sf::Vector2u pos;
+				bool walkable;
+				//TO-DO: flyable, swimmable
+				float cost = 1.f; //1 for normal ground, .5 for rough terrain, 0 for slightly dangerous, -1 for moderately dangerous, -2 for highly dangerous
+				float g = 0.f, h = 0.f, f = 0.f; //For A* calculations
+				Node* parent = nullptr;
+				*/
+				if (!row or !col or (row == xx - 1) or (col == yy - 1)) continue;
+
+				Node node;
+
+				//First node - very top left of the map
+				if (!row and !col) {
+					node = { {row*16, col*16}, 
+							  tile_data[0][0].terrain != Terrains::WATER,
+							  1.f };
+				}
+				//The rest of the nodes
+				else {
+					node = { {row * 16,col * 16},
+							tile_data[][].terrain != Terrains::WATER,
+							1.f,
+							0.f, 0.f, 0.f,
+							&grid.back().back() };
+				}
+
+
+				grid[row][col] = node;
+			}
+		}
+
 
 		map_loaded = true;
 		return true;
@@ -137,12 +186,27 @@ public:
 
 	Tile GetTileData(sf::Vector2f tile_pos) { return tile_data[floor(tile_pos.x)][floor(tile_pos.y)]; }
 
+	//Pathfinding
+	float Heuristic(const sf::Vector2i& a, sf::Vector2i& b) {
+		uint dx = abs(a.x - b.x);
+		uint dy = abs(a.y - b.y);
+		return (dx + dy) + (sqrt(2) - 2) * min(dx, dy);
+	}
+
+	vector<sf::Vector2i> FindPath(const sf::Vector2i& start, const sf::Vector2i& goal) {
+
+		//No path found
+		return {};
+	}
+
 private:
 	unordered_map<string, sf::VertexArray> m_vertices_by_tileset;
 	unordered_map<string, sf::Texture> m_tilesets;
 
 	sf::Vector2u map_size_t = { 0, 0 };
 	sf::Vector2f map_size_p = { 0.f, 0.f };
+
+	vector<vector<Node>> grid;
 
 	vector<vector<Tile>> tile_data;
 	bool map_loaded = false;

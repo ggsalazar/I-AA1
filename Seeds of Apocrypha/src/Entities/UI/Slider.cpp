@@ -9,7 +9,7 @@ Slider::Slider(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::T
 
     //Set the origin/anchor, scale, and position
     knob_spr.setOrigin({ t.origin.x * 6.f, t.origin.y * 18.f }); //The knob is 3px wide & 9px high
-    knob_spr.setScale(t.scale);
+    knob_spr.setScale(sf::Vector2f(t.scale));
     knob_pos_max = bbox.position.x + bbox.size.x * .9f;
     knob_pos_min = bbox.position.x + bbox.size.x * .1f;
     knob_pos = knob_pos_max;

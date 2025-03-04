@@ -17,17 +17,16 @@ void Scene::GetInput() {
 			SelectPartyMems();
 
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing will depend on what it is pointed at
-			//Updating action every 10th of a second for performance reasons
-			if (game.GetFramesElapsed() % 6 == 0)
+			//Updating action every 6th of a second for performance reasons
+			if (game.GetFramesElapsed() % 10 == 0)
 				action = LMBAction();
 			//Change the cursor according to current lmb action
 			game.cursor = game.cursors[action].get();
 			if (Input::KeyPressed(LMB)) {
 				switch (action) {
-				case Actions::MOVE:
-					MovePartyMems();
+					case Actions::MOVE:
+						MovePartyMems();
 					break;
-
 				}
 			}
 		}
@@ -46,6 +45,9 @@ void Scene::GetInput() {
 }
 
 void Scene::Update() {
+	for (auto& m : menus)
+		m.second->Update();
+
 	for (auto& e : entities)
 		e->Update();
 
@@ -123,13 +125,13 @@ void Scene::MoveCamera() {
 			new_cam_offset.x += game.cam_move_spd;
 
 		//Move the camera via edge panning
-		if ((MOUSEPOS_W.y < cam_pos.y + 32 and MOUSEPOS_W.y > cam_pos.y) and cam_pos.y > 0)
+		if ((MOUSEPOS_W.y < cam_pos.y + TS and MOUSEPOS_W.y > cam_pos.y) and cam_pos.y > 0)
 			new_cam_offset.y -= game.cam_move_spd;
-		if ((MOUSEPOS_W.y > cam_pos.y + cam_size.y - 32 and MOUSEPOS_W.y < cam_pos.y + cam_size.y) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+		if ((MOUSEPOS_W.y > cam_pos.y + cam_size.y - TS and MOUSEPOS_W.y < cam_pos.y + cam_size.y) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
 			new_cam_offset.y += game.cam_move_spd;
-		if ((MOUSEPOS_W.x < cam_pos.x + 32 and MOUSEPOS_W.x > cam_pos.x) and cam_pos.x > 0)
+		if ((MOUSEPOS_W.x < cam_pos.x + TS and MOUSEPOS_W.x > cam_pos.x) and cam_pos.x > 0)
 			new_cam_offset.x -= game.cam_move_spd;
-		if ((MOUSEPOS_W.x > cam_pos.x + cam_size.x - 32 and MOUSEPOS_W.x < cam_pos.x + cam_size.x) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+		if ((MOUSEPOS_W.x > cam_pos.x + cam_size.x - TS and MOUSEPOS_W.x < cam_pos.x + cam_size.x) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
 			new_cam_offset.x += game.cam_move_spd;
 
 
@@ -226,7 +228,7 @@ Actions Scene::LMBAction() {
 
 	//Convert mouse coordinates from screen to world
 	//What tile are we currently pointing at?
-	sf::Vector2f tile_pos = { MOUSEPOS_W.x / 32.f, MOUSEPOS_W.y / 32.f };
+	sf::Vector2f tile_pos = { static_cast<float>(MOUSEPOS_W.x / M), static_cast<float>(MOUSEPOS_W.y / M) };
 	//Party member positions and distances from given tile
 	//vector<float> party_mem_dists;
 	//for (int i = 0; i < party_mems.size(); ++i)
@@ -378,7 +380,7 @@ void Scene::SetEntitySFXVolume(const float new_volume) {
 }
 
 void Scene::CreatePartyMem() {
-	float res_scalar = game.GetResScale();
+	uint res_scalar = game.GetResScale();
 
 	auto new_party_mem = make_shared<PartyMember>(
 		Engine{game, window, this},
@@ -389,7 +391,7 @@ void Scene::CreatePartyMem() {
 }
 
 void Scene::CreatePreGen(PreGens p_g) {
-	float res_scalar = game.GetResScale();
+	uint res_scalar = game.GetResScale();
 
 	string name = "Default";
 	Genuses genus = Genuses::SENTIENT;
@@ -397,8 +399,8 @@ void Scene::CreatePreGen(PreGens p_g) {
 	Sizes size = Sizes::MED;
 	Classes clss = Classes::WARRIOR;
 	string sprite = "Creatures/Sentients/PMPlaceholder";
-	uint sprite_w = 32;
-	uint sprite_h = 64;
+	uint sprite_w = M;
+	uint sprite_h = 2*M;
 	uint level = 1;
 	bool sex = 0;
 	float str = 0;
@@ -458,7 +460,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 	auto pre_gen = make_shared<PartyMember>(
 		Engine{ game, window, this },
 		AnimInfo{ sprite, sprite_w, sprite_h },
-		Animation::Transform{ {0.f, 0.f}, {.5f, .5f}, {1.f, 1.f} },
+		Animation::Transform{ {0.f, 0.f}, {.5f, .95f}, {1, 1} },
 		Creature::Stats{ name, genus, race, size, clss, level, sex, str, con, dex, agi, intl, wis, cha } //The rest are defaults and handled in Initialization
 		); 
 

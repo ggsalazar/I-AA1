@@ -42,7 +42,7 @@ public:
     float GetMusicVolume() const { return music_volume; }
     float GetSFXVolume() const { return sfx_volume; }
     sf::Vector2u GetResolution() const { return resolution; }
-    float GetResScale() const { return resolution.x / MINRES.x; }
+    uint GetResScale() const { return resolution.x / MINRES.x; }
 
     //Setters
     void SetScene(Scenes scn);

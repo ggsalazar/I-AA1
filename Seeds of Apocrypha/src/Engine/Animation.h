@@ -27,7 +27,7 @@ public:
 	struct Transform {
 		sf::Vector2f pos = { .0f, .0f };
 		sf::Vector2f origin = { .0f, .0f };
-		sf::Vector2f scale = { 1.f, 1.f };
+		sf::Vector2u scale = { 1, 1 };
 	};
 
 

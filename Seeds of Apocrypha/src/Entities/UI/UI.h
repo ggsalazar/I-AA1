@@ -6,7 +6,7 @@ class UI : public Entity {
 public:
     struct Style {
         UIElems elem = UIElems::DEFAULT;
-        int font_size = 36;
+        uint font_size = 36;
     };
 
     Menu& menu;

@@ -1,4 +1,7 @@
-Tutorial - Options menu position (Implement Open() just like you have for Scene), get party members moving, add in NPCs
+Left off - Change Tile Sizes to 16 instead of 32
+		 - Test tile_pos in Scene.cpp - make sure you're getting half values for some tiles and full values for others
+
+Tutorial - Get party members moving, add in NPCs
 
 General - Hot reloading
 		 -Visual signifiers to show when an attack/action is at (dis)adv

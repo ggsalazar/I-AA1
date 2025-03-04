@@ -4,6 +4,7 @@
 #include <memory>
 #include <unordered_map>
 #include "Utils/Enums.h"
+#include "Utils/Macros.h"
 
 using namespace std;
 
@@ -19,7 +20,8 @@ public:
 
     Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label);
 
-    //Game
+    //Engine
+    void Update();
     void Draw();
 
     //Self and Sub-Menus
@@ -40,13 +42,15 @@ private:
     sf::Text menu_text;
     sf::Text sup_text; //Supplementary text
     bool open = false;
+    uint res_scalar;
+    uint style_size;
 
     unordered_map<Menus, unique_ptr<Menu>> sub_menus;
     unordered_map<UIElems, shared_ptr<UI>> ui_elems;
     sf::Vector2f ui_ori = { .5f, .5f };
-    sf::Vector2f ui_size = { 1.f, 1.f };
+    sf::Vector2u ui_size = { 1, 1 };
 
-    //Game engine pointers
+    //Engine pointers
     Game& game;
     sf::RenderWindow& window;
     Scene& scene;
