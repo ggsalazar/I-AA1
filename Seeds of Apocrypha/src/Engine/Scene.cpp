@@ -20,12 +20,14 @@ void Scene::GetInput() {
 			//Updating action every 6th of a second for performance reasons
 			if (game.GetFramesElapsed() % 10 == 0)
 				action = LMBAction();
-			//Change the cursor according to current lmb action
+			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			game.cursor = game.cursors[action].get();
 			if (Input::KeyPressed(LMB)) {
 				switch (action) {
 					case Actions::MOVE:
-						MovePartyMems();
+						for (const auto& p_m : party_mems) {
+							if (p_m->selected) p_m->moving = true;
+						}
 					break;
 				}
 			}
@@ -156,6 +158,8 @@ void Scene::MoveCamera() {
 		game.camera.setCenter(Math::Lerp(game.camera.getCenter(), pos_avg, .1));
 	}
 
+	//Zoom the camera in/out - TO-DO
+
 	window.setView(game.camera);
 }
 
@@ -197,11 +201,6 @@ void Scene::SelectPartyMems() {
 	}
 }
 
-void Scene::MovePartyMems() {
-	//Move each party member according to current marching order
-	party_mems[0]->MoveTo(MOUSEPOS_W);
-}
-
 Actions Scene::LMBAction() {
 	//Possible actions:
 	//-Move
@@ -218,7 +217,7 @@ Actions Scene::LMBAction() {
 	//	--When mouse is on an object that can be picked up
 	//-Loot a container
 	//	--When mouse is on an unlocked container
-	//-Pick a lock
+	//-Pick/unlock a lock
 	//	--When mouse is on a locked door/container
 	//-Open a door
 	//	--When mouse is on an unlocked door
@@ -228,12 +227,9 @@ Actions Scene::LMBAction() {
 
 	//Convert mouse coordinates from screen to world
 	//What tile are we currently pointing at?
-	sf::Vector2f tile_pos = { static_cast<float>(MOUSEPOS_W.x / M), static_cast<float>(MOUSEPOS_W.y / M) };
-	//Party member positions and distances from given tile
-	//vector<float> party_mem_dists;
-	//for (int i = 0; i < party_mems.size(); ++i)
-	//	party_mem_dists.push_back(sqrt((tile_pos.x - party_mems[i]->GetPos().x) * (tile_pos.x - party_mems[i]->GetPos().x) + (tile_pos.y - party_mems[i]->GetPos().y) * (tile_pos.y - party_mems[i]->GetPos().y)));
-
+	sf::Vector2f tile_pos = { static_cast<float>(MOUSEPOS_W.x / TS), static_cast<float>(MOUSEPOS_W.y / TS) };
+	//Current meter pos is tile_pos * 2
+	
 	//What tile are we currently looking at?
 	unique_ptr<Tile> curr_tile;
 	if (tile_pos.x > 0 and tile_pos.y > 0 and tile_pos.x < tilemap.GetMapSizeTiles().x and tile_pos.y < tilemap.GetMapSizeTiles().y)
@@ -242,35 +238,26 @@ Actions Scene::LMBAction() {
 	//If we're not looking at a tile, then there is no action to perform
 	if (!curr_tile) return Actions::NOACTION;
 
-	//Defaulting to Move FOR NOW
-	Actions curr_lmb_action = Actions::MOVE;
 	//-Move
 	//	--When mouse is on a tile that all currently selected party members can reach
 	//For every currently selected party member, calculate a path to the current tile
 	//	if every currently selected party member can reach that tile, return Actions::MOVE
-	//	else, return Actions::NONE
+	//	else, return NOACTION
 	for (const auto& p_m : party_mems) {
 		if (p_m->selected) {
+			sf::Vector2i start = sf::Vector2i(p_m->GetPos().x / TS, p_m->GetPos().y / TS);
+			sf::Vector2i goal = sf::Vector2i(round(tile_pos.x), round(tile_pos.y));
+
+			queue<sf::Vector2i> path = tilemap.FindPath(start, goal);
+
+			//If no path, return no action (for now; later, will want to change action_valid to false)
+			if (path.empty())
+				return Actions::NOACTION;
+			//Else, add the path to p_m's own path queue
+			p_m->SetPath(path);
 		}
 	}
-
-
-	//Debug
-	if (game.debug) {
-		string terr;
-		switch (curr_tile->terrain) {
-			case Terrains::NORMAL:
-				terr = "Normal";
-			break;
-
-			case Terrains::WATER:
-				terr = "Water";
-			break;
-		}
-		cout << "Tile info: -Terrain: " << terr << " : -Elevation: " << tilemap.GetTileData(tile_pos).elevation << endl;
-	}
-
-	return curr_lmb_action;
+	return Actions::NOACTION;
 }
 
 //Most *actual* initialization is handled here
@@ -399,8 +386,8 @@ void Scene::CreatePreGen(PreGens p_g) {
 	Sizes size = Sizes::MED;
 	Classes clss = Classes::WARRIOR;
 	string sprite = "Creatures/Sentients/PMPlaceholder";
-	uint sprite_w = M;
-	uint sprite_h = 2*M;
+	uint sprite_w = METER;
+	uint sprite_h = 2*METER;
 	uint level = 1;
 	bool sex = 0;
 	float str = 0;

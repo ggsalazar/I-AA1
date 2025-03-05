@@ -15,7 +15,7 @@ inline sf::Vector2u SCREENSIZE() { return sf::VideoMode::getDesktopMode().size; 
 
 //Tile Size
 constexpr uint TS = 16;
-constexpr uint M = 32; //Meter
+constexpr uint METER = 32;
 
 //Mouse input
 #define MOUSEPOS sf::Mouse::getPosition(window)

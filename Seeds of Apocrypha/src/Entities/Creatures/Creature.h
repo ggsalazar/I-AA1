@@ -1,4 +1,5 @@
 #pragma once
+#include <queue>
 #include "../Entity.h"
 #include "../Items/Item.h"
 
@@ -48,6 +49,8 @@ public:
 	};
 	bool w_rsted = true;
 
+	bool moving = false;
+
 	sf::Texture portrait_tex;
 	sf::Sprite portrait;
 	sf::FloatRect por_bbox;
@@ -58,6 +61,10 @@ public:
 	//Game stuff
 	virtual void Update() override;
 	virtual void Draw() override;
+	
+	void SetPath(queue<sf::Vector2i> new_path) { path = new_path; }
+	void WalkPath();
+
 
 	//Primary stats
 	void SetAbilityScore(Ab_Scores a_s, float new_score);
@@ -79,6 +86,7 @@ public:
 	void SetFlySpeed() { if (winged and can_fly) stats.f_spd = stats.base_spd + (.5f * stats.str); }
 	float GetFlySpeed() const { return stats.f_spd; }
 
+
 	//Functions that interact with protected members
 	string GetName() const { return stats.name; }
 	sf::Vector2f GetDEF() const { return { stats.m_def, stats.r_def }; }
@@ -99,6 +107,8 @@ protected:
 
 	unordered_map<Items, unique_ptr<Item>> inv;
 	unordered_map<Items, unique_ptr<Item>> equipment;
+
+	queue<sf::Vector2i> path;
 
 
 	void SetDEF();

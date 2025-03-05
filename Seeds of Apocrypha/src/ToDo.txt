@@ -1,10 +1,10 @@
-Left off - Change Tile Sizes to 16 instead of 32
-		 - Test tile_pos in Scene.cpp - make sure you're getting half values for some tiles and full values for others
+Left Off: Need to calculate the cost to get to each node!, go through cgpt's code and refine it
 
-Tutorial - Get party members moving, add in NPCs
+Tutorial - Get party members moving, Change camera zoom, add in NPCs
 
 General - Hot reloading
 		 -Visual signifiers to show when an attack/action is at (dis)adv
+		 -May want to consider going back to 32x32 tiles for performance reasons
 
 Main Menu
 	-Character creation

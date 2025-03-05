@@ -84,11 +84,26 @@ Creature::Creature(const Engine& e, const AnimInfo& a_i, const Animation::Transf
 
 void Creature::Update() {
 	//Position of portrait will be updated here
+
+	//Moving
+	if (moving) WalkPath();
 }
 
 void Creature::Draw() {
 	Entity::Draw();
 	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
+}
+
+void Creature::WalkPath() {
+	if (!path.empty()) {
+		sf::Vector2f next_pos = sf::Vector2f(path.front() * 32);
+		if (pos != next_pos)
+			Entity::Move({ 2.f, 2.f });
+		else
+			path.pop();
+	}
+	else
+		moving = false;
 }
 
 
