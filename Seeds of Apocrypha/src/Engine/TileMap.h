@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <nlohmann/json.hpp>
 #include "Utils/Enums.h"
+#include "Utils/Macros.h"
 
 using json = nlohmann::json;
 using namespace std;
@@ -62,8 +63,8 @@ public:
 					//Get current tile ID number
 					const unsigned int global_tile_id = layer["data"][row + col * map_size_t.x];
 
-					//Can't skip empty tiles bc of node grid
-					//if (!global_tile_id) continue;
+					//Skip empty tiles
+					if (!global_tile_id) continue;
 
 					//Identify the correct tileset for this tile
 					sf::Texture* ts_tex = nullptr;
@@ -133,6 +134,8 @@ public:
 					tri[3].texCoords = sf::Vector2f(tu * TS, (tv + 1) * TS);
 					tri[4].texCoords = sf::Vector2f((tu + 1) * TS, tv * TS);
 					tri[5].texCoords = sf::Vector2f((tu + 1) * TS, (tv + 1) * TS);
+
+					delete tri;
 				}
 			}
 		}
@@ -140,8 +143,8 @@ public:
 		//Populate node grid
 		unsigned int x = map_size_t.x * 3 - (map_size_t.x - 1);
 		unsigned int y = map_size_t.y * 3 - (map_size_t.y - 1);
-		for (unsigned int row = 0; row < x; ++row) {
-			for (unsigned int col = 0; col < y; ++col) {
+		for (unsigned int row = 1; row < x-1; ++row) {
+			for (unsigned int col = 1; col < y-1; ++col) {
 				/*
 				sf::Vector2u pos;
 				bool walkable;
@@ -150,33 +153,20 @@ public:
 				float g = 0.f, h = 0.f, f = 0.f; //For A* calculations
 				Node* parent = nullptr;
 				*/
-				if (!row or !col or (row == x - 1) or (col == y - 1)) continue;
+				//If I've set up my for statements correctly, this line shouldn't be necessary
+				//if (!row or !col or (row == x - 1) or (col == y - 1)) continue;
 
-				Node node;
 				sf::Vector2u node_pos = { row * 16, col * 16 };
-				bool node_walk = true;
+				bool node_walk = tile_data[row - 1][col - 1].terrain != Terrains::WATER or
+								tile_data[row + 1][col - 1].terrain != Terrains::WATER or
+								tile_data[row - 1][col + 1].terrain != Terrains::WATER or
+								tile_data[row + 1][col + 1].terrain != Terrains::WATER;
 				float node_cost = 1.f;
 				float node_g = 0.f, node_h = 0.f, node_f = 0.f;
-				Node* node_par = nullptr;
-				//First node - very top left of the map
-				if (!row and !col) {
-					node_walk = tile_data[row-1][col-1].terrain != Terrains::WATER or
-								tile_data[row + 1][col - 1].terrain != Terrains::WATER or
-					node = { {row*16, col*16}, 
-							  tile_data[0][0].terrain != Terrains::WATER,
-							  1.f };
-				}
-				//The rest of the nodes
-				else {
-					node = { {row * 16,col * 16},
-							tile_data[][].terrain != Terrains::WATER,
-							1.f,
-							0.f, 0.f, 0.f,
-							&grid.back().back() };
-				}
+				Node* node_par = row != 1 and col != 1 ? &grid.back().back() : nullptr;
 
-
-				grid[row][col] = node;
+				grid[row][col] = { node_pos, node_walk, node_cost, node_g, node_h, node_f, node_par };
+				delete node_par;
 			}
 		}
 
