@@ -34,6 +34,8 @@ constexpr sf::Keyboard::Key I_K = sf::Keyboard::Key::I;
 constexpr sf::Keyboard::Key J_K = sf::Keyboard::Key::J;
 constexpr sf::Keyboard::Key M_K = sf::Keyboard::Key::M;
 constexpr sf::Keyboard::Key O_K = sf::Keyboard::Key::O;
+constexpr sf::Keyboard::Key S_K = sf::Keyboard::Key::S;
+constexpr sf::Keyboard::Key W_K = sf::Keyboard::Key::W;
 //Special keys
 //Other
 constexpr sf::Keyboard::Key LCTRL = sf::Keyboard::Key::LControl; constexpr sf::Keyboard::Key RCTRL = sf::Keyboard::Key::RControl;

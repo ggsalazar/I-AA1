@@ -138,10 +138,10 @@ public:
 		}
 
 		//Populate node grid
-		unsigned int xx = map_size_t.x * 3 - (map_size_t.x - 1);
-		unsigned int yy = map_size_t.y * 3 - (map_size_t.y - 1);
-		for (unsigned int row = 0; row < xx; ++row) {
-			for (unsigned int col = 0; col < yy; ++col) {
+		unsigned int x = map_size_t.x * 3 - (map_size_t.x - 1);
+		unsigned int y = map_size_t.y * 3 - (map_size_t.y - 1);
+		for (unsigned int row = 0; row < x; ++row) {
+			for (unsigned int col = 0; col < y; ++col) {
 				/*
 				sf::Vector2u pos;
 				bool walkable;
@@ -150,12 +150,18 @@ public:
 				float g = 0.f, h = 0.f, f = 0.f; //For A* calculations
 				Node* parent = nullptr;
 				*/
-				if (!row or !col or (row == xx - 1) or (col == yy - 1)) continue;
+				if (!row or !col or (row == x - 1) or (col == y - 1)) continue;
 
 				Node node;
-
+				sf::Vector2u node_pos = { row * 16, col * 16 };
+				bool node_walk = true;
+				float node_cost = 1.f;
+				float node_g = 0.f, node_h = 0.f, node_f = 0.f;
+				Node* node_par = nullptr;
 				//First node - very top left of the map
 				if (!row and !col) {
+					node_walk = tile_data[row-1][col-1].terrain != Terrains::WATER or
+								tile_data[row + 1][col - 1].terrain != Terrains::WATER or
 					node = { {row*16, col*16}, 
 							  tile_data[0][0].terrain != Terrains::WATER,
 							  1.f };

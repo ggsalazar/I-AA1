@@ -114,14 +114,14 @@ void Scene::MoveCamera() {
 	//Can't move the camera if we are at or past the edge
 	if (!game.cam_locked) {
 		sf::Vector2f new_cam_offset = { 0.f, 0.f };
-		//Move the camera via arrow keys
-		if (BUTTONDOWN(UP) and cam_pos.y > 0)
+		//Move the camera via arrow/WASD keys
+		if ((BUTTONDOWN(UP) or BUTTONDOWN(W_K)) and cam_pos.y > 0)
 			new_cam_offset.y -= game.cam_move_spd;
-		else if (BUTTONDOWN(DOWN) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+		else if ((BUTTONDOWN(DOWN) or BUTTONDOWN(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
 			new_cam_offset.y += game.cam_move_spd;
-		if (BUTTONDOWN(LEFT) and cam_pos.x > 0)
+		if ((BUTTONDOWN(LEFT) or BUTTONDOWN(A_K)) and cam_pos.x > 0)
 			new_cam_offset.x -= game.cam_move_spd;
-		else if (BUTTONDOWN(RIGHT) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+		else if ((BUTTONDOWN(RIGHT) or BUTTONDOWN(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
 			new_cam_offset.x += game.cam_move_spd;
 
 		//Move the camera via edge panning
