@@ -92,18 +92,39 @@ void Creature::Update() {
 void Creature::Draw() {
 	Entity::Draw();
 	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
+
+	if (moving) DrawPath();
 }
 
 void Creature::WalkPath() {
 	if (!path.empty()) {
-		sf::Vector2f next_pos = sf::Vector2f(path.front() * 32);
+		sf::Vector2f next_pos = sf::Vector2f(path.front().x * TS, path.front().y * TS);
 		if (pos != next_pos)
-			Entity::Move({ 2.f, 2.f });
+			cout << next_pos << endl;
+			//Entity::Move({ 2.f, 2.f }); //This is wrong - will need to calculate offset for each point in the path
 		else
 			path.pop();
 	}
 	else
 		moving = false;
+}
+
+void Creature::DrawPath() {
+	queue<sf::Vector2i> temp_path = path;
+	vector<sf::Vector2i> path_v;
+	while (!temp_path.empty()) {
+		path_v.push_back(temp_path.front());
+		temp_path.pop();
+	}
+
+	for (const auto& point : path_v) {
+		sf::RectangleShape point_box;
+		point_box.setSize({ 4, 4 });
+		point_box.setFillColor(sf::Color(255, 0, 0, 255));
+		point_box.setPosition(sf::Vector2f(point.x - 2, point.y - 2));
+
+		engine.window.draw(point_box);
+	}
 }
 
 

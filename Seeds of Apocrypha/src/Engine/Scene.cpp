@@ -18,7 +18,8 @@ void Scene::GetInput() {
 
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing will depend on what it is pointed at
 			//Updating action every 6th of a second for performance reasons
-			if (game.GetFramesElapsed() % 10 == 0)
+			//if (game.GetFramesElapsed() % 10 == 0)
+			if (Input::KeyPressed(LMB)) //Doing this for testing reasons
 				action = LMBAction();
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			game.cursor = game.cursors[action].get();
@@ -250,11 +251,14 @@ Actions Scene::LMBAction() {
 
 			queue<sf::Vector2i> path = tilemap.FindPath(start, goal);
 
+			cout << "Path found? " << !path.empty() << endl;
+
 			//If no path, return no action (for now; later, will want to change action_valid to false)
 			if (path.empty())
 				return Actions::NOACTION;
 			//Else, add the path to p_m's own path queue
 			p_m->SetPath(path);
+			return Actions::MOVE;
 		}
 	}
 	return Actions::NOACTION;

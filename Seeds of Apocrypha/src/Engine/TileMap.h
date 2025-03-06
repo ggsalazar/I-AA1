@@ -21,7 +21,7 @@ class TileMap : public sf::Drawable, public sf::Transformable {
 public:
 
 	struct Node {
-		sf::Vector2u pos;
+		sf::Vector2i pos;
 		bool walkable;
 		//TO-DO: flyable, swimmable
 		uint cost = 1.f; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
@@ -154,11 +154,11 @@ public:
 		for (unsigned int row = 1; row < x-1; ++row) {
 			for (unsigned int col = 1; col < y-1; ++col) {
 				/*
-				sf::Vector2u pos;
+				sf::Vector2i pos;
 				bool walkable;
 				//TO-DO: flyable, swimmable
 				uint cost = 1.f; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
-				float g = 0.f, h = 0.f, f = 0.f; //For A* calculations
+				float g = 0.f (actual cost to get to node), h = 0.f (heuristic cost to node), f = 0.f (g+h, used to select the next node in the path (smaller is better)); //For A* calculations
 				Node* parent = nullptr;
 				*/
 
@@ -166,9 +166,14 @@ public:
 								tile_data[row + 1][col - 1].terrain != Terrains::WATER or
 								tile_data[row - 1][col + 1].terrain != Terrains::WATER or
 								tile_data[row + 1][col + 1].terrain != Terrains::WATER;
-				uint node_cost = 1; //NEED TO CALCULATE!
+				uint num_rough = 0;
+				if (tile_data[row - 1][col - 1].terrain == Terrains::ROUGH) ++num_rough;
+				if (tile_data[row + 1][col - 1].terrain == Terrains::ROUGH) ++num_rough;
+				if (tile_data[row - 1][col + 1].terrain == Terrains::ROUGH) ++num_rough;
+				if (tile_data[row + 1][col + 1].terrain == Terrains::ROUGH) ++num_rough;
+				uint node_cost = (num_rough > 2)+1;
 
-				grid[row - 1][col - 1] = { {row*16, col*16} , node_walk, node_cost};
+				grid[row - 1][col - 1] = { sf::Vector2i(row*16, col*16), node_walk, node_cost};
 					
 			}
 		}
@@ -187,14 +192,83 @@ public:
 
 
 	//Pathfinding
-	float Heuristic(const sf::Vector2i& a, sf::Vector2i& b) {
+	float Heuristic(const sf::Vector2i& a, const sf::Vector2i& b) {
 		uint dx = abs(a.x - b.x);
 		uint dy = abs(a.y - b.y);
 		return (dx + dy) + (1.414f - 2) * min(dx, dy);
 	}
 
 	queue<sf::Vector2i> FindPath(const sf::Vector2i& start, const sf::Vector2i& goal) {
-		auto cmp = [](const Node* a, const Node* b) { return a->f > b->f; }; //I DON'T THINK THIS FUNCTION IS NECESSARY
+		//auto cmp = [](const Node* a, const Node* b) { return a->f > b->f; };
+		//queue<Node*, vector<Node*>> open_list;
+		queue<Node*> open_list;
+		unordered_map<Node*, bool> closed_list;
+
+		// Initialize start node
+		Node* start_node = &grid[start.x][start.y];
+		start_node->g = 0;
+		start_node->h = Heuristic(start, goal);
+		start_node->f = start_node->h;
+		open_list.push(start_node);
+
+		// Define possible movements           N        NE       E      SE      S        SW       W        NW
+		const sf::Vector2i directions[] = { {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1} };
+
+		uint nodes_runthrough = 0;
+
+		while (!open_list.empty()) {
+			Node* current = open_list.front();
+			open_list.pop();
+
+			cout << "Current node #: " << nodes_runthrough++ << endl;
+			cout << "Current node pos: " << current->pos << endl;
+
+			//Path found
+			if (current->pos == goal) {
+
+				cout << "TileMap Path found" << endl;
+
+				vector<sf::Vector2i> path;
+				while (current) {
+					path.push_back(current->pos);
+					current = current->parent;
+				}
+				reverse(path.begin(), path.end());
+				queue<sf::Vector2i> path_q;
+				for (const auto& p : path)
+					path_q.push(p);
+				return path_q;
+			}
+
+			//Add the current node position to the closed list
+			closed_list[current] = true;
+
+			for (const auto& dir : directions) {
+				sf::Vector2i neighbor_pos = current->pos + dir*(int)TS;
+				//Out of bounds
+				if (neighbor_pos.x < 0 || neighbor_pos.y < 0 || neighbor_pos.x >= map_size_p.x || neighbor_pos.y >= map_size_p.y)
+					continue;
+
+				Node* neighbor = &grid[neighbor_pos.x/(int)TS][neighbor_pos.y/(int)TS];
+				//Unwalkable or already processed
+				if (!neighbor->walkable || closed_list[neighbor])
+					continue;
+
+				float tentative_g = current->g + neighbor->cost;
+				//Better path found
+				if (tentative_g < neighbor->g || neighbor->g == 0) {
+					neighbor->parent = current;
+					neighbor->g = tentative_g;
+					neighbor->h = Heuristic(neighbor_pos, goal);
+					neighbor->f = neighbor->g + neighbor->h;
+					open_list.push(neighbor);
+				}
+			}
+		}
+
+		
+
+		
 		//WARNING: CGPT CODE BELOW
 		/*
 		* 5. Implement A Algorithm*
@@ -245,7 +319,7 @@ public:
 			}
 		}
 
-		//ORTHO CODE
+		//ORTHO CGPT CODE
 		std::priority_queue<Node*, std::vector<Node*>, decltype(cmp)> open_list(cmp);
 		std::unordered_map<sf::Vector2i, bool, Vector2Hash> closed_list;  // Use a hash function for sf::Vector2i keys
 
