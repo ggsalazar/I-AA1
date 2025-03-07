@@ -239,6 +239,9 @@ Actions Scene::LMBAction() {
 	//If we're not looking at a tile, then there is no action to perform
 	if (!curr_tile) return Actions::NOACTION;
 
+	if (curr_tile->terrain == Terrains::WATER)
+		cout << "Water" << endl;
+
 	//-Move
 	//	--When mouse is on a tile that all currently selected party members can reach
 	//For every currently selected party member, calculate a path to the current tile
@@ -249,7 +252,7 @@ Actions Scene::LMBAction() {
 			sf::Vector2i start = sf::Vector2i(p_m->GetPos().x / TS, p_m->GetPos().y / TS);
 			sf::Vector2i goal = sf::Vector2i(round(tile_pos.x), round(tile_pos.y));
 
-			queue<sf::Vector2i> path = tilemap.FindPath(start, goal);
+			queue<sf::Vector2i> path = tilemap.FindPath(start, goal, window);
 
 			cout << "Path found? " << !path.empty() << endl;
 
@@ -298,7 +301,7 @@ void Scene::Open(const bool o) {
 				break;
 			}
 			//Load that bitch
-			tilemap.load("assets/Sprites/Environments/TileMaps/" + json_file + ".json");
+			tilemap.load(json_file);
 
 			//Set the camera location and party members
 			switch (game.area) {

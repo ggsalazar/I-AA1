@@ -1,1 +1,3 @@
-Make sure Text (e.g. Main Menu text) is *actually* being centered
+When the fullscreen ui_elem initiates, it should check if we are fullscreen or not and alter sprite accordingly
+Make button click audio half as loud, currently fucking LOUD
+Portrait seems a touch small on laptop

@@ -67,6 +67,10 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
             l_str = "Create";
         break;
 
+        case UIElems::DEBUG_ROOM:
+            l_str = "Debug Room";
+        break;
+
         case UIElems::EQUIPMENT_CC:
             l_str = "Equipment";
         break;

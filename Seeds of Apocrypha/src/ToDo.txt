@@ -1,4 +1,6 @@
-Left Off: Need to calculate the cost to get to each node!, go through cgpt's code and refine it
+Left Off: A* not working correctly, need to see why and what to do to fix
+			-Water not properly being marked as unwalkable
+			-Make Default tileset
 
 Tutorial - Get party members moving, Change camera zoom, add in NPCs
 

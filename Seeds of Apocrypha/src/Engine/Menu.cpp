@@ -274,45 +274,52 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label) :
             sf::Vector2f btn_pos = { window.getSize().x * .5f, window.getSize().y * .4f };
             float b_y_buffer = window.getSize().y * .1f;
 
-            auto char_crea_btn = make_shared<Button>(
+            auto btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::CHARCREA, style_size });
+            ui_elems.insert(make_pair(UIElems::CHARCREA, btn));
             
             btn_pos.y += b_y_buffer;
-            auto load_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::LOAD, style_size });
+            ui_elems.insert(make_pair(UIElems::LOAD, btn));
             
             btn_pos.y += b_y_buffer;
-            auto tutorial_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::TUTORIAL, style_size });
+            ui_elems.insert(make_pair(UIElems::TUTORIAL, btn));
 
             btn_pos.y += b_y_buffer;
-            auto options_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::OPTIONS, style_size });
+            ui_elems.insert(make_pair(UIElems::OPTIONS, btn));
             
             btn_pos.y += b_y_buffer;
-            auto quit_btn = make_shared<Button>(
+            btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::QUIT, style_size });
+            ui_elems.insert(make_pair(UIElems::QUIT, btn));
 
-            ui_elems.insert(make_pair(UIElems::CHARCREA, char_crea_btn));
-            ui_elems.insert(make_pair(UIElems::LOAD, load_btn));
-            ui_elems.insert(make_pair(UIElems::TUTORIAL, tutorial_btn));
-            ui_elems.insert(make_pair(UIElems::OPTIONS, options_btn));
-            ui_elems.insert(make_pair(UIElems::QUIT, quit_btn));
+            btn = make_shared<Button>(
+                Engine{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Button", 93, 26 },
+                Animation::Transform{ {window.getSize().x*.75f, window.getSize().y*.5f }, ui_ori, ui_size},
+                UI::Style{ UIElems::DEBUG_ROOM, style_size });
+            ui_elems.insert(make_pair(UIElems::DEBUG_ROOM, btn));
+
             break;
         }
 

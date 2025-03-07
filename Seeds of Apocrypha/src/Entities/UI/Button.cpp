@@ -69,6 +69,12 @@ void Button::Released() {
             break;
         }
         
+        case UIElems::DEBUG_ROOM:
+            engine.scene->CreatePreGen(PreGens::DAKN);
+            engine.game.area = Areas::DEBUG;
+            engine.game.SetScene(Scenes::AREA);
+        break;
+
         case UIElems::RACE_B:
             //Close whatever other sub-menu is open - TO-DO
             //Open Race sub-menu

@@ -18,7 +18,7 @@ public:
     sf::RenderWindow window;
     sf::View camera;
     float cam_move_spd = 10.f;
-    bool cam_locked = true;
+    bool cam_locked = false;
     DJ dj;
     bool paused = false;
     bool game_over = false;

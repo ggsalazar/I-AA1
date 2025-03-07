@@ -22,6 +22,7 @@ public:
 
 	struct Node {
 		sf::Vector2i pos;
+		bool debug; //Activate if in the closed list
 		bool walkable;
 		//TO-DO: flyable, swimmable
 		uint cost = 1.f; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
@@ -32,7 +33,7 @@ public:
 	//Tiling
 	bool load(const string& json_file) {
 		//Load json file
-		ifstream file(json_file);
+		ifstream file("assets/Sprites/Environments/TileMaps/" + json_file + ".json");
 		if (!file.is_open()) {
 			cerr << "Failed to open " << json_file << " map!" << endl;
 			return false;
@@ -58,28 +59,31 @@ public:
 		}
 
 
-		//Load all of our textures only once
-		sf::Texture grass_tex("assets/Sprites/Environments/TileSets/Grass.png");
-		sf::Texture stone_tex("assets/Sprites/Environments/TileSets/Stone.png");
-		sf::Texture water_tex("assets/Sprites/Environments/TileSets/Water.png");
-		sf::Texture wood_tex("assets/Sprites/Environments/TileSets/Wood.png");
+		//Load all of our needed textures only once
+		//m_tilesets.emplace("Default", sf::Texture("assets/Sprites/Environments/TileSets/Default.png"));
+		if (json_file == "Tutton") {
+			m_tilesets.emplace("Grass", sf::Texture("assets/Sprites/Environments/TileSets/Grass.png"));
+			m_tilesets.emplace("Stone", sf::Texture("assets/Sprites/Environments/TileSets/Stone.png"));
+			m_tilesets.emplace("Water", sf::Texture("assets/Sprites/Environments/TileSets/Water.png"));
+			m_tilesets.emplace("Wood", sf::Texture("assets/Sprites/Environments/TileSets/Wood.png"));
+		}
 
 		//Populate vertex array
 		for (const auto& layer : tilemap_data["layers"]) {
-			for (unsigned int row = 0; row < map_size_t.x; ++row) {
-				for (unsigned int col = 0; col < map_size_t.y; ++col) {
+			for (uint row = 0; row < map_size_t.x; ++row) {
+				for (uint col = 0; col < map_size_t.y; ++col) {
 					//Get current tile ID number
-					const unsigned int global_tile_id = layer["data"][row + col * map_size_t.x];
+					const uint global_tile_id = layer["data"][row + col * map_size_t.x];
 
 					//Skip empty tiles
 					if (!global_tile_id) continue;
 
 					//Identify the correct tileset for this tile
 					sf::Texture* ts_tex = nullptr;
-					unsigned int local_tile_id = global_tile_id;
+					uint local_tile_id = global_tile_id;
 
 					for (const auto& tileset : tilemap_data["tilesets"]) {
-						const unsigned int firstgid = tileset["firstgid"];
+						const uint firstgid = tileset["firstgid"];
 						if (global_tile_id >= firstgid) {
 							ts_name = tileset["source"].get<string>();
 							//Ensure a tileset was found
@@ -94,18 +98,11 @@ public:
 						else break;
 					}
 
-					//Emplace our textures
-					if (m_tilesets.find(ts_name) == m_tilesets.end()) {
-						if (ts_name == "Grass")
-							m_tilesets.emplace(ts_name, grass_tex);
-						else if (ts_name == "Stone")
-							m_tilesets.emplace(ts_name, stone_tex);
-						else if (ts_name == "Water")
-							m_tilesets.emplace(ts_name, water_tex);
-						else if (ts_name == "Wood")
-							m_tilesets.emplace(ts_name, wood_tex);
-					}
-					ts_tex = &m_tilesets[ts_name];
+					//Assign the proper texture
+					if (m_tilesets.find(ts_name) != m_tilesets.end())
+						ts_tex = &m_tilesets[ts_name];
+					else
+						ts_tex = &m_tilesets["Default"];
 					ts_tex->setSmooth(false);
 
 					//Add the data of the current tile to the tile_data 2D vector
@@ -118,7 +115,6 @@ public:
 					//Get the elevation from the name of the layer (e.g. "Elev 0")
 					string elev = layer["name"]; //Have to remove it from the JSON first
 					tile_data[row][col].elevation = stof(elev.substr(5));
-
 
 					sf::Vector2u tileset_size = ts_tex->getSize();
 
@@ -148,11 +144,11 @@ public:
 		}
 
 		//Populate node grid
-		unsigned int x = map_size_t.x - 1;
-		unsigned int y = map_size_t.y - 1;
+		uint x = map_size_t.x - 1;
+		uint y = map_size_t.y - 1;
 		grid.resize(x, vector<Node>(y));
-		for (unsigned int row = 1; row < x-1; ++row) {
-			for (unsigned int col = 1; col < y-1; ++col) {
+		for (uint row = 1; row < x; ++row) {
+			for (uint col = 1; col < y; ++col) {
 				/*
 				sf::Vector2i pos;
 				bool walkable;
@@ -172,12 +168,11 @@ public:
 				if (tile_data[row - 1][col + 1].terrain == Terrains::ROUGH) ++num_rough;
 				if (tile_data[row + 1][col + 1].terrain == Terrains::ROUGH) ++num_rough;
 				uint node_cost = (num_rough > 2)+1;
-
-				grid[row - 1][col - 1] = { sf::Vector2i(row*16, col*16), node_walk, node_cost};
+				uint r = row - 1; uint c = col - 1;
+				grid[r][c] = { sf::Vector2i(r*16, c*16), false, node_walk, node_cost};
 					
 			}
 		}
-
 
 		map_loaded = true;
 		return true;
@@ -198,7 +193,7 @@ public:
 		return (dx + dy) + (1.414f - 2) * min(dx, dy);
 	}
 
-	queue<sf::Vector2i> FindPath(const sf::Vector2i& start, const sf::Vector2i& goal) {
+	queue<sf::Vector2i> FindPath(const sf::Vector2i& start, const sf::Vector2i& goal, sf::RenderWindow& window) {
 		//auto cmp = [](const Node* a, const Node* b) { return a->f > b->f; };
 		//queue<Node*, vector<Node*>> open_list;
 		queue<Node*> open_list;
@@ -211,18 +206,31 @@ public:
 		start_node->f = start_node->h;
 		open_list.push(start_node);
 
+
+		cout << "Player pos: " << sf::Vector2f(start.x * TS, start.y * TS) << endl;
+		cout << "Start node pos: " << start_node->pos << endl;
+
+		cout << "Goal pos: " << sf::Vector2f(goal.x * TS, goal.y * TS) << endl;
+		Node* goal_node = &grid[goal.x][goal.y];
+		cout << "Goal node pos: " << goal_node->pos << endl;
+
+
 		// Define possible movements           N        NE       E      SE      S        SW       W        NW
 		const sf::Vector2i directions[] = { {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1} };
-
+		
 		uint nodes_runthrough = 0;
 
 		while (!open_list.empty()) {
 			Node* current = open_list.front();
 			open_list.pop();
 
-			cout << "Current node #: " << nodes_runthrough++ << endl;
-			cout << "Current node pos: " << current->pos << endl;
-
+			nodes_runthrough++;
+			/*if (nodes_runthrough % 1000 == 0) {
+				cout << "Current node pos: " << current->pos << endl;
+				cout << "Current node #: " << nodes_runthrough << endl;
+				
+				cout << endl;
+			}*/
 			//Path found
 			if (current->pos == goal) {
 
@@ -242,13 +250,16 @@ public:
 
 			//Add the current node position to the closed list
 			closed_list[current] = true;
+			current->debug = true;
+
 
 			for (const auto& dir : directions) {
 				sf::Vector2i neighbor_pos = current->pos + dir*(int)TS;
 				//Out of bounds
 				if (neighbor_pos.x < 0 || neighbor_pos.y < 0 || neighbor_pos.x >= map_size_p.x || neighbor_pos.y >= map_size_p.y)
 					continue;
-
+				sf::Vector2i n_grid_pos = { neighbor_pos.x / (int)TS, neighbor_pos.y / (int)TS };
+				//cout << "Neighbor grid pos: " << n_grid_pos << endl;
 				Node* neighbor = &grid[neighbor_pos.x/(int)TS][neighbor_pos.y/(int)TS];
 				//Unwalkable or already processed
 				if (!neighbor->walkable || closed_list[neighbor])
@@ -318,56 +329,6 @@ public:
 				}
 			}
 		}
-
-		//ORTHO CGPT CODE
-		std::priority_queue<Node*, std::vector<Node*>, decltype(cmp)> open_list(cmp);
-		std::unordered_map<sf::Vector2i, bool, Vector2Hash> closed_list;  // Use a hash function for sf::Vector2i keys
-
-		// Initialize start node
-		Node* start_node = &grid[start.x][start.y];
-		start_node->g = 0;
-		start_node->h = Heuristic(start, goal);
-		start_node->f = start_node->h;
-		open_list.push(start_node);
-
-		// Define possible movements
-		const sf::Vector2i directions[] = { {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1} }; 
-
-		while (!open_list.empty()) {
-			Node* current = open_list.top();
-			open_list.pop();
-
-			if (current->position == goal) {  // Path found
-				std::vector<sf::Vector2i> path;
-				while (current) {
-					path.push_back(current->position);
-					current = current->parent;
-				}
-				std::reverse(path.begin(), path.end());
-				return path;
-			}
-
-			closed_list[current->position] = true;
-
-			for (const auto& dir : directions) {
-				sf::Vector2i neighbor_pos = current->position + dir;
-				if (neighbor_pos.x < 0 || neighbor_pos.y < 0 || neighbor_pos.x >= grid.size() || neighbor_pos.y >= grid[0].size())
-					continue;  // Out of bounds
-
-				Node* neighbor = &grid[neighbor_pos.x][neighbor_pos.y];
-				if (!neighbor->walkable || closed_list[neighbor_pos])
-					continue;  // Unwalkable or already processed
-
-				float tentative_g = current->g + neighbor->cost;
-				if (tentative_g < neighbor->g || neighbor->g == 0) {  // Better path found
-					neighbor->parent = current;
-					neighbor->g = tentative_g;
-					neighbor->h = Heuristic(neighbor_pos, goal);
-					neighbor->f = neighbor->g + neighbor->h;
-					open_list.push(neighbor);
-				}
-			}
-		}
 		*/
 
 
@@ -390,27 +351,30 @@ private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
 		//Apply the transform
 		states.transform *= getTransform();
-
+		cout << "Tilemap.h draw L 354" << endl;
 		//Iterate over each tileset and draw only the vertices using that texture
 		for (const auto& [ts_name, ts_tex] : m_tilesets) {
+			cout << "Inside for loop" << endl;
 			states.texture = &ts_tex;
 
 			//Find which vertices belong to this tileset
 			target.draw(m_vertices_by_tileset.at(ts_name), states);
 		}
-
+		cout << "Tilemap.h draw L362" << endl;
 
 		//Draw the nodes for testing reasons
 		//NOTE: THIS IS GOING TO RUN LIKE ASS
 		/*
-		for (unsigned int x = 0; x < grid.size(); ++x) {
-			for (unsigned int y = 0; y < grid[x].size(); ++y) {
-				sf::RectangleShape node_box;
-				node_box.setSize({ 4, 4 });
-				node_box.setFillColor(sf::Color(255, 0, 0, 255));
-				node_box.setPosition(sf::Vector2f(grid[x][y].pos.x - 2, grid[x][y].pos.y - 2 ));
+		for (uint x = 0; x < grid.size(); ++x) {
+			for (uint y = 0; y < grid[x].size(); ++y) {
+				if (grid[x][y].walkable) {
+					sf::RectangleShape node_box;
+					node_box.setSize({ 4, 4 });
+					node_box.setFillColor(sf::Color(255, 0, 0, 255));
+					node_box.setPosition(sf::Vector2f(grid[x][y].pos.x - 2, grid[x][y].pos.y - 2));
 
-				target.draw(node_box, states);
+					target.draw(node_box, states);
+				}
 			}
 		}
 		*/

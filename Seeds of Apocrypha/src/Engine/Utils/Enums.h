@@ -145,6 +145,7 @@ enum class Weathers {
 //Game details
 enum class Areas {
 	DEFAULT,
+	DEBUG,
 	TUTTON
 };
 
@@ -201,6 +202,7 @@ enum class UIElems {
 	CHARCREA,
 	CLOSE,
 	CREATE,
+	DEBUG_ROOM,
 	EQUIPMENT_CC,
 	FULLSCREEN,
 	LOAD,
