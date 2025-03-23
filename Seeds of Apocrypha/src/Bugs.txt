@@ -1,3 +1,4 @@
-When the fullscreen ui_elem initiates, it should check if we are fullscreen or not and alter sprite accordingly
+Button labels are *slightly* off-center
+Yes/No buttons not removing elements like they should
 Make button click audio half as loud, currently fucking LOUD
 Portrait seems a touch small on laptop

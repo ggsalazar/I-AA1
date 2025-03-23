@@ -1,7 +1,8 @@
 #include "Slider.h"
 
-Slider::Slider(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
-    UI(s, m, a_i, t, style, init_dfc),
+Slider::Slider(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style,
+    const uint init_ui_layer, const int init_dfc) :
+    UI(e, m, a_i, t, style, init_ui_layer, init_dfc),
     knob_val(engine.game.default_font), knob_tex("assets/Sprites/UI/SliderKnob.png"), knob_spr(knob_tex) {
 
     label_offset = engine.game.GetResScale()*10;

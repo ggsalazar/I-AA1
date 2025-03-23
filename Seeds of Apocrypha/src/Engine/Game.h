@@ -22,6 +22,7 @@ public:
     DJ dj;
     bool paused = false;
     bool game_over = false;
+    uint curr_ui_layer = 0;
     sf::Font default_font;
     bool debug = false;
     unordered_map<Actions, std::unique_ptr<sf::Cursor>> cursors;

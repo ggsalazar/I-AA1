@@ -60,18 +60,20 @@ void PartyMember::Update() {
 
 void PartyMember::Draw() {
 	Creature::Draw();
-	//Party members draw their portraits and health bars at all times
-	//Draw the highlight if selected first, then the portrait
-	if (selected)
-		engine.window.draw(por_highlight);
-	engine.window.draw(portrait);
-	engine.window.draw(nameplate);
+	if (engine.scene->label == Scenes::AREA) {
+		//Party members draw their portraits and health bars at all times
+		//Draw the highlight if selected first, then the portrait
+		if (selected)
+			engine.window.draw(por_highlight);
+		engine.window.draw(portrait);
+		engine.window.draw(nameplate);
 
-	//Draw the missing health bar first, then the remaining health bar over it
-	engine.window.draw(mssng_hlth_bar);
-	engine.window.draw(hlth_bar);
+		//Draw the missing health bar first, then the remaining health bar over it
+		engine.window.draw(mssng_hlth_bar);
+		engine.window.draw(hlth_bar);
 
-	//Draw our remaining health numerically last
-	engine.window.draw(hlth_txt);
+		//Draw our remaining health numerically last
+		engine.window.draw(hlth_txt);
+	}
 }
 

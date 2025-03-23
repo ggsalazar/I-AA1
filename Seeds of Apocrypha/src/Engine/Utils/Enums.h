@@ -194,18 +194,21 @@ enum class Menus {
 
 enum class UIElems {
 	DEFAULT,
+	CONFIRM, //For Confirm Boxes
 	//Buttons
 	APPLY,
 	AS,
 	BACK,
 	BACKGROUND_B,
 	CHARCREA,
+	CLASS_B,
 	CLOSE,
 	CREATE,
 	DEBUG_ROOM,
 	EQUIPMENT_CC,
 	FULLSCREEN,
 	LOAD,
+	NO,
 	OPTIONS,
 	QUIT,
 	RACE_B,
@@ -213,6 +216,7 @@ enum class UIElems {
 	SKILLS,
 	TITLE,
 	TUTORIAL,
+	YES,
 	//Pickers
 	ASSTR,
 	ASCON,
@@ -222,7 +226,7 @@ enum class UIElems {
 	ASWIS,
 	ASCHA,
 	BACKGROUND_P,
-	CLASS,
+	CLASS_P,
 	RACE_P,
 	RESOLUTION,
 	SEX,

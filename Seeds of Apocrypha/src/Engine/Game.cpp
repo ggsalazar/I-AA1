@@ -7,12 +7,12 @@
 Game::Game(const char* title, uint init_fps) :
             fps(init_fps), debug_timer(fps) {
     //Initialize the window
-    float r_scalar = (float)SCREENSIZE().x / (float)MINRES.x;
-    SetResolution(floor(r_scalar));
-    resolution = sf::Vector2u(floor(r_scalar) * sf::Vector2f(MINRES));
+    float r_scalar = floor((float)SCREENSIZE().x / (float)MINRES.x);
+    SetResolution(r_scalar);
+    resolution = sf::Vector2u(r_scalar * sf::Vector2f(MINRES));
 
     //Initialize the camera
-    camera.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
+    camera.setSize(sf::Vector2f(window.getSize()));
     //View is set in Scene.cpp
 
     //Initialize the fonts
@@ -177,6 +177,8 @@ void Game::SetResolution(float res_scalar) {
     else
         window.create(sf::VideoMode(resolution), "Seeds of Apocrypha", sf::Style::Close);
     window.setFramerateLimit(fps);
+    camera.setSize(sf::Vector2f(window.getSize()));
+    camera.setCenter(sf::Vector2f(window.getSize()) * .5f);
 
     if (auto scene = active_scene.lock())
         scene->ResizeMenus();
@@ -195,7 +197,9 @@ void Game::SetResolution(sf::Vector2u n_r) {
         else
             window.create(sf::VideoMode(resolution), "Seeds of Apocrypha", sf::Style::Close);
         window.setFramerateLimit(fps);
-
+        camera.setSize(sf::Vector2f(window.getSize()));
+        camera.setCenter(sf::Vector2f(window.getSize()) * .5f);
+     
         if (auto scene = active_scene.lock())
             scene->ResizeMenus();
     }

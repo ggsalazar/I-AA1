@@ -144,6 +144,7 @@
     <ClCompile Include="src\Entities\Creatures\Creature.cpp" />
     <ClCompile Include="src\Entities\Creatures\PartyMember.cpp" />
     <ClCompile Include="src\Entities\UI\Button.cpp" />
+    <ClCompile Include="src\Entities\UI\Confirm.cpp" />
     <ClCompile Include="src\Entities\UI\Picker.cpp" />
     <ClCompile Include="src\Entities\UI\Slider.cpp" />
     <ClCompile Include="src\Entities\UI\Toggle.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\Entities\Items\Item.h" />
     <ClInclude Include="src\Entities\Tooltip.h" />
     <ClInclude Include="src\Entities\UI\Button.h" />
+    <ClInclude Include="src\Entities\UI\Confirm.h" />
     <ClInclude Include="src\Entities\UI\Picker.h" />
     <ClInclude Include="src\Entities\UI\Slider.h" />
     <ClInclude Include="src\Entities\UI\Toggle.h" />

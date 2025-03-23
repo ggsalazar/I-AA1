@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "Confirm.h"
 
 void Button::Draw() {
     if (active and Selected(sf::Vector2i(MOUSEPOS_W_E)))
@@ -28,9 +29,9 @@ void Button::Released() {
     activated = true;
     switch (elem) {
         case UIElems::APPLY:
-            if (menu.label == Menus::OPTIONS) {
+            if (menu.GetLabel() == Menus::OPTIONS) {
                 //Set the game's current resolution to the scale determined by the resolution picker OR set it to fullscreen if that toggle is clicked
-                if (menu.GetUIElemStatus(UIElems::FULLSCREEN) == "True")
+                if (menu.GetUIElemStatus(UIElems::FULLSCREEN) == "True" and engine.game.GetResolution().x != SCREENSIZE().x)
                     engine.game.SetResolution(SCREENSIZE());
                 else {
                     uint new_scale = stoi(menu.GetUIElemStatus(UIElems::RESOLUTION));
@@ -49,8 +50,20 @@ void Button::Released() {
         
         case UIElems::BACK:
             //If creating a character, ask to confirm and if yes, wipe party creation
-            menu.Open(false);
-            engine.scene->OpenMenu(Menus::MAIN);
+            if (menu.GetLabel() == Menus::CHARCREA) {
+                auto c_box = make_shared<Confirm>(
+                    engine, menu,
+                    AnimInfo{ "UI/ConfirmBox", 200, 100 },
+                    Animation::Transform{ engine.game.camera.getCenter(), {.5f, .5f}, {engine.game.GetResScale(), engine.game.GetResScale()}},
+                    UI::Style{ UIElems::CONFIRM, engine.game.GetResScale()*16},
+                    "Exit Character Creation?", 1, -1);
+                menu.AddUIElem(c_box); //Also adds to the current scene
+                engine.game.curr_ui_layer = 1;
+            }
+            else {
+                menu.Open(false);
+                engine.scene->OpenMenu(Menus::MAIN);
+            }
         break;
 
         case UIElems::CHARCREA:
@@ -75,10 +88,11 @@ void Button::Released() {
             engine.game.SetScene(Scenes::AREA);
         break;
 
-        case UIElems::RACE_B:
-            //Close whatever other sub-menu is open - TO-DO
-            //Open Race sub-menu
-            menu.OpenSM(Menus::CCRACE);
+        case UIElems::NO:
+            --engine.game.curr_ui_layer;
+            menu.RemoveUIElem(UIElems::CONFIRM);
+            menu.RemoveUIElem(UIElems::YES);
+            alive = false;
         break;
 
         case UIElems::OPTIONS:
@@ -88,6 +102,12 @@ void Button::Released() {
 
         case UIElems::QUIT:
             engine.window.close();
+        break;
+
+        case UIElems::RACE_B:
+            //Close whatever other sub-menu is open - TO-DO
+            //Open Race sub-menu
+            menu.OpenSM(Menus::CCRACE);
         break;
 
         case UIElems::RESUME:
@@ -105,6 +125,20 @@ void Button::Released() {
             engine.scene->CreatePreGen(PreGens::DAKN);
             engine.game.area = Areas::TUTTON;
             engine.game.SetScene(Scenes::AREA);
+        break;
+
+        case UIElems::YES:
+            if (menu.GetLabel() == Menus::CHARCREA) {
+                //Back to layer 0
+                --engine.game.curr_ui_layer;
+                //Double-check to make sure this *destroys* confirm box and y/n buttons!!!!!!!! TO-DO
+                menu.RemoveUIElem(UIElems::CONFIRM);
+                menu.RemoveUIElem(UIElems::NO);
+                alive = false;
+                menu.Open(false);
+                engine.scene->RemoveEntity("Default");
+                engine.scene->OpenMenu(Menus::MAIN);
+            }
         break;
     }
 }

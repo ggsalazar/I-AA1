@@ -12,8 +12,8 @@ using json = nlohmann::json;
 using namespace std;
 
 struct Tile {
-	Terrains terrain;
-	float elevation;
+	Terrains terrain = Terrains::NORMAL;
+	float elevation = 0.f;
 };
 
 
@@ -21,9 +21,9 @@ class TileMap : public sf::Drawable, public sf::Transformable {
 public:
 
 	struct Node {
-		sf::Vector2i pos;
-		bool debug; //Activate if in the closed list
-		bool walkable;
+		sf::Vector2i pos = { 0, 0 };
+		bool debug = false; //Activate if in the closed list
+		bool walkable = false;
 		//TO-DO: flyable, swimmable
 		uint cost = 1.f; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
 		float g = 0.f, h = 0.f, f = 0.f; //For A* calculations
@@ -60,7 +60,7 @@ public:
 
 
 		//Load all of our needed textures only once
-		//m_tilesets.emplace("Default", sf::Texture("assets/Sprites/Environments/TileSets/Default.png"));
+		m_tilesets.emplace("Default", sf::Texture("assets/Sprites/Environments/TileSets/Default.png"));
 		if (json_file == "Tutton") {
 			m_tilesets.emplace("Grass", sf::Texture("assets/Sprites/Environments/TileSets/Grass.png"));
 			m_tilesets.emplace("Stone", sf::Texture("assets/Sprites/Environments/TileSets/Stone.png"));

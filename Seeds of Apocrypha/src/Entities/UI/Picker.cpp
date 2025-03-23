@@ -1,7 +1,8 @@
 #include "Picker.h"
 
-Picker::Picker(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
-    UI(s, m, a_i, t, style, init_dfc), picking(engine.game.default_font) {
+Picker::Picker(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style,
+    const uint init_ui_layer, const int init_dfc) :
+    UI(e, m, a_i, t, style, init_ui_layer, init_dfc), picking(engine.game.default_font) {
 
     label_offset = engine.game.GetResScale()*8;
     label.setPosition({ pos.x, pos.y - label_offset });
@@ -44,7 +45,7 @@ Picker::Picker(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::T
             option_picked = options.end()-1;
         break;
 
-        case UIElems::CLASS:
+        case UIElems::CLASS_P:
             options.push_back("Arcanist");
             options.push_back("Rogue");
             options.push_back("Warrior");
@@ -196,7 +197,7 @@ void Picker::LeftReleased() {
     string p = picking.getString();
     switch (elem) {
         case UIElems::BACKGROUND_P:
-        case UIElems::CLASS:
+        case UIElems::CLASS_P:
         case UIElems::RACE_P:
             if (option_picked == options.begin())
                 option_picked = options.end()-1;
@@ -284,7 +285,7 @@ void Picker::RightReleased() {
     string p = picking.getString();
     switch (elem) {
         case UIElems::BACKGROUND_P:
-        case UIElems::CLASS:
+        case UIElems::CLASS_P:
         case UIElems::RACE_P:
             if (option_picked == options.end()-1)
                 option_picked = options.begin();

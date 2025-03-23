@@ -43,6 +43,8 @@ public:
     
     //Entities
     void AddEntity(shared_ptr<Entity> e) { entities.push_back(e); }
+    void RemoveEntity(shared_ptr<Entity> e);
+    void RemoveEntity(const string ent_name);
     void SetEntitySFXVolume(const float new_volume);
 
     //Party Members
@@ -65,7 +67,7 @@ private:
 
     sf::RectangleShape selec_box;
     sf::FloatRect selec_area;
-    sf::Vector2f selec_wh = { 0,0 };
+    sf::Vector2f selec_wh = { 0, 0 };
 
     //Game engine stuff
     Game& game;

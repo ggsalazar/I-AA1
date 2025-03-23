@@ -239,8 +239,15 @@ Actions Scene::LMBAction() {
 	//If we're not looking at a tile, then there is no action to perform
 	if (!curr_tile) return Actions::NOACTION;
 
-	if (curr_tile->terrain == Terrains::WATER)
+
+
+
+	if (curr_tile->terrain == Terrains::WATER) ///DEBUG---------------
 		cout << "Water" << endl;
+
+
+
+
 
 	//-Move
 	//	--When mouse is on a tile that all currently selected party members can reach
@@ -296,6 +303,10 @@ void Scene::Open(const bool o) {
 			//Import the appropriate tilemap
 			string json_file = "DEFAULT";
 			switch (game.area) {
+				case Areas::DEBUG:
+					json_file = "Debug_Room";
+				break;
+
 				case Areas::TUTTON:
 					json_file = "Tutton";
 				break;
@@ -335,7 +346,7 @@ void Scene::Open(const bool o) {
 		for (const auto& m : menus)
 			m.second->Open(false);
 		menus.clear();
-		//Deletes all the entities in the scene that don't belong to any menu
+		//Deletes all the entities in the scene
 		entities.clear();
 		party_mems.clear();
 	}
@@ -366,6 +377,23 @@ bool Scene::MenuOpen(Menus menu) {
 void Scene::ResizeMenus() {
 	for (const auto& m : menus)
 		m.second->Resize();
+}
+
+void Scene::RemoveEntity(shared_ptr<Entity> e) {
+	auto dead_e = e.get();
+	for (const auto& ent : entities) {
+		if (ent.get() == dead_e)
+			ent.get()->alive = false;
+	}
+}
+
+void Scene::RemoveEntity(const string ent_name) {
+	for (const auto& e : entities) {
+		if (auto c = dynamic_cast<Creature*>(e.get())) {
+			if (c->GetName() == ent_name)
+				c->alive = false;
+		}
+	}
 }
 
 void Scene::SetEntitySFXVolume(const float new_volume) {

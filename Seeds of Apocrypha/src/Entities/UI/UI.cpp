@@ -1,7 +1,8 @@
 #include "UI.h"
 
-UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style, const int init_dfc) :
-	Entity(e, a_i, t, init_dfc), menu(m), elem(style.elem), label(engine.game.default_font) {
+UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style,
+    const uint init_ui_layer, const int init_dfc) :
+	Entity(e, a_i, t, init_dfc), menu(m), elem(style.elem), ui_layer(init_ui_layer), label(engine.game.default_font) {
     
     //Label
     string l_str = "DEFAULT";
@@ -55,7 +56,11 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
             l_str = "New Adventure";
         break;
 
-        case UIElems::CLASS:
+        case UIElems::CLASS_B:
+            l_str = "Class";
+        break;
+
+        case UIElems::CLASS_P:
             l_str = "Class";
         break;
 
@@ -87,6 +92,10 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
 
         case UIElems::MUSIC_V:
             l_str = "Music Volume";
+        break;
+
+        case UIElems::NO:
+            l_str = "No";
         break;
 
         case UIElems::OPTIONS:
@@ -135,6 +144,10 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
 
         case UIElems::TUTORIAL:
             l_str = "Tutorial";
+        break;
+
+        case UIElems::YES:
+            l_str = "Yes";
         break;
     }
     Text::Init(label, engine.game.default_font, style.font_size, pos, l_str);

@@ -3,8 +3,9 @@
 
 class Button : public UI {
 public:
-    Button(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {}, const int init_dfc=0) :
-        UI(s, m, a_i, t, style, init_dfc) {
+    Button(const Engine& s, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {},
+        const uint init_ui_layer = 0, const int init_dfc=0) :
+        UI(s, m, a_i, t, style, init_ui_layer, init_dfc) {
 
         label_offset = engine.game.GetResScale();
         label.setPosition({ pos.x, pos.y - label_offset });

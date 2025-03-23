@@ -15,10 +15,7 @@ class UI;
 
 class Menu {
 public:
-    //Variables
-    Menus label;
-
-    Menu(Game& g, sf::RenderWindow& w, Scene& s, Menus init_label);
+    Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label);
 
     //Engine
     void Update();
@@ -26,19 +23,23 @@ public:
 
     //Self and Sub-Menus
     void Open(const bool o = true);
+    void Resize();
+    Menus GetLabel() const { return label; }
     bool GetOpen() const { return open; }
     void OpenSM(const Menus s_m);
 
     //UI Elements
-    void Resize();
-    //LastSelected();
+    void AddUIElem(const shared_ptr<UI> new_elem);
+    void RemoveUIElem(const UIElems ui);
     bool CheckUIElem(const UIElems ui);
     bool GetUIElemActive(const UIElems ui);
     void SetUIElemActive(const UIElems ui, const bool a = true);
     void SetUIElemStatus(const UIElems ui, const string new_status);
     string GetUIElemStatus(const UIElems ui);
 
-private:
+protected:
+    Menus label;
+
     sf::Text menu_text;
     sf::Text sup_text; //Supplementary text
     bool open = false;
