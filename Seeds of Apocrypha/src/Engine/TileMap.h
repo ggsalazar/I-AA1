@@ -128,9 +128,9 @@ public:
 					sf::Vector2u tileset_size = ts_tex->getSize();
 
 					//Find the tile's position in the tileset texture
-					const int tiles_per_row = tileset_size.x / TS; //Equivalent to tileset_size.x / 16
-					const int tu = local_tile_id & (tiles_per_row - 1); //Equivalent to local_tile_id % tiles_per_row
-					const int tv = local_tile_id >> 5; //Equivalent to local_tile_id / tiles_per_row
+					const int tiles_per_row = tileset_size.x / TS;
+					const int tu = local_tile_id & (tiles_per_row - 1);
+					const int tv = local_tile_id / tiles_per_row;
 
 					//Assign vertices for rendering
 					if (m_vertices_by_tileset.count(ts_name) == 0) {

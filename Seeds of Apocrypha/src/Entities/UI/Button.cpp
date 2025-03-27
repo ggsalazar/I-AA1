@@ -7,18 +7,27 @@ void Button::Draw() {
 
     Entity::Draw();
     engine.window.draw(label);
+    
+    
+    //Debug stuff
+    /*
+    engine.window.draw(pos_debug);
+    engine.window.draw(label_debug);
+    */
 }
 
 void Button::Move(sf::Vector2f offset) {
     Entity::Move(offset);
     label_offset = engine.game.GetResScale();
     label.setPosition({ pos.x, pos.y - label_offset });
+    label_debug.setPosition({ label.getPosition().x - 2, label.getPosition().y - 2 });
 }
 
 void Button::MoveTo(sf::Vector2f new_pos) {
     Entity::MoveTo(new_pos);
     label_offset = engine.game.GetResScale();
     label.setPosition({ pos.x, pos.y - label_offset });
+    label_debug.setPosition({ label.getPosition().x - 2, label.getPosition().y - 2 });
 }
 
 void Button::Pressed() {

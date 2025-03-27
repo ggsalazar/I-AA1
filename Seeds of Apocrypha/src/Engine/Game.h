@@ -15,6 +15,10 @@ class Scene;
 
 class Game {
 public:
+
+    sf::RectangleShape debug_box;
+
+
     sf::RenderWindow window;
     sf::View camera;
     float cam_move_spd = 10.f;

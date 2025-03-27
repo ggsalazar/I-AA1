@@ -6,7 +6,7 @@ Entity::Entity(const Engine& e, const AnimInfo& a_i, const Animation::Transform&
 
     SetBBox();
     bbox_debug.setFillColor(sf::Color(0, 255, 0, 127)); //Green, 50% opacity
-    pos_debug.setSize(sf::Vector2f(engine.game.GetResScale(), engine.game.GetResScale()));
+    pos_debug.setSize({ 4, 4 });
     pos_debug.setFillColor(sf::Color(255, 0, 0, 127)); //Red, 50% opacity
 }
 
@@ -23,7 +23,7 @@ void Entity::MoveTo(sf::Vector2f new_pos) {
 }
 
 void Entity::SetBBox() {
-    pos_debug.setPosition(sf::Vector2f(pos.x - engine.game.GetResScale() * .5, pos.y - engine.game.GetResScale() * .5));
+    pos_debug.setPosition(sf::Vector2f(pos.x - 2, pos.y - 2));
 
     w = anim->GetSpriteW() * anim->sprite.getScale().x;
     h = anim->GetSpriteH() * anim->sprite.getScale().y;

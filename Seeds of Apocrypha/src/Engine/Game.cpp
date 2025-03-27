@@ -50,6 +50,19 @@ Game::Game(const char* title, uint init_fps) :
     
     cursor = cursors[Actions::DEFAULT].get();
     window.setMouseCursor(*cursor);
+
+
+
+
+
+
+
+    //Init debug line
+    debug_box.setSize(sf::Vector2f(2, resolution.y));
+    debug_box.setPosition(sf::Vector2f(resolution.x * .5, 0));
+    debug_box.setFillColor(sf::Color(255, 255, 0, 127));
+
+
 }
 
 //Handle SFML events
@@ -119,6 +132,7 @@ void Game::Render() {
         window.draw(cam_pos);
     }
 
+    //window.draw(debug_box);
 
     window.display();
 }
@@ -182,6 +196,11 @@ void Game::SetResolution(float res_scalar) {
 
     if (auto scene = active_scene.lock())
         scene->ResizeMenus();
+
+    //Debug stuff
+    debug_box.setSize(sf::Vector2f(2, resolution.y));
+    debug_box.setPosition(sf::Vector2f(resolution.x * .5, 0));
+    debug_box.setFillColor(sf::Color(255, 255, 0, 127));
 }
 
 void Game::SetResolution(sf::Vector2u n_r) {
@@ -203,4 +222,9 @@ void Game::SetResolution(sf::Vector2u n_r) {
         if (auto scene = active_scene.lock())
             scene->ResizeMenus();
     }
+
+    //Debug stuff
+    debug_box.setSize(sf::Vector2f(2, resolution.y));
+    debug_box.setPosition(sf::Vector2f(resolution.x * .5, 0));
+    debug_box.setFillColor(sf::Color(255, 255, 0, 127));
 }

@@ -152,6 +152,7 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
     }
     Text::Init(label, engine.game.default_font, style.font_size, pos, l_str);
 
+
     //Sound
     {
         if (!sb.loadFromFile("assets/SFX/ButtonClick.mp3")) {
@@ -161,6 +162,12 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
         sound.setBuffer(sb);
         sound.setVolume(engine.game.GetSFXVolume());
     }
+
+
+    label_debug.setSize({ 4, 4 });
+    label_debug.setPosition({ label.getPosition().x - 2, label.getPosition().y - 2 });
+    label_debug.setFillColor(sf::Color(0, 0, 255, 127)); //Blue, 50% opacity
+
 }
 
 void UI::GetInput() {

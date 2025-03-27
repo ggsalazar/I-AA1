@@ -22,14 +22,20 @@ void Text::SetStr(sf::Text& text, std::string str, const float max_width) {
     while (parser >> word) {
         word_text.setString(word);
 
+        if (!line_buffer.empty()) {
+            line_text.setString(line_buffer);
+            line_buffer += " ";
+        }
+
         if (line_text.getLocalBounds().size.x + word_text.getLocalBounds().size.x > max_width) {
+            //Remove the trailing space
+            line_buffer.pop_back();
             buffer << line_buffer << "\n";
-            line_buffer = word + " ";
+            line_buffer = word;
         }
         else
-            line_buffer += word + " ";
+            line_buffer += word;
 
-        line_text.setString(line_buffer);
     }
     //Append the last line
     buffer << line_buffer;

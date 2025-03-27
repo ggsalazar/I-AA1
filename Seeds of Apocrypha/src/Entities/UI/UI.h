@@ -27,6 +27,9 @@ public:
     UIElems GetElem() const { return elem; }
 
 protected:
+
+    sf::RectangleShape label_debug;
+
     //Variables
     int label_offset = 0;
     UIElems elem = UIElems::DEFAULT;

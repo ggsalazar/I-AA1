@@ -3,11 +3,7 @@ Left Off: A* not working correctly, need to see why and what to do to fix
 
 Tutorial - Get party members moving, Change camera zoom, add in NPCs
 
-General - Hot reloading
-		 -Draw ConfirmBox placeholder
-		 -Look up how initializer lists work (always have to call parent class first?)
-		 -Draw a map of all includes and make sure not doing more includes than necessary
-		 -Ask CGPT if including the same stuff over and over again is really necessary
+General - Look up how initializer lists work (always have to call parent class first?)
 		 -Visual signifiers to show when an attack/action is at (dis)adv
 		 -May want to consider going back to 32x32 tiles for performance reasons
 
