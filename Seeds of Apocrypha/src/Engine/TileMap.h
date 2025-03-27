@@ -158,11 +158,9 @@ public:
 		}
 
 		//Populate node grid
-		uint x = map_size_t.x - 1;
-		uint y = map_size_t.y - 1;
-		grid.resize(x, vector<Node>(y));
-		for (uint row = 1; row < x; ++row) {
-			for (uint col = 1; col < y; ++col) {
+		grid.resize(map_size_t.x, vector<Node>(map_size_t.y));
+		for (uint row = 1; row < map_size_t.x; ++row) {
+			for (uint col = 1; col < map_size_t.y; ++col) {
 				/*
 				sf::Vector2i pos;
 				bool walkable;
@@ -173,17 +171,16 @@ public:
 				*/
 
 				bool node_walk = tile_data[row - 1][col - 1].terrain != Terrains::WATER or
-								tile_data[row + 1][col - 1].terrain != Terrains::WATER or
-								tile_data[row - 1][col + 1].terrain != Terrains::WATER or
-								tile_data[row + 1][col + 1].terrain != Terrains::WATER;
+								tile_data[row][col - 1].terrain != Terrains::WATER or
+								tile_data[row - 1][col].terrain != Terrains::WATER or
+								tile_data[row][col].terrain != Terrains::WATER;
 				uint num_rough = 0;
 				if (tile_data[row - 1][col - 1].terrain == Terrains::ROUGH) ++num_rough;
-				if (tile_data[row + 1][col - 1].terrain == Terrains::ROUGH) ++num_rough;
-				if (tile_data[row - 1][col + 1].terrain == Terrains::ROUGH) ++num_rough;
-				if (tile_data[row + 1][col + 1].terrain == Terrains::ROUGH) ++num_rough;
+				if (tile_data[row][col - 1].terrain == Terrains::ROUGH) ++num_rough;
+				if (tile_data[row - 1][col].terrain == Terrains::ROUGH) ++num_rough;
+				if (tile_data[row][col].terrain == Terrains::ROUGH) ++num_rough;
 				uint node_cost = (num_rough > 2)+1;
-				uint r = row - 1; uint c = col - 1;
-				grid[r][c] = { sf::Vector2i(r*16, c*16), false, node_walk, node_cost};
+				grid[row-1][col-1] = { sf::Vector2i(row*16, col*16), false, node_walk, node_cost};
 					
 			}
 		}
@@ -373,13 +370,10 @@ private:
 			// Check if ts_name exists in m_vertices_by_tileset before accessing it
 			if (m_vertices_by_tileset.count(ts_name) > 0)
 				target.draw(m_vertices_by_tileset.at(ts_name), states);
-			else if (ts_name != "Default")
-				cerr << "Warning: Tileset '" << ts_name << "' has no associated vertices!" << endl;
 		}
 
 		//Draw the nodes for testing reasons
 		//NOTE: THIS IS GOING TO RUN LIKE ASS
-		/*
 		for (uint x = 0; x < grid.size(); ++x) {
 			for (uint y = 0; y < grid[x].size(); ++y) {
 				if (grid[x][y].walkable) {
@@ -390,6 +384,20 @@ private:
 
 					target.draw(node_box, states);
 				}
+			}
+		}
+
+		/* Draw a grid of the tile data (THIS IS ALSO GOING TO RUN LIKE ASS)
+		for (uint x = 0; x < tile_data.size(); ++x) {
+			for (uint y = 0; y < tile_data[x].size(); ++y) {
+				sf::RectangleShape tile_box;
+				tile_box.setSize({ 16, 16 });
+				tile_box.setFillColor(sf::Color(255, 255, 255, 255*.6)); //White, ~2/3 opacity
+				if (tile_data[x][y].terrain == Terrains::WATER)
+					tile_box.setFillColor(sf::Color(0, 0, 255, 255 * .7)); //Blue, ~3/4 opacity
+				tile_box.setPosition(sf::Vector2f(x*16, y*16));
+
+				target.draw(tile_box, states);
 			}
 		}
 		*/

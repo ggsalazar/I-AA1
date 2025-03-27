@@ -1,3 +1,2 @@
-Button labels are *slightly* off-center
 Yes/No buttons not removing elements like they should in character creation
 Portrait seems a touch small on laptop

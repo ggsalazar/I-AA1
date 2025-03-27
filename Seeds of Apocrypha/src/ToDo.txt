@@ -1,10 +1,8 @@
 Left Off: A* not working correctly, need to see why and what to do to fix
-			-Water not properly being marked as unwalkable
 
 Tutorial - Get party members moving, Change camera zoom, add in NPCs
 
-General - Look up how initializer lists work (always have to call parent class first?)
-		 -Visual signifiers to show when an attack/action is at (dis)adv
+General - Visual signifiers to show when an attack/action is at (dis)adv
 		 -May want to consider going back to 32x32 tiles for performance reasons
 
 Main Menu
