@@ -315,17 +315,21 @@ void Scene::Open(const bool o) {
 			tilemap.load(json_file);
 
 			//Set the camera location and party members
+			sf::Vector2f area_size = tilemap.GetMapSizePixels();
+			game.camera.setCenter({ area_size.x * .5f, area_size.y * .5f });
+			for (auto& p_m : party_mems) {
+				entities.push_back(p_m);
+				p_m->SetScene(this);
+				p_m->MoveTo(game.camera.getCenter());
+				p_m->selected = true;
+			}
 			switch (game.area) {
-				case Areas::TUTTON:
-					sf::Vector2f area_size = tilemap.GetMapSizePixels();
-					game.camera.setCenter({ area_size.x * .5f, area_size.y * .5f });
-					for (auto& p_m : party_mems) {
-						entities.push_back(p_m);
-						p_m->SetScene(this);
-						p_m->MoveTo(game.camera.getCenter());
-						p_m->selected = true;
-					}
+				case Areas::DEBUG:
 				break;
+
+				case Areas::TUTTON:
+				break;
+
 			}
 
 			//Set the view

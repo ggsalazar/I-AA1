@@ -60,13 +60,21 @@ public:
 
 
 		//Load all of our needed textures only once
-		m_tilesets.emplace("Default", sf::Texture("assets/Sprites/Environments/TileSets/Default.png"));
+		m_tilesets["Default"].loadFromFile("assets/Sprites/Environments/TileSets/Default.png");
 		if (json_file == "Tutton") {
-			m_tilesets.emplace("Grass", sf::Texture("assets/Sprites/Environments/TileSets/Grass.png"));
-			m_tilesets.emplace("Stone", sf::Texture("assets/Sprites/Environments/TileSets/Stone.png"));
-			m_tilesets.emplace("Water", sf::Texture("assets/Sprites/Environments/TileSets/Water.png"));
-			m_tilesets.emplace("Wood", sf::Texture("assets/Sprites/Environments/TileSets/Wood.png"));
+			m_tilesets["Grass"].loadFromFile("assets/Sprites/Environments/TileSets/Grass.png");
+			m_tilesets["Stone"].loadFromFile("assets/Sprites/Environments/TileSets/Stone.png");
+			m_tilesets["Water"].loadFromFile("assets/Sprites/Environments/TileSets/Water.png");
+			m_tilesets["Wood"].loadFromFile("assets/Sprites/Environments/TileSets/Wood.png");
 		}
+		else if (json_file == "Debug_Room") {
+			m_tilesets["Grass"].loadFromFile("assets/Sprites/Environments/TileSets/Grass.png");
+			m_tilesets["Stone"].loadFromFile("assets/Sprites/Environments/TileSets/Stone.png");
+			m_tilesets["Water"].loadFromFile("assets/Sprites/Environments/TileSets/Water.png");
+		}
+		for (auto& [name, ts] : m_tilesets)
+			ts.setSmooth(false);
+
 
 		//Populate vertex array
 		for (const auto& layer : tilemap_data["layers"]) {
@@ -97,14 +105,15 @@ public:
 						}
 						else break;
 					}
-
+					
 					//Assign the proper texture
 					if (m_tilesets.find(ts_name) != m_tilesets.end())
 						ts_tex = &m_tilesets[ts_name];
-					else
+					else {
+						cerr << "Warning: Tile ID " << global_tile_id << " has no matching tileset! Assigning Default" << endl;
 						ts_tex = &m_tilesets["Default"];
-					ts_tex->setSmooth(false);
-
+					}
+					
 					//Add the data of the current tile to the tile_data 2D vector
 					//Add the name of the tileset as a terrain type
 					if (ts_name == "Stone" or ts_name == "Wood" or ts_name == "Grass")
@@ -124,7 +133,12 @@ public:
 					const int tv = local_tile_id >> 5; //Equivalent to local_tile_id / tiles_per_row
 
 					//Assign vertices for rendering
+					if (m_vertices_by_tileset.count(ts_name) == 0) {
+						cerr << "Error: m_vertices_by_tileset does not contain " << ts_name << endl;
+						continue;
+					}
 					sf::Vertex* tri = &m_vertices_by_tileset[ts_name][(row + col * map_size_t.x) * 6];
+
 
 					tri[0].position = sf::Vector2f(round(row * TS), round(col * TS));
 					tri[1].position = sf::Vector2f(round((row + 1) * TS), round(col * TS));
@@ -351,16 +365,17 @@ private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
 		//Apply the transform
 		states.transform *= getTransform();
-		cout << "Tilemap.h draw L 354" << endl;
 		//Iterate over each tileset and draw only the vertices using that texture
 		for (const auto& [ts_name, ts_tex] : m_tilesets) {
-			cout << "Inside for loop" << endl;
 			states.texture = &ts_tex;
 
 			//Find which vertices belong to this tileset
-			target.draw(m_vertices_by_tileset.at(ts_name), states);
+			// Check if ts_name exists in m_vertices_by_tileset before accessing it
+			if (m_vertices_by_tileset.count(ts_name) > 0)
+				target.draw(m_vertices_by_tileset.at(ts_name), states);
+			else if (ts_name != "Default")
+				cerr << "Warning: Tileset '" << ts_name << "' has no associated vertices!" << endl;
 		}
-		cout << "Tilemap.h draw L362" << endl;
 
 		//Draw the nodes for testing reasons
 		//NOTE: THIS IS GOING TO RUN LIKE ASS
