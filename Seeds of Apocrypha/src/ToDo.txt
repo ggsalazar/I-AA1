@@ -1,5 +1,5 @@
-Left Off: A* not working correctly, need to see why and what to do to fix
-		  -Node #s are 1 greater than they should be!
+Left Off - A* not working correctly, need to see why and what to do to fix
+		 -I'M SEARCHING FOR *TILE* POSITION, NOT *PIXEL* POSITION ----___________----
 
 Tutorial - Get party members moving, Change camera zoom, add in NPCs
 

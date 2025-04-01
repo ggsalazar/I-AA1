@@ -239,11 +239,6 @@ Actions Scene::LMBAction() {
 	//If we're not looking at a tile, then there is no action to perform
 	if (!curr_tile) return Actions::NOACTION;
 
-
-	if (curr_tile->terrain == Terrains::WATER) ///DEBUG---------------
-		cout << "Water" << endl;
-
-
 	//-Move
 	//	--When mouse is on a tile that all currently selected party members can reach
 	//For every currently selected party member, calculate a path to the current tile
@@ -251,7 +246,7 @@ Actions Scene::LMBAction() {
 	//	else, return NOACTION
 	for (const auto& p_m : party_mems) {
 		if (p_m->selected) {
-			sf::Vector2i start = sf::Vector2i(p_m->GetPos().x / TS, p_m->GetPos().y / TS);
+			sf::Vector2i start = sf::Vector2i(round(p_m->GetPos().x / TS), round(p_m->GetPos().y / TS));
 			sf::Vector2i goal = sf::Vector2i(round(tile_pos.x), round(tile_pos.y));
 
 			queue<sf::Vector2i> path = tilemap.FindPath(start, goal, window);

@@ -99,9 +99,11 @@ void Creature::Draw() {
 void Creature::WalkPath() {
 	if (!path.empty()) {
 		sf::Vector2f next_pos = sf::Vector2f(path.front().x * TS, path.front().y * TS);
-		if (pos != next_pos)
+		if (pos != next_pos) {
 			cout << next_pos << endl;
+			moving = false; //JUST HERE FOR DEBUG
 			//Entity::Move({ 2.f, 2.f }); //This is wrong - will need to calculate offset for each point in the path
+		}
 		else
 			path.pop();
 	}

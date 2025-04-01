@@ -163,10 +163,11 @@ public:
 			for (uint col = 1; col < map_size_t.y; ++col) {
 				/*
 				sf::Vector2i pos;
+				bool debug;
 				bool walkable;
 				//TO-DO: flyable, swimmable
 				uint cost = 1.f; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
-				float g = 0.f (actual cost to get to node), h = 0.f (heuristic cost to node), f = 0.f (g+h, used to select the next node in the path (smaller is better)); //For A* calculations
+				float g = 0.f (actual cost to get to node), h = 0.f (heuristic cost to node), f = 0.f (g+h, used to select the next node in the path (smaller is better));
 				Node* parent = nullptr;
 				*/
 
@@ -174,12 +175,14 @@ public:
 								tile_data[row][col - 1].terrain != Terrains::WATER or
 								tile_data[row - 1][col].terrain != Terrains::WATER or
 								tile_data[row][col].terrain != Terrains::WATER;
+				
 				uint num_rough = 0;
 				if (tile_data[row - 1][col - 1].terrain == Terrains::ROUGH) ++num_rough;
 				if (tile_data[row][col - 1].terrain == Terrains::ROUGH) ++num_rough;
 				if (tile_data[row - 1][col].terrain == Terrains::ROUGH) ++num_rough;
 				if (tile_data[row][col].terrain == Terrains::ROUGH) ++num_rough;
 				uint node_cost = (num_rough > 2)+1;
+   
 				grid[row-1][col-1] = { sf::Vector2i(row*TS, col*TS), false, node_walk, node_cost};
 					
 			}
@@ -211,24 +214,14 @@ public:
 		unordered_map<Node*, bool> closed_list;
 
 		// Initialize start node
-		Node* start_node = &grid[start.x][start.y];
+		Node* start_node = &grid[start.x-1][start.y-1];
 		start_node->g = 0;
 		start_node->h = Heuristic(start, goal);
 		start_node->f = start_node->h;
 		open_list.push(start_node);
 
-
-		cout << "Player pos (p): " << sf::Vector2f(start.x * TS, start.y * TS) << endl;
-		cout << "Player pos (t): " << start << endl;
-		cout << "Start node pos (p): " << start_node->pos << endl;
-		cout << "Start node pos (t): " << sf::Vector2f(start_node->pos.x/TS, start_node->pos.y/TS) << endl;
-
-		cout << "Goal pos (p): " << sf::Vector2f(goal.x * TS, goal.y * TS) << endl;
-		cout << "Goal pos (t): " << goal << endl;
-		Node* goal_node = &grid[goal.x][goal.y];
-		cout << "Goal node pos (p): " << goal_node->pos << endl;
-		cout << "Goal node pos (t): " << sf::Vector2f(goal_node->pos.x/TS, goal_node->pos.y/TS) << endl;
-
+		sf::Vector2i goal_pos = { goal.x * (int)TS, goal.y * (int)TS };
+		Node* goal_node = &grid[goal.x-1][goal.y-1];
 
 		// Define possible movements           N        NE       E      SE      S        SW       W        NW
 		const sf::Vector2i directions[] = { {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1} };
@@ -239,15 +232,16 @@ public:
 			Node* current = open_list.front();
 			open_list.pop();
 
-			nodes_runthrough++;
-			/*if (nodes_runthrough % 1000 == 0) {
+			/*if (nodes_runthrough % 100 == 0) {
 				cout << "Current node pos: " << current->pos << endl;
 				cout << "Current node #: " << nodes_runthrough << endl;
 				
 				cout << endl;
-			}*/
+			}
+			++nodes_runthrough;*/
+
 			//Path found
-			if (current->pos == goal) {
+			if (current->pos == goal_pos) {
 
 				cout << "TileMap Path found" << endl;
 
@@ -267,15 +261,14 @@ public:
 			closed_list[current] = true;
 			current->debug = true;
 
-
 			for (const auto& dir : directions) {
-				sf::Vector2i neighbor_pos = current->pos + dir*(int)TS;
+				sf::Vector2i neighbor_pos = sf::Vector2i(current->pos.x + dir.x*(int)TS, current->pos.y + dir.y*(int)TS);
 				//Out of bounds
-				if (neighbor_pos.x < 0 || neighbor_pos.y < 0 || neighbor_pos.x >= map_size_p.x || neighbor_pos.y >= map_size_p.y)
+				if (neighbor_pos.x <= 0 || neighbor_pos.y <= 0 || neighbor_pos.x >= map_size_p.x || neighbor_pos.y >= map_size_p.y)
 					continue;
-				sf::Vector2i n_grid_pos = { neighbor_pos.x / (int)TS, neighbor_pos.y / (int)TS };
-				//cout << "Neighbor grid pos: " << n_grid_pos << endl;
-				Node* neighbor = &grid[neighbor_pos.x/(int)TS][neighbor_pos.y/(int)TS];
+
+				Node* neighbor = &grid[neighbor_pos.x / (int)TS][neighbor_pos.y / (int)TS];
+
 				//Unwalkable or already processed
 				if (!neighbor->walkable || closed_list[neighbor])
 					continue;
@@ -285,7 +278,7 @@ public:
 				if (tentative_g < neighbor->g || neighbor->g == 0) {
 					neighbor->parent = current;
 					neighbor->g = tentative_g;
-					neighbor->h = Heuristic(neighbor_pos, goal);
+					neighbor->h = Heuristic(neighbor_pos, goal_pos);
 					neighbor->f = neighbor->g + neighbor->h;
 					open_list.push(neighbor);
 				}
@@ -385,6 +378,9 @@ private:
 					node_box.setSize({ 4, 4 });
 					node_box.setFillColor(sf::Color(255, 0, 0, 255));
 					node_box.setPosition(sf::Vector2f(grid[x][y].pos.x - 2, grid[x][y].pos.y - 2));
+
+					if (grid[x][y].debug)
+						node_box.setFillColor(sf::Color(0, 0, 255, 255));
 
 					target.draw(node_box, states);
 				}
