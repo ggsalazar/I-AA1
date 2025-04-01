@@ -180,7 +180,7 @@ public:
 				if (tile_data[row - 1][col].terrain == Terrains::ROUGH) ++num_rough;
 				if (tile_data[row][col].terrain == Terrains::ROUGH) ++num_rough;
 				uint node_cost = (num_rough > 2)+1;
-				grid[row-1][col-1] = { sf::Vector2i(row*16, col*16), false, node_walk, node_cost};
+				grid[row-1][col-1] = { sf::Vector2i(row*TS, col*TS), false, node_walk, node_cost};
 					
 			}
 		}
@@ -218,12 +218,16 @@ public:
 		open_list.push(start_node);
 
 
-		cout << "Player pos: " << sf::Vector2f(start.x * TS, start.y * TS) << endl;
-		cout << "Start node pos: " << start_node->pos << endl;
+		cout << "Player pos (p): " << sf::Vector2f(start.x * TS, start.y * TS) << endl;
+		cout << "Player pos (t): " << start << endl;
+		cout << "Start node pos (p): " << start_node->pos << endl;
+		cout << "Start node pos (t): " << sf::Vector2f(start_node->pos.x/TS, start_node->pos.y/TS) << endl;
 
-		cout << "Goal pos: " << sf::Vector2f(goal.x * TS, goal.y * TS) << endl;
+		cout << "Goal pos (p): " << sf::Vector2f(goal.x * TS, goal.y * TS) << endl;
+		cout << "Goal pos (t): " << goal << endl;
 		Node* goal_node = &grid[goal.x][goal.y];
-		cout << "Goal node pos: " << goal_node->pos << endl;
+		cout << "Goal node pos (p): " << goal_node->pos << endl;
+		cout << "Goal node pos (t): " << sf::Vector2f(goal_node->pos.x/TS, goal_node->pos.y/TS) << endl;
 
 
 		// Define possible movements           N        NE       E      SE      S        SW       W        NW

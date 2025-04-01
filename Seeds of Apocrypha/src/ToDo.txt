@@ -1,4 +1,5 @@
 Left Off: A* not working correctly, need to see why and what to do to fix
+		  -Node #s are 1 greater than they should be!
 
 Tutorial - Get party members moving, Change camera zoom, add in NPCs
 

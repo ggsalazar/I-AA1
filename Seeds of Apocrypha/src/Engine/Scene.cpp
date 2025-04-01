@@ -14,12 +14,12 @@ void Scene::GetInput() {
 		MoveCamera();
 
 		if (!game.paused) {
-			SelectPartyMems();
+			//SelectPartyMems(); Commenting this out while figuring out pathfinding
 
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing will depend on what it is pointed at
 			//Updating action every 6th of a second for performance reasons
 			//if (game.GetFramesElapsed() % 10 == 0)
-			if (Input::KeyPressed(LMB)) //Doing this for testing reasons
+			if (Input::KeyPressed(LMB)) //Doing this for testing reasons, otherwise will update action every 6th of a second
 				action = LMBAction();
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			game.cursor = game.cursors[action].get();
@@ -240,13 +240,8 @@ Actions Scene::LMBAction() {
 	if (!curr_tile) return Actions::NOACTION;
 
 
-
-
 	if (curr_tile->terrain == Terrains::WATER) ///DEBUG---------------
 		cout << "Water" << endl;
-
-
-
 
 
 	//-Move
