@@ -14,12 +14,12 @@ void Scene::GetInput() {
 		MoveCamera();
 
 		if (!game.paused) {
-			//SelectPartyMems(); Commenting this out while figuring out pathfinding
+			SelectPartyMems();
 
-			//The LMB, when clicked, performs a variety of functions; which function it ends up performing will depend on what it is pointed at
+			//The LMB, when clicked, performs a variety of functions; which function it ends up performing 
+			// will depend on what it is pointing at
 			//Updating action every 6th of a second for performance reasons
-			//if (game.GetFramesElapsed() % 10 == 0)
-			if (Input::KeyPressed(LMB)) //Doing this for testing reasons, otherwise will update action every 6th of a second
+			if (game.GetFramesElapsed() % 10 == 0)
 				action = LMBAction();
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			game.cursor = game.cursors[action].get();
@@ -48,9 +48,11 @@ void Scene::GetInput() {
 }
 
 void Scene::Update() {
+	//Update menus
 	for (auto& m : menus)
 		m.second->Update();
 
+	//Update entities
 	for (auto& e : entities)
 		e->Update();
 
@@ -61,8 +63,13 @@ void Scene::Update() {
 
 	//Sort the entities vector (and possibly Menus map) by dfc value every 6th of a second so that entities of a lower dfc value are drawn
 	// last (closest to the camera)
-	if (game.GetFramesElapsed() % 10 == 0)
+	if (game.GetFramesElapsed() % 10 == 0) {
 		sort(entities.begin(), entities.end(), [](const shared_ptr<Entity>& a, const shared_ptr<Entity>& b) { return a->dfc > b->dfc; });
+		
+		//Also taking this opportunity to repopulate/reset the node grid
+		if (label == Scenes::AREA)
+			tilemap.PopulateNodeGrid();
+	}
 }
 
 void Scene::Draw() {
@@ -205,26 +212,13 @@ void Scene::SelectPartyMems() {
 Actions Scene::LMBAction() {
 	//Possible actions:
 	//-Move
-	//	--When mouse is on a tile that all currently selected party members can reach
-	//-Melee Attack
-	//	--When mouse is on an enemy...
-	//		---in melee range OR
-	//		---acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
-	//			----If > 1 melee weapon equipped, will have to ask which weapon to attack with
-	//-Ranged Attack
-	//	--When mouse is on an enemy...
-	//		---Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
+	//-Melee Attack (Combat only?)
+	//-Ranged Attack (Combat only?)
 	//-Pick up an object
-	//	--When mouse is on an object that can be picked up
 	//-Loot a container
-	//	--When mouse is on an unlocked container
 	//-Pick/unlock a lock
-	//	--When mouse is on a locked door/container
 	//-Open a door
-	//	--When mouse is on an unlocked door
 	//-Speak to NPC
-	//	--When mouse is on non-hostile creature
-	//THIS SPACE INTENTIONALLY LEFT BLANK
 
 	//Convert mouse coordinates from screen to world
 	//What tile are we currently pointing at?
@@ -239,28 +233,51 @@ Actions Scene::LMBAction() {
 	//If we're not looking at a tile, then there is no action to perform
 	if (!curr_tile) return Actions::NOACTION;
 
-	//-Move
-	//	--When mouse is on a tile that all currently selected party members can reach
-	//For every currently selected party member, calculate a path to the current tile
-	//	if every currently selected party member can reach that tile, return Actions::MOVE
-	//	else, return NOACTION
+	//Move
+	//-For every currently selected party member, calculate a path to the current tile
+	//	--if every currently selected party member can reach that tile, return Actions::MOVE
+	//	--else, return NOACTION
 	for (const auto& p_m : party_mems) {
 		if (p_m->selected) {
-			sf::Vector2i start = sf::Vector2i(round(p_m->GetPos().x / TS), round(p_m->GetPos().y / TS));
-			sf::Vector2i goal = sf::Vector2i(round(tile_pos.x), round(tile_pos.y));
 
-			queue<sf::Vector2i> path = tilemap.FindPath(start, goal, window);
-
-			cout << "Path found? " << !path.empty() << endl;
+			queue<sf::Vector2f> path = tilemap.FindPath(p_m->GetPos(), MOUSEPOS_W, window);
 
 			//If no path, return no action (for now; later, will want to change action_valid to false)
 			if (path.empty())
 				return Actions::NOACTION;
-			//Else, add the path to p_m's own path queue
-			p_m->SetPath(path);
+
+			//Else, add the path to p_m's own path queue if they aren't already moving
+			if (!p_m->moving)
+				p_m->SetPath(path);
 			return Actions::MOVE;
 		}
 	}
+
+	//Melee Attack (LMB action in combat only?)
+	//-When mouse is on an enemy...
+	//	--in melee range OR
+	//	--acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
+	//		---If > 1 melee weapon equipped, will have to ask which weapon to attack with
+	
+	//Ranged Attack (LMB action in combat only?)
+	//-When mouse is on an enemy...
+	//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
+
+	//Pick up an object
+	//-When mouse is on an object that can be picked up
+	
+	//Loot a container
+	//-When mouse is on an unlocked container
+	
+	//Pick/unlock a lock
+	//-When mouse is on a locked door/container
+	
+	//Open a door
+	//-When mouse is on an unlocked door
+	
+	//Speak to NPC
+	//-When mouse is on non-hostile creature
+
 	return Actions::NOACTION;
 }
 
@@ -304,13 +321,13 @@ void Scene::Open(const bool o) {
 			//Load that bitch
 			tilemap.load(json_file);
 
-			//Set the camera location and party members
+			//Set the camera and party members
 			sf::Vector2f area_size = tilemap.GetMapSizePixels();
 			game.camera.setCenter({ area_size.x * .5f, area_size.y * .5f });
 			for (auto& p_m : party_mems) {
 				entities.push_back(p_m);
 				p_m->SetScene(this);
-				p_m->MoveTo(game.camera.getCenter());
+				p_m->MoveTo(sf::Vector2f(game.camera.getCenter().x - TS*.5, game.camera.getCenter().y - TS*.5));
 				p_m->selected = true;
 			}
 			switch (game.area) {

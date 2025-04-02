@@ -54,32 +54,7 @@ void Slider::Draw() {
     engine.window.draw(knob_spr);
 }
 
-void Slider::Move(sf::Vector2f offset) {
-    Entity::Move(offset);
-    label_offset = engine.game.GetResScale() * 10;
-    label.setPosition({ pos.x, pos.y - label_offset });
-
-    //Resize and move the knob
-    knob_spr.setOrigin({ anim->GetOrigin().x * 6, anim->GetOrigin().y * 18 });
-    knob_spr.setScale(anim->sprite.getScale());
-    knob_pos_max = bbox.position.x + bbox.size.x * .9f;
-    knob_pos_min = bbox.position.x + bbox.size.x * .1f;
-    if (elem == UIElems::MUSIC_V)
-        knob_pos = knob_pos_min + (engine.game.GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
-    else if (elem == UIElems::SFX_V)
-        knob_pos = knob_pos_min + (engine.game.GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
-    knob_spr.setPosition({ knob_pos, pos.y });
-    //Set the value
-    knob_val = label;
-    string rounded_val = to_string((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 100);
-    rounded_val = rounded_val.substr(0, rounded_val.find('.') + 3);
-    knob_val.setString(rounded_val);
-    Text::SetOrigin(knob_val);
-    knob_val.setPosition({ pos.x, pos.y + label_offset });
-}
-
-void Slider::MoveTo(sf::Vector2f new_pos) {
-    Entity::MoveTo(new_pos);
+void Slider::Move() {
     label_offset = engine.game.GetResScale() * 6;
     label.setPosition({ pos.x, pos.y - label_offset });
 

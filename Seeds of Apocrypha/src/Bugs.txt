@@ -1,2 +1,10 @@
+When cam_locked and in the debug room, for some reason camera is not properly placed (laptop only?)
+Really funky v-sync issue when creatures are moving; more prevalent when moving faster
+Diagonal movement too fast (sqrt2, or 1.414)
+Options_G interface buttons out of order for god-knows-what reason
+
 Yes/No buttons not removing elements like they should in character creation
 Portrait seems a touch small on laptop
+When res_scale is set to 2x, not entire debug room can be seen, even though it *should* be
+
+At some point may want to refine pathfinding algorithm so it doesn't get right up on the edge of unwalkable tiles

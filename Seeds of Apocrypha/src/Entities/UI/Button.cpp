@@ -16,16 +16,6 @@ void Button::Draw() {
     */
 }
 
-void Button::MoveBy(sf::Vector2f offset) {
-    Entity::MoveBy(offset);
-    Move();
-}
-
-void Button::MoveTo(sf::Vector2f new_pos) {
-    Entity::MoveTo(new_pos);
-    Move();
-}
-
 void Button::Move() {
     label_offset = engine.game.GetResScale();
     label.setPosition({ pos.x, pos.y - label_offset });

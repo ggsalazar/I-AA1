@@ -1,10 +1,8 @@
-Left Off - A* not working correctly, need to see why and what to do to fix
-		 -I'M SEARCHING FOR *TILE* POSITION, NOT *PIXEL* POSITION ----___________----
+Left Off - 
 
-Tutorial - Get party members moving, Change camera zoom, add in NPCs
+Tutorial - Change camera zoom, add in NPCs, area transition, multi-party member movement
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
-		 -May want to consider going back to 32x32 tiles for performance reasons
 
 Main Menu
 	-Character creation

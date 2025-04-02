@@ -30,7 +30,7 @@ public:
     sf::SoundBuffer sb;
     sf::Sound sound;
 
-    //Engine MUST be strictly inilitiazed, but this should have been the case anyway so it's a non-issue
+
     Entity(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
     virtual ~Entity() = default;
 
@@ -38,9 +38,8 @@ public:
     virtual void GetInput() {}
     virtual void Update() {}
     virtual void Draw();
-    virtual void MoveBy(sf::Vector2f offset) { pos += offset; Move(); }
-    virtual void MoveTo(sf::Vector2f new_pos) { pos = new_pos; Move(); }
-    virtual void Move() { anim->sprite.setPosition(pos); SetBBox(); }
+    virtual void MoveBy(sf::Vector2f offset) { pos += offset; Entity::Move(); }
+    virtual void MoveTo(sf::Vector2f new_pos) { pos = new_pos; Entity::Move(); }
 
     sf::Vector2f GetPos() const { return pos; }
     sf::FloatRect GetBBox() const { return bbox; }
@@ -59,4 +58,7 @@ protected:
     Engine engine;
 
     unique_ptr<Animation> anim;
+
+private:
+    virtual void Move() { anim->sprite.setPosition(pos); SetBBox(); }
 };

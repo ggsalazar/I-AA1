@@ -91,18 +91,31 @@ void Creature::Update() {
 
 void Creature::Draw() {
 	Entity::Draw();
-	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
 
-	if (moving) DrawPath();
+	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
 }
 
 void Creature::WalkPath() {
 	if (!path.empty()) {
-		sf::Vector2f next_pos = sf::Vector2f(path.front().x * TS, path.front().y * TS);
+		sf::Vector2f next_pos = path.front();
 		if (pos != next_pos) {
-			cout << next_pos << endl;
-			moving = false; //JUST HERE FOR DEBUG
-			//Entity::MoveBy({ 2.f, 2.f }); //This is wrong - will need to calculate offset for each point in the path
+
+			sf::Vector2f offset = { 0.f, 0.f };
+
+			//Moving up
+			if (pos.y > next_pos.y)
+				offset.y = -min(mv_spd, pos.y-next_pos.y);
+			//Moving down
+			else if (pos.y < next_pos.y)
+				offset.y = min(mv_spd, next_pos.y-pos.y);
+			//Moving left
+			if (pos.x > next_pos.x)
+				offset.x = -min(mv_spd, pos.x-next_pos.x);
+			//Moving right
+			if (pos.x < next_pos.x)
+				offset.x = min(mv_spd, next_pos.x-pos.x);
+
+			Entity::MoveBy(offset);
 		}
 		else
 			path.pop();
@@ -112,8 +125,8 @@ void Creature::WalkPath() {
 }
 
 void Creature::DrawPath() {
-	queue<sf::Vector2i> temp_path = path;
-	vector<sf::Vector2i> path_v;
+	queue<sf::Vector2f> temp_path = path;
+	vector<sf::Vector2f> path_v;
 	while (!temp_path.empty()) {
 		path_v.push_back(temp_path.front());
 		temp_path.pop();
@@ -122,7 +135,7 @@ void Creature::DrawPath() {
 	for (const auto& point : path_v) {
 		sf::RectangleShape point_box;
 		point_box.setSize({ 4, 4 });
-		point_box.setFillColor(sf::Color(0, 255, 0, 255));
+		point_box.setFillColor(sf::Color(0, 0, 255, 255));
 		point_box.setPosition(sf::Vector2f(point.x - 2, point.y - 2));
 
 		engine.window.draw(point_box);

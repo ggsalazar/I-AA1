@@ -12,12 +12,12 @@ public:
     }
 
     void Draw() override;
-    void MoveBy(sf::Vector2f offset) override;
-    void MoveTo(sf::Vector2f new_pos) override;
-    void Move();
+    void MoveBy(sf::Vector2f offset) override { Entity::MoveBy(offset); Move(); }
+    void MoveTo(sf::Vector2f new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
 private:
     //Functions
+    void Move() override;
     void Pressed() override;
     void Released() override;
 };

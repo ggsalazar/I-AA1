@@ -58,11 +58,12 @@ public:
 	Creature(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats = {}, 
 		const string por_name = "Creatures/Portraits/Placeholder", const bool init_biped = true, const bool init_winged = false, const int init_dfc = 0);
 
-	//Game stuff
+	//Engine stuff
 	virtual void Update() override;
 	virtual void Draw() override;
 	
-	void SetPath(queue<sf::Vector2i> new_path) { path = new_path; }
+	//Path stuff
+	void SetPath(queue<sf::Vector2f> new_path) { path = new_path; }
 	void WalkPath();
 	void DrawPath();
 
@@ -99,6 +100,7 @@ protected:
 	bool biped = true;
 	bool winged = false;
 	bool can_fly = false;
+	float mv_spd = 3.f;
 	float action_carryover = 0;
 	int dodge_penalty = 0;
 	bool encumbered = false;
@@ -108,7 +110,7 @@ protected:
 	unordered_map<Items, unique_ptr<Item>> inv;
 	unordered_map<Items, unique_ptr<Item>> equipment;
 
-	queue<sf::Vector2i> path;
+	queue<sf::Vector2f> path;
 
 
 	void SetDEF();

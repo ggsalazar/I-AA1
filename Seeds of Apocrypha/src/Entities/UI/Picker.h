@@ -12,7 +12,6 @@ public:
     void Draw() override;
     void MoveBy(sf::Vector2f offset) override { Entity::MoveBy(offset); Move(); }
     void MoveTo(sf::Vector2f new_pos) override { Entity::MoveTo(new_pos); Move(); }
-    void Move() override;
 
     void SetPicking(const string new_p);
     string GetPicking() { return picking.getString(); }
@@ -31,6 +30,8 @@ private:
     vector<string>::iterator option_picked;
 
     //Functions
+    void Move() override;
+
     bool LeftSelected(const sf::Vector2i& mouse_pos) { return l_bbox.contains(sf::Vector2f(mouse_pos)); }
     void LeftPressed() { l_primed = true; }
     void LeftReleased();

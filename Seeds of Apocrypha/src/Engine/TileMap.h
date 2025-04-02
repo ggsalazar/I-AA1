@@ -157,37 +157,10 @@ public:
 			}
 		}
 
-		//Populate node grid
+		//Resize and populate node grid
 		grid.resize(map_size_t.x, vector<Node>(map_size_t.y));
-		for (uint row = 1; row < map_size_t.x; ++row) {
-			for (uint col = 1; col < map_size_t.y; ++col) {
-				/*
-				sf::Vector2i pos;
-				bool debug;
-				bool walkable;
-				//TO-DO: flyable, swimmable
-				uint cost = 1.f; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
-				float g = 0.f (actual cost to get to node), h = 0.f (heuristic cost to node), f = 0.f (g+h, used to select the next node in the path (smaller is better));
-				Node* parent = nullptr;
-				*/
-
-				bool node_walk = tile_data[row - 1][col - 1].terrain != Terrains::WATER or
-								tile_data[row][col - 1].terrain != Terrains::WATER or
-								tile_data[row - 1][col].terrain != Terrains::WATER or
-								tile_data[row][col].terrain != Terrains::WATER;
-				
-				uint num_rough = 0;
-				if (tile_data[row - 1][col - 1].terrain == Terrains::ROUGH) ++num_rough;
-				if (tile_data[row][col - 1].terrain == Terrains::ROUGH) ++num_rough;
-				if (tile_data[row - 1][col].terrain == Terrains::ROUGH) ++num_rough;
-				if (tile_data[row][col].terrain == Terrains::ROUGH) ++num_rough;
-				uint node_cost = (num_rough > 2)+1;
-   
-				grid[row-1][col-1] = { sf::Vector2i(row*TS, col*TS), false, node_walk, node_cost};
-					
-			}
-		}
-
+		PopulateNodeGrid();
+		
 		map_loaded = true;
 		return true;
 	}
@@ -201,74 +174,93 @@ public:
 
 
 	//Pathfinding
-	float Heuristic(const sf::Vector2i& a, const sf::Vector2i& b) {
+	void PopulateNodeGrid() {
+		for (uint row = 0; row < map_size_t.x; ++row) {
+			for (uint col = 0; col < map_size_t.y; ++col) {
+				/*
+				sf::Vector2i pos;
+				bool debug;
+				bool walkable;
+				//TO-DO: flyable, swimmable
+				uint cost = 1.f; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
+				float g = 0.f (actual cost to get to node), h = 0.f (heuristic cost to node), f = 0.f (g+h, used to select the next node in the path (smaller is better));
+				Node* parent = nullptr;
+				*/
+
+				bool node_walk = tile_data[row][col].terrain != Terrains::WATER;
+
+				uint node_cost = (tile_data[row][col].terrain == Terrains::ROUGH) + 1;
+
+				grid[row][col] = { sf::Vector2i(row * TS + TS * .5, col * TS + TS * .5), false, node_walk, node_cost };
+			}
+		}
+	}
+
+	float Heuristic(const sf::Vector2f& a, const sf::Vector2f& b) {
 		uint dx = abs(a.x - b.x);
 		uint dy = abs(a.y - b.y);
 		return (dx + dy) + (1.414f - 2) * min(dx, dy);
 	}
 
-	queue<sf::Vector2i> FindPath(const sf::Vector2i& start, const sf::Vector2i& goal, sf::RenderWindow& window) {
-		//auto cmp = [](const Node* a, const Node* b) { return a->f > b->f; };
-		//queue<Node*, vector<Node*>> open_list;
-		queue<Node*> open_list;
+	struct CompareNodes {
+		bool operator()(Node* a, Node* b) {
+			return a->f > b->f; // Min-heap, lower f-value has higher priority
+		}
+	};
+
+	queue<sf::Vector2f> FindPath(const sf::Vector2f& start, const sf::Vector2f& goal, sf::RenderWindow& window) {
+		//Create our lists
+		priority_queue<Node*, vector<Node*>, CompareNodes> open_list;
 		unordered_map<Node*, bool> closed_list;
 
+		//Get the grid coords closest to the start and goal
+		sf::Vector2i grid_start = sf::Vector2i(round((start.x - TS * .5) / TS), round((start.y - TS * .5) / TS));
+		sf::Vector2i grid_goal = sf::Vector2i(round((goal.x - TS * .5) / TS), round((goal.y - TS * .5) / TS));
+
 		// Initialize start node
-		Node* start_node = &grid[start.x-1][start.y-1];
+		Node* start_node = &grid[grid_start.x][grid_start.y];
 		start_node->g = 0;
 		start_node->h = Heuristic(start, goal);
 		start_node->f = start_node->h;
 		open_list.push(start_node);
 
-		sf::Vector2i goal_pos = { goal.x * (int)TS, goal.y * (int)TS };
-		Node* goal_node = &grid[goal.x-1][goal.y-1];
+		Node* goal_node = &grid[grid_goal.x][grid_goal.y];
 
 		// Define possible movements           N        NE       E      SE      S        SW       W        NW
 		const sf::Vector2i directions[] = { {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1} };
 		
-		uint nodes_runthrough = 0;
-
 		while (!open_list.empty()) {
-			Node* current = open_list.front();
+			Node* current = open_list.top();
 			open_list.pop();
 
-			/*if (nodes_runthrough % 100 == 0) {
-				cout << "Current node pos: " << current->pos << endl;
-				cout << "Current node #: " << nodes_runthrough << endl;
-				
-				cout << endl;
-			}
-			++nodes_runthrough;*/
-
 			//Path found
-			if (current->pos == goal_pos) {
-
-				cout << "TileMap Path found" << endl;
-
+			if (current->pos == goal_node->pos) {
 				vector<sf::Vector2i> path;
-				while (current) {
+				path.push_back(sf::Vector2i(goal));
+				//We don't need the start or goal node
+				while (current->parent) { //Ensures we don't add the start node
+					current = current->parent; //Putting this at the beginning skips the goal node
+					//current->debug = true;
 					path.push_back(current->pos);
-					current = current->parent;
 				}
+				
 				reverse(path.begin(), path.end());
-				queue<sf::Vector2i> path_q;
+				queue<sf::Vector2f> path_q;
 				for (const auto& p : path)
-					path_q.push(p);
+					path_q.push(sf::Vector2f(p));
 				return path_q;
 			}
 
 			//Add the current node position to the closed list
 			closed_list[current] = true;
-			current->debug = true;
 
 			for (const auto& dir : directions) {
-				sf::Vector2i neighbor_pos = sf::Vector2i(current->pos.x + dir.x*(int)TS, current->pos.y + dir.y*(int)TS);
+				sf::Vector2f neighbor_pos = sf::Vector2f(current->pos.x + dir.x * (int)TS, current->pos.y + dir.y * (int)TS);
 				//Out of bounds
 				if (neighbor_pos.x <= 0 || neighbor_pos.y <= 0 || neighbor_pos.x >= map_size_p.x || neighbor_pos.y >= map_size_p.y)
 					continue;
 
 				Node* neighbor = &grid[neighbor_pos.x / (int)TS][neighbor_pos.y / (int)TS];
-
 				//Unwalkable or already processed
 				if (!neighbor->walkable || closed_list[neighbor])
 					continue;
@@ -278,67 +270,12 @@ public:
 				if (tentative_g < neighbor->g || neighbor->g == 0) {
 					neighbor->parent = current;
 					neighbor->g = tentative_g;
-					neighbor->h = Heuristic(neighbor_pos, goal_pos);
+					neighbor->h = Heuristic(neighbor_pos, goal);
 					neighbor->f = neighbor->g + neighbor->h;
 					open_list.push(neighbor);
 				}
 			}
 		}
-
-		
-
-		
-		//WARNING: CGPT CODE BELOW
-		/*
-		* 5. Implement A Algorithm*
-
-			Create open and closed lists.
-			Start by adding the starting node to the open list.
-			While the open list isn’t empty:
-				Find node with lowest f in open list.
-				Move it to the closed list.
-				For each neighbor:
-					Skip if in closed list or not walkable.
-					Calculate g, h, and f costs.
-					If not in open list or a cheaper path is found, update costs and parent pointer.
-			Stop if you reach the target node.
-
-		6. Reconstruct Path
-
-			From the target node, backtrack using parent pointers to build the path.
-
-		7. Smooth the Path (Optional)
-
-			Check if segments of the path can be replaced with straight lines avoiding obstacles.
-
-		8. Code Snippet for A (Simplified)*
-
-		Here's a quick sketch of the main loop for A*:
-
-		while (!openList.empty()) {
-			Node* current = GetLowestFNode(openList);
-			if (current == target) break;
-
-			openList.erase(current);
-			closedList.insert(current);
-
-			for (Node* neighbor : GetNeighbors(current)) {
-				if (closedList.count(neighbor) || !neighbor->walkable) continue;
-
-				int newG = current->g + GetMovementCost(current, neighbor);
-				if (newG < neighbor->g || !InOpenList(neighbor, openList)) {
-					neighbor->g = newG;
-					neighbor->h = DiagonalHeuristic(neighbor->pos, target->pos);
-					neighbor->f = neighbor->g + neighbor->h;
-					neighbor->parent = current;
-
-					if (!InOpenList(neighbor, openList))
-						openList.insert(neighbor);
-				}
-			}
-		}
-		*/
-
 
 		//No path found
 		return {};
@@ -369,8 +306,9 @@ private:
 				target.draw(m_vertices_by_tileset.at(ts_name), states);
 		}
 
-		//Draw the nodes for testing reasons
+		//Draw the node grid
 		//NOTE: THIS IS GOING TO RUN LIKE ASS
+		/*
 		for (uint x = 0; x < grid.size(); ++x) {
 			for (uint y = 0; y < grid[x].size(); ++y) {
 				if (grid[x][y].walkable) {
@@ -386,7 +324,7 @@ private:
 				}
 			}
 		}
-
+		*/
 		/* Draw a grid of the tile data (THIS IS ALSO GOING TO RUN LIKE ASS)
 		for (uint x = 0; x < tile_data.size(); ++x) {
 			for (uint y = 0; y < tile_data[x].size(); ++y) {
