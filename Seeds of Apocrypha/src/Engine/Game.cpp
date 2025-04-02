@@ -52,17 +52,10 @@ Game::Game(const char* title, uint init_fps) :
     window.setMouseCursor(*cursor);
 
 
-
-
-
-
-
     //Init debug line
     debug_box.setSize(sf::Vector2f(2, resolution.y));
     debug_box.setPosition(sf::Vector2f(resolution.x * .5, 0));
     debug_box.setFillColor(sf::Color(255, 255, 0, 127));
-
-
 }
 
 //Handle SFML events
@@ -191,6 +184,7 @@ void Game::SetResolution(float res_scalar) {
     else
         window.create(sf::VideoMode(resolution), "Seeds of Apocrypha", sf::Style::Close);
     window.setFramerateLimit(fps);
+    window.setVerticalSyncEnabled(true);
     camera.setSize(sf::Vector2f(window.getSize()));
     camera.setCenter(sf::Vector2f(window.getSize()) * .5f);
 
@@ -216,6 +210,7 @@ void Game::SetResolution(sf::Vector2u n_r) {
         else
             window.create(sf::VideoMode(resolution), "Seeds of Apocrypha", sf::Style::Close);
         window.setFramerateLimit(fps);
+        window.setVerticalSyncEnabled(true);
         camera.setSize(sf::Vector2f(window.getSize()));
         camera.setCenter(sf::Vector2f(window.getSize()) * .5f);
      

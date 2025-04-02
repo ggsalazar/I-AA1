@@ -122,12 +122,12 @@ void Animation::SetOrigin(sf::Vector2f new_ori) {
     //Origin/anchor needs to be set based on sprite w/h before scaling is applied - in other words, the literal, actual w/h of the png
     //Use get local bounds?
     if (new_ori.x > 1.f)
-        new_ori.x = anim_info.sprite_w * .5;
-    else new_ori.x *= anim_info.sprite_w;
+        new_ori.x = round(anim_info.sprite_w * .5);
+    else new_ori.x = round(new_ori.x * anim_info.sprite_w);
 
     if (new_ori.y > 1.0f)
-        new_ori.y = anim_info.sprite_h * .5;
-    else new_ori.y *= anim_info.sprite_h;
+        new_ori.y = round(anim_info.sprite_h * .5);
+    else new_ori.y = round(new_ori.y * anim_info.sprite_h);
 
     sprite.setOrigin(new_ori);
 }

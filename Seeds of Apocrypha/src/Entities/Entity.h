@@ -38,10 +38,10 @@ public:
     virtual void GetInput() {}
     virtual void Update() {}
     virtual void Draw();
-    virtual void MoveBy(sf::Vector2f offset) { pos += offset; Entity::Move(); }
-    virtual void MoveTo(sf::Vector2f new_pos) { pos = new_pos; Entity::Move(); }
+    virtual void MoveBy(sf::Vector2i offset) { pos += offset; Entity::Move(); }
+    virtual void MoveTo(sf::Vector2i new_pos) { pos = new_pos; Entity::Move(); }
 
-    sf::Vector2f GetPos() const { return pos; }
+    sf::Vector2i GetPos() const { return pos; }
     sf::FloatRect GetBBox() const { return bbox; }
     void SetBBox();
 
@@ -50,7 +50,7 @@ public:
     void PlaySound();
 
 protected:
-    sf::Vector2f pos;
+    sf::Vector2i pos;
     sf::RectangleShape pos_debug;
     sf::FloatRect bbox;
     sf::RectangleShape bbox_debug;
@@ -60,5 +60,5 @@ protected:
     unique_ptr<Animation> anim;
 
 private:
-    virtual void Move() { anim->sprite.setPosition(pos); SetBBox(); }
+    virtual void Move() { sf::Vector2f s_pos = sf::Vector2f(pos); anim->sprite.setPosition(s_pos); SetBBox(); }
 };

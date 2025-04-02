@@ -196,7 +196,7 @@ public:
 		}
 	}
 
-	float Heuristic(const sf::Vector2f& a, const sf::Vector2f& b) {
+	float Heuristic(const sf::Vector2i& a, const sf::Vector2i& b) {
 		uint dx = abs(a.x - b.x);
 		uint dy = abs(a.y - b.y);
 		return (dx + dy) + (1.414f - 2) * min(dx, dy);
@@ -208,7 +208,7 @@ public:
 		}
 	};
 
-	queue<sf::Vector2f> FindPath(const sf::Vector2f& start, const sf::Vector2f& goal, sf::RenderWindow& window) {
+	queue<sf::Vector2i> FindPath(const sf::Vector2i& start, const sf::Vector2i& goal, sf::RenderWindow& window) {
 		//Create our lists
 		priority_queue<Node*, vector<Node*>, CompareNodes> open_list;
 		unordered_map<Node*, bool> closed_list;
@@ -245,9 +245,9 @@ public:
 				}
 				
 				reverse(path.begin(), path.end());
-				queue<sf::Vector2f> path_q;
+				queue<sf::Vector2i> path_q;
 				for (const auto& p : path)
-					path_q.push(sf::Vector2f(p));
+					path_q.push(p);
 				return path_q;
 			}
 
@@ -255,7 +255,7 @@ public:
 			closed_list[current] = true;
 
 			for (const auto& dir : directions) {
-				sf::Vector2f neighbor_pos = sf::Vector2f(current->pos.x + dir.x * (int)TS, current->pos.y + dir.y * (int)TS);
+				sf::Vector2i neighbor_pos = sf::Vector2i(current->pos.x + dir.x * (int)TS, current->pos.y + dir.y * (int)TS);
 				//Out of bounds
 				if (neighbor_pos.x <= 0 || neighbor_pos.y <= 0 || neighbor_pos.x >= map_size_p.x || neighbor_pos.y >= map_size_p.y)
 					continue;

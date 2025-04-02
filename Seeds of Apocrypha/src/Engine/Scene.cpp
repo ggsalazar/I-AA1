@@ -240,7 +240,7 @@ Actions Scene::LMBAction() {
 	for (const auto& p_m : party_mems) {
 		if (p_m->selected) {
 
-			queue<sf::Vector2f> path = tilemap.FindPath(p_m->GetPos(), MOUSEPOS_W, window);
+			queue<sf::Vector2i> path = tilemap.FindPath(p_m->GetPos(), sf::Vector2i(MOUSEPOS_W), window);
 
 			//If no path, return no action (for now; later, will want to change action_valid to false)
 			if (path.empty())
@@ -327,7 +327,7 @@ void Scene::Open(const bool o) {
 			for (auto& p_m : party_mems) {
 				entities.push_back(p_m);
 				p_m->SetScene(this);
-				p_m->MoveTo(sf::Vector2f(game.camera.getCenter().x - TS*.5, game.camera.getCenter().y - TS*.5));
+				p_m->MoveTo(sf::Vector2i(game.camera.getCenter().x - TS*.5, game.camera.getCenter().y - TS*.5));
 				p_m->selected = true;
 			}
 			switch (game.area) {

@@ -97,10 +97,10 @@ void Creature::Draw() {
 
 void Creature::WalkPath() {
 	if (!path.empty()) {
-		sf::Vector2f next_pos = path.front();
+		sf::Vector2i next_pos = path.front();
 		if (pos != next_pos) {
 
-			sf::Vector2f offset = { 0.f, 0.f };
+			sf::Vector2i offset = { 0, 0 };
 
 			//Moving up
 			if (pos.y > next_pos.y)
@@ -125,8 +125,8 @@ void Creature::WalkPath() {
 }
 
 void Creature::DrawPath() {
-	queue<sf::Vector2f> temp_path = path;
-	vector<sf::Vector2f> path_v;
+	queue<sf::Vector2i> temp_path = path;
+	vector<sf::Vector2i> path_v;
 	while (!temp_path.empty()) {
 		path_v.push_back(temp_path.front());
 		temp_path.pop();

@@ -9,8 +9,8 @@ public:
         const uint init_ui_layer=0, const int init_dfc = 0);
 
     void Draw() override;
-    void MoveBy(sf::Vector2f offset) override { Entity::MoveBy(offset); Move(); }
-    void MoveTo(sf::Vector2f new_pos) override { Entity::MoveTo(new_pos); Move(); }
+    void MoveBy(sf::Vector2i offset) override { Entity::MoveBy(offset); Move(); }
+    void MoveTo(sf::Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
 private:
     //Functions

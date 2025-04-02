@@ -63,7 +63,7 @@ public:
 	virtual void Draw() override;
 	
 	//Path stuff
-	void SetPath(queue<sf::Vector2f> new_path) { path = new_path; }
+	void SetPath(queue<sf::Vector2i> new_path) { path = new_path; }
 	void WalkPath();
 	void DrawPath();
 
@@ -100,7 +100,7 @@ protected:
 	bool biped = true;
 	bool winged = false;
 	bool can_fly = false;
-	float mv_spd = 3.f;
+	int mv_spd = 3;
 	float action_carryover = 0;
 	int dodge_penalty = 0;
 	bool encumbered = false;
@@ -110,7 +110,7 @@ protected:
 	unordered_map<Items, unique_ptr<Item>> inv;
 	unordered_map<Items, unique_ptr<Item>> equipment;
 
-	queue<sf::Vector2f> path;
+	queue<sf::Vector2i> path;
 
 
 	void SetDEF();
