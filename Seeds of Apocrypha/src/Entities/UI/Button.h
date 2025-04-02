@@ -12,8 +12,9 @@ public:
     }
 
     void Draw() override;
-    void Move(sf::Vector2f offset) override;
+    void MoveBy(sf::Vector2f offset) override;
     void MoveTo(sf::Vector2f new_pos) override;
+    void Move();
 
 private:
     //Functions

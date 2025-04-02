@@ -10,8 +10,9 @@ public:
 
     void GetInput() override;
     void Draw() override;
-    void Move(sf::Vector2f offset) override;
-    void MoveTo(sf::Vector2f new_pos) override;
+    void MoveBy(sf::Vector2f offset) override { Entity::MoveBy(offset); Move(); }
+    void MoveTo(sf::Vector2f new_pos) override { Entity::MoveTo(new_pos); Move(); }
+    void Move() override;
 
     void SetPicking(const string new_p);
     string GetPicking() { return picking.getString(); }

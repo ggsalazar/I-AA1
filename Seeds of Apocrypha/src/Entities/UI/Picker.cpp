@@ -126,37 +126,7 @@ void Picker::Draw() {
     }
 }
 
-void Picker::MoveTo(sf::Vector2f new_pos) {
-    Entity::MoveTo(new_pos);
-    label_offset = engine.game.GetResScale() * 5;
-    label.setPosition({ pos.x, pos.y - label_offset });
-
-    //Move position.x bbox+debug
-    l_bbox.position.x = bbox.position.x + bbox.size.x * .05;
-    l_bbox.position.y = bbox.position.y + bbox.size.y * .1;
-    l_bbox.size.x = bbox.size.x * .25;
-    l_bbox.size.y = bbox.size.y * .75;
-
-    l_bbox_debug.setPosition(sf::Vector2f(l_bbox.position.x, l_bbox.position.y));
-    l_bbox_debug.setSize(sf::Vector2f(l_bbox.size.x, l_bbox.size.y));
-    l_bbox_debug.setFillColor(sf::Color(255, 0, 0, 127)); //Red, 50% opacity
-
-    //Right bbox+debug
-    r_bbox.position.x = bbox.position.x + bbox.size.x * .7;
-    r_bbox.position.y = bbox.position.y + bbox.size.y * .1;
-    r_bbox.size.x = bbox.size.x * .25;
-    r_bbox.size.y = bbox.size.y * .75;
-
-    r_bbox_debug.setPosition(sf::Vector2f(r_bbox.position.x, r_bbox.position.y));
-    r_bbox_debug.setSize(sf::Vector2f(r_bbox.size.x, r_bbox.size.y));
-    r_bbox_debug.setFillColor(sf::Color(0, 0, 255, 127)); //Blue, 50% opacity
-
-    Text::SetCharSize(picking, engine.game.GetResScale() * 12);
-    picking.setPosition(pos);
-}
-
-void Picker::Move(sf::Vector2f offset) {
-    Entity::Move(offset);
+void Picker::Move() {
     label_offset = engine.game.GetResScale() * 5;
     label.setPosition({ pos.x, pos.y - label_offset });
 

@@ -102,7 +102,7 @@ void Creature::WalkPath() {
 		if (pos != next_pos) {
 			cout << next_pos << endl;
 			moving = false; //JUST HERE FOR DEBUG
-			//Entity::Move({ 2.f, 2.f }); //This is wrong - will need to calculate offset for each point in the path
+			//Entity::MoveBy({ 2.f, 2.f }); //This is wrong - will need to calculate offset for each point in the path
 		}
 		else
 			path.pop();
@@ -122,7 +122,7 @@ void Creature::DrawPath() {
 	for (const auto& point : path_v) {
 		sf::RectangleShape point_box;
 		point_box.setSize({ 4, 4 });
-		point_box.setFillColor(sf::Color(255, 0, 0, 255));
+		point_box.setFillColor(sf::Color(0, 255, 0, 255));
 		point_box.setPosition(sf::Vector2f(point.x - 2, point.y - 2));
 
 		engine.window.draw(point_box);

@@ -38,8 +38,9 @@ public:
     virtual void GetInput() {}
     virtual void Update() {}
     virtual void Draw();
-    virtual void Move(sf::Vector2f offset);
-    virtual void MoveTo(sf::Vector2f new_pos);
+    virtual void MoveBy(sf::Vector2f offset) { pos += offset; Move(); }
+    virtual void MoveTo(sf::Vector2f new_pos) { pos = new_pos; Move(); }
+    virtual void Move() { anim->sprite.setPosition(pos); SetBBox(); }
 
     sf::Vector2f GetPos() const { return pos; }
     sf::FloatRect GetBBox() const { return bbox; }

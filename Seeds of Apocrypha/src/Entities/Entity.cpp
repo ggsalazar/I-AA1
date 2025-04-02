@@ -10,18 +10,6 @@ Entity::Entity(const Engine& e, const AnimInfo& a_i, const Animation::Transform&
     pos_debug.setFillColor(sf::Color(255, 0, 0, 127)); //Red, 50% opacity
 }
 
-void Entity::Move(sf::Vector2f offset) {
-    pos += offset;
-    anim->sprite.setPosition(pos);
-    SetBBox();
-}
-
-void Entity::MoveTo(sf::Vector2f new_pos) {
-    pos = new_pos;
-    anim->sprite.setPosition(pos);
-    SetBBox();
-}
-
 void Entity::SetBBox() {
     pos_debug.setPosition(sf::Vector2f(pos.x - 2, pos.y - 2));
 
