@@ -100,7 +100,7 @@ protected:
 	bool biped = true;
 	bool winged = false;
 	bool can_fly = false;
-	int mv_spd = 3;
+	int mv_spd = 4;
 	float action_carryover = 0;
 	int dodge_penalty = 0;
 	bool encumbered = false;

@@ -18,7 +18,7 @@ void Button::Draw() {
 
 void Button::Move() {
     label_offset = engine.game.GetResScale();
-    label.setPosition({ pos.x, pos.y - label_offset });
+    label.setPosition(sf::Vector2f(pos.x, pos.y - label_offset));
     label_debug.setPosition({ label.getPosition().x - 2, label.getPosition().y - 2 });
 }
 
@@ -55,7 +55,7 @@ void Button::Released() {
                 auto c_box = make_shared<Confirm>(
                     engine, menu,
                     AnimInfo{ "UI/ConfirmBox", 200, 100 },
-                    Animation::Transform{ engine.game.camera.getCenter(), {.5f, .5f}, {engine.game.GetResScale(), engine.game.GetResScale()}},
+                    Animation::Transform{ sf::Vector2i(engine.game.camera.getCenter()), {.5f, .5f}, {engine.game.GetResScale(), engine.game.GetResScale()}},
                     UI::Style{ UIElems::CONFIRM, engine.game.GetResScale()*16},
                     "Exit Character Creation?", 1, -1);
                 menu.AddUIElem(c_box); //Also adds to the current scene
@@ -76,6 +76,8 @@ void Button::Released() {
 
         case UIElems::CLOSE:
             menu.Open(false);
+            engine.scene->interface_open = Interfaces::NONE;
+            engine.game.paused = false;
         break;
 
         case UIElems::CREATE: {

@@ -1,12 +1,12 @@
 #include <sstream>
 #include "Text.h"
 
-void Text::Init(sf::Text& text, sf::Font& font, const uint char_size, const sf::Vector2f pos, std::string str, const sf::Vector2f ori, const float max_width) {
+void Text::Init(sf::Text& text, sf::Font& font, const uint char_size, const sf::Vector2i pos, std::string str, const sf::Vector2f ori, const float max_width) {
     text.setFont(font);
     text.setCharacterSize(char_size);
     SetStr(text, str, max_width);
     SetOrigin(text, ori);
-    text.setPosition(pos);
+    text.setPosition(sf::Vector2f(pos));
 }
 
 void Text::SetStr(sf::Text& text, std::string str, const float max_width) {

@@ -93,6 +93,9 @@ void Creature::Draw() {
 	Entity::Draw();
 
 	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
+
+	if (!path.empty())
+		DrawPath();
 }
 
 void Creature::WalkPath() {
@@ -100,22 +103,28 @@ void Creature::WalkPath() {
 		sf::Vector2i next_pos = path.front();
 		if (pos != next_pos) {
 
-			sf::Vector2i offset = { 0, 0 };
+			sf::Vector2f offset = { 0, 0 };
 
 			//Moving up
 			if (pos.y > next_pos.y)
-				offset.y = -min(mv_spd, pos.y-next_pos.y);
+				offset.y = -min(mv_spd, pos.y - next_pos.y);
 			//Moving down
 			else if (pos.y < next_pos.y)
-				offset.y = min(mv_spd, next_pos.y-pos.y);
+				offset.y = min(mv_spd, next_pos.y - pos.y);
 			//Moving left
 			if (pos.x > next_pos.x)
-				offset.x = -min(mv_spd, pos.x-next_pos.x);
+				offset.x = -min(mv_spd, pos.x - next_pos.x);
 			//Moving right
 			if (pos.x < next_pos.x)
-				offset.x = min(mv_spd, next_pos.x-pos.x);
+				offset.x = min(mv_spd, next_pos.x - pos.x);
 
-			Entity::MoveBy(offset);
+			//Normalize diagonal movement
+			if (offset.x != 0 and offset.y != 0) {
+				offset /= 1.414f;
+				offset = { round(offset.x), round(offset.y) };
+			}
+
+			Entity::MoveBy(sf::Vector2i(offset));
 		}
 		else
 			path.pop();

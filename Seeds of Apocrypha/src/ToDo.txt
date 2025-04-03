@@ -3,6 +3,7 @@ Left Off -
 Tutorial - Change camera zoom, add in NPCs, area transition, multi-party member movement
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
+		- At some point going to have to adjust pathfinding to account for different elevations
 
 Main Menu
 	-Character creation

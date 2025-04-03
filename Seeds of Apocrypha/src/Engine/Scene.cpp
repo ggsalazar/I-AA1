@@ -27,7 +27,10 @@ void Scene::GetInput() {
 				switch (action) {
 					case Actions::MOVE:
 						for (const auto& p_m : party_mems) {
-							if (p_m->selected) p_m->moving = true;
+							if (p_m->selected) {
+								p_m->moving = true;
+								p_m->SetPath(found_path);
+							}
 						}
 					break;
 				}
@@ -150,7 +153,7 @@ void Scene::MoveCamera() {
 	//If the camera is locked to the party members, follow them automatically
 	//Get the average of all of their positions and lerp the camera to there
 	else {
-		sf::Vector2f pos_totals = { 0.f, 0.f };
+		sf::Vector2i pos_totals = { 0, 0 };
 		uint selected_p_ms = 0;
 		for (const auto& p_m : party_mems) {
 			if (p_m->selected) {
@@ -158,10 +161,11 @@ void Scene::MoveCamera() {
 				pos_totals += p_m->GetPos();
 			}
 		}
-		sf::Vector2f pos_avg = { pos_totals.x / selected_p_ms, pos_totals.y / selected_p_ms};
+		sf::Vector2f pos_avg = sf::Vector2f(pos_totals.x / selected_p_ms, pos_totals.y / selected_p_ms);
+		
 
-		Math::Clamp(pos_avg.x, cam_size.x*.5, tilemap.GetMapSizePixels().x - cam_size.x*.5);
-		Math::Clamp(pos_avg.y, cam_size.y*.5, tilemap.GetMapSizePixels().y - cam_size.y * .5);
+		Math::Clamp(pos_avg.x, -cam_size.x*.5, tilemap.GetMapSizePixels().x + cam_size.x*.5);
+		Math::Clamp(pos_avg.y, -cam_size.y*.5, tilemap.GetMapSizePixels().y + cam_size.y*.5);
 
 		game.camera.setCenter(Math::Lerp(game.camera.getCenter(), pos_avg, .1));
 	}
@@ -190,7 +194,7 @@ void Scene::SelectPartyMems() {
 		selec_area.size = selec_box.getSize();
 
 		for (auto& p_m : party_mems) {
-			if (selec_area.contains(p_m->GetPos())) {
+			if (selec_area.contains(sf::Vector2f(p_m->GetPos()))) {
 				if (BUTTONDOWN(LSHIFT) or BUTTONDOWN(RSHIFT)) p_m->selected = true;
 				else if (BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL)) p_m->selected = false;
 			}
@@ -235,20 +239,18 @@ Actions Scene::LMBAction() {
 
 	//Move
 	//-For every currently selected party member, calculate a path to the current tile
-	//	--if every currently selected party member can reach that tile, return Actions::MOVE
+	//	--if every currently selected party member can reach the area around that tile, return MOVE
 	//	--else, return NOACTION
 	for (const auto& p_m : party_mems) {
 		if (p_m->selected) {
 
-			queue<sf::Vector2i> path = tilemap.FindPath(p_m->GetPos(), sf::Vector2i(MOUSEPOS_W), window);
+			found_path = tilemap.FindPath(p_m->GetPos(), sf::Vector2i(MOUSEPOS_W), window);
 
-			//If no path, return no action (for now; later, will want to change action_valid to false)
-			if (path.empty())
+			//If no path, return no action
+			if (found_path.empty())
 				return Actions::NOACTION;
 
-			//Else, add the path to p_m's own path queue if they aren't already moving
-			if (!p_m->moving)
-				p_m->SetPath(path);
+			//Else, report that we can move
 			return Actions::MOVE;
 		}
 	}
@@ -418,7 +420,7 @@ void Scene::CreatePartyMem() {
 	auto new_party_mem = make_shared<PartyMember>(
 		Engine{game, window, this},
 		AnimInfo{"Creatures/Sentients/PMPlaceholder", 32, 64},
-		Animation::Transform{ {window.getSize().x*.75f, window.getSize().y * .5f}, {.5f, .5f}, {res_scalar, res_scalar}}); //The remaining arguments are the defaults
+		Animation::Transform{ sf::Vector2i(window.getSize().x*.75, window.getSize().y * .5), {.5f, .5f}, {res_scalar, res_scalar}}); //The remaining arguments are the defaults
 
 	entities.push_back(new_party_mem);
 }
@@ -493,7 +495,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 	auto pre_gen = make_shared<PartyMember>(
 		Engine{ game, window, this },
 		AnimInfo{ sprite, sprite_w, sprite_h },
-		Animation::Transform{ {0.f, 0.f}, {.5f, .95f}, {1, 1} },
+		Animation::Transform{ {0, 0}, {.5f, .95f}, {1, 1} },
 		Creature::Stats{ name, genus, race, size, clss, level, sex, str, con, dex, agi, intl, wis, cha } //The rest are defaults and handled in Initialization
 		); 
 

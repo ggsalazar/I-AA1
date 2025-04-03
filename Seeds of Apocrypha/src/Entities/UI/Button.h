@@ -8,7 +8,7 @@ public:
         UI(s, m, a_i, t, style, init_ui_layer, init_dfc) {
 
         label_offset = engine.game.GetResScale();
-        label.setPosition({ pos.x, pos.y - label_offset });
+        label.setPosition(sf::Vector2f(pos.x, pos.y - label_offset));
     }
 
     void Draw() override;

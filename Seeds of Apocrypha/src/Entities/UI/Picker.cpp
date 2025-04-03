@@ -5,7 +5,7 @@ Picker::Picker(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::T
     UI(e, m, a_i, t, style, init_ui_layer, init_dfc), picking(engine.game.default_font) {
 
     label_offset = engine.game.GetResScale()*8;
-    label.setPosition({ pos.x, pos.y - label_offset });
+    label.setPosition(sf::Vector2f(pos.x, pos.y - label_offset));
 
     //Set up position.x bbox
     l_bbox.position.x = bbox.position.x + bbox.size.x * .05;
@@ -81,7 +81,7 @@ Picker::Picker(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::T
         break;
     }
     Text::SetStr(picking, picking_str);
-    picking.setPosition(pos);
+    picking.setPosition(sf::Vector2f(pos));
 }
 
 void Picker::GetInput() {
@@ -128,7 +128,7 @@ void Picker::Draw() {
 
 void Picker::Move() {
     label_offset = engine.game.GetResScale() * 5;
-    label.setPosition({ pos.x, pos.y - label_offset });
+    label.setPosition(sf::Vector2f(pos.x, pos.y - label_offset));
 
     //Move position.x bbox+debug
     l_bbox.position.x = bbox.position.x + bbox.size.x * .05;
@@ -136,8 +136,8 @@ void Picker::Move() {
     l_bbox.size.x = bbox.size.x * .25;
     l_bbox.size.y = bbox.size.y * .75;
 
-    l_bbox_debug.setPosition(sf::Vector2f(l_bbox.position.x, l_bbox.position.y));
-    l_bbox_debug.setSize(sf::Vector2f(l_bbox.size.x, l_bbox.size.y));
+    l_bbox_debug.setPosition(l_bbox.position);
+    l_bbox_debug.setSize(l_bbox.size);
     l_bbox_debug.setFillColor(sf::Color(255, 0, 0, 127)); //Red, 50% opacity
 
     //Right bbox+debug
@@ -146,12 +146,12 @@ void Picker::Move() {
     r_bbox.size.x = bbox.size.x * .25;
     r_bbox.size.y = bbox.size.y * .75;
 
-    r_bbox_debug.setPosition(sf::Vector2f(r_bbox.position.x, r_bbox.position.y));
-    r_bbox_debug.setSize(sf::Vector2f(r_bbox.size.x, r_bbox.size.y));
+    r_bbox_debug.setPosition(r_bbox.position);
+    r_bbox_debug.setSize(r_bbox.size);
     r_bbox_debug.setFillColor(sf::Color(0, 0, 255, 127)); //Blue, 50% opacity
 
     Text::SetCharSize(picking, engine.game.GetResScale() * 12);
-    picking.setPosition(pos);
+    picking.setPosition(sf::Vector2f(pos));
 }
 
 void Picker::SetPicking(const string new_p) {

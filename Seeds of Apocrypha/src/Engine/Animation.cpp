@@ -16,7 +16,7 @@ Animation::Animation(Game& g, sf::RenderWindow& w, Entity* e, const AnimInfo& a_
     //Set the origin/anchor, scale, and position
     SetOrigin(t.origin);
     sprite.setScale(sf::Vector2f(t.scale));
-    sprite.setPosition(t.pos);
+    sprite.setPosition(sf::Vector2f(t.pos));
 
     //Entity MUST be initialized at the end due it being referenced in SetSpriteW/H
     entity = e;

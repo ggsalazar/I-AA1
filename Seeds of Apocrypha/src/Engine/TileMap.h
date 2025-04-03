@@ -25,7 +25,7 @@ public:
 		bool debug = false; //Activate if in the closed list
 		bool walkable = false;
 		//TO-DO: flyable, swimmable
-		uint cost = 1.f; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
+		uint cost = 1; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
 		float g = 0.f, h = 0.f, f = 0.f; //For A* calculations
 		Node* parent = nullptr;
 	};
@@ -237,8 +237,8 @@ public:
 			if (current->pos == goal_node->pos) {
 				vector<sf::Vector2i> path;
 				path.push_back(sf::Vector2i(goal));
-				//We don't need the start or goal node
-				while (current->parent) { //Ensures we don't add the start node
+				//We don't need the start, second, or goal node
+				while (current->parent and current->parent->parent) { //Ensures we don't add the start node or the second node, which was itself causing weird behaviors
 					current = current->parent; //Putting this at the beginning skips the goal node
 					//current->debug = true;
 					path.push_back(current->pos);

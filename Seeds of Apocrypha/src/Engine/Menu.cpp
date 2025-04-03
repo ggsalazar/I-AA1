@@ -15,15 +15,15 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
 
     //Menu and Supp text variables
     uint m_t_size = res_scalar * 36;
-    sf::Vector2f m_t_pos = { .0f, .0f };
+    sf::Vector2i m_t_pos = { 0, 0 };
     string m_t_str = "MENU DEFAULT";
     uint s_t_size = res_scalar * 24;
-    sf::Vector2f s_t_pos = { .0f, .0f };
+    sf::Vector2i s_t_pos = { 0, 0 };
     string s_t_str = "SUPPLEMENTARY DEFAULT";
     float s_t_str_max_w = -1;
     
     //UI Element variables
-    sf::Vector2f elem_pos = { .0f, .0f };
+    sf::Vector2i elem_pos = { 0, 0 };
     float elem_y_buffer = 0;
 
 
@@ -31,12 +31,12 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
     switch (label) {
         //Menus
         case Menus::CHARCREA: {
-            m_t_size = res_scalar * 24; m_t_pos = { window.getSize().x * .5f, window.getSize().y * .1f }; m_t_str = "Create Your Party";
-            s_t_size = res_scalar * 18; s_t_pos = { window.getSize().x * .5f, window.getSize().y * .13f }; s_t_str = "Use the options below to create your party of 4 adventurers";
-            s_t_str_max_w = window.getSize().x * .33f;
+            m_t_size = res_scalar * 24; m_t_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .1); m_t_str = "Create Your Party";
+            s_t_size = res_scalar * 18; s_t_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .13); s_t_str = "Use the options below to create your party of 4 adventurers";
+            s_t_str_max_w = window.getSize().x * .33;
             
-            sf::Vector2f btn_pos = { window.getSize().x * .2f, window.getSize().y * .25f };
-            float b_y_buffer = window.getSize().y*.1f;
+            sf::Vector2i btn_pos = sf::Vector2i(window.getSize().x * .2, window.getSize().y * .25);
+            float b_y_buffer = window.getSize().y*.1;
 
             auto btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
@@ -101,13 +101,13 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ {window.getSize().x * .5f, window.getSize().y * .8f}, ui_ori, ui_size },
+                Animation::Transform{ sf::Vector2i(window.getSize().x * .5, window.getSize().y * .8), ui_ori, ui_size },
                 UI::Style{ UIElems::CREATE, style_size });
             ui_elems.insert({ UIElems::CREATE, btn });
             btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ {window.getSize().x * .5f, window.getSize().y * .9f}, ui_ori, ui_size },
+                Animation::Transform{ sf::Vector2i(window.getSize().x * .5, window.getSize().y * .9), ui_ori, ui_size },
                 UI::Style{ UIElems::BACK, style_size });
             ui_elems.insert({ UIElems::BACK, btn });
 
@@ -117,12 +117,12 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
         //Character Creation Sub-Menus
         case Menus::CCAS: {
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
-            m_t_size = res_scalar * 16; m_t_pos = { window.getSize().x * .5f, window.getSize().y * .2f }; m_t_str = "Determine Your Ability Scores";
-            s_t_size = res_scalar * 12; s_t_pos = { window.getSize().x * .5f, window.getSize().y * .23f }; s_t_str = "Your Ability Scores --";
-            s_t_str_max_w = window.getSize().x * .33f;
+            m_t_size = res_scalar * 16; m_t_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .2); m_t_str = "Determine Your Ability Scores";
+            s_t_size = res_scalar * 12; s_t_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .23); s_t_str = "Your Ability Scores --";
+            s_t_str_max_w = window.getSize().x * .33;
 
             //Pickers
-            sf::Vector2f pkr_pos = { window.getSize().x * .5f, window.getSize().y * .2f };
+            sf::Vector2i pkr_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .2);
             float p_y_buffer = window.getSize().y * .08f;
 
             auto str_pkr = make_shared<Picker>(
@@ -197,12 +197,12 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             //Rogue: 8 / Thieving Tools / Expertise
             //Warrior: 10 / 2 PWS / Fighting Style
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
-            m_t_size = res_scalar * 16; m_t_pos = { window.getSize().x * .5f, window.getSize().y * .2f }; m_t_str = "Pick Your Class";
-            s_t_size = res_scalar * 12; s_t_pos = { window.getSize().x * .5f, window.getSize().y * .23f }; s_t_str = "Your Class determines your role in combat and the abilities you will learn as you progress";
+            m_t_size = res_scalar * 16; m_t_pos = sf::Vector2i(window.getSize().x * .5f, window.getSize().y * .2f); m_t_str = "Pick Your Class";
+            s_t_size = res_scalar * 12; s_t_pos = sf::Vector2i(window.getSize().x * .5f, window.getSize().y * .23f); s_t_str = "Your Class determines your role in combat and the abilities you will learn as you progress";
             s_t_str_max_w = window.getSize().x * .33f;
 
             //Pickers
-            sf::Vector2f pkr_pos = { window.getSize().x * .5f, window.getSize().y * .2f };
+            sf::Vector2i pkr_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .2);
             float p_y_buffer = window.getSize().y * .08f;
 
             /*auto str_pkr = make_shared<Picker>(
@@ -225,12 +225,12 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             // Size, Ability Score Adjustments, Sex, Skills, etc.
             //Elves also have a sub-race that limits their aesthetics
             //Aesthetics have suggested features, but none are locked out from any aesthetics (except Automata)
-            m_t_size = res_scalar * 16; m_t_pos = { window.getSize().x * .5f, window.getSize().y * .2f }; m_t_str = "Pick Your Race";
-            s_t_size = res_scalar * 12; s_t_pos = { window.getSize().x * .5f, window.getSize().y * .23f }; s_t_str = "Your Race influences your appearance, some of your capabilities, and how others react to you";
-            s_t_str_max_w = window.getSize().x * .33f;
+            m_t_size = res_scalar * 16; m_t_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .2); m_t_str = "Pick Your Race";
+            s_t_size = res_scalar * 12; s_t_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .23); s_t_str = "Your Race influences your appearance, some of your capabilities, and how others react to you";
+            s_t_str_max_w = window.getSize().x * .33;
 
-            sf::Vector2f pkr_pos = { window.getSize().x * .5f, window.getSize().y * .4f };
-            float p_y_buffer = window.getSize().y * .1f;
+            sf::Vector2i pkr_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .4);
+            float p_y_buffer = window.getSize().y * .1;
 
             auto race_pkr = make_shared<Picker>(
                 Engine{ game, window, &scene }, *this,
@@ -268,11 +268,11 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
         //End of CC Sub-Menus
 
         case Menus::MAIN: {
-            m_t_size = res_scalar * 36; m_t_pos = { window.getSize().x * .5f, window.getSize().y * .15f }; m_t_str = "Seeds of Apocrypha";
-            s_t_size = res_scalar * 24; s_t_pos = { window.getSize().x * .5f, window.getSize().y * .225f }; s_t_str = "An Iron & Aether Adventure";
+            m_t_size = res_scalar * 36; m_t_pos = sf::Vector2i(window.getSize().x * .5f, window.getSize().y * .15); m_t_str = "Seeds of Apocrypha";
+            s_t_size = res_scalar * 24; s_t_pos = sf::Vector2i(window.getSize().x * .5f, window.getSize().y * .225); s_t_str = "An Iron & Aether Adventure";
 
-            sf::Vector2f btn_pos = { window.getSize().x * .5f, window.getSize().y * .4f };
-            float b_y_buffer = window.getSize().y * .1f;
+            sf::Vector2i btn_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .4);
+            float b_y_buffer = window.getSize().y * .1;
 
             auto btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
@@ -316,7 +316,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ {window.getSize().x*.75f, window.getSize().y*.5f }, ui_ori, ui_size},
+                Animation::Transform{ sf::Vector2i(window.getSize().x*.75, window.getSize().y*.5), ui_ori, ui_size},
                 UI::Style{ UIElems::DEBUG_ROOM, style_size });
             ui_elems.insert(make_pair(UIElems::DEBUG_ROOM, btn));
 
@@ -324,10 +324,10 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
         }
 
         case Menus::OPTIONS: {
-            m_t_size = res_scalar * 36; m_t_pos = { window.getSize().x * .5f, window.getSize().y * .15f }; m_t_str = "Seeds of Apocrypha";
-            s_t_size = res_scalar * 24; s_t_pos = { window.getSize().x * .5f, window.getSize().y * .2f }; s_t_str = "Options";
+            m_t_size = res_scalar * 36; m_t_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .15); m_t_str = "Seeds of Apocrypha";
+            s_t_size = res_scalar * 24; s_t_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .2); s_t_str = "Options";
 
-            sf::Vector2f elem_pos = { window.getSize().x * .5f, window.getSize().y * .3f };
+            sf::Vector2i elem_pos = sf::Vector2i(window.getSize().x * .5, window.getSize().y * .3);
             float elem_y_buffer = window.getSize().y * .09f;
 
             //Music and sfx sliders
@@ -361,7 +361,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             auto tgl = make_shared<Toggle>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Toggle", 24, 24, 0, 2 },
-                Animation::Transform{ {f_t_x, elem_pos.y}, ui_ori, ui_size },
+                Animation::Transform{ sf::Vector2i(f_t_x, elem_pos.y), ui_ori, ui_size },
                 UI::Style{ UIElems::FULLSCREEN, style_size });
             ui_elems.insert({ UIElems::FULLSCREEN, tgl });
 
@@ -388,37 +388,31 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
 
         case Menus::OPTIONS_G: {
             sf::Vector2f cam_top_left = game.camera.getCenter() - (game.camera.getSize() * .5f);
-            m_t_size = res_scalar * 18; m_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y*.1f }; m_t_str = "Options";
-            s_t_size = res_scalar * 12; s_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12f }; s_t_str = "Adjust Settings";
-
-            elem_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .35f };
-            elem_y_buffer = window.getSize().y * .09f;
+            m_t_size = res_scalar * 18; m_t_pos = sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y*.25)); m_t_str = "Options";
+            s_t_size = res_scalar * 12; s_t_pos = sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .12)); s_t_str = "";
 
             //Close button
             auto btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                Animation::Transform{ sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y*.35)), ui_ori, ui_size},
                 UI::Style{ UIElems::CLOSE, style_size });
             ui_elems.insert({ UIElems::CLOSE, btn });
-
             //Adjust camera speed - TO-DO
             
             //Return to Title
-            elem_pos.y += elem_y_buffer;
             btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                Animation::Transform{ sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .45)), ui_ori, ui_size },
                 UI::Style{ UIElems::TITLE, style_size });
             ui_elems.insert({ UIElems::TITLE, btn });
 
             //Quit
-            elem_pos.y += elem_y_buffer;
             btn = make_shared<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ elem_pos, ui_ori, ui_size },
+                Animation::Transform{ sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .55)), ui_ori, ui_size },
                 UI::Style{ UIElems::QUIT, style_size });
             ui_elems.insert({ UIElems::QUIT, btn });
             break;
@@ -440,25 +434,36 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
 
 void Menu::Update() {
     if (open) {
-        sf::Vector2f m_t_pos = { .0f, .0f };
-        sf::Vector2f s_t_pos = { .0f, .0f };
-        sf::Vector2f elem_pos = { .0f, .0f };
+        sf::Vector2i m_t_pos = { 0, 0 };
+        sf::Vector2i s_t_pos = { 0, 0 };
+        sf::Vector2i elem_pos = { 0, 0 };
         float elem_y_buffer = 0;
 
         switch (label) {
             case Menus::OPTIONS_G:
                 sf::Vector2f cam_top_left = game.camera.getCenter() - (game.camera.getSize() * .5f);
-                m_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .1f };
-                s_t_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12f };
-                menu_text.setPosition(m_t_pos);
-                sup_text.setPosition(s_t_pos);
+                m_t_pos = sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .25));
+                s_t_pos = sf::Vector2i(game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12);
+                menu_text.setPosition(sf::Vector2f(m_t_pos));
+                sup_text.setPosition(sf::Vector2f(s_t_pos));
 
-                elem_pos = { game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .35f };
-                elem_y_buffer = window.getSize().y * .09f;
+                elem_pos = sf::Vector2i(game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .35);
 
-                for (auto& ui : ui_elems) {
+                for (const auto& ui : ui_elems) {
+                    switch (ui.first) {
+                        case UIElems::CLOSE:
+                            elem_pos.y = cam_top_left.y + game.camera.getSize().y * .35;
+                        break;
+
+                        case UIElems::TITLE:
+                            elem_pos.y = cam_top_left.y + game.camera.getSize().y * .45;
+                        break;
+
+                        case UIElems::QUIT:
+                            elem_pos.y = cam_top_left.y + game.camera.getSize().y * .55;
+                        break;
+                    }
                     ui.second->MoveTo(elem_pos);
-                    elem_pos.y += elem_y_buffer;
                 }
             break;
         }
@@ -489,9 +494,8 @@ void Menu::Open(const bool o) {
 }
 
 void Menu::OpenSM(const Menus s_m) {
-    if (sub_menus.count(s_m) > 0) {
+    if (sub_menus.count(s_m) > 0)
         sub_menus[s_m]->Open();
-    }
     else cout << "That Sub-Menu does not exist in this Menu!" << endl;
 }
 
@@ -541,7 +545,7 @@ void Menu::Resize() {
 
 
     //UI Elements
-    sf::Vector2f new_pos = sf::Vector2f(window.getSize())*.5f;
+    sf::Vector2i new_pos = sf::Vector2i(window.getSize().x*.5f, window.getSize().y*.5f);
     for (const auto& ui : ui_elems) {
         auto& u = ui.second;
 
@@ -630,7 +634,7 @@ void Menu::Resize() {
             break;
 
             case UIElems::FULLSCREEN: {
-                new_pos = { window.getSize().x * (.5f + res_scalar * .01f), window.getSize().y * .57f };
+                new_pos = sf::Vector2i(round(window.getSize().x * (.5f + res_scalar * .01f)), round(window.getSize().y * .57));
                 string new_status = "False";
                 if (game.GetResolution().x == SCREENSIZE().x)
                     new_status = "True";

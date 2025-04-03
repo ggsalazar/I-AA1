@@ -20,7 +20,7 @@ PartyMember::PartyMember(const Engine& s, const AnimInfo& a_i, const Animation::
 	//Origin is 0,0
 
 	//The health text
-	Text::Init(hlth_txt, engine.game.default_font, engine.game.GetResScale() * 10, portrait.getPosition(), to_string(stats.hlth) + "/" + to_string(stats.max_hlth));
+	Text::Init(hlth_txt, engine.game.default_font, engine.game.GetResScale() * 10, sf::Vector2i(portrait.getPosition()), to_string(stats.hlth) + "/" + to_string(stats.max_hlth));
 
 }
 

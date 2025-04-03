@@ -6,7 +6,7 @@ Toggle::Toggle(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::T
 
 	label_offset = engine.game.GetResScale() * 10;
 	Text::SetOrigin(label, { 1.f, .5f });
-	label.setPosition({ pos.x - label_offset, pos.y });
+	label.setPosition(sf::Vector2f(pos.x - label_offset, pos.y));
 
 	on = engine.game.GetResolution().x == SCREENSIZE().x;
 	active = !on;
@@ -28,7 +28,7 @@ void Toggle::Move() {
 	label.setCharacterSize(engine.game.GetResScale() * 12);
 	label_offset = engine.game.GetResScale() * 10;
 	Text::SetOrigin(label, { 1.f, .5f });
-	label.setPosition({ pos.x - label_offset, pos.y });
+	label.setPosition(sf::Vector2f(pos.x - label_offset, pos.y));
 }
 
 void Toggle::Released() {

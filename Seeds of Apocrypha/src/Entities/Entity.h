@@ -60,5 +60,5 @@ protected:
     unique_ptr<Animation> anim;
 
 private:
-    virtual void Move() { sf::Vector2f s_pos = sf::Vector2f(pos); anim->sprite.setPosition(s_pos); SetBBox(); }
+    virtual void Move() { anim->sprite.setPosition(sf::Vector2f(pos)); SetBBox(); }
 };

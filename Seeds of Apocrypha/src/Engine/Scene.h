@@ -16,6 +16,7 @@ class Scene {
 public:
     Scenes label;
     bool selecting = false;
+    Interfaces interface_open = Interfaces::NONE;
 
     Scene(Game& g, sf::RenderWindow& win, Scenes init_label) :
         game(g), window(win), label(init_label) {}
@@ -29,7 +30,6 @@ public:
     void OpenInterface();
     void MoveCamera();
     void SelectPartyMems();
-    void MovePartyMems();
     Actions LMBAction();
 
     //Scene handling
@@ -55,7 +55,6 @@ public:
 
 private:
     bool open = false;
-    Interfaces interface_open = Interfaces::NONE;
     Actions action = Actions::DEFAULT;
 
     TileMap tilemap;
@@ -68,8 +67,9 @@ private:
     sf::RectangleShape selec_box;
     sf::FloatRect selec_area;
     sf::Vector2f selec_wh = { 0, 0 };
+    queue<sf::Vector2i> found_path;
 
-    //Game engine stuff
+    //Engine stuff
     Game& game;
     sf::RenderWindow& window;
 };
