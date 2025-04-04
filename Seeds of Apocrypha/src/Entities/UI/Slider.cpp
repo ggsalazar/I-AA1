@@ -35,15 +35,24 @@ void Slider::GetInput() {
         Math::Clamp(knob_pos, knob_pos_min, knob_pos_max);
         knob_spr.setPosition(sf::Vector2f(knob_pos, pos.y));
 
-        float new_vol = (knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 100;
-        if (elem == UIElems::MUSIC_V)
-            engine.game.SetMusicVolume(new_vol);
-        else if (elem == UIElems::SFX_V)
-            engine.game.SetSFXVolume(new_vol);
+        if (elem == UIElems::MUSIC_V or elem == UIElems::SFX_V) {
+            float new_vol = (knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 100;
 
-        string r_val = to_string(new_vol);
-        r_val = r_val.substr(0, r_val.find('.') + 3);
-        knob_val.setString(r_val);
+            if (elem == UIElems::MUSIC_V)
+                engine.game.SetMusicVolume(new_vol);
+            else if (elem == UIElems::SFX_V)
+                engine.game.SetSFXVolume(new_vol);
+
+            string r_val = to_string(new_vol);
+            r_val = r_val.substr(0, r_val.find('.') + 3);
+            Text::SetStr(knob_val, r_val);
+        }
+        else if (elem == UIElems::CAMSPD) {
+            //Camera speed goes from 3 to 15 and increments by .5
+            float new_spd = (round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 24) + 6) * .5;
+            engine.game.cam_move_spd = new_spd;
+            Text::SetStr(knob_val, to_string(new_spd));
+        }
     }
 }
 

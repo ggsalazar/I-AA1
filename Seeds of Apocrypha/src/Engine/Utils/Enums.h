@@ -232,6 +232,7 @@ enum class UIElems {
 	SEX,
 	SIZE,
 	//Sliders
+	CAMSPD,
 	MUSIC_V,
 	SFX_V
 };

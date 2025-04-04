@@ -388,8 +388,30 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
 
         case Menus::OPTIONS_G: {
             sf::Vector2f cam_top_left = game.camera.getCenter() - (game.camera.getSize() * .5f);
-            m_t_size = res_scalar * 18; m_t_pos = sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y*.25)); m_t_str = "Options";
+            m_t_size = res_scalar * 18; m_t_pos = sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y*.2)); m_t_str = "Options";
             s_t_size = res_scalar * 12; s_t_pos = sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .12)); s_t_str = "";
+
+            //Music, sfx, and cam speed sliders
+            auto sldr = make_shared<Slider>(
+                Engine{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Slider", 192, 27 },
+                Animation::Transform{ sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .28)), ui_ori, ui_size },
+                UI::Style{ UIElems::MUSIC_V, style_size });
+            ui_elems.insert({ UIElems::MUSIC_V, sldr });
+
+            sldr = make_shared<Slider>(
+                Engine{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Slider", 192, 27 },
+                Animation::Transform{ sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .35)), ui_ori, ui_size },
+                UI::Style{ UIElems::SFX_V, style_size });
+            ui_elems.insert({ UIElems::SFX_V, sldr });
+
+            sldr = make_shared<Slider>(
+                Engine{ game, window, &scene }, *this,
+                AnimInfo{ "UI/Slider", 192, 27 },
+                Animation::Transform{ sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .35)), ui_ori, ui_size },
+                UI::Style{ UIElems::CAMSPD, style_size });
+            ui_elems.insert({ UIElems::CAMSPD, sldr });
 
             //Close button
             auto btn = make_shared<Button>(
@@ -398,7 +420,6 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
                 Animation::Transform{ sf::Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y*.35)), ui_ori, ui_size},
                 UI::Style{ UIElems::CLOSE, style_size });
             ui_elems.insert({ UIElems::CLOSE, btn });
-            //Adjust camera speed - TO-DO
             
             //Return to Title
             btn = make_shared<Button>(
@@ -449,6 +470,7 @@ void Menu::Update() {
 
                 elem_pos = sf::Vector2i(game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .35);
 
+                //I NEED to find a more efficient way of doing this. Ordered map?
                 for (const auto& ui : ui_elems) {
                     switch (ui.first) {
                         case UIElems::CLOSE:

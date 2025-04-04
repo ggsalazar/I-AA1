@@ -1,4 +1,4 @@
-Left Off - 
+Left Off - Implementing cam speed slider in options_g - Use ordered map for menu's ui_elems; makes updating positions easier
 
 Tutorial - Change camera zoom, add in NPCs, area transition, multi-party member movement
 

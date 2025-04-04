@@ -52,6 +52,10 @@ UI::UI(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform
             l_str = "Background";
         break;
 
+        case UIElems::CAMSPD:
+            l_str = "Camera Speed";
+        break;
+
         case UIElems::CHARCREA:
             l_str = "New Adventure";
         break;
