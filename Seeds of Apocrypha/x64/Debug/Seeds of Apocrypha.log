@@ -1,0 +1,3 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Window_Windows.cpp
+  Seeds of Apocrypha.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe
