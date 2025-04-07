@@ -1,3 +1,0 @@
-Yes/No buttons not removing elements like they should in character creation
-Portrait seems a touch small on laptop
-When res_scale is set to 2x, not entire debug room can be seen, even though it *should* be
