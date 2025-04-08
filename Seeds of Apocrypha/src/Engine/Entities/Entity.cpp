@@ -1,39 +1,26 @@
 #include "Entity.h"
 
 Entity::Entity(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t, int init_dfc) :
-    engine(e), pos(t.pos),
+    engine(e), pos(t.pos), pos_debug(pos, 2),
     dfc(init_dfc), sound(sb), anim(make_unique<Animation>(engine.game, engine.window, this, a_i, t)) {
 
     SetBBox();
-    bbox_debug.setFillColor(sf::Color(0, 255, 0, 127)); //Green, 50% opacity
-    pos_debug.setSize({ 4, 4 });
-    pos_debug.setFillColor(sf::Color(255, 0, 0, 127)); //Red, 50% opacity
 }
 
 void Entity::SetBBox() {
-    pos_debug.setPosition(Vector2f(pos.x - 2, pos.y - 2));
+    pos_debug.pos = pos;
 
-    w = anim->GetSpriteW() * anim->sprite.getScale().x;
-    h = anim->GetSpriteH() * anim->sprite.getScale().y;
+    size = { anim->GetSpriteW() * anim->sprite.getScale().x,
+             anim->GetSpriteH() * anim->sprite.getScale().y };
 
-    //position.x/y will always be left+top
-    bbox.position.x = pos.x - anim->GetOrigin().x * w;
-    bbox.position.y = pos.y - anim->GetOrigin().y * h;
-    bbox.size.x = w;
-    bbox.size.y = h;
-
-    //bbox debug
-    bbox_debug.setPosition(bbox.position);
-    bbox_debug.setSize(bbox.size);
+    //position will always be top left
+    bbox.pos = { pos.x - anim->GetOrigin().x * size.x,
+                 pos.y - anim->GetOrigin().y * size.y };
+    bbox.size = size;
 }
 
 void Entity::Draw() {
     anim->Draw();
-
-    if (engine.game.debug) {
-        engine.window.draw(bbox_debug);
-        engine.window.draw(pos_debug);
-    }
 }
 
 void Entity::PlaySound() {

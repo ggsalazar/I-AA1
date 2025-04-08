@@ -1,18 +1,19 @@
 #pragma once
 #include <iostream>
-#include "../Engine/Input.h"
-#include "../Engine/Enums.h"
-#include "../Engine/Game.h"
-#include "../Engine/Scene.h"
-#include "../Engine/Text.h"
-#include "../Engine/Collision.h"
-#include "../Engine/Animation.h"
+#include "../Core/Input.h"
+#include "../Core/Enums.h"
+#include "../Core/Collision.h"
+#include "../Graphics/Animation.h"
+#include "../Graphics/Text.h"
 
 using namespace std;
 
+class Game;
+class Scene;
+
 struct Engine {
     Game& game;
-    sf::RenderWindow& window;
+    RenderWindow& window;
     //This allows the Scene of an object to be changed
     Scene* scene;
 };
@@ -21,8 +22,7 @@ class Entity : public enable_shared_from_this<Entity> {
     friend class Animation;
 public:
     //Variables
-    uint w = 0;
-    uint h = 0;
+    Vector2u size = { 0, 0 };
     bool alive = true;
     int dfc = 0; //Distance from camera; draw order, basically - the lower the number, the closer to the camera
 
@@ -41,8 +41,8 @@ public:
     virtual void MoveBy(Vector2i offset) { pos += offset; Entity::Move(); }
     virtual void MoveTo(Vector2u new_pos) { pos = new_pos; Entity::Move(); }
 
-    Vector2i GetPos() const { return pos; }
-    sf::FloatRect GetBBox() const { return bbox; }
+    Vector2u GetPos() const { return pos; }
+    Rect GetBBox() const { return bbox; }
     void SetBBox();
 
     void SetScene(Scene* new_scn) { engine.scene = new_scn; }
@@ -50,10 +50,9 @@ public:
     void PlaySound();
 
 protected:
-    Vector2i pos;
-    sf::RectangleShape pos_debug;
-    sf::FloatRect bbox;
-    sf::RectangleShape bbox_debug;
+    Vector2u pos;
+    Circle pos_debug;
+    Rect bbox;
 
     Engine engine;
 
