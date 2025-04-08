@@ -9,27 +9,30 @@
 #include "../Platform/Windows/Renderer_D2D.h"
 
 using namespace std;
+using namespace Engine;
+
+using Clock = std::chrono::high_resolution_clock;
 
 class Scene;
 
 class Game {
 public:
     bool running = true;
+    float delta_time;
+    int debug_timer = 0;
 
-    sf::RectangleShape debug_box;
-
-    unique_ptr<Engine::Window_Windows> window;
+    unique_ptr<Window_Windows> window;
     unique_ptr<Renderer> renderer;
-    sf::View camera;
+    //sf::View camera;
     float cam_move_spd = 10.f;
     bool cam_locked = false;
     //DJ dj;
     bool paused = false;
     uint curr_ui_layer = 0;
-    sf::Font default_font;
+    //sf::Font default_font;
     bool debug = false;
     unordered_map<Actions, unique_ptr<sf::Cursor>> cursors;
-    sf::Cursor* cursor;
+    //sf::Cursor* cursor;
 
     Game(const char* title, uint init_fps);
     
@@ -69,7 +72,8 @@ public:
 private:
     //Variables
     uint fps = 0;
-    int debug_timer = 0;
+    float target_frame_time;
+    Clock::time_point last_time;
     uint frames_elapsed = 0;
     float music_volume = 100;
     float sfx_volume = 100;

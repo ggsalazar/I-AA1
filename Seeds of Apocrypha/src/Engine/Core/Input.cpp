@@ -5,6 +5,8 @@ void Input::UpdateVars() {
     {
         lmb_was_up = !BUTTONDOWN(LMB);
         lmb_was_down = BUTTONDOWN(LMB);
+        rmb_was_up = !BUTTONDOWN(RMB);
+        rmb_was_down = BUTTONDOWN(RMB);
         mid_was_up = !BUTTONDOWN(MID);
         mid_was_down = BUTTONDOWN(MID);
     }
@@ -46,6 +48,9 @@ bool Input::KeyPressed(sf::Mouse::Button mb) {
         case LMB:
             return lmb_was_up and BUTTONDOWN(LMB);
 
+        case RMB:
+            return rmb_was_up and BUTTONDOWN(RMB);
+
         case MID:
             return mid_was_up and BUTTONDOWN(MID);
     }
@@ -60,6 +65,9 @@ bool Input::KeyReleased(sf::Mouse::Button mb) {
     switch (mb) {
         case LMB:
             return lmb_was_down and !BUTTONDOWN(LMB);
+
+        case RMB:
+            return rmb_was_down and !BUTTONDOWN(RMB);
 
         case MID:
             return mid_was_down and !BUTTONDOWN(MID);

@@ -41,6 +41,8 @@ namespace Input {
 	//Mouse
 	static bool lmb_was_down = false;
 	static bool lmb_was_up = true;
+	static bool rmb_was_down = false;
+	static bool rmb_was_up = true;
 	static bool mid_was_down = false;
 	static bool mid_was_up = true;
 	//Letters

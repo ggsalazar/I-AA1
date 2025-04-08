@@ -1,5 +1,4 @@
 #pragma once
-
 #include "../Core/Vector2.h"
 
 namespace Engine {

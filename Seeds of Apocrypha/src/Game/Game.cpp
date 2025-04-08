@@ -1,8 +1,14 @@
+#include <iostream>
+#include <chrono>
+#include <thread>
 #include "Game.h"
-#include "Scene.h"
 
 Game::Game(const char* title, uint init_fps) :
-            fps(init_fps), debug_timer(fps) {
+            fps(init_fps) {
+    //Delta time
+    target_frame_time = 1.f / fps;
+    last_time = Clock::now();
+
     //Initialize the window
     resolution = { 2560, 1440 }; //Primary monitor (1) resolution
     //resolution = { 1920, 1080 }; //Secondary monitor (0) resolution
@@ -64,10 +70,15 @@ Game::Game(const char* title, uint init_fps) :
 }
 
 void Game::Run() {
+    //Calculate delta time
+    auto now = Clock::now();
+    chrono::duration<float> delta = now - last_time;
+    last_time = now;
+    delta_time = delta.count();
+
     //Handle events
     window->PollEvents();
-
-    if (window) {
+    if (window->open) {
         //Process input
         ProcessInput();
         //Update the game world
@@ -76,6 +87,11 @@ void Game::Run() {
         Render();
     }
     else running = false;
+
+    //Framerate cap
+    auto frame_time = (Clock::now() - now).count();
+    if (frame_time < target_frame_time)
+        this_thread::sleep_for(chrono::duration<float>(target_frame_time - frame_time));
 }
 
 //Process input
@@ -85,8 +101,6 @@ void Game::ProcessInput() {
         scene->GetInput();
     else
         cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
-
-    
     */
 }
 
@@ -124,19 +138,6 @@ void Game::Render() {
         scene->Draw();
     else
         cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
-
-    
-    if (debug) {
-        sf::RectangleShape cam_pos;
-        cam_pos.setPosition({ camera.getCenter().x - 2, camera.getCenter().y - 2 });
-        cam_pos.setSize({ 4, 4 });
-        cam_pos.setFillColor({ 0, 0, 255, 200 });
-        window.draw(cam_pos);
-    }
-    //window.draw(debug_box);
-
-    //window.display();
-
     */
     renderer->EndFrame();
 }
@@ -203,12 +204,6 @@ void Game::SetResolution(uint res_scalar) {
 
     if (auto scene = active_scene.lock())
         scene->ResizeMenus();
-
-    //Debug stuff
-    /*
-    debug_box.setSize(Vector2f(2, resolution.y));
-    debug_box.setPosition(Vector2f(resolution.x * .5, 0));
-    debug_box.setFillColor(sf::Color(255, 255, 0, 127));
     */
 }
 
@@ -231,11 +226,4 @@ void Game::SetResolution(Vector2u n_r) {
             scene->ResizeMenus();
             */
     }
-
-    //Debug stuff
-    /*
-    debug_box.setSize(Vector2f(2, resolution.y));
-    debug_box.setPosition(Vector2f(resolution.x * .5, 0));
-    debug_box.setFillColor(sf::Color(255, 255, 0, 127));
-    */
 }

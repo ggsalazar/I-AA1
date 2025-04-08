@@ -1,11 +1,7 @@
-Left off: Need to implement FPS & delta time
-
-
-Engine: -Delta Time
-		-Rendering
-		-Text
-		-Textures
-		-Sprites
+Left off:
+Engine: -Rendering
+			--Textures + Sprites
+			--Text
 		-Tilemapping
 		-json parsing
 		-Camera
@@ -14,7 +10,6 @@ Engine: -Delta Time
 		-SFX
 
 Physically draw #include map
-Write own Camera class
 
 Tutorial - add in NPCs, area transition, multi-party member movement & cam locking
 

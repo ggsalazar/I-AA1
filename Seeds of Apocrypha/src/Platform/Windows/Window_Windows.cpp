@@ -61,7 +61,7 @@ void Window_Windows::Destroy() {
 void Window_Windows::PollEvents() {
 	MSG msg = {};
 	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
-		if (msg.message == WM_QUIT) should_close = true;
+		if (msg.message == WM_QUIT) open = false;
 
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);

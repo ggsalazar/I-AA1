@@ -7,7 +7,7 @@ namespace Engine {
 
 class Window_Windows : public Window {
 public:
-	bool should_close = false;
+	bool open = true;
 
 	Window_Windows() {}
 	~Window_Windows() { Destroy(); }
