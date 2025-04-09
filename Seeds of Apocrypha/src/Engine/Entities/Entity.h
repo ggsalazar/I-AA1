@@ -1,12 +1,15 @@
 #pragma once
 #include <iostream>
-#include "../Core/Input.h"
-#include "../Core/Enums.h"
 #include "../Core/Collision.h"
+#include "../Core/Enums.h"
+#include "../Core/Geometry.h"
+#include "../Core/Input.h"
 #include "../Graphics/Animation.h"
 #include "../Graphics/Text.h"
 
 using namespace std;
+
+namespace Engine {
 
 class Game;
 class Scene;
@@ -27,8 +30,8 @@ public:
     int dfc = 0; //Distance from camera; draw order, basically - the lower the number, the closer to the camera
 
     //SFX Stuff
-    sf::SoundBuffer sb;
-    sf::Sound sound;
+    //sf::SoundBuffer sb;
+    //sf::Sound sound;
 
 
     Entity(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
@@ -38,7 +41,7 @@ public:
     virtual void GetInput() {}
     virtual void Update() {}
     virtual void Draw();
-    virtual void MoveBy(Vector2i offset) { pos += offset; Entity::Move(); }
+    virtual void MoveBy(Vector2i offset) { pos.x += offset.x; pos.y += offset.y; Entity::Move(); }
     virtual void MoveTo(Vector2u new_pos) { pos = new_pos; Entity::Move(); }
 
     Vector2u GetPos() const { return pos; }
@@ -61,3 +64,4 @@ protected:
 private:
     virtual void Move() { anim->sprite.setPosition(Vector2f(pos)); SetBBox(); }
 };
+}

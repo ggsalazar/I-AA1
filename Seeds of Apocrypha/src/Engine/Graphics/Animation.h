@@ -1,14 +1,12 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "Game.h"
 #include "Math.h"
 
+class Game;
 class Entity;
 
 struct AnimInfo {
 	std::string tex_name;
-	uint sprite_w = 1;
-	uint sprite_h = 1;
+	Vector2u sprite_size = { 0, 0 };\
 	uint tex_row = 0;
 	uint num_frames = 1;
 	uint curr_frame = 0;

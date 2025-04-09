@@ -1,8 +1,5 @@
 #pragma once
 #include <iostream>
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Graphics.hpp>
 
 //Mouse input
 #define MOUSEPOS sf::Mouse::getPosition(window)

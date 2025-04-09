@@ -110,14 +110,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\libs\SFML-3.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\libs\SFML-3.0.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;sfml-main-s-d.lib;d2d1.lib;dwrite.lib;windowscodecs.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d2d1.lib;dwrite.lib;windowscodecs.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,6 +144,7 @@
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Engine\Core\Math.cpp" />
+    <ClCompile Include="src\Platform\Windows\Texture_D2D.cpp" />
     <ClCompile Include="src\Platform\Windows\Window_Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,10 +154,12 @@
     <ClInclude Include="src\Engine\Graphics\Display.h" />
     <ClInclude Include="src\Engine\Core\Vector2.h" />
     <ClInclude Include="src\Engine\Graphics\Renderer.h" />
+    <ClInclude Include="src\Engine\Graphics\Texture.h" />
     <ClInclude Include="src\Engine\Graphics\Window.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Engine\Core\Enums.h" />
     <ClInclude Include="src\Platform\Windows\Renderer_D2D.h" />
+    <ClInclude Include="src\Platform\Windows\Texture_D2D.h" />
     <ClInclude Include="src\Platform\Windows\Window_Windows.h" />
   </ItemGroup>
   <ItemGroup>

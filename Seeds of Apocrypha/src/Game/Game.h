@@ -2,8 +2,6 @@
 #include <iostream>
 #include <memory>
 #include <unordered_map>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
 #include "../Engine/Engine.h"
 #include "../Platform/Windows/Window_Windows.h"
 #include "../Platform/Windows/Renderer_D2D.h"
@@ -21,9 +19,9 @@ public:
     float delta_time;
     int debug_timer = 0;
 
-    unique_ptr<Window_Windows> window;
+    unique_ptr<Window> window;
     unique_ptr<Renderer> renderer;
-    //sf::View camera;
+    //Camera camera;
     float cam_move_spd = 10.f;
     bool cam_locked = false;
     //DJ dj;
@@ -31,7 +29,7 @@ public:
     uint curr_ui_layer = 0;
     //sf::Font default_font;
     bool debug = false;
-    unordered_map<Actions, unique_ptr<sf::Cursor>> cursors;
+    //unordered_map<Actions, unique_ptr<sf::Cursor>> cursors;
     //sf::Cursor* cursor;
 
     Game(const char* title, uint init_fps);

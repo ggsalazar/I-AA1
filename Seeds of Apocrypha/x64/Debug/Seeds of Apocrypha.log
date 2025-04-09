@@ -1,58 +1,264 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Renderer_D2D.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Platform/Windows/Renderer_D2D.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(32,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Platform/Windows/Renderer_D2D.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(33,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Platform/Windows/Renderer_D2D.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(42,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Platform/Windows/Renderer_D2D.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         ]
+  (compiling source file 'src/Platform/Windows/Renderer_D2D.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,62): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,62): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,62): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,62): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,62): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,49): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,49): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,49): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,49): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,49): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,103): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,103): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,103): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,103): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,103): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,90): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,90): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,90): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,90): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,90): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(32,119): warning C4244: 'argument': conversion from 'const uint' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,82): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,82): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,82): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,82): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,82): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,68): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,68): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,68): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,68): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,68): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(38,117): warning C4244: 'argument': conversion from 'const uint' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,82): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,82): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,82): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,82): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,82): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,68): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,68): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,68): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,68): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(42,68): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,54): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,54): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,54): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,54): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,54): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,42): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,42): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,42): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,42): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(52,42): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,63): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,63): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,63): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,63): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,63): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,51): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,51): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,51): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,51): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,51): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,102): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,102): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,102): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,102): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,102): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,90): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,90): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,90): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,90): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(53,90): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(60,47): warning C4244: 'argument': conversion from 'const uint' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,104): warning C4244: 'argument': conversion from 'T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,104): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,104): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,104): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,104): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,78): warning C4244: 'argument': conversion from 'T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,78): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,78): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,78): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,78): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,63): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,63): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,63): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,63): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,63): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,51): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,51): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,51): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,51): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,51): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(76,127): warning C4244: 'argument': conversion from 'const uint' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,104): warning C4244: 'argument': conversion from 'T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,104): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,104): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,104): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,104): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,78): warning C4244: 'argument': conversion from 'T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,78): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,78): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,78): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,78): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,63): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,63): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,63): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,63): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,63): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,51): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,51): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,51): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,51): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(80,51): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,101): warning C4244: 'argument': conversion from 'T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,101): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,101): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,101): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,101): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,65): warning C4244: 'argument': conversion from 'T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,65): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,65): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,65): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,65): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,45): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,45): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,45): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,45): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,45): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,28): warning C4244: 'argument': conversion from 'const T' to 'FLOAT', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,28): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,28): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,28): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Renderer_D2D.cpp(86,28): warning C4244:         ]
   Game.cpp
-C:\libs\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
-  (compiling source file 'src/Game/Game.cpp')
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\stdexcept(100,19):
-      see declaration of 'std::runtime_error'
-      C:\libs\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
-      see declaration of 'sf::Exception'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,36): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/Game/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(32,36): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(32,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/Game/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(33,36): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(33,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/Game/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(42,117): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(42,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/Game/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         ]
   (compiling source file 'src/Game/Game.cpp')
   
-  Window_Windows.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Window_Windows.h(8,15): warning C4091: 'typedef ': ignored on left of 'Engine::Window_Windows' when no variable is declared
+  (compiling source file 'src/Game/Game.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Window_Windows.h(54,4): warning C4091: '': ignored on left of 'Engine::Window' when no variable is declared
+  (compiling source file 'src/Game/Game.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.cpp(16,13): error C2660: 'Engine::Window::Create': function does not take 3 arguments
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Window.h(10,15):
+      see declaration of 'Engine::Window::Create'
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.cpp(16,13):
+      while trying to match the argument list '(Vector2u, const char [19], int)'
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.cpp(20,28): error C2039: 'GetHandle': is not a member of 'Engine::Window'
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Window.h(6,7):
+      see declaration of 'Engine::Window'
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.cpp(81,17): error C2039: 'open': is not a member of 'Engine::Window'
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Window.h(6,7):
+      see declaration of 'Engine::Window'
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.cpp(198,13): error C2660: 'Engine::Window::Create': function does not take 3 arguments
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Window.h(10,15):
+      see declaration of 'Engine::Window::Create'
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.cpp(198,13):
+      while trying to match the argument list '(Vector2u, const char [19], int)'
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.cpp(218,17): error C2660: 'Engine::Window::Create': function does not take 3 arguments
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Window.h(10,15):
+      see declaration of 'Engine::Window::Create'
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.cpp(218,17):
+      while trying to match the argument list '(Vector2u, const char [19], int)'
+  
   main.cpp
-C:\libs\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
-  (compiling source file 'src/main.cpp')
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\stdexcept(100,19):
-      see declaration of 'std::runtime_error'
-      C:\libs\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
-      see declaration of 'sf::Exception'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,36): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/main.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(32,36): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(32,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/main.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(33,36): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(33,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/main.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(42,117): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(42,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/main.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(51,37): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         ]
   (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Window_Windows.h(8,15): warning C4091: 'typedef ': ignored on left of 'Engine::Window_Windows' when no variable is declared
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Window_Windows.h(54,4): warning C4091: '': ignored on left of 'Engine::Window' when no variable is declared
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.h(12,15): error C7510: 'high_resolution_clock': use of dependent type name must be prefixed with 'typename'
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.h(74,5): error C2653: 'Clock': is not a class or namespace name
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.h(74,23): error C3646: 'last_time': unknown override specifier
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Game.h(74,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'src/main.cpp')
+  
+  Math.cpp
+  Texture_D2D.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(7,5): error C2065: 'ComPtr': undeclared identifier
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(7,12): error C2275: 'IWICImagingFactory': expected an expression instead of a type
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(7,32): error C2065: 'wic_factory': undeclared identifier
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(8,35): error C2065: 'LSID_WICImagingFactory': undeclared identifier
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(8,90): error C2065: 'wic_factory': undeclared identifier
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(16,10): error C2065: 'wic_factory': undeclared identifier
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(27,5): error C2065: 'wic_factory': undeclared identifier
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(28,65): error C2059: syntax error: '...'
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Texture_D2D.cpp(31,5): error C2065: 'render_target': undeclared identifier
+  Window_Windows.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Window_Windows.h(8,15): warning C4091: 'typedef ': ignored on left of 'Engine::Window_Windows' when no variable is declared
+  (compiling source file 'src/Platform/Windows/Window_Windows.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platform\Windows\Window_Windows.h(54,4): warning C4091: '': ignored on left of 'Engine::Window' when no variable is declared
+  (compiling source file 'src/Platform/Windows/Window_Windows.cpp')
   
   Generating Code...
-  Seeds of Apocrypha.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe

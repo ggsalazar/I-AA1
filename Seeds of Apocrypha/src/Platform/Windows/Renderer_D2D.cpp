@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include "Renderer_D2D.h"
+#include "Texture_D2D.h"
 
 namespace Engine {
 
@@ -77,6 +78,13 @@ void Renderer_D2D::DrawRect(const Rect& rect, const Color& fill_color, const Col
 	//Fill
 	brush->SetColor(D2D1::ColorF(fill_color.r, fill_color.g, fill_color.b)); brush->SetOpacity(fill_color.a);
 	render_target->FillRectangle(D2D1::RectF(rect.pos.x, rect.pos.y, rect.pos.x + rect.size.x, rect.pos.y + rect.size.y), brush);
+}
+
+void Renderer_D2D::DrawTex(const Texture& tex, const Rect& dest_rect) {
+	const Texture_D2D& texd2d = static_cast<const Texture_D2D&>(tex);
+	render_target->DrawBitmap(texd2d.GetBitmap(),
+		D2D1::RectF(dest_rect.pos.x, dest_rect.pos.y, dest_rect.pos.x + dest_rect.size.x, dest_rect.pos.y + dest_rect.size.y)
+	);
 }
 
 }

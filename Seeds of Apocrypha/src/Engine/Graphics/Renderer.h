@@ -1,10 +1,12 @@
 #pragma once
 #include "../Core/Geometry.h"
+#include "Texture.h"
 
 namespace Engine {
 class Renderer {
 public:
 	virtual ~Renderer() {}
+
 	//Functionality
 	virtual void Init(void* window_handle) = 0;
 	virtual void BeginFrame() = 0;
@@ -17,5 +19,9 @@ public:
 	virtual void DrawCircle(const Circle& circle, const Color& fill_color, const Color& line_color = Color(0, 0, 0, 0), const uint edge_w = 1) = 0;
 	virtual void DrawTri(const Tri& tri, const Color& fill_color, const Color& line_color = Color(0, 0, 0, 0), const uint edge_w = 1) = 0;
 	virtual void DrawRect(const Rect& rect, const Color& fill_color, const Color& line_color = Color(0, 0, 0, 0), const uint edge_w = 1) = 0;
+
+	//Sprites & Textures
+	virtual void DrawTex(const Texture& tex, const Rect& dest_rect) = 0;
+	virtual void DrawSprite() = 0;
 };
 }

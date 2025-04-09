@@ -18,17 +18,20 @@ public:
 	void Clear(float r, float g, float b, float a) override { render_target->Clear(D2D1::ColorF(r, g, b, a)); }
 	void Shutdown() override;
 
-	//Drawing shapes
+	//Shapes
 	void DrawLine(const Line& line, const Color& color) override;
 	void DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 1) override;
 	void DrawTri(const Tri& tri, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 1) override;
 	void DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 1) override;
 
+	//Sprites & Textures
+	void DrawTex(const Texture& tex, const Rect& dest_rect) override;
+
 private:
 	ID2D1Factory* factory = nullptr;
 	ID2D1HwndRenderTarget* render_target = nullptr;
 
-	//Brush for drawing
+	//Brush for drawing shapes
 	ID2D1SolidColorBrush* brush = nullptr;
 };
 

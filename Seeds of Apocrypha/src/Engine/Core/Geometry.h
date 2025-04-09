@@ -19,7 +19,7 @@ struct Line {
 	Line() : pos1({ 0, 0 }), pos2({ 0, 0 }), w(0) {}
 	Line(Vector2u p1, Vector2u p2) : pos1(p1), pos2(p2), w(1) {}
 	Line(Vector2u p1, Vector2u p2, uint w) : pos1(p1), pos2(p2), w(w) {}
-	float Length() const { return sqrt((pos2.x - pos1.x) * (pos2.x - pos1.x) + (pos2.y - pos1.y) * (pos2.y - pos1.y)); }
+	inline float Length() const { return sqrt((pos2.x - pos1.x) * (pos2.x - pos1.x) + (pos2.y - pos1.y) * (pos2.y - pos1.y)); }
 };
 
 struct Circle {
@@ -29,8 +29,8 @@ struct Circle {
 	Circle() : pos({ 0, 0 }), r(0) {}
 	Circle(Vector2u p, float r) : pos(p), r(r) {}
 
-	float Area() const { return r * r * 3.14159; }
-	float Circ() const { return 2 * r * 3.14159; }
+	inline float Area() const { return r * r * 3.14159; }
+	inline float Circ() const { return 2 * r * 3.14159; }
 };
 
 struct Tri {
@@ -39,23 +39,17 @@ struct Tri {
 	Tri() : pos1({ 0, 0 }), pos2({ 0, 0 }), pos3({ 0, 0 }) {}
 	Tri(Vector2u p1, Vector2u p2, Vector2u p3) : pos1(p1), pos2(p2), pos3(p3) {}
 
-	float Area() const { return (pos1.x * (pos2.y - pos3.y) + pos2.x * (pos3.y - pos1.y) + pos3.x * (pos1.y - pos2.y)) * .5; }
+	inline float Area() const { return (pos1.x * (pos2.y - pos3.y) + pos2.x * (pos3.y - pos1.y) + pos3.x * (pos1.y - pos2.y)) * .5; }
 };
 
 struct Rect {
 	Vector2u pos, size;
 
-	Rect() : pos({ 0, 0 }), size({ 0, 0 }) {}
+	Rect() : pos({0,0}), size({0,0}) {}
+	Rect(Vector2u p, uint s) : pos(p), size({s,s}) {}
 	Rect(Vector2u p, Vector2u s) : pos(p), size(s) {}
 
-	float Area() const { return size.x * size.y; }
-	//Add Rotation at some point?
+	inline float Area() const { return size.x * size.y; }
 };
 
-/* One day!
-struct Ellipse {
-
-	Ellipse() :
-};
-*/
 }
