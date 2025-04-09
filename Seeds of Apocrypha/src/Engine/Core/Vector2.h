@@ -5,8 +5,7 @@
 using uint = unsigned int;
 
 template <typename T = float>
-class Vector2 {
-public:
+struct Vector2 {
 	T x, y;
 
 	//Constructors

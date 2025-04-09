@@ -5,7 +5,7 @@
 
 namespace Engine {
 
-typedef class Window_Windows : public Window {
+class Window_Windows : public Window {
 public:
 	bool open = true;
 
@@ -51,6 +51,6 @@ private:
 		return monitors;
 	}
 
-}; Window;
+};
 
 }

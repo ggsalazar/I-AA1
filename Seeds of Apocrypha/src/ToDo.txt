@@ -1,11 +1,11 @@
 Left off:
 Engine: -Rendering
-			--Textures + Sprites
+			--Sprites
 			--Text
 		-Tilemapping
 		-json parsing
 		-Camera
-		-Cursors
+		-Cursors (Basically just an entity w/ pos = mouse_pos?)
 		-Music
 		-SFX
 
