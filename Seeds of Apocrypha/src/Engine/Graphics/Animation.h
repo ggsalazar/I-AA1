@@ -6,7 +6,7 @@ class Entity;
 
 struct AnimInfo {
 	std::string tex_name;
-	Vector2u sprite_size = { 0, 0 };\
+	Vector2u sprite_size = { 0, 0 };
 	uint tex_row = 0;
 	uint num_frames = 1;
 	uint curr_frame = 0;

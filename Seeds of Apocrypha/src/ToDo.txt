@@ -1,9 +1,9 @@
-Left off:
+Left off: -Implementing Sprite.h/.cpp
 Engine: -Rendering
 			--Sprites
 			--Text
 		-Tilemapping
-		-json parsing
+			--json parsing
 		-Camera
 		-Cursors (Basically just an entity w/ pos = mouse_pos?)
 		-Music

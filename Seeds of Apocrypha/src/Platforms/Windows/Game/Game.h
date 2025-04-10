@@ -5,7 +5,7 @@
 #include <chrono>
 #include "../../../Engine/Engine.h"
 #include "../Window_Windows.h"
-#include "../Renderer_D2D.h" //Includes Spritesheet_D2D.h (and Sprite_D2D.h?)
+#include "../Renderer_D2D.h" //Includes Sprite2D2.h, which includes Spritesheet_D2D.h
 
 using namespace std;
 using namespace Engine;
@@ -22,6 +22,10 @@ public:
 
     unique_ptr<Window_Windows> window;
     unique_ptr<Renderer_D2D> renderer;
+
+    unique_ptr<Spritesheet_D2D> test_sheet;
+    unique_ptr<Sprite_D2D> test_spr;
+
 
     //Camera camera;
     float cam_move_spd = 10.f;

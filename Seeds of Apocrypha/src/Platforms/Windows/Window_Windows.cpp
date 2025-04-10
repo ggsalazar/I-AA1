@@ -75,9 +75,6 @@ void Window_Windows::Clear() {
 	FillRect(hdc, &rect, brush);
 	DeleteObject(brush);
 }
-
-void Window_Windows::Display() {}
-
 Vector2u Window_Windows::GetSize() const {
 	RECT rect;
 	GetClientRect(hwnd, &rect);

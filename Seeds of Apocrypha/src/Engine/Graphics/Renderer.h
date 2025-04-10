@@ -1,6 +1,6 @@
 #pragma once
 #include "../Core/Geometry.h"
-#include "Spritesheet.h"
+#include "Sprite.h" //Includes Spritesheet.h
 
 namespace Engine {
 class Renderer {
@@ -21,7 +21,7 @@ public:
 	virtual void DrawRect(const Rect& rect, const Color& fill_color, const Color& line_color = Color(0, 0, 0, 0), const uint edge_w = 2) = 0;
 	
 	//Sprites
-	virtual void DrawSprsht(const Spritesheet& sprsht, const Vector2u& pos = {0, 0}, Vector2u size = {0, 0}) = 0; //Helpful for debugging/seeing entire sheet
-	//virtual void DrawSprite() = 0;
+	virtual void DrawSheet(const Spritesheet& sprsht, const Vector2u& pos = {0, 0}, Vector2u size = {0, 0}) = 0; //Helpful for debugging/seeing entire sheet
+	virtual void DrawSprite(const Sprite& spr) = 0;
 };
 }

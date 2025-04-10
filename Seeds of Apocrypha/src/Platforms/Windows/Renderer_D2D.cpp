@@ -67,14 +67,16 @@ void Renderer_D2D::DrawRect(const Rect& rect, const Color& fill_color, const Col
 	render_target->FillRectangle(D2D1::RectF(rect.pos.x, rect.pos.y, rect.pos.x + rect.size.x, rect.pos.y + rect.size.y), brush.Get());
 }
 
-
-
-void Renderer_D2D::DrawSprsht(const Spritesheet& sprsht, const Vector2u& pos, Vector2u size) {
+void Renderer_D2D::DrawSheet(const Spritesheet& sprsht, const Vector2u& pos, Vector2u size) {
 	const Spritesheet_D2D& ssd2d = static_cast<const Spritesheet_D2D&>(sprsht);
 
 	if (!size.x && !size.y) size = sprsht.GetSize();
 
 	render_target->DrawBitmap(ssd2d.GetBitmap(), D2D1::RectF(pos.x, pos.y, pos.x + size.x, pos.y + size.y));
+}
+
+void Renderer_D2D::DrawSprite(const Sprite& spr) {
+
 }
 
 }

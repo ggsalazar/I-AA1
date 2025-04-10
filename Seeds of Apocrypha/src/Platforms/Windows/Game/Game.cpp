@@ -10,14 +10,20 @@ Game::Game(const char* title, uint init_fps) :
     last_time = Clock::now();
 
     //Initialize the window
-    resolution = { 2560, 1440 }; //Primary monitor (1) resolution
-    //resolution = { 1920, 1080 }; //Secondary monitor (0) resolution
+    //resolution = { 2560, 1440 }; //Primary monitor (1) resolution
+    resolution = { 1920, 1080 }; //Secondary monitor (0) resolution
     window = make_unique<Window_Windows>();
-    window->Create(resolution, "Seeds of Apocrypha", 1);
+    window->Create(resolution, "Seeds of Apocrypha", 0);
     
     //Initialize the renderer
     renderer = make_unique<Renderer_D2D>();
     renderer->Init(window->GetHandle());
+
+    //Test sprite
+    test_sheet = make_unique<Spritesheet_D2D>(renderer->GetRT());
+    if (!test_sheet->LoadFromFile("assets/Sprites/UI/Toggle"))
+        cout << "You done goofed" << endl;
+    test_spr = make_unique<Sprite_D2D>(Sprite::Info{ move(test_sheet), {24, 24}, 0, 2 }, Sprite::Transform{ {400, 400} });
 
     //Initialize the camera
     /*
@@ -133,6 +139,8 @@ void Game::Update() {
 void Game::Render() {
     
     renderer->BeginFrame(); //This also clears the frame
+
+    renderer->DrawSprite(test_spr.get());
 
     /*
     if (auto scene = active_scene.lock())

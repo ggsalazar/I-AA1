@@ -18,7 +18,7 @@ public:
 	void PollEvents() override;
 
 	void Clear() override;
-	void Display() override;
+	void Display() override {} //Why do I have this?
 
 	Vector2u GetSize() const override;
 	HWND GetHandle() const { return hwnd; }

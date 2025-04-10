@@ -3,7 +3,7 @@
 #include <dwrite.h>
 #include <wrl/client.h>
 #include "../../Engine/Graphics/Renderer.h"
-#include "Spritesheet_D2D.h"
+#include "Sprite_D2D.h" //Includes Spritesheet_D2D.h
 
 using Microsoft::WRL::ComPtr;
 
@@ -28,8 +28,8 @@ public:
 	void DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color, const uint edge_w = 2) override;
 	
 	//Sprites
-	void DrawSprsht(const Spritesheet& sprsht, const Vector2u& pos = {0, 0}, Vector2u size = {0, 0}) override;
-	//void DrawSprite() override {};
+	void DrawSheet(const Spritesheet& sprsht, const Vector2u& pos = {0, 0}, Vector2u size = {0, 0}) override;
+	void DrawSprite(const Sprite& spr) override;
 
 private:
 	ComPtr<ID2D1Factory> factory;
