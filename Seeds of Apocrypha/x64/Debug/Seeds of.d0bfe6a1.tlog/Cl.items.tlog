@@ -1,6 +1,8 @@
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platforms\Windows\Game\Game.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Game.obj
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platforms\Windows\Renderer_D2D.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Renderer_D2D.obj
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platforms\Windows\Spritesheet_D2D.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Spritesheet_D2D.obj
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Platforms\Windows\Window_Windows.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Window_Windows.obj
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Sprite.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Sprite.obj
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Windows\Game.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Game.obj
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Windows\Graphics\Renderer_D2D.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Renderer_D2D.obj
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Windows\Graphics\Spritesheet_D2D.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Spritesheet_D2D.obj
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Windows\Graphics\Sprite_D2D.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Sprite_D2D.obj
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Windows\Graphics\Window_Windows.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Window_Windows.obj
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\main.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\main.obj
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Math.cpp;C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Math.obj

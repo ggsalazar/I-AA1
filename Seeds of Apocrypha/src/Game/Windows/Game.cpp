@@ -22,8 +22,8 @@ Game::Game(const char* title, uint init_fps) :
     test_sheet = make_unique<Spritesheet_D2D>(renderer->GetRT());
     if (!test_sheet->LoadFromFile("assets/Sprites/UI/Toggle"))
         cout << "You done goofed" << endl;
-    Sprite::Info s_init_info; s_init_info.pos = { resolution * .5 }; s_init_info.origin = { .5 };
-    s_init_info.frame_size = { 24 }; s_init_info.num_frames = 2;
+    Sprite::Info s_init_info; s_init_info.pos = { (uint)(resolution.x * .5), (uint)(resolution.y*.5) }; s_init_info.origin = { .5f, .5f };
+    s_init_info.frame_size = { 24, 24 }; s_init_info.num_frames = 2; s_init_info.anim_fps = 2; s_init_info.scale = 4;
     test_spr = make_unique<Sprite_D2D>(move(test_sheet), s_init_info);
 
     //Initialize the camera
@@ -118,7 +118,7 @@ void Game::Update() {
     //    debug_timer = fps * 3;
     //}
     
-    if (++frames_elapsed > fps) frames_elapsed = 0;
+    //if (++frames_elapsed > fps) frames_elapsed = 0;
     test_spr->Update(*this);
     /*
     //Reset our variables
@@ -142,7 +142,7 @@ void Game::Render() {
     
     renderer->BeginFrame(); //This also clears the frame
 
-    renderer->DrawSprite(test_spr.get());
+    renderer->DrawSprite(*test_spr);
 
     /*
     if (auto scene = active_scene.lock())
@@ -206,9 +206,8 @@ void Game::SetResolution(uint res_scalar) {
     }
 
     window->Destroy();
-    window->Create(resolution, "Seeds of Apocrypha", 0);
+    window->Create("Seeds of Apocrypha", resolution);
     /*
-    window.setFramerateLimit(fps);
     window.setVerticalSyncEnabled(true);
     camera.setSize(Vector2f(window.getSize()));
     camera.setCenter(Vector2f(window.getSize()) * .5f);
@@ -226,9 +225,8 @@ void Game::SetResolution(Vector2u n_r) {
         resolution = n_r;
 
         window->Destroy();
-        window->Create(resolution, "Seeds of Apocrypha", 0);
+        window->Create("Seeds of Apocrypha", resolution);
         /*
-        window.setFramerateLimit(fps);
         window.setVerticalSyncEnabled(true);
         camera.setSize(Vector2f(window.getSize()));
         camera.setCenter(Vector2f(window.getSize()) * .5f);

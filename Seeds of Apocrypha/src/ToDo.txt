@@ -1,7 +1,7 @@
-Left off: -Take sprite for a test drive
+Left off: -Text time!
 Engine: -Rendering
-			--Sprites
 			--Text
+		-Input
 		-Tilemapping
 			--json parsing
 		-Camera

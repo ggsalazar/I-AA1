@@ -17,7 +17,7 @@ public:
         Vector2u pos; //Worldspace position of the sprite
         Vector2f origin; //Anchor point of the sprite
         Vector2u spr_size; //The size of the sprite in world space (i.e. after being scaled up/down)
-        Vector2f scale{1}; //The scale of the sprite
+        Vector2u scale{1}; //The scale of the sprite - uint BECAUSE this is a pixel art game!
         Vector2u frame_size{1}; //The literal, actual size of a single frame of the sprite
         Color color{ 1, 1, 1 }; //The color tint of the sprite
         float rot{}; //Angle of rotation in degrees
@@ -26,13 +26,18 @@ public:
         uint curr_frame{}; //Which frame of the animation we are currently on
         int anim_fps{}; //How many frames of the animation play per second
         uint game_fps{60}; //The fps of the game
-        uint fci{}; //frame_change_interval: How many frames until the next frame of the animation
+        uint fci{}; //frame_change_interval: How many game frames until the next animation frame
         float anim_length{}; //Length of the animation in seconds
+        float frame_length{}; //Length of a single frame in seconds
+        float frame_timer{}; //How long since the frame changed
     };
 
     Sprite(unique_ptr<Spritesheet>& s, const Info& i = {}) :
         sheet(move(s)), info(i) {
         SetSize();
+        SetAnimFPS(info.anim_fps);
+
+        cout << "Frame length: " << info.frame_length << endl;
     }
     virtual ~Sprite() {}
 
@@ -40,6 +45,8 @@ public:
 
     virtual void Update(const Game& game) = 0;
 
+
+    inline Vector2u GetPos() const { return info.pos; }
     inline virtual void MoveTo(const Vector2u& new_pos) { info.pos = new_pos; }
     virtual void MoveBy(const Vector2i& offset);
 
@@ -48,10 +55,11 @@ public:
         info.spr_size = s;
         info.scale = info.spr_size / info.frame_size;
     }
-    inline virtual void SetScale(const Vector2f& s) {
+    inline virtual void SetScale(const Vector2u& s) {
         info.scale = s;
         info.spr_size = info.frame_size * info.scale;
     }
+
     inline virtual void SetRotD(float angle) { info.rot = angle; }
     inline virtual float GetRotD() const { return info.rot; }
     inline virtual void SetRotR(float rad) { info.rot = rad * 57.2958; }

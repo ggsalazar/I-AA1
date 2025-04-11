@@ -15,6 +15,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 }
 
 bool Window_Windows::Create(const char* title, Vector2u size) {
+
+	//Make system aware of DPI scaling (no manual adjustment needed)
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE);
+
 	WNDCLASS wc = { 0 };
 	wc.lpfnWndProc = WindowProc;
 	wc.hInstance = GetModuleHandle(nullptr);
@@ -28,14 +32,11 @@ bool Window_Windows::Create(const char* title, Vector2u size) {
 	RECT r = monitors[monitor].rect;
 
 	if (size == Vector2u{0, 0})
-		size = { r.right - r.left, r.bottom - r.top };
+		size = { (uint)(r.right - r.left), (uint)(r.bottom - r.top) };
 	win_size = size;
 
 	//Convert the title from a const char* to a wide string
 	std::wstring wtitle = std::wstring(title, title + strlen(title));
-
-	//Make system aware of DPI scaling (no manual adjustment needed)
-	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE);
 
 	hwnd = CreateWindowEx(0, wc.lpszClassName, wtitle.c_str(), WS_OVERLAPPEDWINDOW, r.left, r.top, size.x, size.y, 0, 0, wc.hInstance, 0);
 	if (!hwnd) {
@@ -44,7 +45,7 @@ bool Window_Windows::Create(const char* title, Vector2u size) {
 	}
 
 	//Cannot create the window borderless for some fucking reason that I can't figure out, so have to change it after the fact
-	if (size == Vector2u{ r.right - r.left, r.bottom - r.top })
+	if (size == Vector2u{ (uint)(r.right - r.left), (uint)(r.bottom - r.top) })
 		SetWindowLong(hwnd, GWL_STYLE, WS_POPUP);
 
 	ShowWindow(hwnd, SW_SHOW);

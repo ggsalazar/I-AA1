@@ -14,7 +14,7 @@ public:
 
     //Don't forget to add Entity* when finished implementing!
     //Sprite_D2D(unique_ptr<Spritesheet>& s, Entity* e, const Info& i = {}) :
-    Sprite_D2D(unique_ptr<Spritesheet>& s, const Info& i = {}) :
+    Sprite_D2D(unique_ptr<Spritesheet> s, const Info& i = {}) :
         Sprite(s, i) {}
 
     void Update(const Game& game) override;

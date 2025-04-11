@@ -80,11 +80,14 @@ void Renderer_D2D::DrawSprite(const Sprite& spr) {
 
 	const Sprite::Info* si = &sprd2d->info;
 
+	FLOAT dpi_x, dpi_y;
+	render_target->GetDpi(&dpi_x, &dpi_y);
+	float scale_factor = dpi_x / 96.f; //dpi_x and y should be equal
+
 	//Set draw location
-	D2D1_RECT_F pos_rect = D2D1::RectF(si->pos.x-(si->spr_size.x*si->origin.x),
-										si->pos.y-(si->spr_size.y*si->origin.y),
-										(si->pos.x-(si->spr_size.x*si->origin.x))+si->spr_size.x,
-										(si->pos.y-(si->spr_size.y*si->origin.y))+si->spr_size.y);
+	float pos_x = (si->pos.x - (si->spr_size.x * si->origin.x)) / scale_factor,
+		  pos_y = (si->pos.y - (si->spr_size.y * si->origin.y)) / scale_factor;
+	D2D1_RECT_F pos_rect = D2D1::RectF(pos_x, pos_y, pos_x+si->spr_size.x, pos_y+si->spr_size.y);
 
 	//Set the frame to draw
 	D2D1_RECT_F frame_rect = D2D1::RectF(si->curr_frame * si->frame_size.x,

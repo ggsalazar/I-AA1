@@ -12,10 +12,8 @@ void Engine::Sprite::SetSheetRow(uint new_s_r, const uint new_n_f) {
     //Dividing the size of the sprite rect by the height of the spritesheet should ALWAYS produce a whole number
     const uint num_rows = info.frame_size.y / sheet->GetSize().y;
     while (0 > new_s_r or new_s_r >= num_rows) {
-        if (new_s_r < 0)
-            new_s_r += num_rows;
-        else if (new_s_r >= num_rows)
-            new_s_r -= num_rows;
+        if (new_s_r < 0) new_s_r += num_rows;
+        else if (new_s_r >= num_rows) new_s_r -= num_rows;
     }
     info.sheet_row = new_s_r;
 
@@ -30,12 +28,21 @@ void Engine::Sprite::SetGameFPS(const uint new_fps) {
     info.fci = info.fci > 0 ? info.fci : info.fci * -1;
 }
 
-inline void Engine::Sprite::SetAnimFPS(const int new_fps) {
+void Engine::Sprite::SetAnimFPS(const int new_fps) {
     info.anim_fps = new_fps;
-    info.fci = round(info.game_fps / info.anim_fps);
-    info.fci = info.fci > 0 ? info.fci : info.fci * -1;
 
-    info.anim_length = (info.anim_fps != 0) ? info.num_frames / info.anim_fps : 0;
+    if (info.anim_fps != 0) {
+        info.fci = round(info.game_fps / info.anim_fps);
+        info.fci = info.fci > 0 ? info.fci : info.fci * -1;
+
+        info.anim_length = info.num_frames / info.anim_fps;
+        info.frame_length = (info.anim_fps > 0) ? 1.f / info.anim_fps : (1.f / info.anim_fps)*-1;
+    }
+    else {
+        info.fci = 0;
+        info.anim_length = 0;
+        info.frame_length = 0;
+    }
 }
 
 void Engine::Sprite::SetOrigin(const Vector2f new_ori) {
