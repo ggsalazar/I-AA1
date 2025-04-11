@@ -10,7 +10,9 @@ struct Vector2 {
 
 	//Constructors
 	constexpr Vector2() : x(0), y(0) {}
+    constexpr Vector2(T x) : x(x), y(x) {}
 	constexpr Vector2(T x, T y) : x(x), y(y) {}
+    constexpr Vector2(Vector2<T> v) : x(v.x), y(v.y) {}
 
     //Addition
     Vector2 operator+(const Vector2& other) const {
@@ -34,32 +36,48 @@ struct Vector2 {
     Vector2 operator*(T scalar) const {
         return Vector2(x * scalar, y * scalar);
     }
+    Vector2 operator*(Vector2<T> other) const {
+        return Vector2(x * other.x, y * other.y);
+    }
     Vector2& operator*=(T scalar) {
         x *= scalar; y *= scalar;
         return *this;
     }
+    template<typename U>
+    Vector2<T> operator*(Vector2<U> other) const {
+        return Vector2<T>(static_cast<T>(x) * static_cast<T>(other.x),
+                          static_cast<T>(y) * static_cast<T>(other.y));
+    }
+
 
     //Division
     Vector2 operator/(T scalar) const {
         return Vector2(x / scalar, y / scalar);
     }
+    Vector2 operator/(Vector2<T> other) const {
+        return Vector2(x / other.x, y / other.y);
+    }
     Vector2& operator/=(T scalar) {
         x /= scalar; y /= scalar;
         return *this;
     }
+    template<typename U>
+        Vector2<T> operator/(Vector2<U> other) const {
+        return Vector2<T>(static_cast<T>(x) / static_cast<T>(other.x),
+                          static_cast<T>(y) / static_cast<T>(other.y));
+    }
+
 
     //(In)Equality
-    bool operator==(const Vector2& other) {
+    bool operator==(const Vector2& other) const {
         return this->x == other.x and this->y == other.y;
     }
-    bool operator!=(const Vector2& other) {
+    bool operator!=(const Vector2& other) const {
         return this->x != other.x or this->y != other.y;
     }
 
     //Magnitude (Length)
-    T Length() const {
-        return std::sqrt(x * x + y * y);
-    }
+    T Length() const { return std::sqrt(x * x + y * y); }
 
     //Normalize
     Vector2 Normalized() const {
@@ -72,17 +90,12 @@ struct Vector2 {
         return x * other.x + y * other.y;
     }
 
-};
 
+
+};
 //ostream operator
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const Vector2<T>& vec) { return os << vec.x << ", " << vec.y; }
-
-//Scalar multiplication
-template <typename T>
-Vector2<T> operator*(T scalar, const Vector2<T>& vec) {
-    return vec * scalar;
-}
 
 using Vector2u = Vector2<unsigned int>;
 using Vector2i = Vector2<int>;

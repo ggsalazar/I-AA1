@@ -21,35 +21,23 @@
     <ClCompile Include="src\Engine\Core\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\Game\Game.cpp">
+    <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\Window_Windows.cpp">
+    <ClCompile Include="src\Game\Windows\Graphics\Spritesheet_D2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\Renderer_D2D.cpp">
+    <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\Spritesheet_D2D.cpp">
+    <ClCompile Include="src\Game\Windows\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platforms\Windows\Renderer_D2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platforms\Windows\Spritesheet_D2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platforms\Windows\Window_Windows.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platforms\Windows\Game\Game.cpp">
+    <ClCompile Include="src\Engine\Graphics\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\Windows\Game\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\Core\Enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -62,16 +50,10 @@
     <ClInclude Include="src\Engine\Graphics\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\Window_Windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Graphics\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\Renderer_D2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Core\Math.h">
@@ -83,28 +65,22 @@
     <ClInclude Include="src\Engine\Graphics\Spritesheet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\Spritesheet_D2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\Graphics\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\Sprite_D2D.h">
+    <ClInclude Include="src\Game\Windows\Graphics\Window_Windows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\Windows\Window_Windows.h">
+    <ClInclude Include="src\Game\Windows\Graphics\Renderer_D2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\Windows\Renderer_D2D.h">
+    <ClInclude Include="src\Game\Windows\Graphics\Sprite_D2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\Windows\Sprite_D2D.h">
+    <ClInclude Include="src\Game\Windows\Graphics\Spritesheet_D2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platforms\Windows\Spritesheet_D2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platforms\Windows\Game\Game.h">
+    <ClInclude Include="src\Game\Windows\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

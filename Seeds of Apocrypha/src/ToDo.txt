@@ -1,4 +1,4 @@
-Left off: -Implementing Sprite.h/.cpp
+Left off: -Take sprite for a test drive
 Engine: -Rendering
 			--Sprites
 			--Text
@@ -6,6 +6,7 @@ Engine: -Rendering
 			--json parsing
 		-Camera
 		-Cursors (Basically just an entity w/ pos = mouse_pos?)
+		-VSync
 		-Music
 		-SFX
 

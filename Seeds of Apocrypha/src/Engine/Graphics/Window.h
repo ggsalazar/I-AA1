@@ -7,7 +7,7 @@ class Window {
 public:
 	virtual ~Window() = default;
 
-	virtual bool Create(Vector2u size, const char* title, uint monitor_index, bool borderless) = 0;
+	virtual bool Create(const char* title, Vector2u size) = 0;
 	virtual void Destroy() = 0;
 
 	virtual void PollEvents() = 0;
