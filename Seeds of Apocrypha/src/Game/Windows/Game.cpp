@@ -10,21 +10,25 @@ Game::Game(const char* title, uint init_fps) :
     last_time = Clock::now();
 
     //Initialize the window
-    window = make_unique<Window_Windows>(1); //1 for primary home monitor, 0 for secondary home monitor
-    window->Create("Seeds of Apocrypha"); //Defaults to fullscreen
+    window = make_u<Window_Windows>(1, "Seeds of Apocrypha"); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
     resolution = window->GetSize();
     
     //Initialize the renderer
-    renderer = make_unique<Renderer_D2D>();
-    renderer->Init(window->GetHandle());
+    renderer = make_u<Renderer_D2D>(window->GetHandle());
 
-    //Test sprite
-    test_sheet = make_unique<Spritesheet_D2D>(renderer->GetRT());
-    if (!test_sheet->LoadFromFile("assets/Sprites/UI/Toggle"))
-        cout << "You done goofed" << endl;
-    Sprite::Info s_init_info; s_init_info.pos = { (uint)(resolution.x * .5), (uint)(resolution.y*.5) }; s_init_info.origin = { .5f, .5f };
-    s_init_info.frame_size = { 24, 24 }; s_init_info.num_frames = 2; s_init_info.anim_fps = 2; s_init_info.scale = 4;
-    test_spr = make_unique<Sprite_D2D>(move(test_sheet), s_init_info);
+
+    //Test sprite + sheet
+    Sprite::Info sii = {}; sii.origin = { .5f }; sii.pos = { (uint)(resolution.x * .5), (uint)(resolution.y * .5) }; sii.scale = 4; sii.num_frames = 2; sii.frame_size = { 24 }; sii.anim_fps = 2;
+    test_spr = make_u<Sprite_D2D>("assets/Sprites/UI/Toggle", renderer->GetRT(), sii);
+
+
+    //Load the default font
+    //default_font = make_u<Font_D2D>("assets/Fonts/m5x7.ttf", 36.f, renderer->GetDWriteFactory());
+
+    //Test tex
+    //Text::Info txt_init_info;
+    //txt_init_info.font = default_font.get(); txt_init_info.str = "THIS IS A TEST"; txt_init_info.pos = resolution * .5;
+    //test_txt = make_u<Text>(txt_init_info);
 
     //Initialize the camera
     /*
@@ -79,7 +83,7 @@ Game::Game(const char* title, uint init_fps) :
 void Game::Run() {
     //Calculate delta time
     auto now = Clock::now();
-    chrono::duration<float> delta = now - last_time;
+    std::chrono::duration<float> delta = now - last_time;
     last_time = now;
     delta_time = delta.count();
 
@@ -98,7 +102,7 @@ void Game::Run() {
     //Framerate cap
     auto frame_time = (Clock::now() - now).count();
     if (frame_time < target_frame_time)
-        this_thread::sleep_for(chrono::duration<float>(target_frame_time - frame_time));
+        std::this_thread::sleep_for(std::chrono::duration<float>(target_frame_time - frame_time));
 }
 
 //Process input
@@ -118,8 +122,9 @@ void Game::Update() {
     //    debug_timer = fps * 3;
     //}
     
+    test_spr->Update(delta_time);
+
     //if (++frames_elapsed > fps) frames_elapsed = 0;
-    test_spr->Update(*this);
     /*
     //Reset our variables
     Input::UpdateVars();
@@ -143,6 +148,8 @@ void Game::Render() {
     renderer->BeginFrame(); //This also clears the frame
 
     renderer->DrawSprite(*test_spr);
+
+    //renderer->DrawTxt(*test_txt);
 
     /*
     if (auto scene = active_scene.lock())
@@ -193,16 +200,16 @@ void Game::SetSFXVolume(float n_v) {
 void Game::SetResolution(uint res_scalar) {
     //Minimum resolution is 640 x 360
     if (res_scalar > 0) {
-        Vector2u new_win_size = res_scalar * Display::MinRes();
-        while (new_win_size.x > Display::ScreenSize().x or new_win_size.y > Display::ScreenSize().y) {
+        Vector2u new_win_size = res_scalar * min_res;
+        while (new_win_size.x > window->ScreenSize().x or new_win_size.y > window->ScreenSize().y) {
             --res_scalar;
-            new_win_size = res_scalar * Display::MinRes();
+            new_win_size = res_scalar * min_res;
         }
         resolution = new_win_size;
     }
     else {
         res_scalar = 1;
-        resolution = Display::MinRes();
+        resolution = min_res;
     }
 
     window->Destroy();
@@ -219,8 +226,8 @@ void Game::SetResolution(uint res_scalar) {
 
 void Game::SetResolution(Vector2u n_r) {
     if (n_r.x > 0 and n_r.y > 0) {
-        n_r.x = n_r.x <= Display::ScreenSize().x ? n_r.x : Display::ScreenSize().x;
-        n_r.y = n_r.y <= Display::ScreenSize().y ? n_r.y : Display::ScreenSize().y;
+        n_r.x = n_r.x <= window->ScreenSize().x ? n_r.x : window->ScreenSize().x;
+        n_r.y = n_r.y <= window->ScreenSize().y ? n_r.y : window->ScreenSize().y;
 
         resolution = n_r;
 

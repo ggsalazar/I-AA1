@@ -24,9 +24,6 @@
     <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Windows\Graphics\Spritesheet_D2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,15 +33,15 @@
     <ClCompile Include="src\Engine\Graphics\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\Graphics\Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Core\Enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Core\Vector2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Graphics\Display.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Graphics\Window.h">
@@ -62,9 +59,6 @@
     <ClInclude Include="src\Engine\Core\Geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Graphics\Spritesheet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\Graphics\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,10 +71,16 @@
     <ClInclude Include="src\Game\Windows\Graphics\Sprite_D2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Graphics\Spritesheet_D2D.h">
+    <ClInclude Include="src\Game\Windows\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Game.h">
+    <ClInclude Include="src\Engine\Core\Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Graphics\Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Graphics\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

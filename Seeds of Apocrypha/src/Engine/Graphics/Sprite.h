@@ -1,22 +1,18 @@
 #pragma once
 #include <iostream>
 #include <memory>
-#include "../Core/Geometry.h"
-#include "Spritesheet.h"
-
-using namespace std;
-
-class Game;
+#include <string>
+#include "../Core/Geometry.h" //Includes Vector2
 
 namespace Engine {
 class Sprite {
-    friend class Spritesheet;
     friend class Renderer;
 public:
     struct Info {
         Vector2u pos; //Worldspace position of the sprite
         Vector2f origin; //Anchor point of the sprite
         Vector2u spr_size; //The size of the sprite in world space (i.e. after being scaled up/down)
+        Vector2u sheet_size; //The size of the sprite's spritesheet
         Vector2u scale{1}; //The scale of the sprite - uint BECAUSE this is a pixel art game!
         Vector2u frame_size{1}; //The literal, actual size of a single frame of the sprite
         Color color{ 1, 1, 1 }; //The color tint of the sprite
@@ -32,20 +28,21 @@ public:
         float frame_timer{}; //How long since the frame changed
     };
 
-    Sprite(unique_ptr<Spritesheet>& s, const Info& i = {}) :
-        sheet(move(s)), info(i) {
+    Sprite(const Info& i = {}) :
+        info(i) {
         SetSize();
         SetAnimFPS(info.anim_fps);
-
-        cout << "Frame length: " << info.frame_length << endl;
     }
     virtual ~Sprite() {}
 
-    inline virtual void SetSheet(unique_ptr<Spritesheet>& sht) { sheet = move(sht); }
-
-    virtual void Update(const Game& game) = 0;
+    virtual void Update(const float dt);
 
 
+    //Spritesheet stuff
+    virtual bool LoadSheetFromFile(const std::string& file) = 0;
+    inline virtual Vector2u GetSheetSize() const { return info.sheet_size; }
+
+    //Sprite proper stuff
     inline Vector2u GetPos() const { return info.pos; }
     inline virtual void MoveTo(const Vector2u& new_pos) { info.pos = new_pos; }
     virtual void MoveBy(const Vector2i& offset);
@@ -87,7 +84,6 @@ public:
     inline virtual Vector2f GetOriginSprCoords() { return { info.origin.x * info.spr_size.x, info.origin.y * info.spr_size.y }; }; //Returns origin in pixels relative to the sprite size
 
 protected:
-    std::unique_ptr<Spritesheet> sheet;
-    Info info;
+    Info info; //protected because whenever a member is set, other ancillary functions must be performed
 };
 }

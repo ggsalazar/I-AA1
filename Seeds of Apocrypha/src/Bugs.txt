@@ -1,6 +1,2 @@
 Yes/No buttons not removing elements like they should in character creation
-Portrait health text object constantly moves right at smallest resolution
 When going from Area scene to Title, game not always paused correctly; able to move when Options menu is open, for instance
-Zooming causes pixel distortion
-Portrait seems a touch small on laptop - this is another zoom issue
-When res_scale is set to 2x, not entire debug room can be seen, even though it *should* be - zoom issue

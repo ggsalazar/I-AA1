@@ -1,43 +1,62 @@
 #pragma once
 #include <iostream>
-#include <memory>
 #include <unordered_map>
 #include <chrono>
-#include "../../Engine/Engine.h"
+#include "../../Engine/Engine.h" //Includes <memory> and aliases for std, Engine, and smart ptrs
 #include "Graphics/Window_Windows.h"
-#include "Graphics/Renderer_D2D.h" //Includes Sprite_D2D.h, which includes Spritesheet_D2D.h
-
-using namespace std;
-using namespace Engine;
+#include "Graphics/Renderer_D2D.h" //Includes Sprite_D2D.h (& Spritesheet_D2D.h)
+//#include "Graphics/Fonts/Font_D2D.h"
 
 using Clock = std::chrono::high_resolution_clock;
+
+using namespace Engine;
+
 
 class Scene;
 
 class Game {
 public:
+
+    //Window + rendering target
+    u_ptr<Window_Windows> window;
+    u_ptr<Renderer_D2D> renderer;
+
+    //Game UTH details
     bool running = true;
     float delta_time;
     int debug_timer = 0;
+    bool paused = false;
+    uint curr_ui_layer = 0;
+    bool debug = false;
 
-    unique_ptr<Window_Windows> window;
-    unique_ptr<Renderer_D2D> renderer;
-
-    //Here for testing
-    unique_ptr<Spritesheet_D2D> test_sheet;
-    unique_ptr<Sprite_D2D> test_spr;
-
-
+    //Camera
     //Camera camera;
     float cam_move_spd = 10.f;
     bool cam_locked = false;
+
+    //Music & SFX
     //DJ dj;
-    bool paused = false;
-    uint curr_ui_layer = 0;
-    //sf::Font default_font;
-    bool debug = false;
-    //unordered_map<Actions, unique_ptr<sf::Cursor>> cursors;
+    //Soundboard sb;
+    
+
+    //Test sprite
+    u_ptr<Sprite_D2D> test_spr;
+
+
+
+    //Miscellaneous
+    //u_ptr<Font_D2D> default_font;
+
+
+
+    //u_ptr<Text> test_txt;
+    
+    
+    
+    
+    //unordered_map<Actions, u_ptr<sf::Cursor>> cursors;
     //sf::Cursor* cursor;
+    Areas area = Areas::DEFAULT;
 
     Game(const char* title, uint init_fps);
     
@@ -55,9 +74,8 @@ public:
     float GetMusicVolume() const { return music_volume; }
     float GetSFXVolume() const { return sfx_volume; }
     Vector2u GetResolution() const { return resolution; }
-    uint GetResScale() const { return resolution.x / Display::MinRes().x; }
+    uint GetResScale() const { return resolution.x / min_res.x; }
 
-    
     //Setters
     void SetScene(Scenes scn);
     void SetMusicVolume(float n_v);
@@ -66,14 +84,13 @@ public:
     void SetResolution(Vector2u n_r);
 
     //Scenes
-    unordered_map<Scenes, shared_ptr<Scene>> scenes;
-    weak_ptr<Scene> active_scene;
-    weak_ptr<Scene> old_scene;
-    shared_ptr<Scene> title_scene;
-    shared_ptr<Scene> cutscene_scene;
-    shared_ptr<Scene> area_scene;
+    std::unordered_map<Scenes, s_ptr<Scene>> scenes;
+    w_ptr<Scene> active_scene;
+    w_ptr<Scene> old_scene;
+    s_ptr<Scene> title_scene;
+    s_ptr<Scene> cutscene_scene;
+    s_ptr<Scene> area_scene;
 
-    Areas area = Areas::DEFAULT;
     
 private:
     //Variables
@@ -84,4 +101,5 @@ private:
     float music_volume = 100;
     float sfx_volume = 100;
     Vector2u resolution;
+    const Vector2u min_res = { 640, 320 };
 };

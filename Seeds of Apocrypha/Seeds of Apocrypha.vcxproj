@@ -141,10 +141,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Graphics\Sprite.cpp" />
+    <ClCompile Include="src\Engine\Graphics\Text.cpp" />
     <ClCompile Include="src\Game\Windows\Game.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Spritesheet_D2D.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Sprite_D2D.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Engine\Core\Math.cpp" />
@@ -154,15 +153,14 @@
     <ClInclude Include="src\Engine\Core\Geometry.h" />
     <ClInclude Include="src\Engine\Core\Math.h" />
     <ClInclude Include="src\Engine\Engine.h" />
-    <ClInclude Include="src\Engine\Graphics\Display.h" />
     <ClInclude Include="src\Engine\Core\Vector2.h" />
+    <ClInclude Include="src\Engine\Graphics\Font.h" />
     <ClInclude Include="src\Engine\Graphics\Renderer.h" />
     <ClInclude Include="src\Engine\Graphics\Sprite.h" />
-    <ClInclude Include="src\Engine\Graphics\Spritesheet.h" />
+    <ClInclude Include="src\Engine\Graphics\Text.h" />
     <ClInclude Include="src\Engine\Graphics\Window.h" />
     <ClInclude Include="src\Game\Windows\Game.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Renderer_D2D.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Spritesheet_D2D.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Sprite_D2D.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Window_Windows.h" />
     <ClInclude Include="src\Engine\Core\Enums.h" />

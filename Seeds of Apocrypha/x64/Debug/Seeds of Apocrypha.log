@@ -1,28 +1,55 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Sprite_D2D.cpp
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Graphics/Sprite_D2D.cpp')
+  Game.cpp
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(24,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(32,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Graphics/Sprite_D2D.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(36,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(33,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Graphics/Sprite_D2D.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(37,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(42,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Graphics/Sprite_D2D.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(48,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:             T=unsigned int
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(52,44): warning C4244:         ]
-  (compiling source file 'src/Game/Windows/Graphics/Sprite_D2D.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244:         ]
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(65,61): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Graphics/Sprite_D2D.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(62,61): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(66,60): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Graphics/Sprite_D2D.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(63,60): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-  Seeds of Apocrypha.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\x64\Debug\Seeds of Apocrypha.exe
+  main.cpp
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(24,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(36,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(37,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(48,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(60,44): warning C4244:         ]
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(62,61): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(63,60): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+  Generating Code...
+  Seeds of Apocrypha.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe

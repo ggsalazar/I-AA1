@@ -9,7 +9,7 @@ class Window_Windows : public Window {
 public:
 	bool open = true;
 
-	Window_Windows(uint m) : monitor(m) {}
+	Window_Windows(uint m, const char* title, Vector2u size = {0, 0}) : monitor(m) { Create(title, size); }
 	~Window_Windows() { Destroy(); }
 
 	bool Create(const char* title, Vector2u size = {0, 0}) override;
@@ -18,7 +18,12 @@ public:
 	void PollEvents() override;
 
 	void Clear() override;
-	void Display() override {} //Why do I have this?
+	inline Vector2u ScreenSize() override {
+		return {
+			(uint)GetSystemMetrics(SM_CXSCREEN), // Screen width in pixels
+			(uint)GetSystemMetrics(SM_CYSCREEN)  // Screen height in pixels
+		};
+	}
 
 	inline Vector2u GetSize() const override { return win_size; }
 	HWND GetHandle() const { return hwnd; }

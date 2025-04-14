@@ -1,16 +1,15 @@
-Left off: -Text time!
+Left off: -Debug Font suite - Wind back the project to a clean Font slate and implement each file PIECEMEAL so we know where the problem lies and can solve it more easily!
+		  -Reorganize Getters + Setters in Game.h
 Engine: -Rendering
 			--Text
 		-Input
 		-Tilemapping
 			--json parsing
 		-Camera
+			--VSync
 		-Cursors (Basically just an entity w/ pos = mouse_pos?)
-		-VSync
 		-Music
 		-SFX
-
-Physically draw #include map
 
 Tutorial - add in NPCs, area transition, multi-party member movement & cam locking
 

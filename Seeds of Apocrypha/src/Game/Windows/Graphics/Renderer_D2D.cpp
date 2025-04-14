@@ -2,10 +2,13 @@
 #include "Renderer_D2D.h"
 
 namespace Engine {
-
-void Renderer_D2D::Init(void* window_handle) {
+Renderer_D2D::Renderer_D2D(void* window_handle)	{
 	//Create Factory
 	D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, IID_PPV_ARGS(&factory));
+
+	//Create Write Factory
+	DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory),
+		reinterpret_cast<IUnknown**>(dwrite_factory.GetAddressOf()));
 
 	//Get client rect for window size
 	RECT r;
@@ -19,6 +22,79 @@ void Renderer_D2D::Init(void* window_handle) {
 
 	render_target->CreateSolidColorBrush(D2D1::ColorF(0.f, 0.f, 0.f, 0.f), &brush);
 }
+
+void Renderer_D2D::DrawSheet(const Sprite& sheet, const Vector2u& pos) {
+	const Sprite_D2D* sheetd2d = static_cast<const Sprite_D2D*>(&sheet);
+
+	FLOAT dpi_x, dpi_y;
+	render_target->GetDpi(&dpi_x, &dpi_y);
+	float scale_factor = dpi_x / 96.f; //dpi_x and y should be equal
+
+	//Set draw location
+	Vector2f new_pos = (pos.x / scale_factor, pos.y / scale_factor);
+
+	render_target->DrawBitmap(sheetd2d->GetBitmap(), D2D1::RectF(new_pos.x, new_pos.y, new_pos.x + sheet.GetSheetSize().x, new_pos.y + sheet.GetSheetSize().y));
+}
+
+void Renderer_D2D::DrawSprite(const Sprite& spr) {
+	//Cast to D2D
+	const Sprite_D2D* sprd2d = static_cast<const Sprite_D2D*>(&spr);
+
+	const Sprite::Info* si = &sprd2d->info;
+
+	FLOAT dpi_x, dpi_y;
+	render_target->GetDpi(&dpi_x, &dpi_y);
+	float scale_factor = dpi_x / 96.f; //dpi_x and y should be equal
+
+	//Set draw location
+	Vector2f pos = { (si->pos.x - (si->spr_size.x * si->origin.x)) / scale_factor,
+					(si->pos.y - (si->spr_size.y * si->origin.y)) / scale_factor };
+	D2D1_RECT_F pos_rect = D2D1::RectF(pos.x, pos.y, pos.x + si->spr_size.x, pos.y + si->spr_size.y);
+
+	//Set the frame to draw
+	D2D1_RECT_F frame_rect = D2D1::RectF(si->curr_frame * si->frame_size.x,
+		si->sheet_row * si->frame_size.y,
+		si->curr_frame * si->frame_size.x + si->frame_size.x,
+		si->sheet_row * si->frame_size.y + si->frame_size.y);
+
+	//Draw the current frame
+	render_target->DrawBitmap(sprd2d->GetBitmap(),			//Bitmap to draw from
+		pos_rect,											//Destination rect
+		si->color.a,										//Opacity
+		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,    //Interpolation mode
+		frame_rect);										//Portion of bitmap to draw
+}
+
+/*void Renderer_D2D::DrawTxt(const Text& txt) {
+	//Cast to D2D
+	Font_D2D* fntd2d = static_cast<Font_D2D*>(txt.GetFont());
+
+	//Create text format
+	IDWriteTextFormat* text_format = fntd2d->GetFormat();
+	
+	//Set the brush
+	const Color& color = txt.GetColor();
+	brush->SetColor(D2D1::ColorF(color.r, color.g, color.b, color.a));
+
+	ComPtr<IDWriteTextLayout> text_layout;
+
+	int size_needed = MultiByteToWideChar(CP_UTF8, 0, txt.GetStr().c_str(), -1, nullptr, 0);
+	std::wstring text(size_needed - 1, 0);
+	MultiByteToWideChar(CP_UTF8, 0, txt.GetStr().c_str(), -1, &text[0], size_needed);
+	HRESULT hr = dwrite_factory->CreateTextLayout(
+		text.c_str(),
+		static_cast<UINT32>(text.length()),
+		text_format,
+		FLT_MAX, FLT_MAX,
+		&text_layout
+	);
+	if (FAILED(hr)) {
+		std::cout << "Failed to create Text Layout in Renderer_D2D.cpp" << std::endl;
+		return;
+	}
+	D2D1_POINT_2F posd2d = D2D1::Point2F(txt.GetPos().x, txt.GetPos().y);
+	render_target->DrawTextLayout(posd2d, text_layout.Get(), brush.Get());
+}*/
 
 void Renderer_D2D::DrawLine(const Line& line, const Color& color) {
 	brush->SetColor(D2D1::ColorF(color.r, color.g, color.b)); brush->SetOpacity(color.a);
@@ -66,41 +142,4 @@ void Renderer_D2D::DrawRect(const Rect& rect, const Color& fill_color, const Col
 	brush->SetColor(D2D1::ColorF(fill_color.r, fill_color.g, fill_color.b)); brush->SetOpacity(fill_color.a);
 	render_target->FillRectangle(D2D1::RectF(rect.pos.x, rect.pos.y, rect.pos.x + rect.size.x, rect.pos.y + rect.size.y), brush.Get());
 }
-
-void Renderer_D2D::DrawSheet(const Spritesheet& sheet, const Vector2u& pos) {
-	const Spritesheet_D2D* ssd2d = static_cast<const Spritesheet_D2D*>(&sheet);
-
-	render_target->DrawBitmap(ssd2d->GetBitmap(), D2D1::RectF(pos.x, pos.y, pos.x + sheet.GetSize().x, pos.y + sheet.GetSize().y));
-}
-
-void Renderer_D2D::DrawSprite(const Sprite& spr) {
-	//Cast to D2D
-	const Sprite_D2D* sprd2d = static_cast<const Sprite_D2D*>(&spr);
-	Spritesheet_D2D* ssd2d = static_cast<Spritesheet_D2D*>(sprd2d->sheet.get());
-
-	const Sprite::Info* si = &sprd2d->info;
-
-	FLOAT dpi_x, dpi_y;
-	render_target->GetDpi(&dpi_x, &dpi_y);
-	float scale_factor = dpi_x / 96.f; //dpi_x and y should be equal
-
-	//Set draw location
-	float pos_x = (si->pos.x - (si->spr_size.x * si->origin.x)) / scale_factor,
-		  pos_y = (si->pos.y - (si->spr_size.y * si->origin.y)) / scale_factor;
-	D2D1_RECT_F pos_rect = D2D1::RectF(pos_x, pos_y, pos_x+si->spr_size.x, pos_y+si->spr_size.y);
-
-	//Set the frame to draw
-	D2D1_RECT_F frame_rect = D2D1::RectF(si->curr_frame * si->frame_size.x,
-										 si->sheet_row * si->frame_size.y,
-										 si->curr_frame * si->frame_size.x + si->frame_size.x,
-										 si->sheet_row * si->frame_size.y + si->frame_size.y);
-
-	//Draw the current frame
-	render_target->DrawBitmap(ssd2d->GetBitmap(),								//Bitmap to draw from
-							  pos_rect,											//Destination rect
-							  si->color.a,										//Opacity
-							  D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,  //Interpolation mode
-							  frame_rect);										//Portion of bitmap to draw
-}
-
 }
