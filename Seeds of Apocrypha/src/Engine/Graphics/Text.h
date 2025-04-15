@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include "../Core/Geometry.h" //Includes Vector2
-//#include "Font.h"
+#include "Font.h"
 
 namespace Engine {
 class Text {

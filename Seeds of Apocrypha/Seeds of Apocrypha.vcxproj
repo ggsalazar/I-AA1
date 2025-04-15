@@ -143,6 +143,10 @@
     <ClCompile Include="src\Engine\Graphics\Sprite.cpp" />
     <ClCompile Include="src\Engine\Graphics\Text.cpp" />
     <ClCompile Include="src\Game\Windows\Game.cpp" />
+    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.cpp" />
+    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontFileEnumerator.cpp" />
+    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontLoader.cpp" />
+    <ClCompile Include="src\Game\Windows\Graphics\Fonts\Font_D2D.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -160,6 +164,10 @@
     <ClInclude Include="src\Engine\Graphics\Text.h" />
     <ClInclude Include="src\Engine\Graphics\Window.h" />
     <ClInclude Include="src\Game\Windows\Game.h" />
+    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.h" />
+    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontFileEnumerator.h" />
+    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontLoader.h" />
+    <ClInclude Include="src\Game\Windows\Graphics\Fonts\Font_D2D.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Renderer_D2D.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Sprite_D2D.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Window_Windows.h" />

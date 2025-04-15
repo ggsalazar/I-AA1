@@ -22,6 +22,12 @@ Game::Game(const char* title, uint init_fps) :
     test_spr = make_u<Sprite_D2D>("assets/Sprites/UI/Toggle", renderer->GetRT(), sii);
 
 
+    //Test font
+    test_font = make_u<Font_D2D>("assets/Fonts/m5x7", 36.f, renderer->GetDWriteFactory());
+
+
+
+
     //Load the default font
     //default_font = make_u<Font_D2D>("assets/Fonts/m5x7.ttf", 36.f, renderer->GetDWriteFactory());
 
@@ -83,7 +89,7 @@ Game::Game(const char* title, uint init_fps) :
 void Game::Run() {
     //Calculate delta time
     auto now = Clock::now();
-    std::chrono::duration<float> delta = now - last_time;
+    chrono::duration<float> delta = now - last_time;
     last_time = now;
     delta_time = delta.count();
 
@@ -102,7 +108,7 @@ void Game::Run() {
     //Framerate cap
     auto frame_time = (Clock::now() - now).count();
     if (frame_time < target_frame_time)
-        std::this_thread::sleep_for(std::chrono::duration<float>(target_frame_time - frame_time));
+        this_thread::sleep_for(chrono::duration<float>(target_frame_time - frame_time));
 }
 
 //Process input

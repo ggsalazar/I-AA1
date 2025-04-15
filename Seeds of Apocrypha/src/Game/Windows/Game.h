@@ -4,15 +4,16 @@
 #include <chrono>
 #include "../../Engine/Engine.h" //Includes <memory> and aliases for std, Engine, and smart ptrs
 #include "Graphics/Window_Windows.h"
-#include "Graphics/Renderer_D2D.h" //Includes Sprite_D2D.h (& Spritesheet_D2D.h)
-//#include "Graphics/Fonts/Font_D2D.h"
+#include "Graphics/Renderer_D2D.h" //Includes Sprite_D2D.h
+#include "Graphics/Fonts/Font_D2D.h"
 
 using Clock = std::chrono::high_resolution_clock;
 
 using namespace Engine;
-
+using namespace std;
 
 class Scene;
+class Font;
 
 class Game {
 public:
@@ -42,6 +43,9 @@ public:
     //Test sprite
     u_ptr<Sprite_D2D> test_spr;
 
+
+    //Test Font
+    u_ptr<Font> test_font;
 
 
     //Miscellaneous
@@ -84,7 +88,7 @@ public:
     void SetResolution(Vector2u n_r);
 
     //Scenes
-    std::unordered_map<Scenes, s_ptr<Scene>> scenes;
+    unordered_map<Scenes, s_ptr<Scene>> scenes;
     w_ptr<Scene> active_scene;
     w_ptr<Scene> old_scene;
     s_ptr<Scene> title_scene;
