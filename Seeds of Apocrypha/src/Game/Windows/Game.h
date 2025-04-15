@@ -44,9 +44,9 @@ public:
     u_ptr<Sprite_D2D> test_spr;
 
 
-    //Test Font
-    u_ptr<Font> test_font;
-
+    //Test Font & Text
+    u_ptr<Font_D2D> test_font;
+    u_ptr<Text> test_txt;
 
     //Miscellaneous
     //u_ptr<Font_D2D> default_font;
@@ -64,28 +64,29 @@ public:
 
     Game(const char* title, uint init_fps);
     
-    //Game stuff
+    //Engine-type stuff
     void Run();
-
     void ProcessInput();
     void Update();
     void Render();
 
-    //Getters
-    uint GetFPS() const { return fps; }
-    int GetDebugTimer() const { return debug_timer; }
-    uint GetFramesElapsed() const { return frames_elapsed; }
+    //Gameplay stuff
+    void SetScene(Scenes scn);
+
+    //Settings
+    void SetMusicVolume(float n_v);
     float GetMusicVolume() const { return music_volume; }
+    void SetSFXVolume(float n_v);
     float GetSFXVolume() const { return sfx_volume; }
+
+    void SetResolution(uint res_scalar);
+    void SetResolution(Vector2u n_r);
     Vector2u GetResolution() const { return resolution; }
     uint GetResScale() const { return resolution.x / min_res.x; }
 
-    //Setters
-    void SetScene(Scenes scn);
-    void SetMusicVolume(float n_v);
-    void SetSFXVolume(float n_v);
-    void SetResolution(uint res_scalar);
-    void SetResolution(Vector2u n_r);
+    //Debug/Technical
+    uint GetFPS() const { return fps; }
+    int GetDebugTimer() const { return debug_timer; }
 
     //Scenes
     unordered_map<Scenes, s_ptr<Scene>> scenes;
@@ -95,13 +96,11 @@ public:
     s_ptr<Scene> cutscene_scene;
     s_ptr<Scene> area_scene;
 
-    
 private:
     //Variables
     uint fps = 0;
     float target_frame_time;
     Clock::time_point last_time;
-    uint frames_elapsed = 0;
     float music_volume = 100;
     float sfx_volume = 100;
     Vector2u resolution;

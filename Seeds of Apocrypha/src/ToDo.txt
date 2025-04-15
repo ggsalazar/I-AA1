@@ -1,5 +1,11 @@
-Left off: -Debug Font suite - Wind back the project to a clean Font slate and implement each file PIECEMEAL so we know where the problem lies and can solve it more easily!
-		  -Reorganize Getters + Setters in Game.h
+Left off: -Need to test/implement the following text functions:
+				--Get/Set Origin
+				--Set Pos
+				--Change color
+				--Change size
+				--Change string
+				--Position and origin given in init struct isn't being implemented, but it is when manually set in the constructor (string IS being set though?)
+				--Getting pixel distortion on the rendered text, likely due to DPI shenanigans
 Engine: -Rendering
 			--Text
 		-Input

@@ -36,8 +36,6 @@ namespace Engine {
 		hr = factory->RegisterFontCollectionLoader(collection_loader.Get());
 		if (FAILED(hr)) throw std::runtime_error("Failed to register CustomFontColelctionLoader");
 		
-		std::wcout << "Font name: " << name.c_str() << std::endl;
-
 		hr = factory->CreateCustomFontCollection(collection_loader.Get(), name.c_str(), static_cast<UINT32>(name.size() * sizeof(wchar_t)), &font_collection);
 		if (FAILED(hr)) throw std::runtime_error("Failed to create custom font collection");
 		

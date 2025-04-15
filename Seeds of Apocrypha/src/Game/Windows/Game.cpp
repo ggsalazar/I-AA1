@@ -22,9 +22,10 @@ Game::Game(const char* title, uint init_fps) :
     test_spr = make_u<Sprite_D2D>("assets/Sprites/UI/Toggle", renderer->GetRT(), sii);
 
 
-    //Test font
+    //Test font & text
     test_font = make_u<Font_D2D>("assets/Fonts/m5x7", 36.f, renderer->GetDWriteFactory());
-
+    Text::Info tii = {}; tii.font = test_font.get(); tii.str = "THIS IS A TEST STRING"; sii.pos = { 1000, 1000 };
+    test_txt = make_u<Text>(tii);
 
 
 
@@ -130,6 +131,8 @@ void Game::Update() {
     
     test_spr->Update(delta_time);
 
+    test_txt->SetPos(test_txt->GetPos() + .0001);
+
     //if (++frames_elapsed > fps) frames_elapsed = 0;
     /*
     //Reset our variables
@@ -154,6 +157,10 @@ void Game::Render() {
     renderer->BeginFrame(); //This also clears the frame
 
     renderer->DrawSprite(*test_spr);
+
+    cout << "Test tex pos: " << test_txt->GetPos() << endl;
+
+    renderer->DrawTxt(*test_txt);
 
     //renderer->DrawTxt(*test_txt);
 

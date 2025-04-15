@@ -49,6 +49,8 @@ void Text::SetCharSize(uint char_size) {
 
     SetOrigin(t_origin);
     */
+
+    info.size = char_size;
 }
 
 void Text::SetOrigin(Vector2f ori) {
@@ -61,6 +63,8 @@ void Text::SetOrigin(Vector2f ori) {
     sf::FloatRect bounds = text.getLocalBounds();
     text.setOrigin({ bounds.position.x + bounds.size.x * ori.x, bounds.position.y + bounds.size.y * ori.y });
     */
+    info.origin = ori;
+
 }
 
 }

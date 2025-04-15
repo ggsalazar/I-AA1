@@ -3,7 +3,7 @@
 #include <dwrite.h>
 #include <wrl.h>
 #include "../../../Engine/Graphics/Renderer.h" //Includes Sprite.h and Text.h
-//#include "Fonts/Font_D2D.h" //Needs to be included or DrawTxt complains at me
+#include "Fonts/Font_D2D.h" //Needs to be included or DrawTxt complains at me
 #include "Sprite_D2D.h"
 
 using Microsoft::WRL::ComPtr;
@@ -27,7 +27,7 @@ public:
 	void DrawSheet(const Sprite& sheet, const Vector2u& pos = { 0, 0 }) override;
 	void DrawSprite(const Sprite& spr) override;
 	//Text
-	//void DrawTxt(const Text& txt) override;
+	void DrawTxt(const Text& txt) override;
 
 	//Shapes
 	void DrawLine(const Line& line, const Color& color) override;

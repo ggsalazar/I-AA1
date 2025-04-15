@@ -65,7 +65,7 @@ void Renderer_D2D::DrawSprite(const Sprite& spr) {
 		frame_rect);										//Portion of bitmap to draw
 }
 
-/*void Renderer_D2D::DrawTxt(const Text& txt) {
+void Renderer_D2D::DrawTxt(const Text& txt) {
 	//Cast to D2D
 	Font_D2D* fntd2d = static_cast<Font_D2D*>(txt.GetFont());
 
@@ -94,7 +94,7 @@ void Renderer_D2D::DrawSprite(const Sprite& spr) {
 	}
 	D2D1_POINT_2F posd2d = D2D1::Point2F(txt.GetPos().x, txt.GetPos().y);
 	render_target->DrawTextLayout(posd2d, text_layout.Get(), brush.Get());
-}*/
+}
 
 void Renderer_D2D::DrawLine(const Line& line, const Color& color) {
 	brush->SetColor(D2D1::ColorF(color.r, color.g, color.b)); brush->SetOpacity(color.a);
