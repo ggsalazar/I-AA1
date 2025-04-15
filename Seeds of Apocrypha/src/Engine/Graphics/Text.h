@@ -9,21 +9,23 @@ class Text {
     friend class Font;
 public:
     struct Info {
-        Font* font = nullptr; //Raw ptr is fine since Font isn't owned by the Text object
+        Font* font; //Raw ptr is fine since Text doesn't own the Font object
         std::string str = "";
         Vector2u pos;
         uint size = 36;
         uint max_width = 1920;
         Color color{ 1 };
         Vector2f origin{ .5f };
-        float rot{};
+        float rot;
     };
+    Circle pos_debug;
 
     Text(const Info& i) :
         info(i) {
         SetCharSize(info.size);
         SetStr(info.str);
-        info.pos = { 1000, 1000 };
+        pos_debug.pos = info.pos;
+        pos_debug.r = 2;
     }
     virtual ~Text() {}
 

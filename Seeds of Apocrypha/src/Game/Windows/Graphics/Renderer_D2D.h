@@ -27,15 +27,16 @@ public:
 	void DrawSheet(const Sprite& sheet, const Vector2u& pos = { 0, 0 }) override;
 	void DrawSprite(const Sprite& spr) override;
 	//Text
-	void DrawTxt(const Text& txt) override;
+	void DrawTxt(Text& txt) override;
 
 	//Shapes
 	void DrawLine(const Line& line, const Color& color) override;
-	void DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color, const uint edge_w = 2) override;
-	void DrawTri(const Tri& tri, const Color& fill_color, const Color& stroke_color, const uint edge_w = 2) override;
-	void DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color, const uint edge_w = 2) override;
+	void DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
+	void DrawTri(const Tri& tri, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
+	void DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
 	
 private:
+	float scale_factor;
 	ComPtr<ID2D1Factory> factory;
 	ComPtr<ID2D1HwndRenderTarget> render_target;
 

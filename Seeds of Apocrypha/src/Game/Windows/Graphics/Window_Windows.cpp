@@ -31,6 +31,7 @@ bool Window_Windows::Create(const char* title, Vector2u size) {
 	monitor = monitor >= monitors.size() ? 0 : monitor;
 	RECT r = monitors[monitor].rect;
 
+	//Default to fullscreen
 	if (size == Vector2u{0, 0})
 		size = { (uint)(r.right - r.left), (uint)(r.bottom - r.top) };
 	win_size = size;

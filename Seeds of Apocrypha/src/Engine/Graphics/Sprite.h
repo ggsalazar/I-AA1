@@ -27,11 +27,14 @@ public:
         float frame_length{}; //Length of a single frame in seconds
         float frame_timer{}; //How long since the frame changed
     };
+    Circle pos_debug;
 
     Sprite(const Info& i = {}) :
         info(i) {
         SetSize();
         SetAnimFPS(info.anim_fps);
+        pos_debug.pos = info.pos;
+        pos_debug.r = 2;
     }
     virtual ~Sprite() {}
 
@@ -80,8 +83,8 @@ public:
 
     virtual void SetOrigin(const Vector2f new_ori = { .5f, .5f });
     inline virtual Vector2f GetOrigin() const { return info.origin; }; //Returns origin from 0-1
-    inline virtual Vector2f GetOriginImgCoords() { return { info.origin.x * info.frame_size.x, info.origin.y * info.frame_size.y }; }; //Returns origin in pixels relative to the image size
-    inline virtual Vector2f GetOriginSprCoords() { return { info.origin.x * info.spr_size.x, info.origin.y * info.spr_size.y }; }; //Returns origin in pixels relative to the sprite size
+    inline virtual Vector2f GetOriginFrame() { return { info.origin.x * info.frame_size.x, info.origin.y * info.frame_size.y }; }; //Returns origin in pixels relative to the image size
+    inline virtual Vector2f GetOriginSprite() { return { info.origin.x * info.spr_size.x, info.origin.y * info.spr_size.y }; }; //Returns origin in pixels relative to the sprite size
 
 protected:
     Info info; //protected because whenever a member is set, other ancillary functions must be performed

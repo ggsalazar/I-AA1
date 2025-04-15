@@ -10,7 +10,7 @@ Game::Game(const char* title, uint init_fps) :
     last_time = Clock::now();
 
     //Initialize the window
-    window = make_u<Window_Windows>(1, "Seeds of Apocrypha"); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
+    window = make_u<Window_Windows>(1, "Seeds of Apocrypha", Vector2u{1280, 720}); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
     resolution = window->GetSize();
     
     //Initialize the renderer
@@ -18,15 +18,20 @@ Game::Game(const char* title, uint init_fps) :
 
 
     //Test sprite + sheet
-    Sprite::Info sii = {}; sii.origin = { .5f }; sii.pos = { (uint)(resolution.x * .5), (uint)(resolution.y * .5) }; sii.scale = 4; sii.num_frames = 2; sii.frame_size = { 24 }; sii.anim_fps = 2;
-    test_spr = make_u<Sprite_D2D>("assets/Sprites/UI/Toggle", renderer->GetRT(), sii);
+    Sprite::Info sii = {}; sii.origin = { .5f }; sii.pos = { (uint)(resolution.x * .5), (uint)(resolution.y * .5) }; sii.scale = 4; sii.frame_size = { 32 };
+    test_spr = make_u<Sprite_D2D>("assets/Sprites/Test", renderer->GetRT(), sii);
 
 
     //Test font & text
     test_font = make_u<Font_D2D>("assets/Fonts/m5x7", 36.f, renderer->GetDWriteFactory());
-    Text::Info tii = {}; tii.font = test_font.get(); tii.str = "THIS IS A TEST STRING"; sii.pos = { 1000, 1000 };
+    Text::Info tii = {}; tii.font = test_font.get(); tii.str = "THIS IS A TEST string"; tii.pos = min_res; tii.color = { 1, 0, 1, 1 };
     test_txt = make_u<Text>(tii);
+    //cout << "Test text origin: " << test_txt->GetOrigin() << endl;
 
+
+    //Test Circle
+    c.pos = { 640, 360 };
+    c.r = 4;
 
 
     //Load the default font
@@ -158,9 +163,13 @@ void Game::Render() {
 
     renderer->DrawSprite(*test_spr);
 
-    cout << "Test tex pos: " << test_txt->GetPos() << endl;
-
     renderer->DrawTxt(*test_txt);
+
+    renderer->DrawCircle(test_txt->pos_debug, Color(1, 0, 0));
+    
+    renderer->DrawCircle(c, Color(0, 1, 0));
+
+    renderer->DrawCircle(test_spr->pos_debug, Color(0, 0, 1));
 
     //renderer->DrawTxt(*test_txt);
 

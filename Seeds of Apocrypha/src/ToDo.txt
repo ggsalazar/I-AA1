@@ -1,11 +1,8 @@
 Left off: -Need to test/implement the following text functions:
-				--Get/Set Origin
-				--Set Pos
-				--Change color
 				--Change size
 				--Change string
-				--Position and origin given in init struct isn't being implemented, but it is when manually set in the constructor (string IS being set though?)
-				--Getting pixel distortion on the rendered text, likely due to DPI shenanigans
+				--Need to adjust where Text is drawn based on origin (adjust for scale factor)
+				--Getting pixel distortion on the rendered text?, likely due to DPI shenanigans
 Engine: -Rendering
 			--Text
 		-Input
@@ -17,7 +14,12 @@ Engine: -Rendering
 		-Music
 		-SFX
 
-Tutorial - add in NPCs, area transition, multi-party member movement & cam locking
+Tutorial - download and test line height for different fonts (m5x7 might just be weird)
+			-add in NPCs
+			-Inventory
+			-Shopping
+			-area changing
+			-multi-party member movement & cam locking
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations

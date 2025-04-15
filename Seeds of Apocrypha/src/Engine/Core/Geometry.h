@@ -31,6 +31,7 @@ struct Circle {
 	Vector2u pos;
 	float r;
 
+	Circle() : pos({ 0, 0 }), r(0) {}
 	Circle(Vector2u p, float r) : pos(p), r(r) {}
 
 	inline float Area() const { return r * r * 3.14159; }

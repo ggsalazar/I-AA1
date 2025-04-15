@@ -64,13 +64,8 @@ void Sprite::SetAnimFPS(const int new_fps) {
 }
 
 void Sprite::SetOrigin(const Vector2f new_ori) {
-    if (new_ori.x < 0.f or 1.f < new_ori.x)
-        info.origin.x = round(info.frame_size.x * .5);
-    else info.origin.x = round(new_ori.x * info.frame_size.x);
-
-    if (new_ori.y < 0.f or 1.f < new_ori.y)
-        info.origin.y = round(info.frame_size.y * .5);
-    else info.origin.y = round(new_ori.y * info.frame_size.y);
+    info.origin.x = (new_ori.x < 0.f or 1.f < new_ori.x) ? .5 : new_ori.x;
+    info.origin.y = (new_ori.y < 0.f or 1.f < new_ori.y) ? .5 : new_ori.y;
 }
 
 }

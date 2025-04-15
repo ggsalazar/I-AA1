@@ -39,27 +39,18 @@ public:
     //DJ dj;
     //Soundboard sb;
     
-
     //Test sprite
     u_ptr<Sprite_D2D> test_spr;
-
 
     //Test Font & Text
     u_ptr<Font_D2D> test_font;
     u_ptr<Text> test_txt;
+    Circle c;
 
     //Miscellaneous
     //u_ptr<Font_D2D> default_font;
-
-
-
-    //u_ptr<Text> test_txt;
-    
-    
-    
-    
-    //unordered_map<Actions, u_ptr<sf::Cursor>> cursors;
-    //sf::Cursor* cursor;
+    //unordered_map<Actions, u_ptr<Sprite_D2D>> cursors;
+    //s_ptr<Entity> cursor;
     Areas area = Areas::DEFAULT;
 
     Game(const char* title, uint init_fps);

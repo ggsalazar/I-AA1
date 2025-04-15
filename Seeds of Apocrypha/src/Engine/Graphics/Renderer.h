@@ -17,7 +17,7 @@ public:
 	virtual void DrawSheet(const Sprite& sheet, const Vector2u& pos = { 0, 0 }) = 0; //Helpful for debugging/seeing entire sheet
 	virtual void DrawSprite(const Sprite& spr) = 0;
 	//Text
-	virtual void DrawTxt(const Text& txt) = 0;
+	virtual void DrawTxt(Text& txt) = 0;
 
 	//Drawing shapes
 	virtual void DrawLine(const Line& line, const Color& color) = 0;
