@@ -4,8 +4,7 @@
 #include <chrono>
 #include "../../Engine/Engine.h" //Includes <memory> and aliases for std, Engine, and smart ptrs
 #include "Graphics/Window_Windows.h"
-#include "Graphics/Renderer_D2D.h" //Includes Sprite_D2D.h
-#include "Graphics/Fonts/Font_D2D.h"
+#include "Graphics/Renderer_D2D.h" //Includes Sprite_D2D.h, Font_D2D.h, and Text_D2D.h
 
 using Clock = std::chrono::high_resolution_clock;
 
@@ -44,7 +43,7 @@ public:
 
     //Test Font & Text
     u_ptr<Font_D2D> test_font;
-    u_ptr<Text> test_txt;
+    u_ptr<Text_D2D> test_txt;
     Circle c;
 
     //Miscellaneous

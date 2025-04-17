@@ -23,14 +23,15 @@ Game::Game(const char* title, uint init_fps) :
 
 
     //Test font & text
-    test_font = make_u<Font_D2D>("assets/Fonts/m5x7", 36.f, renderer->GetDWriteFactory());
-    Text::Info tii = {}; tii.font = test_font.get(); tii.str = "THIS IS A TEST string"; tii.pos = min_res; tii.color = { 1, 0, 1, 1 };
-    test_txt = make_u<Text>(tii);
-    //cout << "Test text origin: " << test_txt->GetOrigin() << endl;
+    test_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
+    Text::Info tii = {}; tii.str = "THIS IS A TEST string"; tii.pos = min_res; tii.color = { 1, 0, 1, 1 };
+    tii.origin = { .5, .5 }; tii.scale_factor = renderer->GetScaleFactor();
+    test_txt = make_u<Text_D2D>(test_font.get(), tii);
+    test_txt->SetOrigin({.5, .5});
 
 
     //Test Circle
-    c.pos = { 640, 360 };
+    c.pos = { round(resolution.x*.5), round(resolution.y*.5)};
     c.r = 4;
 
 
@@ -135,8 +136,6 @@ void Game::Update() {
     //}
     
     test_spr->Update(delta_time);
-
-    test_txt->SetPos(test_txt->GetPos() + .0001);
 
     //if (++frames_elapsed > fps) frames_elapsed = 0;
     /*

@@ -65,20 +65,21 @@ void Renderer_D2D::DrawSprite(const Sprite& spr) {
 
 void Renderer_D2D::DrawTxt(Text& txt) {
 	//Cast to D2D
-	Font_D2D* fntd2d = static_cast<Font_D2D*>(txt.GetFont());
+	Text_D2D* txtd2d = static_cast<Text_D2D*>(&txt);
+	const Text::Info* ti = &txtd2d->info;
 
 	//Create text format
-	IDWriteTextFormat* text_format = fntd2d->GetFormat();
-	
+	IDWriteTextFormat* text_format = txtd2d->font->GetFormat(ti->char_size);
+
 	//Set the brush
-	const Color& color = txt.GetColor();
-	brush->SetColor(D2D1::ColorF(color.r, color.g, color.b, color.a));
+	Color c = ti->color;
+	brush->SetColor(D2D1::ColorF(c.r, c.g, c.b, c.a));
 
 	ComPtr<IDWriteTextLayout> text_layout;
 
-	int size_needed = MultiByteToWideChar(CP_UTF8, 0, txt.GetStr().c_str(), -1, nullptr, 0);
+	int size_needed = MultiByteToWideChar(CP_UTF8, 0, ti->str.c_str(), -1, nullptr, 0);
 	std::wstring text(size_needed - 1, 0);
-	MultiByteToWideChar(CP_UTF8, 0, txt.GetStr().c_str(), -1, &text[0], size_needed);
+	MultiByteToWideChar(CP_UTF8, 0, ti->str.c_str(), -1, &text[0], size_needed);
 	HRESULT hr = dwrite_factory->CreateTextLayout(
 		text.c_str(),
 		static_cast<UINT32>(text.length()),
@@ -91,7 +92,9 @@ void Renderer_D2D::DrawTxt(Text& txt) {
 		return;
 	}
 
-	D2D1_POINT_2F posd2d = D2D1::Point2F(round(txt.GetPos().x/scale_factor), round(txt.GetPos().y/scale_factor));
+	//Adjust position for scale factor
+	D2D1_POINT_2F posd2d = D2D1::Point2F(round((ti->pos.x - (ti->str_size.x * ti->origin.x)) / scale_factor),
+										round((ti->pos.y - (ti->str_size.y * ti->origin.y)) / scale_factor));
 	render_target->DrawTextLayout(posd2d, text_layout.Get(), brush.Get());
 }
 

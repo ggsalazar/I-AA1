@@ -1,10 +1,10 @@
 Left off: -Need to test/implement the following text functions:
-				--Change size
-				--Change string
+				--Need to implement max string width (pixels)
 				--Need to adjust where Text is drawn based on origin (adjust for scale factor)
-				--Getting pixel distortion on the rendered text?, likely due to DPI shenanigans
+				--Download and test line height for different fonts (m5x7 might just be weird)
 Engine: -Rendering
 			--Text
+		-Timer class
 		-Input
 		-Tilemapping
 			--json parsing
@@ -14,8 +14,7 @@ Engine: -Rendering
 		-Music
 		-SFX
 
-Tutorial - download and test line height for different fonts (m5x7 might just be weird)
-			-add in NPCs
+Tutorial -  -add in NPCs
 			-Inventory
 			-Shopping
 			-area changing

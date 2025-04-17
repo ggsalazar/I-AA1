@@ -5,6 +5,7 @@
 #include "../../../Engine/Graphics/Renderer.h" //Includes Sprite.h and Text.h
 #include "Fonts/Font_D2D.h" //Needs to be included or DrawTxt complains at me
 #include "Sprite_D2D.h"
+#include "Text_D2D.h"
 
 using Microsoft::WRL::ComPtr;
 
@@ -22,6 +23,8 @@ public:
 	//Pointers 'n shit
 	inline ID2D1HwndRenderTarget* GetRT() const { return render_target.Get(); }
 	inline IDWriteFactory* GetDWriteFactory() const { return dwrite_factory.Get(); }
+
+	inline float GetScaleFactor() const { return scale_factor; }
 
 	//Sprites
 	void DrawSheet(const Sprite& sheet, const Vector2u& pos = { 0, 0 }) override;
