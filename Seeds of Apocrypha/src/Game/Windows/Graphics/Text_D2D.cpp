@@ -21,14 +21,15 @@ void Text_D2D::SetStr(string new_str) {
 		test_line = line + word + " ";
 
 		// Convert test_line to wide string
-        len = MultiByteToWideChar(CP_UTF8, 0, line.c_str(), -1, nullptr, 0);
-        wline.resize(len-1);
-        MultiByteToWideChar(CP_UTF8, 0, line.c_str(), -1, &wline[0], len);
+        len = MultiByteToWideChar(CP_UTF8, 0, test_line.c_str(), -1, nullptr, 0);
+		if (!len) continue;
+        wtest.resize(len-1);
+        MultiByteToWideChar(CP_UTF8, 0, line.c_str(), -1, &wtest[0], len);
 
         //Measure width with DirectWrite
         hr = dw_factory->CreateTextLayout(
-            wline.c_str(),
-            (UINT32)wline.length(),
+            wtest.c_str(),
+            (UINT32)wtest.length(),
             format,
             FLT_MAX, FLT_MAX,
             &layout
