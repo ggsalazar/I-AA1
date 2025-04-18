@@ -17,7 +17,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 bool Window_Windows::Create(const char* title, Vector2u size) {
 
 	//Make system aware of DPI scaling (no manual adjustment needed)
-	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE);
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
 
 	WNDCLASS wc = { 0 };
 	wc.lpfnWndProc = WindowProc;

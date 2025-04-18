@@ -20,10 +20,10 @@ public:
 	virtual void DrawTxt(Text& txt) = 0;
 
 	//Drawing shapes
-	virtual void DrawLine(const Line& line, const Color& color) = 0;
-	virtual void DrawCircle(const Circle& circle, const Color& fill_color, const Color& line_color = Color(0, 0, 0, 0), const uint edge_w = 2) = 0;
-	virtual void DrawTri(const Tri& tri, const Color& fill_color, const Color& line_color = Color(0, 0, 0, 0), const uint edge_w = 2) = 0;
-	virtual void DrawRect(const Rect& rect, const Color& fill_color, const Color& line_color = Color(0, 0, 0, 0), const uint edge_w = 2) = 0;
+	virtual void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2) = 0;
+	virtual void DrawCircle(const Circle& circle, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) = 0;
+	virtual void DrawTri(const Tri& tri, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) = 0;
+	virtual void DrawRect(const Rect& rect, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) = 0;
 	
 };
 }

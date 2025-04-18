@@ -17,10 +17,8 @@ std::ostream& operator<<(std::ostream& os, const Color& c) { return os << "r: " 
 
 struct Line {
 	Vector2u pos1, pos2;
-	uint w{};
 
-	Line(Vector2u p1, Vector2u p2) : pos1(p1), pos2(p2), w(1) {}
-	Line(Vector2u p1, Vector2u p2, uint w) : pos1(p1), pos2(p2), w(w) {}
+	Line(Vector2u p1, Vector2u p2) : pos1(p1), pos2(p2) {}
 	inline float Length() const { return sqrt((pos2.x - pos1.x) * (pos2.x - pos1.x) + (pos2.y - pos1.y) * (pos2.y - pos1.y)); }
 };
 //ostream operator

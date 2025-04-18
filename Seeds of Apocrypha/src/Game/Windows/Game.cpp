@@ -4,7 +4,7 @@
 #include "Game.h"
 
 Game::Game(const char* title, uint init_fps) :
-            fps(init_fps) {
+    fps(init_fps), r(Vector2u{ 0 }, Vector2u{ 1260, 670 }) {
     //Delta time
     target_frame_time = 1.f / fps;
     last_time = Clock::now();
@@ -12,9 +12,10 @@ Game::Game(const char* title, uint init_fps) :
     //Initialize the window
     window = make_u<Window_Windows>(1, "Seeds of Apocrypha", Vector2u{1280, 720}); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
     resolution = window->GetSize();
-    
+
     //Initialize the renderer
     renderer = make_u<Renderer_D2D>(window->GetHandle());
+    cout << "resolution: " << Vector2f{ resolution.x / renderer->GetScaleFactor(), resolution.y / renderer->GetScaleFactor() } << endl;
 
 
     //Test sprite + sheet
@@ -24,15 +25,10 @@ Game::Game(const char* title, uint init_fps) :
 
     //Test font & text
     test_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
-    Text::Info tii = {}; tii.str = "THIS IS A TEST string"; tii.pos = min_res; tii.color = { 1, 0, 1, 1 };
-    tii.origin = { .5, .5 }; tii.scale_factor = renderer->GetScaleFactor();
-    test_txt = make_u<Text_D2D>(test_font.get(), tii);
-    test_txt->SetOrigin({.5, .5});
-
-
-    //Test Circle
-    c.pos = { round(resolution.x*.5), round(resolution.y*.5)};
-    c.r = 4;
+    Text::Info tii = {}; tii.str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    tii.pos = { 0, 0 }; tii.color = { 1, 0, 1, 1 }; tii.origin = { 0 };
+    tii.max_width = 1280; tii.font = test_font.get();
+    test_txt = make_u<Text>(tii);
 
 
     //Load the default font
@@ -164,11 +160,11 @@ void Game::Render() {
 
     renderer->DrawTxt(*test_txt);
 
-    renderer->DrawCircle(test_txt->pos_debug, Color(1, 0, 0));
+    renderer->DrawCircle(test_txt->pos_debug, Color(1, 0, 0), Color(1, 0 , 0));
     
-    renderer->DrawCircle(c, Color(0, 1, 0));
+    renderer->DrawRect(r);
 
-    renderer->DrawCircle(test_spr->pos_debug, Color(0, 0, 1));
+    renderer->DrawCircle(test_spr->pos_debug, Color(0, 0, 1), Color(0, 0, 1));
 
     //renderer->DrawTxt(*test_txt);
 

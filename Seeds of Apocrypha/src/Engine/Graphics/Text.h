@@ -11,10 +11,11 @@ class Text {
     friend class Font;
 public:
     struct Info {
-        string str = ""; //Use SetStr()
+        Font* font; //Raw pointer is fine since Text doesn't own the font object
+        string str = "";
         Vector2u pos;
-        uint char_size = 36; //Use SetCharSize()
-        Vector2u str_size; //Set in SetStr()
+        uint char_size = 36;
+        Vector2u str_size;
         uint max_width = 1920;
         Color color{ 1 };
         Vector2f origin{ .5f }; //Use SetOrigin()
@@ -29,8 +30,6 @@ public:
         pos_debug.r = 2;
     }
     virtual ~Text() {}
-
-    virtual void SetCharSize(uint new_char_size) = 0;
 
     inline void SetOrigin(Vector2f ori = { .5f, .5f }) {
         if (ori.x < 0.f or 1.f < ori.x) ori.x = 0.f;

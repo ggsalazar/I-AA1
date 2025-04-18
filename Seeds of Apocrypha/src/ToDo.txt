@@ -1,18 +1,13 @@
-Left off: -Need to test/implement the following text functions:
-				--Need to implement max string width (pixels)
-				--Need to adjust where Text is drawn based on origin (adjust for scale factor)
-				--Download and test line height for different fonts (m5x7 might just be weird)
-Engine: -Rendering
-			--Text
-		-Timer class
-		-Input
-		-Tilemapping
-			--json parsing
-		-Camera
+Left off: -Create timer class
+Engine: -Timer class (6 hours)
+		-Input (6 hours)
+		-Tilemapping (40 hours)
+		-Camera (40 hours)
 			--VSync
-		-Cursors (Basically just an entity w/ pos = mouse_pos?)
-		-Music
-		-SFX
+		-Cursor (Basically just an entity w/ pos = mouse_pos, 3 hours)
+		-Music (40 hours)
+		-SFX (20 hours)
+		-Total: 155 hours
 
 Tutorial -  -add in NPCs
 			-Inventory

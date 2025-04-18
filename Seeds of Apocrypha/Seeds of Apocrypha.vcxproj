@@ -147,7 +147,6 @@
     <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontLoader.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Fonts\Font_D2D.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Text_D2D.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Engine\Core\Math.cpp" />
@@ -170,7 +169,6 @@
     <ClInclude Include="src\Game\Windows\Graphics\Fonts\Font_D2D.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Renderer_D2D.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Sprite_D2D.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Text_D2D.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Window_Windows.h" />
     <ClInclude Include="src\Engine\Core\Enums.h" />
   </ItemGroup>

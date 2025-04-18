@@ -5,7 +5,6 @@
 #include "../../../Engine/Graphics/Renderer.h" //Includes Sprite.h and Text.h
 #include "Fonts/Font_D2D.h" //Needs to be included or DrawTxt complains at me
 #include "Sprite_D2D.h"
-#include "Text_D2D.h"
 
 using Microsoft::WRL::ComPtr;
 
@@ -17,9 +16,12 @@ public:
 	~Renderer_D2D() override {}
 
 	//Functionality
-	inline void BeginFrame() override { render_target->BeginDraw(); Clear(0, 0, 0, 1); }
+	inline void BeginFrame() override { 
+		render_target->BeginDraw();
+		render_target->Clear(D2D1::ColorF(0, 0, 0, 1));
+	}
 	inline void EndFrame() override { render_target->EndDraw(); }
-	inline void Clear(float r, float g, float b, float a) override { render_target->Clear(D2D1::ColorF(r, g, b, a)); }
+	inline void Clear(float r, float g, float b, float a) override {}
 	//Pointers 'n shit
 	inline ID2D1HwndRenderTarget* GetRT() const { return render_target.Get(); }
 	inline IDWriteFactory* GetDWriteFactory() const { return dwrite_factory.Get(); }
@@ -33,10 +35,10 @@ public:
 	void DrawTxt(Text& txt) override;
 
 	//Shapes
-	void DrawLine(const Line& line, const Color& color) override;
-	void DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
-	void DrawTri(const Tri& tri, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
-	void DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
+	void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2) override;
+	void DrawCircle(const Circle& circle, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
+	void DrawTri(const Tri& tri, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
+	void DrawRect(const Rect& rect, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
 	
 private:
 	float scale_factor;

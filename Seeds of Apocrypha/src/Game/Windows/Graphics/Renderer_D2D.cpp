@@ -32,7 +32,7 @@ void Renderer_D2D::DrawSheet(const Sprite& sheet, const Vector2u& pos) {
 	const Sprite_D2D* sheetd2d = static_cast<const Sprite_D2D*>(&sheet);
 
 	//Set draw location
-	Vector2f new_pos = (round(pos.x / scale_factor), round(pos.y / scale_factor));
+	Vector2u new_pos = (round(pos.x / scale_factor), round(pos.y / scale_factor));
 
 	render_target->DrawBitmap(sheetd2d->GetBitmap(), D2D1::RectF(new_pos.x, new_pos.y, new_pos.x + round(sheet.GetSheetSize().x/scale_factor), new_pos.y + round(sheet.GetSheetSize().y/scale_factor)));
 }
@@ -65,32 +65,39 @@ void Renderer_D2D::DrawSprite(const Sprite& spr) {
 
 void Renderer_D2D::DrawTxt(Text& txt) {
 	//Cast to D2D
-	Text_D2D* txtd2d = static_cast<Text_D2D*>(&txt);
-	const Text::Info* ti = &txtd2d->info;
+	Text::Info* ti = &txt.info;
+	Font_D2D* fntd2d = static_cast<Font_D2D*>(ti->font);
 
 	//Create text format
-	IDWriteTextFormat* text_format = txtd2d->font->GetFormat(ti->char_size);
+	IDWriteTextFormat* text_format = fntd2d->GetFormat(ti->char_size);
 
 	//Set the brush
-	Color c = ti->color;
-	brush->SetColor(D2D1::ColorF(c.r, c.g, c.b, c.a));
+	Color* c = &ti->color;
+	brush->SetColor(D2D1::ColorF(c->r, c->g, c->b, c->a));
 
 	ComPtr<IDWriteTextLayout> text_layout;
 
 	int size_needed = MultiByteToWideChar(CP_UTF8, 0, ti->str.c_str(), -1, nullptr, 0);
 	std::wstring text(size_needed - 1, 0);
 	MultiByteToWideChar(CP_UTF8, 0, ti->str.c_str(), -1, &text[0], size_needed);
+
+	//Automatically handles string wrapping
 	HRESULT hr = dwrite_factory->CreateTextLayout(
 		text.c_str(),
 		static_cast<UINT32>(text.length()),
 		text_format,
-		FLT_MAX, FLT_MAX,
+		ti->max_width/scale_factor, FLT_MAX,
 		&text_layout
 	);
 	if (FAILED(hr)) {
 		std::cout << "Failed to create Text Layout in Renderer_D2D.cpp" << std::endl;
 		return;
 	}
+	DWRITE_TEXT_METRICS metrics;
+	text_layout->GetMetrics(&metrics);
+	ti->str_size = { (uint)round(metrics.width), (uint)round(metrics.height) };
+
+	//std::cout << "String size: " << ti->str_size << std::endl;
 
 	//Adjust position for scale factor
 	D2D1_POINT_2F posd2d = D2D1::Point2F(round((ti->pos.x - (ti->str_size.x * ti->origin.x)) / scale_factor),
@@ -98,26 +105,30 @@ void Renderer_D2D::DrawTxt(Text& txt) {
 	render_target->DrawTextLayout(posd2d, text_layout.Get(), brush.Get());
 }
 
-void Renderer_D2D::DrawLine(const Line& line, const Color& color) {
+void Renderer_D2D::DrawLine(const Line& line, const Color& color, const uint edge_w) {
 	brush->SetColor(D2D1::ColorF(color.r, color.g, color.b)); brush->SetOpacity(color.a);
 
-	render_target->DrawLine(D2D1::Point2F(round(line.pos1.x / scale_factor), round(line.pos1.y / scale_factor)), D2D1::Point2F(round(line.pos2.x / scale_factor), round(line.pos2.y / scale_factor)), brush.Get(), line.w);
+	render_target->DrawLine(D2D1::Point2F(round(line.pos1.x / scale_factor),
+		round(line.pos1.y / scale_factor)),
+		D2D1::Point2F(round(line.pos2.x / scale_factor), round(line.pos2.y / scale_factor)),
+		brush.Get(), edge_w);
 }
 
-void Renderer_D2D::DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
+void Renderer_D2D::DrawCircle(const Circle& circle, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
 	//Adjusted position
 	D2D1_POINT_2F posd2d = D2D1::Point2F(round(circle.pos.x / scale_factor), round(circle.pos.y / scale_factor));
 	
-	//Edge
-	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
-	render_target->DrawEllipse(D2D1_ELLIPSE({ posd2d, circle.r, circle.r }), brush.Get(), edge_w);
 
 	//Fill
 	brush->SetColor(D2D1::ColorF(fill_color.r, fill_color.g, fill_color.b)); brush->SetOpacity(fill_color.a);
-	render_target->FillEllipse(D2D1_ELLIPSE({ posd2d, circle.r, circle.r }), brush.Get());
+	render_target->FillEllipse(D2D1_ELLIPSE({ posd2d, round(circle.r / scale_factor), round(circle.r / scale_factor) }), brush.Get());
+
+	//Stroke (we want it drawn on top of the fill)
+	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
+	render_target->DrawEllipse(D2D1_ELLIPSE({ posd2d, round(circle.r / scale_factor), round(circle.r / scale_factor) }), brush.Get(), edge_w);
 }
 
-void Renderer_D2D::DrawTri(const Tri& tri, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
+void Renderer_D2D::DrawTri(const Tri& tri, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
 	//Construct the triangle geometry
 	ComPtr<ID2D1PathGeometry> geometry;
 	ComPtr<ID2D1GeometrySink> sink;
@@ -130,25 +141,25 @@ void Renderer_D2D::DrawTri(const Tri& tri, const Color& fill_color, const Color&
 	sink->EndFigure(D2D1_FIGURE_END_CLOSED);
 	sink->Close();
 
-	//Edge
-	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
-	render_target->DrawGeometry(geometry.Get(), brush.Get(), edge_w);
-
 	//Fill
 	brush->SetColor(D2D1::ColorF(1, 1, 1)); brush->SetOpacity(fill_color.a);
 	render_target->FillGeometry(geometry.Get(), brush.Get());
+
+	//Stroke (we want it drawn on top of the fill)
+	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
+	render_target->DrawGeometry(geometry.Get(), brush.Get(), edge_w);
 }
 
-void Renderer_D2D::DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
+void Renderer_D2D::DrawRect(const Rect& rect, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
 	//Adjusted position
 	D2D1_POINT_2F posd2d = D2D1::Point2F(round(rect.pos.x / scale_factor), round(rect.pos.y / scale_factor));
 	
-	//Edge
-	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
-	render_target->DrawRectangle(D2D1::RectF(posd2d.x, posd2d.y, posd2d.x + rect.size.x, posd2d.y + rect.size.y), brush.Get(), edge_w);
-
 	//Fill
 	brush->SetColor(D2D1::ColorF(fill_color.r, fill_color.g, fill_color.b)); brush->SetOpacity(fill_color.a);
-	render_target->FillRectangle(D2D1::RectF(posd2d.x, posd2d.y, posd2d.x + rect.size.x, posd2d.y + rect.size.y), brush.Get());
+	render_target->FillRectangle(D2D1::RectF(posd2d.x, posd2d.y, posd2d.x + round(rect.size.x / scale_factor), posd2d.y + round(rect.size.y / scale_factor)), brush.Get());
+
+	//Stroke
+	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
+	render_target->DrawRectangle(D2D1::RectF(posd2d.x, posd2d.y, posd2d.x + round(rect.size.x / scale_factor), posd2d.y + round(rect.size.y / scale_factor)), brush.Get(), edge_w);
 }
 }
