@@ -18,14 +18,6 @@ void Sprite::Update(const float dt) {
     }
 }
 
-void Sprite::MoveBy(const Vector2i& offset) {
-    if (offset.x + info.pos.x < 0) info.pos.x = 0;
-    else info.pos.x += offset.x; //How to handle offset + pos > map size?
-
-    if (offset.y + info.pos.y < 0) info.pos.y = 0;
-    else info.pos.y += offset.y; //How to handle offset + pos > map size?
-}
-
 void Sprite::SetSheetRow(uint new_s_r, const uint new_n_f) {
     //Dividing the size of the sprite rect by the height of the spritesheet should ALWAYS produce a whole number
     const uint num_rows = info.frame_size.y / info.sheet_size.y;

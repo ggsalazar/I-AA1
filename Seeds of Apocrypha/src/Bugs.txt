@@ -1,6 +1,2 @@
-Engine Renderer: Shapes not being drawn at *quite* the right size; something to do with scaling? Have to make their logical sizes a bit smaller than I should have to,
-				 e.g. making a 1280x720 rect in a 1280x720 window goes beyond the bounds of the window (printing reveals all is equal), and to get it to align to the
-				 window, I have to adjust it to 1260x670
-
 Yes/No buttons not removing elements like they should in character creation
 When going from Area scene to Title, game not always paused correctly; able to move when Options menu is open, for instance

@@ -26,10 +26,8 @@ public:
 	inline ID2D1HwndRenderTarget* GetRT() const { return render_target.Get(); }
 	inline IDWriteFactory* GetDWriteFactory() const { return dwrite_factory.Get(); }
 
-	inline float GetScaleFactor() const { return scale_factor; }
-
 	//Sprites
-	void DrawSheet(const Sprite& sheet, const Vector2u& pos = { 0, 0 }) override;
+	void DrawSheet(const Sprite& sheet, const Vector2i& pos = { 0, 0 }) override;
 	void DrawSprite(const Sprite& spr) override;
 	//Text
 	void DrawTxt(Text& txt) override;
@@ -41,7 +39,6 @@ public:
 	void DrawRect(const Rect& rect, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
 	
 private:
-	float scale_factor;
 	ComPtr<ID2D1Factory> factory;
 	ComPtr<ID2D1HwndRenderTarget> render_target;
 

@@ -1,10 +1,10 @@
 #pragma once
 #include <iostream>
 #include <unordered_map>
-#include <chrono>
-#include "../../Engine/Engine.h" //Includes <memory> and aliases for std, Engine, and smart ptrs
+#include "../../Engine/Engine.h" //Includes <chrono>, <memory> and aliases for Engine and smart ptrs
 #include "Graphics/Window_Windows.h"
 #include "Graphics/Renderer_D2D.h" //Includes Sprite_D2D.h, Font_D2D.h, and Text.h
+#include "Input.h"
 
 using Clock = std::chrono::high_resolution_clock;
 
@@ -38,16 +38,13 @@ public:
     //DJ dj;
     //Soundboard sb;
     
-    //Test sprite
-    u_ptr<Sprite_D2D> test_spr;
-
-    //Test Font & Text
-    u_ptr<Font_D2D> test_font;
-    u_ptr<Text> test_txt;
-    Rect r;
+    //Test timer
+    u_ptr<Timer> test_timer1;
+    u_ptr<Timer> test_timer2;
 
     //Miscellaneous
-    //u_ptr<Font_D2D> default_font;
+    u_ptr<Font_D2D> default_font;
+    u_ptr<Text> debug_txt;
     //unordered_map<Actions, u_ptr<Sprite_D2D>> cursors;
     //s_ptr<Entity> cursor;
     Areas area = Areas::DEFAULT;

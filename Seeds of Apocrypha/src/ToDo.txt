@@ -1,13 +1,11 @@
-Left off: -Create timer class
-Engine: -Timer class (6 hours)
-		-Input (6 hours)
-		-Tilemapping (40 hours)
+Left off: Finally at a stage where I should be able to re-implement the MM
+Engine:	-Tilemapping (40 hours)
 		-Camera (40 hours)
 			--VSync
 		-Cursor (Basically just an entity w/ pos = mouse_pos, 3 hours)
 		-Music (40 hours)
 		-SFX (20 hours)
-		-Total: 155 hours
+		-Total: 150 hours
 
 Tutorial -  -add in NPCs
 			-Inventory

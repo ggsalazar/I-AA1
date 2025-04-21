@@ -4,7 +4,7 @@
 #include "Game.h"
 
 Game::Game(const char* title, uint init_fps) :
-    fps(init_fps), r(Vector2u{ 0 }, Vector2u{ 1260, 670 }) {
+    fps(init_fps) {
     //Delta time
     target_frame_time = 1.f / fps;
     last_time = Clock::now();
@@ -15,30 +15,14 @@ Game::Game(const char* title, uint init_fps) :
 
     //Initialize the renderer
     renderer = make_u<Renderer_D2D>(window->GetHandle());
-    cout << "resolution: " << Vector2f{ resolution.x / renderer->GetScaleFactor(), resolution.y / renderer->GetScaleFactor() } << endl;
 
-
-    //Test sprite + sheet
-    Sprite::Info sii = {}; sii.origin = { .5f }; sii.pos = { (uint)(resolution.x * .5), (uint)(resolution.y * .5) }; sii.scale = 4; sii.frame_size = { 32 };
-    test_spr = make_u<Sprite_D2D>("assets/Sprites/Test", renderer->GetRT(), sii);
-
-
-    //Test font & text
-    test_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
-    Text::Info tii = {}; tii.str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    tii.pos = { 0, 0 }; tii.color = { 1, 0, 1, 1 }; tii.origin = { 0 };
-    tii.max_width = 1280; tii.font = test_font.get();
-    test_txt = make_u<Text>(tii);
-
+    //Initialize the Input namespace
+    Input::Init(window->GetHandle());
 
     //Load the default font
-    //default_font = make_u<Font_D2D>("assets/Fonts/m5x7.ttf", 36.f, renderer->GetDWriteFactory());
+    default_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
 
-    //Test tex
-    //Text::Info txt_init_info;
-    //txt_init_info.font = default_font.get(); txt_init_info.str = "THIS IS A TEST"; txt_init_info.pos = resolution * .5;
-    //test_txt = make_u<Text>(txt_init_info);
-
+    
     //Initialize the camera
     /*
     camera.setSize(Vector2f(window.getSize()));
@@ -130,14 +114,14 @@ void Game::Update() {
     //if (!--debug_timer) {
     //    debug_timer = fps * 3;
     //}
-    
-    test_spr->Update(delta_time);
+
 
     //if (++frames_elapsed > fps) frames_elapsed = 0;
-    /*
-    //Reset our variables
-    Input::UpdateVars();
+    
+    //Reset our input variables
+    Input::Update();
 
+    /*
     //Close the old scene if needed
     if (auto old_scn = old_scene.lock()) {
         old_scn->Open(false);
@@ -155,18 +139,6 @@ void Game::Update() {
 void Game::Render() {
     
     renderer->BeginFrame(); //This also clears the frame
-
-    renderer->DrawSprite(*test_spr);
-
-    renderer->DrawTxt(*test_txt);
-
-    renderer->DrawCircle(test_txt->pos_debug, Color(1, 0, 0), Color(1, 0 , 0));
-    
-    renderer->DrawRect(r);
-
-    renderer->DrawCircle(test_spr->pos_debug, Color(0, 0, 1), Color(0, 0, 1));
-
-    //renderer->DrawTxt(*test_txt);
 
     /*
     if (auto scene = active_scene.lock())

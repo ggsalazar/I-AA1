@@ -13,7 +13,7 @@ public:
     struct Info {
         Font* font; //Raw pointer is fine since Text doesn't own the font object
         string str = "";
-        Vector2u pos;
+        Vector2i pos;
         uint char_size = 36;
         Vector2u str_size;
         uint max_width = 1920;

@@ -14,7 +14,7 @@ public:
 	virtual void Clear(float r, float g, float b, float a) = 0;
 
 	//Sprites
-	virtual void DrawSheet(const Sprite& sheet, const Vector2u& pos = { 0, 0 }) = 0; //Helpful for debugging/seeing entire sheet
+	virtual void DrawSheet(const Sprite& sheet, const Vector2i& pos = { 0, 0 }) = 0; //Helpful for debugging/seeing entire sheet
 	virtual void DrawSprite(const Sprite& spr) = 0;
 	//Text
 	virtual void DrawTxt(Text& txt) = 0;

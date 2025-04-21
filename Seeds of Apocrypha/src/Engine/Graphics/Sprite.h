@@ -9,7 +9,7 @@ class Sprite {
     friend class Renderer;
 public:
     struct Info {
-        Vector2u pos; //Worldspace position of the sprite
+        Vector2i pos; //Worldspace position of the sprite
         Vector2f origin; //Anchor point of the sprite
         Vector2u spr_size; //The size of the sprite in world space (i.e. after being scaled up/down)
         Vector2u sheet_size; //The size of the sprite's spritesheet
@@ -46,9 +46,9 @@ public:
     inline virtual Vector2u GetSheetSize() const { return info.sheet_size; }
 
     //Sprite proper stuff
-    inline Vector2u GetPos() const { return info.pos; }
-    inline virtual void MoveTo(const Vector2u& new_pos) { info.pos = new_pos; }
-    virtual void MoveBy(const Vector2i& offset);
+    inline Vector2i GetPos() const { return info.pos; }
+    inline virtual void MoveTo(const Vector2i& new_pos) { info.pos = new_pos; }
+    inline virtual void MoveBy(const Vector2i& offset) { info.pos += offset; }
 
     inline virtual void SetSize() { info.spr_size = info.scale * info.frame_size; }
     inline virtual void SetSize(const Vector2u& s) {
