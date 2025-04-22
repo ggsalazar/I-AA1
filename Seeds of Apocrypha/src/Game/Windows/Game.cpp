@@ -2,6 +2,7 @@
 #include <thread>
 #include <string>
 #include "Game.h"
+#include "Scene.h"
 
 Game::Game(const char* title, uint init_fps) :
     fps(init_fps) {
@@ -17,60 +18,32 @@ Game::Game(const char* title, uint init_fps) :
     renderer = make_u<Renderer_D2D>(window->GetHandle());
 
     //Initialize the Input namespace
-    Input::Init(window->GetHandle());
+    Input::Init(window->GetHandle(), resolution);
 
     //Load the default font
     default_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
 
     
     //Initialize the camera
-    /*
-    camera.setSize(Vector2f(window.getSize()));
+    //camera.setSize(Vector2f(window.getSize()));
     //View is set in Scene.cpp
-
-    //Initialize the fonts
-    if (!default_font.openFromFile("assets/Fonts/m5x7.ttf"))
-        cerr << "Failed to load font 'm5x7'!" << endl;
-    default_font.setSmooth(false);
 
     //Initialize the DJ's tracks
     //Play the title track - TO-DO
 
     //Initialize Scenes
-    title_scene = make_unique<Scene>(*this, window, Scenes::TITLE);
-    cutscene_scene = make_unique<Scene>(*this, window, Scenes::CUTSCENE);
-    area_scene = make_unique<Scene>(*this, window, Scenes::AREA);
+    title_scene = make_u<Scene>(*this, Scenes::TITLE);
+    cutscene_scene = make_u<Scene>(*this, Scenes::CUTSCENE);
+    area_scene = make_u<Scene>(*this, Scenes::AREA);
     scenes.insert(make_pair(Scenes::TITLE, title_scene));
     scenes.insert(make_pair(Scenes::CUTSCENE, cutscene_scene));
     scenes.insert(make_pair(Scenes::AREA, area_scene));
     SetScene(Scenes::TITLE);
 
-    //Cursors for lmb actions
-    sf::Image c_i;
-    //Default cursor
-    c_i.loadFromFile("assets/Sprites/Cursors/Default.png");
-    auto c = make_unique<sf::Cursor>(sf::Cursor::createFromPixels(c_i.getPixelsPtr(), { 16, 16 }, { 0, 0 }).value());
-    cursors.insert({ Actions::DEFAULT, move(c)});
-    //NoAction
-    c_i.loadFromFile("assets/Sprites/Cursors/NoAction.png");
-    c = make_unique<sf::Cursor>(sf::Cursor::createFromPixels(c_i.getPixelsPtr(), { 16, 16 }, { 0, 0 }).value());
-    cursors.insert({ Actions::NOACTION, move(c) });
-    //Move
-    c_i.loadFromFile("assets/Sprites/Cursors/Move.png");
-    c = make_unique<sf::Cursor>(sf::Cursor::createFromPixels(c_i.getPixelsPtr(), { 16, 16 }, { 0, 0 }).value());
-    cursors.insert({ Actions::MOVE, move(c) });
-    
-    
-    cursor = cursors[Actions::DEFAULT].get();
-    window.setMouseCursor(*cursor);
-
-
-    //Init debug line
-    /*
-    debug_box.setSize(Vector2f(2, resolution.y));
-    debug_box.setPosition(Vector2f(resolution.x * .5, 0));
-    debug_box.setFillColor(sf::Color(255, 255, 0, 127));
-    */
+    //Initialize cursor
+    //Cursor sprite info
+    //Sprite::Info csi = {};
+    //cursor = make_u<Sprite_D2D>("../assets/Sprites/Cursors.png", renderer->GetRT(), csi);
 }
 
 void Game::Run() {
@@ -79,6 +52,13 @@ void Game::Run() {
     chrono::duration<float> delta = now - last_time;
     last_time = now;
     delta_time = delta.count();
+
+    //Game frames
+    accumulated_time += delta_time;
+    if (accumulated_time >= target_frame_time) {
+        accumulated_time -= target_frame_time;
+        if (++game_frames >= fps) game_frames = 0;
+    }
 
     //Handle events
     window->PollEvents();
@@ -110,18 +90,10 @@ void Game::ProcessInput() {
 
 //Update the game world
 void Game::Update() {
-    
-    //if (!--debug_timer) {
-    //    debug_timer = fps * 3;
-    //}
 
-
-    //if (++frames_elapsed > fps) frames_elapsed = 0;
-    
     //Reset our input variables
     Input::Update();
 
-    /*
     //Close the old scene if needed
     if (auto old_scn = old_scene.lock()) {
         old_scn->Open(false);
@@ -130,9 +102,6 @@ void Game::Update() {
 
     auto scene = active_scene.lock();
     scene->Update();
-
-    //window.setMouseCursor(*cursor);
-    */
 }
 
 //Draw the game world
@@ -146,11 +115,11 @@ void Game::Render() {
     else
         cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
     */
+
     renderer->EndFrame();
 }
 
 void Game::SetScene(Scenes scn) {
-    /*
     if (scenes.find(scn) != scenes.end()) {
 
         old_scene = active_scene;
@@ -168,7 +137,6 @@ void Game::SetScene(Scenes scn) {
     }
     else
         cout << "That Scene does not exist!" << endl;
-        */
 }
 
 void Game::SetMusicVolume(float n_v) {

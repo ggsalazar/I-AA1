@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Game\Windows\Entities\Entity.cpp" />
     <ClCompile Include="src\Engine\Graphics\Sprite.cpp" />
     <ClCompile Include="src\Game\Windows\Game.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp" />
     <ClCompile Include="src\Game\Windows\Input.cpp" />
+    <ClCompile Include="src\Game\Windows\Scene.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Engine\Core\Math.cpp" />
   </ItemGroup>
@@ -156,9 +158,9 @@
     <ClInclude Include="src\Engine\Core\Collision.h" />
     <ClInclude Include="src\Engine\Core\Geometry.h" />
     <ClInclude Include="src\Engine\Core\Math.h" />
-    <ClInclude Include="src\Engine\Core\Timer.h" />
     <ClInclude Include="src\Engine\Engine.h" />
     <ClInclude Include="src\Engine\Core\Vector2.h" />
+    <ClInclude Include="src\Engine\Entities\Entity.h" />
     <ClInclude Include="src\Engine\Graphics\Font.h" />
     <ClInclude Include="src\Engine\Graphics\Renderer.h" />
     <ClInclude Include="src\Engine\Graphics\Sprite.h" />
@@ -174,6 +176,7 @@
     <ClInclude Include="src\Game\Windows\Graphics\Window_Windows.h" />
     <ClInclude Include="src\Engine\Core\Enums.h" />
     <ClInclude Include="src\Game\Windows\Input.h" />
+    <ClInclude Include="src\Game\Windows\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

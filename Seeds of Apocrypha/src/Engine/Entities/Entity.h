@@ -3,65 +3,50 @@
 #include "../Core/Collision.h"
 #include "../Core/Enums.h"
 #include "../Core/Geometry.h"
-#include "../Core/Input.h"
-#include "../Graphics/Animation.h"
+#include "../Graphics/Sprite.h"
 #include "../Graphics/Text.h"
-
-using namespace std;
-
-namespace Engine {
 
 class Game;
 class Scene;
 
-struct Engine {
-    Game& game;
-    RenderWindow& window;
-    //This allows the Scene of an object to be changed
-    Scene* scene;
-};
+namespace Engine {
 
-class Entity : public enable_shared_from_this<Entity> {
-    friend class Animation;
+class Entity {
 public:
     //Variables
     Vector2u size = { 0, 0 };
     bool alive = true;
-    int dfc = 0; //Distance from camera; draw order, basically - the lower the number, the closer to the camera
+
+    std::unique_ptr<Sprite> sprite;
 
     //SFX Stuff
     //sf::SoundBuffer sb;
     //sf::Sound sound;
 
-
-    Entity(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t = {}, int init_dfc = 0);
+    Entity(Game& g, Scene* s, const std::string& sheet, const Sprite::Info& s_i);
     virtual ~Entity() = default;
 
 
     virtual void GetInput() {}
-    virtual void Update() {}
+    inline virtual void Update() { sprite->MoveTo(pos); SetBBox(); }
     virtual void Draw();
-    virtual void MoveBy(Vector2i offset) { pos.x += offset.x; pos.y += offset.y; Entity::Move(); }
-    virtual void MoveTo(Vector2u new_pos) { pos = new_pos; Entity::Move(); }
+    inline virtual void MoveBy(Vector2i offset) { pos += offset; }
+    inline virtual void MoveTo(Vector2i new_pos) { pos = new_pos; }
 
-    Vector2u GetPos() const { return pos; }
-    Rect GetBBox() const { return bbox; }
+    inline Vector2i GetPos() const { return pos; }
+    inline Rect GetBBox() const { return bbox; }
     void SetBBox();
 
-    void SetScene(Scene* new_scn) { engine.scene = new_scn; }
+    inline void SetScene(Scene* new_scn) { scene = new_scn; }
 
     void PlaySound();
 
 protected:
-    Vector2u pos;
+    Vector2i pos;
     Circle pos_debug;
     Rect bbox;
 
-    Engine engine;
-
-    unique_ptr<Animation> anim;
-
-private:
-    virtual void Move() { anim->sprite.setPosition(Vector2f(pos)); SetBBox(); }
+    Game& game;
+    Scene* scene;
 };
 }

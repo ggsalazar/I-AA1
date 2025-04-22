@@ -7,8 +7,7 @@
 #include "Sprite_D2D.h"
 
 using Microsoft::WRL::ComPtr;
-
-namespace Engine {
+using namespace Engine;
 
 class Renderer_D2D : public Renderer {
 public:
@@ -49,5 +48,3 @@ private:
 	ComPtr<ID2D1SolidColorBrush> brush;
 
 };
-
-}

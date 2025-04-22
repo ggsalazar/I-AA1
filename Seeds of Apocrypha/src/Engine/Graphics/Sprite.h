@@ -13,7 +13,7 @@ public:
         Vector2f origin; //Anchor point of the sprite
         Vector2u spr_size; //The size of the sprite in world space (i.e. after being scaled up/down)
         Vector2u sheet_size; //The size of the sprite's spritesheet
-        Vector2u scale{1}; //The scale of the sprite - uint BECAUSE this is a pixel art game!
+        Vector2i scale{1}; //The scale of the sprite - int BECAUSE this is a pixel art game!
         Vector2u frame_size{1}; //The literal, actual size of a single frame of the sprite
         Color color{ 1, 1, 1 }; //The color tint of the sprite
         float rot{}; //Angle of rotation in degrees
@@ -26,6 +26,7 @@ public:
         float anim_length{}; //Length of the animation in seconds
         float frame_length{}; //Length of a single frame in seconds
         float frame_timer{}; //How long since the frame changed
+        int dfc = 0; //Distance from camera; draw order, basically - the lower the number, the closer to the camera
     };
     Circle pos_debug;
 
@@ -38,53 +39,60 @@ public:
     }
     virtual ~Sprite() {}
 
-    virtual void Update(const float dt);
+    void Update(const float dt);
 
 
     //Spritesheet stuff
     virtual bool LoadSheetFromFile(const std::string& file) = 0;
-    inline virtual Vector2u GetSheetSize() const { return info.sheet_size; }
+    inline Vector2u GetSheetSize() const { return info.sheet_size; }
 
     //Sprite proper stuff
     inline Vector2i GetPos() const { return info.pos; }
-    inline virtual void MoveTo(const Vector2i& new_pos) { info.pos = new_pos; }
-    inline virtual void MoveBy(const Vector2i& offset) { info.pos += offset; }
+    inline void MoveTo(const Vector2i& new_pos) { info.pos = new_pos; }
+    inline void MoveBy(const Vector2i& offset) { info.pos += offset; }
 
-    inline virtual void SetSize() { info.spr_size = info.scale * info.frame_size; }
-    inline virtual void SetSize(const Vector2u& s) {
+    inline void SetSize() { info.spr_size = { info.scale.x * info.frame_size.x, info.scale.y * info.frame_size.y }; }
+    inline void SetSize(const Vector2u& s) {
         info.spr_size = s;
-        info.scale = info.spr_size / info.frame_size;
+        info.scale = { (int)(info.spr_size.x / info.frame_size.x), (int)(info.spr_size.y / info.frame_size.y) };
     }
-    inline virtual void SetScale(const Vector2u& s) {
+    inline Vector2u GetSprSize() const { return info.spr_size; }
+    inline Vector2u GetFrameSize() const { return info.frame_size; }
+
+    inline void SetScale(const Vector2i& s) {
         info.scale = s;
         info.spr_size = info.frame_size * info.scale;
     }
+    inline Vector2i GetScale() const { return info.scale; }
 
-    inline virtual void SetRotD(float angle) { info.rot = angle; }
-    inline virtual float GetRotD() const { return info.rot; }
-    inline virtual void SetRotR(float rad) { info.rot = rad * 57.2958; }
-    inline virtual float GetRotR() const { return info.rot / 57.2958; }
+    inline void SetRotD(float angle) { info.rot = angle; }
+    inline float GetRotD() const { return info.rot; }
+    inline void SetRotR(float rad) { info.rot = rad * 57.2958; }
+    inline float GetRotR() const { return info.rot / 57.2958; }
     
-    inline virtual void SetColor(const Color& c) { info.color = c; }
+    inline void SetColor(const Color& c) { info.color = c; }
 
-    virtual void SetSheetRow(uint new_s_r, const uint new_n_f = 0);
-    inline virtual uint GetSheetRow() const { return info.sheet_row; }
+    void SetSheetRow(uint new_s_r, const uint new_n_f = 0);
+    inline uint GetSheetRow() const { return info.sheet_row; }
 
-    virtual void SetCurrFrame(uint new_c_f) { while (new_c_f >= info.num_frames) new_c_f -= info.num_frames; info.curr_frame = new_c_f; }
-    inline virtual uint GetCurrFrame() const { return info.curr_frame; }
+    void SetCurrFrame(uint new_c_f);
+    inline uint GetCurrFrame() const { return info.curr_frame; }
 
-    inline virtual void SetNumFrames(const uint new_n_f) { info.num_frames = new_n_f; }
-    inline virtual uint GetNumFrames() const { return info.num_frames; }
+    inline void SetNumFrames(const uint new_n_f) { info.num_frames = new_n_f; }
+    inline uint GetNumFrames() const { return info.num_frames; }
 
-    virtual void SetGameFPS(const uint new_fps);
-    inline virtual uint GetGameFPS() const { return info.game_fps; }
-    virtual void SetAnimFPS(const int new_fps);
-    inline virtual uint GetAnimFPS() const { return info.anim_fps; }
+    void SetGameFPS(const uint new_fps);
+    inline uint GetGameFPS() const { return info.game_fps; }
+    void SetAnimFPS(const int new_fps);
+    inline uint GetAnimFPS() const { return info.anim_fps; }
 
-    virtual void SetOrigin(const Vector2f new_ori = { .5f, .5f });
-    inline virtual Vector2f GetOrigin() const { return info.origin; }; //Returns origin from 0-1
-    inline virtual Vector2f GetOriginFrame() { return { info.origin.x * info.frame_size.x, info.origin.y * info.frame_size.y }; }; //Returns origin in pixels relative to the image size
-    inline virtual Vector2f GetOriginSprite() { return { info.origin.x * info.spr_size.x, info.origin.y * info.spr_size.y }; }; //Returns origin in pixels relative to the sprite size
+    void SetOrigin(const Vector2f new_ori = { .5f, .5f });
+    inline Vector2f GetOrigin() const { return info.origin; }; //Returns origin from 0-1
+    inline Vector2f GetOriginFrame() { return { info.origin.x * info.frame_size.x, info.origin.y * info.frame_size.y }; }; //Returns origin in pixels relative to the frame size
+    inline Vector2f GetOriginSprite() { return { info.origin.x * info.spr_size.x, info.origin.y * info.spr_size.y }; }; //Returns origin in pixels relative to the sprite size
+
+    inline void SetDFC(const int new_dfc = 0) { info.dfc = new_dfc; }
+    inline int GetDFC() const { return info.dfc; }
 
 protected:
     Info info; //protected because whenever a member is set, other ancillary functions must be performed

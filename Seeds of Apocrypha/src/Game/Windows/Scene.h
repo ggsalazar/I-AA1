@@ -1,16 +1,10 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <memory>
 #include <vector>
-//#include "Enums.h"
+#include "Game.h" //Includes all engine stuff
 //#include "TileMap.h"
-#include "Menu.h"
-//#include "Vector2.h"
 
 //Forward declarations
-class Game;
-class Entity;
+class Menu;
 class PartyMember;
 
 class Scene {
@@ -19,8 +13,8 @@ public:
     bool selecting = false;
     Interfaces interface_open = Interfaces::NONE;
 
-    Scene(Game& g, sf::RenderWindow& win, Scenes init_label) :
-        game(g), window(win), label(init_label) {}
+    Scene(Game& g, Scenes init_label) :
+        game(g), label(init_label) {}
 
     //Engine stuff
     void GetInput();
@@ -60,17 +54,15 @@ private:
 
     //TileMap tilemap;
 
-    unordered_map<Menus, unique_ptr<Menu>> menus;
+    //unordered_map<Menus, unique_ptr<Menu>> menus;
     vector<shared_ptr<Entity>> entities;
     vector<shared_ptr<PartyMember>> party_mems;
 
 
-    sf::RectangleShape selec_box;
-    sf::FloatRect selec_area;
-    Vector2f selec_wh = { 0, 0 };
+    Rect selec_box;
+    Vector2f selec_area = { 0, 0 };
     //queue<Vector2u> found_path;
 
-    //Engine stuff
+    //Game pointer
     Game& game;
-    sf::RenderWindow& window;
 };

@@ -2,11 +2,10 @@
 #include <memory>
 //#include "Core/Collision.h"
 #include "Core/Enums.h"
-#include "Core/Math.h" //Includes Vector2 (& aliases for unsigned int and namespace std)
+#include "Core/Math.h" //Includes Vector2 (& alias for unsigned int)
 //#include "Core/Vector3.h"
 #include "Core/Geometry.h" //Includes Vector2
-#include "Core/Timer.h" //Includes <chrono>
-//#include "Entities/Entity.h"
+#include "Entities/Entity.h"
 //#include "Entities/UI/UI.h"
 //#include "Entities/UI/Button.h"
 //#include "Entities/UI/Confirm.h"
@@ -14,7 +13,7 @@
 //#include "Entities/UI/Slider.h"
 //#include "Entities/UI/Toggle.h"
 //#include "Entities/UI/Tooltip.h"
-#include "Graphics/Renderer.h" //Includes Sprite (& Spritesheet) and Text (& Font)
+#include "Graphics/Renderer.h" //Includes Sprite and Text (& Font)
 //#include "Graphics/TileMap.h"
 #include "Graphics/Window.h"
 //#include "Audio/DJ.h"

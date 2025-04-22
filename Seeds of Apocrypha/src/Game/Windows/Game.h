@@ -1,18 +1,18 @@
 #pragma once
 #include <iostream>
+#include <chrono>
 #include <unordered_map>
-#include "../../Engine/Engine.h" //Includes <chrono>, <memory> and aliases for Engine and smart ptrs
+#include "../../Engine/Engine.h" //Includes <memory> and aliases for Engine and smart ptrs
 #include "Graphics/Window_Windows.h"
 #include "Graphics/Renderer_D2D.h" //Includes Sprite_D2D.h, Font_D2D.h, and Text.h
 #include "Input.h"
 
 using Clock = std::chrono::high_resolution_clock;
 
-using namespace Engine;
 using namespace std;
 
 class Scene;
-class Font;
+class Font_D2D;
 
 class Game {
 public:
@@ -23,11 +23,9 @@ public:
 
     //Game UTH details
     bool running = true;
-    float delta_time;
-    int debug_timer = 0;
+    float delta_time = 0.f;
     bool paused = false;
     uint curr_ui_layer = 0;
-    bool debug = false;
 
     //Camera
     //Camera camera;
@@ -38,15 +36,18 @@ public:
     //DJ dj;
     //Soundboard sb;
     
-    //Test timer
-    u_ptr<Timer> test_timer1;
-    u_ptr<Timer> test_timer2;
+    //Scenes
+    unordered_map<Scenes, s_ptr<Scene>> scenes;
+    w_ptr<Scene> active_scene;
+    w_ptr<Scene> old_scene;
+    s_ptr<Scene> title_scene;
+    s_ptr<Scene> cutscene_scene;
+    s_ptr<Scene> area_scene;
 
     //Miscellaneous
     u_ptr<Font_D2D> default_font;
     u_ptr<Text> debug_txt;
-    //unordered_map<Actions, u_ptr<Sprite_D2D>> cursors;
-    //s_ptr<Entity> cursor;
+    u_ptr<Sprite_D2D> cursor;
     Areas area = Areas::DEFAULT;
 
     Game(const char* title, uint init_fps);
@@ -71,23 +72,18 @@ public:
     Vector2u GetResolution() const { return resolution; }
     uint GetResScale() const { return resolution.x / min_res.x; }
 
-    //Debug/Technical
+    //Frame stuff
     uint GetFPS() const { return fps; }
-    int GetDebugTimer() const { return debug_timer; }
+    int GetGameFrames() const { return game_frames; }
 
-    //Scenes
-    unordered_map<Scenes, s_ptr<Scene>> scenes;
-    w_ptr<Scene> active_scene;
-    w_ptr<Scene> old_scene;
-    s_ptr<Scene> title_scene;
-    s_ptr<Scene> cutscene_scene;
-    s_ptr<Scene> area_scene;
 
 private:
     //Variables
     uint fps = 0;
+    uint game_frames = 0;
     float target_frame_time;
     Clock::time_point last_time;
+    float accumulated_time = 0.f;
     float music_volume = 100;
     float sfx_volume = 100;
     Vector2u resolution;

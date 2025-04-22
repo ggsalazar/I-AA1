@@ -3,18 +3,24 @@
 namespace Engine {
 
 void Sprite::Update(const float dt) {
-    info.frame_timer += dt;
+    //Time-based frame updates
+    if (info.anim_fps != 0) {
+        info.frame_timer += dt;
 
-    if (info.frame_timer >= info.frame_length) {
-        info.frame_timer -= info.frame_length;
-        if (info.anim_fps > 0) {
-            ++info.curr_frame;
-            if (info.curr_frame == info.num_frames) info.curr_frame = 0;
+        if (info.frame_timer >= info.frame_length) {
+            info.frame_timer -= info.frame_length;
+
+            if (info.anim_fps > 0) SetCurrFrame(++info.curr_frame);
+            else if (info.anim_fps < 0) SetCurrFrame(--info.curr_frame);
         }
-        else if (info.anim_fps < 0) {
-            --info.curr_frame;
-            if (info.curr_frame < 0) info.curr_frame = info.num_frames - 1;
+
+        //Frame-based frame updates
+        /*
+        if (game_frames % fci == 0) {
+            if (info.anim_fps > 0) SetCurrFrame(++info.curr_frame);
+            else if (info.anim_fps < 0) SetCurrFrame(--info.curr_frame);
         }
+        */
     }
 }
 
@@ -30,6 +36,15 @@ void Sprite::SetSheetRow(uint new_s_r, const uint new_n_f) {
     //If a new number of frames is not provided, it will be assumed that the # of frames is staying the same
     if (new_n_f != 0)
         SetNumFrames(new_n_f);
+}
+
+void Sprite::SetCurrFrame(uint new_c_f) {
+    if (info.anim_fps > 0) {
+        while (new_c_f >= info.num_frames) new_c_f -= info.num_frames;
+    }
+    else if (info.anim_fps < 0)
+        while (new_c_f < 0) new_c_f += info.num_frames;
+    info.curr_frame = new_c_f;
 }
 
 void Sprite::SetGameFPS(const uint new_fps) {

@@ -1,7 +1,8 @@
 #include <Windows.h>
 #include "Renderer_D2D.h"
 
-namespace Engine {
+
+
 Renderer_D2D::Renderer_D2D(void* window_handle)	{
 	//Create Factory
 	D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, IID_PPV_ARGS(&factory));
@@ -148,5 +149,4 @@ void Renderer_D2D::DrawRect(const Rect& rect, const Color& stroke_color, const C
 	//Stroke
 	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
 	render_target->DrawRectangle(D2D1::RectF(rect.pos.x, rect.pos.y, rect.pos.x + rect.size.x, rect.pos.y + rect.size.y), brush.Get(), edge_w);
-}
 }

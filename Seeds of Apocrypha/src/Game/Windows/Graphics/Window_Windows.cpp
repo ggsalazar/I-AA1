@@ -1,8 +1,6 @@
 #include <windowsx.h>
 #include "Window_Windows.h"
 
-namespace Engine {
-
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	switch (msg) {
 	case WM_DESTROY:
@@ -76,5 +74,4 @@ void Window_Windows::Clear() {
 	HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
 	FillRect(hdc, &rect, brush);
 	DeleteObject(brush);
-}
 }

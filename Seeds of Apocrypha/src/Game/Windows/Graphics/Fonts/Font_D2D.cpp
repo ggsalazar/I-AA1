@@ -6,8 +6,6 @@
 #include "CustomFontLoader.h"
 #include "CustomFontCollectionLoader.h"
 
-namespace Engine {
-
 Font_D2D::Font_D2D(const string& filepath, IDWriteFactory* f) :
 	factory(f) {
 	//Read font file (.otf/.ttf)
@@ -59,5 +57,4 @@ IDWriteTextFormat* Font_D2D::GetFormat(const uint size) {
 
 	formats[size] = format;
 	return format.Get();
-}
 }

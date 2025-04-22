@@ -2,13 +2,11 @@
 #include <nlohmann/json.hpp>
 #include "Scene.h"
 #include "Menu.h"
-#include "Math.h"
-#include "../Entities/Entity.h"
-#include "../Entities/UI/UI.h"
-#include "../Entities/Creatures/PartyMember.h"
+//#include "../Entities/UI/UI.h"
+//#include "../Entities/Creatures/PartyMember.h"
 
 void Scene::GetInput() {
-
+	/*
 	if (label == Scenes::AREA) {
 		OpenInterface();
 		MoveCamera();
@@ -19,7 +17,7 @@ void Scene::GetInput() {
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing 
 			// will depend on what it is pointing at
 			//Updating action every 6th of a second for performance reasons
-			if (game.GetFramesElapsed() % 10 == 0)
+			if (game.GetGameFrames() % 10 == 0)
 				action = LMBAction();
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			game.cursor = game.cursors[action].get();
@@ -38,7 +36,6 @@ void Scene::GetInput() {
 		}
 		else game.cursor = game.cursors[Actions::DEFAULT].get();
 	}
-
 	for (auto& e : entities) {
 		//Only get input for UI elements if the corresponding menu is open
 		if (auto ui = dynamic_cast<UI*>(e.get())) {
@@ -48,12 +45,13 @@ void Scene::GetInput() {
 		else
 			e->GetInput();
 	}
+	*/
 }
 
 void Scene::Update() {
 	//Update menus
-	for (auto& m : menus)
-		m.second->Update();
+	//for (auto& m : menus)
+	//	m.second->Update();
 
 	//Update entities
 	for (auto& e : entities)
@@ -66,48 +64,48 @@ void Scene::Update() {
 
 	//Sort the entities vector (and possibly Menus map) by dfc value every 6th of a second so that entities of a lower dfc value are drawn
 	// last (closest to the camera)
-	if (game.GetFramesElapsed() % 10 == 0) {
-		sort(entities.begin(), entities.end(), [](const shared_ptr<Entity>& a, const shared_ptr<Entity>& b) { return a->dfc > b->dfc; });
+	if (game.GetGameFrames() % 10 == 0) {
+		sort(entities.begin(), entities.end(), [](const shared_ptr<Entity>& a, const shared_ptr<Entity>& b) { return a->sprite->GetDFC() > b->sprite->GetDFC(); });
 		
 		//Also taking this opportunity to repopulate/reset the node grid
-		if (label == Scenes::AREA)
-			tilemap.PopulateNodeGrid();
+		//if (label == Scenes::AREA)
+		//	tilemap.PopulateNodeGrid();
 	}
 }
 
 void Scene::Draw() {
 
 	//Draw the tilemap first
-	if (tilemap.Loaded())
-		window.draw(tilemap);
+	//if (tilemap.Loaded())
+	//	window.draw(tilemap);
 
 	//Then draw entities
 	for (auto& e : entities) {
 		//Only draw UI elements if the corresponding menu is open
-		if (auto ui = dynamic_cast<UI*>(e.get())) {
-			if (ui->menu.GetOpen())
-				ui->Draw();
-		}
-		else
-			e->Draw();
+		//if (auto ui = dynamic_cast<UI*>(e.get())) {
+		//	if (ui->menu.GetOpen())
+			//	ui->Draw();
+		//}
+		//else
+			//e->Draw();
 	}
 
 	//Draw the selection box
 	if (selecting)
-		window.draw(selec_box);
+		game.renderer->DrawRect(selec_box, Color(0, 1, 0, .8), Color(0, 1, 0, .4));
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
-	for (const auto& m : menus)
-		m.second->Draw();
+	//for (const auto& m : menus)
+	//	m.second->Draw();
 
 
-	cout << "Camera Pos: " << game.camera.getCenter() << endl;
+	//cout << "Camera Pos: " << game.camera.getCenter() << endl;
 }
 
 void Scene::OpenInterface(Interfaces intrfc) {
 	//Options Interface
-	if (Input::KeyPressed(O_K)) {
+	if (Input::BtnPressed(O_K)) {
 		if (interface_open != Interfaces::OPTIONS) {
 			interface_open = Interfaces::OPTIONS;
 			game.paused = true;
@@ -123,6 +121,7 @@ void Scene::OpenInterface(Interfaces intrfc) {
 }
 
 void Scene::MoveCamera() {
+	/*
 	//Move the camera
 	Vector2f cam_pos = game.camera.getCenter();
 	Vector2f cam_size = game.camera.getSize();
@@ -177,9 +176,11 @@ void Scene::MoveCamera() {
 	}
 
 	window.setView(game.camera);
+	*/
 }
 
 void Scene::SelectPartyMems() {
+	/*
 	//Select party members
 	//Click and drag (selection box/area) while holding SHIFT or CTRL
 	//	 -SHIFT selects all party mems inside the selection area
@@ -215,6 +216,7 @@ void Scene::SelectPartyMems() {
 
 		//Use visual signifiers to indicate which party members are about to be selected - TO-DO
 	}
+	*/
 }
 
 Actions Scene::LMBAction() {
@@ -227,10 +229,10 @@ Actions Scene::LMBAction() {
 	//-Pick/unlock a lock
 	//-Open a door
 	//-Speak to NPC
-
+	/*
 	//Convert mouse coordinates from screen to world
 	//What tile are we currently pointing at?
-	Vector2u tile_pos = { floor(MOUSEPOS_W.x / TS), floor(MOUSEPOS_W.y / TS) };
+	Vector2u tile_pos = { floor(Input::MousePos().x / TS), floor(Input::MousePos().y / TS)};
 	//Current meter pos is tile_pos * 2
 	
 	//What tile are we currently looking at?
@@ -284,6 +286,7 @@ Actions Scene::LMBAction() {
 	//Speak to NPC
 	//-When mouse is on non-hostile creature
 
+	*/
 	return Actions::NOACTION;
 }
 
@@ -297,7 +300,7 @@ void Scene::Open(const bool o) {
 			//Clear out all pre-existing entities and party members (likely unnecessary but keeping around jic)
 			entities.clear();
 			party_mems.clear();
-
+			/*
 			game.camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
 			window.setView(game.camera);
 			auto menu = make_unique<Menu>(game, window, *this, Menus::MAIN);
@@ -309,7 +312,7 @@ void Scene::Open(const bool o) {
 			menus.insert({ Menus::LOAD, move(menu) });
 			menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS);
 			menus.insert({ Menus::OPTIONS, move(menu) });
-
+			*/
 		}
 
 		else if (label == Scenes::AREA) {
@@ -325,6 +328,7 @@ void Scene::Open(const bool o) {
 				break;
 			}
 			//Load that bitch
+			/*
 			tilemap.load(json_file);
 
 			//Set the camera and party members
@@ -351,18 +355,15 @@ void Scene::Open(const bool o) {
 			//Initialize our menus
 			auto menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS_G);
 			menus.insert({ Menus::OPTIONS_G, move(menu) });
-
-
-			//Initialize selection box
-			selec_box.setFillColor(sf::Color::Color(0, 255, 0, 130));
+			*/
 		}
 	}
 	//Scene is closed
 	else {
 		//This also deletes the buttons that belong to each menu
-		for (const auto& m : menus)
-			m.second->Open(false);
-		menus.clear();
+		//for (const auto& m : menus)
+		//	m.second->Open(false);
+		//menus.clear();
 		//Deletes all the entities in the scene
 		entities.clear();
 		party_mems.clear();
@@ -370,6 +371,7 @@ void Scene::Open(const bool o) {
 }
 
 void Scene::OpenMenu(Menus menu, const bool o) {
+	/*
 	if (o) {
 		auto m = menus.find(menu);
 		if (m != menus.end())
@@ -380,20 +382,23 @@ void Scene::OpenMenu(Menus menu, const bool o) {
 		if (m != menus.end())
 			m->second->Open(false);
 	}
+	*/
 }
 
 bool Scene::MenuOpen(Menus menu) {
+	/*
 	auto m = menus.find(menu);
 	if (m != menus.end())
 		return m->second->GetOpen();
 
 	cout << "That Menu does not exist in this Scene" << endl;
+	*/
 	return false;
 }
 
 void Scene::ResizeMenus() {
-	for (const auto& m : menus)
-		m.second->Resize();
+	//for (const auto& m : menus)
+	//	m.second->Resize();
 }
 
 void Scene::RemoveEntity(shared_ptr<Entity> e) {
@@ -405,33 +410,36 @@ void Scene::RemoveEntity(shared_ptr<Entity> e) {
 }
 
 void Scene::RemoveEntity(const string ent_name) {
+	/*
 	for (const auto& e : entities) {
 		if (auto c = dynamic_cast<Creature*>(e.get())) {
 			if (c->GetName() == ent_name)
 				c->alive = false;
 		}
 	}
+	*/
 }
 
 void Scene::SetEntitySFXVolume(const float new_volume) {
-	for (auto& e : entities)
-		e->sound.setVolume(new_volume);
+	//for (auto& e : entities)
+	//	e->sound.setVolume(new_volume);
 }
 
 void Scene::CreatePartyMem() {
 	uint res_scalar = game.GetResScale();
-
+	/*
 	auto new_party_mem = make_shared<PartyMember>(
 		Engine{game, window, this},
 		AnimInfo{"Creatures/Sentients/PMPlaceholder", 32, 64},
 		Animation::Transform{ Vector2i(round(window.getSize().x*.75), round(window.getSize().y * .5)), {.5f, .5f}, {res_scalar, res_scalar}}); //The remaining arguments are the defaults
-
+		
 	entities.push_back(new_party_mem);
+	*/
 }
 
 void Scene::CreatePreGen(PreGens p_g) {
 	uint res_scalar = game.GetResScale();
-
+	/*
 	string name = "Default";
 	Genuses genus = Genuses::SENTIENT;
 	Races race = Races::HUMAN;
@@ -504,4 +512,5 @@ void Scene::CreatePreGen(PreGens p_g) {
 		); 
 
 	party_mems.push_back(pre_gen);
+	*/
 }

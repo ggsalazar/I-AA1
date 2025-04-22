@@ -9,9 +9,7 @@
 using Microsoft::WRL::ComPtr;
 using namespace std;
 
-namespace Engine {
-
-class Sprite_D2D : public Sprite {
+class Sprite_D2D : public Engine::Sprite {
     friend class Renderer_D2D;
 public:
 
@@ -88,5 +86,3 @@ private:
     //ComPtr<ID2D1Bitmap> bitmap;
 
 };
-
-}

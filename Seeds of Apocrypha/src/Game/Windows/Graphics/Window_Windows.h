@@ -3,9 +3,7 @@
 #include <vector>
 #include "../../../Engine/Graphics/Window.h"
 
-namespace Engine {
-
-class Window_Windows : public Window {
+class Window_Windows : public Engine::Window {
 public:
 	bool open = true;
 
@@ -59,5 +57,3 @@ private:
 	}
 
 };
-
-}

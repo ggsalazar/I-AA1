@@ -1,17 +1,32 @@
-Left off: Finally at a stage where I should be able to re-implement the MM
-Engine:	-Tilemapping (40 hours)
-		-Camera (40 hours)
-			--VSync
-		-Cursor (Basically just an entity w/ pos = mouse_pos, 3 hours)
-		-Music (40 hours)
-		-SFX (20 hours)
-		-Total: 150 hours
+Left off: Finally at a stage where I should be able to re-implement the MM (4 days)
+			-It compiles! Now just need to:
+				--Implement cursor
+				--Implement menus
+					---Draw buttons
+					---Get that sweet-ass functionality
+						----CharCrea
+						----Options
+						----Tutorial
+						----Quit
+Engine:	-Tilemapping (4 days)
+		-Camera (5 days)
+			--VSync (2 days)
+		-Music (4 days)
+		-SFX (2 days)
+		-Total: 21 days
 
 Tutorial -  -add in NPCs
+				--Blacksmith
+				--Quest Giver
 			-Inventory
+			-Quest Journal
+			-Map
+			-Character sheet/s
 			-Shopping
 			-area changing
 			-multi-party member movement & cam locking
+			-Combat
+			-Explain all this shit
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations

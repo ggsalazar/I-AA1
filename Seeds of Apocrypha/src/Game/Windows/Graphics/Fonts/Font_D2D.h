@@ -10,8 +10,6 @@ using namespace std;
 class CustomFontLoader;
 class CustomFontCollectionLoader;
 
-namespace Engine {
-
 class Font_D2D : public Font {
 public:
 	Font_D2D(const string& filepath, IDWriteFactory* f);
@@ -30,4 +28,3 @@ private:
 	ComPtr<CustomFontLoader> font_loader;
 	ComPtr<CustomFontCollectionLoader> collection_loader;
 };
-}

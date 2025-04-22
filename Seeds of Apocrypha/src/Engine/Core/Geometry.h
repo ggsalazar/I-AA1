@@ -54,6 +54,7 @@ struct Rect {
 	Vector2i pos;
 	Vector2u size;
 
+	Rect() : pos(Vector2i{}), size(Vector2u{}) {}
 	Rect(Vector2i p, uint s) : pos(p), size({s,s}) {}
 	Rect(Vector2i p, Vector2u s) : pos(p), size(s) {}
 

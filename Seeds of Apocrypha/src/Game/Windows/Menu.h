@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <memory>
 #include <unordered_map>
@@ -15,7 +14,7 @@ class UI;
 
 class Menu {
 public:
-    Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label);
+    Menu(Game& g, Scene& s, const Menus init_label);
 
     //Engine
     void Update();
@@ -40,8 +39,8 @@ public:
 protected:
     Menus label;
 
-    sf::Text menu_text;
-    sf::Text sup_text; //Supplementary text
+    //sf::Text menu_text;
+    //sf::Text sup_text; //Supplementary text
     bool open = false;
     uint res_scalar;
     uint style_size;
@@ -53,6 +52,5 @@ protected:
 
     //Engine pointers
     Game& game;
-    sf::RenderWindow& window;
     Scene& scene;
 };
