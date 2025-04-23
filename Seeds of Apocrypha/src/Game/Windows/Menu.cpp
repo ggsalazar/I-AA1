@@ -1,17 +1,21 @@
 #include "Menu.h"
-#include "Game.h"
+#include "Scene.h"
+/*
 #include "../Entities/UI/Button.h"
 #include "../Entities/UI/Slider.h"
 #include "../Entities/UI/Picker.h"
 #include "../Entities/UI/Toggle.h"
+*/
 
-Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
-            game(g), window(w), scene(s), label(init_label), menu_text(game.default_font), sup_text(game.default_font) {
+Menu::Menu(Game& g, Scene& s, const Menus init_label) :
+            game(g), scene(s), label(init_label), menu_text(game.default_font.get()), sup_text(game.default_font) {
     
     //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there
     res_scalar = game.GetResScale();
     style_size = res_scalar * 14;
-    ui_size = { res_scalar, res_scalar };
+    ui_size = { res_scalar };
+    Text::Info* mti = &menu_text->info;
+    Text::Info* sti = &sup_text->info;
 
     //Menu and Supp text variables
     uint m_t_size = res_scalar * 36;
@@ -26,88 +30,88 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
     Vector2i elem_pos = { 0, 0 };
     float elem_y_buffer = 0;
 
-
+    /*
     //What we do depends on our label
     switch (label) {
         //Menus
         case Menus::CHARCREA: {
-            m_t_size = res_scalar * 24; m_t_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .1); m_t_str = "Create Your Party";
-            s_t_size = res_scalar * 18; s_t_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .13); s_t_str = "Use the options below to create your party of 4 adventurers";
-            s_t_str_max_w = window.getSize().x * .33;
+            m_t_size = res_scalar * 24; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .1); m_t_str = "Create Your Party";
+            s_t_size = res_scalar * 18; s_t_pos = Vector2i(m_t_pos.x, game.GetResolution().y * .13); s_t_str = "Use the options below to create your party of 4 adventurers";
+            s_t_str_max_w = game.GetResolution().x * .33;
             
-            Vector2i btn_pos = Vector2i(window.getSize().x * .2, window.getSize().y * .25);
-            float b_y_buffer = window.getSize().y*.1;
+            Vector2i btn_pos = Vector2i(game.GetResolution().x * .2, game.GetResolution().y * .25);
+            float b_y_buffer = game.GetResolution().y*.1;
 
-            auto btn = make_shared<Button>(
+            auto btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::RACE_B, style_size });
-            auto sm = make_unique<Menu>(game, window, scene, Menus::CCRACE);
+            auto sm = make_u<Menu>(game, scene, Menus::CCRACE);
             ui_elems.insert({ UIElems::RACE_B, btn });
             sub_menus.insert({ Menus::CCRACE, move(sm) });
 
             btn_pos.y += b_y_buffer; //.35
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::BACKGROUND_B, style_size });
-            sm = make_unique<Menu>(game, window, scene, Menus::CCBG);
+            sm = make_u<Menu>(game, window, scene, Menus::CCBG);
             ui_elems.insert({ UIElems::BACKGROUND_B, btn });
             sub_menus.insert({ Menus::CCBG, move(sm) });
 
             btn_pos.y += b_y_buffer; //.45
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::CLASS_B, style_size });
-            sm = make_unique<Menu>(game, window, scene, Menus::CCCLASS);
+            sm = make_u<Menu>(game, window, scene, Menus::CCCLASS);
             ui_elems.insert({ UIElems::CLASS_B, btn });
             sub_menus.insert({ Menus::CCCLASS, move(sm) });
 
             btn_pos.y += b_y_buffer; //.55
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::AS, style_size });
-            sm = make_unique<Menu>(game, window, scene, Menus::CCAS);
+            sm = make_u<Menu>(game, window, scene, Menus::CCAS);
             ui_elems.insert({ UIElems::AS, btn });
             sub_menus.insert({ Menus::CCAS, move(sm) });
 
             btn_pos.y += b_y_buffer; //.65
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::SKILLS, style_size });
-            sm = make_unique<Menu>(game, window, scene, Menus::CCSKILLS);
+            sm = make_u<Menu>(game, window, scene, Menus::CCSKILLS);
             ui_elems.insert({ UIElems::SKILLS, btn });
             sub_menus.insert({ Menus::CCSKILLS, move(sm) });
 
             btn_pos.y += b_y_buffer; //.75
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::EQUIPMENT_CC, style_size });
-            sm = make_unique<Menu>(game, window, scene, Menus::CCEQUIP);
+            sm = make_u<Menu>(game, window, scene, Menus::CCEQUIP);
             ui_elems.insert({ UIElems::EQUIPMENT_CC, btn });
             sub_menus.insert({ Menus::CCEQUIP, move(sm) });
 
 
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ Vector2i(window.getSize().x * .5, window.getSize().y * .8), ui_ori, ui_size },
+                Animation::Transform{ Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .8), ui_ori, ui_size },
                 UI::Style{ UIElems::CREATE, style_size });
             ui_elems.insert({ UIElems::CREATE, btn });
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ Vector2i(window.getSize().x * .5, window.getSize().y * .9), ui_ori, ui_size },
+                Animation::Transform{ Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .9), ui_ori, ui_size },
                 UI::Style{ UIElems::BACK, style_size });
             ui_elems.insert({ UIElems::BACK, btn });
 
@@ -117,57 +121,57 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
         //Character Creation Sub-Menus
         case Menus::CCAS: {
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
-            m_t_size = res_scalar * 16; m_t_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .2); m_t_str = "Determine Your Ability Scores";
-            s_t_size = res_scalar * 12; s_t_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .23); s_t_str = "Your Ability Scores --";
-            s_t_str_max_w = window.getSize().x * .33;
+            m_t_size = res_scalar * 16; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); m_t_str = "Determine Your Ability Scores";
+            s_t_size = res_scalar * 12; s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .23); s_t_str = "Your Ability Scores --";
+            s_t_str_max_w = game.GetResolution().x * .33;
 
             //Pickers
-            Vector2i pkr_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .2);
-            float p_y_buffer = window.getSize().y * .08f;
+            Vector2i pkr_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2);
+            float p_y_buffer = game.GetResolution().y * .08f;
 
-            auto str_pkr = make_shared<Picker>(
+            auto str_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::ASSTR, style_size });
 
             pkr_pos.y += p_y_buffer;
-            auto con_pkr = make_shared<Picker>(
+            auto con_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::ASCON, style_size });
 
             pkr_pos.y += p_y_buffer;
-            auto agi_pkr = make_shared<Picker>(
+            auto agi_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::ASAGI, style_size });
 
             pkr_pos.y += p_y_buffer;
-            auto dex_pkr = make_shared<Picker>(
+            auto dex_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::ASDEX, style_size });
 
             pkr_pos.y += p_y_buffer;
-            auto int_pkr = make_shared<Picker>(
+            auto int_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::ASINT, style_size });
 
             pkr_pos.y += p_y_buffer;
-            auto wis_pkr = make_shared<Picker>(
+            auto wis_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::ASWIS, style_size });
 
             pkr_pos.y += p_y_buffer;
-            auto cha_pkr = make_shared<Picker>(
+            auto cha_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
@@ -197,19 +201,19 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             //Rogue: 8 / Thieving Tools / Expertise
             //Warrior: 10 / 2 PWS / Fighting Style
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
-            m_t_size = res_scalar * 16; m_t_pos = Vector2i(window.getSize().x * .5f, window.getSize().y * .2f); m_t_str = "Pick Your Class";
-            s_t_size = res_scalar * 12; s_t_pos = Vector2i(window.getSize().x * .5f, window.getSize().y * .23f); s_t_str = "Your Class determines your role in combat and the abilities you will learn as you progress";
-            s_t_str_max_w = window.getSize().x * .33f;
+            m_t_size = res_scalar * 16; m_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .2f); m_t_str = "Pick Your Class";
+            s_t_size = res_scalar * 12; s_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .23f); s_t_str = "Your Class determines your role in combat and the abilities you will learn as you progress";
+            s_t_str_max_w = game.GetResolution().x * .33f;
 
             //Pickers
-            Vector2i pkr_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .2);
-            float p_y_buffer = window.getSize().y * .08f;
+            Vector2i pkr_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2);
+            float p_y_buffer = game.GetResolution().y * .08f;
 
-            /*auto str_pkr = make_shared<Picker>(
+            /*auto str_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::CLASS, style_size });*/
+                UI::Style{ UIElems::CLASS, style_size });
             break;
         }
 
@@ -225,28 +229,28 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             // Size, Ability Score Adjustments, Sex, Skills, etc.
             //Elves also have a sub-race that limits their aesthetics
             //Aesthetics have suggested features, but none are locked out from any aesthetics (except Automata)
-            m_t_size = res_scalar * 16; m_t_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .2); m_t_str = "Pick Your Race";
-            s_t_size = res_scalar * 12; s_t_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .23); s_t_str = "Your Race influences your appearance, some of your capabilities, and how others react to you";
-            s_t_str_max_w = window.getSize().x * .33;
+            m_t_size = res_scalar * 16; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); m_t_str = "Pick Your Race";
+            s_t_size = res_scalar * 12; s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .23); s_t_str = "Your Race influences your appearance, some of your capabilities, and how others react to you";
+            s_t_str_max_w = game.GetResolution().x * .33;
 
-            Vector2i pkr_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .4);
-            float p_y_buffer = window.getSize().y * .1;
+            Vector2i pkr_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .4);
+            float p_y_buffer = game.GetResolution().y * .1;
 
-            auto race_pkr = make_shared<Picker>(
+            auto race_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::RACE_P, style_size });
 
             pkr_pos.y += p_y_buffer;
-            auto size_pkr = make_shared<Picker>(
+            auto size_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::SIZE, style_size });
 
             pkr_pos.y += p_y_buffer;
-            auto sex_pkr = make_shared<Picker>(
+            auto sex_pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ pkr_pos, ui_ori, ui_size },
@@ -268,13 +272,13 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
         //End of CC Sub-Menus
 
         case Menus::MAIN: {
-            m_t_size = res_scalar * 36; m_t_pos = Vector2i(window.getSize().x * .5f, window.getSize().y * .15); m_t_str = "Seeds of Apocrypha";
-            s_t_size = res_scalar * 24; s_t_pos = Vector2i(window.getSize().x * .5f, window.getSize().y * .225); s_t_str = "An Iron & Aether Adventure";
+            m_t_size = res_scalar * 36; m_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .15); m_t_str = "Seeds of Apocrypha";
+            s_t_size = res_scalar * 24; s_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .225); s_t_str = "An Iron & Aether Adventure";
 
-            Vector2i btn_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .4);
-            float b_y_buffer = window.getSize().y * .1;
+            Vector2i btn_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .4);
+            float b_y_buffer = game.GetResolution().y * .1;
 
-            auto btn = make_shared<Button>(
+            auto btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
@@ -282,7 +286,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert(make_pair(UIElems::CHARCREA, btn));
             
             btn_pos.y += b_y_buffer;
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
@@ -290,7 +294,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert(make_pair(UIElems::LOAD, btn));
             
             btn_pos.y += b_y_buffer;
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
@@ -298,7 +302,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert(make_pair(UIElems::TUTORIAL, btn));
 
             btn_pos.y += b_y_buffer;
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
@@ -306,17 +310,17 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert(make_pair(UIElems::OPTIONS, btn));
             
             btn_pos.y += b_y_buffer;
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ btn_pos, ui_ori, ui_size },
                 UI::Style{ UIElems::QUIT, style_size });
             ui_elems.insert(make_pair(UIElems::QUIT, btn));
 
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ Vector2i(window.getSize().x*.75, window.getSize().y*.5), ui_ori, ui_size},
+                Animation::Transform{ Vector2i(game.GetResolution().x*.75, game.GetResolution().y*.5), ui_ori, ui_size},
                 UI::Style{ UIElems::DEBUG_ROOM, style_size });
             ui_elems.insert(make_pair(UIElems::DEBUG_ROOM, btn));
 
@@ -324,14 +328,14 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
         }
 
         case Menus::OPTIONS: {
-            m_t_size = res_scalar * 36; m_t_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .15); m_t_str = "Seeds of Apocrypha";
-            s_t_size = res_scalar * 24; s_t_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .2); s_t_str = "Options";
+            m_t_size = res_scalar * 36; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .15); m_t_str = "Seeds of Apocrypha";
+            s_t_size = res_scalar * 24; s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); s_t_str = "Options";
 
-            Vector2i elem_pos = Vector2i(window.getSize().x * .5, window.getSize().y * .3);
-            float elem_y_buffer = window.getSize().y * .09f;
+            Vector2i elem_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .3);
+            float elem_y_buffer = game.GetResolution().y * .09f;
 
             //Music and sfx sliders
-            auto sldr = make_shared<Slider>(
+            auto sldr = make_s<Slider>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Slider", 192, 27 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size},
@@ -339,7 +343,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert({ UIElems::MUSIC_V, sldr });
 
             elem_pos.y += elem_y_buffer;
-            sldr = make_shared<Slider>(
+            sldr = make_s<Slider>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Slider", 192, 27 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -349,7 +353,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
 
             //Resolution picker, fullscreen toggle, and apply button
             elem_pos.y += elem_y_buffer;
-            auto pkr = make_shared<Picker>(
+            auto pkr = make_s<Picker>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -357,8 +361,8 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert({ UIElems::RESOLUTION, pkr });
 
             elem_pos.y += elem_y_buffer;
-            float f_t_x = elem_pos.x + window.getSize().x * (res_scalar * .01);
-            auto tgl = make_shared<Toggle>(
+            float f_t_x = elem_pos.x + game.GetResolution().x * (res_scalar * .01);
+            auto tgl = make_s<Toggle>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Toggle", 24, 24, 0, 2 },
                 Animation::Transform{ Vector2i(f_t_x, elem_pos.y), ui_ori, ui_size },
@@ -366,7 +370,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert({ UIElems::FULLSCREEN, tgl });
 
             elem_pos.y += elem_y_buffer;
-            auto btn = make_shared<Button>(
+            auto btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -375,8 +379,8 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
 
 
             //Back button
-            elem_pos.y = window.getSize().y * .9;
-            btn = make_shared<Button>(
+            elem_pos.y = game.GetResolution().y * .9;
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -397,7 +401,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_size = Vector2u(round(ui_size.x * .5), round(ui_size.y * .5));
 
             //Music, sfx, and cam speed sliders
-            auto sldr = make_shared<Slider>(
+            auto sldr = make_s<Slider>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Slider", 192, 27 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -405,7 +409,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert({ UIElems::MUSIC_V, sldr });
 
             elem_pos.y += elem_y_buffer;
-            sldr = make_shared<Slider>(
+            sldr = make_s<Slider>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Slider", 192, 27 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -413,7 +417,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_elems.insert({ UIElems::SFX_V, sldr });
 
             elem_pos.y += elem_y_buffer;
-            sldr = make_shared<Slider>(
+            sldr = make_s<Slider>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Slider", 192, 27 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -424,7 +428,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             ui_size = { ui_size.x * 2, ui_size.y * 2 };
             //Close button
             elem_pos.y += elem_y_buffer;
-            auto btn = make_shared<Button>(
+            auto btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size},
@@ -433,7 +437,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
             
             //Return to Title
             elem_pos.y += elem_y_buffer;
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -442,7 +446,7 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
 
             //Quit
             elem_pos.y += elem_y_buffer;
-            btn = make_shared<Button>(
+            btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
                 Animation::Transform{ elem_pos, ui_ori, ui_size },
@@ -452,17 +456,16 @@ Menu::Menu(Game& g, sf::RenderWindow& w, Scene& s, const Menus init_label) :
         }
     }
     
-    //Initialize our texts
-    Text::Init(menu_text, game.default_font, m_t_size, m_t_pos, m_t_str);
-    Text::Init(sup_text, game.default_font, s_t_size, s_t_pos, s_t_str, {.5f, .0f});
+    */
+    //Set our texts (not strictly necessary but keeping for now
+    mti->char_size = m_t_size; mti->pos = m_t_pos; mti->str = m_t_str;
+    sti->char_size = s_t_size; sti->pos = s_t_pos; sti->str = s_t_str; sup_text->SetOrigin({ .5f, .0f });
     if (s_t_str_max_w != -1)
-        Text::SetStr(sup_text, s_t_str, s_t_str_max_w);
-    Text::SetOrigin(sup_text, { .5f, .0f });
-
+        sti->max_width = s_t_str_max_w;
 
     //Add our UI elements to the scene entities vector
-    for (const auto& ui : ui_elems)
-        scene.AddEntity(ui.second);
+    //for (const auto& ui : ui_elems)
+      //  scene.AddEntity(ui.second);
 }
 
 void Menu::Update() {
@@ -471,14 +474,15 @@ void Menu::Update() {
         Vector2i s_t_pos = { 0, 0 };
         Vector2i elem_pos = { 0, 0 };
         uint elem_y_buffer = 0;
+        /*
 
         switch (label) {
             case Menus::OPTIONS_G:
-                Vector2f cam_top_left = game.camera.getCenter() - (game.camera.getSize() * .5f);
-                m_t_pos = Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .2));
-                s_t_pos = Vector2i(game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12);
-                menu_text.setPosition(Vector2f(m_t_pos));
-                sup_text.setPosition(Vector2f(s_t_pos));
+                //Vector2f cam_top_left = game.camera.getCenter() - (game.camera.getSize() * .5f);
+                //m_t_pos = Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .2));
+                //s_t_pos = Vector2i(game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12);
+                //menu_text->info.pos = m_t_pos;
+                //sup_text->info.pos = s_t_pos;
 
                 elem_pos = Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .28));
 
@@ -514,6 +518,7 @@ void Menu::Update() {
             break;
         }
 
+        */
         for (auto& s_m : sub_menus)
             s_m.second->Update();
     }
@@ -522,8 +527,8 @@ void Menu::Update() {
 
 void Menu::Draw() {
     if (open) {
-        window.draw(menu_text);
-        window.draw(sup_text);
+        game.renderer->DrawTxt(*menu_text);
+        game.renderer->DrawTxt(*sup_text);
     }
 
     for (const auto& sm : sub_menus)
@@ -551,15 +556,15 @@ void Menu::Resize() {
 
     //A more efficient way to do this would be to base the new size on the old size and do some funky math shit with the scalar, but this works for now
     uint new_m_t_size = res_scalar;
-    Vector2f new_m_t_pos = Vector2f(window.getSize()) * .5f;
+    Vector2i new_m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .5f));
     uint new_s_t_size = res_scalar;
-    Vector2f new_s_t_pos = Vector2f(window.getSize()) * .5f;
+    Vector2i new_s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .5f));
     switch (label) {
         case Menus::CHARCREA:
             new_m_t_size = res_scalar * 24;
-            new_m_t_pos.y = window.getSize().y * .1f;
+            new_m_t_pos.y = game.GetResolution().y * .1f;
             new_s_t_size = res_scalar * 18;
-            new_s_t_pos.y = window.getSize().y * .13f;
+            new_s_t_pos.y = game.GetResolution().y * .13f;
         break;
 
         case Menus::CCAS:
@@ -569,29 +574,30 @@ void Menu::Resize() {
         case Menus::CCRACE:
         case Menus::CCSKILLS:
             new_m_t_size = res_scalar * 16;
-            new_m_t_pos.y = window.getSize().y * .2f;
+            new_m_t_pos.y = game.GetResolution().y * .2f;
             new_s_t_size = res_scalar * 12;
-            new_s_t_pos.y = window.getSize().y * .23f;
+            new_s_t_pos.y = game.GetResolution().y * .23f;
         break;
 
         case Menus::MAIN:
         case Menus::OPTIONS:
             new_m_t_size = res_scalar * 36;
-            new_m_t_pos.y = window.getSize().y * .15f;
+            new_m_t_pos.y = game.GetResolution().y * .15f;
             new_s_t_size = res_scalar * 24;
-            new_s_t_pos.y = window.getSize().y * .2f;
+            new_s_t_pos.y = game.GetResolution().y * .2f;
         break;
     }
-    Text::SetCharSize(menu_text, new_m_t_size);
-    Text::SetOrigin(menu_text);
-    menu_text.setPosition(new_m_t_pos);
-    Text::SetCharSize(sup_text, new_s_t_size);
-    Text::SetOrigin(sup_text, { .5f, .0f });
-    sup_text.setPosition(new_s_t_pos);
 
+    menu_text->info.char_size = new_m_t_size;
+    menu_text->SetOrigin();
+    menu_text->info.pos = new_m_t_pos;
+    sup_text->info.char_size = new_s_t_size;
+    sup_text->SetOrigin({.5f, .0f});
+    sup_text->info.pos = new_s_t_pos;
 
     //UI Elements
-    Vector2i new_pos = Vector2i(window.getSize().x*.5f, window.getSize().y*.5f);
+    Vector2i new_pos = Vector2i(round(game.GetResolution().x*.5f), round(game.GetResolution().y*.5f));
+    /*
     for (const auto& ui : ui_elems) {
         auto& u = ui.second;
 
@@ -600,154 +606,155 @@ void Menu::Resize() {
         //Adjust the positions - there has to be a more efficient goddamn way of doing this
         switch (ui.first) {
             case UIElems::APPLY:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .66f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .66f;
             break;
 
             case UIElems::AS:
-                new_pos.x = window.getSize().x * .2f;
-                new_pos.y = window.getSize().y * .55f;
+                new_pos.x = game.GetResolution().x * .2f;
+                new_pos.y = game.GetResolution().y * .55f;
             break;
 
             case UIElems::ASAGI:
-                new_pos.x = window.getSize().x * .5;
-                new_pos.y = window.getSize().y * .36;
+                new_pos.x = game.GetResolution().x * .5;
+                new_pos.y = game.GetResolution().y * .36;
             break;
 
             case UIElems::ASCHA:
-                new_pos.x = window.getSize().x * .5;
-                new_pos.y = window.getSize().y * .68;
+                new_pos.x = game.GetResolution().x * .5;
+                new_pos.y = game.GetResolution().y * .68;
             break;
 
             case UIElems::ASCON:
-                new_pos.x = window.getSize().x * .5;
-                new_pos.y = window.getSize().y * .28;
+                new_pos.x = game.GetResolution().x * .5;
+                new_pos.y = game.GetResolution().y * .28;
             break;
 
             case UIElems::ASDEX:
-                new_pos.x = window.getSize().x * .5;
-                new_pos.y = window.getSize().y * .44;
+                new_pos.x = game.GetResolution().x * .5;
+                new_pos.y = game.GetResolution().y * .44;
             break;
 
             case UIElems::ASINT:
-                new_pos.x = window.getSize().x * .5;
-                new_pos.y = window.getSize().y * .52;
+                new_pos.x = game.GetResolution().x * .5;
+                new_pos.y = game.GetResolution().y * .52;
             break;
 
             case UIElems::ASSTR:
-                new_pos.x = window.getSize().x * .5;
-                new_pos.y = window.getSize().y * .2;
+                new_pos.x = game.GetResolution().x * .5;
+                new_pos.y = game.GetResolution().y * .2;
             break;
 
             case UIElems::ASWIS:
-                new_pos.x = window.getSize().x * .5;
-                new_pos.y = window.getSize().y * .6;
+                new_pos.x = game.GetResolution().x * .5;
+                new_pos.y = game.GetResolution().y * .6;
             break;
 
             case UIElems::BACK:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .9f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .9f;
             break;
             
             case UIElems::BACKGROUND_B:
-                new_pos.x = window.getSize().x * .2f;
-                new_pos.y = window.getSize().y * .35f;
+                new_pos.x = game.GetResolution().x * .2f;
+                new_pos.y = game.GetResolution().y * .35f;
             break;
 
             case UIElems::CHARCREA:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .4f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .4f;
             break;
 
             case UIElems::CLASS_B:
-                new_pos.x = window.getSize().x * .2f;
-                new_pos.y = window.getSize().y * .45f;
+                new_pos.x = game.GetResolution().x * .2f;
+                new_pos.y = game.GetResolution().y * .45f;
             break;
 
             case UIElems::CREATE:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .8f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .8f;
             break;
 
             case UIElems::DEBUG_ROOM:
-                new_pos.x = window.getSize().x * .75f;
-                new_pos.y = window.getSize().y * .5f;
+                new_pos.x = game.GetResolution().x * .75f;
+                new_pos.y = game.GetResolution().y * .5f;
             break;
 
             case UIElems::EQUIPMENT_CC:
-                new_pos.x = window.getSize().x * .2f;
-                new_pos.y = window.getSize().y * .75f;
+                new_pos.x = game.GetResolution().x * .2f;
+                new_pos.y = game.GetResolution().y * .75f;
             break;
 
             case UIElems::FULLSCREEN: {
-                new_pos = Vector2i(round(window.getSize().x * (.5f + res_scalar * .01f)), round(window.getSize().y * .57));
+                new_pos = Vector2i(round(game.GetResolution().x * (.5f + res_scalar * .01f)), round(game.GetResolution().y * .57));
                 string new_status = "False";
-                if (game.GetResolution() == Display::ScreenSize())
+                if (game.GetResolution() == game.window->ScreenSize())
                     new_status = "True";
 
                 SetUIElemStatus(ui.first, new_status);
             } break;
 
             case UIElems::LOAD:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .5f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .5f;
             break;
 
             case UIElems::MUSIC_V:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .3f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .3f;
             break;
 
             case UIElems::OPTIONS:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .7f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .7f;
             break;
 
             case UIElems::QUIT:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .8f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .8f;
             break;
 
             case UIElems::RACE_B:
-                new_pos.x = window.getSize().x * .2f;
-                new_pos.y = window.getSize().y * .25f;
+                new_pos.x = game.GetResolution().x * .2f;
+                new_pos.y = game.GetResolution().y * .25f;
             break;
 
             case UIElems::RESOLUTION:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .48f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .48f;
             break;
 
             case UIElems::SFX_V:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .39f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .39f;
             break;
 
             case UIElems::SKILLS:
-                new_pos.x = window.getSize().x * .2f;
-                new_pos.y = window.getSize().y * .65f;
+                new_pos.x = game.GetResolution().x * .2f;
+                new_pos.y = game.GetResolution().y * .65f;
             break;
 
             case UIElems::TUTORIAL:
-                new_pos.x = window.getSize().x * .5f;
-                new_pos.y = window.getSize().y * .6f;
+                new_pos.x = game.GetResolution().x * .5f;
+                new_pos.y = game.GetResolution().y * .6f;
             break;
         }
         u->MoveTo(new_pos);
     }
+    */
 }
 
-void Menu::AddUIElem(const shared_ptr<UI> new_elem) {
-    ui_elems.insert({ new_elem.get()->GetElem(), new_elem });
-    scene.AddEntity(new_elem);
+void Menu::AddUIElem(const s_ptr<UI> new_elem) {
+    //ui_elems.insert({ new_elem.get()->GetElem(), new_elem });
+    //scene.AddEntity(new_elem);
 }
 
 void Menu::RemoveUIElem(const UIElems ui) {
-    if (CheckUIElem(ui)) {
-        ui_elems[ui].get()->alive = false;
-        ui_elems[ui].reset();
-        ui_elems.erase(ui);
-    }
+    //if (CheckUIElem(ui)) {
+      //  ui_elems[ui].get()->alive = false;
+       // ui_elems[ui].reset();
+       // ui_elems.erase(ui);
+    //}
 }
 
 bool Menu::CheckUIElem(const UIElems ui) {
@@ -758,6 +765,7 @@ bool Menu::CheckUIElem(const UIElems ui) {
 }
 
 void Menu::SetUIElemStatus(const UIElems ui, const string new_status) {
+    /*
     if (CheckUIElem(ui)) {
         if (auto picker = dynamic_cast<Picker*>(ui_elems[ui].get()))
             picker->SetPicking(new_status);
@@ -768,14 +776,16 @@ void Menu::SetUIElemStatus(const UIElems ui, const string new_status) {
                 toggle->on = false;
         }
     }
+    */
 }
 
 void Menu::SetUIElemActive(const UIElems ui, const bool a) {
-    if (CheckUIElem(ui))
-        ui_elems[ui]->SetActive(a);
+    //if (CheckUIElem(ui))
+    //    ui_elems[ui]->SetActive(a);
 }
 
 string Menu::GetUIElemStatus(const UIElems ui) {
+    /*
     if (CheckUIElem(ui)) {
         if (auto picker = dynamic_cast<Picker*>(ui_elems[ui].get()))
             return picker->GetPicking();
@@ -784,13 +794,13 @@ string Menu::GetUIElemStatus(const UIElems ui) {
             return "False";
         }
     }
-
+    */
     return "No such UIElem exists";
 }
 
 bool Menu::GetUIElemActive(const UIElems ui) {
-    if (CheckUIElem(ui))
-        return ui_elems[ui]->GetActive();
+    //if (CheckUIElem(ui))
+    //    return ui_elems[ui]->GetActive();
 
     return false;
 }

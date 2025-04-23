@@ -1,19 +1,20 @@
-Left off: Finally at a stage where I should be able to re-implement the MM (4 days)
+Left off: Finally at a stage where I should be able to re-implement the MM (7 days)
 			-It compiles! Now just need to:
-				--Implement cursor
-				--Implement menus
-					---Draw buttons
-					---Get that sweet-ass functionality
-						----CharCrea
-						----Options
-						----Tutorial
-						----Quit
-Engine:	-Tilemapping (4 days)
+				--Implement cursor (1 day)
+				--Implement menus (6 days)
+					---Draw buttons (1 day)
+					---Get that sweet-ass functionality (5 days)
+						----CharCrea (1 day)
+						----Options (2 days)
+						----Tutorial (1 day)
+						----Quit (1 day)
+Engine:	-How to change color of sprites via code? (1 day)
+		-Tilemapping (4 days)
 		-Camera (5 days)
 			--VSync (2 days)
 		-Music (4 days)
 		-SFX (2 days)
-		-Total: 21 days
+		-Total: 22 days
 
 Tutorial -  -add in NPCs
 				--Blacksmith

@@ -1,15 +1,7 @@
 #pragma once
-#include <iostream>
 #include <memory>
-#include <unordered_map>
-//#include "Enums.h"
-//#include "Vector2.h"
+#include "Game.h" //Includes all engine stuff, <unordered_map>, <iostream>, and std alias
 
-using namespace std;
-
-//Forward declarations
-class Game;
-class Scene;
 class UI;
 
 class Menu {
@@ -39,8 +31,8 @@ public:
 protected:
     Menus label;
 
-    //sf::Text menu_text;
-    //sf::Text sup_text; //Supplementary text
+    u_ptr<Text> menu_text;
+    u_ptr<Text> sup_text; //Supplementary text
     bool open = false;
     uint res_scalar;
     uint style_size;

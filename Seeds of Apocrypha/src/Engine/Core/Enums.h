@@ -54,7 +54,7 @@ enum class Actions {
 	DEFAULT,
 	NOACTION, //Slashed circle
 	ATTACK_M, //Sword
-	ATTACK_R, //Gun? Bow?
+	ATTACK_R, //Gun? Bow? Both?
 	AOO,
 	CHANGE_EQUIP,
 	CLOSE, //Closed door

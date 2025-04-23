@@ -11,7 +11,6 @@ class Text {
     friend class Font;
 public:
     struct Info {
-        Font* font; //Raw pointer is fine since Text doesn't own the font object
         string str = "";
         Vector2i pos;
         uint char_size = 36;
@@ -21,11 +20,12 @@ public:
         Vector2f origin{ .5f }; //Use SetOrigin()
         float rot;
     };
+    Font* font; //Raw pointer is fine since Text doesn't own the font object
     Info info;
     Circle pos_debug;
 
-    Text(const Info& i) :
-        info(i) {
+    Text(Font* f, const Info& i = {}) :
+        font(f), info(i) {
         pos_debug.pos = info.pos;
         pos_debug.r = 2;
     }

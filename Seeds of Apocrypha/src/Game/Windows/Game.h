@@ -45,7 +45,7 @@ public:
     s_ptr<Scene> area_scene;
 
     //Miscellaneous
-    u_ptr<Font_D2D> default_font;
+    u_ptr<Font> default_font; //Declaring it this way (constructing it as D2D) so I don't have to cast it (TEST IF THAT'S ACTUALLY TRUE)
     u_ptr<Text> debug_txt;
     u_ptr<Sprite_D2D> cursor;
     Areas area = Areas::DEFAULT;

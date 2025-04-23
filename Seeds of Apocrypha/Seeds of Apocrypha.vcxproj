@@ -150,6 +150,7 @@
     <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp" />
     <ClCompile Include="src\Game\Windows\Input.cpp" />
+    <ClCompile Include="src\Game\Windows\Menu.cpp" />
     <ClCompile Include="src\Game\Windows\Scene.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Engine\Core\Math.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="src\Game\Windows\Graphics\Window_Windows.h" />
     <ClInclude Include="src\Engine\Core\Enums.h" />
     <ClInclude Include="src\Game\Windows\Input.h" />
+    <ClInclude Include="src\Game\Windows\Menu.h" />
     <ClInclude Include="src\Game\Windows\Scene.h" />
   </ItemGroup>
   <ItemGroup>

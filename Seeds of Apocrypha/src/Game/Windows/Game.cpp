@@ -11,8 +11,8 @@ Game::Game(const char* title, uint init_fps) :
     last_time = Clock::now();
 
     //Initialize the window
-    window = make_u<Window_Windows>(1, "Seeds of Apocrypha", Vector2u{1280, 720}); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
-    resolution = window->GetSize();
+    resolution = min_res;
+    window = make_u<Window_Windows>(1, "Seeds of Apocrypha", resolution); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
 
     //Initialize the renderer
     renderer = make_u<Renderer_D2D>(window->GetHandle());
@@ -23,6 +23,7 @@ Game::Game(const char* title, uint init_fps) :
     //Load the default font
     default_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
 
+    u_ptr<Text> = make_u<Text>(default_font);
     
     //Initialize the camera
     //camera.setSize(Vector2f(window.getSize()));
@@ -42,8 +43,8 @@ Game::Game(const char* title, uint init_fps) :
 
     //Initialize cursor
     //Cursor sprite info
-    //Sprite::Info csi = {};
-    //cursor = make_u<Sprite_D2D>("../assets/Sprites/Cursors.png", renderer->GetRT(), csi);
+    Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = 2; csi.dfc = -10000;
+    //cursor = make_u<Sprite_D2D>("../assets/Sprites/Cursors/Default.png", renderer->GetRT(), csi);
 }
 
 void Game::Run() {

@@ -29,6 +29,9 @@ bool Window_Windows::Create(const char* title, Vector2u size) {
 	//Default to fullscreen
 	if (size == Vector2u{0, 0})
 		size = { (uint)(r.right - r.left), (uint)(r.bottom - r.top) };
+	//If passed size is too big, render at double the minimum resolution
+	if (size.x > (r.right - r.left) or size.y > (r.bottom - r.top))
+		size = Vector2u{ 1280, 720 };
 	win_size = size;
 
 	//Convert the title from a const char* to a wide string

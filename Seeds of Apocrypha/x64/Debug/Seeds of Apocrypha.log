@@ -1,93 +1,50 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Scene.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+  Game.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         ]
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:             T=unsigned int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         ]
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Collision.h(8,36): warning C4018: '>=': signed/unsigned mismatch
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Collision.h(8,36): warning C4018: '>=': signed/unsigned mismatch
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Collision.h(8,69): warning C4018: '>=': signed/unsigned mismatch
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Collision.h(8,69): warning C4018: '>=': signed/unsigned mismatch
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Collision.h(9,36): warning C4018: '>=': signed/unsigned mismatch
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Collision.h(9,36): warning C4018: '>=': signed/unsigned mismatch
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Collision.h(9,69): warning C4018: '>=': signed/unsigned mismatch
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Core\Collision.h(9,69): warning C4018: '>=': signed/unsigned mismatch
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(52,59): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(52,59): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(70,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(70,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(71,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(71,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Entities\Entity.h(33,55): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Game/Windows/Scene.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Engine\Entities\Entity.h(33,55): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/Game/Windows/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Windows\Scene.cpp(95,73): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Windows\Scene.cpp(95,53): warning C4305: 'argument': truncation from 'double' to 'float'
-  main.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Geometry.h(61,44): warning C4244:         ]
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Collision.h(8,36): warning C4018: '>=': signed/unsigned mismatch
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Collision.h(8,69): warning C4018: '>=': signed/unsigned mismatch
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Collision.h(9,36): warning C4018: '>=': signed/unsigned mismatch
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Core\Collision.h(9,69): warning C4018: '>=': signed/unsigned mismatch
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(52,59): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(70,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Graphics\Sprite.h(71,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Engine\Entities\Entity.h(33,55): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/main.cpp')
-  
+  Window_Windows.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Windows\Graphics\Window_Windows.cpp(33,13): warning C4018: '>': signed/unsigned mismatch
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\src\Game\Windows\Graphics\Window_Windows.cpp(33,44): warning C4018: '>': signed/unsigned mismatch
   Generating Code...
-  Seeds of Apocrypha.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe
+  Seeds of Apocrypha.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\x64\Debug\Seeds of Apocrypha.exe
