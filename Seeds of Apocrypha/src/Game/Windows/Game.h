@@ -44,10 +44,6 @@ public:
     s_ptr<Scene> cutscene_scene;
     s_ptr<Scene> area_scene;
 
-
-    u_ptr<Rect> test_rect;
-
-
     //Miscellaneous
     u_ptr<Font_D2D> default_font;
     u_ptr<Text> debug_txt;
@@ -91,5 +87,5 @@ private:
     float music_volume = 100;
     float sfx_volume = 100;
     Vector2u resolution;
-    const Vector2u min_res = { 640, 320 };
+    const Vector2u min_res = { 640, 360 };
 };

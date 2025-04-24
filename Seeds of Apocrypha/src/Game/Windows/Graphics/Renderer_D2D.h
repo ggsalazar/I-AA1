@@ -38,6 +38,8 @@ public:
 	void DrawRect(const Rect& rect, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
 	
 private:
+	float scale_factor;
+
 	ComPtr<ID2D1Factory> factory;
 	ComPtr<ID2D1HwndRenderTarget> render_target;
 
