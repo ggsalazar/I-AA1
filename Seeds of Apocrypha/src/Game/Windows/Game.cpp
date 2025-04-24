@@ -11,8 +11,11 @@ Game::Game(const char* title, uint init_fps) :
     last_time = Clock::now();
 
     //Initialize the window
-    resolution = min_res;
+    resolution = min_res * 3;
     window = make_u<Window_Windows>(1, "Seeds of Apocrypha", resolution); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
+    resolution = window->WinSize();
+    cout << resolution << endl;
+    cout << window->ScreenSize() << endl;
 
     //Initialize the renderer
     renderer = make_u<Renderer_D2D>(window->GetHandle());
@@ -23,8 +26,12 @@ Game::Game(const char* title, uint init_fps) :
     //Load the default font
     default_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
 
-    u_ptr<Text> = make_u<Text>(default_font);
-    
+    Text::Info dti = {}; dti.pos = Vector2i{ (int)(resolution.x * .5), (int)(resolution.y * .5) };
+    debug_txt = make_u<Text>(default_font.get(), dti);
+    test_rect = make_u<Rect>(Vector2i{ 0 }, resolution);
+
+
+
     //Initialize the camera
     //camera.setSize(Vector2f(window.getSize()));
     //View is set in Scene.cpp
@@ -109,6 +116,9 @@ void Game::Update() {
 void Game::Render() {
     
     renderer->BeginFrame(); //This also clears the frame
+
+    renderer->DrawTxt(*debug_txt);
+    renderer->DrawRect(*test_rect, Color(1));
 
     /*
     if (auto scene = active_scene.lock())

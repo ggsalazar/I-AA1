@@ -13,9 +13,12 @@ public:
 	virtual void PollEvents() = 0;
 
 	virtual void Clear() = 0;
-	virtual Vector2u ScreenSize() = 0;
 
-	virtual Vector2u GetSize() const = 0;
+	virtual Vector2u ScreenSize() = 0;
+	virtual Vector2u WinSize() const { return win_size; }
+
+protected:
+	Vector2u win_size;
 };
 
 }

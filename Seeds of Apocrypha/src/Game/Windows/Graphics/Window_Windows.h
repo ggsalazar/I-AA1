@@ -18,19 +18,17 @@ public:
 	void Clear() override;
 	inline Vector2u ScreenSize() override {
 		return {
-			(uint)GetSystemMetrics(SM_CXSCREEN), // Screen width in pixels
-			(uint)GetSystemMetrics(SM_CYSCREEN)  // Screen height in pixels
+			(uint)GetSystemMetrics(SM_CXSCREEN), //Screen width in pixels (accounts for dpi scaling)
+			(uint)GetSystemMetrics(SM_CYSCREEN)  //Screen height
 		};
 	}
 
-	inline Vector2u GetSize() const override { return win_size; }
 	HWND GetHandle() const { return hwnd; }
 
 private:
 	HWND hwnd = nullptr;
 	HDC hdc = nullptr;
 	uint monitor;
-	Vector2u win_size;
 
 	struct MonitorInfo {
 		HMONITOR handle;

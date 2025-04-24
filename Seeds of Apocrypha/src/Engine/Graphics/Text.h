@@ -11,13 +11,13 @@ class Text {
     friend class Font;
 public:
     struct Info {
-        string str = "";
+        string str = "DEFAULT";
         Vector2i pos;
         uint char_size = 36;
         Vector2u str_size;
         uint max_width = 1920;
         Color color{ 1 };
-        Vector2f origin{ .5f }; //Use SetOrigin()
+        Vector2f origin{}; //Use SetOrigin()
         float rot;
     };
     Font* font; //Raw pointer is fine since Text doesn't own the font object

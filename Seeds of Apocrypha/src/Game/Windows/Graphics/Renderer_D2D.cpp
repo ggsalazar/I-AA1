@@ -59,7 +59,7 @@ void Renderer_D2D::DrawSprite(const Sprite& spr) {
 void Renderer_D2D::DrawTxt(Text& txt) {
 	//Cast to D2D
 	Text::Info* ti = &txt.info;
-	Font_D2D* fntd2d = static_cast<Font_D2D*>(ti->font);
+	Font_D2D* fntd2d = static_cast<Font_D2D*>(txt.font);
 
 	//Create text format
 	IDWriteTextFormat* text_format = fntd2d->GetFormat(ti->char_size);

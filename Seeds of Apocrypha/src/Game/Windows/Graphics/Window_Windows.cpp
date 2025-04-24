@@ -1,5 +1,7 @@
 #include <windowsx.h>
+#include <ShellScalingApi.h>
 #include "Window_Windows.h"
+#pragma comment(lib, "Shcore.lib")
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	switch (msg) {
@@ -14,6 +16,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 bool Window_Windows::Create(const char* title, Vector2u size) {
 
+	//SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+
 	WNDCLASS wc = { 0 };
 	wc.lpfnWndProc = WindowProc;
 	wc.hInstance = GetModuleHandle(nullptr);
@@ -26,12 +30,22 @@ bool Window_Windows::Create(const char* title, Vector2u size) {
 	monitor = monitor >= monitors.size() ? 0 : monitor;
 	RECT r = monitors[monitor].rect;
 
+
+	HMONITOR hm = MonitorFromRect(&r, MONITOR_DEFAULTTONEAREST);
+	UINT dpi_x = 0, dpi_y = 0;
+	GetDpiForMonitor(hm, MDT_EFFECTIVE_DPI, &dpi_x, &dpi_y);
+	//std::cout << dpi_x << std::endl;
+
+
 	//Default to fullscreen
 	if (size == Vector2u{0, 0})
 		size = { (uint)(r.right - r.left), (uint)(r.bottom - r.top) };
 	//If passed size is too big, render at double the minimum resolution
 	if (size.x > (r.right - r.left) or size.y > (r.bottom - r.top))
 		size = Vector2u{ 1280, 720 };
+
+	//std::cout << size << std::endl;
+
 	win_size = size;
 
 	//Convert the title from a const char* to a wide string
