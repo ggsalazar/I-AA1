@@ -14,6 +14,7 @@ Game::Game(const char* title, uint init_fps) :
     resolution = min_res*2;
     window = make_u<Window_Windows>(1, "Seeds of Apocrypha", resolution); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
     resolution = window->WinSize();
+    SetCursor(nullptr);
 
     //Initialize the renderer
     renderer = make_u<Renderer_D2D>(window->GetHandle());
@@ -42,8 +43,8 @@ Game::Game(const char* title, uint init_fps) :
 
     //Initialize cursor
     //Cursor sprite info
-    Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = 2; csi.dfc = -10000;
-    //cursor = make_u<Sprite_D2D>("../assets/Sprites/Cursors/Default.png", renderer->GetRT(), csi);
+    Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x;
+    cursor = make_u<Sprite_D2D>("assets/Sprites/Cursors/Default", renderer->GetRT(), csi);
 }
 
 void Game::Run() {
@@ -94,6 +95,9 @@ void Game::Update() {
     //Reset our input variables
     Input::Update();
 
+    //Update cursor position
+    cursor->MoveTo(Input::MousePos());
+
     //Close the old scene if needed
     if (auto old_scn = old_scene.lock()) {
         old_scn->Open(false);
@@ -115,6 +119,8 @@ void Game::Render() {
     else
         cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
     */
+
+    renderer->DrawSprite(*cursor);
 
     renderer->EndFrame();
 }

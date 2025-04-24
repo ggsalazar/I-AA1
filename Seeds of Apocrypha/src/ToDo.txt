@@ -1,33 +1,38 @@
-Left off: Finally at a stage where I should be able to re-implement the MM (7 days)
-			-It compiles! Now just need to:
-				--Implement cursor (1 day)
-				--Implement menus (6 days)
-					---Draw buttons (1 day)
-					---Get that sweet-ass functionality (5 days)
-						----CharCrea (1 day)
-						----Options (2 days)
-						----Tutorial (1 day)
-						----Quit (1 day)
-Engine:	-How to change color of sprites via code? (1 day)
+Left off: -Implement menus (9 days)
+				--Draw text (1 day)
+				--Draw buttons (1 day)
+				--Functionality (5 days)
+					---CharCrea (1 day)
+					---Options (3 days)
+						----Set Volumes
+						----Set Resolution
+					---Tutorial (1 day)
+					---Quit (1 day)
+Engine:	-Color tint sprites (3 days)
 		-Tilemapping (4 days)
 		-Camera (5 days)
 			--VSync (2 days)
 		-Music (4 days)
 		-SFX (2 days)
-		-Total: 22 days
+		-Total (including menus): 33 days
+			--Projected finish date: 27/5/25 (Late May)
 
-Tutorial -  -add in NPCs
-				--Blacksmith
-				--Quest Giver
-			-Inventory
-			-Quest Journal
-			-Map
-			-Character sheet/s
-			-Shopping
-			-area changing
-			-multi-party member movement & cam locking
-			-Combat
-			-Explain all this shit
+Tutorial -  -add in NPCs (9 days)
+				--Dialogue system/trees (4 days)
+				--Blacksmith (4 days)
+					---Shopping (after implementing inventory) (3 days)
+				--Quest Giver (1 day)
+			-Interfaces (24 days)
+				--Quest Journal (6 days)
+				--Map (6 days)
+				--Character sheet/s (6 days)
+				--Inventory (6 days)
+			-area changing (4 days)
+			-multi-party member movement & cam locking (7 days)
+			-Total: 44 days
+				--Projected finish date: 10/6/25 (Early-Mid July)
+			-Combat (lmao)
+			-Explain all this shit (LMFAOOOOO)
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations

@@ -15,7 +15,7 @@ public:
 
 	//Sprites
 	virtual void DrawSheet(const Sprite& sheet, const Vector2i& pos = { 0, 0 }) = 0; //Helpful for debugging/seeing entire sheet
-	virtual void DrawSprite(const Sprite& spr) = 0;
+	virtual void DrawSprite(Sprite& spr) = 0;
 	//Text
 	virtual void DrawTxt(Text& txt) = 0;
 

@@ -74,8 +74,35 @@ void Window_Windows::Destroy() {
 void Window_Windows::PollEvents() {
 	MSG msg = {};
 	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
-		if (msg.message == WM_QUIT) open = false;
+		switch (msg.message) {
+			case WM_QUIT:
+				open = false;
+			break;
 
+			case WM_MOUSEMOVE:
+				//The following will lock the cursor to the render window:
+				/*
+				RECT rect;
+				GetClientRect(hwnd, &rect);
+				POINT ul = { rect.left, rect.top };
+				POINT lr = { rect.right, rect.bottom };
+
+				// Convert to screen space
+				ClientToScreen(hwnd, &ul);
+				ClientToScreen(hwnd, &lr);
+				RECT clip_rect = { ul.x, ul.y, lr.x, lr.y };
+				ClipCursor(&clip_rect);
+				*/
+				//The following will release the cursor from the render window:
+				//ClipCursor(nullptr);
+
+				ShowCursor(FALSE);
+			break;
+
+			case WM_MOUSELEAVE:
+				ShowCursor(TRUE);
+			break;
+		}
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}

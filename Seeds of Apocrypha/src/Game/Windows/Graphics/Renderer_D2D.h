@@ -1,5 +1,7 @@
 #pragma once
-#include <d2d1.h>
+#include <d2d1_1.h>
+#include <d2d1effects.h>
+#include <d2d1effecthelpers.h>
 #include <dwrite.h>
 #include <wrl.h>
 #include "../../../Engine/Graphics/Renderer.h" //Includes Sprite.h and Text.h
@@ -25,9 +27,19 @@ public:
 	inline ID2D1HwndRenderTarget* GetRT() const { return render_target.Get(); }
 	inline IDWriteFactory* GetDWriteFactory() const { return dwrite_factory.Get(); }
 
+	//Tint Matrix for dynamic sprite tinting
+	D2D1_MATRIX_5X4_F CreateTintMatrix(Color& color) {
+		return D2D1::Matrix5x4F(
+			color.r, 0.0f, 0.0f, 0.0f, //R' = R * r
+			0.0f, color.g, 0.0f, 0.0f, //G' = G * g
+			0.0f, 0.0f, color.b, 0.0f, //B' = B * b
+			0.0f, 0.0f, 0.0f, color.a, //A' = A * a
+			0.0f, 0.0f, 0.0f, 0.0f); //No offset
+	}
+
 	//Sprites
 	void DrawSheet(const Sprite& sheet, const Vector2i& pos = { 0, 0 }) override;
-	void DrawSprite(const Sprite& spr) override;
+	void DrawSprite(Sprite& spr) override;
 	//Text
 	void DrawTxt(Text& txt) override;
 
@@ -40,8 +52,9 @@ public:
 private:
 	float scale_factor;
 
-	ComPtr<ID2D1Factory> factory;
+	ComPtr<ID2D1Factory1> factory;
 	ComPtr<ID2D1HwndRenderTarget> render_target;
+	ComPtr<ID2D1DeviceContext> device_context;
 
 	//Write factory for text
 	ComPtr<IDWriteFactory> dwrite_factory;
