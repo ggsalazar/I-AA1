@@ -2,80 +2,111 @@
 #include "Renderer_D2D.h"
 
 Renderer_D2D::Renderer_D2D(void* window_handle)	{
-	//Create Factory
+	// Get window size
+	HWND hwnd = static_cast<HWND>(window_handle);
+	RECT rc;
+	GetClientRect(hwnd, &rc);
+	UINT width = rc.right - rc.left;
+	UINT height = rc.bottom - rc.top;
+
+	// Create D3D11 device and swap chain
+	DXGI_SWAP_CHAIN_DESC scd = {};
+	scd.BufferCount = 2;
+	scd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+	scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	scd.OutputWindow = hwnd;
+	scd.SampleDesc.Count = 1;
+	scd.Windowed = TRUE;
+	scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+
+	D3D_FEATURE_LEVEL featureLevel;
+	ComPtr<ID3D11Texture2D> back_buffer;
+
+	D3D11CreateDeviceAndSwapChain(
+		nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, D3D11_CREATE_DEVICE_BGRA_SUPPORT,
+		nullptr, 0, D3D11_SDK_VERSION, &scd, &swap_chain, &d3d_device,
+		&featureLevel, &d3d_context);
+
+	swap_chain->GetBuffer(0, IID_PPV_ARGS(&back_buffer));
+
+	// Create D2D factory
 	D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, IID_PPV_ARGS(&factory));
 
-	//Create Write Factory
+	// Get DXGI device from D3D device
+	ComPtr<IDXGIDevice> dxgi_device;
+	d3d_device.As(&dxgi_device);
+
+	// Create D2D device and device context
+	factory->CreateDevice(dxgi_device.Get(), &d2d_device);
+	d2d_device->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, &device_context);
+
+	// Create D2D render target bitmap from back buffer
+	ComPtr<IDXGISurface> dxgi_surface;
+	back_buffer.As(&dxgi_surface);
+
+	D2D1_BITMAP_PROPERTIES1 bitmap_props = D2D1::BitmapProperties1(
+		D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
+		D2D1::PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED));
+
+	ComPtr<ID2D1Bitmap1> d2d_bitmap;
+	device_context->CreateBitmapFromDxgiSurface(dxgi_surface.Get(), &bitmap_props, &d2d_bitmap);
+
+	device_context->SetTarget(d2d_bitmap.Get());
+
+	//Create write factory and brush
 	DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory),
 		reinterpret_cast<IUnknown**>(dwrite_factory.GetAddressOf()));
 
-	//Get client rect for window size
-	RECT r;
-	GetClientRect((HWND)window_handle, &r);
+	device_context->CreateSolidColorBrush(D2D1::ColorF(0.f, 0.f, 0.f, 0.f), &brush);
+	device_context->SetAntialiasMode(D2D1_ANTIALIAS_MODE_ALIASED);
+	device_context->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_ALIASED);
 
-	//Create render target
-	D2D1_RENDER_TARGET_PROPERTIES props = D2D1::RenderTargetProperties();
-	D2D1_HWND_RENDER_TARGET_PROPERTIES hwnd_props = D2D1::HwndRenderTargetProperties((HWND)window_handle, D2D1::SizeU(r.right - r.left, r.bottom - r.top));
-
-	factory->CreateHwndRenderTarget(props, hwnd_props, &render_target);
-	factory->CreateDevic
-	factory->D2D1CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, &device_context);
-
-	render_target->CreateSolidColorBrush(D2D1::ColorF(0.f, 0.f, 0.f, 0.f), &brush);
-	render_target->SetAntialiasMode(D2D1_ANTIALIAS_MODE_ALIASED);
-	render_target->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_ALIASED);
-
-	//Set scale factor
+	//Set DPI scale
 	FLOAT dpi_x, dpi_y;
-	render_target->GetDpi(&dpi_x, &dpi_y);
-	scale_factor = dpi_x / 96.f; //dpi_x and y should be equal
+	device_context->GetDpi(&dpi_x, &dpi_y);
+	scale_factor = dpi_x / 96.f;
 }
 
 void Renderer_D2D::DrawSheet(const Sprite& sheet, const Vector2i& pos) {
 	const Sprite_D2D* sheetd2d = static_cast<const Sprite_D2D*>(&sheet);
 
-	render_target->DrawBitmap(sheetd2d->GetBitmap(), D2D1::RectF(pos.x / scale_factor, pos.y / scale_factor,
+	device_context->DrawBitmap(sheetd2d->GetBitmap(), D2D1::RectF(pos.x / scale_factor, pos.y / scale_factor,
 							  pos.x + sheet.GetSheetSize().x / scale_factor, pos.y + sheet.GetSheetSize().y / scale_factor));
 }
 
 void Renderer_D2D::DrawSprite(Sprite& spr) {
 	//Cast to D2D
 	Sprite_D2D* sprd2d = static_cast<Sprite_D2D*>(&spr);
-
 	Sprite::Info* si = &sprd2d->info;
 
 	//Set draw location; let D2D handle float precision, otherwise will get pixel distortion
-	Vector2f tl = { (si->pos.x - (si->spr_size.x * si->origin.x)) / scale_factor,
-					(si->pos.y - (si->spr_size.y * si->origin.y)) / scale_factor };
-	Vector2f br = { tl.x + (si->spr_size.x / scale_factor),
-					tl.y + (si->spr_size.y / scale_factor) };
-
-	D2D1_RECT_F pos_rect = D2D1::RectF(tl.x, tl.y, br.x, br.y);
+	D2D1_POINT_2F draw_pos = D2D1::Point2F(
+		(si->pos.x - (si->spr_size.x * si->origin.x)) / scale_factor,
+		(si->pos.y - (si->spr_size.y * si->origin.y)) / scale_factor
+	);
 
 	//Set the frame to draw
 	D2D1_RECT_F frame_rect = D2D1::RectF(
 		si->curr_frame * si->frame_size.x,
 		si->sheet_row * si->frame_size.y,
 		si->curr_frame * si->frame_size.x + si->frame_size.x,
-		si->sheet_row * si->frame_size.y + si->frame_size.y);
+		si->sheet_row * si->frame_size.y + si->frame_size.y
+	);
 
 	//Set the tint, if any
 	ComPtr<ID2D1Effect> tint_effect;
-	render_target->CreateEffect(CLSID_D2D1ColorMatrix, &tint_effect);
-
+	device_context->CreateEffect(CLSID_D2D1ColorMatrix, &tint_effect);
 	tint_effect->SetInput(0, sprd2d->GetBitmap());
-
-
-	//Draw the current frame
 	D2D1_MATRIX_5X4_F tint = CreateTintMatrix(si->tint);
 	tint_effect->SetValue(D2D1_COLORMATRIX_PROP_COLOR_MATRIX, tint);
-	render_target->DrawImage(
-		tint_effect.Get(),
-		sprd2d->GetBitmap(),			//Bitmap to draw from
-		pos_rect,											//Destination rect
-		si->tint.a,										//Opacity
-		D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,    //Interpolation mode
-		frame_rect);										//Portion of bitmap to draw
+
+	device_context->DrawImage(
+		tint_effect.Get(),	//Image to draw (includes post-tint bitmap)
+		&draw_pos,			//Draw destination
+		&frame_rect,		//Portion of bitmap to draw
+		D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
+		D2D1_COMPOSITE_MODE_SOURCE_OVER
+	);
 }
 
 void Renderer_D2D::DrawTxt(Text& txt) {
@@ -115,13 +146,13 @@ void Renderer_D2D::DrawTxt(Text& txt) {
 	//Adjust position for scale factor
 	D2D1_POINT_2F posd2d = D2D1::Point2F((ti->pos.x - (ti->str_size.x * ti->origin.x)) / scale_factor,
 										(ti->pos.y - (ti->str_size.y * ti->origin.y)) / scale_factor);
-	render_target->DrawTextLayout(posd2d, text_layout.Get(), brush.Get());
+	device_context->DrawTextLayout(posd2d, text_layout.Get(), brush.Get());
 }
 
 void Renderer_D2D::DrawLine(const Line& line, const Color& color, const uint edge_w) {
 	brush->SetColor(D2D1::ColorF(color.r, color.g, color.b)); brush->SetOpacity(color.a);
 
-	render_target->DrawLine(D2D1::Point2F(line.pos1.x / scale_factor, line.pos1.y / scale_factor),
+	device_context->DrawLine(D2D1::Point2F(line.pos1.x / scale_factor, line.pos1.y / scale_factor),
 		D2D1::Point2F(line.pos2.x / scale_factor, line.pos2.y / scale_factor),
 		brush.Get(), edge_w);
 }
@@ -132,11 +163,11 @@ void Renderer_D2D::DrawCircle(const Circle& circle, const Color& stroke_color, c
 	
 	//Fill
 	brush->SetColor(D2D1::ColorF(fill_color.r, fill_color.g, fill_color.b)); brush->SetOpacity(fill_color.a);
-	render_target->FillEllipse(D2D1_ELLIPSE({ posd2d, circle.r / scale_factor, circle.r / scale_factor }), brush.Get());
+	device_context->FillEllipse(D2D1_ELLIPSE({ posd2d, circle.r / scale_factor, circle.r / scale_factor }), brush.Get());
 
 	//Stroke (we want it drawn on top of the fill)
 	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
-	render_target->DrawEllipse(D2D1_ELLIPSE({ posd2d, circle.r / scale_factor, circle.r / scale_factor }), brush.Get(), edge_w);
+	device_context->DrawEllipse(D2D1_ELLIPSE({ posd2d, circle.r / scale_factor, circle.r / scale_factor }), brush.Get(), edge_w);
 }
 
 void Renderer_D2D::DrawTri(const Tri& tri, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
@@ -154,11 +185,11 @@ void Renderer_D2D::DrawTri(const Tri& tri, const Color& stroke_color, const Colo
 
 	//Fill
 	brush->SetColor(D2D1::ColorF(1, 1, 1)); brush->SetOpacity(fill_color.a);
-	render_target->FillGeometry(geometry.Get(), brush.Get());
+	device_context->FillGeometry(geometry.Get(), brush.Get());
 
 	//Stroke (we want it drawn on top of the fill)
 	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
-	render_target->DrawGeometry(geometry.Get(), brush.Get(), edge_w);
+	device_context->DrawGeometry(geometry.Get(), brush.Get(), edge_w);
 }
 
 void Renderer_D2D::DrawRect(const Rect& rect, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
@@ -168,9 +199,9 @@ void Renderer_D2D::DrawRect(const Rect& rect, const Color& stroke_color, const C
 
 	//Fill
 	brush->SetColor(D2D1::ColorF(fill_color.r, fill_color.g, fill_color.b)); brush->SetOpacity(fill_color.a);
-	render_target->FillRectangle(D2D1::RectF(true_pos.x, true_pos.y, true_pos2.x, true_pos2.y), brush.Get());
+	device_context->FillRectangle(D2D1::RectF(true_pos.x, true_pos.y, true_pos2.x, true_pos2.y), brush.Get());
 
 	//Stroke
 	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
-	render_target->DrawRectangle(D2D1::RectF(true_pos.x, true_pos.y, true_pos2.x, true_pos2.y), brush.Get(), edge_w);
+	device_context->DrawRectangle(D2D1::RectF(true_pos.x, true_pos.y, true_pos2.x, true_pos2.y), brush.Get(), edge_w);
 }

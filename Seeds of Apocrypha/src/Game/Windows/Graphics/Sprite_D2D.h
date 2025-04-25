@@ -83,6 +83,5 @@ public:
 private:
     ID2D1HwndRenderTarget* render_target;
     ID2D1Bitmap* bitmap = nullptr; //Was formerly using ComPtr, stopped because it was being fucky
-    //ComPtr<ID2D1Bitmap> bitmap;
 
 };
