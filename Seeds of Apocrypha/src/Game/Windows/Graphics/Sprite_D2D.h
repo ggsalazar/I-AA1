@@ -15,8 +15,8 @@ public:
 
     //Don't forget to add Entity* when finished implementing!
     //Sprite_D2D(unique_ptr<Spritesheet>& s, Entity* e, const Info& i = {}) :
-    Sprite_D2D(const string& f, ID2D1HwndRenderTarget* r_t, const Info& i = {}) :
-        Sprite(i), render_target(r_t) {
+    Sprite_D2D(const string& f, ID2D1DeviceContext* d_c, const Info& i = {}) :
+        Sprite(i), device_context(d_c) {
         if (!LoadSheetFromFile(f))
             throw runtime_error("Could not open Spritesheet " + f + "!");
     }
@@ -70,7 +70,7 @@ public:
         }
 
         //Convert the Bitmap Source into a Direct2D Bitmap
-        hr = render_target->CreateBitmapFromWicBitmap(converter.Get(), nullptr, &bitmap);
+        hr = device_context->CreateBitmapFromWicBitmap(converter.Get(), nullptr, &bitmap);
         if (FAILED(hr)) {
             cout << "Failed to convert sheet into D2D Bitmap!" << endl;
             return false;
@@ -81,7 +81,7 @@ public:
 
     inline ID2D1Bitmap* GetBitmap() const { return bitmap; }
 private:
-    ID2D1HwndRenderTarget* render_target;
+    ID2D1DeviceContext* device_context;
     ID2D1Bitmap* bitmap = nullptr; //Was formerly using ComPtr, stopped because it was being fucky
 
 };

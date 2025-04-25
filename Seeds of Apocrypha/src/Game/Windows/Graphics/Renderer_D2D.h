@@ -2,6 +2,7 @@
 #include <d2d1_1.h>
 #include <d2d1_1helper.h>
 #include <d2d1effects.h>
+#include <d2d1effectauthor.h>
 #include <d2d1effecthelpers.h>
 #include <d3d11.h>
 #include <dxgi1_2.h>
@@ -22,6 +23,8 @@ public:
 	//Functionality
 	inline void BeginFrame() override { 
 		device_context->BeginDraw();
+		//Reset the transform matrix
+		device_context->SetTransform(D2D1::Matrix3x2F::Identity());
 		device_context->Clear(D2D1::ColorF(0, 0, 0, 1));
 	}
 	inline void EndFrame() override {

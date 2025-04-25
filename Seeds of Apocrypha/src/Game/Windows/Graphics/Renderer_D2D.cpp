@@ -75,6 +75,7 @@ void Renderer_D2D::DrawSheet(const Sprite& sheet, const Vector2i& pos) {
 }
 
 void Renderer_D2D::DrawSprite(Sprite& spr) {
+	
 	//Cast to D2D
 	Sprite_D2D* sprd2d = static_cast<Sprite_D2D*>(&spr);
 	Sprite::Info* si = &sprd2d->info;
@@ -92,21 +93,30 @@ void Renderer_D2D::DrawSprite(Sprite& spr) {
 		si->curr_frame * si->frame_size.x + si->frame_size.x,
 		si->sheet_row * si->frame_size.y + si->frame_size.y
 	);
-
+	
 	//Set the tint, if any
 	ComPtr<ID2D1Effect> tint_effect;
-	device_context->CreateEffect(CLSID_D2D1ColorMatrix, &tint_effect);
+	HRESULT hr = device_context->CreateEffect(CLSID_D2D1ColorMatrix, &tint_effect);
 	tint_effect->SetInput(0, sprd2d->GetBitmap());
 	D2D1_MATRIX_5X4_F tint = CreateTintMatrix(si->tint);
 	tint_effect->SetValue(D2D1_COLORMATRIX_PROP_COLOR_MATRIX, tint);
 
+	//Set the scale
+	D2D1_MATRIX_3X2_F transform = D2D1::Matrix3x2F::Translation(draw_pos.x, draw_pos.y) *
+		D2D1::Matrix3x2F::Scale(
+			si->scale.x / scale_factor,
+			si->scale.y / scale_factor,
+			draw_pos);
+
+	device_context->SetTransform(transform);
 	device_context->DrawImage(
 		tint_effect.Get(),	//Image to draw (includes post-tint bitmap)
-		&draw_pos,			//Draw destination
+		nullptr,			//Draw destination
 		&frame_rect,		//Portion of bitmap to draw
 		D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
 		D2D1_COMPOSITE_MODE_SOURCE_OVER
 	);
+
 }
 
 void Renderer_D2D::DrawTxt(Text& txt) {
@@ -136,7 +146,7 @@ void Renderer_D2D::DrawTxt(Text& txt) {
 		&text_layout
 	);
 	if (FAILED(hr)) {
-		std::cout << "Failed to create Text Layout in Renderer_D2D.cpp" << std::endl;
+		cout << "Failed to create Text Layout in Renderer_D2D.cpp" << endl;
 		return;
 	}
 	DWRITE_TEXT_METRICS metrics;
@@ -146,6 +156,17 @@ void Renderer_D2D::DrawTxt(Text& txt) {
 	//Adjust position for scale factor
 	D2D1_POINT_2F posd2d = D2D1::Point2F((ti->pos.x - (ti->str_size.x * ti->origin.x)) / scale_factor,
 										(ti->pos.y - (ti->str_size.y * ti->origin.y)) / scale_factor);
+
+
+
+	//Set the scale
+	D2D1_MATRIX_3X2_F transform = D2D1::Matrix3x2F::Translation(posd2d.x, posd2d.y) *
+		D2D1::Matrix3x2F::Scale(
+			ti->char_size / scale_factor,
+			ti->char_size / scale_factor,
+			posd2d);
+
+	device_context->SetTransform(transform);
 	device_context->DrawTextLayout(posd2d, text_layout.Get(), brush.Get());
 }
 

@@ -13,7 +13,7 @@ public:
     struct Info {
         string str = "DEFAULT";
         Vector2i pos;
-        uint char_size = 36;
+        uint char_size = 8;
         Vector2u str_size;
         uint max_width = 1920;
         Color color{ 1 };
@@ -24,7 +24,7 @@ public:
     Info info;
     Circle pos_debug;
 
-    Text(Font* f, const Info& i = {}) :
+    Text(Font* f = nullptr, const Info& i = {}) :
         font(f), info(i) {
         pos_debug.pos = info.pos;
         pos_debug.r = 2;

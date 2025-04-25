@@ -1,5 +1,10 @@
 #include "Input.h"
 
+void Engine::Input::Init(HWND hwnd, Vector2u res) { 
+	window = hwnd;
+	resolution = res;
+}
+
 void Engine::Input::Update() {
 	memcpy(prev_btns, curr_btns, sizeof(curr_btns));
 

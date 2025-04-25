@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <nlohmann/json.hpp>
 #include "Scene.h"
-#include "Menu.h"
 //#include "../Entities/UI/UI.h"
 //#include "../Entities/Creatures/PartyMember.h"
 
@@ -96,8 +95,8 @@ void Scene::Draw() {
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
-	//for (const auto& m : menus)
-	//	m.second->Draw();
+	for (const auto& m : menus)
+		m.second->Draw();
 
 
 	//cout << "Camera Pos: " << game.camera.getCenter() << endl;
@@ -303,16 +302,16 @@ void Scene::Open(const bool o) {
 			/*
 			game.camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
 			window.setView(game.camera);
-			auto menu = make_unique<Menu>(game, window, *this, Menus::MAIN);
+			*/
+			auto menu = make_u<Menu>(game, *this, Menus::MAIN);
 			menu->Open();
 			menus.insert({ Menus::MAIN, move(menu) });
-			menu = make_unique<Menu>(game, window, *this, Menus::CHARCREA);
+			menu = make_u<Menu>(game, *this, Menus::CHARCREA);
 			menus.insert({ Menus::CHARCREA, move(menu) });
-			menu = make_unique<Menu>(game, window, *this, Menus::LOAD);
+			menu = make_u<Menu>(game, *this, Menus::LOAD);
 			menus.insert({ Menus::LOAD, move(menu) });
-			menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS);
+			menu = make_u<Menu>(game, *this, Menus::OPTIONS);
 			menus.insert({ Menus::OPTIONS, move(menu) });
-			*/
 		}
 
 		else if (label == Scenes::AREA) {

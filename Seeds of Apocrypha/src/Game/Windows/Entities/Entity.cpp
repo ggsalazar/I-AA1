@@ -10,7 +10,7 @@ namespace Engine {
 
 Entity::Entity(Game& g, Scene* s, const string& sheet, const Sprite::Info& s_i) :
     game(g), scene(s), pos(s_i.pos), pos_debug(pos, 2),
-    /*sound(sb),*/ sprite(make_unique<Sprite_D2D>(sheet, game.renderer->GetRT(), s_i)) {
+    /*sound(sb),*/ sprite(make_unique<Sprite_D2D>(sheet, game.renderer->GetDC(), s_i)) {
     SetBBox();
 }
 

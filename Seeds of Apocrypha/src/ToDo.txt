@@ -1,21 +1,19 @@
-Left off: -Implement menus (9 days)
-				--Draw text (1 day)
+Left off: -Implement menus (8 days)
 				--Draw buttons (1 day)
 				--Functionality (5 days)
 					---CharCrea (1 day)
 					---Options (3 days)
-						----Set Volumes
-						----Set Resolution
+						----Set Volumes (1 day)
+						----Set Resolution (2 days)
 					---Tutorial (1 day)
 					---Quit (1 day)
-Engine:	-Color tint sprites (3 days)
-		-Tilemapping (4 days)
+Engine:	-Tilemapping (6 days)
 		-Camera (5 days?)
 			--VSync (Done?)
 		-Music (4 days)
 		-SFX (2 days)
-		-Total (including menus): 33 days
-			--Projected finish date: 27/5/25 (Late May)
+		-Total (including menus): 32 days
+			--Projected finish date: 24/5/25 (Late May)
 
 Tutorial -  -add in NPCs (9 days)
 				--Dialogue system/trees (4 days)
@@ -28,9 +26,9 @@ Tutorial -  -add in NPCs (9 days)
 				--Character sheet/s (6 days)
 				--Inventory (6 days)
 			-area changing (4 days)
-			-multi-party member movement & cam locking (7 days)
-			-Total: 44 days
-				--Projected finish date: 10/6/25 (Early-Mid July)
+			-multi-party member movement & cam locking (8 days)
+			-Total: 45 days
+				--Projected finish date: 11/6/25 (Early-Mid July)
 			-Combat (lmao)
 			-Explain all this shit (LMFAOOOOO)
 

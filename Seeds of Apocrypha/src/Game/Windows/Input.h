@@ -36,7 +36,7 @@ namespace Input {
 	static BYTE prev_btns[256] = {};
 	static BYTE curr_btns[256] = {};
 
-	inline void Init(HWND hwnd, Vector2u res) { window = hwnd; resolution = res; }
+	void Init(HWND hwnd, Vector2u res);
 	void Update();
 	bool BtnDown(int btn);
 	bool BtnPressed(int btn);

@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include "Scene.h"
 /*
 #include "../Entities/UI/Button.h"
 #include "../Entities/UI/Slider.h"
@@ -8,9 +7,11 @@
 */
 
 Menu::Menu(Game& g, Scene& s, const Menus init_label) :
-            game(g), scene(s), label(init_label), menu_text(game.default_font.get()), sup_text(game.default_font) {
-    
-    //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there
+            game(g), scene(s), label(init_label) {
+
+    //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there - Menu just doesn't seem to interface with game very well?
+    menu_text = make_u<Text>(game.default_font.get());
+    sup_text = make_u<Text>(game.default_font.get());
     res_scalar = game.GetResScale();
     style_size = res_scalar * 14;
     ui_size = { res_scalar };
@@ -18,11 +19,11 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
     Text::Info* sti = &sup_text->info;
 
     //Menu and Supp text variables
-    uint m_t_size = res_scalar * 36;
+    uint m_t_size = res_scalar * 4;
     Vector2i m_t_pos = { 0, 0 };
     string m_t_str = "MENU DEFAULT";
-    uint s_t_size = res_scalar * 24;
-    Vector2i s_t_pos = { 0, 0 };
+    uint s_t_size = res_scalar;
+    Vector2i s_t_pos = { 0, 500 };
     string s_t_str = "SUPPLEMENTARY DEFAULT";
     float s_t_str_max_w = -1;
     
@@ -463,6 +464,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
     if (s_t_str_max_w != -1)
         sti->max_width = s_t_str_max_w;
 
+    open = true;
+
     //Add our UI elements to the scene entities vector
     //for (const auto& ui : ui_elems)
       //  scene.AddEntity(ui.second);
@@ -471,7 +474,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 void Menu::Update() {
     if (open) {
         Vector2i m_t_pos = { 0, 0 };
-        Vector2i s_t_pos = { 0, 0 };
+        Vector2i s_t_pos = { 500, 0 };
         Vector2i elem_pos = { 0, 0 };
         uint elem_y_buffer = 0;
         /*

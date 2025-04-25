@@ -14,7 +14,7 @@ Game::Game(const char* title, uint init_fps) :
     resolution = min_res*2;
     window = make_u<Window_Windows>(1, "Seeds of Apocrypha", resolution); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
     resolution = window->WinSize();
-    SetCursor(nullptr);
+    cout << resolution << endl;
 
     //Initialize the renderer
     renderer = make_u<Renderer_D2D>(window->GetHandle());
@@ -24,6 +24,7 @@ Game::Game(const char* title, uint init_fps) :
 
     //Load the default font
     default_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
+    debug_txt = make_u<Text>(default_font.get());
 
     //Initialize the camera
     //camera.setSize(Vector2f(window.getSize()));
@@ -39,12 +40,11 @@ Game::Game(const char* title, uint init_fps) :
     scenes.insert(make_pair(Scenes::TITLE, title_scene));
     scenes.insert(make_pair(Scenes::CUTSCENE, cutscene_scene));
     scenes.insert(make_pair(Scenes::AREA, area_scene));
-    SetScene(Scenes::TITLE);
 
     //Initialize cursor
     //Cursor sprite info
     Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x;
-    cursor = make_u<Sprite_D2D>("assets/Sprites/Cursors/Default", renderer->GetRT(), csi);
+    cursor = make_u<Sprite_D2D>("assets/Sprites/Cursors/Default", renderer->GetDC(), csi);
 }
 
 void Game::Run() {
@@ -98,14 +98,19 @@ void Game::Update() {
     //Update cursor position
     cursor->MoveTo(Input::MousePos());
 
+    //Open the Title scene
+    auto a_s = active_scene.lock();
+    if (!a_s)
+        SetScene(Scenes::TITLE);
+
     //Close the old scene if needed
     if (auto old_scn = old_scene.lock()) {
         old_scn->Open(false);
         old_scene.reset();
     }
 
-    auto scene = active_scene.lock();
-    scene->Update();
+    if (auto scene = active_scene.lock())
+        scene->Update();
 }
 
 //Draw the game world
@@ -113,15 +118,14 @@ void Game::Render() {
     
     renderer->BeginFrame(); //This also clears the frame
 
-    /*
+    //renderer->DrawTxt(*debug_txt);
+
     if (auto scene = active_scene.lock())
         scene->Draw();
     else
         cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
-    */
 
     renderer->DrawSprite(*cursor);
-
     renderer->EndFrame();
 }
 

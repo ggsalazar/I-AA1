@@ -20,7 +20,7 @@ public:
     void OpenSM(const Menus s_m);
 
     //UI Elements
-    void AddUIElem(const shared_ptr<UI> new_elem);
+    void AddUIElem(const s_ptr<UI> new_elem);
     void RemoveUIElem(const UIElems ui);
     bool CheckUIElem(const UIElems ui);
     bool GetUIElemActive(const UIElems ui);
@@ -37,8 +37,8 @@ protected:
     uint res_scalar;
     uint style_size;
 
-    unordered_map<Menus, unique_ptr<Menu>> sub_menus;
-    unordered_map<UIElems, shared_ptr<UI>> ui_elems;
+    unordered_map<Menus, u_ptr<Menu>> sub_menus;
+    unordered_map<UIElems, s_ptr<UI>> ui_elems;
     Vector2f ui_ori = { .5f, .5f };
     Vector2u ui_size = { 1, 1 };
 

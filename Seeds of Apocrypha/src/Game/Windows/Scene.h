@@ -1,10 +1,9 @@
 #pragma once
 #include <vector>
 #include "Game.h" //Includes all engine stuff
+#include "Menu.h"
 //#include "TileMap.h"
 
-//Forward declarations
-class Menu;
 class PartyMember;
 
 class Scene {
@@ -54,7 +53,7 @@ private:
 
     //TileMap tilemap;
 
-    //unordered_map<Menus, unique_ptr<Menu>> menus;
+    unordered_map<Menus, u_ptr<Menu>> menus;
     vector<shared_ptr<Entity>> entities;
     vector<shared_ptr<PartyMember>> party_mems;
 
