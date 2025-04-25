@@ -1,4 +1,5 @@
-Left off: -Implement menus (8 days)
+Left off:	-Fix the text positioning bullshit
+			-Implement menus (8 days)
 				--Draw buttons (1 day)
 				--Functionality (5 days)
 					---CharCrea (1 day)

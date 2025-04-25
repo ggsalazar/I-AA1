@@ -14,7 +14,6 @@ Game::Game(const char* title, uint init_fps) :
     resolution = min_res*2;
     window = make_u<Window_Windows>(1, "Seeds of Apocrypha", resolution); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
     resolution = window->WinSize();
-    cout << resolution << endl;
 
     //Initialize the renderer
     renderer = make_u<Renderer_D2D>(window->GetHandle());
@@ -25,7 +24,8 @@ Game::Game(const char* title, uint init_fps) :
     //Load the default font
     default_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
     debug_txt = make_u<Text>(default_font.get());
-
+    //debug_txt->info.origin = { .5 };
+    debug_txt->info.pos = { 10 };
     //Initialize the camera
     //camera.setSize(Vector2f(window.getSize()));
     //View is set in Scene.cpp
@@ -118,12 +118,14 @@ void Game::Render() {
     
     renderer->BeginFrame(); //This also clears the frame
 
-    //renderer->DrawTxt(*debug_txt);
 
-    if (auto scene = active_scene.lock())
-        scene->Draw();
-    else
-        cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
+    //renderer->DrawCircle(debug_txt->pos_debug);
+    renderer->DrawTxt(*debug_txt);
+
+    //if (auto scene = active_scene.lock())
+        //scene->Draw();
+    //else
+       // cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
 
     renderer->DrawSprite(*cursor);
     renderer->EndFrame();
