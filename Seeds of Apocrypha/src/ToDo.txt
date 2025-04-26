@@ -1,4 +1,4 @@
-Left off:	-Fix the text positioning bullshit
+Left off:	-Fix the text (& sprite?) positioning bullshit
 			-Implement menus (8 days)
 				--Draw buttons (1 day)
 				--Functionality (5 days)
