@@ -9,20 +9,23 @@
 Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             game(g), scene(s), label(init_label) {
 
-    //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there - Menu just doesn't seem to interface with game very well?
+    //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there - Menu just doesn't seem to interface with Game very well?
     menu_text = make_u<Text>(game.default_font.get());
     sup_text = make_u<Text>(game.default_font.get());
     res_scalar = game.GetResScale();
-    style_size = res_scalar * 14;
+    style_size = res_scalar * 24;
     ui_size = { res_scalar };
     Text::Info* mti = &menu_text->info;
     Text::Info* sti = &sup_text->info;
 
     //Menu and Supp text variables
-    uint m_t_size = res_scalar * 4;
+    uint m_t_size = res_scalar * 48;
+    menu_text->SetOrigin();
     Vector2i m_t_pos = { 0, 0 };
     string m_t_str = "MENU DEFAULT";
-    uint s_t_size = res_scalar;
+
+    uint s_t_size = res_scalar*36;
+    sup_text->SetOrigin();
     Vector2i s_t_pos = { 0, 500 };
     string s_t_str = "SUPPLEMENTARY DEFAULT";
     float s_t_str_max_w = -1;
@@ -31,9 +34,10 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
     Vector2i elem_pos = { 0, 0 };
     float elem_y_buffer = 0;
 
-    /*
+    
     //What we do depends on our label
     switch (label) {
+        /*
         //Menus
         case Menus::CHARCREA: {
             m_t_size = res_scalar * 24; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .1); m_t_str = "Create Your Party";
@@ -271,14 +275,14 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             break;
         }
         //End of CC Sub-Menus
-
+        */
         case Menus::MAIN: {
             m_t_size = res_scalar * 36; m_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .15); m_t_str = "Seeds of Apocrypha";
             s_t_size = res_scalar * 24; s_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .225); s_t_str = "An Iron & Aether Adventure";
 
             Vector2i btn_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .4);
             float b_y_buffer = game.GetResolution().y * .1;
-
+            /*
             auto btn = make_s<Button>(
                 Engine{ game, window, &scene }, *this,
                 AnimInfo{ "UI/Button", 93, 26 },
@@ -324,10 +328,10 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
                 Animation::Transform{ Vector2i(game.GetResolution().x*.75, game.GetResolution().y*.5), ui_ori, ui_size},
                 UI::Style{ UIElems::DEBUG_ROOM, style_size });
             ui_elems.insert(make_pair(UIElems::DEBUG_ROOM, btn));
-
+            */
             break;
         }
-
+        /*
         case Menus::OPTIONS: {
             m_t_size = res_scalar * 36; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .15); m_t_str = "Seeds of Apocrypha";
             s_t_size = res_scalar * 24; s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); s_t_str = "Options";
@@ -455,16 +459,14 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             ui_elems.insert({ UIElems::QUIT, btn });
             break;
         }
+        */
     }
     
-    */
-    //Set our texts (not strictly necessary but keeping for now
-    mti->char_size = m_t_size; mti->pos = m_t_pos; mti->str = m_t_str;
-    sti->char_size = s_t_size; sti->pos = s_t_pos; sti->str = s_t_str; sup_text->SetOrigin({ .5f, .0f });
+    //Set our texts (not strictly necessary but keeping for now)
+    mti->char_size = m_t_size; menu_text->MoveTo(m_t_pos); mti->str = m_t_str; mti->max_width = game.GetResolution().x;
+    sti->char_size = s_t_size; sup_text->MoveTo(s_t_pos); sti->str = s_t_str; sup_text->SetOrigin({ .5f, .0f }); sti->max_width = game.GetResolution().x;
     if (s_t_str_max_w != -1)
         sti->max_width = s_t_str_max_w;
-
-    open = true;
 
     //Add our UI elements to the scene entities vector
     //for (const auto& ui : ui_elems)

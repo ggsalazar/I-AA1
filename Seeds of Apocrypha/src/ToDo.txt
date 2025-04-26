@@ -1,6 +1,6 @@
-Left off:	-Fix the text (& sprite?) positioning bullshit
-			-Implement menus (8 days)
-				--Draw buttons (1 day)
+Left off:	-Implement menus (9 days)
+				--Draw buttons (2 days)
+					---Implement Entities/UI
 				--Functionality (5 days)
 					---CharCrea (1 day)
 					---Options (3 days)

@@ -24,8 +24,7 @@ Game::Game(const char* title, uint init_fps) :
     //Load the default font
     default_font = make_u<Font_D2D>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
     debug_txt = make_u<Text>(default_font.get());
-    //debug_txt->info.origin = { .5 };
-    debug_txt->info.pos = { 10 };
+    
     //Initialize the camera
     //camera.setSize(Vector2f(window.getSize()));
     //View is set in Scene.cpp
@@ -118,14 +117,10 @@ void Game::Render() {
     
     renderer->BeginFrame(); //This also clears the frame
 
-
-    //renderer->DrawCircle(debug_txt->pos_debug);
-    renderer->DrawTxt(*debug_txt);
-
-    //if (auto scene = active_scene.lock())
-        //scene->Draw();
-    //else
-       // cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
+    if (auto scene = active_scene.lock())
+        scene->Draw();
+    else
+        cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
 
     renderer->DrawSprite(*cursor);
     renderer->EndFrame();

@@ -30,10 +30,7 @@ bool Window_Windows::Create(const char* title, Vector2u size) {
 	monitor = monitor >= monitors.size() ? 0 : monitor;
 	RECT r = monitors[monitor].rect;
 
-	HMONITOR hm = MonitorFromRect(&r, MONITOR_DEFAULTTONEAREST);
-	UINT dpi_x = 0, dpi_y = 0;
-	GetDpiForMonitor(hm, MDT_EFFECTIVE_DPI, &dpi_x, &dpi_y);
-	float dpi_scale = dpi_x / 96;
+	
 
 	//Default to fullscreen
 	if (size == Vector2u{0, 0})

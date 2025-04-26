@@ -61,17 +61,17 @@ Renderer_D2D::Renderer_D2D(void* window_handle)	{
 	device_context->SetAntialiasMode(D2D1_ANTIALIAS_MODE_ALIASED);
 	device_context->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_ALIASED);
 
-	//Set DPI scale
-	FLOAT dpi_x, dpi_y;
-	device_context->GetDpi(&dpi_x, &dpi_y);
-	scale_factor = dpi_x / 96.f;
+	//Get the scale factor
+	scale_factor = GetDpiForWindow(hwnd) / 96.f;
 }
 
 void Renderer_D2D::DrawSheet(const Sprite& sheet, const Vector2i& pos) {
 	const Sprite_D2D* sheetd2d = static_cast<const Sprite_D2D*>(&sheet);
 
-	device_context->DrawBitmap(sheetd2d->GetBitmap(), D2D1::RectF(pos.x / scale_factor, pos.y / scale_factor,
-							  pos.x + sheet.GetSheetSize().x / scale_factor, pos.y + sheet.GetSheetSize().y / scale_factor));
+	D2D1_POINT_2F true_pos = D2D1::Point2F(pos.x / scale_factor, pos.y / scale_factor);
+
+	device_context->DrawBitmap(sheetd2d->GetBitmap(), D2D1::RectF(true_pos.x, true_pos.y,
+							  true_pos.x + sheet.GetSheetSize().x/scale_factor, true_pos.y + sheet.GetSheetSize().y/scale_factor));
 }
 
 void Renderer_D2D::DrawSprite(Sprite& spr) {
@@ -104,8 +104,7 @@ void Renderer_D2D::DrawSprite(Sprite& spr) {
 	//Set the scale
 	D2D1_MATRIX_3X2_F transform = D2D1::Matrix3x2F::Translation(draw_pos.x, draw_pos.y) *
 		D2D1::Matrix3x2F::Scale(
-			si->scale.x / scale_factor,
-			si->scale.y / scale_factor,
+			si->scale.x, si->scale.y,
 			draw_pos);
 
 	device_context->SetTransform(transform);
@@ -142,7 +141,7 @@ void Renderer_D2D::DrawTxt(Text& txt) {
 		text.c_str(),
 		static_cast<UINT32>(text.length()),
 		text_format,
-		ti->max_width/scale_factor, FLT_MAX/scale_factor,
+		ti->max_width / scale_factor, FLT_MAX / scale_factor,
 		&text_layout
 	);
 	if (FAILED(hr)) {
@@ -152,21 +151,13 @@ void Renderer_D2D::DrawTxt(Text& txt) {
 	DWRITE_TEXT_METRICS metrics;
 	text_layout->GetMetrics(&metrics);
 	ti->str_size = { (uint)round(metrics.width), (uint)round(metrics.height) };
-
 	//Adjust position for scale factor
-	D2D1_POINT_2F posd2d = D2D1::Point2F((ti->pos.x - (ti->str_size.x * ti->origin.x)) / scale_factor,
-										(ti->pos.y - (ti->str_size.y * ti->origin.y)) / scale_factor);
-
-
+	//D2D1_POINT_2F posd2d = D2D1::Point2F((ti->pos.x - (ti->str_size.x * ti->origin.x)) / scale_factor,
+	//									 (ti->pos.y - (ti->str_size.y * ti->origin.y)) / scale_factor);
+	D2D1_POINT_2F posd2d = D2D1::Point2F((ti->pos.x - (ti->str_size.x * ti->origin.x)),
+										 (ti->pos.y - (ti->str_size.y * ti->origin.y)));
 
 	//Set the scale
-	D2D1_MATRIX_3X2_F transform = D2D1::Matrix3x2F::Translation(posd2d.x, posd2d.y) *
-		D2D1::Matrix3x2F::Scale(
-			ti->char_size / scale_factor,
-			ti->char_size / scale_factor,
-			posd2d);
-
-	device_context->SetTransform(transform);
 	device_context->DrawTextLayout(posd2d, text_layout.Get(), brush.Get());
 }
 
@@ -180,15 +171,16 @@ void Renderer_D2D::DrawLine(const Line& line, const Color& color, const uint edg
 
 void Renderer_D2D::DrawCircle(const Circle& circle, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
 	//Adjusted position
-	D2D1_POINT_2F posd2d = D2D1::Point2F(circle.pos.x / scale_factor, circle.pos.y / scale_factor);
-	
+	D2D1_POINT_2F posd2d = D2D1::Point2F(circle.pos.x, circle.pos.y);
+	FLOAT true_rad = circle.r;
+
 	//Fill
 	brush->SetColor(D2D1::ColorF(fill_color.r, fill_color.g, fill_color.b)); brush->SetOpacity(fill_color.a);
-	device_context->FillEllipse(D2D1_ELLIPSE({ posd2d, circle.r / scale_factor, circle.r / scale_factor }), brush.Get());
+	device_context->FillEllipse(D2D1_ELLIPSE({ posd2d, true_rad, true_rad }), brush.Get());
 
 	//Stroke (we want it drawn on top of the fill)
 	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
-	device_context->DrawEllipse(D2D1_ELLIPSE({ posd2d, circle.r / scale_factor, circle.r / scale_factor }), brush.Get(), edge_w);
+	device_context->DrawEllipse(D2D1_ELLIPSE({ posd2d, true_rad, true_rad }), brush.Get(), edge_w);
 }
 
 void Renderer_D2D::DrawTri(const Tri& tri, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
@@ -214,15 +206,14 @@ void Renderer_D2D::DrawTri(const Tri& tri, const Color& stroke_color, const Colo
 }
 
 void Renderer_D2D::DrawRect(const Rect& rect, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
-	Vector2f true_pos = { rect.pos.x / scale_factor, rect.pos.y / scale_factor };
-	Vector2f true_pos2 = { (rect.pos.x + rect.size.x) / scale_factor, (rect.pos.y + rect.size.y) / scale_factor };
 
+	D2D1_POINT_2F posd2d = D2D1::Point2F(rect.pos.x / scale_factor, rect.pos.y / scale_factor);
 
 	//Fill
 	brush->SetColor(D2D1::ColorF(fill_color.r, fill_color.g, fill_color.b)); brush->SetOpacity(fill_color.a);
-	device_context->FillRectangle(D2D1::RectF(true_pos.x, true_pos.y, true_pos2.x, true_pos2.y), brush.Get());
+	device_context->FillRectangle(D2D1::RectF(posd2d.x, posd2d.y, (posd2d.x + rect.size.x / scale_factor), (posd2d.y + rect.size.y / scale_factor)), brush.Get());
 
 	//Stroke
 	brush->SetColor(D2D1::ColorF(stroke_color.r, stroke_color.g, stroke_color.b)); brush->SetOpacity(stroke_color.a);
-	device_context->DrawRectangle(D2D1::RectF(true_pos.x, true_pos.y, true_pos2.x, true_pos2.y), brush.Get(), edge_w);
+	device_context->DrawRectangle(D2D1::RectF(posd2d.x, posd2d.y, (posd2d.x + rect.size.x / scale_factor), (posd2d.y + rect.size.y / scale_factor)), brush.Get(), edge_w);
 }

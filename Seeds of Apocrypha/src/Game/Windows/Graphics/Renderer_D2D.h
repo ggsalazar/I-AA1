@@ -60,7 +60,6 @@ public:
 	
 private:
 	float scale_factor;
-
 	ComPtr<ID2D1Factory1> factory;
 	ComPtr<IDWriteFactory> dwrite_factory;
 	ComPtr<IWICBitmap> bitmap;
