@@ -42,6 +42,6 @@ namespace Input {
 	bool BtnPressed(int btn);
 	bool BtnReleased(int btn);
 
-	Vector2i MousePos();
+	Vector2f MousePos();
 };
 }

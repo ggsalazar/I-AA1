@@ -54,9 +54,9 @@ public:
 
 	//Shapes
 	void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2) override;
-	void DrawCircle(const Circle& circle, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
-	void DrawTri(const Tri& tri, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
-	void DrawRect(const Rect& rect, const Color& stroke_color = Color(1), const Color& fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
+	void DrawCircle(const Circle& circle, const Color& stroke_color = Color(1), Color fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
+	void DrawTri(const Tri& tri, const Color& stroke_color = Color(1), Color fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
+	void DrawRect(const Rect& rect, const Color& stroke_color = Color(1), Color fill_color = Color(0, 0, 0, 0), const uint edge_w = 2) override;
 	
 private:
 	float scale_factor;

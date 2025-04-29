@@ -14,11 +14,10 @@ class Sprite_D2D : public Engine::Sprite {
 public:
 
     //Don't forget to add Entity* when finished implementing!
-    //Sprite_D2D(unique_ptr<Spritesheet>& s, Entity* e, const Info& i = {}) :
-    Sprite_D2D(const string& f, ID2D1DeviceContext* d_c, const Info& i = {}) :
+    Sprite_D2D(ID2D1DeviceContext* d_c, const Info& i = {}) :
         Sprite(i), device_context(d_c) {
-        if (!LoadSheetFromFile(f))
-            throw runtime_error("Could not open Spritesheet " + f + "!");
+        if (!LoadSheetFromFile(info.sheet))
+            throw runtime_error("Could not open Spritesheet " + info.sheet + "!");
     }
 
     bool LoadSheetFromFile(const string& file) override {

@@ -169,7 +169,10 @@ void Renderer_D2D::DrawLine(const Line& line, const Color& color, const uint edg
 		brush.Get(), edge_w);
 }
 
-void Renderer_D2D::DrawCircle(const Circle& circle, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
+void Renderer_D2D::DrawCircle(const Circle& circle, const Color& stroke_color, Color fill_color, const uint edge_w) {
+	if (stroke_color.r != 1 or stroke_color.g != 1 or stroke_color.b != 1)
+		fill_color = stroke_color;
+	
 	//Adjusted position
 	D2D1_POINT_2F posd2d = D2D1::Point2F(circle.pos.x, circle.pos.y);
 	FLOAT true_rad = circle.r;
@@ -183,7 +186,10 @@ void Renderer_D2D::DrawCircle(const Circle& circle, const Color& stroke_color, c
 	device_context->DrawEllipse(D2D1_ELLIPSE({ posd2d, true_rad, true_rad }), brush.Get(), edge_w);
 }
 
-void Renderer_D2D::DrawTri(const Tri& tri, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
+void Renderer_D2D::DrawTri(const Tri& tri, const Color& stroke_color, Color fill_color, const uint edge_w) {
+	if (stroke_color.r != 1 or stroke_color.g != 1 or stroke_color.b != 1)
+		fill_color = stroke_color;
+
 	//Construct the triangle geometry
 	ComPtr<ID2D1PathGeometry> geometry;
 	ComPtr<ID2D1GeometrySink> sink;
@@ -205,7 +211,9 @@ void Renderer_D2D::DrawTri(const Tri& tri, const Color& stroke_color, const Colo
 	device_context->DrawGeometry(geometry.Get(), brush.Get(), edge_w);
 }
 
-void Renderer_D2D::DrawRect(const Rect& rect, const Color& stroke_color, const Color& fill_color, const uint edge_w) {
+void Renderer_D2D::DrawRect(const Rect& rect, const Color& stroke_color, Color fill_color, const uint edge_w) {
+	if (stroke_color.r != 1 or stroke_color.g != 1 or stroke_color.b != 1)
+		fill_color = stroke_color;
 
 	D2D1_POINT_2F posd2d = D2D1::Point2F(rect.pos.x / scale_factor, rect.pos.y / scale_factor);
 

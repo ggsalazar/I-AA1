@@ -5,7 +5,7 @@ namespace Engine {
 
 struct Color {
 	//Values between 0 and 1
-	float r{}, g{}, b{}, a{};
+	float r = 0.f, g = 0.f, b = 0.f, a = 0.f;
 
 	Color(float rgb) : r(rgb), g(rgb), b(rgb), a(1) {}
 	Color(float r, float g, float b) : r(r), g(g), b(b), a(1) {}
@@ -27,7 +27,7 @@ std::ostream& operator<<(std::ostream& os, const Line& l) { return os << "p1: " 
 
 struct Circle {
 	Vector2i pos;
-	float r;
+	float r = 0;
 
 	Circle() : pos({ 0, 0 }), r(0) {}
 	Circle(Vector2i p, float r) : pos(p), r(r) {}

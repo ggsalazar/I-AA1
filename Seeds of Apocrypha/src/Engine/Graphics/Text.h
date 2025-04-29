@@ -18,7 +18,7 @@ public:
         uint max_width = 1920;
         Color color{ 1 };
         Vector2f origin{}; //Use SetOrigin()
-        float rot;
+        float rot = 0.f;
     };
     Font* font; //Raw pointer is fine since Text doesn't own the font object
     Info info;

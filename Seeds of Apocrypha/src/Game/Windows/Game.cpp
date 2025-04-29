@@ -42,8 +42,8 @@ Game::Game(const char* title, uint init_fps) :
 
     //Initialize cursor
     //Cursor sprite info
-    Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x;
-    cursor = make_u<Sprite_D2D>("assets/Sprites/Cursors/Default", renderer->GetDC(), csi);
+    Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x; csi.sheet = "assets/Sprites/Cursors/Default";
+    cursor = make_u<Sprite_D2D>(renderer->GetDC(), csi);
 }
 
 void Game::Run() {
@@ -95,7 +95,7 @@ void Game::Update() {
     Input::Update();
 
     //Update cursor position
-    cursor->MoveTo(Input::MousePos());
+    cursor->MoveTo(Vector2i{ (int)Input::MousePos().x, (int)Input::MousePos().y});
 
     //Open the Title scene
     auto a_s = active_scene.lock();

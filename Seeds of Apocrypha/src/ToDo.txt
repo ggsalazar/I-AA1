@@ -1,6 +1,5 @@
 Left off:	-Implement menus (9 days)
 				--Draw buttons (2 days)
-					---Implement Entities/UI
 				--Functionality (5 days)
 					---CharCrea (1 day)
 					---Options (3 days)
@@ -14,9 +13,9 @@ Engine:	-Tilemapping (6 days)
 		-Music (4 days)
 		-SFX (2 days)
 		-Total (including menus): 32 days
-			--Projected finish date: 24/5/25 (Late May)
+			--Projected finish date: 31/5/25 (Late May/Early June)
 
-Tutorial -  -add in NPCs (9 days)
+Tutorial:  -Add in NPCs (9 days)
 				--Dialogue system/trees (4 days)
 				--Blacksmith (4 days)
 					---Shopping (after implementing inventory) (3 days)
@@ -29,7 +28,7 @@ Tutorial -  -add in NPCs (9 days)
 			-area changing (4 days)
 			-multi-party member movement & cam locking (8 days)
 			-Total: 45 days
-				--Projected finish date: 11/6/25 (Early-Mid July)
+				--Projected finish date: 20/6/25 (Mid-Late July)
 			-Combat (lmao)
 			-Explain all this shit (LMFAOOOOO)
 

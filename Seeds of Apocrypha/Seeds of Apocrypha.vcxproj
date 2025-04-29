@@ -142,6 +142,8 @@
   <ItemGroup>
     <ClCompile Include="src\Game\Windows\Entities\Entity.cpp" />
     <ClCompile Include="src\Engine\Graphics\Sprite.cpp" />
+    <ClCompile Include="src\Game\Windows\Entities\UI\Button.cpp" />
+    <ClCompile Include="src\Game\Windows\Entities\UI\UI.cpp" />
     <ClCompile Include="src\Game\Windows\Game.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontFileEnumerator.cpp" />
@@ -161,12 +163,14 @@
     <ClInclude Include="src\Engine\Core\Math.h" />
     <ClInclude Include="src\Engine\Engine.h" />
     <ClInclude Include="src\Engine\Core\Vector2.h" />
-    <ClInclude Include="src\Engine\Entities\Entity.h" />
+    <ClInclude Include="src\Engine\Core\Entity.h" />
     <ClInclude Include="src\Engine\Graphics\Font.h" />
     <ClInclude Include="src\Engine\Graphics\Renderer.h" />
     <ClInclude Include="src\Engine\Graphics\Sprite.h" />
     <ClInclude Include="src\Engine\Graphics\Text.h" />
     <ClInclude Include="src\Engine\Graphics\Window.h" />
+    <ClInclude Include="src\Game\Windows\Entities\UI\Button.h" />
+    <ClInclude Include="src\Game\Windows\Entities\UI\UI.h" />
     <ClInclude Include="src\Game\Windows\Game.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontFileEnumerator.h" />

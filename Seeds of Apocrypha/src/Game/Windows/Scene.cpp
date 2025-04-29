@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <nlohmann/json.hpp>
 #include "Scene.h"
-//#include "../Entities/UI/UI.h"
+#include "Entities/UI/UI.h"
 //#include "../Entities/Creatures/PartyMember.h"
 
 void Scene::GetInput() {
@@ -81,12 +81,12 @@ void Scene::Draw() {
 	//Then draw entities
 	for (auto& e : entities) {
 		//Only draw UI elements if the corresponding menu is open
-		//if (auto ui = dynamic_cast<UI*>(e.get())) {
-		//	if (ui->menu.GetOpen())
-			//	ui->Draw();
-		//}
-		//else
-			//e->Draw();
+		if (auto ui = dynamic_cast<UI*>(e.get())) {
+			if (ui->menu.GetOpen())
+				ui->Draw();
+		}
+		else
+			e->Draw();
 	}
 
 	//Draw the selection box

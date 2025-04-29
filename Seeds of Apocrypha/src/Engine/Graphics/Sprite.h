@@ -9,6 +9,7 @@ class Sprite {
     friend class Renderer;
 public:
     struct Info {
+        std::string sheet = "";
         Vector2i pos; //Worldspace position of the sprite
         Vector2f origin; //Anchor point of the sprite
         Vector2u spr_size; //The size of the sprite in world space (i.e. after being scaled up/down)
@@ -16,16 +17,16 @@ public:
         Vector2i scale{1}; //The scale of the sprite - int BECAUSE this is a pixel art game!
         Vector2u frame_size{1}; //The literal, actual size of a single frame of the sprite
         Color tint{ 1 }; //The color tint of the sprite
-        float rot{}; //Angle of rotation in degrees
-        uint sheet_row{}; //Which row of the sheet our current animation is on (each row should be a different animation)
-        uint num_frames{1}; //How many frames are in the CURRENT sheet row
-        uint curr_frame{}; //Which frame of the animation we are currently on
-        int anim_fps{}; //How many frames of the animation play per second
-        uint game_fps{60}; //The fps of the game
-        uint fci{}; //frame_change_interval: How many game frames until the next animation frame
-        float anim_length{}; //Length of the animation in seconds
-        float frame_length{}; //Length of a single frame in seconds
-        float frame_timer{}; //How long since the frame changed
+        float rot = 0.f; //Angle of rotation in degrees
+        uint sheet_row = 0; //Which row of the sheet our current animation is on (each row should be a different animation)
+        uint num_frames = 1; //How many frames are in the CURRENT sheet row
+        uint curr_frame = 0; //Which frame of the animation we are currently on
+        int anim_fps = 0; //How many frames of the animation play per second
+        uint game_fps = 60; //The fps of the game
+        uint fci = 0; //frame_change_interval: How many game frames until the next animation frame
+        float anim_length = 0.f; //Length of the animation in seconds
+        float frame_length = 0.f; //Length of a single frame in seconds
+        float frame_timer = 0.f; //How long since the frame changed
         int dfc = 0; //Distance from camera; draw order, basically - the lower the number, the closer to the camera
     };
     Circle pos_debug;
@@ -71,6 +72,7 @@ public:
     inline float GetRotR() const { return info.rot / 57.2958; }
     
     inline void SetColor(const Color& c) { info.tint = c; }
+    inline Color GetColor() const { return info.tint; }
 
     void SetSheetRow(uint new_s_r, const uint new_n_f = 0);
     inline uint GetSheetRow() const { return info.sheet_row; }

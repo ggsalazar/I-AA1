@@ -1,9 +1,10 @@
 #include "Menu.h"
+#include "Scene.h"
+#include "Entities/UI/Button.h"
 /*
-#include "../Entities/UI/Button.h"
-#include "../Entities/UI/Slider.h"
-#include "../Entities/UI/Picker.h"
-#include "../Entities/UI/Toggle.h"
+#include "Entities/UI/Slider.h"
+#include "Entities/UI/Picker.h"
+#include "Entities/UI/Toggle.h"
 */
 
 Menu::Menu(Game& g, Scene& s, const Menus init_label) :
@@ -277,58 +278,53 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         //End of CC Sub-Menus
         */
         case Menus::MAIN: {
-            m_t_size = res_scalar * 36; m_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .15); m_t_str = "Seeds of Apocrypha";
-            s_t_size = res_scalar * 24; s_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .225); s_t_str = "An Iron & Aether Adventure";
+            m_t_size = res_scalar * 36; m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); m_t_str = "Seeds of Apocrypha";
+            s_t_size = res_scalar * 24; s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .225f)); s_t_str = "An Iron & Aether Adventure";
 
-            Vector2i btn_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .4);
-            float b_y_buffer = game.GetResolution().y * .1;
-            /*
+            float b_y_buffer = round(game.GetResolution().y * .1f);
+            Sprite::Info btn_info = {}; btn_info.sheet = "assets/Sprites/UI/Button"; btn_info.frame_size = { 93, 26 }; btn_info.pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .4f));
+            btn_info.origin = ui_ori; btn_info.spr_size = ui_size;
+
             auto btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
+                game, &scene, *this,
+                btn_info,
                 UI::Style{ UIElems::CHARCREA, style_size });
             ui_elems.insert(make_pair(UIElems::CHARCREA, btn));
             
-            btn_pos.y += b_y_buffer;
+            btn_info.pos.y += b_y_buffer;
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
+                game, &scene, *this,
+                btn_info,
                 UI::Style{ UIElems::LOAD, style_size });
             ui_elems.insert(make_pair(UIElems::LOAD, btn));
             
-            btn_pos.y += b_y_buffer;
+            btn_info.pos.y += b_y_buffer;
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
+                game, &scene, *this,
+                btn_info,
                 UI::Style{ UIElems::TUTORIAL, style_size });
             ui_elems.insert(make_pair(UIElems::TUTORIAL, btn));
 
-            btn_pos.y += b_y_buffer;
+            btn_info.pos.y += b_y_buffer;
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
+                game, &scene, *this,
+                btn_info,
                 UI::Style{ UIElems::OPTIONS, style_size });
             ui_elems.insert(make_pair(UIElems::OPTIONS, btn));
             
-            btn_pos.y += b_y_buffer;
+            btn_info.pos.y += b_y_buffer;
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
+                game, &scene, *this,
+                btn_info,
                 UI::Style{ UIElems::QUIT, style_size });
             ui_elems.insert(make_pair(UIElems::QUIT, btn));
 
+            btn_info.pos = Vector2i(round(game.GetResolution().x * .75), round(game.GetResolution().y * .5));
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ Vector2i(game.GetResolution().x*.75, game.GetResolution().y*.5), ui_ori, ui_size},
+                game, &scene, *this,
+                btn_info,
                 UI::Style{ UIElems::DEBUG_ROOM, style_size });
             ui_elems.insert(make_pair(UIElems::DEBUG_ROOM, btn));
-            */
             break;
         }
         /*
@@ -469,8 +465,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         sti->max_width = s_t_str_max_w;
 
     //Add our UI elements to the scene entities vector
-    //for (const auto& ui : ui_elems)
-      //  scene.AddEntity(ui.second);
+    for (const auto& ui : ui_elems)
+        scene.AddEntity(ui.second);
 }
 
 void Menu::Update() {

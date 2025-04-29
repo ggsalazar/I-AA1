@@ -1,5 +1,4 @@
-#include "../Game.h"
-#include "../../../Engine/Entities/Entity.h"
+#include "../Game.h" //Includes Engine.h, which includes Entity.h
 
 #ifdef PlaySound
 #undef PlaySound
@@ -8,9 +7,11 @@
 //Needs to be part of the Engine namespace since it is the implementation of the base class, which is part of the Engine namespace
 namespace Engine {
 
-Entity::Entity(Game& g, Scene* s, const string& sheet, const Sprite::Info& s_i) :
-    game(g), scene(s), pos(s_i.pos), pos_debug(pos, 2),
-    /*sound(sb),*/ sprite(make_unique<Sprite_D2D>(sheet, game.renderer->GetDC(), s_i)) {
+Entity::Entity(Game& g, Scene* s, const Sprite::Info& s_i) :
+    game(g), scene(s), pos(s_i.pos), pos_debug(pos, 2) /*sound(sb)*/ {
+    
+
+    sprite = make_u<Sprite_D2D>(game.renderer->GetDC(), s_i);
     SetBBox();
 }
 
