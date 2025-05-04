@@ -16,7 +16,7 @@ public:
         Vector2u sheet_size; //The size of the sprite's spritesheet
         Vector2i scale{1}; //The scale of the sprite - int BECAUSE this is a pixel art game!
         Vector2u frame_size{1}; //The literal, actual size of a single frame of the sprite
-        Color tint{ 1 }; //The color tint of the sprite
+        Color tint{1}; //The color tint of the sprite
         float rot = 0.f; //Angle of rotation in degrees
         uint sheet_row = 0; //Which row of the sheet our current animation is on (each row should be a different animation)
         uint num_frames = 1; //How many frames are in the CURRENT sheet row
@@ -66,8 +66,10 @@ public:
     }
     inline Vector2i GetScale() const { return info.scale; }
 
+    //Rotation in degrees
     inline void SetRotD(float angle) { info.rot = angle; }
     inline float GetRotD() const { return info.rot; }
+    //Rotation in radians
     inline void SetRotR(float rad) { info.rot = rad * 57.2958; }
     inline float GetRotR() const { return info.rot / 57.2958; }
     

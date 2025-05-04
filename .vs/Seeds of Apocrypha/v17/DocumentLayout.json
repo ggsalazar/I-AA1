@@ -1,18 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\",
+  "WorkspaceRootPath": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\Game\\Windows\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\Game\\Windows\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\ToDo.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\ToDo.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Seeds of Apocrypha\\src\\ToDo.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Bugs.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Seeds of Apocrypha\\src\\Bugs.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,17 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "ToDo.txt",
-              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\ToDo.txt",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\ToDo.txt",
               "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\ToDo.txt",
-              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\ToDo.txt",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\ToDo.txt",
               "RelativeToolTip": "Seeds of Apocrypha\\src\\ToDo.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2025-02-03T02:02:40.282Z",
               "IsPinned": true,
@@ -40,28 +68,121 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Game.cpp",
-              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\Game\\Windows\\Game.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Game.cpp",
-              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\Game\\Windows\\Game.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Game.cpp",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAAABYAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-14T21:45:19.926Z",
+              "DocumentIndex": 9,
+              "Title": "Bugs.txt",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Bugs.txt",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Bugs.txt",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Bugs.txt",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Bugs.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-03-26T02:38:15.7Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-18T20:14:40.902Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Game.h",
-              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\Game\\Windows\\Game.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Game.h",
-              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Github\\I-AA1\\Seeds of Apocrypha\\src\\Game\\Windows\\Game.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Game.h",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-18T18:45:40.477Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Font_SDL.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-14T21:45:15.219Z",
+              "WhenOpened": "2025-05-04T00:49:01.487Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Renderer_SDL.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T02:32:55.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Window_SDL.cpp",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T02:30:45.487Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Window_SDL.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T02:30:28.387Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Sprite.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T00:58:12.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Sprite_SDL.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T00:34:18.259Z",
               "EditorCaption": ""
             }
           ]

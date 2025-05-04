@@ -1,106 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\",
+  "WorkspaceRootPath": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\ToDo.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\ToDo.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\UI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\UI\\UI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Enums.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Utils\\Enums.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Structure\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Structure\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Structure\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Structure\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Structure\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\ToDo.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Seeds of Apocrypha\\src\\ToDo.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Slider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\UI\\Slider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\UI\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Picker.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\UI\\Picker.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Structure\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Utils\\Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Utils\\Animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\UI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\UI\\UI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Picker.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\UI\\Picker.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\PartyMember.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\Creatures\\PartyMember.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Text.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Utils\\Text.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Text.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Utils\\Text.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Entity.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0BFE6A1-68C5-4739-AEF1-1C450C4EB4BC}|Seeds of Apocrypha\\Seeds of Apocrypha.vcxproj|solutionrelative:Seeds of Apocrypha\\src\\Entities\\Entity.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Bugs.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Seeds of Apocrypha\\src\\Bugs.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -110,17 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "ToDo.txt",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\ToDo.txt",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\ToDo.txt",
               "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\ToDo.txt",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\ToDo.txt",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\ToDo.txt",
               "RelativeToolTip": "Seeds of Apocrypha\\src\\ToDo.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2025-02-03T02:02:40.282Z",
               "IsPinned": true,
@@ -128,310 +68,122 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Game.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Game.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Structure\\Game.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Game.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Structure\\Game.h",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAADcAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-03T06:06:21.855Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Game.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Game.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Structure\\Game.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Game.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Structure\\Game.cpp",
-              "ViewState": "AgIAABMAAAAAAAAAAADwvx4AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-03T06:04:33.139Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Enums.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Enums.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Utils\\Enums.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Enums.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Utils\\Enums.h",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAAAIkAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-31T00:28:05.418Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Entity.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Entity.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\Entity.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Entity.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\Entity.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-07T00:57:53.257Z",
-              "EditorCaption": ""
+              "DocumentIndex": 9,
+              "Title": "Bugs.txt",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Bugs.txt",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Bugs.txt",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Bugs.txt",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Bugs.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-03-26T02:38:15.7Z",
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Menu.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Menu.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Structure\\Menu.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Menu.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Structure\\Menu.cpp",
-              "ViewState": "AgIAAEgAAAAAAAAAAADwv9UAAAA0AAAAAAAAAA==",
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-18T20:14:40.902Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Game\\Game.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-03T05:40:02.033Z",
+              "WhenOpened": "2025-04-18T18:45:40.477Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Menu.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Menu.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Structure\\Menu.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Menu.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Structure\\Menu.h",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACoAAAA1AAAAAAAAAA==",
+              "Title": "Font_SDL.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Font_SDL.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-03T05:40:01.276Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Slider.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Slider.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\UI\\Slider.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Slider.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\UI\\Slider.cpp",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAABUAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-04T02:28:54.569Z",
+              "WhenOpened": "2025-05-04T00:49:01.487Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UI.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\UI.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\UI\\UI.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\UI.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\UI\\UI.cpp",
-              "ViewState": "AgIAABgAAAAAAAAAAADwvyYAAAAgAAAAAAAAAA==",
+              "Title": "Renderer_SDL.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Renderer_SDL.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T02:32:55.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Window_SDL.cpp",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-03T06:00:18.67Z",
+              "WhenOpened": "2025-05-04T02:30:45.487Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Scene.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Scene.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Structure\\Scene.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Scene.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Structure\\Scene.cpp",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAACcAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-03T02:06:12.03Z",
+              "Title": "Window_SDL.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Window_SDL.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T02:30:28.387Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Button.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Button.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\UI\\Button.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Button.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\UI\\Button.cpp",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAiwEwAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-03T08:58:04.086Z",
+              "DocumentIndex": 7,
+              "Title": "Sprite.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Engine\\Graphics\\Sprite.h",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T00:58:12.765Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Picker.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Picker.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\UI\\Picker.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Picker.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\UI\\Picker.cpp",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACEAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-04T00:35:31.389Z",
+              "DocumentIndex": 2,
+              "Title": "Sprite_SDL.h",
+              "DocumentMoniker": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h",
+              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h",
+              "ToolTip": "C:\\Users\\Griffin G. Salazar\\Cpp Projects\\I\u0026AA1 - Seeds of Apocrypha\\Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h",
+              "RelativeToolTip": "Seeds of Apocrypha\\src\\Game\\Windows\\Graphics\\Sprite_SDL.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T00:34:18.259Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Scene.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Scene.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Structure\\Scene.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Structure\\Scene.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Structure\\Scene.h",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCcAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-04T06:40:37.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Animation.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Animation.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Utils\\Animation.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Animation.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Utils\\Animation.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-06T21:44:58.11Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Animation.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Animation.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Utils\\Animation.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Animation.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Utils\\Animation.h",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAADsAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-06T21:43:13.705Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "UI.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\UI.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\UI\\UI.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\UI.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\UI\\UI.h",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-03T06:19:57.737Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Creature.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.h",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAQwFYAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-03T06:09:14.133Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Toggle.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBIAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-04T02:31:32.622Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Picker.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Picker.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\UI\\Picker.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Picker.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\UI\\Picker.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-04T05:28:34.706Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Creature.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\Creatures\\Creature.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-04T07:11:22.343Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Toggle.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\UI\\Toggle.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-04T02:29:30.976Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Text.cpp",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Text.cpp",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Utils\\Text.cpp",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Text.cpp",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Utils\\Text.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-04T00:51:39.753Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Text.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Text.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Utils\\Text.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Utils\\Text.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Utils\\Text.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAB5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-04T00:50:24.746Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "PartyMember.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\PartyMember.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\Creatures\\PartyMember.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Creatures\\PartyMember.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\Creatures\\PartyMember.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-04T06:35:21.862Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Entity.h",
-              "DocumentMoniker": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Entity.h",
-              "RelativeDocumentMoniker": "Seeds of Apocrypha\\src\\Entities\\Entity.h",
-              "ToolTip": "C:\\Users\\gturoci\\Documents\\Visual Studio 2022\\Projects\\Seeds of Apocrypha\\src\\Entities\\Entity.h",
-              "RelativeToolTip": "Seeds of Apocrypha\\src\\Entities\\Entity.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-03T06:08:42.531Z"
             }
           ]
         }

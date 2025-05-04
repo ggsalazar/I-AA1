@@ -15,46 +15,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\Game\Windows\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Core\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp">
+    <ClCompile Include="src\Game\Windows\Graphics\Renderer_SDL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp">
+    <ClCompile Include="src\Game\Windows\Graphics\Window_SDL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Windows\Game.cpp">
+    <ClCompile Include="src\Game\Windows\Game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Graphics\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Windows\Graphics\Fonts\Font_D2D.cpp">
+    <ClCompile Include="src\Game\Windows\Graphics\Font_SDL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontFileEnumerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game\Windows\Input.cpp">
+    <ClCompile Include="src\Game\Windows\Game\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Windows\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Windows\Scene.cpp">
+    <ClCompile Include="src\Game\Windows\Game\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Windows\Menu.cpp">
+    <ClCompile Include="src\Game\Windows\Game\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Windows\Entities\UI\UI.cpp">
@@ -89,16 +80,16 @@
     <ClInclude Include="src\Engine\Graphics\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Graphics\Window_Windows.h">
+    <ClInclude Include="src\Game\Windows\Graphics\Window_SDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Graphics\Renderer_D2D.h">
+    <ClInclude Include="src\Game\Windows\Graphics\Renderer_SDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Graphics\Sprite_D2D.h">
+    <ClInclude Include="src\Game\Windows\Graphics\Sprite_SDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Game.h">
+    <ClInclude Include="src\Game\Windows\Game\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Core\Collision.h">
@@ -110,28 +101,19 @@
     <ClInclude Include="src\Engine\Graphics\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Graphics\Fonts\Font_D2D.h">
+    <ClInclude Include="src\Game\Windows\Graphics\Font_SDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontFileEnumerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game\Windows\Input.h">
+    <ClInclude Include="src\Game\Windows\Game\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Core\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Scene.h">
+    <ClInclude Include="src\Game\Windows\Game\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\Windows\Menu.h">
+    <ClInclude Include="src\Game\Windows\Game\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Game\Windows\Entities\UI\UI.h">

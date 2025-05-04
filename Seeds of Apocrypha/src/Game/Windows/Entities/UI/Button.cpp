@@ -8,7 +8,7 @@ void Button::Draw() {
 
     Entity::Draw();
 
-    game.renderer->DrawTxt(*label);
+    game.renderer->DrawText(*label);
 }
 
 void Button::Move() {

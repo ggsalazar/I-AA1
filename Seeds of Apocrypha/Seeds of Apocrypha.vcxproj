@@ -110,14 +110,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libs\SDL3\SDL3_image\include\SDL3_image;C:\libs\SDL3\SDL-3.2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d2d1.lib;d3d11.lib;dxgi.lib;dxguid.lib;dwrite.lib;windowscodecs.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libs\SDL3\SDL3_image\lib\x64;C:\libs\SDL3\SDL-3.2.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3.lib;SDL3_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,17 +144,14 @@
     <ClCompile Include="src\Engine\Graphics\Sprite.cpp" />
     <ClCompile Include="src\Game\Windows\Entities\UI\Button.cpp" />
     <ClCompile Include="src\Game\Windows\Entities\UI\UI.cpp" />
-    <ClCompile Include="src\Game\Windows\Game.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontFileEnumerator.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Fonts\CustomFontLoader.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Fonts\Font_D2D.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Renderer_D2D.cpp" />
-    <ClCompile Include="src\Game\Windows\Graphics\Window_Windows.cpp" />
-    <ClCompile Include="src\Game\Windows\Input.cpp" />
-    <ClCompile Include="src\Game\Windows\Menu.cpp" />
-    <ClCompile Include="src\Game\Windows\Scene.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Game\Windows\Game\Game.cpp" />
+    <ClCompile Include="src\Game\Windows\Graphics\Font_SDL.cpp" />
+    <ClCompile Include="src\Game\Windows\Graphics\Renderer_SDL.cpp" />
+    <ClCompile Include="src\Game\Windows\Graphics\Window_SDL.cpp" />
+    <ClCompile Include="src\Game\Windows\Game\Input.cpp" />
+    <ClCompile Include="src\Game\Windows\Game\Menu.cpp" />
+    <ClCompile Include="src\Game\Windows\Game\Scene.cpp" />
+    <ClCompile Include="src\Game\Windows\main.cpp" />
     <ClCompile Include="src\Engine\Core\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,18 +168,15 @@
     <ClInclude Include="src\Engine\Graphics\Window.h" />
     <ClInclude Include="src\Game\Windows\Entities\UI\Button.h" />
     <ClInclude Include="src\Game\Windows\Entities\UI\UI.h" />
-    <ClInclude Include="src\Game\Windows\Game.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontCollectionLoader.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontFileEnumerator.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Fonts\CustomFontLoader.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Fonts\Font_D2D.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Renderer_D2D.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Sprite_D2D.h" />
-    <ClInclude Include="src\Game\Windows\Graphics\Window_Windows.h" />
+    <ClInclude Include="src\Game\Windows\Game\Game.h" />
+    <ClInclude Include="src\Game\Windows\Graphics\Font_SDL.h" />
+    <ClInclude Include="src\Game\Windows\Graphics\Renderer_SDL.h" />
+    <ClInclude Include="src\Game\Windows\Graphics\Sprite_SDL.h" />
+    <ClInclude Include="src\Game\Windows\Graphics\Window_SDL.h" />
     <ClInclude Include="src\Engine\Core\Enums.h" />
-    <ClInclude Include="src\Game\Windows\Input.h" />
-    <ClInclude Include="src\Game\Windows\Menu.h" />
-    <ClInclude Include="src\Game\Windows\Scene.h" />
+    <ClInclude Include="src\Game\Windows\Game\Input.h" />
+    <ClInclude Include="src\Game\Windows\Game\Menu.h" />
+    <ClInclude Include="src\Game\Windows\Game\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
