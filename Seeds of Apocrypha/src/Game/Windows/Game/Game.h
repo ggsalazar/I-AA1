@@ -2,9 +2,9 @@
 #include <iostream>
 #include <chrono>
 #include <unordered_map>
-#include "../../../Engine/Engine.h" //Includes <memory> and aliases for Engine and smart ptrs
-#include "../Graphics/Window_SDL.h"
-#include "../Graphics/Renderer_SDL.h" //Includes Sprite_SDL.h, Font_SDL.h, and Text.h
+#include "../../../Engine/Engine.h" //(<memory>, aliases for Engine and smart ptrs)
+#include "../Graphics/Window_SDL.h" //(<vector>, SDL_main.h, SDL_video.h)
+#include "../Graphics/Renderer_SDL.h" //(SDL.h, SDL_render, Sprite_SDL.h (SDL_image.h), Font_SDL.h, Text.h)
 #include "Input.h"
 
 using Clock = std::chrono::high_resolution_clock;
@@ -12,7 +12,7 @@ using Clock = std::chrono::high_resolution_clock;
 using namespace std;
 
 class Scene;
-class Font_SDL;
+class Font_SDL; //Needs to be here despite Font_SDL.h being included in Renderer_SDL.h?
 
 class Game {
 public:
@@ -45,12 +45,16 @@ public:
     s_ptr<Scene> area_scene;
 
     //Miscellaneous
-    u_ptr<Font_SDL> default_font;
+    u_ptr<Font_SDL> default_font48;
     u_ptr<Text> debug_txt;
     u_ptr<Sprite_SDL> cursor;
     Areas area = Areas::DEFAULT;
 
     Game(const char* title, uint init_fps);
+    ~Game() {
+        TTF_Quit();
+        SDL_Quit();
+    }
     
     //Engine-type stuff
     void Run();

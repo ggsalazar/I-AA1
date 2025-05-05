@@ -1,29 +1,29 @@
-#include "../Game.h" //Includes Engine.h, which includes Entity.h
+#include "../Game/Game.h" //Includes Engine.h, which includes Entity.h
 
-#ifdef PlaySound
 #undef PlaySound
-#endif
 
 //Needs to be part of the Engine namespace since it is the implementation of the base class, which is part of the Engine namespace
 namespace Engine {
 
-Entity::Entity(Game& g, Scene* s, const Sprite::Info& s_i) :
-    game(g), scene(s), pos(s_i.pos), pos_debug(pos, 2) /*sound(sb)*/ {
+    Entity::Entity(Game& g, Scene* s, const Sprite::Info& s_i) :
+        game(g), scene(s), pos(s_i.pos), pos_debug(pos, 2), bbox(pos, size) /*sound(sb)*/ {
     
 
-    sprite = make_u<Sprite_D2D>(game.renderer->GetDC(), s_i);
+    //sprite = make_u<Sprite_SDL>(game.renderer->GetRenderer(), s_i);
     SetBBox();
 }
 
 void Entity::SetBBox() {
-    pos_debug.pos = pos;
+    pos_debug.x = pos.x;
+    pos_debug.y = pos.y;
 
     size = sprite->GetSprSize();
 
     //bbox position will always be top left
-    bbox.pos = { (int)(pos.x - sprite->GetOrigin().x * size.x),
-                    (int)(pos.y - sprite->GetOrigin().y * size.y) };
-    bbox.size = size;
+    bbox.x = pos.x - sprite->GetOrigin().x * size.x;
+    bbox.y = pos.y - sprite->GetOrigin().y * size.y;
+    bbox.w = size.x;
+    bbox.h = size.y;
 }
 
 void Entity::Draw() {

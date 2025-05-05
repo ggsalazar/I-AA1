@@ -3,8 +3,6 @@
 #include "Sprite.h" //Just trust that this needs to be here
 #include "Text.h"
 
-#undef DrawText
-
 namespace Engine {
 class Renderer {
 public:
@@ -13,13 +11,12 @@ public:
 	//Functionality
 	virtual void BeginFrame() = 0;
 	virtual void EndFrame() = 0;
-	virtual void Clear(float r, float g, float b, float a) = 0;
 
 	//Sprites
 	virtual void DrawSheet(const Sprite& sheet, const Vector2i& pos = { 0 }) = 0; //Helpful for debugging/seeing entire sheet
 	virtual void DrawSprite(Sprite& spr) = 0;
 	//Text
-	virtual void DrawText(Text& txt) = 0;
+	virtual void DrawTxt(Text& txt) = 0;
 
 	//Drawing shapes
 	virtual void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2) = 0;

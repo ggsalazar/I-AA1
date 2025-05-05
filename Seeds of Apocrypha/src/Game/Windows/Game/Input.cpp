@@ -40,7 +40,6 @@ bool Input::BtnReleased(int btn) {
 Vector2f Input::MousePos() {
 	POINT p;
 	GetCursorPos(&p);
-	ScreenToClient(window, &p);
 	return Vector2f(p.x, p.y);
 }
 

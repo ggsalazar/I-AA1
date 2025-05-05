@@ -6,6 +6,9 @@
 
 Game::Game(const char* title, uint init_fps) :
     fps(init_fps) {
+    //Initialize SDL
+    TTF_Init();
+
     //Delta time
     target_frame_time = 1.f / fps;
     last_time = Clock::now();
@@ -19,12 +22,12 @@ Game::Game(const char* title, uint init_fps) :
     renderer = make_u<Renderer_SDL>(window->GetWin());
 
     //Initialize the Input namespace
-    Input::Init(window->GetWin(), resolution);
+    //Input::Init(window->GetWin(), resolution);
 
     //Load the default font
-    default_font = make_u<Font_SDL>("assets/Fonts/m5x7", renderer->GetDWriteFactory());
-    debug_txt = make_u<Text>(default_font.get());
-    
+    default_font48 = make_u<Font_SDL>("assets/Fonts/m5x7");
+    debug_txt = make_u<Text>(default_font48.get());
+
     //Initialize the camera
     //camera.setSize(Vector2f(window.getSize()));
     //View is set in Scene.cpp
@@ -90,12 +93,12 @@ void Game::ProcessInput() {
 
 //Update the game world
 void Game::Update() {
-
+    /*
     //Reset our input variables
     Input::Update();
 
     //Update cursor position
-    cursor->MoveTo(Vector2i{ (int)Input::MousePos().x, (int)Input::MousePos().y});
+    //cursor->MoveTo(Vector2i{ (int)Input::MousePos().x, (int)Input::MousePos().y});
 
     //Open the Title scene
     auto a_s = active_scene.lock();
@@ -110,23 +113,28 @@ void Game::Update() {
 
     if (auto scene = active_scene.lock())
         scene->Update();
+        */
 }
 
 //Draw the game world
 void Game::Render() {
-    
-    renderer->BeginFrame(); //This also clears the frame
 
+    renderer->BeginFrame(); //This also clears the frame
+    /*
     if (auto scene = active_scene.lock())
         scene->Draw();
     else
-        cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
+        std::cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
+
+    */
 
     renderer->DrawSprite(*cursor);
+
     renderer->EndFrame();
 }
 
 void Game::SetScene(Scenes scn) {
+    /*
     if (scenes.find(scn) != scenes.end()) {
 
         old_scene = active_scene;
@@ -144,11 +152,12 @@ void Game::SetScene(Scenes scn) {
     }
     else
         cout << "That Scene does not exist!" << endl;
+        */
 }
 
 void Game::SetMusicVolume(float n_v) {
-    Math::Clamp(n_v, 0, 100);
-    music_volume = n_v;
+    //Math::Clamp(n_v, 0, 100);
+    //music_volume = n_v;
     //dj.SetVolume(music_volume);
 }
 
@@ -163,6 +172,7 @@ void Game::SetSFXVolume(float n_v) {
 
 void Game::SetResolution(uint res_scalar) {
     //Minimum resolution is 640 x 360
+    /*
     if (res_scalar > 0) {
         Vector2u new_win_size = res_scalar * min_res;
         while (new_win_size.x > window->ScreenSize().x or new_win_size.y > window->ScreenSize().y) {
@@ -179,7 +189,6 @@ void Game::SetResolution(uint res_scalar) {
     window->Destroy();
     window->Create("Seeds of Apocrypha", resolution);
     /*
-    window.setVerticalSyncEnabled(true);
     camera.setSize(Vector2f(window.getSize()));
     camera.setCenter(Vector2f(window.getSize()) * .5f);
 
@@ -189,6 +198,7 @@ void Game::SetResolution(uint res_scalar) {
 }
 
 void Game::SetResolution(Vector2u n_r) {
+    /*
     if (n_r.x > 0 and n_r.y > 0) {
         n_r.x = n_r.x <= window->ScreenSize().x ? n_r.x : window->ScreenSize().x;
         n_r.y = n_r.y <= window->ScreenSize().y ? n_r.y : window->ScreenSize().y;
@@ -198,12 +208,12 @@ void Game::SetResolution(Vector2u n_r) {
         window->Destroy();
         window->Create("Seeds of Apocrypha", resolution);
         /*
-        window.setVerticalSyncEnabled(true);
         camera.setSize(Vector2f(window.getSize()));
         camera.setCenter(Vector2f(window.getSize()) * .5f);
      
         if (auto scene = active_scene.lock())
             scene->ResizeMenus();
-            */
+            
     }
+    */
 }

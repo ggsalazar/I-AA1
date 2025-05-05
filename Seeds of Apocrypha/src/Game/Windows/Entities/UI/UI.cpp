@@ -2,7 +2,7 @@
 
 UI::UI(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UI::Style& style,
     const uint init_ui_layer) :
-	Entity(g, s, s_i), menu(m), elem(style.elem), ui_layer(init_ui_layer), label(make_u<Text>(game.default_font.get())) {
+	Entity(g, s, s_i), menu(m), elem(style.elem), ui_layer(init_ui_layer), label(make_u<Text>(game.default_font36.get())) {
     
     //Label
     string l_str = "DEFAULT";
@@ -155,7 +155,6 @@ UI::UI(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UI::Style& sty
         break;
     }
 
-    label->info.char_size = style.font_size;
     label->info.pos = pos;
     label->info.str = l_str;
 
@@ -186,7 +185,7 @@ void UI::Resize(uint r_s) {
     //Set sprite w/h
     sprite->SetScale(Vector2i{ (int)r_s });
     //Adjust label size
-    label->info.char_size = r_s * 14;
+    //label->info.char_size = r_s * 14;
     //Label offset and position are handled in children
 }
 

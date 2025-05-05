@@ -1,6 +1,6 @@
 #include "Menu.h"
 #include "Scene.h"
-#include "Entities/UI/Button.h"
+#include "../Entities/UI/Button.h"
 /*
 #include "Entities/UI/Slider.h"
 #include "Entities/UI/Picker.h"
@@ -11,8 +11,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             game(g), scene(s), label(init_label) {
 
     //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there - Menu just doesn't seem to interface with Game very well?
-    menu_text = make_u<Text>(game.default_font.get());
-    sup_text = make_u<Text>(game.default_font.get());
+    menu_text = make_u<Text>(game.default_font36.get());
+    sup_text = make_u<Text>(game.default_font36.get());
     res_scalar = game.GetResScale();
     style_size = res_scalar * 24;
     ui_size = { res_scalar };
@@ -20,12 +20,10 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
     Text::Info* sti = &sup_text->info;
 
     //Menu and Supp text variables
-    uint m_t_size = res_scalar * 48;
     menu_text->SetOrigin();
     Vector2i m_t_pos = { 0, 0 };
     string m_t_str = "MENU DEFAULT";
 
-    uint s_t_size = res_scalar*36;
     sup_text->SetOrigin();
     Vector2i s_t_pos = { 0, 500 };
     string s_t_str = "SUPPLEMENTARY DEFAULT";
@@ -278,8 +276,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         //End of CC Sub-Menus
         */
         case Menus::MAIN: {
-            m_t_size = res_scalar * 36; m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); m_t_str = "Seeds of Apocrypha";
-            s_t_size = res_scalar * 24; s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .225f)); s_t_str = "An Iron & Aether Adventure";
+            m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); m_t_str = "Seeds of Apocrypha";
+            s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .225f)); s_t_str = "An Iron & Aether Adventure";
 
             float b_y_buffer = round(game.GetResolution().y * .1f);
             Sprite::Info btn_info = {}; btn_info.sheet = "assets/Sprites/UI/Button"; btn_info.frame_size = { 93, 26 }; btn_info.pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .4f));
@@ -459,8 +457,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
     }
     
     //Set our texts (not strictly necessary but keeping for now)
-    mti->char_size = m_t_size; menu_text->MoveTo(m_t_pos); mti->str = m_t_str; mti->max_width = game.GetResolution().x;
-    sti->char_size = s_t_size; sup_text->MoveTo(s_t_pos); sti->str = s_t_str; sup_text->SetOrigin({ .5f, .0f }); sti->max_width = game.GetResolution().x;
+    menu_text->MoveTo(m_t_pos); mti->str = m_t_str; mti->max_width = game.GetResolution().x;
+    sup_text->MoveTo(s_t_pos); sti->str = s_t_str; sup_text->SetOrigin({ .5f, .0f }); sti->max_width = game.GetResolution().x;
     if (s_t_str_max_w != -1)
         sti->max_width = s_t_str_max_w;
 
@@ -589,10 +587,8 @@ void Menu::Resize() {
         break;
     }
 
-    menu_text->info.char_size = new_m_t_size;
     menu_text->SetOrigin();
     menu_text->info.pos = new_m_t_pos;
-    sup_text->info.char_size = new_s_t_size;
     sup_text->SetOrigin({.5f, .0f});
     sup_text->info.pos = new_s_t_pos;
 

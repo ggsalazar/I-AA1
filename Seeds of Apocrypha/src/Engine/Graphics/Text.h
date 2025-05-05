@@ -13,7 +13,6 @@ public:
     struct Info {
         string str = "DEFAULT";
         Vector2i pos; //Use MoveTo()/MoveBy()
-        uint char_size = 36;
         Vector2u str_size;
         uint max_width = 1920;
         Color color{ 1 };
@@ -25,14 +24,11 @@ public:
     Circle pos_debug;
 
     Text(Font* f = nullptr, const Info& i = {}) :
-        font(f), info(i) {
-        pos_debug.pos = info.pos;
-        pos_debug.r = 2;
-    }
+        font(f), info(i), pos_debug(info.pos, 2) {}
     virtual ~Text() {}
 
-    inline void MoveTo(Vector2i new_pos) { info.pos = new_pos; pos_debug.pos = info.pos; }
-    inline void MoveBy(Vector2i offset) { info.pos += offset; pos_debug.pos = info.pos; }
+    inline void MoveTo(Vector2i new_pos) { info.pos = new_pos; pos_debug.x = info.pos.x; pos_debug.y = info.pos.y; }
+    inline void MoveBy(Vector2i offset) { info.pos += offset; pos_debug.x = info.pos.x; pos_debug.y = info.pos.y; }
 
     inline void SetOrigin(Vector2f ori = { .5f, .5f }) {
         if (ori.x < 0.f or 1.f < ori.x) ori.x = 0.f;

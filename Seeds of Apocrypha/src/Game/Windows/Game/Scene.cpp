@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <nlohmann/json.hpp>
 #include "Scene.h"
-#include "Entities/UI/UI.h"
+#include "../Entities/UI/UI.h"
 //#include "../Entities/Creatures/PartyMember.h"
 
 void Scene::GetInput() {

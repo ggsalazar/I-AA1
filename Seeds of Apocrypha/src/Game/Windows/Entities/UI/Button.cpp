@@ -1,6 +1,8 @@
 #include "Button.h"
 #include "Confirm.h"
-#include "../../Scene.h"
+#include "../../Game/Scene.h"
+
+
 
 void Button::Draw() {
     if (active and Selected())
@@ -8,7 +10,7 @@ void Button::Draw() {
 
     Entity::Draw();
 
-    game.renderer->DrawText(*label);
+    game.renderer->DrawTxt(*label);
 }
 
 void Button::Move() {

@@ -32,11 +32,9 @@ public:
     Circle pos_debug;
 
     Sprite(const Info& i = {}) :
-        info(i) {
+        info(i), pos_debug(info.pos, 2) {
         SetSize();
         SetAnimFPS(info.anim_fps);
-        pos_debug.pos = info.pos;
-        pos_debug.r = 2;
     }
     virtual ~Sprite() {}
 
@@ -44,7 +42,6 @@ public:
 
 
     //Spritesheet stuff
-    virtual bool LoadSheetFromFile(const std::string& file) = 0;
     inline Vector2u GetSheetSize() const { return info.sheet_size; }
 
     //Sprite proper stuff

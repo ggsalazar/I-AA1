@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Game.h" //Includes Engine.h, which includes Entity.h
-#include "../../Menu.h"
+#include "../../Game/Game.h" //Includes Engine.h, which includes Entity.h
+#include "../../Game/Menu.h"
 
 class UI : public Entity {
 public:

@@ -26,18 +26,17 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const Line& l) { return os << "p1: " << l.pos1 << " p2: " << l.pos2; }
 
 struct Circle {
-	Vector2i pos;
+	int x=0, y=0;
 	float r = 0;
 
-	Circle() : pos({ 0, 0 }), r(0) {}
-	Circle(Vector2i p, float r) : pos(p), r(r) {}
+	Circle(Vector2i p, float r) : x(p.x), y(p.y), r(r) {}
 
 	inline float Area() const { return r * r * 3.14159; }
 	inline float Circ() const { return 6.28318 * r; }
 };
 //ostream operator
 template <typename T>
-std::ostream& operator<<(std::ostream& os, const Circle& c) { return os << "Radius: " << c.r; }
+std::ostream& operator<<(std::ostream& os, const Circle& c) { return os << "Circle pos: " << Vector2i{c.x, c.y} << "; Radius: " << c.r; }
 
 struct Tri {
 	Vector2i pos1, pos2, pos3;
@@ -51,17 +50,16 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const Tri& t) { return os << "p1: " << t.pos1 << " p2: " << t.pos2 << " p3: " << t.pos3; }
 
 struct Rect {
-	Vector2i pos;
-	Vector2u size;
+	int x=0, y=0, w=0, h=0;
 
-	Rect() : pos(Vector2i{}), size(Vector2u{}) {}
-	Rect(Vector2i p, uint s) : pos(p), size({s,s}) {}
-	Rect(Vector2i p, Vector2u s) : pos(p), size(s) {}
+	Rect() = default;
+	Rect(Vector2i p, uint s) : x(p.x), y(p.y), w(s), h(s) {}
+	Rect(Vector2i p, Vector2u s) : x(p.x), y(p.y), w(s.x), h(s.y) {}
 
-	inline float Area() const { return size.x * size.y; }
+	inline float Area() const { return w * h; }
 };
 //ostream operator
 template <typename T>
-std::ostream& operator<<(std::ostream& os, const Rect& r) { return os << "pos: " << r.pos << " size: " << r.size; }
+std::ostream& operator<<(std::ostream& os, const Rect& r) { return os << "pos: " << Vector2i{r.x, r.y} << " size: " << Vector2i{r.w, r.h}; }
 
 }

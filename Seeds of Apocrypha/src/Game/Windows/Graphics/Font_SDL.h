@@ -1,24 +1,23 @@
 #pragma once
-#include <unordered_map>
+#define SDL_MAIN_HANDLED
+#include <filesystem>
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_render.h>
+#include <SDL3_ttf/SDL_ttf.h>
 #include "../../../Engine/Graphics/Font.h"
 
-using namespace std;
-
-class Font_D2D : public Font {
+class Font_SDL : public Font {
 public:
-	Font_D2D(const string& filepath, IDWriteFactory* f);
-	
-	inline IDWriteFactory* GetFactory() const { return factory.Get(); }
-	IDWriteTextFormat* GetFormat(const uint size);
-	inline IDWriteFontFace* GetFace() const { return font_face.Get(); }
-	inline IDWriteFontCollection* GetFCollection() const { return font_collection.Get(); }
+	Font_SDL(const std::string& path, uint size = 48) {
+		std::string path_ttf = path + ".ttf";
+		font = TTF_OpenFont(path_ttf.c_str(), size);
 
+		if (!font)
+			std::cout << "Could not load font from file: " << path << "! SDL Error: " << SDL_GetError() << "\n";
+	}
+	~Font_SDL() override {}
+	
+	inline TTF_Font* GetFont() const { if (font) return font; return nullptr; }
 private:
-	ComPtr<IDWriteFactory> factory;
-	wstring name;
-	std::unordered_map<uint, ComPtr<IDWriteTextFormat>> formats;
-	ComPtr<IDWriteFontFace> font_face;
-	ComPtr<IDWriteFontCollection> font_collection;
-	ComPtr<CustomFontLoader> font_loader;
-	ComPtr<CustomFontCollectionLoader> collection_loader;
+	TTF_Font* font;
 };

@@ -1,4 +1,0 @@
-Ideas to improve the engine or put into the sequel:
--Handle our own json
--Make our own Vector class
--Segregate tilemapping and pathfinding

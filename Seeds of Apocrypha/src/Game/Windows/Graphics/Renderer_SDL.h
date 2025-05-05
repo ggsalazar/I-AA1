@@ -1,25 +1,24 @@
 #pragma once
-#include <SDL.h>
-#include <SDL_render.h>
-#include "../../../Engine/Graphics/Renderer.h" //Includes Sprite.h and Text.h
-#include "Font_SDL.h" //Needs to be included or DrawText complains at me
+#define SDL_MAIN_HANDLED
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_render.h>
+#include "../../../Engine/Graphics/Renderer.h" //(Sprite.h, Text.h)
+#include "Font_SDL.h" //Needs to be included or DrawTxt complains at me?
 #include "Sprite_SDL.h"
-
-#undef DrawText
 
 using namespace Engine;
 
 class Renderer_SDL : public Renderer {
 public:
 	Renderer_SDL(SDL_Window* window);
-	~Renderer_SDL() override { SDL_DestroyRenderer(renderer); }
+	~Renderer_SDL() override {}
 
 	SDL_Renderer* GetRenderer() const { return renderer; }
 
 	//Functionality
 	inline void BeginFrame() override {
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	}
 	inline void EndFrame() override {
 		SDL_RenderPresent(renderer);
@@ -29,7 +28,7 @@ public:
 	void DrawSheet(const Sprite& sheet, const Vector2i& pos = { 0, 0 }) override;
 	void DrawSprite(Sprite& spr) override;
 	//Text
-	void DrawText(Text& txt) override;
+	void DrawTxt(Text& txt) override;
 
 	//Shapes
 	void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2) override;
@@ -40,4 +39,5 @@ public:
 private:
 	SDL_Renderer* renderer;
 	SDL_Surface* surface;
+	SDL_Texture* texture = nullptr;
 };

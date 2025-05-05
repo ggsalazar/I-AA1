@@ -1,7 +1,8 @@
 #pragma once
-#include <SDL.h>
-#include <SDL_main.h>
-#include <SDL_video.h>
+#define SDL_MAIN_HANDLED
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
+#include <SDL3/SDL_video.h>
 #include <vector>
 #include "../../../Engine/Graphics/Window.h"
 
@@ -10,7 +11,7 @@ public:
 	bool open = true;
 
 	Window_SDL(const char* title, Vector2u size = { 0, 0 });
-	~Window_SDL() { SDL_DestroyWindow(window); SDL_Quit(); }
+	~Window_SDL() {}
 
 	void PollEvents() override;
 
