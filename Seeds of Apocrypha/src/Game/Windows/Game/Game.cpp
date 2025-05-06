@@ -14,18 +14,21 @@ Game::Game(const char* title, uint init_fps) :
     last_time = Clock::now();
 
     //Initialize the window
-    resolution = min_res*2;
-    window = make_u<Window_SDL>("Seeds of Apocrypha", resolution); //1 for primary home monitor, 0 for secondary home monitor, defaults to fullscreen
+    resolution = min_res*3;
+    window = make_u<Window_SDL>("Seeds of Apocrypha", resolution);
     resolution = window->WinSize();
 
     //Initialize the renderer
     renderer = make_u<Renderer_SDL>(window->GetWin());
 
     //Initialize the Input namespace
-    //Input::Init(window->GetWin(), resolution);
+    Input::Init(window->GetWin(), resolution);
+    
 
     //Load the default font
     default_font48 = make_u<Font_SDL>("assets/Fonts/m5x7");
+    default_font72 = make_u<Font_SDL>("assets/Fonts/m5x7", 72);
+    default_font96 = make_u<Font_SDL>("assets/Fonts/m5x7", 96);
     debug_txt = make_u<Text>(default_font48.get());
 
     //Initialize the camera
@@ -47,6 +50,8 @@ Game::Game(const char* title, uint init_fps) :
     //Cursor sprite info
     Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x; csi.sheet = "assets/Sprites/Cursors/Default";
     cursor = make_u<Sprite_SDL>(renderer->GetRenderer(), csi);
+    //SDL_SetWindowRelativeMouseMode(); This will lock the cursor to the game window
+    SDL_HideCursor();
 }
 
 void Game::Run() {
@@ -66,6 +71,9 @@ void Game::Run() {
     //Handle events
     window->PollEvents();
     if (window->open) {
+        scene = active_scene.lock();
+        if (!scene) SetScene(Scenes::TITLE);
+
         //Process input
         ProcessInput();
         //Update the game world
@@ -83,50 +91,46 @@ void Game::Run() {
 
 //Process input
 void Game::ProcessInput() {
-    /*
-    if (auto scene = active_scene.lock())
+    //Reset our input variables
+    Input::Update();
+
+    //Get input for the active scene
+    if (scene)
         scene->GetInput();
     else
-        cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
-    */
+        cerr << "ERROR: ACTIVE SCENE NOT PROCESSING INPUT!\n";
+
+    //Update cursor position
+    cursor->MoveTo(Vector2i{ (int)Input::MousePos().x, (int)Input::MousePos().y });
 }
 
 //Update the game world
 void Game::Update() {
-    /*
-    //Reset our input variables
-    Input::Update();
 
-    //Update cursor position
-    //cursor->MoveTo(Vector2i{ (int)Input::MousePos().x, (int)Input::MousePos().y});
-
-    //Open the Title scene
-    auto a_s = active_scene.lock();
-    if (!a_s)
-        SetScene(Scenes::TITLE);
+    //Update the active scene
+    if (scene)
+        scene->Update();
+    else
+        cerr << "ERROR: ACTIVE SCENE NOT UPDATING!\n";
 
     //Close the old scene if needed
     if (auto old_scn = old_scene.lock()) {
         old_scn->Open(false);
         old_scene.reset();
     }
-
-    if (auto scene = active_scene.lock())
-        scene->Update();
-        */
 }
 
 //Draw the game world
 void Game::Render() {
 
     renderer->BeginFrame(); //This also clears the frame
-    /*
-    if (auto scene = active_scene.lock())
+
+    //Draw the current scene
+    if (scene)
         scene->Draw();
     else
-        std::cerr << "ERROR: ACTIVE SCENE NO LONGER VALID!" << endl;
+        cerr << "ERROR: ACTIVE SCENE NOT RENDERING!\n";
 
-    */
 
     renderer->DrawSprite(*cursor);
 
@@ -134,14 +138,14 @@ void Game::Render() {
 }
 
 void Game::SetScene(Scenes scn) {
-    /*
+    
     if (scenes.find(scn) != scenes.end()) {
 
         old_scene = active_scene;
 
         //Open the new scene
         active_scene = scenes[scn];
-        auto scene = active_scene.lock();
+        scene = active_scene.lock();
         if (auto o_scn = old_scene.lock()) {
             if (scene->label != Scenes::TITLE)
                 scene->SetPartyMems(o_scn->GetPartyMems());
@@ -151,23 +155,20 @@ void Game::SetScene(Scenes scn) {
         //Old scene *must* be closed next frame!
     }
     else
-        cout << "That Scene does not exist!" << endl;
-        */
+        cout << "That Scene does not exist!\n";
+        
 }
 
 void Game::SetMusicVolume(float n_v) {
-    //Math::Clamp(n_v, 0, 100);
-    //music_volume = n_v;
+    Math::Clamp(n_v, 0, 100);
+    music_volume = n_v;
     //dj.SetVolume(music_volume);
 }
 
 void Game::SetSFXVolume(float n_v) {
-    /*
     Math::Clamp(n_v, 0, 100);
     sfx_volume = n_v;
-    auto scene = active_scene.lock();
     scene->SetEntitySFXVolume(sfx_volume);
-    */
 }
 
 void Game::SetResolution(uint res_scalar) {

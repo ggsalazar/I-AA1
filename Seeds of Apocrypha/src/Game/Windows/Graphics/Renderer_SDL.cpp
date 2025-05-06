@@ -33,8 +33,8 @@ void Renderer_SDL::DrawSprite(Sprite& spr) {
 								 si->sheet_row * si->frame_size.y + si->frame_size.y };
 								 
 
-	const SDL_FRect dest_rect = { si->pos.x - (si->spr_size.x * si->origin.x),
-								  si->pos.y - (si->spr_size.y * si->origin.y),
+	const SDL_FRect dest_rect = { round(si->pos.x - (si->spr_size.x * si->origin.x)),
+								  round(si->pos.y - (si->spr_size.y * si->origin.y)),
 								  si->spr_size.x,
 								  si->spr_size.y};
 
@@ -71,8 +71,8 @@ void Renderer_SDL::DrawTxt(Text& txt) {
 
 	SDL_FRect src_rect = { 0, 0, surface->w, surface->h };
 	SDL_FRect dest_rect = {
-		(ti->pos.x - (ti->str_size.x * ti->origin.x)),
-		(ti->pos.y - (ti->str_size.y * ti->origin.y)),
+		round(ti->pos.x - (ti->str_size.x * ti->origin.x)),
+		round(ti->pos.y - (ti->str_size.y * ti->origin.y)),
 		static_cast<float>(surface->w),
 		static_cast<float>(surface->h)
 	};

@@ -49,8 +49,8 @@ void Scene::GetInput() {
 
 void Scene::Update() {
 	//Update menus
-	//for (auto& m : menus)
-	//	m.second->Update();
+	for (auto& m : menus)
+		m.second->Update();
 
 	//Update entities
 	for (auto& e : entities)
@@ -299,10 +299,9 @@ void Scene::Open(const bool o) {
 			//Clear out all pre-existing entities and party members (likely unnecessary but keeping around jic)
 			entities.clear();
 			party_mems.clear();
-			/*
-			game.camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
-			window.setView(game.camera);
-			*/
+			
+			//game.camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
+			//window.setView(game.camera);
 			auto menu = make_u<Menu>(game, *this, Menus::MAIN);
 			menu->Open();
 			menus.insert({ Menus::MAIN, move(menu) });
@@ -312,6 +311,7 @@ void Scene::Open(const bool o) {
 			menus.insert({ Menus::LOAD, move(menu) });
 			menu = make_u<Menu>(game, *this, Menus::OPTIONS);
 			menus.insert({ Menus::OPTIONS, move(menu) });
+			
 		}
 
 		else if (label == Scenes::AREA) {

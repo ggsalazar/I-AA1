@@ -141,7 +141,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Graphics\Sprite.cpp" />
+    <ClCompile Include="src\Game\Windows\Entities\Entity.cpp" />
     <ClCompile Include="src\Game\Windows\Game\Game.cpp" />
+    <ClCompile Include="src\Game\Windows\Game\Input.cpp" />
+    <ClCompile Include="src\Game\Windows\Game\Menu.cpp" />
+    <ClCompile Include="src\Game\Windows\Game\Scene.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Renderer_SDL.cpp" />
     <ClCompile Include="src\Game\Windows\Graphics\Window_SDL.cpp" />
     <ClCompile Include="src\Game\Windows\main.cpp" />
@@ -149,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Core\Collision.h" />
+    <ClInclude Include="src\Engine\Core\Entity.h" />
     <ClInclude Include="src\Engine\Core\Geometry.h" />
     <ClInclude Include="src\Engine\Core\Math.h" />
     <ClInclude Include="src\Engine\Engine.h" />
@@ -159,6 +164,9 @@
     <ClInclude Include="src\Engine\Graphics\Text.h" />
     <ClInclude Include="src\Engine\Graphics\Window.h" />
     <ClInclude Include="src\Game\Windows\Game\Game.h" />
+    <ClInclude Include="src\Game\Windows\Game\Input.h" />
+    <ClInclude Include="src\Game\Windows\Game\Menu.h" />
+    <ClInclude Include="src\Game\Windows\Game\Scene.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Font_SDL.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Renderer_SDL.h" />
     <ClInclude Include="src\Game\Windows\Graphics\Sprite_SDL.h" />

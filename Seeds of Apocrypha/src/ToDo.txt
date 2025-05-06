@@ -1,9 +1,4 @@
-Left off:	-Implementing SDL
-				--Reinstantiate in order:
-					---Input
-
-
--Implement menus (9 days)
+Left off:	-Implement menus (9 days)
 				--Draw buttons (2 days)
 				--Functionality (5 days)
 					---CharCrea (1 day)

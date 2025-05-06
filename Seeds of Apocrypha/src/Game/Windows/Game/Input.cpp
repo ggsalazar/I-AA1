@@ -38,9 +38,9 @@ bool Input::BtnReleased(int btn) {
 }
 
 Vector2f Input::MousePos() {
-	POINT p;
-	GetCursorPos(&p);
-	return Vector2f(p.x, p.y);
+	float x, y;
+	SDL_GetMouseState(&x, &y);
+	return Vector2f(x, y);
 }
 
 }

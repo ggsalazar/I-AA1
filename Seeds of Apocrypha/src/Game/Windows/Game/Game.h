@@ -39,6 +39,7 @@ public:
     //Scenes
     unordered_map<Scenes, s_ptr<Scene>> scenes;
     w_ptr<Scene> active_scene;
+    s_ptr<Scene> scene;
     w_ptr<Scene> old_scene;
     s_ptr<Scene> title_scene;
     s_ptr<Scene> cutscene_scene;
@@ -46,6 +47,8 @@ public:
 
     //Miscellaneous
     u_ptr<Font_SDL> default_font48;
+    u_ptr<Font_SDL> default_font72;
+    u_ptr<Font_SDL> default_font96;
     u_ptr<Text> debug_txt;
     u_ptr<Sprite_SDL> cursor;
     Areas area = Areas::DEFAULT;

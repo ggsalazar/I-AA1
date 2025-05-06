@@ -11,8 +11,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             game(g), scene(s), label(init_label) {
 
     //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there - Menu just doesn't seem to interface with Game very well?
-    menu_text = make_u<Text>(game.default_font36.get());
-    sup_text = make_u<Text>(game.default_font36.get());
+    menu_text = make_u<Text>(game.default_font72.get());
+    sup_text = make_u<Text>(game.default_font48.get());
     res_scalar = game.GetResScale();
     style_size = res_scalar * 24;
     ui_size = { res_scalar };
@@ -25,7 +25,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
     string m_t_str = "MENU DEFAULT";
 
     sup_text->SetOrigin();
-    Vector2i s_t_pos = { 0, 500 };
+    Vector2i s_t_pos = { 0, 0 };
     string s_t_str = "SUPPLEMENTARY DEFAULT";
     float s_t_str_max_w = -1;
     
@@ -276,13 +276,14 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         //End of CC Sub-Menus
         */
         case Menus::MAIN: {
-            m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); m_t_str = "Seeds of Apocrypha";
+            
+            m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); m_t_str = m_t_str = "Seeds of Apocrypha";
             s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .225f)); s_t_str = "An Iron & Aether Adventure";
 
             float b_y_buffer = round(game.GetResolution().y * .1f);
             Sprite::Info btn_info = {}; btn_info.sheet = "assets/Sprites/UI/Button"; btn_info.frame_size = { 93, 26 }; btn_info.pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .4f));
             btn_info.origin = ui_ori; btn_info.spr_size = ui_size;
-
+            /*
             auto btn = make_s<Button>(
                 game, &scene, *this,
                 btn_info,
@@ -324,6 +325,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
                 UI::Style{ UIElems::DEBUG_ROOM, style_size });
             ui_elems.insert(make_pair(UIElems::DEBUG_ROOM, btn));
             break;
+            */
         }
         /*
         case Menus::OPTIONS: {
@@ -546,7 +548,7 @@ void Menu::Open(const bool o) {
 void Menu::OpenSM(const Menus s_m) {
     if (sub_menus.count(s_m) > 0)
         sub_menus[s_m]->Open();
-    else cout << "That Sub-Menu does not exist in this Menu!" << endl;
+    else cout << "That Sub-Menu does not exist in this Menu!\n";
 }
 
 void Menu::Resize() {
