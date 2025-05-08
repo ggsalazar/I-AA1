@@ -1,0 +1,93 @@
+Left off:	-Implement menus (7 days)
+				--Functionality (5 days)
+					---CharCrea (1 day)
+					---Options (3 days)
+						----Set Volumes (1 day)
+						----Set Resolution (2 days)
+					---Tutorial (1 day)
+SDL:	Sprite Tinting (2 days)
+		-Tilemapping (6 days)
+		-Camera (5 days?)
+			--VSync (Done?)
+		-Music (4 days)
+		-SFX (2 days)
+		-Total (including menus): 32 days
+			--Projected finish date: 31/5/25 (Late May/Early June)
+
+Tutorial:  -Add in NPCs (9 days)
+				--Dialogue system/trees (4 days)
+				--Blacksmith (4 days)
+					---Shopping (after implementing inventory) (3 days)
+				--Quest Giver (1 day)
+			-Interfaces (24 days)
+				--Quest Journal (6 days)
+				--Map (6 days)
+				--Character sheet/s (6 days)
+				--Inventory (6 days)
+			-area changing (4 days)
+			-multi-party member movement & cam locking (8 days)
+			-Total: 45 days
+				--Projected finish date: 20/6/25 (Mid-Late July)
+			-Combat (lmao)
+			-Explain all this shit (LMFAOOOOO)
+
+General - Visual signifiers to show when an attack/action is at (dis)adv
+		- At some point going to have to adjust pathfinding to account for different elevations
+
+Main Menu
+	-Character creation
+		--In the middle, descriptive text of the thing being picked & the options the player can pick from
+		--Also in the middle(?), whatever sub-thing they are picking (aesthetics, features, skills, etc.)
+		--On the right, the character currently being made/characters already made
+		--Pre-Gen characters
+		--CreatePartyMember in Scene.cpp
+		--Automatic journalling
+		--Automatic dungeon mapping
+	-Continue/Load game
+		--Will require implementation of saving/loading
+Tutorial
+	-Town
+		--NPCs
+			---Blacksmith
+			---Troubled farmer
+	-Trow Mine
+		--Party Members
+			---Spark
+				----Outside the mine, scared to go in because of dead Trow
+				----Spells
+					-----Magic
+			---Essek
+				----Inside the mine, in a stalement with the last room of Trow
+		--Trow
+			---Melee
+				----AI
+				----2
+			---Ranged
+				----AI
+				----1
+In-game menus
+	-Interface sprite/bg
+	-Inventory
+	-Quest Journal
+	-Map
+	-Character Sheets
+	-How to arrange?
+
+Prologue
+	-Train
+		--Intro "Cutscene"
+		--NPCs
+		--Bad guys
+			---How many?
+			---Spacing?
+			---Boss?
+			---Motives?
+				----Connection to overarching plot?
+PartyMember
+	-SetPortraitPosition()
+
+Game starts on train! Train heist
+	-Establish magic and tech coexist, then illustrate that magic is going *wrong*, and how and why that's a problem
+	 all within first 1-2 hours! Then expand on those two things throughout the rest of the game
+
+Portraits - use a single texture that contains all portraits?
