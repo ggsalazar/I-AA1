@@ -1,2 +1,0 @@
-Yes/No buttons not removing elements like they should in character creation
-When going from Area scene to Title, game not always paused correctly; able to move when Options menu is open, for instance
