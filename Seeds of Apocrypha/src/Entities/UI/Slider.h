@@ -17,7 +17,7 @@ private:
     //Knob stuff
     u_ptr<Sprite> knob_spr;
     u_ptr<Text> knob_label;
-    uint knob_pos_max = 0;
-    uint knob_pos_min = 0;
-    uint knob_pos = 0;
+    int knob_pos_max = 0;
+    int knob_pos_min = 0;
+    int knob_pos = 0;
 };

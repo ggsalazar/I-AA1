@@ -1,8 +1,8 @@
 #include "Confirm.h"
 
-Confirm::Confirm(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UI::Style& style,
+Confirm::Confirm(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
     const string conf_str, const uint init_ui_layer) :
-    UI(e, m, a_i, t, style, init_ui_layer, init_dfc) {
+    UI(g, m, a_i, t, e, init_ui_layer) {
 
     uint scale = game.GetResScale();
     Text::Init(label, game.default_font, style.font_size, Vector2u(pos.x, pos.y - scale * 40), conf_str, {.5f, .5f}, 200*scale);

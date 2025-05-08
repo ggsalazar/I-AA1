@@ -1,18 +1,15 @@
-Left off:	-Implement menus (7 days)
+Left off:	-Implement Menus (7 days)
 				--Functionality (5 days)
 					---CharCrea (1 day)
 					---Options (3 days)
 						----Set Volumes (1 day)
 						----Set Resolution (2 days)
-					---Tutorial (1 day)
-SDL:	Sprite Tinting (2 days)
-		-Tilemapping (6 days)
+					---Tutorial + Debug Room (1 day)
+SDL:	-Tilemapping (6 days)
 		-Camera (5 days?)
 			--VSync (Done?)
-		-Music (4 days)
+		-Music (2 days)
 		-SFX (2 days)
-		-Total (including menus): 32 days
-			--Projected finish date: 31/5/25 (Late May/Early June)
 
 Tutorial:  -Add in NPCs (9 days)
 				--Dialogue system/trees (4 days)
@@ -24,12 +21,12 @@ Tutorial:  -Add in NPCs (9 days)
 				--Map (6 days)
 				--Character sheet/s (6 days)
 				--Inventory (6 days)
-			-area changing (4 days)
-			-multi-party member movement & cam locking (8 days)
+			-area changing (6 days)
+			-multi-party member movement & cam locking (14 days)
 			-Total: 45 days
-				--Projected finish date: 20/6/25 (Mid-Late July)
-			-Combat (lmao)
-			-Explain all this shit (LMFAOOOOO)
+				--Projected finish date: Late July
+			-Combat
+			-Explain all this shit
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations

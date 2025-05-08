@@ -5,8 +5,6 @@
 
 class UI : public Entity {
 public:
-    UIElems elem = UIElems::DEFAULT;
-
     Menu& menu;
     uint ui_layer;
     u_ptr<Text> label;

@@ -4,38 +4,36 @@
 
 class Picker : public UI {
 public:
-    Picker(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t = {}, const UI::Style& style = {},
-        const uint init_ui_layer = 0, const int init_dfc=0);
+    Picker(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+        const uint init_ui_layer = 0);
 
     void GetInput() override;
     void Draw() override;
     void MoveBy(Vector2i offset) override { Entity::MoveBy(offset); Move(); }
-    void MoveTo(Vector2u new_pos) override { Entity::MoveTo(new_pos); Move(); }
+    void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
     void SetPicking(const string new_p);
-    string GetPicking() { return picking.getString(); }
+    string GetPicking() { return picking->info.str; }
 
 private:
     //Variables
-    sf::FloatRect l_bbox;
-    sf::RectangleShape l_bbox_debug;
+    Rect l_bbox;
     bool l_primed = false;
-    sf::FloatRect r_bbox;
-    sf::RectangleShape r_bbox_debug;
+    Rect r_bbox;
     bool r_primed = false;
 
-    sf::Text picking;
+    u_ptr<Text> picking;
     vector<string> options;
     vector<string>::iterator option_picked;
 
     //Functions
-    void Move() override;
+    void Move();
 
-    bool LeftSelected(const Vector2u& mouse_pos) { return l_bbox.contains(Vector2f(mouse_pos)); }
+    bool LeftSelected() { return Collision::Point(Input::MousePos(), l_bbox); }
     void LeftPressed() { l_primed = true; }
     void LeftReleased();
 
-    bool RightSelected(const Vector2u& mouse_pos) { return r_bbox.contains(Vector2f(mouse_pos)); }
+    bool RightSelected() { return Collision::Point(Input::MousePos(), r_bbox); }
     void RightPressed() { r_primed = true; }
     void RightReleased();
 };

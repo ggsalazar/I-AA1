@@ -1,34 +1,32 @@
 #include "Toggle.h"
 
-Toggle::Toggle(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style,
-	const uint init_ui_layer, const int init_dfc) :
-	UI(e, m, a_i, t, style, init_ui_layer, init_dfc) {
+Toggle::Toggle(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+	const uint init_ui_layer)
+	: UI(g, s, m, s_i, e, init_ui_layer) {
 
-	label_offset = engine.game.GetResScale() * 10;
-	Text::SetOrigin(label, { 1.f, .5f });
-	label.setPosition(Vector2f(pos.x - label_offset, pos.y));
+	label_offset = game.GetResScale() * 10;
+	label->SetOrigin({ 1.f, .5 });
+	label->MoveTo({ pos.x - label_offset, pos.y });
 
-	on = engine.game.GetResolution().x == Display::ScreenSize().x;
+	on = game.GetResolution().x == game.window->ScreenSize().x;
 	active = !on;
 }
 
 void Toggle::Draw() {
-	if (active and Selected(MOUSEPOS_E))
-		engine.window.draw(bbox_debug);
+	if (active and Selected())
+		game.renderer->DrawRect(bbox, Color(0,1,0));
 
 	Entity::Draw();
-	engine.window.draw(label);
+	game.renderer->DrawTxt(*label);
 
 	if (on)
-		anim->SetCurrFrame(1);
-	else anim->SetCurrFrame(0);
+		sprite->SetCurrFrame(1);
+	else sprite->SetCurrFrame(0);
 }
 
 void Toggle::Move() {
-	label.setCharacterSize(engine.game.GetResScale() * 12);
-	label_offset = engine.game.GetResScale() * 10;
-	Text::SetOrigin(label, { 1.f, .5f });
-	label.setPosition(Vector2f(pos.x - label_offset, pos.y));
+	label_offset = game.GetResScale() * 10;
+	label->MoveTo({ pos.x - label_offset, pos.y });
 }
 
 void Toggle::Released() {

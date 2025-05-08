@@ -6,13 +6,13 @@
 #include "../Entities/UI/Toggle.h"
 
 Menu::Menu(Game& g, Scene& s, const Menus init_label) :
-            game(g), scene(s), label(init_label),
-            menu_text(make_u<Text>(game.default_font72.get())), sup_text(make_u<Text>(game.default_font48.get())),
-            res_scalar(game.GetResScale()), ui_scale({ (int)res_scalar }) { //MAY GET ERRORS SETTING THIS STUFF
+            game(g), scene(s), label(init_label) {
 
     //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there - Menu just doesn't seem to interface with Game very well?
-    //res_scalar = game.GetResScale();
-    //ui_scale = { (int)res_scalar };
+    menu_text = make_u<Text>(game.default_font72.get());
+    sup_text = make_u<Text>(game.default_font48.get());
+    res_scalar = game.GetResScale();
+    ui_scale = { (int)res_scalar };
     Text::Info* mti = &menu_text->info;
     Text::Info* sti = &sup_text->info;
 
@@ -271,8 +271,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         */
         case Menus::MAIN: {
             
-            m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); m_t_str = m_t_str = "Seeds of Apocrypha";
-            s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .225f)); s_t_str = "An Iron & Aether Adventure";
+            m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .12f)); m_t_str = m_t_str = "Seeds of Apocrypha";
+            s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); s_t_str = "An Iron & Aether Adventure";
 
             float e_y_buffer = round(game.GetResolution().y * .1f);
 
@@ -324,8 +324,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         }
         
         case Menus::OPTIONS: {
-            m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .15); m_t_str = "Seeds of Apocrypha";
-            s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); s_t_str = "Options";
+            m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .12); m_t_str = "Seeds of Apocrypha";
+            s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .15); s_t_str = "Options";
 
             float elem_y_buffer = round(game.GetResolution().y * .09f);
 
@@ -345,7 +345,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
                 elem_info,
                 UIElems::SFX_V);
             ui_elems.insert({ UIElems::SFX_V, sldr });
-
+            
 
             //Resolution picker, fullscreen toggle, and apply button
             elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
@@ -359,12 +359,13 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 
             elem_info.sheet = "assets/Sprites/UI/Toggle"; elem_info.frame_size = { 24, 24 };
             elem_info.pos.y += elem_y_buffer;
-            float f_t_x = elem_info.pos.x + game.GetResolution().x * (res_scalar * .01);
+            //float f_t_x = elem_info.pos.x + game.GetResolution().x * (res_scalar * .01);
             auto tgl = make_s<Toggle>(
                 game, &scene, *this,
                 elem_info,
                 UIElems::FULLSCREEN);
             ui_elems.insert({ UIElems::FULLSCREEN, tgl });
+            
 
             elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
             elem_info.pos.y += elem_y_buffer;
@@ -373,7 +374,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
                 elem_info,
                 UIElems::APPLY);
             ui_elems.insert({ UIElems::APPLY, btn });
-
+            
 
             //Back button
             elem_info.pos.y = round(game.GetResolution().y * .9f);

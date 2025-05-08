@@ -1,34 +1,25 @@
 #include "Picker.h"
 
-Picker::Picker(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::Transform& t, const UI::Style& style,
-    const uint init_ui_layer, const int init_dfc) :
-    UI(e, m, a_i, t, style, init_ui_layer, init_dfc), picking(engine.game.default_font) {
+Picker::Picker(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+    const uint init_ui_layer)
+    : UI(g, s, m, s_i, e, init_ui_layer), picking(make_u<Text>(game.default_font36.get())) {
 
-    label_offset = engine.game.GetResScale()*8;
-    label.setPosition(Vector2f(pos.x, pos.y - label_offset));
+    label_offset = game.GetResScale()*8;
+    label->MoveTo({ pos.x, pos.y - label_offset });
 
-    //Set up position.x bbox
-    l_bbox.position.x = bbox.position.x + bbox.size.x * .05;
-    l_bbox.position.y = bbox.position.y + bbox.size.y * .1;
-    l_bbox.size.x = bbox.size.x*.25;
-    l_bbox.size.y = bbox.size.y*.75;
-    //Set position.x bbox debug
-    l_bbox_debug.setPosition(Vector2f(l_bbox.position.x, l_bbox.position.y));
-    l_bbox_debug.setSize(Vector2f(l_bbox.size.x, l_bbox.size.y));
-    l_bbox_debug.setFillColor(sf::Color(255, 0, 0, 127)); //Red, 50% opacity
+    //Set up bbox
+    l_bbox.x = bbox.x + bbox.w * .05;
+    l_bbox.y = bbox.y + bbox.h * .1;
+    l_bbox.w = bbox.w*.25;
+    l_bbox.h = bbox.h*.75;
 
     //Right bbox
-    r_bbox.position.x = bbox.position.x + bbox.size.x*.7;
-    r_bbox.position.y = bbox.position.y + bbox.size.y * .1;
-    r_bbox.size.x = bbox.size.x * .25;
-    r_bbox.size.y = bbox.size.y * .75;
-    //Right bbox debug
-    r_bbox_debug.setPosition(Vector2f(r_bbox.position.x, r_bbox.position.y));
-    r_bbox_debug.setSize(Vector2f(r_bbox.size.x, r_bbox.size.y));
-    r_bbox_debug.setFillColor(sf::Color(0, 0, 255, 127)); //Blue, 50% opacity
+    r_bbox.x = bbox.x + bbox.w * .7;
+    r_bbox.y = bbox.y + bbox.h * .1;
+    r_bbox.w = bbox.w * .25;
+    r_bbox.h = bbox.h * .75;
 
     //What exactly ARE we picking?
-    picking = label;
     string picking_str = "";
     switch (elem) {
         case UIElems::BACKGROUND_P:
@@ -65,7 +56,7 @@ Picker::Picker(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::T
         break;
 
         case UIElems::RESOLUTION:
-            picking_str = to_string((int)engine.game.GetResScale());
+            picking_str = to_string(game.GetResScale());
         break;
 
         case UIElems::SEX:
@@ -80,82 +71,73 @@ Picker::Picker(const Engine& e, Menu& m, const AnimInfo& a_i, const Animation::T
             option_picked = options.begin()+1;
         break;
     }
-    Text::SetStr(picking, picking_str);
-    picking.setPosition(Vector2f(pos));
+    picking->info.str = picking_str;
+    picking->SetOrigin();
+    picking->MoveTo({ pos.x, pos.y + 2 });
 }
 
 void Picker::GetInput() {
     if (active) {
-        if (LeftSelected(MOUSEPOS_E)) {
-            if (Input::KeyPressed(LMB))
+        if (LeftSelected()) {
+            if (Input::BtnPressed(LMB))
                 LeftPressed();
-            if (Input::KeyReleased(LMB) and l_primed)
+            if (Input::BtnReleased(LMB) and l_primed)
                 LeftReleased();
         }
-        else if (!LeftSelected(MOUSEPOS_E)) l_primed = false;
+        else if (!LeftSelected()) l_primed = false;
         
-        if (RightSelected(MOUSEPOS_E)) {
-            if (Input::KeyPressed(LMB))
+        if (RightSelected()) {
+            if (Input::BtnPressed(LMB))
                 RightPressed();
-            if (Input::KeyReleased(LMB) and r_primed)
+            if (Input::BtnReleased(LMB) and r_primed)
                 RightReleased();
         }
-        else if (!RightSelected(MOUSEPOS_E)) r_primed = false;
+        else if (!RightSelected()) r_primed = false;
     }
 }
 
 void Picker::Draw() {
-    if (active and Selected(MOUSEPOS_E))
-        engine.window.draw(bbox_debug);
+    if (active and Selected())
+        game.renderer->DrawRect(bbox, Color(0, 1, 0));
 
     Entity::Draw();
-    engine.window.draw(label);
 
-    engine.window.draw(picking);
+    game.renderer->DrawTxt(*label);
+    game.renderer->DrawTxt(*picking);
 
     if (active) {
-        if (LeftSelected(MOUSEPOS_E))
-            engine.window.draw(l_bbox_debug);
-        else if (RightSelected(MOUSEPOS_E))
-            engine.window.draw(r_bbox_debug);
+        if (LeftSelected())
+            game.renderer->DrawRect(l_bbox, Color(1, 0, 0, .5), Color(1, 0, 0, .5)); //Red, 50% opacity
+        else if (RightSelected())
+            game.renderer->DrawRect(r_bbox, Color(0, 0, 1, .5), Color(0, 0, 1, .5)); //Blue, 50% opacity
 
-        if (elem == UIElems::SEX and picking.getString() == "-") {
+        if (elem == UIElems::SEX and picking->info.str == "-") {
             string new_sex = rand() % 2 ? "Male" : "Female";
-            Text::SetStr(picking, new_sex);
+            picking->info.str = new_sex;
         }
     }
 }
 
 void Picker::Move() {
-    label_offset = engine.game.GetResScale() * 5;
-    label.setPosition(Vector2f(pos.x, pos.y - label_offset));
+    label_offset = game.GetResScale() * 5;
+    label->MoveTo({ pos.x, pos.y - label_offset });
 
-    //Move position.x bbox+debug
-    l_bbox.position.x = bbox.position.x + bbox.size.x * .05;
-    l_bbox.position.y = bbox.position.y + bbox.size.y * .1;
-    l_bbox.size.x = bbox.size.x * .25;
-    l_bbox.size.y = bbox.size.y * .75;
+    //Move bboxes
+    l_bbox.x = bbox.x + bbox.w * .05;
+    l_bbox.y = bbox.y + bbox.h * .1;
+    l_bbox.w = bbox.w * .25;
+    l_bbox.h = bbox.h * .75;
 
-    l_bbox_debug.setPosition(l_bbox.position);
-    l_bbox_debug.setSize(l_bbox.size);
-    l_bbox_debug.setFillColor(sf::Color(255, 0, 0, 127)); //Red, 50% opacity
+    r_bbox.x = bbox.x + bbox.w * .7;
+    r_bbox.y = bbox.y + bbox.h * .1;
+    r_bbox.w = bbox.w * .25;
+    r_bbox.h = bbox.h * .75;
 
-    //Right bbox+debug
-    r_bbox.position.x = bbox.position.x + bbox.size.x * .7;
-    r_bbox.position.y = bbox.position.y + bbox.size.y * .1;
-    r_bbox.size.x = bbox.size.x * .25;
-    r_bbox.size.y = bbox.size.y * .75;
-
-    r_bbox_debug.setPosition(r_bbox.position);
-    r_bbox_debug.setSize(r_bbox.size);
-    r_bbox_debug.setFillColor(sf::Color(0, 0, 255, 127)); //Blue, 50% opacity
-
-    Text::SetCharSize(picking, engine.game.GetResScale() * 12);
-    picking.setPosition(Vector2f(pos));
+    picking->MoveTo(pos);
 }
 
 void Picker::SetPicking(const string new_p) {
-    Text::SetStr(picking, new_p);
+    picking->info.str = new_p;
     if (elem == UIElems::SIZE) {
         if (new_p == "Small") option_picked = options.begin();
         else if (new_p == "Medium") option_picked = options.begin() + 1;
@@ -164,7 +146,7 @@ void Picker::SetPicking(const string new_p) {
 }
 
 void Picker::LeftReleased() {
-    string p = picking.getString();
+    string p = picking->info.str;
     switch (elem) {
         case UIElems::BACKGROUND_P:
         case UIElems::CLASS_P:
@@ -207,7 +189,7 @@ void Picker::LeftReleased() {
             uint curr_res = stoi(p);
 
             if (--curr_res < 1)
-                curr_res = floor(Display::ScreenSize().x / Display::MinRes().x);
+                curr_res = floor(game.window->ScreenSize().x / game.GetMinRes().x);
 
             p = to_string(curr_res);
 
@@ -248,11 +230,11 @@ void Picker::LeftReleased() {
         break;
     }
 
-    Text::SetStr(picking, p);
+    picking->info.str = p;
 }
 
 void Picker::RightReleased() {
-    string p = picking.getString();
+    string p = picking->info.str;
     switch (elem) {
         case UIElems::BACKGROUND_P:
         case UIElems::CLASS_P:
@@ -294,7 +276,7 @@ void Picker::RightReleased() {
         case UIElems::RESOLUTION: {
             uint curr_res = stoi(p);
 
-            if (++curr_res > floor(Display::ScreenSize().x / Display::MinRes().x))
+            if (++curr_res > floor(game.window->ScreenSize().x / game.GetMinRes().x))
                 curr_res = 1;
 
             p = to_string(curr_res);
@@ -336,5 +318,5 @@ void Picker::RightReleased() {
             break;
     }
 
-    Text::SetStr(picking, p);
+    picking->info.str = p;
 }

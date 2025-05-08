@@ -1,21 +1,23 @@
 #include "Slider.h"
 
 Slider::Slider(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
-    const uint init_ui_layer = 0)
+    const uint init_ui_layer)
     : UI(g, s, m, s_i, e, init_ui_layer),
-        knob_label(make_u<Text>(game.default_font36.get())) {
+      knob_label(make_u<Text>(game.default_font36.get())) {
 
     Sprite::Info knob_info = {}; knob_info.sheet = "assets/Sprites/UI/SliderKnob"; knob_info.frame_size = {6, 18};
     knob_info.scale = sprite->GetScale();
     knob_spr = make_u<Sprite>(game.renderer->GetRenderer(), knob_info);
     
-    label_offset = game.GetResScale()*16;
+    label_offset = game.GetResScale()*6;
     label->MoveTo(Vector2i(pos.x, pos.y - label_offset));
+    label->SetOrigin();
 
     //Set the origin/anchor, scale, and position
     knob_spr->SetOrigin();
     knob_pos_max = bbox.x + bbox.w * .9f;
     knob_pos_min = bbox.x + bbox.w * .1f;
+
     //Setting knob position based on appropriate value
     string rounded_val = "";
     if (elem == UIElems::MUSIC_V or elem == UIElems::SFX_V) {
@@ -30,13 +32,12 @@ Slider::Slider(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElem
         knob_pos = ((((2*game.cam_move_spd)-10)*.05) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
         //Set the value
-        //knob_label = label; WTF AM I TRYING TO DO HERE?
         rounded_val = to_string((round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 20) + 10) * .5);
         rounded_val = rounded_val.substr(0, rounded_val.find('.') + 2);
     }
     knob_spr->MoveTo({ knob_pos, pos.y });
 
-    //knob_label = label; WTF AM I TRYING TO DO HERE?
+    knob_label->SetOrigin();
     knob_label->info.str = rounded_val;
     knob_label->MoveTo({ pos.x, pos.y + label_offset });
 }
@@ -48,7 +49,7 @@ void Slider::GetInput() {
         
         //Adjust knob position
         knob_pos = Input::MousePos().x;
-        knob_pos = round(Math::Clamp(knob_pos, knob_pos_min, knob_pos_max));
+        knob_pos = Math::Clamp(knob_pos, knob_pos_min, knob_pos_max);
         knob_spr->MoveTo({ knob_pos, pos.y });
 
         float new_val = 0;
@@ -80,20 +81,19 @@ void Slider::GetInput() {
 void Slider::Draw() {
     Entity::Draw();
 
-    window.draw(label);
-    window.draw(knob_val);
-    window.draw(knob_spr);
+    game.renderer->DrawTxt(*label);
+    game.renderer->DrawTxt(*knob_label);
+    game.renderer->DrawSprite(*knob_spr);
 }
 
 void Slider::Move() {
     label_offset = game.GetResScale() * 6;
-    label.setPosition(Vector2f(pos.x, pos.y - label_offset));
+    label->MoveTo({ pos.x, pos.y - label_offset });
 
     //Resize and move the knob
-    knob_spr.setOrigin({ anim->GetOrigin().x * 6, anim->GetOrigin().y * 18 });
-    knob_spr.setScale(anim->sprite.getScale());
-    knob_pos_max = bbox.position.x + bbox.size.x * .9f;
-    knob_pos_min = bbox.position.x + bbox.size.x * .1f;
+    knob_spr->SetScale(sprite->GetScale());
+    knob_pos_max = bbox.x + bbox.w * .9f;
+    knob_pos_min = bbox.x + bbox.w * .1f;
 
     if (elem == UIElems::MUSIC_V)
         knob_pos = knob_pos_min + (game.GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
@@ -102,9 +102,8 @@ void Slider::Move() {
     else if (elem == UIElems::CAMSPD)
         knob_pos = ((((2 * game.cam_move_spd) - 10) * .05) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
-    knob_spr.setPosition(Vector2f(knob_pos, pos.y));
+    knob_spr->MoveTo({ knob_pos, pos.y });
 
     //Set the value
-    knob_val.setPosition(Vector2f(pos.x, pos.y + label_offset));
-
+    knob_label->MoveTo({ pos.x, pos.y + label_offset });
 }

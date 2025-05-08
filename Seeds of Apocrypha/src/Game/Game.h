@@ -84,6 +84,7 @@ public:
     //Frame stuff
     uint GetFPS() const { return fps; }
     int GetGameFrames() const { return game_frames; }
+    Vector2u GetMinRes() const { return min_res; }
 
 
 private:

@@ -35,7 +35,9 @@ void Renderer::DrawSprite(Sprite& spr) {
 								  si->spr_size.x,
 								  si->spr_size.y};
 
-	//Set the tint (TO-DO)
+	//Set the tine
+	SDL_SetTextureColorMod(spr.texture, si->tint.r * 255, si->tint.g * 255, si->tint.b * 255);
+	SDL_SetTextureAlphaMod(spr.texture, si->tint.a * 255);
 
 	SDL_RenderTexture(renderer, spr.texture, &src_rect, &dest_rect);
 	
