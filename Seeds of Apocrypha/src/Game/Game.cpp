@@ -173,7 +173,6 @@ void Game::SetSFXVolume(float n_v) {
 
 void Game::SetResolution(uint res_scalar) {
     //Minimum resolution is 640 x 360
-    /*
     if (res_scalar > 0) {
         Vector2u new_win_size = res_scalar * min_res;
         while (new_win_size.x > window->ScreenSize().x or new_win_size.y > window->ScreenSize().y) {
@@ -186,35 +185,42 @@ void Game::SetResolution(uint res_scalar) {
         res_scalar = 1;
         resolution = min_res;
     }
+    if (resolution == window->ScreenSize())
+        SDL_SetWindowFullscreen(window->GetWin(), true);
+    else {
+        SDL_SetWindowFullscreen(window->GetWin(), false);
+        SDL_SetWindowSize(window->GetWin(), resolution.x, resolution.y);
+    }
 
-    window->Destroy();
-    window->Create("Seeds of Apocrypha", resolution);
     /*
     camera.setSize(Vector2f(window.getSize()));
     camera.setCenter(Vector2f(window.getSize()) * .5f);
-
+    */
     if (auto scene = active_scene.lock())
         scene->ResizeMenus();
-    */
 }
 
 void Game::SetResolution(Vector2u n_r) {
-    /*
+    
     if (n_r.x > 0 and n_r.y > 0) {
         n_r.x = n_r.x <= window->ScreenSize().x ? n_r.x : window->ScreenSize().x;
         n_r.y = n_r.y <= window->ScreenSize().y ? n_r.y : window->ScreenSize().y;
 
         resolution = n_r;
 
-        window->Destroy();
-        window->Create("Seeds of Apocrypha", resolution);
-        /*
+        if (resolution == window->ScreenSize())
+            SDL_SetWindowFullscreen(window->GetWin(), true);
+        else {
+            SDL_SetWindowFullscreen(window->GetWin(), false);
+            SDL_SetWindowSize(window->GetWin(), resolution.x, resolution.y);
+        }
+            /*
         camera.setSize(Vector2f(window.getSize()));
         camera.setCenter(Vector2f(window.getSize()) * .5f);
-     
+        */
         if (auto scene = active_scene.lock())
             scene->ResizeMenus();
             
     }
-    */
+    
 }

@@ -27,90 +27,84 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
     float s_t_str_max_w = -1;
     
     Sprite::Info elem_info = {}; elem_info.origin = ui_ori; elem_info.scale = ui_scale;
-
+    float e_y_buffer = 0;
     //What we do depends on our label
     switch (label) {
-        /*
+        
         //Menus
         case Menus::CHARCREA: {
-            m_t_size = res_scalar * 24; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .1); m_t_str = "Create Your Party";
-            s_t_size = res_scalar * 18; s_t_pos = Vector2i(m_t_pos.x, game.GetResolution().y * .13); s_t_str = "Use the options below to create your party of 4 adventurers";
+            m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .1); m_t_str = "Create Your Party";
+            s_t_pos = Vector2i(m_t_pos.x, game.GetResolution().y * .13); s_t_str = "Use the options below to create your party of 4 adventurers";
             s_t_str_max_w = game.GetResolution().x * .33;
             
-            Vector2i btn_pos = Vector2i(game.GetResolution().x * .2, game.GetResolution().y * .25);
-            float b_y_buffer = game.GetResolution().y*.1;
+            elem_info.pos = Vector2i(round(game.GetResolution().x * .2), round(game.GetResolution().y * .25));
+            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
+
+            e_y_buffer = round(game.GetResolution().y * .1f);
 
             auto btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::RACE_B, style_size });
+                game, &scene, *this,
+                elem_info,
+                UIElems::RACE_B);
             auto sm = make_u<Menu>(game, scene, Menus::CCRACE);
             ui_elems.insert({ UIElems::RACE_B, btn });
             sub_menus.insert({ Menus::CCRACE, move(sm) });
 
-            btn_pos.y += b_y_buffer; //.35
+            elem_info.pos.y += e_y_buffer; //.35
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::BACKGROUND_B, style_size });
-            sm = make_u<Menu>(game, window, scene, Menus::CCBG);
+                game, &scene, *this,
+                elem_info,
+                UIElems::BACKGROUND_B);
+            sm = make_u<Menu>(game, scene, Menus::CCBG);
             ui_elems.insert({ UIElems::BACKGROUND_B, btn });
             sub_menus.insert({ Menus::CCBG, move(sm) });
 
-            btn_pos.y += b_y_buffer; //.45
+            elem_info.pos.y += e_y_buffer; //.45
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::CLASS_B, style_size });
-            sm = make_u<Menu>(game, window, scene, Menus::CCCLASS);
+                game, &scene, *this,
+                elem_info,
+                UIElems::CLASS_B);
+            sm = make_u<Menu>(game, scene, Menus::CCCLASS);
             ui_elems.insert({ UIElems::CLASS_B, btn });
             sub_menus.insert({ Menus::CCCLASS, move(sm) });
 
-            btn_pos.y += b_y_buffer; //.55
+            elem_info.pos.y += e_y_buffer; //.55
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::AS, style_size });
-            sm = make_u<Menu>(game, window, scene, Menus::CCAS);
+                game, &scene, *this,
+                elem_info,
+                UIElems::AS);
+            sm = make_u<Menu>(game, scene, Menus::CCAS);
             ui_elems.insert({ UIElems::AS, btn });
             sub_menus.insert({ Menus::CCAS, move(sm) });
 
-            btn_pos.y += b_y_buffer; //.65
+            elem_info.pos.y += e_y_buffer; //.65
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::SKILLS, style_size });
-            sm = make_u<Menu>(game, window, scene, Menus::CCSKILLS);
+                game, &scene, *this,
+                elem_info,
+                UIElems::SKILLS);
+            sm = make_u<Menu>(game, scene, Menus::CCSKILLS);
             ui_elems.insert({ UIElems::SKILLS, btn });
             sub_menus.insert({ Menus::CCSKILLS, move(sm) });
 
-            btn_pos.y += b_y_buffer; //.75
+            elem_info.pos.y += e_y_buffer; //.75
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ btn_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::EQUIPMENT_CC, style_size });
-            sm = make_u<Menu>(game, window, scene, Menus::CCEQUIP);
+                game, &scene, *this,
+                elem_info,
+                UIElems::EQUIPMENT_CC);
+            sm = make_u<Menu>(game, scene, Menus::CCEQUIP);
             ui_elems.insert({ UIElems::EQUIPMENT_CC, btn });
             sub_menus.insert({ Menus::CCEQUIP, move(sm) });
 
 
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .8), ui_ori, ui_size },
-                UI::Style{ UIElems::CREATE, style_size });
+                game, &scene, *this,
+                elem_info,
+                UIElems::CREATE);
             ui_elems.insert({ UIElems::CREATE, btn });
             btn = make_s<Button>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .9), ui_ori, ui_size },
-                UI::Style{ UIElems::BACK, style_size });
+                game, &scene, *this,
+                elem_info,
+                UIElems::BACK);
             ui_elems.insert({ UIElems::BACK, btn });
 
             break;
@@ -119,69 +113,63 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         //Character Creation Sub-Menus
         case Menus::CCAS: {
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
-            m_t_size = res_scalar * 16; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); m_t_str = "Determine Your Ability Scores";
-            s_t_size = res_scalar * 12; s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .23); s_t_str = "Your Ability Scores --";
+            //Apparently need to decrease m_t & s_t font sizes (TO-DO)
+            m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); m_t_str = "Determine Your Ability Scores";
+            s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .23); s_t_str = "Your Ability Scores --";
             s_t_str_max_w = game.GetResolution().x * .33;
 
-            //Pickers
-            Vector2i pkr_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2);
-            float p_y_buffer = game.GetResolution().y * .08f;
+            elem_info.pos = Vector2i(round(game.GetResolution().x * .5), round(game.GetResolution().y * .2));
+            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
 
-            auto str_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::ASSTR, style_size });
+            e_y_buffer = round(game.GetResolution().y * .08f);
 
-            pkr_pos.y += p_y_buffer;
-            auto con_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::ASCON, style_size });
+            auto pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::ASSTR);
+            ui_elems.insert({ UIElems::ASSTR, pkr });
 
-            pkr_pos.y += p_y_buffer;
-            auto agi_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::ASAGI, style_size });
+            elem_info.pos.y += e_y_buffer;
+            pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::ASCON);
+            ui_elems.insert({ UIElems::ASCON, pkr });
 
-            pkr_pos.y += p_y_buffer;
-            auto dex_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::ASDEX, style_size });
+            elem_info.pos.y += e_y_buffer;
+            pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::ASAGI);
+            ui_elems.insert({ UIElems::ASAGI, pkr });
 
-            pkr_pos.y += p_y_buffer;
-            auto int_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::ASINT, style_size });
+            elem_info.pos.y += e_y_buffer;
+            pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::ASDEX);
+            ui_elems.insert({ UIElems::ASDEX, pkr });
 
-            pkr_pos.y += p_y_buffer;
-            auto wis_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::ASWIS, style_size });
+            elem_info.pos.y += e_y_buffer;
+            pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::ASINT);
+            ui_elems.insert({ UIElems::ASINT, pkr });
 
-            pkr_pos.y += p_y_buffer;
-            auto cha_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::ASCHA, style_size });
+            elem_info.pos.y += e_y_buffer;
+            pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::ASWIS);
+            ui_elems.insert({ UIElems::ASWIS, pkr });
 
-            ui_elems.insert(make_pair(UIElems::ASSTR, str_pkr));
-            ui_elems.insert(make_pair(UIElems::ASCON, con_pkr));
-            ui_elems.insert(make_pair(UIElems::ASAGI, agi_pkr));
-            ui_elems.insert(make_pair(UIElems::ASDEX, dex_pkr));
-            ui_elems.insert(make_pair(UIElems::ASINT, int_pkr));
-            ui_elems.insert(make_pair(UIElems::ASWIS, wis_pkr));
-            ui_elems.insert(make_pair(UIElems::ASCHA, cha_pkr));
+            elem_info.pos.y += e_y_buffer;
+            pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::ASCHA);
+            ui_elems.insert({ UIElems::ASCHA, pkr });
 
             break;
         }
@@ -199,19 +187,22 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             //Rogue: 8 / Thieving Tools / Expertise
             //Warrior: 10 / 2 PWS / Fighting Style
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
-            m_t_size = res_scalar * 16; m_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .2f); m_t_str = "Pick Your Class";
-            s_t_size = res_scalar * 12; s_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .23f); s_t_str = "Your Class determines your role in combat and the abilities you will learn as you progress";
+            //Adjust font sizes - TO-DO
+            m_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .2f); m_t_str = "Pick Your Class";
+            s_t_pos = Vector2i(game.GetResolution().x * .5f, game.GetResolution().y * .23f); s_t_str = "Your Class determines your role in combat and the abilities you will learn as you progress";
             s_t_str_max_w = game.GetResolution().x * .33f;
 
             //Pickers
-            Vector2i pkr_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2);
-            float p_y_buffer = game.GetResolution().y * .08f;
+            elem_info.pos = Vector2i(round(game.GetResolution().x * .5), round(game.GetResolution().y * .2));
+            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
 
-            /*auto str_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::CLASS, style_size });
+            e_y_buffer = round(game.GetResolution().y * .08f);
+
+            auto pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::CLASS_P);
+            ui_elems.insert({ UIElems::CLASS_P, pkr });
             break;
         }
 
@@ -227,36 +218,36 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             // Size, Ability Score Adjustments, Sex, Skills, etc.
             //Elves also have a sub-race that limits their aesthetics
             //Aesthetics have suggested features, but none are locked out from any aesthetics (except Automata)
-            m_t_size = res_scalar * 16; m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); m_t_str = "Pick Your Race";
-            s_t_size = res_scalar * 12; s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .23); s_t_str = "Your Race influences your appearance, some of your capabilities, and how others react to you";
+            //Adjust font size - TO-DO
+            m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .2); m_t_str = "Pick Your Race";
+            s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .23); s_t_str = "Your Race influences your appearance, some of your capabilities, and how others react to you";
             s_t_str_max_w = game.GetResolution().x * .33;
 
-            Vector2i pkr_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .4);
-            float p_y_buffer = game.GetResolution().y * .1;
+            //Pickers
+            elem_info.pos = Vector2i(round(game.GetResolution().x * .5), round(game.GetResolution().y * .4));
+            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
 
-            auto race_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::RACE_P, style_size });
+            e_y_buffer = round(game.GetResolution().y * .1f);
 
-            pkr_pos.y += p_y_buffer;
-            auto size_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::SIZE, style_size });
+            auto pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::RACE_P);
+            ui_elems.insert({ UIElems::RACE_P, pkr });
 
-            pkr_pos.y += p_y_buffer;
-            auto sex_pkr = make_s<Picker>(
-                Engine{ game, window, &scene }, *this,
-                AnimInfo{ "UI/Button", 93, 26 },
-                Animation::Transform{ pkr_pos, ui_ori, ui_size },
-                UI::Style{ UIElems::SEX, style_size });
+            elem_info.pos.y += e_y_buffer;
+            pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::SIZE);
+            ui_elems.insert({ UIElems::SIZE, pkr });
 
-            ui_elems.insert(make_pair(UIElems::RACE_P, race_pkr));
-            ui_elems.insert(make_pair(UIElems::SIZE, size_pkr));
-            ui_elems.insert(make_pair(UIElems::SEX, sex_pkr));
+            elem_info.pos.y += e_y_buffer;
+            pkr = make_s<Picker>(
+                game, &scene, *this,
+                elem_info,
+                UIElems::SEX);
+            ui_elems.insert({ UIElems::SEX, pkr });
 
             break;
         }
@@ -268,17 +259,17 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             break;
         }
         //End of CC Sub-Menus
-        */
+        
         case Menus::MAIN: {
             
             m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .12f)); m_t_str = m_t_str = "Seeds of Apocrypha";
             s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); s_t_str = "An Iron & Aether Adventure";
 
-            float e_y_buffer = round(game.GetResolution().y * .1f);
-
             elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
             elem_info.pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .4f));
-            
+
+            e_y_buffer = round(game.GetResolution().y * .1f);
+
             auto btn = make_s<Button>(
                 game, &scene, *this,
                 elem_info,
@@ -327,10 +318,10 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             m_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .12); m_t_str = "Seeds of Apocrypha";
             s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .15); s_t_str = "Options";
 
-            float elem_y_buffer = round(game.GetResolution().y * .09f);
-
             elem_info.pos = Vector2i(round(game.GetResolution().x * .5), round(game.GetResolution().y * .3));
             elem_info.sheet = "assets/Sprites/UI/Slider"; elem_info.frame_size = { 192, 27 };
+
+            e_y_buffer = round(game.GetResolution().y * .09f);
 
             //Music and sfx sliders
             auto sldr = make_s<Slider>(
@@ -339,7 +330,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
                 UIElems::MUSIC_V);
             ui_elems.insert({ UIElems::MUSIC_V, sldr });
 
-            elem_info.pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             sldr = make_s<Slider>(
                 game, &scene, *this,
                 elem_info,
@@ -349,7 +340,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 
             //Resolution picker, fullscreen toggle, and apply button
             elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
-            elem_info.pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             auto pkr = make_s<Picker>(
                 game,&scene, *this,
                 elem_info,
@@ -358,7 +349,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 
 
             elem_info.sheet = "assets/Sprites/UI/Toggle"; elem_info.frame_size = { 24, 24 };
-            elem_info.pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             //float f_t_x = elem_info.pos.x + game.GetResolution().x * (res_scalar * .01);
             auto tgl = make_s<Toggle>(
                 game, &scene, *this,
@@ -368,7 +359,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             
 
             elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
-            elem_info.pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             auto btn = make_s<Button>(
                 game, &scene, *this,
                 elem_info,
@@ -761,14 +752,14 @@ bool Menu::CheckUIElem(const UIElems ui) {
 void Menu::SetUIElemStatus(const UIElems ui, const string new_status) {
     
     if (CheckUIElem(ui)) {
-        //if (auto picker = dynamic_cast<Picker*>(ui_elems[ui].get()))
-        //    picker->SetPicking(new_status);
-        //else if (auto toggle = dynamic_cast<Toggle*>(ui_elems[ui].get())) {
-          //  if (new_status == "True")
-           //     toggle->on = true;
-           // else
-           //     toggle->on = false;
-        //}
+        if (auto picker = dynamic_cast<Picker*>(ui_elems[ui].get()))
+            picker->SetPicking(new_status);
+        else if (auto toggle = dynamic_cast<Toggle*>(ui_elems[ui].get())) {
+            if (new_status == "True")
+                toggle->on = true;
+            else
+                toggle->on = false;
+        }
     }
 }
 
@@ -780,12 +771,12 @@ void Menu::SetUIElemActive(const UIElems ui, const bool a) {
 string Menu::GetUIElemStatus(const UIElems ui) {
     
     if (CheckUIElem(ui)) {
-    //    if (auto picker = dynamic_cast<Picker*>(ui_elems[ui].get()))
-    //        return picker->GetPicking();
-    //    else if (auto toggle = dynamic_cast<Toggle*>(ui_elems[ui].get())) {
-    //        if (toggle->on) return "True";
-    //        return "False";
-    //    }
+        if (auto picker = dynamic_cast<Picker*>(ui_elems[ui].get()))
+            return picker->GetPicking();
+        else if (auto toggle = dynamic_cast<Toggle*>(ui_elems[ui].get())) {
+            if (toggle->on) return "True";
+            return "False";
+        }
     }
     
     return "No such UIElem exists";

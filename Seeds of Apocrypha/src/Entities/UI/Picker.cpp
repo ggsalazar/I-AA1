@@ -4,7 +4,7 @@ Picker::Picker(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElem
     const uint init_ui_layer)
     : UI(g, s, m, s_i, e, init_ui_layer), picking(make_u<Text>(game.default_font36.get())) {
 
-    label_offset = game.GetResScale()*8;
+    label_offset = game.GetResScale()*6;
     label->MoveTo({ pos.x, pos.y - label_offset });
 
     //Set up bbox
@@ -85,7 +85,7 @@ void Picker::GetInput() {
                 LeftReleased();
         }
         else if (!LeftSelected()) l_primed = false;
-        
+
         if (RightSelected()) {
             if (Input::BtnPressed(LMB))
                 RightPressed();
@@ -107,9 +107,9 @@ void Picker::Draw() {
 
     if (active) {
         if (LeftSelected())
-            game.renderer->DrawRect(l_bbox, Color(1, 0, 0, .5), Color(1, 0, 0, .5)); //Red, 50% opacity
+            game.renderer->DrawRect(l_bbox, Color(1, 0, 0, 0), Color(1, 0, 0, .5)); //Red, 50% opacity
         else if (RightSelected())
-            game.renderer->DrawRect(r_bbox, Color(0, 0, 1, .5), Color(0, 0, 1, .5)); //Blue, 50% opacity
+            game.renderer->DrawRect(r_bbox, Color(0, 0, 1, 0), Color(0, 0, 1, .5)); //Blue, 50% opacity
 
         if (elem == UIElems::SEX and picking->info.str == "-") {
             string new_sex = rand() % 2 ? "Male" : "Female";
@@ -119,8 +119,17 @@ void Picker::Draw() {
 }
 
 void Picker::Move() {
-    label_offset = game.GetResScale() * 5;
-    label->MoveTo({ pos.x, pos.y - label_offset });
+    //Move debug and bbox
+    pos_debug.x = pos.x;
+    pos_debug.y = pos.y;
+
+    size = sprite->GetSprSize();
+
+    //bbox position will always be top left
+    bbox.x = pos.x - sprite->GetOrigin().x * size.x;
+    bbox.y = pos.y - sprite->GetOrigin().y * size.y;
+    bbox.w = size.x;
+    bbox.h = size.y;
 
     //Move bboxes
     l_bbox.x = bbox.x + bbox.w * .05;
@@ -129,9 +138,14 @@ void Picker::Move() {
     l_bbox.h = bbox.h * .75;
 
     r_bbox.x = bbox.x + bbox.w * .7;
-    r_bbox.y = bbox.y + bbox.h * .1;
-    r_bbox.w = bbox.w * .25;
-    r_bbox.h = bbox.h * .75;
+    r_bbox.y = l_bbox.y;
+    r_bbox.w = l_bbox.w;
+    r_bbox.h = l_bbox.h;
+
+
+    //Move everything else
+    label_offset = game.GetResScale() * 6;
+    label->MoveTo({ pos.x, pos.y - label_offset });
 
     picking->MoveTo(pos);
 }

@@ -6,6 +6,7 @@
 //#include "../Entities/Creatures/PartyMember.h"
 
 void Scene::GetInput() {
+
 	/*
 	if (label == Scenes::AREA) {
 		OpenInterface();
@@ -352,10 +353,11 @@ void Scene::Open(const bool o) {
 			//Set the view
 			window.setView(game.camera);
 
-			//Initialize our menus
-			auto menu = make_unique<Menu>(game, window, *this, Menus::OPTIONS_G);
-			menus.insert({ Menus::OPTIONS_G, move(menu) });
 			*/
+
+			//Initialize our menus
+			auto menu = make_u<Menu>(game, *this, Menus::OPTIONS_G);
+			menus.insert({ Menus::OPTIONS_G, move(menu) });
 		}
 	}
 	//Scene is closed

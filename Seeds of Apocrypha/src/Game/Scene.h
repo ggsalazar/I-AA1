@@ -63,6 +63,5 @@ private:
     Vector2f selec_area = { 0, 0 };
     //queue<Vector2u> found_path;
 
-    //Game pointer
     Game& game;
 };

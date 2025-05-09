@@ -10,6 +10,10 @@ Entity::Entity(Game& g, Scene* s, const Sprite::Info& s_i)
     SetBBox();
 }
 
+void Entity::Draw() {
+    game.renderer->DrawSprite(*sprite);
+}
+
 void Entity::SetBBox() {
     pos_debug.x = pos.x;
     pos_debug.y = pos.y;
@@ -21,10 +25,6 @@ void Entity::SetBBox() {
     bbox.y = pos.y - sprite->GetOrigin().y * size.y;
     bbox.w = size.x;
     bbox.h = size.y;
-}
-
-void Entity::Draw() {
-    game.renderer->DrawSprite(*sprite);
 }
 
 void Entity::PlaySound() {

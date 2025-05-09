@@ -13,8 +13,6 @@ public:
         const uint init_ui_layer = 0);
 
     virtual void GetInput() override;
-    virtual void Draw() override {}
-    virtual void MoveBy(Vector2i offset) override {}
     virtual void Resize(uint r_s);
 
     void SetActive(const bool new_active = true);
@@ -23,7 +21,6 @@ public:
     UIElems GetElem() const { return elem; }
 
 protected:
-
     //Variables
     int label_offset = 0;
     UIElems elem = UIElems::DEFAULT;

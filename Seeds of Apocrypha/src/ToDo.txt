@@ -1,10 +1,3 @@
-Left off:	-Implement Menus (7 days)
-				--Functionality (5 days)
-					---CharCrea (1 day)
-					---Options (3 days)
-						----Set Volumes (1 day)
-						----Set Resolution (2 days)
-					---Tutorial + Debug Room (1 day)
 SDL:	-Tilemapping (6 days)
 		-Camera (5 days?)
 			--VSync (Done?)
@@ -42,6 +35,9 @@ Main Menu
 		--Automatic dungeon mapping
 	-Continue/Load game
 		--Will require implementation of saving/loading
+	-Back/Exit
+		--Confirm
+		--Delete created characters/wipe slate clean
 Tutorial
 	-Town
 		--NPCs
