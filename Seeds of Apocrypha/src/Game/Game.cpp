@@ -7,6 +7,7 @@
 Game::Game(const char* title, uint init_fps) :
     fps(init_fps) {
     //Initialize SDL
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
     TTF_Init();
 
     //Delta time
@@ -18,22 +19,22 @@ Game::Game(const char* title, uint init_fps) :
     window = make_u<Window>("Seeds of Apocrypha", resolution);
     resolution = window->WinSize();
 
+    //Initialize the camera
+    camera.viewport.w = resolution.x;
+    camera.viewport.h = resolution.y;
+
     //Initialize the renderer
-    renderer = make_u<Renderer>(window->GetWin());
+    renderer = make_u<Renderer>(window->GetWin(), &camera);
 
     //Initialize the Input namespace
     Input::Init(window.get());
     
     //Load the default fonts
     default_font36 = make_u<Font>("assets/Fonts/m5x7", 36);
-    default_font48 = make_u<Font>("assets/Fonts/m5x7");
+    default_font48 = make_u<Font>("assets/Fonts/m5x7", 48);
     default_font72 = make_u<Font>("assets/Fonts/m5x7", 72);
     default_font96 = make_u<Font>("assets/Fonts/m5x7", 96);
     debug_txt = make_u<Text>(default_font48.get());
-
-    //Initialize the camera
-    //camera.setSize(Vector2f(window.getSize()));
-    //View is set in Scene.cpp
 
     //Initialize the DJ's tracks
     //Play the title track - TO-DO

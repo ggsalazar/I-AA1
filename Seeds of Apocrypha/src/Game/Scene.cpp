@@ -7,11 +7,10 @@
 
 void Scene::GetInput() {
 
-	/*
 	if (label == Scenes::AREA) {
 		OpenInterface();
 		MoveCamera();
-
+		/*
 		if (!game.paused) {
 			SelectPartyMems();
 
@@ -36,8 +35,8 @@ void Scene::GetInput() {
 			}
 		}
 		else game.cursor = game.cursors[Actions::DEFAULT].get();
-	}
 	*/
+	}
 	for (auto& e : entities) {
 		//Only get input for UI elements if the corresponding menu is open
 		if (auto ui = dynamic_cast<UI*>(e.get())) {
@@ -77,8 +76,8 @@ void Scene::Update() {
 void Scene::Draw() {
 
 	//Draw the tilemap first
-	//if (tilemap.Loaded())
-	//	window.draw(tilemap);
+	if (tilemap.Loaded()) 
+		game.renderer->DrawTilemap(tilemap);
 
 	//Then draw entities
 	for (auto& e : entities) {
@@ -101,7 +100,7 @@ void Scene::Draw() {
 		m.second->Draw();
 
 
-	//cout << "Camera Pos: " << game.camera.getCenter() << endl;
+	//cout << "Camera Pos: " << Vector2i{game.camera.viewport.x, game.camera.viewport.y} << "\n";
 }
 
 void Scene::OpenInterface(Interfaces intrfc) {
@@ -122,40 +121,49 @@ void Scene::OpenInterface(Interfaces intrfc) {
 }
 
 void Scene::MoveCamera() {
-	/*
 	//Move the camera
-	Vector2f cam_pos = game.camera.getCenter();
-	Vector2f cam_size = game.camera.getSize();
-	cam_pos.x -= cam_size.x * .5f; cam_pos.y -= cam_size.y * .5f;
 	//Can't move the camera if we are at or past the edge
+	Vector2i cam_pos = { game.camera.viewport.x, game.camera.viewport.y };
+	Vector2i cam_size = { game.camera.viewport.w, game.camera.viewport.h };
 	if (!game.cam_locked) {
-		Vector2f new_cam_offset = { 0.f, 0.f };
+		Vector2i new_cam_offset = { 0, 0 };
 		//Move the camera via arrow/WASD keys
-		if ((BUTTONDOWN(UP) or BUTTONDOWN(W_K)) and cam_pos.y > 0)
+		/*
+		if ((Input::KeyDown(UP) or Input::KeyDown(W_K)) and cam_pos.y > 0)
 			new_cam_offset.y -= game.cam_move_spd;
-		else if ((BUTTONDOWN(DOWN) or BUTTONDOWN(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+		else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
 			new_cam_offset.y += game.cam_move_spd;
-		if ((BUTTONDOWN(LEFT) or BUTTONDOWN(A_K)) and cam_pos.x > 0)
+		if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)) and cam_pos.x > 0)
 			new_cam_offset.x -= game.cam_move_spd;
-		else if ((BUTTONDOWN(RIGHT) or BUTTONDOWN(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+		else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+			new_cam_offset.x += game.cam_move_spd;
+			*/
+		if ((Input::KeyDown(UP) or Input::KeyDown(W_K)))
+			new_cam_offset.y -= game.cam_move_spd;
+		else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)))
+			new_cam_offset.y += game.cam_move_spd;
+		if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)))
+			new_cam_offset.x -= game.cam_move_spd;
+		else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)))
 			new_cam_offset.x += game.cam_move_spd;
 
 		//Move the camera via edge panning
-		if ((MOUSEPOS_W.y < cam_pos.y + TS and MOUSEPOS_W.y > cam_pos.y) and cam_pos.y > 0)
+		if ((Input::MousePos().y < cam_pos.y + TS and Input::MousePos().y > cam_pos.y) and cam_pos.y > 0)
 			new_cam_offset.y -= game.cam_move_spd;
-		if ((MOUSEPOS_W.y > cam_pos.y + cam_size.y - TS and MOUSEPOS_W.y < cam_pos.y + cam_size.y) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+		if ((Input::MousePos().y > cam_pos.y + cam_size.y - TS and Input::MousePos().y < cam_pos.y + cam_size.y) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
 			new_cam_offset.y += game.cam_move_spd;
-		if ((MOUSEPOS_W.x < cam_pos.x + TS and MOUSEPOS_W.x > cam_pos.x) and cam_pos.x > 0)
+		if ((Input::MousePos().x < cam_pos.x + TS and Input::MousePos().x > cam_pos.x) and cam_pos.x > 0)
 			new_cam_offset.x -= game.cam_move_spd;
-		if ((MOUSEPOS_W.x > cam_pos.x + cam_size.x - TS and MOUSEPOS_W.x < cam_pos.x + cam_size.x) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+		if ((Input::MousePos().x > cam_pos.x + cam_size.x - TS and Input::MousePos().x < cam_pos.x + cam_size.x) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
 			new_cam_offset.x += game.cam_move_spd;
 
-		new_cam_offset = { round(new_cam_offset.x), round(new_cam_offset.y) };
-		game.camera.move(new_cam_offset);
+		new_cam_offset = { (int)round(new_cam_offset.x), (int)round(new_cam_offset.y) };
+		game.camera.MoveBy(new_cam_offset);
 	}
 	//If the camera is locked to the party members, follow them automatically
 	//Select which party members to lock the camera to - TO-DO
 	//Get the average of all of their positions and lerp the camera to there
+	/*
 	else {
 		Vector2i pos_totals = { 0, 0 };
 		uint selected_p_ms = 0;
@@ -175,8 +183,6 @@ void Scene::MoveCamera() {
 
 		game.camera.setCenter(Math::Lerp(game.camera.getCenter(), pos_avg, .1));
 	}
-
-	window.setView(game.camera);
 	*/
 }
 
@@ -262,13 +268,13 @@ Actions Scene::LMBAction() {
 		}
 	}
 
-	//Melee Attack (LMB action in combat only?)
+	//Melee Attack (LMB action in combat only)
 	//-When mouse is on an enemy...
 	//	--in melee range OR
 	//	--acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
 	//		---If > 1 melee weapon equipped, will have to ask which weapon to attack with
 	
-	//Ranged Attack (LMB action in combat only?)
+	//Ranged Attack (LMB action in combat only)
 	//-When mouse is on an enemy...
 	//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
 
@@ -302,8 +308,7 @@ void Scene::Open(const bool o) {
 			entities.clear();
 			party_mems.clear();
 			
-			//game.camera.setCenter({ window.getSize().x * .5f, window.getSize().y * .5f });
-			//window.setView(game.camera);
+			game.camera.MoveTo({ 0, 0 });
 			auto menu = make_u<Menu>(game, *this, Menus::MAIN);
 			menu->Open();
 			menus.insert({ Menus::MAIN, move(menu) });
@@ -329,11 +334,12 @@ void Scene::Open(const bool o) {
 				break;
 			}
 			//Load that bitch
-			/*
-			tilemap.load(json_file);
+			
+			tilemap.Load(game.renderer->GetRenderer(), json_file);
 
 			//Set the camera and party members
 			Vector2u area_size = tilemap.GetMapSizePixels();
+			/*
 			game.camera.setCenter({ round(area_size.x * .5f), round(area_size.y * .5f)});
 			for (auto& p_m : party_mems) {
 				entities.push_back(p_m);
@@ -352,7 +358,6 @@ void Scene::Open(const bool o) {
 
 			//Set the view
 			window.setView(game.camera);
-
 			*/
 
 			//Initialize our menus
@@ -369,6 +374,9 @@ void Scene::Open(const bool o) {
 		//Deletes all the entities in the scene
 		entities.clear();
 		party_mems.clear();
+
+		//Unload the TileMap
+		tilemap.Unload();
 	}
 }
 

@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Aliases.h" />
+    <ClInclude Include="src\Core\Camera.h" />
     <ClInclude Include="src\Core\Collision.h" />
     <ClInclude Include="src\Core\Enums.h" />
     <ClInclude Include="src\Core\Geometry.h" />

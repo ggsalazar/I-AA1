@@ -27,14 +27,13 @@ public:
 
 
     virtual void GetInput() {}
-    inline virtual void Update() { sprite->MoveTo(pos); SetBBox(); }
+    inline virtual void Update() {}
     virtual void Draw();
-    inline virtual void MoveBy(Vector2i offset) { pos += offset; }
-    inline virtual void MoveTo(Vector2i new_pos) { pos = new_pos; }
+    inline virtual void MoveBy(Vector2i offset) { pos += offset; Move(); }
+    inline virtual void MoveTo(Vector2i new_pos) { pos = new_pos; Move(); }
 
     inline Vector2i GetPos() const { return pos; }
     inline Rect GetBBox() const { return bbox; }
-    void SetBBox();
 
     inline void SetScene(Scene* new_scn) { scene = new_scn; }
 
@@ -47,4 +46,6 @@ protected:
 
     Game& game;
     Scene* scene;
+
+    virtual void Move();
 };

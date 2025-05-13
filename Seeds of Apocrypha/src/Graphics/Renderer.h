@@ -5,10 +5,13 @@
 #include "../Core/Geometry.h"
 #include "Sprite.h" //(Aliases.h)
 #include "Text.h" //(Font.h)
+#include "TileMap.h"
+
+class Camera;
 
 class Renderer {
 public:
-	Renderer(SDL_Window* window);
+	Renderer(SDL_Window* window, Camera* cam);
 	~Renderer() {
 		SDL_DestroyRenderer(renderer);
 		SDL_DestroySurface(surface);
@@ -28,6 +31,7 @@ public:
 	//Sprites
 	void DrawSheet(const Sprite& sheet, const Vector2i& pos = { 0 }); //Helpful for debugging/seeing entire sheet
 	void DrawSprite(Sprite& spr);
+	void DrawTilemap(TileMap& tmp);
 	//Text
 	void DrawTxt(Text& txt);
 
@@ -41,4 +45,5 @@ private:
 	SDL_Renderer* renderer;
 	SDL_Surface* surface;
 	SDL_Texture* texture;
+	Camera* camera;
 };

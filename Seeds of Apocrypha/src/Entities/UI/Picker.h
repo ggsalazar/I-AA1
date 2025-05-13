@@ -27,7 +27,7 @@ private:
     vector<string>::iterator option_picked;
 
     //Functions
-    void Move();
+    void Move() override;
 
     bool LeftSelected() { return Collision::Point(Input::MousePos(), l_bbox); }
     void LeftPressed() { l_primed = true; }

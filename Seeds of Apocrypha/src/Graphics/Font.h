@@ -8,7 +8,7 @@
 
 class Font {
 public:
-	Font(const std::string& path, uint size = 48) {
+	Font(const std::string& path, uint size) {
 		std::string path_ttf = path + ".ttf";
 		font = TTF_OpenFont(path_ttf.c_str(), size);
 

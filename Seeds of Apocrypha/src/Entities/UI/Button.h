@@ -16,8 +16,7 @@ public:
     void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
 private:
-    //Functions
-    void Move();
+    void Move() override;
     void Pressed() override;
     void Released() override;
 };

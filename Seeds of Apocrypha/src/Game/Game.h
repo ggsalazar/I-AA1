@@ -2,6 +2,8 @@
 #include <iostream>
 #include <chrono>
 #include <unordered_map>
+#include <SDL3/SDL.h>
+#include "../Core/Camera.h"
 #include "../Core/Enums.h"
 #include "../Core/Input.h"
 #include "../Core/Math.h"
@@ -29,11 +31,11 @@ public:
     uint curr_ui_layer = 0;
 
     //Camera
-    //Camera camera;
+    Camera camera;
     float cam_move_spd = 10.f;
     bool cam_locked = false;
 
-    //Music & SFX
+    //Music & SFX - waiting for SDL_mixer 3.0
     //DJ dj;
     //Soundboard sb;
     
@@ -58,7 +60,11 @@ public:
     Game(const char* title, uint init_fps);
     ~Game() {
         TTF_Quit();
-        SDL_Quit();
+
+
+        //Mix_CloseAudio();
+        //Mix_Quit();
+        SDL_Quit(); //Pretty sure this has to be called last
     }
     
     //Engine-type stuff

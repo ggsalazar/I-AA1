@@ -12,7 +12,7 @@ public:
     void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
 private:
-    void Move();
+    void Move() override;
 
     //Knob stuff
     u_ptr<Sprite> knob_spr;

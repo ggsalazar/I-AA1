@@ -2,7 +2,7 @@
 #include <vector>
 #include "Game.h" //(<iostream>, <unordered_map>, Enums.h, Input.h, Math.h, Window.h, Renderer.h)
 #include "Menu.h"
-//#include "TileMap.h"
+#include "../Graphics/TileMap.h"
 
 class Entity;
 class PartyMember;
@@ -52,7 +52,7 @@ private:
     bool open = false;
     Actions action = Actions::DEFAULT;
 
-    //TileMap tilemap;
+    TileMap tilemap;
 
     unordered_map<Menus, u_ptr<Menu>> menus;
     vector<s_ptr<Entity>> entities;

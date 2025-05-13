@@ -14,7 +14,7 @@ public:
 
 private:
     //Functions
-    void Move();
+    void Move() override;
     //void Pressed() override;
     void Released() override;
 };
