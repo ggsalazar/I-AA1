@@ -38,7 +38,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             s_t_str_max_w = game.GetResolution().x * .33;
             
             elem_info.pos = Vector2i(round(game.GetResolution().x * .2), round(game.GetResolution().y * .25));
-            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
+            elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
 
             e_y_buffer = round(game.GetResolution().y * .1f);
 
@@ -119,7 +119,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             s_t_str_max_w = game.GetResolution().x * .33;
 
             elem_info.pos = Vector2i(round(game.GetResolution().x * .5), round(game.GetResolution().y * .2));
-            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
+            elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
 
             e_y_buffer = round(game.GetResolution().y * .08f);
 
@@ -194,7 +194,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 
             //Pickers
             elem_info.pos = Vector2i(round(game.GetResolution().x * .5), round(game.GetResolution().y * .2));
-            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
+            elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
 
             e_y_buffer = round(game.GetResolution().y * .08f);
 
@@ -225,7 +225,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 
             //Pickers
             elem_info.pos = Vector2i(round(game.GetResolution().x * .5), round(game.GetResolution().y * .4));
-            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
+            elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
 
             e_y_buffer = round(game.GetResolution().y * .1f);
 
@@ -265,7 +265,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .12f)); m_t_str = m_t_str = "Seeds of Apocrypha";
             s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .15f)); s_t_str = "An Iron & Aether Adventure";
 
-            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
+            elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
             elem_info.pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .4f));
 
             e_y_buffer = round(game.GetResolution().y * .1f);
@@ -319,7 +319,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             s_t_pos = Vector2i(game.GetResolution().x * .5, game.GetResolution().y * .15); s_t_str = "Options";
 
             elem_info.pos = Vector2i(round(game.GetResolution().x * .5), round(game.GetResolution().y * .3));
-            elem_info.sheet = "assets/Sprites/UI/Slider"; elem_info.frame_size = { 192, 27 };
+            elem_info.sheet = "UI/Slider"; elem_info.frame_size = { 192, 27 };
 
             e_y_buffer = round(game.GetResolution().y * .09f);
 
@@ -339,7 +339,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             
 
             //Resolution picker, fullscreen toggle, and apply button
-            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
+            elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
             elem_info.pos.y += e_y_buffer;
             auto pkr = make_s<Picker>(
                 game,&scene, *this,
@@ -348,7 +348,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             ui_elems.insert({ UIElems::RESOLUTION, pkr });
 
 
-            elem_info.sheet = "assets/Sprites/UI/Toggle"; elem_info.frame_size = { 24, 24 };
+            elem_info.sheet = "UI/Toggle"; elem_info.frame_size = { 24, 24 };
             elem_info.pos.y += e_y_buffer;
             //float f_t_x = elem_info.pos.x + game.GetResolution().x * (res_scalar * .01);
             auto tgl = make_s<Toggle>(
@@ -358,7 +358,7 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             ui_elems.insert({ UIElems::FULLSCREEN, tgl });
             
 
-            elem_info.sheet = "assets/Sprites/UI/Button"; elem_info.frame_size = { 93, 26 };
+            elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
             elem_info.pos.y += e_y_buffer;
             auto btn = make_s<Button>(
                 game, &scene, *this,

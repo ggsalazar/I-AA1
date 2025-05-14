@@ -5,8 +5,8 @@ PartyMember::PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats
 	: Creature(g, s, s_i, init_stats, por_name, init_biped, init_winged) {
 	
 	//The health bar
-	hlth_bar.w = 34 * portrait->GetSprSize().x;
-	hlth_bar.h = 6 * portrait->GetSprSize().y;
+	hlth_bar.w = 34 * round(portrait->GetSprSize().x*.9f);
+	hlth_bar.h = 6 * round(portrait->GetSprSize().y*.14f);
 
 	//The health text
 	Text::Info h_t_info = {};
@@ -18,16 +18,16 @@ PartyMember::PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats
 void PartyMember::GetInput() {
 	//Become selected if our bounding box or portrait is clicked on
 	//Bbox uses world mouse coordinates, portrait uses screen mouse coordinates
-	if ((bbox.contains(engine.window.mapPixelToCoords(MOUSEPOS_E)) or por_bbox.contains(Vector2f(MOUSEPOS_E))) and Input::KeyPressed(LMB)) {
+	if ((Collision::Point(Input::MousePos(), bbox) or Collision::Point(Input::MousePos(), por_bbox)) and Input::KeyPressed(LMB)) {
 		//We are not using the area selection function
-		engine.scene->selecting = false;
+		scene->selecting = false;
 
 		//If we aren't holding shift, deselect all party members before selecting this one
-		if (!(BUTTONDOWN(LSHIFT) or BUTTONDOWN(RSHIFT))) {
-			vector<shared_ptr<PartyMember>> p_ms = engine.scene->GetPartyMems();
+		if (!(Input::BtnDown(LSHIFT) or Input::BtnDown(RSHIFT))) {
+			vector<shared_ptr<PartyMember>> p_ms = scene->GetPartyMems();
 			for (auto& p_m : p_ms) p_m->selected = false;
 		}
-		selected = !(BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL));
+		selected = !(Input::BtnDown(LCTRL) or Input::BtnDown(RCTRL));
 	}
 }
 
@@ -35,37 +35,34 @@ void PartyMember::Update() {
 	Creature::Update();
 
 	//Update portrait and related details position
-	//Position is just the bottom left for Seeds of Apocrypha
-	Vector2i cam_bot_left = { round(engine.game.camera.getCenter().x - engine.game.camera.getSize().x * .5f), round(engine.game.camera.getCenter().y + engine.game.camera.getSize().y * .5f) };
-	portrait.setPosition({ round(cam_bot_left.x + portrait.getGlobalBounds().size.x*1.3f), round(cam_bot_left.y-portrait.getGlobalBounds().size.y*1.3f)});
-	por_bbox.position.x = portrait.getPosition().x - round(por_bbox.size.x * .5f);
-	por_bbox.position.y = portrait.getPosition().y - round(por_bbox.size.y * .5f);
-	por_highlight.setPosition(portrait.getPosition());
-	nameplate.setPosition({ round(portrait.getPosition().x - portrait.getGlobalBounds().size.x * .5f), round(portrait.getPosition().y - portrait.getGlobalBounds().size.y * .5f) });
-	mssng_hlth_bar.setPosition({ round(portrait.getPosition().x - por_highlight.getSize().x * .5f), round(portrait.getPosition().y + portrait.getGlobalBounds().size.y * .5f)});
-	//Update hlth_bar size (to-do)
-	hlth_bar.setPosition(mssng_hlth_bar.getPosition());
-	Text::SetStr(hlth_txt, to_string((int)stats.hlth) + "/" + to_string((int)stats.max_hlth));
-	hlth_txt.setPosition({round(portrait.getPosition().x), round(portrait.getPosition().y + portrait.getGlobalBounds().size.y * .6f) });
-	std::cout << "Health text position: " << hlth_txt.getPosition() << endl;
+	//Position is just the bottom left for Adventure 1
+	portrait->MoveTo({ (int)round(portrait->GetSprSize().x * .75f), (int)round(game.GetResolution().y - portrait->GetSprSize().y * 1.25f) });
+	por_bbox.x = portrait->GetPos().x;
+	por_bbox.y = portrait->GetPos().y;
+	nameplate->MoveTo({ portrait->GetPos() });
+	//Update hlth_bar size (TO-DO)
+	hlth_bar.x = portrait->GetPos().x + round(portrait->GetSprSize().x * .1f);
+	hlth_bar.y = portrait->GetPos().y + round(portrait->GetSprSize().y * .85f);
+	hlth_txt->info.str = to_string((int)stats.hlth) + "/" + to_string((int)stats.max_hlth);
+	hlth_txt->MoveTo({ hlth_bar.x, hlth_bar.y });
 }
 
 void PartyMember::Draw() {
 	Creature::Draw();
-	if (engine.scene->label == Scenes::AREA) {
+	if (scene->label == Scenes::AREA) {
 		//Party members draw their portraits and health bars at all times
 		//Draw the highlight if selected first, then the portrait
 		if (selected)
-			engine.window.draw(por_highlight);
-		engine.window.draw(portrait);
-		engine.window.draw(nameplate);
+			game.renderer->DrawRect(por_bbox);
+		game.renderer->DrawSprite(*portrait);
+		game.renderer->DrawTxt(*nameplate);
 
 		//Draw the missing health bar first, then the remaining health bar over it
-		engine.window.draw(mssng_hlth_bar);
-		engine.window.draw(hlth_bar);
+		game.renderer->DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {(uint)round(portrait->GetSprSize().x * .9f), (uint)hlth_bar.h} }, Color(0), Color(0, 0, 0, 1));
+		game.renderer->DrawRect(hlth_bar, Color(0), Color(0, 1, 0));
 
 		//Draw our remaining health numerically last
-		engine.window.draw(hlth_txt);
+		game.renderer->DrawTxt(*hlth_txt);
 	}
 }
 

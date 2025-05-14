@@ -11,10 +11,10 @@ Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init
 	por_info.scale = game.GetResScale();
 	portrait = make_u<Sprite>(game.renderer->GetRenderer(), por_info);
 	//Portrait bbox
-	por_bbox.x = portrait->GetPos().x;
-	por_bbox.y = portrait->GetPos().y;
-	por_bbox.w = portrait->GetSprSize().x;
-	por_bbox.h = portrait->GetSprSize().y;
+	por_bbox.w = portrait->GetSprSize().x * 1.1f;
+	por_bbox.h = portrait->GetSprSize().y * 1.1f;
+	por_bbox.x = portrait->GetPos().x - portrait->GetSprSize().x * .05f;
+	por_bbox.y = portrait->GetPos().y - portrait->GetSprSize().y * .05f;
 
 	//Nameplate
 	Text::Info np_info = {};

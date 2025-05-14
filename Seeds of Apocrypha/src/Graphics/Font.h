@@ -9,7 +9,7 @@
 class Font {
 public:
 	Font(const std::string& path, uint size) {
-		std::string path_ttf = path + ".ttf";
+		std::string path_ttf = "assets/Fonts/" + path + ".ttf";
 		font = TTF_OpenFont(path_ttf.c_str(), size);
 
 		if (!font)

@@ -30,10 +30,10 @@ Game::Game(const char* title, uint init_fps) :
     Input::Init(window.get());
     
     //Load the default fonts
-    default_font36 = make_u<Font>("assets/Fonts/m5x7", 36);
-    default_font48 = make_u<Font>("assets/Fonts/m5x7", 48);
-    default_font72 = make_u<Font>("assets/Fonts/m5x7", 72);
-    default_font96 = make_u<Font>("assets/Fonts/m5x7", 96);
+    default_font36 = make_u<Font>("m5x7", 36);
+    default_font48 = make_u<Font>("m5x7", 48);
+    default_font72 = make_u<Font>("m5x7", 72);
+    default_font96 = make_u<Font>("m5x7", 96);
     debug_txt = make_u<Text>(default_font48.get());
 
     //Initialize the DJ's tracks
@@ -49,7 +49,7 @@ Game::Game(const char* title, uint init_fps) :
 
     //Initialize cursor
     //Cursor sprite info
-    Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x; csi.sheet = "assets/Sprites/Cursors/Default";
+    Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x; csi.sheet = "Cursors/Default";
     cursor = make_u<Sprite>(renderer->GetRenderer(), csi);
     //SDL_SetWindowRelativeMouseMode(); This will lock the cursor to the game window
     SDL_HideCursor();

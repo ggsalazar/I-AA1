@@ -432,26 +432,28 @@ void Scene::SetEntitySFXVolume(const float new_volume) {
 void Scene::CreatePartyMem() {
 	uint res_scalar = game.GetResScale();
 	/*
+	Sprite::Info info = {};
+	info.sheet = "Creatures/Sentients/PMPlaceholder";
+	info.frame_size = {32, 64};
 	auto new_party_mem = make_shared<PartyMember>(
-		Engine{game, window, this},
+		game, this,
 		AnimInfo{"Creatures/Sentients/PMPlaceholder", 32, 64},
 		Animation::Transform{ Vector2i(round(window.getSize().x*.75), round(window.getSize().y * .5)), {.5f, .5f}, {res_scalar, res_scalar}}); //The remaining arguments are the defaults
-		
+	
+	//Party members are placed when the scene is opened
 	entities.push_back(new_party_mem);
 	*/
 }
 
 void Scene::CreatePreGen(PreGens p_g) {
 	uint res_scalar = game.GetResScale();
-	/*
 	string name = "Default";
 	Genuses genus = Genuses::SENTIENT;
 	Races race = Races::HUMAN;
 	Sizes size = Sizes::MED;
 	Classes clss = Classes::WARRIOR;
 	string sprite = "Creatures/Sentients/PMPlaceholder";
-	uint sprite_w = METER;
-	uint sprite_h = 2*METER;
+	Vector2u sprite_size = { METER, 2 * METER };
 	uint level = 1;
 	bool sex = 0;
 	float str = 0;
@@ -507,14 +509,12 @@ void Scene::CreatePreGen(PreGens p_g) {
 			cha = 1.5;
 		break;
 	}
-
+	Sprite::Info info = {};
+	info.sheet = sprite; info.frame_size = sprite_size; info.origin = { .5f, .95f }; info.scale = { 1, 1 };
 	auto pre_gen = make_shared<PartyMember>(
-		Engine{ game, window, this },
-		AnimInfo{ sprite, sprite_w, sprite_h },
-		Animation::Transform{ {0, 0}, {.5f, .95f}, {1, 1} },
+		game, this, info,
 		Creature::Stats{ name, genus, race, size, clss, level, sex, str, con, dex, agi, intl, wis, cha } //The rest are defaults and handled in Initialization
-		); 
+		);
 
 	party_mems.push_back(pre_gen);
-	*/
 }

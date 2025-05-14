@@ -5,7 +5,7 @@ Sprite::Sprite(SDL_Renderer* renderer, const Info& i)
     SetSize();
     SetAnimFPS(info.anim_fps);
 
-    std::string sheet_png = info.sheet + ".png";
+    std::string sheet_png = "assets/Sprites/" + info.sheet + ".png";
     texture = IMG_LoadTexture(renderer, sheet_png.c_str());
 
     if (!texture)

@@ -5,7 +5,7 @@ Slider::Slider(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElem
     : UI(g, s, m, s_i, e, init_ui_layer),
       knob_label(make_u<Text>(game.default_font36.get())) {
 
-    Sprite::Info knob_info = {}; knob_info.sheet = "assets/Sprites/UI/SliderKnob"; knob_info.frame_size = {6, 18};
+    Sprite::Info knob_info = {}; knob_info.sheet = "UI/SliderKnob"; knob_info.frame_size = {6, 18};
     knob_info.scale = sprite->GetScale();
     knob_spr = make_u<Sprite>(game.renderer->GetRenderer(), knob_info);
     
