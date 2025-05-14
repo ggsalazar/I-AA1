@@ -6,6 +6,8 @@
 #include "../Core/Geometry.h"
 #include "../Graphics/Sprite.h"
 #include "../Graphics/Text.h"
+#include "../Game/Game.h"
+#include "../Game/Scene.h"
 
 class Game;
 class Scene;

@@ -10,7 +10,7 @@
 #include "Renderer.h"
 
 using json = nlohmann::json;
-using std::vector, std::cerr, std::cout;
+using std::vector, std::cerr, std::cout, std::unordered_map;
 
 //Tile Size
 constexpr uint TS = 16;
@@ -61,10 +61,8 @@ public:
 			tilesets["Stone"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Stone.png");
 			tilesets["Water"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Water.png");
 		}
-		for (auto& [name, tex] : tilesets) {
+		for (auto& [name, tex] : tilesets)
 			SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_NEAREST);
-			SDL_SetTextureBlendMode(tex, SDL_BLENDMODE_BLEND);
-		}
 
 		string ts_name;
 		SDL_Texture* ts_tex;
@@ -145,7 +143,7 @@ public:
 					vert[2].tex_coord = { (vert_uv.x + TS) / tex_size.x, (vert_uv.y + TS) / tex_size.y };
 					vert[3].tex_coord = { vert_uv.x / tex_size.x, (vert_uv.y + TS) / tex_size.y };
 
-					SDL_FColor color = { 255.f, 255.f, 255.f, 255.f };
+					SDL_FColor color = { 1.f, 1.f, 1.f, 1.f };
 					for (int i = 0; i < 4; ++i) {
 						vert[i].color = color;
 					}
@@ -183,9 +181,10 @@ public:
 	Tile GetTileData(Vector2u tile_pos) { return tile_data[floor(tile_pos.x)][floor(tile_pos.y)]; }
 
 private:
-	std::unordered_map<string, vector<SDL_Vertex>> verts_by_tileset;
-	std::unordered_map<string, vector<int>> indices_by_tileset;
-	std::unordered_map<string, SDL_Texture*> tilesets;
+	unordered_map<string, vector<SDL_Vertex>> verts_by_tileset;
+	unordered_map<string, vector<int>> indices_by_tileset;
+	unordered_map<string, SDL_Texture*> tilesets;
+
 	vector<vector<Tile>> tile_data;
 	json tilemap_data;
 

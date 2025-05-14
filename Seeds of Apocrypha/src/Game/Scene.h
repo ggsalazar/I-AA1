@@ -21,20 +21,20 @@ public:
     void Update();
     void Draw();
 
-    //Game functions
+    //Scene handling
+    void Open(const bool o = true);
+    bool IsOpen() const { return open; }
+
+    //Menu handling
+    void OpenMenu(Menus menu, const bool o = true);
+    bool MenuOpen(Menus menu);
+    void ResizeMenus();
+
+    //Gameplay functions
     void OpenInterface(Interfaces intrfc = Interfaces::NONE);
     void MoveCamera();
     void SelectPartyMems();
     Actions LMBAction();
-
-    //Scene handling
-    void Open(const bool o = true);
-    bool IsOpen() const { return open; }
-    
-    //Menus
-    void OpenMenu(Menus menu, const bool o = true);
-    bool MenuOpen(Menus menu);
-    void ResizeMenus();
     
     //Entities
     void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
@@ -58,6 +58,11 @@ private:
     vector<s_ptr<Entity>> entities;
     vector<s_ptr<PartyMember>> party_mems;
 
+    //Edge panning rects
+    Rect up_edge;
+    Rect down_edge;
+    Rect left_edge;
+    Rect right_edge;
 
     Rect selec_box;
     Vector2f selec_area = { 0, 0 };

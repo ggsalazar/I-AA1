@@ -1,8 +1,7 @@
 #include "UI.h"
 
-UI::UI(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
-    const uint init_ui_layer) :
-	Entity(g, s, s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(make_u<Text>(game.default_font36.get())) {
+UI::UI(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e, const uint init_ui_layer)
+	: Entity(g, s, s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(make_u<Text>(game.default_font36.get())) {
     
     //Label
     string l_str = "DEFAULT";

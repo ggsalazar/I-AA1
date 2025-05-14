@@ -58,81 +58,18 @@ void Renderer::DrawTilemap(TileMap& tmp) {
 
 	std::string ts_name;
 	SDL_Texture* ts_tex = nullptr;
+	vector<int> inds;
+	vector<SDL_Vertex> transformed_verts;
 
-	/*
-	uint global_tile_id;
-	uint local_tile_id;
-
-	for (const auto& layer : tmp.tilemap_data["layers"]) {
-		for (uint row = 0; row < tmp.map_size_t.y; ++row) {
-			for (uint col = 0; col < tmp.map_size_t.x; ++col) {
-				//Get current tile ID number
-				global_tile_id = layer["data"][col + row * tmp.map_size_t.x];
-
-				//Skip empty tiles
-				if (!global_tile_id) continue;
-
-				world_pos = { (int)(col * TS), (int)(row * TS) };
-				//Skip tiles that won't be seen by the camera
-				if (!Collision::AABB(Rect(world_pos, { TS }), camera->viewport)) continue;
-
-				//Identify the correct tileset for this tile
-				local_tile_id = global_tile_id;
-
-				for (const auto& tileset : tmp.tilemap_data["tilesets"]) {
-					const uint firstgid = tileset["firstgid"];
-					if (global_tile_id >= firstgid) {
-						ts_name = tileset["source"].get<string>();
-						//Ensure a tileset was found
-						if (ts_name.empty()) {
-							cerr << "Warning: Tile ID " << global_tile_id << " has no matching tileset!\n";
-							continue;
-						}
-
-						ts_name.erase(ts_name.length() - 4); //Remove ".tsx"
-						local_tile_id = global_tile_id - firstgid;
-					}
-					else break;
-				}
-
-				//Assign the proper texture
-				if (tmp.tilesets.count(ts_name))
-					ts_tex = tmp.tilesets[ts_name];
-				else {
-					cerr << "Warning: Tile ID " << global_tile_id << " has no matching tileset! Assigning Default\n";
-					ts_tex = tmp.tilesets["Default"];
-				}
-
-				if (!ts_tex) cout << "Texture null\n";
-
-				SDL_GetTextureSize(ts_tex, &tex_w, &tex_h);
-				tiles_per_row = tex_w / TS;
-
-				screen_pos = { world_pos.x - camera->viewport.x, world_pos.y - camera->viewport.y };
-
-				dest_rect = {
-					(float)screen_pos.x,
-					(float)screen_pos.y,
-					TS,
-					TS
-				};
-
-				src_rect = {
-					(float)(local_tile_id % tiles_per_row) * TS,
-					(float)(local_tile_id / tiles_per_row) * TS,
-					TS,
-					TS
-				};
-
-				SDL_RenderTexture(renderer, ts_tex, &src_rect, &dest_rect);
-			}
-		}
-	}
-	*/
 	for (auto& [ts_name, verts] : tmp.verts_by_tileset) {
 		ts_tex = tmp.tilesets[ts_name];
-		auto& inds = tmp.indices_by_tileset[ts_name];
-		SDL_RenderGeometry(renderer, ts_tex, verts.data(), verts.size(), inds.data(), inds.size());
+		inds = tmp.indices_by_tileset[ts_name];
+		transformed_verts = verts;
+		for (auto& v : transformed_verts) {
+			v.position.x -= camera->viewport.x;
+			v.position.y -= camera->viewport.y;
+		}
+		SDL_RenderGeometry(renderer, ts_tex, transformed_verts.data(), transformed_verts.size(), inds.data(), inds.size());
 	}
 
 	ts_tex = nullptr;

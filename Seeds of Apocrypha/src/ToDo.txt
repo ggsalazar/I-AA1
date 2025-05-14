@@ -1,6 +1,12 @@
-SDL:	-Tilemapping (3 days) - Look back at how you did things in SFML as a guide
-		-Camera (3 days)
-		-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
+SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
+
+Reimplementation:	-Spawn Dakn
+					-Pathfinding
+					-Dakn moving
+					-Cam following Dakn
+
+
+Why am I creating pointers to Sprites and Texts but not shapes? Shouldn't I just be creating Sprites and Texts directly?
 
 Tutorial:  -Add in NPCs (9 days)
 				--Dialogue system/trees (4 days)

@@ -1,8 +1,8 @@
 #pragma once
 #include <queue>
+#include "../../Core/Vector3.h"
 #include "../Entity.h"
-#include "../Items/Item.h"
-#include "Vector3.h"
+//#include "../Items/Item.h"
 
 class Creature : public Entity {
 public:
@@ -50,19 +50,18 @@ public:
 
 	bool moving = false;
 
-	sf::Texture portrait_tex;
-	sf::Sprite portrait;
-	sf::FloatRect por_bbox;
+	u_ptr<Sprite> portrait;
+	Rect por_bbox;
 
-	Creature(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats = {}, 
-		const string por_name = "Creatures/Portraits/Placeholder", const bool init_biped = true, const bool init_winged = false, const int init_dfc = 0);
+	Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats = {},
+		const string por_name = "Placeholder", const bool init_biped = true, const bool init_winged = false);
 
 	//Engine stuff
 	virtual void Update() override;
 	virtual void Draw() override;
 	
 	//Path stuff
-	void SetPath(queue<Vector2u> new_path) { path = new_path; }
+	void SetPath(queue<Vector2i> new_path) { path = new_path; }
 	void WalkPath();
 	void DrawPath();
 
@@ -104,13 +103,12 @@ protected:
 	int dodge_penalty = 0;
 	bool encumbered = false;
 	bool in_combat = false;
-	sf::Text nameplate;
+	u_ptr<Text> nameplate;
 
-	unordered_map<Items, unique_ptr<Item>> inv;
-	unordered_map<Items, unique_ptr<Item>> equipment;
+	//unordered_map<Items, unique_ptr<Item>> inv;
+	//unordered_map<Items, unique_ptr<Item>> equipment;
 
-	queue<Vector2u> path;
-
+	queue<Vector2i> path;
 
 	void SetDEF();
 };

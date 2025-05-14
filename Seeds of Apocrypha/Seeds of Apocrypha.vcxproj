@@ -100,6 +100,8 @@
   <ItemGroup>
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Core\Math.cpp" />
+    <ClCompile Include="src\Entities\Creatures\Creature.cpp" />
+    <ClCompile Include="src\Entities\Creatures\PartyMember.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
     <ClCompile Include="src\Entities\UI\Button.cpp" />
     <ClCompile Include="src\Entities\UI\Picker.cpp" />
@@ -123,6 +125,9 @@
     <ClInclude Include="src\Core\Input.h" />
     <ClInclude Include="src\Core\Math.h" />
     <ClInclude Include="src\Core\Vector2.h" />
+    <ClInclude Include="src\Core\Vector3.h" />
+    <ClInclude Include="src\Entities\Creatures\Creature.h" />
+    <ClInclude Include="src\Entities\Creatures\PartyMember.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Entities\UI\Button.h" />
     <ClInclude Include="src\Entities\UI\Picker.h" />

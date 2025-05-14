@@ -1,24 +1,25 @@
 #include "Creature.h"
 
-Creature::Creature(const Engine& e, const AnimInfo& a_i, const Animation::Transform& t, const Stats& init_stats,
-	const string por_name, const bool init_biped, const bool init_winged, const int init_dfc) :
-	Entity(e, a_i, t, init_dfc), 
-	stats(init_stats), biped(init_biped), winged(init_winged), nameplate(engine.game.default_font),
-	portrait_tex("assets/Sprites/"+por_name+".png"),
-	portrait(portrait_tex) {
+Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
+	const string por_name, const bool init_biped, const bool init_winged)
+	: Entity(g, s, s_i), 
+	stats(init_stats), biped(init_biped), winged(init_winged) {
 
-	portrait.setOrigin(portrait_tex.getSize()) * .5f;
-	portrait.setScale(t.scale * engine.game.GetResScale());
-	portrait_tex.setSmooth(false);
-
+	//Portrait + portrait bbox
+	Sprite::Info por_info = {};
+	por_info.sheet = "assets/Sprites/Creatures/Portraits/" + por_name;
+	por_info.scale = game.GetResScale();
+	portrait = make_u<Sprite>(game.renderer->GetRenderer(), por_info);
 	//Portrait bbox
-	por_bbox.size.x = portrait.getGlobalBounds().size.x;
-	por_bbox.size.y = portrait.getGlobalBounds().size.y;
-	por_bbox.position.x = portrait.getPosition().x - por_bbox.size.x * .5f;
-	por_bbox.position.y = portrait.getPosition().y - por_bbox.size.y * .5f;
-	//Initialize our nameplate
-	Text::Init(nameplate, engine.game.default_font, engine.game.GetResScale() * 9, { 0, 0 }, stats.name, { 0, 0 });
+	por_bbox.x = portrait->GetPos().x;
+	por_bbox.y = portrait->GetPos().y;
+	por_bbox.w = portrait->GetSprSize().x;
+	por_bbox.h = portrait->GetSprSize().y;
 
+	//Nameplate
+	Text::Info np_info = {};
+	np_info.str = stats.name; np_info.max_width = por_bbox.w;
+	nameplate = make_u<Text>(game.default_font36.get(), np_info);
 
 	//Set base_spd
 	switch (stats.size) {
@@ -100,7 +101,7 @@ void Creature::Draw() {
 
 void Creature::WalkPath() {
 	if (!path.empty()) {
-		Vector2u next_pos = path.front();
+		Vector2i next_pos = path.front();
 		if (pos != next_pos) {
 
 			Vector2i offset = { 0, 0 };
@@ -119,10 +120,8 @@ void Creature::WalkPath() {
 				offset.x = min(mv_spd, next_pos.x - pos.x);
 
 			//Normalize diagonal movement
-			if (offset.x != 0 and offset.y != 0) {
-				offset /= 1.414f;
-				offset = { round(offset.x), round(offset.y) };
-			}
+			if (offset.x != 0 and offset.y != 0)
+				offset = { (int)round(offset.x / 1.414f), (int)round(offset.y / 1.414f) };
 
 			Entity::MoveBy(offset);
 		}
@@ -134,20 +133,17 @@ void Creature::WalkPath() {
 }
 
 void Creature::DrawPath() {
-	queue<Vector2u> temp_path = path;
-	vector<Vector2u> path_v;
+	queue<Vector2i> temp_path = path;
+	vector<Vector2i> path_v;
 	while (!temp_path.empty()) {
 		path_v.push_back(temp_path.front());
 		temp_path.pop();
 	}
 
+	Rect point_box = { {0, 0}, {4, 4} };
 	for (const auto& point : path_v) {
-		sf::RectangleShape point_box;
-		point_box.setSize({ 4, 4 });
-		point_box.setFillColor(sf::Color(0, 0, 255, 255));
-		point_box.setPosition(Vector2u(point.x - 2, point.y - 2));
-
-		engine.window.draw(point_box);
+		point_box.x = point.x - 2; point_box.y = point.y - 2;
+		game.renderer->DrawRect(point_box, Color(0, 0, 1, 1), Color(0,0,1,1));
 	}
 }
 
@@ -306,7 +302,7 @@ void Creature::SetMaxHealth() {
 		}
 	}
 
-	//For non-sentients, max health partially depends on size but is mostly arbitrary
+	//For non-Sentients, max health partially depends on size but is mostly arbitrary
 	else {}
 
 	//Set the 30/20/10% health threshholds

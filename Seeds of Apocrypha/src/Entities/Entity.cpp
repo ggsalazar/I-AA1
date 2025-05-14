@@ -1,6 +1,4 @@
 #include "Entity.h"
-#include "../Game/Game.h"
-#include "../Game/Scene.h"
 
 #undef PlaySound
 

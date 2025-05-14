@@ -1,27 +1,18 @@
 #include "PartyMember.h"
 
-PartyMember::PartyMember(const Engine& s, const AnimInfo& a_i, const Animation::Transform& t,
-	const Stats& init_stats, const string por_name, const bool init_biped, const bool init_winged, const int init_dfc) :
-	Creature(s, a_i, t, init_stats, por_name, init_biped, init_winged, init_dfc), hlth_txt(engine.game.default_font) {
-
-	//Set up the portrait highlighter
-	por_highlight.setSize(Vector2f(34.f * portrait.getScale()));
-	por_highlight.setFillColor(sf::Color::White);
-	por_highlight.setOrigin(Vector2f(por_highlight.getSize() * .5f));
-
-	//The missing health bar, a static red bar drawn under the health bar
-	mssng_hlth_bar.setSize({ 34 * portrait.getScale().x, 6 * portrait.getScale().y });
-	mssng_hlth_bar.setFillColor(sf::Color::Red);
-	//Origin is 0,0
+PartyMember::PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
+	const string por_name, const bool init_biped, const bool init_winged)
+	: Creature(g, s, s_i, init_stats, por_name, init_biped, init_winged) {
 	
 	//The health bar
-	hlth_bar.setSize(mssng_hlth_bar.getSize());
-	hlth_bar.setFillColor(sf::Color::Green);
-	//Origin is 0,0
+	hlth_bar.w = 34 * portrait->GetSprSize().x;
+	hlth_bar.h = 6 * portrait->GetSprSize().y;
 
 	//The health text
-	Text::Init(hlth_txt, engine.game.default_font, engine.game.GetResScale() * 10, Vector2u(portrait.getPosition()), to_string(stats.hlth) + "/" + to_string(stats.max_hlth));
-
+	Text::Info h_t_info = {};
+	h_t_info.str = to_string(stats.hlth) + "/" + to_string(stats.max_hlth);
+	h_t_info.max_width = hlth_bar.w;
+	hlth_txt = make_u<Text>(game.default_font36.get(), h_t_info);
 }
 
 void PartyMember::GetInput() {

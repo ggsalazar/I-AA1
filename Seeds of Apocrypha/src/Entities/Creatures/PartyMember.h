@@ -5,8 +5,8 @@ class PartyMember : public Creature {
 public:
 	bool selected = false;
 
-	PartyMember(const Engine& s, const AnimInfo& a_i, const Animation::Transform& t = {}, const Stats& init_stats = {},
-		const string por_name = "Creatures/Portraits/Placeholder", const bool init_biped = true, const bool init_winged = false, const int init_dfc = 0);
+	PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats = {},
+		const string por_name = "Placeholder", const bool init_biped = true, const bool init_winged = false);
 
 	//Game stuff
 	void GetInput() override;
@@ -14,8 +14,7 @@ public:
 	void Draw() override;
 
 private:
-	sf::RectangleShape por_highlight;
-	sf::RectangleShape hlth_bar;
-	sf::RectangleShape mssng_hlth_bar;
-	sf::Text hlth_txt;
+	Rect hlth_bar;
+	Rect mssng_hlth_bar; //I don't think I need this
+	u_ptr<Text> hlth_txt;
 };
