@@ -31,8 +31,8 @@ public:
     virtual void GetInput() {}
     inline virtual void Update() {}
     virtual void Draw();
-    inline virtual void MoveBy(Vector2i offset) { pos += offset; Move(); }
-    inline virtual void MoveTo(Vector2i new_pos) { pos = new_pos; Move(); }
+    virtual void MoveBy(Vector2i offset);
+    virtual void MoveTo(Vector2i new_pos);
 
     inline Vector2i GetPos() const { return pos; }
     inline Rect GetBBox() const { return bbox; }

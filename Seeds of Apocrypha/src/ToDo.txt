@@ -1,6 +1,9 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
+Fix the fucking scaling issue when changing resolution
+
 Reimplementation:	-Spawn Dakn
+						--World position currently not positioning
 					-Pathfinding
 					-Dakn moving
 					-Cam following Dakn
@@ -29,6 +32,7 @@ Tutorial:  -Add in NPCs (9 days)
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
+		- Portraits should be smaller than 32x32 - maybe 24x24?
 
 Main Menu
 	-Character creation

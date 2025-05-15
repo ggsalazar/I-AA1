@@ -49,7 +49,7 @@ void Slider::GetInput() {
         
         //Adjust knob position
         knob_pos = Input::MousePos().x;
-        knob_pos = Math::Clamp(knob_pos, knob_pos_min, knob_pos_max);
+        Math::Clamp(knob_pos, knob_pos_min, knob_pos_max);
         knob_spr->MoveTo({ (int)knob_pos, pos.y });
 
         float new_val = 0;

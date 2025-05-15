@@ -1,3 +1,4 @@
 C:\Users\Griffin G. Salazar\source\Cpp Projects\Iron & Aether Adventures\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe
 C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe

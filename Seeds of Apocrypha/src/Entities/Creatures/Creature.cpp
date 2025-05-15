@@ -7,14 +7,12 @@ Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init
 
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
-	por_info.sheet = "assets/Sprites/Creatures/Portraits/" + por_name;
-	por_info.scale = game.GetResScale();
+	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = {32, 32};
+	por_info.scale = game.GetResScale() * 2;
 	portrait = make_u<Sprite>(game.renderer->GetRenderer(), por_info);
 	//Portrait bbox
-	por_bbox.w = portrait->GetSprSize().x * 1.1f;
-	por_bbox.h = portrait->GetSprSize().y * 1.1f;
-	por_bbox.x = portrait->GetPos().x - portrait->GetSprSize().x * .05f;
-	por_bbox.y = portrait->GetPos().y - portrait->GetSprSize().y * .05f;
+	por_bbox.w = portrait->GetSprSize().x * 1.05f;
+	por_bbox.h = portrait->GetSprSize().y * 1.05f;
 
 	//Nameplate
 	Text::Info np_info = {};
@@ -86,6 +84,9 @@ Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init
 void Creature::Update() {
 	//Position of portrait will be updated here
 
+	por_bbox.x = portrait->GetPos().x - round(portrait->GetSprSize().x * .025f);
+	por_bbox.y = portrait->GetPos().y - round(portrait->GetSprSize().y * .025f);
+
 	//Moving
 	if (moving) WalkPath();
 }
@@ -121,7 +122,7 @@ void Creature::WalkPath() {
 
 			//Normalize diagonal movement
 			if (offset.x != 0 and offset.y != 0)
-				offset = { (int)round(offset.x / 1.414f), (int)round(offset.y / 1.414f) };
+				offset = Round(offset.x / 1.414f, offset.y / 1.414f);
 
 			Entity::MoveBy(offset);
 		}

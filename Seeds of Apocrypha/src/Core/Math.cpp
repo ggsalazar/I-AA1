@@ -1,9 +1,8 @@
 #include "Math.h"
 
-float Math::Clamp(float value, const float min, const float max) {
+void Math::Clamp(float& value, const float min, const float max) {
     if (value < min) value = min;
     else if (value > max) value = max;
-    return value;
 }
 
 float Math::Lerp(const float a, const float b, const float t, const bool angle) {

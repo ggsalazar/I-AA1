@@ -10,32 +10,33 @@ void Scene::GetInput() {
 	if (label == Scenes::AREA) {
 		OpenInterface();
 		MoveCamera();
-		/*
+		
 		if (!game.paused) {
 			SelectPartyMems();
 
+			/*
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing 
 			// will depend on what it is pointing at
 			//Updating action every 6th of a second for performance reasons
-			if (game.GetGameFrames() % 10 == 0)
-				action = LMBAction();
+			//if (game.GetGameFrames() % 10 == 0)
+			//	action = LMBAction();
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
-			game.cursor = game.cursors[action].get();
+			//SetGameCursor(action);
 			if (Input::KeyPressed(LMB)) {
 				switch (action) {
-					case Actions::MOVE:
-						for (const auto& p_m : party_mems) {
-							if (p_m->selected) {
-								p_m->moving = true;
-								p_m->SetPath(found_path);
-							}
+				case Actions::MOVE:
+					for (const auto& p_m : party_mems) {
+						if (p_m->selected) {
+							p_m->moving = true;
+							p_m->SetPath(found_path);
 						}
+					}
 					break;
 				}
 			}
+			*/
 		}
-		else game.cursor = game.cursors[Actions::DEFAULT].get();
-	*/
+		else game.cursor->SetSheetRow(0);
 	}
 	for (auto& e : entities) {
 		//Only get input for UI elements if the corresponding menu is open
@@ -156,21 +157,19 @@ void Scene::Open(const bool o) {
 
 			game.camera.viewport.x = round(area_size.x * .5f - game.camera.viewport.w * .5f);
 			game.camera.viewport.y = round(area_size.y * .5f - game.camera.viewport.h * .5f);
-			/*
+
 			for (auto& p_m : party_mems) {
 				entities.push_back(p_m);
 				p_m->SetScene(this);
-				p_m->MoveTo(Vector2i(game.camera.getCenter().x - TS*.5, game.camera.getCenter().y - TS*.5));
+				p_m->MoveTo(Round(area_size * .5f));
 				p_m->selected = true;
 			}
-			*/
 			switch (game.area) {
-			case Areas::DEBUG:
+				case Areas::DEBUG:
 				break;
 
-			case Areas::TUTTON:
+				case Areas::TUTTON:
 				break;
-
 			}
 
 			//Initialize our menus
@@ -265,13 +264,15 @@ void Scene::MoveCamera() {
 		else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
 			new_cam_offset.x += game.cam_move_spd;
 
-		new_cam_offset = { (int)round(new_cam_offset.x), (int)round(new_cam_offset.y) };
+		if (new_cam_offset.x != 0 and new_cam_offset.y != 0)
+			new_cam_offset *= 1.414f;
+
+		new_cam_offset = Round(new_cam_offset);
 		game.camera.MoveBy(new_cam_offset);
 	}
 	//If the camera is locked to the party members, follow them automatically
 	//Select which party members to lock the camera to - TO-DO
 	//Get the average of all of their positions and lerp the camera to there
-	/*
 	else {
 		Vector2i pos_totals = { 0, 0 };
 		uint selected_p_ms = 0;
@@ -281,77 +282,67 @@ void Scene::MoveCamera() {
 				pos_totals += p_m->GetPos();
 			}
 		}
-		Vector2f pos_avg = Vector2f(pos_totals.x / selected_p_ms, pos_totals.y / selected_p_ms);
+		Vector2f pos_avg = pos_totals / (float)selected_p_ms;
 		
-
 		Math::Clamp(pos_avg.x, -cam_size.x*.5, tilemap.GetMapSizePixels().x + cam_size.x*.5);
 		Math::Clamp(pos_avg.y, -cam_size.y*.5, tilemap.GetMapSizePixels().y + cam_size.y*.5);
 
-		pos_avg = { round(pos_avg.x), round(pos_avg.y) };
+		pos_avg = Vector2f(Round(pos_avg));
 
-		game.camera.setCenter(Math::Lerp(game.camera.getCenter(), pos_avg, .1));
+		game.camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game.camera.GetCenter()), pos_avg, .1f)));
 	}
-	*/
 }
 
 void Scene::SelectPartyMems() {
-	/*
+	
 	//Select party members
 	//Click and drag (selection box/area) while holding SHIFT or CTRL
 	//	 -SHIFT selects all party mems inside the selection area
 	//	 -CTRL deselects all party mems inside the selection area
 
-	if (Input::KeyPressed(LMB) and (BUTTONDOWN(LSHIFT) or BUTTONDOWN(RSHIFT) or BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL))) {
-		selec_box.setPosition(window.mapPixelToCoords(MOUSEPOS));
+	if (Input::BtnPressed(LMB) and (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT) or Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL))) {
+		selec_box.x = Input::MousePos().x;
+		selec_box.y = Input::MousePos().y;
 		selecting = true;
-		selec_wh = { 0,0 };
 		//Change cursor sprite to indicate we are now selecting - TO-DO
 	}
-	else if (Input::KeyReleased(LMB) and selecting) {
+	else if (Input::BtnReleased(LMB) and selecting) {
 		selecting = false;
 
-		selec_area.position = selec_box.getPosition();
-		selec_area.size = selec_box.getSize();
-
 		for (auto& p_m : party_mems) {
-			if (selec_area.contains(Vector2f(p_m->GetPos()))) {
-				if (BUTTONDOWN(LSHIFT) or BUTTONDOWN(RSHIFT)) p_m->selected = true;
-				else if (BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL)) p_m->selected = false;
+			if (Collision::Point(Vector2f(p_m->GetPos()), selec_box)) {
+				if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT)) p_m->selected = true;
+				else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
 			}
-			else if (BUTTONDOWN(LCTRL) or BUTTONDOWN(RCTRL)) p_m->selected = false;
+			else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
 		}
 
 	}
 	if (selecting) {
 		//Selection area w/h
-		selec_wh.x = MOUSEPOS_W.x - selec_box.getPosition().x;
-		selec_wh.y = MOUSEPOS_W.y - selec_box.getPosition().y;
-
-		selec_box.setSize(selec_wh);
+		selec_box.w = Input::MousePos().x - selec_box.x;
+		selec_box.h = Input::MousePos().y - selec_box.y;
 
 		//Use visual signifiers to indicate which party members are about to be selected - TO-DO
 	}
-	*/
 }
 
 Actions Scene::LMBAction() {
 	//Possible actions:
 	//-Move
-	//-Melee Attack (Combat only?)
-	//-Ranged Attack (Combat only?)
+	//-Melee Attack (Combat only)
+	//-Ranged Attack (Combat only)
 	//-Pick up an object
 	//-Loot a container
 	//-Pick/unlock a lock
 	//-Open a door
 	//-Speak to NPC
-	/*
+	
 	//Convert mouse coordinates from screen to world
 	//What tile are we currently pointing at?
-	Vector2u tile_pos = { floor(Input::MousePos().x / TS), floor(Input::MousePos().y / TS)};
+	Vector2i tile_pos = { (int)floor(Input::MousePos().x / TS), (int)floor(Input::MousePos().y / TS)};
 	//Current meter pos is tile_pos * 2
-	
-	//What tile are we currently looking at?
-	unique_ptr<Tile> curr_tile;
+	u_ptr<Tile> curr_tile;
 	if (tile_pos.x > 0 and tile_pos.y > 0 and tile_pos.x < tilemap.GetMapSizeTiles().x and tile_pos.y < tilemap.GetMapSizeTiles().y)
 		curr_tile = make_unique<Tile>(tilemap.GetTileData(tile_pos));
 	
@@ -365,7 +356,7 @@ Actions Scene::LMBAction() {
 	for (const auto& p_m : party_mems) {
 		if (p_m->selected) {
 
-			found_path = tilemap.FindPath(p_m->GetPos(), MOUSEPOS_W, window);
+			//found_path = tilemap.FindPath(p_m->GetPos(), MOUSEPOS_W, window);
 
 			//If no path, return no action
 			if (found_path.empty())
@@ -401,8 +392,28 @@ Actions Scene::LMBAction() {
 	//Speak to NPC
 	//-When mouse is on non-hostile creature
 
-	*/
 	return Actions::NOACTION;
+}
+
+void Scene::SetGameCursor(Actions action) {
+	uint new_row;
+
+	//This method forces me to by personally familiar with where each cursor sprite is in the
+	// sheet, which is completely unscalable but works for now
+	switch (action) {
+		case Actions::DEFAULT:
+			new_row = 0;
+		break;
+
+		case Actions::MOVE:
+			new_row = 1;
+		break;
+
+		case Actions::NOACTION:
+			new_row = 2;
+		break;
+	}
+	game.cursor->SetSheetRow(new_row);
 }
 
 void Scene::RemoveEntity(shared_ptr<Entity> e) {

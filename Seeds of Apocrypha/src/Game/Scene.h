@@ -35,6 +35,7 @@ public:
     void MoveCamera();
     void SelectPartyMems();
     Actions LMBAction();
+    void SetGameCursor(Actions action);
     
     //Entities
     void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
@@ -65,8 +66,7 @@ private:
     Rect right_edge;
 
     Rect selec_box;
-    Vector2f selec_area = { 0, 0 };
-    //queue<Vector2u> found_path;
+    queue<Vector2i> found_path;
 
     Game& game;
 };

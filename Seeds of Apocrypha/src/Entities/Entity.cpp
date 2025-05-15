@@ -12,6 +12,20 @@ void Entity::Draw() {
     game.renderer->DrawSprite(*sprite);
 }
 
+void Entity::MoveBy(Vector2i offset) {
+    pos.x += offset.x - game.camera.viewport.x;
+    pos.y += offset.y - game.camera.viewport.y;
+    
+    Move();
+}
+
+void Entity::MoveTo(Vector2i new_pos) {
+    pos.x = new_pos.x - game.camera.viewport.x;
+    pos.y = new_pos.y - game.camera.viewport.y;
+    
+    Move();
+}
+
 void Entity::PlaySound() {
     //Play assigned noise with slight pitch shift
     float pitch_shift = (rand() % 10) * .01;

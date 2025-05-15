@@ -49,7 +49,8 @@ Game::Game(const char* title, uint init_fps) :
 
     //Initialize cursor
     //Cursor sprite info
-    Sprite::Info csi = {}; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x; csi.sheet = "Cursors/Default";
+    Sprite::Info csi = {};
+    csi.sheet = "UI/Cursors"; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x;
     cursor = make_u<Sprite>(renderer->GetRenderer(), csi);
     //SDL_SetWindowRelativeMouseMode(); This will lock the cursor to the game window
     SDL_HideCursor();
@@ -100,7 +101,7 @@ void Game::ProcessInput() {
         cerr << "ERROR: ACTIVE SCENE NOT PROCESSING INPUT!\n";
 
     //Update cursor position
-    cursor->MoveTo(Vector2i{ (int)round(Input::MousePos().x), (int)round(Input::MousePos().y)});
+    cursor->MoveTo(Round(Input::MousePos()));
 }
 
 //Update the game world

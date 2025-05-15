@@ -178,7 +178,7 @@ public:
 	Vector2u GetMapSizeTiles() const { return map_size_t; }
 	Vector2u GetMapSizePixels() const { return map_size_p; }
 
-	Tile GetTileData(Vector2u tile_pos) { return tile_data[floor(tile_pos.x)][floor(tile_pos.y)]; }
+	Tile GetTileData(Vector2i tile_pos) { return tile_data[floor(tile_pos.x)][floor(tile_pos.y)]; }
 
 private:
 	unordered_map<string, vector<SDL_Vertex>> verts_by_tileset;

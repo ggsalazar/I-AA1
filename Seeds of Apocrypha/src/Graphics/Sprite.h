@@ -58,7 +58,7 @@ public:
 
     inline void SetScale(const Vector2i& s) {
         info.scale = s;
-        info.spr_size = info.frame_size * info.scale;
+        info.spr_size = { info.frame_size.x * info.scale.x, info.frame_size.y * info.scale.y };
     }
     inline Vector2i GetScale() const { return info.scale; }
 

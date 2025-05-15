@@ -5,8 +5,8 @@ PartyMember::PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats
 	: Creature(g, s, s_i, init_stats, por_name, init_biped, init_winged) {
 	
 	//The health bar
-	hlth_bar.w = 34 * round(portrait->GetSprSize().x*.9f);
-	hlth_bar.h = 6 * round(portrait->GetSprSize().y*.14f);
+	hlth_bar.w = round(portrait->GetSprSize().x*.98f);
+	hlth_bar.h = round(portrait->GetSprSize().y*.14f);
 
 	//The health text
 	Text::Info h_t_info = {};
@@ -18,16 +18,16 @@ PartyMember::PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats
 void PartyMember::GetInput() {
 	//Become selected if our bounding box or portrait is clicked on
 	//Bbox uses world mouse coordinates, portrait uses screen mouse coordinates
-	if ((Collision::Point(Input::MousePos(), bbox) or Collision::Point(Input::MousePos(), por_bbox)) and Input::KeyPressed(LMB)) {
+	if ((Collision::Point(Input::MousePos(), bbox) or Collision::Point(Input::MousePos(), por_bbox)) and Input::BtnPressed(LMB)) {
 		//We are not using the area selection function
 		scene->selecting = false;
 
 		//If we aren't holding shift, deselect all party members before selecting this one
-		if (!(Input::BtnDown(LSHIFT) or Input::BtnDown(RSHIFT))) {
+		if (!(Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT))) {
 			vector<shared_ptr<PartyMember>> p_ms = scene->GetPartyMems();
 			for (auto& p_m : p_ms) p_m->selected = false;
 		}
-		selected = !(Input::BtnDown(LCTRL) or Input::BtnDown(RCTRL));
+		selected = !(Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL));
 	}
 }
 
@@ -36,12 +36,12 @@ void PartyMember::Update() {
 
 	//Update portrait and related details position
 	//Position is just the bottom left for Adventure 1
-	portrait->MoveTo({ (int)round(portrait->GetSprSize().x * .75f), (int)round(game.GetResolution().y - portrait->GetSprSize().y * 1.25f) });
-	por_bbox.x = portrait->GetPos().x;
-	por_bbox.y = portrait->GetPos().y;
+	portrait->MoveTo(Round(portrait->GetSprSize().x * .25f, game.GetResolution().y - portrait->GetSprSize().y * 1.25f));
+	por_bbox.x = portrait->GetPos().x - round(portrait->GetSprSize().x * .025f);
+	por_bbox.y = portrait->GetPos().y - round(portrait->GetSprSize().y * .025f);
 	nameplate->MoveTo({ portrait->GetPos() });
 	//Update hlth_bar size (TO-DO)
-	hlth_bar.x = portrait->GetPos().x + round(portrait->GetSprSize().x * .1f);
+	hlth_bar.x = portrait->GetPos().x + round(portrait->GetSprSize().x * .01f);
 	hlth_bar.y = portrait->GetPos().y + round(portrait->GetSprSize().y * .85f);
 	hlth_txt->info.str = to_string((int)stats.hlth) + "/" + to_string((int)stats.max_hlth);
 	hlth_txt->MoveTo({ hlth_bar.x, hlth_bar.y });
@@ -53,7 +53,7 @@ void PartyMember::Draw() {
 		//Party members draw their portraits and health bars at all times
 		//Draw the highlight if selected first, then the portrait
 		if (selected)
-			game.renderer->DrawRect(por_bbox);
+			game.renderer->DrawRect(por_bbox, Color(1), Color(1));
 		game.renderer->DrawSprite(*portrait);
 		game.renderer->DrawTxt(*nameplate);
 

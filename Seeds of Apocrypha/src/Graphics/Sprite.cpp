@@ -9,7 +9,7 @@ Sprite::Sprite(SDL_Renderer* renderer, const Info& i)
     texture = IMG_LoadTexture(renderer, sheet_png.c_str());
 
     if (!texture)
-        std::cout << "Could not load texture from file: " << info.sheet << "!\n";
+        std::cout << "Could not load texture from file: " << sheet_png << "!\n";
 
     Vector2f s_size;
     SDL_GetTextureSize(texture, &s_size.x, &s_size.y);
