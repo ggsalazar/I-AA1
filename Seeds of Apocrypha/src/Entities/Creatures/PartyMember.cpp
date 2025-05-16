@@ -36,7 +36,7 @@ void PartyMember::Update() {
 
 	//Update portrait and related details position
 	//Position is just the bottom left for Adventure 1
-	portrait->MoveTo(Round(portrait->GetSprSize().x * .25f, game.GetResolution().y - portrait->GetSprSize().y * 1.25f));
+	portrait->MoveTo(Round(portrait->GetSprSize().x * .25f + game.camera.viewport.x, game.GetResolution().y - portrait->GetSprSize().y * 1.25f + game.camera.viewport.y));
 	por_bbox.x = portrait->GetPos().x - round(portrait->GetSprSize().x * .025f);
 	por_bbox.y = portrait->GetPos().y - round(portrait->GetSprSize().y * .025f);
 	nameplate->MoveTo({ portrait->GetPos() });

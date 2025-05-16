@@ -5,6 +5,7 @@ struct Color {
 	//Values between 0 and 1
 	float r = 0.f, g = 0.f, b = 0.f, a = 0.f;
 
+	Color() = default;
 	Color(float rgb) : r(rgb), g(rgb), b(rgb), a(1) {}
 	Color(float r, float g, float b) : r(r), g(g), b(b), a(1) {}
 	Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) {}
@@ -16,6 +17,7 @@ std::ostream& operator<<(std::ostream& os, const Color& c) { return os << "r: " 
 struct Line {
 	Vector2i pos1, pos2;
 
+	Line() = default;
 	Line(Vector2i p1, Vector2i p2) : pos1(p1), pos2(p2) {}
 	inline float Length() const { return sqrt((pos2.x - pos1.x) * (pos2.x - pos1.x) + (pos2.y - pos1.y) * (pos2.y - pos1.y)); }
 };

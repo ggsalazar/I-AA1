@@ -1,64 +1,59 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  PartyMember.cpp
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(20,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  Creature.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(32,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(34,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(33,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(35,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(44,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(46,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(57,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Sprite.h(49,59): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Font.h(13,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Text.h(29,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244:         with
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244:         [
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244:             T=float
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244:         ]
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(153,23): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(181,62): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(181,81): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.h(80,41): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\PartyMember.cpp(8,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\PartyMember.cpp(9,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\PartyMember.cpp(40,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\PartyMember.cpp(41,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\PartyMember.cpp(44,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\PartyMember.cpp(45,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.cpp(14,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.cpp(15,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.cpp(87,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.cpp(88,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Seeds of Apocrypha.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\x64\Debug\Seeds of Apocrypha.exe

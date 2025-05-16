@@ -45,8 +45,8 @@ public:
 
     //Sprite proper stuff
     inline Vector2i GetPos() const { return info.pos; }
-    inline void MoveTo(const Vector2i& new_pos) { info.pos = new_pos; }
-    inline void MoveBy(const Vector2i& offset) { info.pos += offset; }
+    void MoveTo(const Vector2i& new_pos);
+    void MoveBy(const Vector2i& offset);
 
     inline void SetSize() { info.spr_size = { info.scale.x * info.frame_size.x, info.scale.y * info.frame_size.y }; }
     inline void SetSize(const Vector2u& s) {

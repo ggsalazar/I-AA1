@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <queue>
 #include "Game.h" //(<iostream>, <unordered_map>, Enums.h, Input.h, Math.h, Window.h, Renderer.h)
 #include "Menu.h"
 #include "../Graphics/TileMap.h"

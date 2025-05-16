@@ -8,7 +8,7 @@ Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
 	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = {32, 32};
-	por_info.scale = game.GetResScale() * 2;
+	por_info.scale = game.GetResScale() * 2; //Set this to just ResScale() when have 48x48 portraits
 	portrait = make_u<Sprite>(game.renderer->GetRenderer(), por_info);
 	//Portrait bbox
 	por_bbox.w = portrait->GetSprSize().x * 1.05f;

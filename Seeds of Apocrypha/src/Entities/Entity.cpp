@@ -3,9 +3,9 @@
 #undef PlaySound
 
 Entity::Entity(Game& g, Scene* s, const Sprite::Info& s_i) 
-    : game(g), scene(s), pos(s_i.pos), pos_debug(pos, 2), bbox(pos, size) /*sound(sb)*/ {
+    : game(g), scene(s), pos(s_i.pos), pos_debug(pos, 4), bbox(pos, size) /*sound(sb)*/ {
     sprite = make_u<Sprite>(game.renderer->GetRenderer(), s_i);
-    Move();
+    Entity::Move();
 }
 
 void Entity::Draw() {
@@ -13,17 +13,15 @@ void Entity::Draw() {
 }
 
 void Entity::MoveBy(Vector2i offset) {
-    pos.x += offset.x - game.camera.viewport.x;
-    pos.y += offset.y - game.camera.viewport.y;
+    pos += offset;
     
-    Move();
+    Entity::Move();
 }
 
 void Entity::MoveTo(Vector2i new_pos) {
-    pos.x = new_pos.x - game.camera.viewport.x;
-    pos.y = new_pos.y - game.camera.viewport.y;
+    pos = new_pos;
     
-    Move();
+    Entity::Move();
 }
 
 void Entity::PlaySound() {
@@ -43,7 +41,6 @@ void Entity::Move() {
 
     pos_debug.x = pos.x;
     pos_debug.y = pos.y;
-
 
     //bbox position will always be top left
     bbox.x = pos.x - sprite->GetOrigin().x * size.x;

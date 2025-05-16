@@ -1,7 +1,7 @@
 #include "Sprite.h"
 
 Sprite::Sprite(SDL_Renderer* renderer, const Info& i)
-    : info(i), pos_debug(info.pos, 2) {
+    : info(i), pos_debug(info.pos, 4) {
     SetSize();
     SetAnimFPS(info.anim_fps);
 
@@ -37,6 +37,18 @@ void Sprite::Update(const float dt) {
         }
         */
     }
+}
+
+void Sprite::MoveTo(const Vector2i& new_pos) { 
+    info.pos = new_pos; 
+    pos_debug.x = info.pos.x; 
+    pos_debug.y = info.pos.y; 
+}
+
+void Sprite::MoveBy(const Vector2i& offset) {
+    info.pos += offset;
+    pos_debug.x = info.pos.x;
+    pos_debug.y = info.pos.y;
 }
 
 void Sprite::SetSheetRow(uint new_s_r, const uint new_n_f) {

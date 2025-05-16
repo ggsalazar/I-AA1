@@ -31,8 +31,8 @@ void Renderer::DrawSprite(Sprite& spr) {
 								 si->sheet_row * si->frame_size.y + si->frame_size.y };
 								 
 
-	const SDL_FRect dest_rect = { round(si->pos.x - (si->spr_size.x * si->origin.x)),
-								  round(si->pos.y - (si->spr_size.y * si->origin.y)),
+	const SDL_FRect dest_rect = { round(si->pos.x - (si->spr_size.x * si->origin.x)) - camera->viewport.x,
+								  round(si->pos.y - (si->spr_size.y * si->origin.y)) - camera->viewport.y,
 								  si->spr_size.x,
 								  si->spr_size.y};
 
@@ -104,8 +104,8 @@ void Renderer::DrawTxt(Text& txt) {
 
 	SDL_FRect src_rect = { 0, 0, surface->w, surface->h };
 	SDL_FRect dest_rect = {
-		round(ti->pos.x - (ti->str_size.x * ti->origin.x)),
-		round(ti->pos.y - (ti->str_size.y * ti->origin.y)),
+		round(ti->pos.x - (ti->str_size.x * ti->origin.x)) - camera->viewport.x,
+		round(ti->pos.y - (ti->str_size.y * ti->origin.y)) - camera->viewport.y,
 		static_cast<float>(surface->w),
 		static_cast<float>(surface->h)
 	};
@@ -113,20 +113,30 @@ void Renderer::DrawTxt(Text& txt) {
 	
 }
 
+void Renderer::DrawGrid(const Vector2i start, const Vector2i end, const uint tile_size) {
+	//Vertical Lines
+	for (int i = start.x; i < end.x; i += tile_size)
+		DrawLine(Line{ {i, start.y}, {i, end.y} }, Color(1, 0, 0));
+	//Horizontal lines
+	for (int i = start.y; i < end.y; i += tile_size)
+		DrawLine(Line{ {start.x, i}, {end.x, i} }, Color(1, 0, 0));
+}
+
 void Renderer::DrawLine(const Line& line, const Color& color, const uint edge_w) {
 	SDL_SetRenderDrawColor(renderer, color.r * 255, color.g * 255, color.b * 255, color.a * 255);
 
-	SDL_RenderLine(renderer, line.pos1.x, line.pos1.y, line.pos2.x, line.pos2.y);
+	SDL_RenderLine(renderer, line.pos1.x - camera->viewport.x, line.pos1.y - camera->viewport.y, line.pos2.x - camera->viewport.x, line.pos2.y - camera->viewport.y);
 }
 
 void Renderer::DrawCircle(const Circle& circle, const Color& stroke_color, Color fill_color, const uint edge_w) {
+	Vector2i circle_pos = { circle.x - camera->viewport.x, circle.y - camera->viewport.y };
 
 	SDL_SetRenderDrawColor(renderer, stroke_color.r * 255, stroke_color.g * 255, stroke_color.b * 255, stroke_color.a * 255);
 	for (float r = circle.r; r > circle.r - edge_w; --r) {
 		for (int w = -r; w < r; w++) {
 			for (int h = -r; h < r; h++) {
 				if (w * w + h * h <= r * r)
-					SDL_RenderPoint(renderer, circle.x + w, circle.y + h);
+					SDL_RenderPoint(renderer, circle_pos.x + w, circle_pos.y + h);
 			}
 		}
 	}
@@ -136,65 +146,59 @@ void Renderer::DrawCircle(const Circle& circle, const Color& stroke_color, Color
 	for (int w = -inner_r; w < inner_r; ++w) {
 		for (int h = -inner_r; h < inner_r; ++h) {
 			if (w * w + h * h <= inner_r * inner_r)
-				SDL_RenderPoint(renderer, circle.x + w, circle.y + h);
+				SDL_RenderPoint(renderer, circle_pos.x + w, circle_pos.y + h);
 		}
 	}
 	
 }
 
 void Renderer::DrawTri(const Tri& tri, const Color& stroke_color, Color fill_color, const uint edge_w) {
+	Vector2f tri_pos1 = { (float)(tri.pos1.x - camera->viewport.x), (float)(tri.pos1.y - camera->viewport.y) };
+	Vector2f tri_pos2 = { (float)(tri.pos2.x - camera->viewport.x), (float)(tri.pos2.y - camera->viewport.y) };
+	Vector2f tri_pos3 = { (float)(tri.pos3.x - camera->viewport.x), (float)(tri.pos3.y - camera->viewport.y) };
+	SDL_FColor f_color = { fill_color.r * 255, fill_color.g * 255, fill_color.b * 255, fill_color.a * 255 };
+
 	//Draw the triangle
 	SDL_Vertex verts[3];
 
-	verts[0].position.x = tri.pos1.x;
-	verts[0].position.y = tri.pos1.y;
-	verts[0].color.r = fill_color.r * 255;
-	verts[0].color.g = fill_color.g * 255;
-	verts[0].color.b = fill_color.b * 255;
-	verts[0].color.a = fill_color.a * 255;
+	verts[0].position = { tri_pos1.x, tri_pos1.y };
+	verts[0].color = f_color;
 
-	verts[1].position.x = tri.pos2.x;
-	verts[1].position.y = tri.pos2.y;
-	verts[1].color.r = fill_color.r * 255;
-	verts[1].color.g = fill_color.g * 255;
-	verts[1].color.b = fill_color.b * 255;
-	verts[1].color.a = fill_color.a * 255;
+	verts[1].position = { tri_pos2.x, tri_pos2.y };
+	verts[1].color = f_color;
 
-	verts[2].position.x = tri.pos3.x;
-	verts[2].position.y = tri.pos3.y;
-	verts[2].color.r = fill_color.r * 255;
-	verts[2].color.g = fill_color.g * 255;
-	verts[2].color.b = fill_color.b * 255;
-	verts[2].color.a = fill_color.a * 255;
+	verts[2].position = { tri_pos3.x, tri_pos3.y };
+	verts[2].color = f_color;
 
 	SDL_RenderGeometry(renderer, NULL, verts, 3, NULL, 0);
 
 	//Draw the edges
 	SDL_SetRenderDrawColor(renderer, stroke_color.r * 255, stroke_color.g * 255, stroke_color.b * 255, stroke_color.a * 255);
-	SDL_RenderLine(renderer, tri.pos1.x, tri.pos1.y, tri.pos2.x, tri.pos2.y);
-	SDL_RenderLine(renderer, tri.pos2.x, tri.pos2.y, tri.pos3.x, tri.pos3.y);
-	SDL_RenderLine(renderer, tri.pos3.x, tri.pos3.y, tri.pos1.x, tri.pos1.y);
-
+	SDL_RenderLine(renderer, tri_pos1.x, tri_pos1.y, tri_pos2.x, tri_pos2.y);
+	SDL_RenderLine(renderer, tri_pos2.x, tri_pos2.y, tri_pos3.x, tri_pos3.y);
+	SDL_RenderLine(renderer, tri_pos3.x, tri_pos3.y, tri_pos1.x, tri_pos1.y);
 }
 
 void Renderer::DrawRect(const Rect& rect, const Color& stroke_color, Color fill_color, const uint edge_w) {
+	Vector2i rect_pos = { rect.x - camera->viewport.x, rect.y - camera->viewport.y };
+	
 	//Draw the fill
 	SDL_SetRenderDrawColor(renderer, fill_color.r * 255, fill_color.g * 255, fill_color.b * 255, fill_color.a * 255);
-	SDL_FRect sdl_rect = { rect.x, rect.y, rect.w, rect.h };
+	SDL_FRect sdl_rect = { rect_pos.x, rect_pos.y, rect.w, rect.h };
 	SDL_RenderFillRect(renderer, &sdl_rect);
 
 	//Have to draw the edges manually, unfortunately
 	SDL_SetRenderDrawColor(renderer, stroke_color.r * 255, stroke_color.g * 255, stroke_color.b * 255, stroke_color.a * 255);
 	//Top
-	SDL_FRect top = { rect.x, rect.y, rect.w, edge_w };
+	SDL_FRect top = { rect_pos.x, rect_pos.y, rect.w, edge_w };
 	SDL_RenderFillRect(renderer, &top);
 	//Bottom
-	SDL_FRect bot = { rect.x, rect.y + rect.h-edge_w, rect.w, edge_w };
+	SDL_FRect bot = { rect_pos.x, rect_pos.y + rect.h-edge_w, rect.w, edge_w };
 	SDL_RenderFillRect(renderer, &bot);
 	//Left
-	SDL_FRect left = { rect.x, rect.y, edge_w, rect.h };
+	SDL_FRect left = { rect_pos.x, rect_pos.y, edge_w, rect.h };
 	SDL_RenderFillRect(renderer, &left);
 	//Right
-	SDL_FRect right = { rect.x + rect.w-edge_w, rect.y, edge_w, rect.h };
+	SDL_FRect right = { rect_pos.x + rect.w-edge_w, rect_pos.y, edge_w, rect.h };
 	SDL_RenderFillRect(renderer, &right);
 }

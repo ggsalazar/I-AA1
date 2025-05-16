@@ -1,6 +1,10 @@
 #pragma once
 #include <vector>
+#include <queue>
+#include "../Graphics/TileMap.h"
 #include "Vector2.h"
+
+class Entity;
 
 class Pathfinding {
 public:
@@ -14,7 +18,7 @@ public:
 		Node* parent = nullptr;
 	};
 
-	void PopulateNodeGrid() {
+	void PopulateNodeGrid(TileMap* tmp, vector<s_ptr<Entity>>* ents) {
 		for (uint row = 0; row < map_size_t.x; ++row) {
 			for (uint col = 0; col < map_size_t.y; ++col) {
 				bool node_walk = tile_data[row][col].terrain != Terrains::WATER;
@@ -25,18 +29,6 @@ public:
 			}
 		}
 	}
-
-	float Heuristic(const Vector2u& a, const Vector2u& b) {
-		uint dx = abs(a.x - b.x);
-		uint dy = abs(a.y - b.y);
-		return (dx + dy) + (1.414f - 2) * min(dx, dy);
-	}
-
-	struct CompareNodes {
-		bool operator()(Node* a, Node* b) {
-			return a->f > b->f; // Min-heap, lower f-value has higher priority
-		}
-	};
 
 	queue<Vector2u> FindPath(const Vector2u& start, const Vector2u& goal, sf::RenderWindow& window) {
 		//Create our lists
@@ -110,9 +102,23 @@ public:
 		//No path found
 		return {};
 	}
+
 private:
 	vector<vector<Node>> grid;
 
+	struct CompareNodes {
+		bool operator()(Node* a, Node* b) {
+			return a->f > b->f; // Min-heap, lower f-value has higher priority
+		}
+	};
+
+	float Heuristic(const Vector2u& a, const Vector2u& b) {
+		uint dx = abs(a.x - b.x);
+		uint dy = abs(a.y - b.y);
+		return (dx + dy) + (1.414f - 2) * min(dx, dy);
+	}
+
+	
 
 
 	//Draw the node grid

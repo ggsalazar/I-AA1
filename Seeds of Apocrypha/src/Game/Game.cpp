@@ -101,7 +101,7 @@ void Game::ProcessInput() {
         cerr << "ERROR: ACTIVE SCENE NOT PROCESSING INPUT!\n";
 
     //Update cursor position
-    cursor->MoveTo(Round(Input::MousePos()));
+    cursor->MoveTo(Round(Input::MousePos()) + Vector2i{camera.viewport.x, camera.viewport.y});
 }
 
 //Update the game world
@@ -193,11 +193,6 @@ void Game::SetResolution(uint res_scalar) {
         SDL_SetWindowFullscreen(window->GetWin(), false);
         SDL_SetWindowSize(window->GetWin(), resolution.x, resolution.y);
     }
-
-    /*
-    camera.setSize(Vector2f(window.getSize()));
-    camera.setCenter(Vector2f(window.getSize()) * .5f);
-    */
     if (auto scene = active_scene.lock())
         scene->ResizeMenus();
 }
@@ -216,13 +211,8 @@ void Game::SetResolution(Vector2u n_r) {
             SDL_SetWindowFullscreen(window->GetWin(), false);
             SDL_SetWindowSize(window->GetWin(), resolution.x, resolution.y);
         }
-            /*
-        camera.setSize(Vector2f(window.getSize()));
-        camera.setCenter(Vector2f(window.getSize()) * .5f);
-        */
         if (auto scene = active_scene.lock())
             scene->ResizeMenus();
-            
     }
     
 }

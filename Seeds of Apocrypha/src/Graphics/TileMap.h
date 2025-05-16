@@ -2,7 +2,6 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <queue>
 #include <SDL3/SDL_render.h>
 #include <nlohmann/json.hpp>
 #include "../Core/Enums.h"

@@ -543,15 +543,11 @@ void Menu::Resize() {
     float res_scalar = game.GetResScale();
 
     //A more efficient way to do this would be to base the new size on the old size and do some funky math shit with the scalar, but this works for now
-    uint new_m_t_size = res_scalar;
     Vector2i new_m_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .5f));
-    uint new_s_t_size = res_scalar;
     Vector2i new_s_t_pos = Vector2i(round(game.GetResolution().x * .5f), round(game.GetResolution().y * .5f));
     switch (label) {
         case Menus::CHARCREA:
-            new_m_t_size = res_scalar * 24;
             new_m_t_pos.y = game.GetResolution().y * .1f;
-            new_s_t_size = res_scalar * 18;
             new_s_t_pos.y = game.GetResolution().y * .13f;
         break;
 
@@ -561,17 +557,13 @@ void Menu::Resize() {
         case Menus::CCEQUIP:
         case Menus::CCRACE:
         case Menus::CCSKILLS:
-            new_m_t_size = res_scalar * 16;
             new_m_t_pos.y = game.GetResolution().y * .2f;
-            new_s_t_size = res_scalar * 12;
             new_s_t_pos.y = game.GetResolution().y * .23f;
         break;
 
         case Menus::MAIN:
         case Menus::OPTIONS:
-            new_m_t_size = res_scalar * 36;
             new_m_t_pos.y = game.GetResolution().y * .15f;
-            new_s_t_size = res_scalar * 24;
             new_s_t_pos.y = game.GetResolution().y * .2f;
         break;
     }
@@ -725,6 +717,7 @@ void Menu::Resize() {
                 new_pos.y = game.GetResolution().y * .6f;
             break;
         }
+
         u->MoveTo(new_pos);
     }
 }

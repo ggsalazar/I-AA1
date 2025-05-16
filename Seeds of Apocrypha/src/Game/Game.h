@@ -60,8 +60,6 @@ public:
     Game(const char* title, uint init_fps);
     ~Game() {
         TTF_Quit();
-
-
         //Mix_CloseAudio();
         //Mix_Quit();
         SDL_Quit(); //Pretty sure this has to be called last

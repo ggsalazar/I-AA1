@@ -4,6 +4,7 @@
 #include "../Entities/Entity.h"
 #include "../Entities/UI/UI.h"
 #include "../Entities/Creatures/PartyMember.h"
+//#include "../Core/Pathfinding.h"
 
 void Scene::GetInput() {
 
@@ -66,11 +67,11 @@ void Scene::Update() {
 	//Sort the entities vector (and possibly Menus map) by dfc value every 6th of a second so that entities of a lower dfc value are drawn
 	// last (closest to the camera)
 	if (game.GetGameFrames() % 10 == 0) {
-		sort(entities.begin(), entities.end(), [](const shared_ptr<Entity>& a, const shared_ptr<Entity>& b) { return a->sprite->GetDFC() > b->sprite->GetDFC(); });
+		sort(entities.begin(), entities.end(), [](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite->GetDFC() > b->sprite->GetDFC(); });
 		
 		//Also taking this opportunity to repopulate/reset the node grid
-		//if (label == Scenes::AREA)
-		//	tilemap.PopulateNodeGrid();
+		//if (tilemap.Loaded())
+		//	Pathfinding::PopulateNodeGrid();
 	}
 }
 
@@ -101,7 +102,7 @@ void Scene::Draw() {
 		m.second->Draw();
 }
 
-//Most *actual* initialization is handled here
+//Most *actual* initialization happens here
 void Scene::Open(const bool o) {
 	open = o;
 
@@ -161,7 +162,7 @@ void Scene::Open(const bool o) {
 			for (auto& p_m : party_mems) {
 				entities.push_back(p_m);
 				p_m->SetScene(this);
-				p_m->MoveTo(Round(area_size * .5f));
+				p_m->MoveTo(Round(area_size*.5f));
 				p_m->selected = true;
 			}
 			switch (game.area) {
@@ -239,31 +240,54 @@ void Scene::OpenInterface(Interfaces intrfc) {
 
 void Scene::MoveCamera() {
 	//Move the camera
+	bool cam_free = false;
 	//Can't move the camera if we are at or past the edge
 	Vector2i cam_pos = { game.camera.viewport.x, game.camera.viewport.y };
 	Vector2i cam_size = { game.camera.viewport.w, game.camera.viewport.h };
 	if (!game.cam_locked) {
 		Vector2i new_cam_offset = { 0, 0 };
-		//Move the camera via arrow/WASD keys
-		if ((Input::KeyDown(UP) or Input::KeyDown(W_K)) and cam_pos.y > 0)
-			new_cam_offset.y -= game.cam_move_spd;
-		else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-			new_cam_offset.y += game.cam_move_spd;
-		if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)) and cam_pos.x > 0)
-			new_cam_offset.x -= game.cam_move_spd;
-		else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-			new_cam_offset.x += game.cam_move_spd;
+		if (!cam_free) {
+			//Move the camera via arrow/WASD keys
+			if ((Input::KeyDown(UP) or Input::KeyDown(W_K)) and cam_pos.y > 0)
+				new_cam_offset.y -= game.cam_move_spd;
+			else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+				new_cam_offset.y += game.cam_move_spd;
+			if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)) and cam_pos.x > 0)
+				new_cam_offset.x -= game.cam_move_spd;
+			else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+				new_cam_offset.x += game.cam_move_spd;
 
-		//Move the camera via edge panning
-		if (Collision::Point(Input::MousePos(), up_edge) and cam_pos.y > 0)
-			new_cam_offset.y -= game.cam_move_spd;
-		else if (Collision::Point(Input::MousePos(), down_edge) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-			new_cam_offset.y += game.cam_move_spd;
-		if (Collision::Point(Input::MousePos(), left_edge) and cam_pos.x > 0)
-			new_cam_offset.x -= game.cam_move_spd;
-		else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-			new_cam_offset.x += game.cam_move_spd;
+			//Move the camera via edge panning
+			if (Collision::Point(Input::MousePos(), up_edge) and cam_pos.y > 0)
+				new_cam_offset.y -= game.cam_move_spd;
+			else if (Collision::Point(Input::MousePos(), down_edge) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+				new_cam_offset.y += game.cam_move_spd;
+			if (Collision::Point(Input::MousePos(), left_edge) and cam_pos.x > 0)
+				new_cam_offset.x -= game.cam_move_spd;
+			else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+				new_cam_offset.x += game.cam_move_spd;
+		}
+		else {
+			//Move the camera via arrow/WASD keys
+			if ((Input::KeyDown(UP) or Input::KeyDown(W_K)))
+				new_cam_offset.y -= game.cam_move_spd;
+			else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)))
+				new_cam_offset.y += game.cam_move_spd;
+			if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)))
+				new_cam_offset.x -= game.cam_move_spd;
+			else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)))
+				new_cam_offset.x += game.cam_move_spd;
 
+			//Move the camera via edge panning
+			if (Collision::Point(Input::MousePos(), up_edge))
+				new_cam_offset.y -= game.cam_move_spd;
+			else if (Collision::Point(Input::MousePos(), down_edge))
+				new_cam_offset.y += game.cam_move_spd;
+			if (Collision::Point(Input::MousePos(), left_edge))
+				new_cam_offset.x -= game.cam_move_spd;
+			else if (Collision::Point(Input::MousePos(), right_edge))
+				new_cam_offset.x += game.cam_move_spd;
+		}
 		if (new_cam_offset.x != 0 and new_cam_offset.y != 0)
 			new_cam_offset *= 1.414f;
 
@@ -356,7 +380,7 @@ Actions Scene::LMBAction() {
 	for (const auto& p_m : party_mems) {
 		if (p_m->selected) {
 
-			//found_path = tilemap.FindPath(p_m->GetPos(), MOUSEPOS_W, window);
+			//found_path = Pathfinding::FindPath(p_m->GetPos(), MOUSEPOS_W, window);
 
 			//If no path, return no action
 			if (found_path.empty())
@@ -396,7 +420,7 @@ Actions Scene::LMBAction() {
 }
 
 void Scene::SetGameCursor(Actions action) {
-	uint new_row;
+	uint new_row = 0;
 
 	//This method forces me to by personally familiar with where each cursor sprite is in the
 	// sheet, which is completely unscalable but works for now
@@ -426,12 +450,10 @@ void Scene::RemoveEntity(shared_ptr<Entity> e) {
 
 void Scene::RemoveEntity(const string ent_name) {
 	for (const auto& e : entities) {
-		/*
 		if (auto c = dynamic_cast<Creature*>(e.get())) {
 			if (c->GetName() == ent_name)
 				c->alive = false;
 		}
-		*/
 	}
 }
 
@@ -441,19 +463,14 @@ void Scene::SetEntitySFXVolume(const float new_volume) {
 }
 
 void Scene::CreatePartyMem() {
-	uint res_scalar = game.GetResScale();
-	/*
 	Sprite::Info info = {};
 	info.sheet = "Creatures/Sentients/PMPlaceholder";
-	info.frame_size = {32, 64};
-	auto new_party_mem = make_shared<PartyMember>(
+	info.frame_size = {32, 64}; info.origin = {.5f}; info.scale = game.GetResScale();
+	auto new_party_mem = make_s<PartyMember>(
 		game, this,
-		AnimInfo{"Creatures/Sentients/PMPlaceholder", 32, 64},
-		Animation::Transform{ Vector2i(round(window.getSize().x*.75), round(window.getSize().y * .5)), {.5f, .5f}, {res_scalar, res_scalar}}); //The remaining arguments are the defaults
-	
-	//Party members are placed when the scene is opened
+		info); //The remaining arguments are the defaults
+	new_party_mem->MoveTo(Round(game.GetResolution().x * .75f, game.GetResolution().y * .5f));
 	entities.push_back(new_party_mem);
-	*/
 }
 
 void Scene::CreatePreGen(PreGens p_g) {

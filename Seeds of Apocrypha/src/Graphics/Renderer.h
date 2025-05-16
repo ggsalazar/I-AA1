@@ -35,15 +35,17 @@ public:
 	//Text
 	void DrawTxt(Text& txt);
 
+	void DrawGrid(const Vector2i start = { 0, 0 }, const Vector2i end = { 1920, 1080 }, const uint tile_size = 32);
+
 	//Drawing shapes
 	void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2);
-	void DrawCircle(const Circle& circle, const Color& stroke_color = Color(1), Color fill_color = Color(0, 0, 0, 0), const uint edge_w = 2);
-	void DrawTri(const Tri& tri, const Color& stroke_color = Color(1), Color fill_color = Color(0, 0, 0, 0), const uint edge_w = 2);
-	void DrawRect(const Rect& rect, const Color& stroke_color = Color(1), Color fill_color = Color(0, 0, 0, 0), const uint edge_w = 2);
+	void DrawCircle(const Circle& circle, const Color& stroke_color = Color(0), Color fill_color = Color(1), const uint edge_w = 2);
+	void DrawTri(const Tri& tri, const Color& stroke_color = Color(0), Color fill_color = Color(1), const uint edge_w = 2);
+	void DrawRect(const Rect& rect, const Color& stroke_color = Color(0), Color fill_color = Color(1), const uint edge_w = 2);
 	
 private:
 	SDL_Renderer* renderer;
 	SDL_Surface* surface;
-	SDL_Texture* texture;
+	SDL_Texture* texture = nullptr;
 	Camera* camera;
 };
