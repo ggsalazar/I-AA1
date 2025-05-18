@@ -14,8 +14,10 @@ public:
     bool selecting = false;
     Interfaces interface_open = Interfaces::NONE;
 
+    Scene() = default;
     Scene(Game& g, Scenes init_label) :
-        game(g), label(init_label) {}
+        game(g), label(init_label) {
+    }
 
     //Engine stuff
     void GetInput();
@@ -37,7 +39,7 @@ public:
     void SelectPartyMems();
     Actions LMBAction();
     void SetGameCursor(Actions action);
-    
+
     //Entities
     void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
     void RemoveEntity(s_ptr<Entity> e);
@@ -47,7 +49,7 @@ public:
     //Party Members
     void CreatePartyMem();
     void CreatePreGen(PreGens p_g);
-    vector<shared_ptr<PartyMember>> GetPartyMems() const { return party_mems; }
+    vector<s_ptr<PartyMember>> GetPartyMems() const { return party_mems; }
     void SetPartyMems(vector<s_ptr<PartyMember>> p_ms) { party_mems = p_ms; }
 
 private:

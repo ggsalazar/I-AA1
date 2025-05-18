@@ -20,9 +20,18 @@ class Font; //Needs to be here despite Font.h being included in Renderer.h?
 class Game {
 public:
 
+    //Because C++ initializes members in declaration order, these have to be up here
+    const Vector2u min_res = { 640, 360 };
+    Vector2u resolution;
+
+    //Camera
+    Camera camera;
+    float cam_move_spd = 10.f;
+    bool cam_locked = false;
+
     //Window + rendering target
-    u_ptr<Window> window;
-    u_ptr<Renderer> renderer;
+    Window window;
+    Renderer renderer;
 
     //Game UTH details
     bool running = true;
@@ -30,31 +39,21 @@ public:
     bool paused = false;
     uint curr_ui_layer = 0;
 
-    //Camera
-    Camera camera;
-    float cam_move_spd = 10.f;
-    bool cam_locked = false;
 
     //Music & SFX - waiting for SDL_mixer 3.0
     //DJ dj;
     //Soundboard sb;
-    
+
     //Scenes
     unordered_map<Scenes, s_ptr<Scene>> scenes;
     w_ptr<Scene> active_scene;
     s_ptr<Scene> scene;
     w_ptr<Scene> old_scene;
-    s_ptr<Scene> title_scene;
-    s_ptr<Scene> cutscene_scene;
-    s_ptr<Scene> area_scene;
 
     //Miscellaneous
-    u_ptr<Font> default_font36;
-    u_ptr<Font> default_font48;
-    u_ptr<Font> default_font72;
-    u_ptr<Font> default_font96;
-    u_ptr<Text> debug_txt;
-    u_ptr<Sprite> cursor;
+    unordered_map<int, Font> default_fonts;
+    Text debug_txt;
+    Sprite cursor;
     Areas area = Areas::DEFAULT;
 
     Game(const char* title, uint init_fps);
@@ -64,7 +63,7 @@ public:
         //Mix_Quit();
         SDL_Quit(); //Pretty sure this has to be called last
     }
-    
+
     //Engine-type stuff
     void Run();
     void ProcessInput();
@@ -82,7 +81,6 @@ public:
 
     void SetResolution(uint res_scalar);
     void SetResolution(Vector2u n_r);
-    Vector2u GetResolution() const { return resolution; }
     uint GetResScale() const { return resolution.x / min_res.x; }
 
     //Frame stuff
@@ -100,6 +98,4 @@ private:
     float accumulated_time = 0.f;
     float music_volume = 100;
     float sfx_volume = 100;
-    Vector2u resolution;
-    const Vector2u min_res = { 640, 360 };
 };

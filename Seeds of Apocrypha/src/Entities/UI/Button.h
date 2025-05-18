@@ -8,7 +8,7 @@ public:
         : UI(g, s, m, s_i, e, init_ui_layer) {
 
         label_offset = game.GetResScale();
-        label->MoveTo({ pos.x, pos.y - label_offset });
+        label.MoveTo({ pos.x, pos.y - label_offset });
     }
 
     void Draw() override;

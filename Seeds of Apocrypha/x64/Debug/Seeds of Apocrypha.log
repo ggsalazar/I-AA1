@@ -1,59 +1,166 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Creature.cpp
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Scene.cpp
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(34,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Core\Geometry.h(34,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(35,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Core\Geometry.h(35,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(46,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Core\Geometry.h(46,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Font.h(13,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Graphics\Sprite.h(74,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\Text.h(29,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Graphics\Sprite.h(75,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Graphics\Font.h(14,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(137,25): warning C4244:         ]
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Graphics\TileMap.h(36,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(153,23): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Graphics\TileMap.h(36,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(181,62): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Entities\Creatures\Creature.h(80,41): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
+  (compiling source file 'src/Game/Scene.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Graphics\TileMap.h(181,81): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.h(80,41): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.cpp(14,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.cpp(15,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.cpp(87,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Seeds of Apocrypha\src\Entities\Creatures\Creature.cpp(88,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Seeds of Apocrypha.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\x64\Debug\Seeds of Apocrypha.exe
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(95,72): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(95,52): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(157,34): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(158,34): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(250,29): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(250,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(250,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(250,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(250,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(251,86): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(252,29): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(252,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(252,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(252,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(252,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(254,29): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(254,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(254,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(254,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(254,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(255,87): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(256,29): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(256,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(256,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(256,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(256,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(260,29): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(260,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(260,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(260,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(260,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(261,87): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(262,29): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(262,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(262,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(262,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(262,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(264,29): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(264,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(264,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(264,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(264,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(265,88): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(266,29): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(266,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(266,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(266,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(266,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(271,29): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(271,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(271,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(271,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(271,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(273,29): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(273,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(273,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(273,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(273,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(275,29): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(275,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(275,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(275,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(275,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(277,29): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(277,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(277,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(277,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(277,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(281,29): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(281,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(281,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(281,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(281,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(283,29): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(283,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(283,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(283,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(283,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(285,29): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(285,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(285,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(285,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(285,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(287,29): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(287,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(287,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(287,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(287,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(290,22): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(290,22): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(290,22): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(290,22): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(290,22): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(290,19): warning C4834: discarding return value of function with [[nodiscard]] attribute
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(304,16): warning C4834: discarding return value of function with [[nodiscard]] attribute
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(309,73): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(309,38): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(310,73): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(310,38): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(326,34): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(326,34): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(326,34): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(326,34): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(326,34): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(327,34): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(327,34): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(327,34): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(327,34): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(327,34): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(345,37): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(345,37): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(345,37): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(345,37): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(345,37): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(346,37): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(346,37): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(346,37): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(346,37): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(346,37): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(368,55): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Seeds of Apocrypha\src\Game\Scene.cpp(368,100): warning C4018: '<': signed/unsigned mismatch
+  Seeds of Apocrypha.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\x64\Debug\Seeds of Apocrypha.exe

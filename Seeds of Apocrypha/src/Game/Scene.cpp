@@ -1,5 +1,3 @@
-#include <algorithm>
-#include <nlohmann/json.hpp>
 #include "Scene.h"
 #include "../Entities/Entity.h"
 #include "../Entities/UI/UI.h"
@@ -11,12 +9,12 @@ void Scene::GetInput() {
 	if (label == Scenes::AREA) {
 		OpenInterface();
 		MoveCamera();
-		
+
 		if (!game.paused) {
 			SelectPartyMems();
 
 			/*
-			//The LMB, when clicked, performs a variety of functions; which function it ends up performing 
+			//The LMB, when clicked, performs a variety of functions; which function it ends up performing
 			// will depend on what it is pointing at
 			//Updating action every 6th of a second for performance reasons
 			//if (game.GetGameFrames() % 10 == 0)
@@ -37,7 +35,7 @@ void Scene::GetInput() {
 			}
 			*/
 		}
-		else game.cursor->SetSheetRow(0);
+		else game.cursor.SetSheetRow(0);
 	}
 	for (auto& e : entities) {
 		//Only get input for UI elements if the corresponding menu is open
@@ -61,14 +59,14 @@ void Scene::Update() {
 
 	//Remove dead entities
 	entities.erase(remove_if(entities.begin(), entities.end(),
-					[](const shared_ptr<Entity>& e) { return !e->alive;}),
-			entities.end());
+		[](const s_ptr<Entity>& e) { return !e->alive;}),
+		entities.end());
 
 	//Sort the entities vector (and possibly Menus map) by dfc value every 6th of a second so that entities of a lower dfc value are drawn
 	// last (closest to the camera)
 	if (game.GetGameFrames() % 10 == 0) {
-		sort(entities.begin(), entities.end(), [](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite->GetDFC() > b->sprite->GetDFC(); });
-		
+		sort(entities.begin(), entities.end(), [](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite.GetDFC() > b->sprite.GetDFC(); });
+
 		//Also taking this opportunity to repopulate/reset the node grid
 		//if (tilemap.Loaded())
 		//	Pathfinding::PopulateNodeGrid();
@@ -78,8 +76,8 @@ void Scene::Update() {
 void Scene::Draw() {
 
 	//Draw the tilemap first
-	if (tilemap.Loaded()) 
-		game.renderer->DrawTilemap(tilemap);
+	if (tilemap.Loaded())
+		game.renderer.DrawTilemap(tilemap);
 
 	//Then draw entities
 	for (auto& e : entities) {
@@ -94,7 +92,7 @@ void Scene::Draw() {
 
 	//Draw the selection box
 	if (selecting)
-		game.renderer->DrawRect(selec_box, Color(0, 1, 0, .8), Color(0, 1, 0, .4));
+		game.renderer.DrawRect(selec_box, Color(0, 1, 0, .8), Color(0, 1, 0, .4));
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
@@ -151,7 +149,7 @@ void Scene::Open(const bool o) {
 				break;
 			}
 			//Load that bitch
-			tilemap.Load(game.renderer->GetRenderer(), json_file);
+			tilemap.Load(game.renderer.GetRenderer(), json_file);
 
 			//Set the camera and party members
 			Vector2u area_size = tilemap.GetMapSizePixels();
@@ -162,14 +160,14 @@ void Scene::Open(const bool o) {
 			for (auto& p_m : party_mems) {
 				entities.push_back(p_m);
 				p_m->SetScene(this);
-				p_m->MoveTo(Round(area_size*.5f));
+				p_m->MoveTo(Round(area_size * .5f));
 				p_m->selected = true;
 			}
 			switch (game.area) {
-				case Areas::DEBUG:
+			case Areas::DEBUG:
 				break;
 
-				case Areas::TUTTON:
+			case Areas::TUTTON:
 				break;
 			}
 
@@ -178,7 +176,7 @@ void Scene::Open(const bool o) {
 			menus.insert({ Menus::OPTIONS_G, move(menu) });
 		}
 	}
-	
+
 	//Scene is closed
 	else {
 		//This also deletes the buttons that belong to each menu
@@ -307,9 +305,9 @@ void Scene::MoveCamera() {
 			}
 		}
 		Vector2f pos_avg = pos_totals / (float)selected_p_ms;
-		
-		Math::Clamp(pos_avg.x, -cam_size.x*.5, tilemap.GetMapSizePixels().x + cam_size.x*.5);
-		Math::Clamp(pos_avg.y, -cam_size.y*.5, tilemap.GetMapSizePixels().y + cam_size.y*.5);
+
+		Math::Clamp(pos_avg.x, -cam_size.x * .5, tilemap.GetMapSizePixels().x + cam_size.x * .5);
+		Math::Clamp(pos_avg.y, -cam_size.y * .5, tilemap.GetMapSizePixels().y + cam_size.y * .5);
 
 		pos_avg = Vector2f(Round(pos_avg));
 
@@ -318,7 +316,7 @@ void Scene::MoveCamera() {
 }
 
 void Scene::SelectPartyMems() {
-	
+
 	//Select party members
 	//Click and drag (selection box/area) while holding SHIFT or CTRL
 	//	 -SHIFT selects all party mems inside the selection area
@@ -361,15 +359,15 @@ Actions Scene::LMBAction() {
 	//-Pick/unlock a lock
 	//-Open a door
 	//-Speak to NPC
-	
+
 	//Convert mouse coordinates from screen to world
 	//What tile are we currently pointing at?
-	Vector2i tile_pos = { (int)floor(Input::MousePos().x / TS), (int)floor(Input::MousePos().y / TS)};
+	Vector2i tile_pos = { (int)floor(Input::MousePos().x / TS), (int)floor(Input::MousePos().y / TS) };
 	//Current meter pos is tile_pos * 2
 	u_ptr<Tile> curr_tile;
 	if (tile_pos.x > 0 and tile_pos.y > 0 and tile_pos.x < tilemap.GetMapSizeTiles().x and tile_pos.y < tilemap.GetMapSizeTiles().y)
 		curr_tile = make_unique<Tile>(tilemap.GetTileData(tile_pos));
-	
+
 	//If we're not looking at a tile, then there is no action to perform
 	if (!curr_tile) return Actions::NOACTION;
 
@@ -396,23 +394,23 @@ Actions Scene::LMBAction() {
 	//	--in melee range OR
 	//	--acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
 	//		---If > 1 melee weapon equipped, will have to ask which weapon to attack with
-	
+
 	//Ranged Attack (LMB action in combat only)
 	//-When mouse is on an enemy...
 	//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
 
 	//Pick up an object
 	//-When mouse is on an object that can be picked up
-	
+
 	//Loot a container
 	//-When mouse is on an unlocked container
-	
+
 	//Pick/unlock a lock
 	//-When mouse is on a locked door/container
-	
+
 	//Open a door
 	//-When mouse is on an unlocked door
-	
+
 	//Speak to NPC
 	//-When mouse is on non-hostile creature
 
@@ -425,22 +423,22 @@ void Scene::SetGameCursor(Actions action) {
 	//This method forces me to by personally familiar with where each cursor sprite is in the
 	// sheet, which is completely unscalable but works for now
 	switch (action) {
-		case Actions::DEFAULT:
-			new_row = 0;
+	case Actions::DEFAULT:
+		new_row = 0;
 		break;
 
-		case Actions::MOVE:
-			new_row = 1;
+	case Actions::MOVE:
+		new_row = 1;
 		break;
 
-		case Actions::NOACTION:
-			new_row = 2;
+	case Actions::NOACTION:
+		new_row = 2;
 		break;
 	}
-	game.cursor->SetSheetRow(new_row);
+	game.cursor.SetSheetRow(new_row);
 }
 
-void Scene::RemoveEntity(shared_ptr<Entity> e) {
+void Scene::RemoveEntity(s_ptr<Entity> e) {
 	auto dead_e = e.get();
 	for (const auto& ent : entities) {
 		if (ent.get() == dead_e)
@@ -465,11 +463,11 @@ void Scene::SetEntitySFXVolume(const float new_volume) {
 void Scene::CreatePartyMem() {
 	Sprite::Info info = {};
 	info.sheet = "Creatures/Sentients/PMPlaceholder";
-	info.frame_size = {32, 64}; info.origin = {.5f}; info.scale = game.GetResScale();
+	info.frame_size = { 32, 64 }; info.origin = { .5f }; info.scale = game.GetResScale();
 	auto new_party_mem = make_s<PartyMember>(
 		game, this,
 		info); //The remaining arguments are the defaults
-	new_party_mem->MoveTo(Round(game.GetResolution().x * .75f, game.GetResolution().y * .5f));
+	new_party_mem->MoveTo(Round(game.resolution.x * .75f, game.resolution.y * .5f));
 	entities.push_back(new_party_mem);
 }
 
@@ -491,50 +489,50 @@ void Scene::CreatePreGen(PreGens p_g) {
 	float intl = 0;
 	float wis = 0;
 	float cha = 0;
-	
+
 	switch (p_g) {
-		case PreGens::SPARK: //Automaton Arcanist
-			//Don't forget to change sprite!
-			name = "Spark";
-			race = Races::AUTOMATON;
-			clss = Classes::ARCANIST;
-			str = 1.5;
-			con = 2.5;
-			dex = 3;
-			agi = 2;
-			intl = 4;
-			wis = 3;
-			cha = 1;
+	case PreGens::SPARK: //Automaton Arcanist
+		//Don't forget to change sprite!
+		name = "Spark";
+		race = Races::AUTOMATON;
+		clss = Classes::ARCANIST;
+		str = 1.5;
+		con = 2.5;
+		dex = 3;
+		agi = 2;
+		intl = 4;
+		wis = 3;
+		cha = 1;
 		break;
 
-		case PreGens::ESSEK: //Female Kobold Rogue
-			//Don't forget to change sprite!
-			name = "Essek";
-			race = Races::KOBOLD;
-			size = Sizes::SMALL;
-			clss = Classes::ROGUE;
-			sex = 1;
-			str = 1;
-			con = 2;
-			dex = 4;
-			agi = 3;
-			intl = 2;
-			wis = 2.5;
-			cha = 2.5;
+	case PreGens::ESSEK: //Female Kobold Rogue
+		//Don't forget to change sprite!
+		name = "Essek";
+		race = Races::KOBOLD;
+		size = Sizes::SMALL;
+		clss = Classes::ROGUE;
+		sex = 1;
+		str = 1;
+		con = 2;
+		dex = 4;
+		agi = 3;
+		intl = 2;
+		wis = 2.5;
+		cha = 2.5;
 		break;
 
-		case PreGens::DAKN: //Male Dwarf Warrior
-			//Don't forget to change sprite!
-			name = "Dakn";
-			race = Races::DWARF;
-			sex = 1;
-			str = 4;
-			con = 4;
-			dex = 2.5;
-			agi = 3;
-			intl = 1;
-			wis = 1;
-			cha = 1.5;
+	case PreGens::DAKN: //Male Dwarf Warrior
+		//Don't forget to change sprite!
+		name = "Dakn";
+		race = Races::DWARF;
+		sex = 1;
+		str = 4;
+		con = 4;
+		dex = 2.5;
+		agi = 3;
+		intl = 1;
+		wis = 1;
+		cha = 1.5;
 		break;
 	}
 	Sprite::Info info = {};
@@ -542,7 +540,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 	auto pre_gen = make_shared<PartyMember>(
 		game, this, info,
 		Creature::Stats{ name, genus, race, size, clss, level, sex, str, con, dex, agi, intl, wis, cha } //The rest are defaults and handled in Initialization
-		);
+	);
 
 	party_mems.push_back(pre_gen);
 }

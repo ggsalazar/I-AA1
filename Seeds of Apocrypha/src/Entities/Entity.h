@@ -18,7 +18,7 @@ public:
     Vector2u size = { 0, 0 };
     bool alive = true;
 
-    u_ptr<Sprite> sprite;
+    Sprite sprite;
 
     //SFX Stuff
     //sf::SoundBuffer sb;

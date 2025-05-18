@@ -17,6 +17,23 @@ Sprite::Sprite(SDL_Renderer* renderer, const Info& i)
     SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
 }
 
+void Sprite::Init(SDL_Renderer* renderer, const Info& i) {
+    info = i;
+    SetSize();
+    SetAnimFPS(info.anim_fps);
+
+    std::string sheet_png = "assets/Sprites/" + info.sheet + ".png";
+    texture = IMG_LoadTexture(renderer, sheet_png.c_str());
+
+    if (!texture)
+        std::cout << "Could not load texture from file: " << sheet_png << "!\n";
+
+    Vector2f s_size;
+    SDL_GetTextureSize(texture, &s_size.x, &s_size.y);
+    info.sheet_size = { (uint)s_size.x, (uint)s_size.y };
+    SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
+}
+
 void Sprite::Update(const float dt) {
     //Time-based frame updates
     if (info.anim_fps != 0) {
@@ -39,10 +56,10 @@ void Sprite::Update(const float dt) {
     }
 }
 
-void Sprite::MoveTo(const Vector2i& new_pos) { 
-    info.pos = new_pos; 
-    pos_debug.x = info.pos.x; 
-    pos_debug.y = info.pos.y; 
+void Sprite::MoveTo(const Vector2i& new_pos) {
+    info.pos = new_pos;
+    pos_debug.x = info.pos.x;
+    pos_debug.y = info.pos.y;
 }
 
 void Sprite::MoveBy(const Vector2i& offset) {

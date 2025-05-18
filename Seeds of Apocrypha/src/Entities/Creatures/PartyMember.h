@@ -16,5 +16,5 @@ public:
 private:
 	Rect hlth_bar;
 	Rect mssng_hlth_bar; //I don't think I need this
-	u_ptr<Text> hlth_txt;
+	Text hlth_txt;
 };

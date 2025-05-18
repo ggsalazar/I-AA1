@@ -17,10 +17,10 @@ public:
 	}
 
 	void PollEvents();
-	
+
 	inline SDL_Window* GetWin() const { return window; }
 
-	inline Vector2u ScreenSize() { return screen_size; }
+	inline Vector2u ScreenSize() const { return screen_size; }
 	inline Vector2u WinSize() const { return win_size; }
 
 private:

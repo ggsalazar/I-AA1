@@ -1,6 +1,12 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Reimplementation:	-Pathfinding
+
+					-Going to have to roll back u_ptr changes and implement them one by one, like I should have done from the beginning...
+
+Reimplementation:	-Tilemapping
+						--swap rows and cols in your loops; col should be first, row should be second
+					-Pathfinding
+						--swap rows and cols in your loops; col should be first, row should be second
 						--Need to be aware of:
 							---Tiles
 							---Entities
@@ -8,7 +14,7 @@ Reimplementation:	-Pathfinding
 					-Cam following Dakn
 
 
-Why am I creating pointers to Sprites and Texts but not shapes? Shouldn't I just be creating Sprites and Texts directly?
+Change pointers to Menus and Scenes to actual object instances where possible
 
 Tutorial:  -Add in NPCs (9 days)
 				--Dialogue system/trees (4 days)

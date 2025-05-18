@@ -15,8 +15,8 @@ private:
     void Move() override;
 
     //Knob stuff
-    u_ptr<Sprite> knob_spr;
-    u_ptr<Text> knob_label;
+    Sprite knob_spr;
+    Text knob_label;
     float knob_pos_max = 0;
     float knob_pos_min = 0;
     float knob_pos = 0;

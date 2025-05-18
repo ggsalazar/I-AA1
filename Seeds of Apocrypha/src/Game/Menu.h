@@ -30,8 +30,8 @@ public:
 protected:
     Menus label;
 
-    u_ptr<Text> menu_text;
-    u_ptr<Text> sup_text; //Supplementary text
+    Text menu_text;
+    Text sup_text; //Supplementary text
     bool open = false;
     uint res_scalar;
 

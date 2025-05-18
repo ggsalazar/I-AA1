@@ -13,7 +13,7 @@ public:
     void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
     void SetPicking(const string new_p);
-    string GetPicking() { return picking->info.str; }
+    string GetPicking() { return picking.info.str; }
 
 private:
     //Variables
@@ -22,7 +22,7 @@ private:
     Rect r_bbox;
     bool r_primed = false;
 
-    u_ptr<Text> picking;
+    Text picking;
     vector<string> options;
     vector<string>::iterator option_picked;
 

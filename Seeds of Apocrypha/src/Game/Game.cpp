@@ -4,8 +4,10 @@
 #include "Game.h"
 #include "Scene.h"
 
-Game::Game(const char* title, uint init_fps) :
-    fps(init_fps) {
+Game::Game(const char* title, uint init_fps)
+    : fps(init_fps), resolution(min_res * 2),
+    window("Seeds of Apocrypha", resolution), renderer(window.GetWin(), &camera) {
+
     //Initialize SDL
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
     TTF_Init();
@@ -14,44 +16,34 @@ Game::Game(const char* title, uint init_fps) :
     target_frame_time = 1.f / fps;
     last_time = Clock::now();
 
-    //Initialize the window
-    resolution = min_res*2;
-    window = make_u<Window>("Seeds of Apocrypha", resolution);
-    resolution = window->WinSize();
+    //Set the resolution
+    resolution = window.WinSize();
 
     //Initialize the camera
     camera.viewport.w = resolution.x;
     camera.viewport.h = resolution.y;
 
-    //Initialize the renderer
-    renderer = make_u<Renderer>(window->GetWin(), &camera);
-
     //Initialize the Input namespace
-    Input::Init(window.get());
-    
-    //Load the default fonts
-    default_font36 = make_u<Font>("m5x7", 36);
-    default_font48 = make_u<Font>("m5x7", 48);
-    default_font72 = make_u<Font>("m5x7", 72);
-    default_font96 = make_u<Font>("m5x7", 96);
-    debug_txt = make_u<Text>(default_font48.get());
+    Input::Init(&window);
+
+    //Initialize fonts
+    for (int i = 12; i < 96; i += 12)
+        default_fonts.insert({ i, Font("m5x7", i) });
+    debug_txt = Text(&default_fonts[48]);
 
     //Initialize the DJ's tracks
     //Play the title track - TO-DO
 
     //Initialize Scenes
-    title_scene = make_u<Scene>(*this, Scenes::TITLE);
-    cutscene_scene = make_u<Scene>(*this, Scenes::CUTSCENE);
-    area_scene = make_u<Scene>(*this, Scenes::AREA);
-    scenes.insert(make_pair(Scenes::TITLE, title_scene));
-    scenes.insert(make_pair(Scenes::CUTSCENE, cutscene_scene));
-    scenes.insert(make_pair(Scenes::AREA, area_scene));
+    scenes.insert({ Scenes::TITLE, make_s<Scene>(*this, Scenes::TITLE) });
+    scenes.insert({ Scenes::CUTSCENE, make_s<Scene>(*this, Scenes::CUTSCENE) });
+    scenes.insert({ Scenes::AREA, make_s<Scene>(*this, Scenes::AREA) });
 
     //Initialize cursor
     //Cursor sprite info
     Sprite::Info csi = {};
     csi.sheet = "UI/Cursors"; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x;
-    cursor = make_u<Sprite>(renderer->GetRenderer(), csi);
+    cursor.Init(renderer.GetRenderer(), csi);
     //SDL_SetWindowRelativeMouseMode(); This will lock the cursor to the game window
     SDL_HideCursor();
 }
@@ -71,8 +63,8 @@ void Game::Run() {
     }
 
     //Handle events
-    window->PollEvents();
-    if (window->open) {
+    window.PollEvents();
+    if (window.open) {
         scene = active_scene.lock();
         if (!scene) SetScene(Scenes::TITLE);
 
@@ -101,7 +93,7 @@ void Game::ProcessInput() {
         cerr << "ERROR: ACTIVE SCENE NOT PROCESSING INPUT!\n";
 
     //Update cursor position
-    cursor->MoveTo(Round(Input::MousePos()) + Vector2i{camera.viewport.x, camera.viewport.y});
+    cursor.MoveTo(Round(Input::MousePos()) + Vector2i{ camera.viewport.x, camera.viewport.y });
 }
 
 //Update the game world
@@ -125,7 +117,7 @@ void Game::Update() {
 //Draw the game world
 void Game::Render() {
 
-    renderer->BeginFrame(); //This also clears the frame
+    renderer.BeginFrame(); //This also clears the frame
 
     //Draw the current scene
     if (scene)
@@ -134,13 +126,13 @@ void Game::Render() {
         cerr << "ERROR: ACTIVE SCENE NOT RENDERING!\n";
 
 
-    renderer->DrawSprite(*cursor);
+    renderer.DrawSprite(cursor);
 
-    renderer->EndFrame();
+    renderer.EndFrame();
 }
 
 void Game::SetScene(Scenes scn) {
-    
+
     if (scenes.find(scn) != scenes.end()) {
 
         old_scene = active_scene;
@@ -158,7 +150,7 @@ void Game::SetScene(Scenes scn) {
     }
     else
         cout << "That Scene does not exist!\n";
-        
+
 }
 
 void Game::SetMusicVolume(float n_v) {
@@ -177,7 +169,7 @@ void Game::SetResolution(uint res_scalar) {
     //Minimum resolution is 640 x 360
     if (res_scalar > 0) {
         Vector2u new_win_size = res_scalar * min_res;
-        while (new_win_size.x > window->ScreenSize().x or new_win_size.y > window->ScreenSize().y) {
+        while (new_win_size.x > window.ScreenSize().x or new_win_size.y > window.ScreenSize().y) {
             --res_scalar;
             new_win_size = res_scalar * min_res;
         }
@@ -187,32 +179,32 @@ void Game::SetResolution(uint res_scalar) {
         res_scalar = 1;
         resolution = min_res;
     }
-    if (resolution == window->ScreenSize())
-        SDL_SetWindowFullscreen(window->GetWin(), true);
+    if (resolution == window.ScreenSize())
+        SDL_SetWindowFullscreen(window.GetWin(), true);
     else {
-        SDL_SetWindowFullscreen(window->GetWin(), false);
-        SDL_SetWindowSize(window->GetWin(), resolution.x, resolution.y);
+        SDL_SetWindowFullscreen(window.GetWin(), false);
+        SDL_SetWindowSize(window.GetWin(), resolution.x, resolution.y);
     }
     if (auto scene = active_scene.lock())
         scene->ResizeMenus();
 }
 
 void Game::SetResolution(Vector2u n_r) {
-    
+
     if (n_r.x > 0 and n_r.y > 0) {
-        n_r.x = n_r.x <= window->ScreenSize().x ? n_r.x : window->ScreenSize().x;
-        n_r.y = n_r.y <= window->ScreenSize().y ? n_r.y : window->ScreenSize().y;
+        n_r.x = n_r.x <= window.ScreenSize().x ? n_r.x : window.ScreenSize().x;
+        n_r.y = n_r.y <= window.ScreenSize().y ? n_r.y : window.ScreenSize().y;
 
         resolution = n_r;
 
-        if (resolution == window->ScreenSize())
-            SDL_SetWindowFullscreen(window->GetWin(), true);
+        if (resolution == window.ScreenSize())
+            SDL_SetWindowFullscreen(window.GetWin(), true);
         else {
-            SDL_SetWindowFullscreen(window->GetWin(), false);
-            SDL_SetWindowSize(window->GetWin(), resolution.x, resolution.y);
+            SDL_SetWindowFullscreen(window.GetWin(), false);
+            SDL_SetWindowSize(window.GetWin(), resolution.x, resolution.y);
         }
         if (auto scene = active_scene.lock())
             scene->ResizeMenus();
     }
-    
+
 }

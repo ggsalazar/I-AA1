@@ -50,7 +50,7 @@ public:
 
 	bool moving = false;
 
-	u_ptr<Sprite> portrait;
+	Sprite portrait;
 	Rect por_bbox;
 
 	Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats = {},
@@ -59,7 +59,7 @@ public:
 	//Engine stuff
 	virtual void Update() override;
 	virtual void Draw() override;
-	
+
 	//Path stuff
 	void SetPath(queue<Vector2i> new_path) { path = new_path; }
 	void WalkPath();
@@ -103,7 +103,7 @@ protected:
 	int dodge_penalty = 0;
 	bool encumbered = false;
 	bool in_combat = false;
-	u_ptr<Text> nameplate;
+	Text nameplate;
 
 	//unordered_map<Items, unique_ptr<Item>> inv;
 	//unordered_map<Items, unique_ptr<Item>> equipment;

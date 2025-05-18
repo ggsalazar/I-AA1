@@ -2,62 +2,62 @@
 
 Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged)
-	: Entity(g, s, s_i), 
+	: Entity(g, s, s_i),
 	stats(init_stats), biped(init_biped), winged(init_winged) {
 
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
-	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = {32, 32};
+	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = { 32, 32 };
 	por_info.scale = game.GetResScale() * 2; //Set this to just ResScale() when have 48x48 portraits
-	portrait = make_u<Sprite>(game.renderer->GetRenderer(), por_info);
+	portrait.Init(game.renderer.GetRenderer(), por_info);
 	//Portrait bbox
-	por_bbox.w = portrait->GetSprSize().x * 1.05f;
-	por_bbox.h = portrait->GetSprSize().y * 1.05f;
+	por_bbox.w = portrait.GetSprSize().x * 1.05f;
+	por_bbox.h = portrait.GetSprSize().y * 1.05f;
 
 	//Nameplate
 	Text::Info np_info = {};
 	np_info.str = stats.name; np_info.max_width = por_bbox.w;
-	nameplate = make_u<Text>(game.default_font36.get(), np_info);
+	nameplate.Init(&game.default_fonts[36], np_info);
 
 	//Set base_spd
 	switch (stats.size) {
-		case Sizes::TINY:
-			stats.base_spd = .5;
+	case Sizes::TINY:
+		stats.base_spd = .5;
 		break;
 
-		case Sizes::SMALL:
-			stats.base_spd = 1.5;
-			dodge_penalty = -2;
-		break;
-		
-		case Sizes::MED:
-			stats.base_spd = 2;
-			dodge_penalty = -3;
-		break;
-		
-		case Sizes::BIG:
-			stats.base_spd = 2.5;
-			dodge_penalty = -4;
+	case Sizes::SMALL:
+		stats.base_spd = 1.5;
+		dodge_penalty = -2;
 		break;
 
-		case Sizes::LARGE:
-			stats.base_spd = 3;
-			dodge_penalty = -5;
+	case Sizes::MED:
+		stats.base_spd = 2;
+		dodge_penalty = -3;
 		break;
 
-		case Sizes::HUGE:
-			stats.base_spd = 3.5;
-			dodge_penalty = -6;
-		break;
-			
-		case Sizes::MASSIVE:
-			stats.base_spd = 4;
-			dodge_penalty = -7;
+	case Sizes::BIG:
+		stats.base_spd = 2.5;
+		dodge_penalty = -4;
 		break;
 
-		case Sizes::COLOSSAL:
-			stats.base_spd = 5;
-			dodge_penalty = -8;
+	case Sizes::LARGE:
+		stats.base_spd = 3;
+		dodge_penalty = -5;
+		break;
+
+	case Sizes::HUGE:
+		stats.base_spd = 3.5;
+		dodge_penalty = -6;
+		break;
+
+	case Sizes::MASSIVE:
+		stats.base_spd = 4;
+		dodge_penalty = -7;
+		break;
+
+	case Sizes::COLOSSAL:
+		stats.base_spd = 5;
+		dodge_penalty = -8;
 		break;
 	}
 
@@ -84,8 +84,8 @@ Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init
 void Creature::Update() {
 	//Position of portrait will be updated here
 
-	por_bbox.x = portrait->GetPos().x - round(portrait->GetSprSize().x * .025f);
-	por_bbox.y = portrait->GetPos().y - round(portrait->GetSprSize().y * .025f);
+	por_bbox.x = portrait.GetPos().x - round(portrait.GetSprSize().x * .025f);
+	por_bbox.y = portrait.GetPos().y - round(portrait.GetSprSize().y * .025f);
 
 	//Moving
 	if (moving) WalkPath();
@@ -144,7 +144,7 @@ void Creature::DrawPath() {
 	Rect point_box = { {0, 0}, {4, 4} };
 	for (const auto& point : path_v) {
 		point_box.x = point.x - 2; point_box.y = point.y - 2;
-		game.renderer->DrawRect(point_box, Color(0, 0, 1, 1), Color(0,0,1,1));
+		game.renderer.DrawRect(point_box, Color(0, 0, 1, 1), Color(0, 0, 1, 1));
 	}
 }
 
@@ -156,123 +156,123 @@ void Creature::SetAbilityScore(Ab_Scores a_s, float new_score) {
 	}
 	switch (a_s) {
 		//Derived stats: fort, self_weight, max_carry_weight, f_spd, and possibly m_def
-		case Ab_Scores::STR:
-			stats.str = new_score;
-			stats.fort = (stats.str+stats.con)*.5f;
-			switch (stats.size) {
-				case Sizes::TINY:
-					stats.self_weight = 1 + (stats.str);
-					stats.max_carry_weight = max(3.f, stats.str * 10);
-				break;
+	case Ab_Scores::STR:
+		stats.str = new_score;
+		stats.fort = (stats.str + stats.con) * .5f;
+		switch (stats.size) {
+		case Sizes::TINY:
+			stats.self_weight = 1 + (stats.str);
+			stats.max_carry_weight = max(3.f, stats.str * 10);
+			break;
 
-				case Sizes::SMALL:
-					stats.self_weight = 75 + (stats.str*10);
-					stats.max_carry_weight = max(12.5f, stats.str * 50);
-				break;
+		case Sizes::SMALL:
+			stats.self_weight = 75 + (stats.str * 10);
+			stats.max_carry_weight = max(12.5f, stats.str * 50);
+			break;
 
-				case Sizes::MED:
-					stats.self_weight = 150 + (stats.str*10);
-					stats.max_carry_weight = max(15.f, stats.str * 50);
-				break;
+		case Sizes::MED:
+			stats.self_weight = 150 + (stats.str * 10);
+			stats.max_carry_weight = max(15.f, stats.str * 50);
+			break;
 
-				case Sizes::BIG:
-					stats.self_weight = 190 + (stats.str*10);
-					stats.max_carry_weight = max(17.5f, stats.str * 50);
-				break;
+		case Sizes::BIG:
+			stats.self_weight = 190 + (stats.str * 10);
+			stats.max_carry_weight = max(17.5f, stats.str * 50);
+			break;
 
-				case Sizes::LARGE:
-					stats.self_weight = 400 + (stats.str*25);
-					stats.max_carry_weight = max(25.f, stats.str * 100);
-				break;
+		case Sizes::LARGE:
+			stats.self_weight = 400 + (stats.str * 25);
+			stats.max_carry_weight = max(25.f, stats.str * 100);
+			break;
 
-				case Sizes::HUGE:
-					stats.self_weight = 1000 + (stats.str * 100);
-					stats.max_carry_weight = max(50.f, stats.str * 150);
-				break;
+		case Sizes::HUGE:
+			stats.self_weight = 1000 + (stats.str * 100);
+			stats.max_carry_weight = max(50.f, stats.str * 150);
+			break;
 
-				case Sizes::MASSIVE:
-					stats.self_weight = 2500 + (stats.str * 250);
-					stats.max_carry_weight = max(75.f, stats.str * 200);
-				break;
+		case Sizes::MASSIVE:
+			stats.self_weight = 2500 + (stats.str * 250);
+			stats.max_carry_weight = max(75.f, stats.str * 200);
+			break;
 
-				case Sizes::COLOSSAL:
-					stats.self_weight = 10000 + (stats.str * 1000);
-					stats.max_carry_weight = max(100.f, stats.str * 250);
-				break;
-			}
-			//Determine flying speed
-			SetFlySpeed();
+		case Sizes::COLOSSAL:
+			stats.self_weight = 10000 + (stats.str * 1000);
+			stats.max_carry_weight = max(100.f, stats.str * 250);
+			break;
+		}
+		//Determine flying speed
+		SetFlySpeed();
 		break;
 
 		//Derived stats: fort, max_hlth, th_per_hlth, tw_per_hlth, tn_per_health
 		//Setting Health is a special case, and is handled in SetMaxHealth()
-		case Ab_Scores::CON:
-			stats.con = new_score;
-			stats.fort = (stats.str + stats.con) * .5f;
+	case Ab_Scores::CON:
+		stats.con = new_score;
+		stats.fort = (stats.str + stats.con) * .5f;
 		break;
 
 		//Derived stats: Ref, w_spd, dodge
-		case Ab_Scores::AGI:
-			stats.agi = new_score;
-			stats.ref = (stats.agi + stats.dex) * .5f;
-			stats.w_spd = stats.base_spd + (.5f * stats.agi);
-			stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty);
+	case Ab_Scores::AGI:
+		stats.agi = new_score;
+		stats.ref = (stats.agi + stats.dex) * .5f;
+		stats.w_spd = stats.base_spd + (.5f * stats.agi);
+		stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty);
 		break;
 
 		//Derived stats: Ref, less_action_time, dodge
-		case Ab_Scores::DEX:
-			stats.dex = new_score;
-			stats.ref = (stats.agi + stats.dex) * .5f;
-			stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty);
+	case Ab_Scores::DEX:
+		stats.dex = new_score;
+		stats.ref = (stats.agi + stats.dex) * .5f;
+		stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty);
 		break;
 
 		//No derived stats
-		case Ab_Scores::INT:
-			stats.intl = new_score;
+	case Ab_Scores::INT:
+		stats.intl = new_score;
 		break;
 
 		//Derived stats: Will
-		case Ab_Scores::WIS:
-			stats.wis = new_score;
-			stats.will = (stats.wis + stats.cha) * .5f;
+	case Ab_Scores::WIS:
+		stats.wis = new_score;
+		stats.will = (stats.wis + stats.cha) * .5f;
 		break;
 
 		//Derived stats: Will
-		case Ab_Scores::CHA:
-			stats.cha = new_score;
-			stats.will = (stats.wis + stats.cha) * .5f;
+	case Ab_Scores::CHA:
+		stats.cha = new_score;
+		stats.will = (stats.wis + stats.cha) * .5f;
 		break;
 	}
 }
 
 float Creature::GetAbilityScore(Ab_Scores a_s) {
 	switch (a_s) {
-		case Ab_Scores::STR:
-			return stats.str;
+	case Ab_Scores::STR:
+		return stats.str;
 		break;
 
-		case Ab_Scores::CON:
-			return stats.con;
+	case Ab_Scores::CON:
+		return stats.con;
 		break;
 
-		case Ab_Scores::AGI:
-			return stats.agi;
+	case Ab_Scores::AGI:
+		return stats.agi;
 		break;
 
-		case Ab_Scores::DEX:
-			return stats.dex;
+	case Ab_Scores::DEX:
+		return stats.dex;
 		break;
 
-		case Ab_Scores::INT:
-			return stats.intl;
+	case Ab_Scores::INT:
+		return stats.intl;
 		break;
 
-		case Ab_Scores::WIS:
-			return stats.wis;
+	case Ab_Scores::WIS:
+		return stats.wis;
 		break;
 
-		case Ab_Scores::CHA:
-			return stats.cha;
+	case Ab_Scores::CHA:
+		return stats.cha;
 		break;
 	}
 
@@ -285,20 +285,20 @@ void Creature::SetMaxHealth() {
 	//For sentients, max health depends on class and level
 	if (stats.genus == Genuses::SENTIENT) {
 		switch (stats.clss) {
-			case Classes::NONE:
-				stats.max_hlth = 5;
+		case Classes::NONE:
+			stats.max_hlth = 5;
 			break;
 
-			case Classes::ARCANIST:
-				stats.max_hlth = (stats.level * 6) + (stats.con * stats.level);
+		case Classes::ARCANIST:
+			stats.max_hlth = (stats.level * 6) + (stats.con * stats.level);
 			break;
 
-			case Classes::ROGUE:
-				stats.max_hlth = (stats.level * 8) + (stats.con * stats.level);
+		case Classes::ROGUE:
+			stats.max_hlth = (stats.level * 8) + (stats.con * stats.level);
 			break;
 
-			case Classes::WARRIOR:
-				stats.max_hlth = (stats.level * 10) + (stats.con * stats.level);
+		case Classes::WARRIOR:
+			stats.max_hlth = (stats.level * 10) + (stats.con * stats.level);
 			break;
 		}
 	}
@@ -338,27 +338,27 @@ void Creature::SetDEF() {
 	stats.m_def = stats.dodge + stats.armor;
 
 	switch (stats.size) {
-		case Sizes::TINY:
-			stats.r_def = stats.m_def + 6;
+	case Sizes::TINY:
+		stats.r_def = stats.m_def + 6;
 		break;
 
-		case Sizes::SMALL:
-			stats.r_def = stats.m_def + 4;
+	case Sizes::SMALL:
+		stats.r_def = stats.m_def + 4;
 		break;
 
-		case Sizes::MED:
-			stats.r_def = stats.m_def + 3;
+	case Sizes::MED:
+		stats.r_def = stats.m_def + 3;
 		break;
 
-		case Sizes::BIG:
-			stats.r_def = stats.m_def + 2;
+	case Sizes::BIG:
+		stats.r_def = stats.m_def + 2;
 		break;
 
-		case Sizes::LARGE:
-		case Sizes::HUGE:
-		case Sizes::MASSIVE:
-		case Sizes::COLOSSAL:
-			stats.r_def = stats.m_def + 1;
+	case Sizes::LARGE:
+	case Sizes::HUGE:
+	case Sizes::MASSIVE:
+	case Sizes::COLOSSAL:
+		stats.r_def = stats.m_def + 1;
 		break;
 	}
 

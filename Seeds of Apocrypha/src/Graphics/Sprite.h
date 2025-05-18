@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#define SDL_MAIN_HANDLED
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include "../Core/Aliases.h"
@@ -15,9 +16,9 @@ public:
         Vector2f origin; //Anchor point of the sprite
         Vector2u spr_size; //The size of the sprite in world space (i.e. after being scaled up/down)
         Vector2u sheet_size; //The size of the sprite's spritesheet
-        Vector2i scale{1}; //The scale of the sprite - int BECAUSE this is a pixel art game!
-        Vector2u frame_size{1}; //The literal, actual size of a single frame of the sprite
-        Color tint{1}; //The color tint of the sprite
+        Vector2i scale{ 1 }; //The scale of the sprite - int BECAUSE this is a pixel art game!
+        Vector2u frame_size{ 1 }; //The literal, actual size of a single frame of the sprite
+        Color tint{ 1 }; //The color tint of the sprite
         float rot = 0.f; //Angle of rotation in degrees
         uint sheet_row = 0; //Which row of the sheet our current animation is on (each row should be a different animation)
         uint num_frames = 1; //How many frames are in the CURRENT sheet row
@@ -32,8 +33,12 @@ public:
     };
     Circle pos_debug;
 
+    Sprite() : pos_debug({ 0 }, 4) {}
     Sprite(SDL_Renderer* renderer, const Info& i = {});
     ~Sprite() { SDL_DestroyTexture(texture); }
+
+    void Init(SDL_Renderer* renderer, const Info& i = {});
+
 
     inline SDL_Texture* GetTexture() const { return texture; }
 
@@ -68,7 +73,7 @@ public:
     //Rotation in radians
     inline void SetRotR(float rad) { info.rot = rad * 57.2958; }
     inline float GetRotR() const { return info.rot / 57.2958; }
-    
+
     inline void SetColor(const Color& c) { info.tint = c; }
     inline Color GetColor() const { return info.tint; }
 
@@ -96,5 +101,5 @@ public:
 
 private:
     Info info; //private because whenever a member is set, other ancillary functions must be performed
-    SDL_Texture* texture;
+    SDL_Texture* texture = nullptr;
 };

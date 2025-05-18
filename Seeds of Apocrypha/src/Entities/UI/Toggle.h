@@ -6,7 +6,7 @@ public:
     bool on = false;
 
     Toggle(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
-        const uint init_ui_layer=0);
+        const uint init_ui_layer = 0);
 
     void Draw() override;
     void MoveBy(Vector2i offset) override { Entity::MoveBy(offset); Move(); }

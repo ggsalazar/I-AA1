@@ -7,7 +7,7 @@ class UI : public Entity {
 public:
     Menu& menu;
     uint ui_layer;
-    u_ptr<Text> label;
+    Text label;
 
     UI(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
         const uint init_ui_layer = 0);

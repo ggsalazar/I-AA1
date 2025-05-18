@@ -2,20 +2,19 @@
 #define SDL_MAIN_HANDLED
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_render.h>
-#include "../Core/Geometry.h"
-#include "Sprite.h" //(Aliases.h)
-#include "Text.h" //(Font.h)
-#include "TileMap.h"
+#include "Sprite.h" //(Aliases.h, Geometry.h)
+#include "Text.h" //(Font.h, Geometry.h)
 
 class Camera;
+class TileMap;
 
 class Renderer {
 public:
 	Renderer(SDL_Window* window, Camera* cam);
 	~Renderer() {
-		SDL_DestroyRenderer(renderer);
-		SDL_DestroySurface(surface);
-		SDL_DestroyTexture(texture);
+		if (renderer) SDL_DestroyRenderer(renderer);
+		if (surface) SDL_DestroySurface(surface);
+		if (texture) SDL_DestroyTexture(texture);
 	}
 
 	//Functionality
@@ -30,19 +29,19 @@ public:
 
 	//Sprites
 	void DrawSheet(const Sprite& sheet, const Vector2i& pos = { 0 }); //Helpful for debugging/seeing entire sheet
-	void DrawSprite(Sprite& spr);
+	void DrawSprite(const Sprite& spr);
 	void DrawTilemap(TileMap& tmp);
 	//Text
 	void DrawTxt(Text& txt);
 
-	void DrawGrid(const Vector2i start = { 0, 0 }, const Vector2i end = { 1920, 1080 }, const uint tile_size = 32);
+	void DrawGrid(const Vector2i& start = { 0, 0 }, const Vector2i& end = { 1920, 1080 }, const uint& tile_size = 32);
 
 	//Drawing shapes
 	void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2);
 	void DrawCircle(const Circle& circle, const Color& stroke_color = Color(0), Color fill_color = Color(1), const uint edge_w = 2);
 	void DrawTri(const Tri& tri, const Color& stroke_color = Color(0), Color fill_color = Color(1), const uint edge_w = 2);
 	void DrawRect(const Rect& rect, const Color& stroke_color = Color(0), Color fill_color = Color(1), const uint edge_w = 2);
-	
+
 private:
 	SDL_Renderer* renderer;
 	SDL_Surface* surface;

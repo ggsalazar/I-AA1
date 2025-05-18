@@ -8,6 +8,7 @@
 
 class Font {
 public:
+	Font() = default;
 	Font(const std::string& path, uint size) {
 		std::string path_ttf = "assets/Fonts/" + path + ".ttf";
 		font = TTF_OpenFont(path_ttf.c_str(), size);
@@ -22,5 +23,5 @@ public:
 	inline TTF_Font* GetFont() const { if (font) return font; return nullptr; }
 
 private:
-	TTF_Font* font;
-}; 
+	TTF_Font* font = nullptr;
+};

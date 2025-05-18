@@ -1,162 +1,163 @@
 #include "UI.h"
 
 UI::UI(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e, const uint init_ui_layer)
-	: Entity(g, s, s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(make_u<Text>(game.default_font36.get())) {
-    
+    : Entity(g, s, s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(&game.default_fonts[36]) {
+
+
     //Label
     string l_str = "DEFAULT";
     switch (elem) {
-        case UIElems::APPLY:
-            l_str = "Apply";
-            SetActive(false);
+    case UIElems::APPLY:
+        l_str = "Apply";
+        SetActive(false);
         break;
 
-        case UIElems::AS:
-            l_str = "Ability Scores";
+    case UIElems::AS:
+        l_str = "Ability Scores";
         break;
 
-        case UIElems::ASSTR:
-            l_str = "Strength";
+    case UIElems::ASSTR:
+        l_str = "Strength";
         break;
 
-        case UIElems::ASCON:
-            l_str = "Constitution";
+    case UIElems::ASCON:
+        l_str = "Constitution";
         break;
 
-        case UIElems::ASAGI:
-            l_str = "Agility";
+    case UIElems::ASAGI:
+        l_str = "Agility";
         break;
 
-        case UIElems::ASDEX:
-            l_str = "Dexterity";
+    case UIElems::ASDEX:
+        l_str = "Dexterity";
         break;
 
-        case UIElems::ASINT:
-            l_str = "Intelligence";
+    case UIElems::ASINT:
+        l_str = "Intelligence";
         break;
 
-        case UIElems::ASWIS:
-            l_str = "Wisdom";
+    case UIElems::ASWIS:
+        l_str = "Wisdom";
         break;
 
-        case UIElems::ASCHA:
-            l_str = "Charisma";
+    case UIElems::ASCHA:
+        l_str = "Charisma";
         break;
 
-        case UIElems::BACK:
-            l_str = "Back";
+    case UIElems::BACK:
+        l_str = "Back";
         break;
 
-        case UIElems::BACKGROUND_B:
-            l_str = "Background";
+    case UIElems::BACKGROUND_B:
+        l_str = "Background";
         break;
 
-        case UIElems::CAMSPD:
-            l_str = "Camera Speed";
+    case UIElems::CAMSPD:
+        l_str = "Camera Speed";
         break;
 
-        case UIElems::CHARCREA:
-            l_str = "New Adventure";
+    case UIElems::CHARCREA:
+        l_str = "New Adventure";
         break;
 
-        case UIElems::CLASS_B:
-            l_str = "Class";
+    case UIElems::CLASS_B:
+        l_str = "Class";
         break;
 
-        case UIElems::CLASS_P:
-            l_str = "Class";
+    case UIElems::CLASS_P:
+        l_str = "Class";
         break;
 
-        case UIElems::CLOSE:
-            l_str = "Close";
+    case UIElems::CLOSE:
+        l_str = "Close";
         break;
 
-        case UIElems::CREATE:
-            l_str = "Create";
+    case UIElems::CREATE:
+        l_str = "Create";
         break;
 
-        case UIElems::DEBUG_ROOM:
-            l_str = "Debug Room";
+    case UIElems::DEBUG_ROOM:
+        l_str = "Debug Room";
         break;
 
-        case UIElems::EQUIPMENT_CC:
-            l_str = "Equipment";
+    case UIElems::EQUIPMENT_CC:
+        l_str = "Equipment";
         break;
 
-        case UIElems::FULLSCREEN:
-            l_str = "Fullscreen";
+    case UIElems::FULLSCREEN:
+        l_str = "Fullscreen";
         break;
 
-        case UIElems::LOAD:
-            l_str = "Continue Adventure";
-            //Check to see if an existing save files exists before setting (in)active - TO-DO
-            SetActive(false);
+    case UIElems::LOAD:
+        l_str = "Continue Adventure";
+        //Check to see if an existing save files exists before setting (in)active - TO-DO
+        SetActive(false);
         break;
 
-        case UIElems::MUSIC_V:
-            l_str = "Music Volume";
+    case UIElems::MUSIC_V:
+        l_str = "Music Volume";
         break;
 
-        case UIElems::NO:
-            l_str = "No";
+    case UIElems::NO:
+        l_str = "No";
         break;
 
-        case UIElems::OPTIONS:
-            l_str = "Options";
+    case UIElems::OPTIONS:
+        l_str = "Options";
         break;
 
-        case UIElems::QUIT:
-            l_str = "Quit";
+    case UIElems::QUIT:
+        l_str = "Quit";
         break;
 
-        case UIElems::RACE_B:
-            l_str = "Race";
+    case UIElems::RACE_B:
+        l_str = "Race";
         break;
 
-        case UIElems::RACE_P:
-            l_str = "Racial Appearance";
+    case UIElems::RACE_P:
+        l_str = "Racial Appearance";
         break;
 
-        case UIElems::RESOLUTION:
-            l_str = "Resolution";
+    case UIElems::RESOLUTION:
+        l_str = "Resolution";
         break;
 
-        case UIElems::RESUME:
-            l_str = "Resume";
+    case UIElems::RESUME:
+        l_str = "Resume";
         break;
 
-        case UIElems::SEX:
-            l_str = "Sex";
+    case UIElems::SEX:
+        l_str = "Sex";
         break;
 
-        case UIElems::SFX_V:
-            l_str = "SFX Volume";
+    case UIElems::SFX_V:
+        l_str = "SFX Volume";
         break;
 
-        case UIElems::SIZE:
-            l_str = "Size";
+    case UIElems::SIZE:
+        l_str = "Size";
         break;
 
-        case UIElems::SKILLS:
-            l_str = "Skills";
+    case UIElems::SKILLS:
+        l_str = "Skills";
         break;
 
-        case UIElems::TITLE:
-            l_str = "Return to Title";
+    case UIElems::TITLE:
+        l_str = "Return to Title";
         break;
 
-        case UIElems::TUTORIAL:
-            l_str = "Tutorial";
+    case UIElems::TUTORIAL:
+        l_str = "Tutorial";
         break;
 
-        case UIElems::YES:
-            l_str = "Yes";
+    case UIElems::YES:
+        l_str = "Yes";
         break;
     }
 
-    label->info.pos = pos;
-    label->info.str = l_str;
-    label->SetOrigin();
+    label.info.pos = pos;
+    label.info.str = l_str;
+    label.SetOrigin();
 
     //Sound
     /*
@@ -183,7 +184,7 @@ void UI::GetInput() {
 
 void UI::Resize(uint r_s) {
     //Set sprite w/h
-    sprite->SetScale(Vector2i{ (int)r_s });
+    sprite.SetScale(Vector2i{ (int)r_s });
     //Adjust label size
     //label->info.char_size = r_s * 14;
     //Label offset and position are handled in children
@@ -191,9 +192,9 @@ void UI::Resize(uint r_s) {
 
 void UI::SetActive(const bool new_active) {
     active = new_active;
-    Color new_color = sprite->GetColor();
+    Color new_color = sprite.GetColor();
     new_color.a = active ? 1.f : .5f;
-    sprite->SetColor(new_color);
+    sprite.SetColor(new_color);
 }
 
 void UI::Pressed() {

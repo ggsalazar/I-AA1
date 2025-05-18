@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "../Core/Camera.h"
 #include "../Core/Collision.h"
+#include "TileMap.h"
 
 Renderer::Renderer(SDL_Window* window, Camera* cam)
 	: camera(cam) {
@@ -21,42 +22,31 @@ void Renderer::DrawSheet(const Sprite& sheet, const Vector2i& pos) {
 	SDL_RenderTexture(renderer, sheet.texture, NULL, &dest_rect);
 }
 
-void Renderer::DrawSprite(Sprite& spr) {
+void Renderer::DrawSprite(const Sprite& spr) {
 	//Cast to SDL
-	Sprite::Info* si = &spr.info;
-	
-	const SDL_FRect src_rect = {si->curr_frame * si->frame_size.x,
+	const Sprite::Info* si = &spr.info;
+
+	const SDL_FRect src_rect = { si->curr_frame * si->frame_size.x,
 								 si->sheet_row * si->frame_size.y,
 								 si->curr_frame * si->frame_size.x + si->frame_size.x,
 								 si->sheet_row * si->frame_size.y + si->frame_size.y };
-								 
+
 
 	const SDL_FRect dest_rect = { round(si->pos.x - (si->spr_size.x * si->origin.x)) - camera->viewport.x,
 								  round(si->pos.y - (si->spr_size.y * si->origin.y)) - camera->viewport.y,
 								  si->spr_size.x,
-								  si->spr_size.y};
+								  si->spr_size.y };
 
 	//Set the tine
 	SDL_SetTextureColorMod(spr.texture, si->tint.r * 255, si->tint.g * 255, si->tint.b * 255);
 	SDL_SetTextureAlphaMod(spr.texture, si->tint.a * 255);
 
 	SDL_RenderTexture(renderer, spr.texture, &src_rect, &dest_rect);
-	
+
 }
 
 void Renderer::DrawTilemap(TileMap& tmp) {
-	//SDL_FRect src_rect;
-	
-	//SDL_FRect dest_rect;
-	
-	Vector2i world_pos;
-	Vector2i screen_pos;
 
-	float tex_w, tex_h;
-	uint tiles_per_row;
-
-
-	std::string ts_name;
 	SDL_Texture* ts_tex = nullptr;
 	vector<int> inds;
 	vector<SDL_Vertex> transformed_verts;
@@ -81,7 +71,7 @@ void Renderer::DrawTilemap(TileMap& tmp) {
 void Renderer::DrawTxt(Text& txt) {
 	//Cast to SDL
 	Text::Info* ti = &txt.info;
-	
+
 	SDL_Color c = {
 		static_cast<Uint8>(ti->color.r * 255),
 		static_cast<Uint8>(ti->color.g * 255),
@@ -89,13 +79,20 @@ void Renderer::DrawTxt(Text& txt) {
 		static_cast<Uint8>(ti->color.a * 255)
 	};
 
+	if (surface) SDL_DestroySurface(surface);
+	if (!txt.font->GetFont()) {
+		std::cout << "Font is null\n";
+		return;
+	}
 	surface = TTF_RenderText_Shaded_Wrapped(txt.font->GetFont(), ti->str.c_str(), ti->str.size(), c, SDL_Color{ 0,0,0,0 }, ti->max_width);
+
 	if (!surface) {
 		std::cout << "Failed to create text surface!\n";
 		return;
 	}
 	ti->str_size = { (uint)surface->w, (uint)surface->h };
 
+	if (texture) SDL_DestroyTexture(texture);
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
 	if (!texture) {
 		std::cout << "Failed to create text texture!\n";
@@ -110,10 +107,10 @@ void Renderer::DrawTxt(Text& txt) {
 		static_cast<float>(surface->h)
 	};
 	SDL_RenderTexture(renderer, texture, &src_rect, &dest_rect);
-	
+
 }
 
-void Renderer::DrawGrid(const Vector2i start, const Vector2i end, const uint tile_size) {
+void Renderer::DrawGrid(const Vector2i& start, const Vector2i& end, const uint& tile_size) {
 	//Vertical Lines
 	for (int i = start.x; i < end.x; i += tile_size)
 		DrawLine(Line{ {i, start.y}, {i, end.y} }, Color(1, 0, 0));
@@ -149,7 +146,7 @@ void Renderer::DrawCircle(const Circle& circle, const Color& stroke_color, Color
 				SDL_RenderPoint(renderer, circle_pos.x + w, circle_pos.y + h);
 		}
 	}
-	
+
 }
 
 void Renderer::DrawTri(const Tri& tri, const Color& stroke_color, Color fill_color, const uint edge_w) {
@@ -181,7 +178,7 @@ void Renderer::DrawTri(const Tri& tri, const Color& stroke_color, Color fill_col
 
 void Renderer::DrawRect(const Rect& rect, const Color& stroke_color, Color fill_color, const uint edge_w) {
 	Vector2i rect_pos = { rect.x - camera->viewport.x, rect.y - camera->viewport.y };
-	
+
 	//Draw the fill
 	SDL_SetRenderDrawColor(renderer, fill_color.r * 255, fill_color.g * 255, fill_color.b * 255, fill_color.a * 255);
 	SDL_FRect sdl_rect = { rect_pos.x, rect_pos.y, rect.w, rect.h };
@@ -193,12 +190,12 @@ void Renderer::DrawRect(const Rect& rect, const Color& stroke_color, Color fill_
 	SDL_FRect top = { rect_pos.x, rect_pos.y, rect.w, edge_w };
 	SDL_RenderFillRect(renderer, &top);
 	//Bottom
-	SDL_FRect bot = { rect_pos.x, rect_pos.y + rect.h-edge_w, rect.w, edge_w };
+	SDL_FRect bot = { rect_pos.x, rect_pos.y + rect.h - edge_w, rect.w, edge_w };
 	SDL_RenderFillRect(renderer, &bot);
 	//Left
 	SDL_FRect left = { rect_pos.x, rect_pos.y, edge_w, rect.h };
 	SDL_RenderFillRect(renderer, &left);
 	//Right
-	SDL_FRect right = { rect_pos.x + rect.w-edge_w, rect_pos.y, edge_w, rect.h };
+	SDL_FRect right = { rect_pos.x + rect.w - edge_w, rect_pos.y, edge_w, rect.h };
 	SDL_RenderFillRect(renderer, &right);
 }

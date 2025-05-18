@@ -1,7 +1,7 @@
 #include "Window.h"
 
 Window::Window(const char* title, Vector2u size) {
-	
+
 	auto flags = SDL_WINDOW_HIGH_PIXEL_DENSITY;
 	if (size == Vector2u{ 0,0 })
 		flags = SDL_WINDOW_FULLSCREEN | SDL_WINDOW_HIGH_PIXEL_DENSITY;
@@ -32,15 +32,15 @@ Window::Window(const char* title, Vector2u size) {
 void Window::PollEvents() {
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
-			case SDL_EVENT_WINDOW_FOCUS_GAINED:
-				has_focus = true;
+		case SDL_EVENT_WINDOW_FOCUS_GAINED:
+			has_focus = true;
 			break;
-			case SDL_EVENT_WINDOW_FOCUS_LOST:
-				has_focus = false;
+		case SDL_EVENT_WINDOW_FOCUS_LOST:
+			has_focus = false;
 			break;
 
-			case SDL_EVENT_QUIT:
-				open = false;
+		case SDL_EVENT_QUIT:
+			open = false;
 			break;
 		}
 	}
