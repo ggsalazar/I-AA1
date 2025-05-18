@@ -54,8 +54,8 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 
 	//Populate tile_data
 	for (const auto& layer : tilemap_data["layers"]) {
-		for (uint row = 0; row < map_size_t.y; ++row) {
-			for (uint col = 0; col < map_size_t.x; ++col) {
+		for (uint col = 0; col < map_size_t.x; ++col) {
+			for (uint row = 0; row < map_size_t.y; ++row) {
 				//Get current tile ID number
 				global_tile_id = layer["data"][col + row * map_size_t.x];
 
@@ -119,9 +119,8 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 				vert[3].tex_coord = { vert_uv.x / tex_size.x, (vert_uv.y + TS) / tex_size.y };
 
 				SDL_FColor color = { 1.f, 1.f, 1.f, 1.f };
-				for (int i = 0; i < 4; ++i) {
+				for (int i = 0; i < 4; ++i)
 					vert[i].color = color;
-				}
 
 				auto& verts = verts_by_tileset[ts_name];
 				auto& inds = indices_by_tileset[ts_name];
