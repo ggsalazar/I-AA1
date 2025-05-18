@@ -46,9 +46,8 @@ public:
 
     //Scenes
     unordered_map<Scenes, s_ptr<Scene>> scenes;
-    w_ptr<Scene> active_scene;
-    s_ptr<Scene> scene;
-    w_ptr<Scene> old_scene;
+    Scene* active_scene = nullptr;
+    Scene* old_scene = nullptr;
 
     //Miscellaneous
     unordered_map<int, Font> default_fonts;

@@ -14,10 +14,7 @@ public:
     bool selecting = false;
     Interfaces interface_open = Interfaces::NONE;
 
-    Scene() = default;
-    Scene(Game& g, Scenes init_label) :
-        game(g), label(init_label) {
-    }
+    Scene(Game& g, Scenes init_label) : game(g), label(init_label) {}
 
     //Engine stuff
     void GetInput();

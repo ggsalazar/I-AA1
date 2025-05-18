@@ -65,8 +65,7 @@ void Game::Run() {
     //Handle events
     window.PollEvents();
     if (window.open) {
-        scene = active_scene.lock();
-        if (!scene) SetScene(Scenes::TITLE);
+        if (!active_scene) SetScene(Scenes::TITLE);
 
         //Process input
         ProcessInput();
@@ -87,8 +86,8 @@ void Game::Run() {
 void Game::ProcessInput() {
 
     //Get input for the active scene
-    if (scene)
-        scene->GetInput();
+    if (active_scene)
+        active_scene->GetInput();
     else
         cerr << "ERROR: ACTIVE SCENE NOT PROCESSING INPUT!\n";
 
@@ -102,15 +101,15 @@ void Game::Update() {
     Input::Update();
 
     //Update the active scene
-    if (scene)
-        scene->Update();
+    if (active_scene)
+        active_scene->Update();
     else
         cerr << "ERROR: ACTIVE SCENE NOT UPDATING!\n";
 
     //Close the old scene if needed
-    if (auto old_scn = old_scene.lock()) {
-        old_scn->Open(false);
-        old_scene.reset();
+    if (old_scene) {
+        old_scene->Open(false);
+        old_scene = nullptr;
     }
 }
 
@@ -120,8 +119,8 @@ void Game::Render() {
     renderer.BeginFrame(); //This also clears the frame
 
     //Draw the current scene
-    if (scene)
-        scene->Draw();
+    if (active_scene)
+        active_scene->Draw();
     else
         cerr << "ERROR: ACTIVE SCENE NOT RENDERING!\n";
 
@@ -138,13 +137,12 @@ void Game::SetScene(Scenes scn) {
         old_scene = active_scene;
 
         //Open the new scene
-        active_scene = scenes[scn];
-        scene = active_scene.lock();
-        if (auto o_scn = old_scene.lock()) {
-            if (scene->label != Scenes::TITLE)
-                scene->SetPartyMems(o_scn->GetPartyMems());
+        active_scene = scenes[scn].get();
+        if (old_scene) {
+            if (active_scene->label != Scenes::TITLE)
+                active_scene->SetPartyMems(old_scene->GetPartyMems());
         }
-        scene->Open();
+        active_scene->Open();
 
         //Old scene *must* be closed next frame!
     }
@@ -162,7 +160,7 @@ void Game::SetMusicVolume(float n_v) {
 void Game::SetSFXVolume(float n_v) {
     Math::Clamp(n_v, 0, 100);
     sfx_volume = n_v;
-    scene->SetEntitySFXVolume(sfx_volume);
+    active_scene->SetEntitySFXVolume(sfx_volume);
 }
 
 void Game::SetResolution(uint res_scalar) {
@@ -185,8 +183,8 @@ void Game::SetResolution(uint res_scalar) {
         SDL_SetWindowFullscreen(window.GetWin(), false);
         SDL_SetWindowSize(window.GetWin(), resolution.x, resolution.y);
     }
-    if (auto scene = active_scene.lock())
-        scene->ResizeMenus();
+    if (active_scene)
+        active_scene->ResizeMenus();
 }
 
 void Game::SetResolution(Vector2u n_r) {
@@ -203,8 +201,8 @@ void Game::SetResolution(Vector2u n_r) {
             SDL_SetWindowFullscreen(window.GetWin(), false);
             SDL_SetWindowSize(window.GetWin(), resolution.x, resolution.y);
         }
-        if (auto scene = active_scene.lock())
-            scene->ResizeMenus();
+        if (active_scene)
+            active_scene->ResizeMenus();
     }
 
 }
