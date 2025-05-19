@@ -52,7 +52,7 @@ public:
 	Sprite portrait;
 	Rect por_bbox;
 
-	Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats = {},
+	Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats = {},
 		const string por_name = "Placeholder", const bool init_biped = true, const bool init_winged = false);
 
 	//Engine stuff

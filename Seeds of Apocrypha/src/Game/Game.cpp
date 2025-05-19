@@ -2,7 +2,7 @@
 #include <string>
 #include "Game.h"
 #include "Scene.h"
-#include "../Core/Input.h" //(iostream, Window)
+#include "../Core/Input.h"
 #include "../Core/Math.h"
 
 Game::Game(const char* title, uint init_fps)
@@ -30,15 +30,15 @@ Game::Game(const char* title, uint init_fps)
     //Initialize fonts
     for (int i = 12; i < 96; i += 12)
         default_fonts.insert({ i, Font("m5x7", i) });
-    debug_txt = Text(&default_fonts[48]);
+    debug_txt.Init(&default_fonts[48]);
 
     //Initialize the DJ's tracks
     //Play the title track - TO-DO
 
     //Initialize Scenes
-    scenes.insert({ Scenes::TITLE, make_s<Scene>(*this, Scenes::TITLE) });
-    scenes.insert({ Scenes::CUTSCENE, make_s<Scene>(*this, Scenes::CUTSCENE) });
-    scenes.insert({ Scenes::AREA, make_s<Scene>(*this, Scenes::AREA) });
+    scenes.insert({ Scenes::TITLE, make_s<Scene>(this, Scenes::TITLE) });
+    scenes.insert({ Scenes::CUTSCENE, make_s<Scene>(this, Scenes::CUTSCENE) });
+    scenes.insert({ Scenes::AREA, make_s<Scene>(this, Scenes::AREA) });
 
     //Initialize cursor
     //Cursor sprite info

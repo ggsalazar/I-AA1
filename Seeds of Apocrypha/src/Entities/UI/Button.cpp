@@ -3,15 +3,15 @@
 
 void Button::Draw() {
     if (active and Selected())
-        game.renderer.DrawRect(bbox, Color(0, 1, 0));
+        game->renderer.DrawRect(bbox, Color(0, 1, 0));
 
     Entity::Draw();
 
-    game.renderer.DrawTxt(label);
+    game->renderer.DrawTxt(label);
 }
 
 void Button::Move() {
-    label_offset = game.GetResScale();
+    label_offset = game->GetResScale();
     label.MoveTo({ pos.x, pos.y - label_offset });
 }
 
@@ -25,13 +25,13 @@ void Button::Released() {
     case UIElems::APPLY:
         if (menu.GetLabel() == Menus::OPTIONS) {
             //Set the game's current resolution to the scale determined by the resolution picker OR set it to fullscreen if that toggle is clicked
-            if (menu.GetUIElemStatus(UIElems::FULLSCREEN) == "True" and game.resolution != game.window.ScreenSize())
-                game.SetResolution(game.window.ScreenSize());
+            if (menu.GetUIElemStatus(UIElems::FULLSCREEN) == "True" and game->resolution != game->window.ScreenSize())
+                game->SetResolution(game->window.ScreenSize());
             else {
                 uint new_scale = stoi(menu.GetUIElemStatus(UIElems::RESOLUTION));
-                uint old_scale = game.GetResScale();
+                uint old_scale = game->GetResScale();
                 if (new_scale != old_scale)
-                    game.SetResolution(new_scale);
+                    game->SetResolution(new_scale);
             }
             SetActive(false);
         }
@@ -49,11 +49,11 @@ void Button::Released() {
             auto c_box = make_s<Confirm>(
                 engine, menu,
                 AnimInfo{ "UI/ConfirmBox", 200, 100 },
-                Animation::Transform{ Vector2u(engine.game.camera.getCenter()), {.5f, .5f}, {engine.game.GetResScale(), engine.game.GetResScale()}},
-                UI::Style{ UIElems::CONFIRM, engine.game.GetResScale()*16},
+                Animation::Transform{ Vector2u(engine.game->camera.getCenter()), {.5f, .5f}, {engine.game->GetResScale(), engine.game->GetResScale()}},
+                UI::Style{ UIElems::CONFIRM, engine.game->GetResScale()*16},
                 "Exit Character Creation?", 1, -1);
             menu.AddUIElem(c_box); //Also adds to the current scene
-            game.curr_ui_layer = 1;
+            game->curr_ui_layer = 1;
             */
         }
         else {
@@ -72,7 +72,7 @@ void Button::Released() {
     case UIElems::CLOSE:
         menu.Open(false);
         scene->interface_open = Interfaces::NONE;
-        game.paused = false;
+        game->paused = false;
         break;
 
     case UIElems::CREATE: {
@@ -82,12 +82,12 @@ void Button::Released() {
 
     case UIElems::DEBUG_ROOM:
         scene->CreatePreGen(PreGens::DAKN);
-        game.area = Areas::DEBUG;
-        game.SetScene(Scenes::AREA);
+        game->area = Areas::DEBUG;
+        game->SetScene(Scenes::AREA);
         break;
 
     case UIElems::NO:
-        --game.curr_ui_layer;
+        --game->curr_ui_layer;
         menu.RemoveUIElem(UIElems::CONFIRM);
         menu.RemoveUIElem(UIElems::YES);
         alive = false;
@@ -99,7 +99,7 @@ void Button::Released() {
         break;
 
     case UIElems::QUIT:
-        game.window.open = false;
+        game->window.open = false;
         break;
 
     case UIElems::RACE_B:
@@ -110,25 +110,25 @@ void Button::Released() {
 
     case UIElems::RESUME:
         menu.Open(false);
-        game.paused = false;
+        game->paused = false;
         break;
 
     case UIElems::TITLE:
         menu.Open(false);
-        game.paused = false;
-        game.SetScene(Scenes::TITLE);
+        game->paused = false;
+        game->SetScene(Scenes::TITLE);
         break;
 
     case UIElems::TUTORIAL:
         scene->CreatePreGen(PreGens::DAKN);
-        game.area = Areas::TUTTON;
-        game.SetScene(Scenes::AREA);
+        game->area = Areas::TUTTON;
+        game->SetScene(Scenes::AREA);
         break;
 
     case UIElems::YES:
         if (menu.GetLabel() == Menus::CHARCREA) {
             //Back to layer 0
-            --game.curr_ui_layer;
+            --game->curr_ui_layer;
             //Double-check to make sure this *destroys* confirm box and y/n buttons!!!!!!!! TO-DO
             menu.RemoveUIElem(UIElems::CONFIRM);
             menu.RemoveUIElem(UIElems::NO);

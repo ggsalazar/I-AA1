@@ -13,8 +13,8 @@ class UI;
 
 class Menu {
 public:
-    Menu(Game& g, Scene& s, const Menus init_label);
-    ~Menu();
+    Menu() = default;
+    Menu(Game* g, Scene* s, const Menus init_label);
 
     //Engine
     void Update();
@@ -44,12 +44,12 @@ protected:
     bool open = false;
     uint res_scalar;
 
-    unordered_map<Menus, Menu*> sub_menus;
+    unordered_map<Menus, Menu> sub_menus;
     unordered_map<UIElems, s_ptr<UI>> ui_elems;
     Vector2f ui_ori = { .5f, .5f };
     Vector2i ui_scale = { 1, 1 };
 
-    //Engine pointers
-    Game& game;
-    Scene& scene;
+    //Pointers
+    Game* game = nullptr;
+    Scene* scene = nullptr;
 };

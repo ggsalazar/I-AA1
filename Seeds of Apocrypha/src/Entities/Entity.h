@@ -17,7 +17,7 @@ public:
     //sf::SoundBuffer sb;
     //sf::Sound sound;
 
-    Entity(Game& g, Scene* s, const Sprite::Info& s_i);
+    Entity(Game* g, Scene* s, const Sprite::Info& s_i);
     virtual ~Entity() = default;
 
 
@@ -39,8 +39,8 @@ protected:
     Circle pos_debug;
     Rect bbox;
 
-    Game& game;
-    Scene* scene;
+    Game* game = nullptr;
+    Scene* scene = nullptr;
 
     virtual void Move();
 };

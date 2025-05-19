@@ -1,9 +1,97 @@
 #include "Scene.h"
+#include "Game.h"
 #include "../Core/Input.h" //(iostream, Window)
 #include "../Core/Math.h"
 #include "../Entities/UI/UI.h" //(Entity.h)
 #include "../Entities/Creatures/PartyMember.h"
 //#include "../Core/Pathfinding.h"
+
+
+void Scene::Open(const bool o) {
+	open = o;
+
+	if (open) {
+		//Each scene is comprised of Menus & Entities
+		if (label == Scenes::TITLE) {
+			//Clear out all pre-existing entities and party members (likely unnecessary but keeping around jic)
+			entities.clear();
+			party_mems.clear();
+
+			game->camera.MoveTo({ 0, 0 });
+			menus.insert({ Menus::MAIN, Menu(game, this, Menus::MAIN) });
+			menus[Menus::MAIN].Open();
+			//menus.insert({ Menus::CHARCREA, Menu(game, this, Menus::CHARCREA) });
+			//menus.insert({ Menus::LOAD, Menu(game, this, Menus::LOAD) });
+			//menus.insert({ Menus::OPTIONS, Menu(game, this, Menus::OPTIONS) });
+
+		}
+
+		else if (label == Scenes::AREA) {
+			//Initialize the edge rects
+			//Up - Inits to 0, 0
+			up_edge.w = game->camera.viewport.w; up_edge.h = TS;
+			//Down - only need to update y
+			down_edge.y = game->camera.viewport.y + game->camera.viewport.h - TS;
+			down_edge.w = up_edge.w; down_edge.h = TS;
+			//Left - Inits to 0, 0
+			left_edge.w = TS; left_edge.h = game->camera.viewport.h;
+			//Right - only need to update x
+			right_edge.x = game->camera.viewport.x + game->camera.viewport.w - TS;
+			right_edge.w = TS; right_edge.h = left_edge.h;
+
+			//Import the appropriate tilemap
+			string json_file = "DEFAULT";
+			switch (game->area) {
+			case Areas::DEBUG:
+				json_file = "Debug_Room";
+				break;
+
+			case Areas::TUTTON:
+				json_file = "Tutton";
+				break;
+			}
+			//Load that bitch
+			tilemap.Load(game->renderer.GetRenderer(), json_file);
+
+			//Set the camera and party members
+			Vector2u area_size = tilemap.GetMapSizePixels();
+
+			game->camera.viewport.x = round(area_size.x * .5f - game->camera.viewport.w * .5f);
+			game->camera.viewport.y = round(area_size.y * .5f - game->camera.viewport.h * .5f);
+
+			for (auto& p_m : party_mems) {
+				entities.push_back(p_m);
+				p_m->SetScene(this);
+				p_m->MoveTo(Round(area_size * .5f));
+				p_m->selected = true;
+			}
+			switch (game->area) {
+			case Areas::DEBUG:
+				break;
+
+			case Areas::TUTTON:
+				break;
+			}
+
+			//Initialize our menus
+			menus.insert({ Menus::OPTIONS_G, Menu(game, this, Menus::OPTIONS_G) });
+		}
+	}
+
+	//Scene is closed
+	else {
+		//This also deletes the buttons that belong to each menu
+		for (auto& m : menus)
+			m.second.Open(false);
+		menus.clear();
+		//Deletes all the entities in the scene
+		entities.clear();
+		party_mems.clear();
+
+		//Unload the TileMap
+		tilemap.Unload();
+	}
+}
 
 void Scene::GetInput() {
 
@@ -11,14 +99,14 @@ void Scene::GetInput() {
 		OpenInterface();
 		MoveCamera();
 
-		if (!game.paused) {
+		if (!game->paused) {
 			SelectPartyMems();
 
 			/*
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing
 			// will depend on what it is pointing at
 			//Updating action every 6th of a second for performance reasons
-			//if (game.GetGameFrames() % 10 == 0)
+			//if (game->GetGameFrames() % 10 == 0)
 			//	action = LMBAction();
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			//SetGameCursor(action);
@@ -36,7 +124,7 @@ void Scene::GetInput() {
 			}
 			*/
 		}
-		else game.cursor.SetSheetRow(0);
+		else game->cursor.SetSheetRow(0);
 	}
 	for (auto& e : entities) {
 		//Only get input for UI elements if the corresponding menu is open
@@ -52,7 +140,7 @@ void Scene::GetInput() {
 void Scene::Update() {
 	//Update menus
 	for (auto& m : menus)
-		m.second->Update();
+		m.second.Update();
 
 	//Update entities
 	for (auto& e : entities)
@@ -65,7 +153,7 @@ void Scene::Update() {
 
 	//Sort the entities vector (and possibly Menus map) by dfc value every 6th of a second so that entities of a lower dfc value are drawn
 	// last (closest to the camera)
-	if (game.GetGameFrames() % 10 == 0) {
+	if (game->GetGameFrames() % 10 == 0) {
 		sort(entities.begin(), entities.end(), [](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite.GetDFC() > b->sprite.GetDFC(); });
 
 		//Also taking this opportunity to repopulate/reset the node grid
@@ -78,7 +166,7 @@ void Scene::Draw() {
 
 	//Draw the tilemap first
 	if (tilemap.Loaded())
-		game.renderer.DrawTilemap(tilemap);
+		game->renderer.DrawTilemap(tilemap);
 
 	//Then draw entities
 	for (auto& e : entities) {
@@ -93,126 +181,38 @@ void Scene::Draw() {
 
 	//Draw the selection box
 	if (selecting)
-		game.renderer.DrawRect(selec_box, Color(0, 1, 0, .8), Color(0, 1, 0, .4));
+		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .8), Color(0, 1, 0, .4));
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
-	for (const auto& m : menus)
-		m.second->Draw();
-}
-
-//Most *actual* initialization happens here
-void Scene::Open(const bool o) {
-	open = o;
-
-	if (open) {
-		//Each scene is comprised of Menus & Entities
-		if (label == Scenes::TITLE) {
-			//Clear out all pre-existing entities and party members (likely unnecessary but keeping around jic)
-			entities.clear();
-			party_mems.clear();
-
-			game.camera.MoveTo({ 0, 0 });
-			menus.insert({ Menus::MAIN, new Menu(game, *this, Menus::MAIN)});
-			menus[Menus::MAIN]->Open();
-			menus.insert({ Menus::CHARCREA, new Menu(game, *this, Menus::CHARCREA) });
-			menus.insert({ Menus::LOAD, new Menu(game, *this, Menus::LOAD) });
-			menus.insert({ Menus::OPTIONS, new Menu(game, *this, Menus::OPTIONS) });
-
-		}
-
-		else if (label == Scenes::AREA) {
-			//Initialize the edge rects
-			//Up - Inits to 0, 0
-			up_edge.w = game.camera.viewport.w; up_edge.h = TS;
-			//Down - only need to update y
-			down_edge.y = game.camera.viewport.y + game.camera.viewport.h - TS;
-			down_edge.w = up_edge.w; down_edge.h = TS;
-			//Left - Inits to 0, 0
-			left_edge.w = TS; left_edge.h = game.camera.viewport.h;
-			//Right - only need to update x
-			right_edge.x = game.camera.viewport.x + game.camera.viewport.w - TS;
-			right_edge.w = TS; right_edge.h = left_edge.h;
-
-			//Import the appropriate tilemap
-			string json_file = "DEFAULT";
-			switch (game.area) {
-			case Areas::DEBUG:
-				json_file = "Debug_Room";
-				break;
-
-			case Areas::TUTTON:
-				json_file = "Tutton";
-				break;
-			}
-			//Load that bitch
-			tilemap.Load(game.renderer.GetRenderer(), json_file);
-
-			//Set the camera and party members
-			Vector2u area_size = tilemap.GetMapSizePixels();
-
-			game.camera.viewport.x = round(area_size.x * .5f - game.camera.viewport.w * .5f);
-			game.camera.viewport.y = round(area_size.y * .5f - game.camera.viewport.h * .5f);
-
-			for (auto& p_m : party_mems) {
-				entities.push_back(p_m);
-				p_m->SetScene(this);
-				p_m->MoveTo(Round(area_size * .5f));
-				p_m->selected = true;
-			}
-			switch (game.area) {
-			case Areas::DEBUG:
-				break;
-
-			case Areas::TUTTON:
-				break;
-			}
-
-			//Initialize our menus
-			menus.insert({ Menus::OPTIONS_G, new Menu(game, *this, Menus::OPTIONS_G) });
-		}
-	}
-
-	//Scene is closed
-	else {
-		//This also deletes the buttons that belong to each menu
-		for (const auto& m : menus)
-			m.second->Open(false);
-		menus.clear();
-		//Deletes all the entities in the scene
-		entities.clear();
-		party_mems.clear();
-
-		//Unload the TileMap
-		tilemap.Unload();
-	}
+	for (auto& m : menus)
+		m.second.Draw();
 }
 
 void Scene::OpenMenu(Menus menu, const bool o) {
+	auto m = menus.find(menu);
 	if (o) {
-		auto m = menus.find(menu);
 		if (m != menus.end())
-			m->second->Open();
+			m->second.Open();
 	}
 	else {
-		auto m = menus.find(menu);
 		if (m != menus.end())
-			m->second->Open(false);
+			m->second.Open(false);
 	}
 }
 
 bool Scene::MenuOpen(Menus menu) {
 	auto m = menus.find(menu);
 	if (m != menus.end())
-		return m->second->GetOpen();
+		return m->second.GetOpen();
 
 	cout << "That Menu does not exist in this Scene" << endl;
 	return false;
 }
 
 void Scene::ResizeMenus() {
-	for (const auto& m : menus)
-		m.second->Resize();
+	for (auto& m : menus)
+		m.second.Resize();
 }
 
 void Scene::OpenInterface(Interfaces intrfc) {
@@ -220,12 +220,12 @@ void Scene::OpenInterface(Interfaces intrfc) {
 	if (Input::BtnPressed(O_K)) {
 		if (interface_open != Interfaces::OPTIONS) {
 			interface_open = Interfaces::OPTIONS;
-			game.paused = true;
+			game->paused = true;
 			//Close whatever other menu was open - TO-DO
 		}
 		else {
 			interface_open = Interfaces::NONE;
-			game.paused = false;
+			game->paused = false;
 		}
 		//Open the options menu if it isn't already
 		OpenMenu(Menus::OPTIONS_G, !MenuOpen(Menus::OPTIONS_G));
@@ -236,57 +236,57 @@ void Scene::MoveCamera() {
 	//Move the camera
 	bool cam_free = false;
 	//Can't move the camera if we are at or past the edge
-	Vector2i cam_pos = { game.camera.viewport.x, game.camera.viewport.y };
-	Vector2i cam_size = { game.camera.viewport.w, game.camera.viewport.h };
-	if (!game.cam_locked) {
+	Vector2i cam_pos = { game->camera.viewport.x, game->camera.viewport.y };
+	Vector2i cam_size = { game->camera.viewport.w, game->camera.viewport.h };
+	if (!game->cam_locked) {
 		Vector2i new_cam_offset = { 0, 0 };
 		if (!cam_free) {
 			//Move the camera via arrow/WASD keys
 			if ((Input::KeyDown(UP) or Input::KeyDown(W_K)) and cam_pos.y > 0)
-				new_cam_offset.y -= game.cam_move_spd;
+				new_cam_offset.y -= game->cam_move_spd;
 			else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-				new_cam_offset.y += game.cam_move_spd;
+				new_cam_offset.y += game->cam_move_spd;
 			if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)) and cam_pos.x > 0)
-				new_cam_offset.x -= game.cam_move_spd;
+				new_cam_offset.x -= game->cam_move_spd;
 			else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-				new_cam_offset.x += game.cam_move_spd;
+				new_cam_offset.x += game->cam_move_spd;
 
 			//Move the camera via edge panning
 			if (Collision::Point(Input::MousePos(), up_edge) and cam_pos.y > 0)
-				new_cam_offset.y -= game.cam_move_spd;
+				new_cam_offset.y -= game->cam_move_spd;
 			else if (Collision::Point(Input::MousePos(), down_edge) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-				new_cam_offset.y += game.cam_move_spd;
+				new_cam_offset.y += game->cam_move_spd;
 			if (Collision::Point(Input::MousePos(), left_edge) and cam_pos.x > 0)
-				new_cam_offset.x -= game.cam_move_spd;
+				new_cam_offset.x -= game->cam_move_spd;
 			else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-				new_cam_offset.x += game.cam_move_spd;
+				new_cam_offset.x += game->cam_move_spd;
 		}
 		else {
 			//Move the camera via arrow/WASD keys
 			if ((Input::KeyDown(UP) or Input::KeyDown(W_K)))
-				new_cam_offset.y -= game.cam_move_spd;
+				new_cam_offset.y -= game->cam_move_spd;
 			else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)))
-				new_cam_offset.y += game.cam_move_spd;
+				new_cam_offset.y += game->cam_move_spd;
 			if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)))
-				new_cam_offset.x -= game.cam_move_spd;
+				new_cam_offset.x -= game->cam_move_spd;
 			else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)))
-				new_cam_offset.x += game.cam_move_spd;
+				new_cam_offset.x += game->cam_move_spd;
 
 			//Move the camera via edge panning
 			if (Collision::Point(Input::MousePos(), up_edge))
-				new_cam_offset.y -= game.cam_move_spd;
+				new_cam_offset.y -= game->cam_move_spd;
 			else if (Collision::Point(Input::MousePos(), down_edge))
-				new_cam_offset.y += game.cam_move_spd;
+				new_cam_offset.y += game->cam_move_spd;
 			if (Collision::Point(Input::MousePos(), left_edge))
-				new_cam_offset.x -= game.cam_move_spd;
+				new_cam_offset.x -= game->cam_move_spd;
 			else if (Collision::Point(Input::MousePos(), right_edge))
-				new_cam_offset.x += game.cam_move_spd;
+				new_cam_offset.x += game->cam_move_spd;
 		}
 		if (new_cam_offset.x != 0 and new_cam_offset.y != 0)
 			new_cam_offset *= 1.414f;
 
 		new_cam_offset = Round(new_cam_offset);
-		game.camera.MoveBy(new_cam_offset);
+		game->camera.MoveBy(new_cam_offset);
 	}
 	//If the camera is locked to the party members, follow them automatically
 	//Select which party members to lock the camera to - TO-DO
@@ -307,7 +307,7 @@ void Scene::MoveCamera() {
 
 		pos_avg = Vector2f(Round(pos_avg));
 
-		game.camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game.camera.GetCenter()), pos_avg, .1f)));
+		game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), pos_avg, .1f)));
 	}
 }
 
@@ -431,7 +431,7 @@ void Scene::SetGameCursor(Actions action) {
 		new_row = 2;
 		break;
 	}
-	game.cursor.SetSheetRow(new_row);
+	game->cursor.SetSheetRow(new_row);
 }
 
 void Scene::RemoveEntity(s_ptr<Entity> e) {
@@ -459,16 +459,16 @@ void Scene::SetEntitySFXVolume(const float new_volume) {
 void Scene::CreatePartyMem() {
 	Sprite::Info info = {};
 	info.sheet = "Creatures/Sentients/PMPlaceholder";
-	info.frame_size = { 32, 64 }; info.origin = { .5f }; info.scale = game.GetResScale();
+	info.frame_size = { 32, 64 }; info.origin = { .5f }; info.scale = game->GetResScale();
 	auto new_party_mem = make_s<PartyMember>(
 		game, this,
 		info); //The remaining arguments are the defaults
-	new_party_mem->MoveTo(Round(game.resolution.x * .75f, game.resolution.y * .5f));
+	new_party_mem->MoveTo(Round(game->resolution.x * .75f, game->resolution.y * .5f));
 	entities.push_back(new_party_mem);
 }
 
 void Scene::CreatePreGen(PreGens p_g) {
-	uint res_scalar = game.GetResScale();
+	uint res_scalar = game->GetResScale();
 	string name = "Default";
 	Genuses genus = Genuses::SENTIENT;
 	Races race = Races::HUMAN;

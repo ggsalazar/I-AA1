@@ -3,7 +3,7 @@
 
 class Slider : public UI {
 public:
-    Slider(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+    Slider(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
         const uint init_ui_layer = 0);
 
     void GetInput() override;

@@ -1,7 +1,7 @@
 #include "PartyMember.h"
 #include "../../Core/Input.h" //Window
 
-PartyMember::PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
+PartyMember::PartyMember(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged)
 	: Creature(g, s, s_i, init_stats, por_name, init_biped, init_winged) {
 
@@ -13,7 +13,7 @@ PartyMember::PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats
 	Text::Info h_t_info = {};
 	h_t_info.str = to_string(stats.hlth) + "/" + to_string(stats.max_hlth);
 	h_t_info.max_width = hlth_bar.w;
-	hlth_txt.Init(&game.default_fonts[36], h_t_info);
+	hlth_txt.Init(&game->default_fonts[36], h_t_info);
 }
 
 void PartyMember::GetInput() {
@@ -37,7 +37,7 @@ void PartyMember::Update() {
 
 	//Update portrait and related details position
 	//Position is just the bottom left for Adventure 1
-	portrait.MoveTo(Round(portrait.GetSprSize().x * .25f + game.camera.viewport.x, game.resolution.y - portrait.GetSprSize().y * 1.25f + game.camera.viewport.y));
+	portrait.MoveTo(Round(portrait.GetSprSize().x * .25f + game->camera.viewport.x, game->resolution.y - portrait.GetSprSize().y * 1.25f + game->camera.viewport.y));
 	por_bbox.x = portrait.GetPos().x - round(portrait.GetSprSize().x * .025f);
 	por_bbox.y = portrait.GetPos().y - round(portrait.GetSprSize().y * .025f);
 	nameplate.MoveTo({ portrait.GetPos() });
@@ -54,16 +54,16 @@ void PartyMember::Draw() {
 		//Party members draw their portraits and health bars at all times
 		//Draw the highlight if selected first, then the portrait
 		if (selected)
-			game.renderer.DrawRect(por_bbox, Color(1), Color(1));
-		game.renderer.DrawSprite(portrait);
-		game.renderer.DrawTxt(nameplate);
+			game->renderer.DrawRect(por_bbox, Color(1), Color(1));
+		game->renderer.DrawSprite(portrait);
+		game->renderer.DrawTxt(nameplate);
 
 		//Draw the missing health bar first, then the remaining health bar over it
-		game.renderer.DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {(uint)round(portrait.GetSprSize().x * .9f), (uint)hlth_bar.h} }, Color(0), Color(0, 0, 0, 1));
-		game.renderer.DrawRect(hlth_bar, Color(0), Color(0, 1, 0));
+		game->renderer.DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {(uint)round(portrait.GetSprSize().x * .9f), (uint)hlth_bar.h} }, Color(0), Color(0, 0, 0, 1));
+		game->renderer.DrawRect(hlth_bar, Color(0), Color(0, 1, 0));
 
 		//Draw our remaining health numerically last
-		game.renderer.DrawTxt(hlth_txt);
+		game->renderer.DrawTxt(hlth_txt);
 	}
 }
 

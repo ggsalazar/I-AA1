@@ -2,14 +2,14 @@
 
 #undef PlaySound
 
-Entity::Entity(Game& g, Scene* s, const Sprite::Info& s_i)
+Entity::Entity(Game* g, Scene* s, const Sprite::Info& s_i)
     : game(g), scene(s), pos(s_i.pos), pos_debug(pos, 4), bbox(pos, size) /*sound(sb)*/ {
-    sprite.Init(game.renderer.GetRenderer(), s_i);
+    sprite.Init(game->renderer.GetRenderer(), s_i);
     Entity::Move();
 }
 
 void Entity::Draw() {
-    game.renderer.DrawSprite(sprite);
+    game->renderer.DrawSprite(sprite);
 }
 
 void Entity::MoveBy(Vector2i offset) {

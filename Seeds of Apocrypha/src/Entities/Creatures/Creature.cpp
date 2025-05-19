@@ -1,6 +1,6 @@
 #include "Creature.h"
 
-Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
+Creature::Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged)
 	: Entity(g, s, s_i),
 	stats(init_stats), biped(init_biped), winged(init_winged) {
@@ -8,8 +8,8 @@ Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
 	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = { 32, 32 };
-	por_info.scale = game.GetResScale() * 2; //Set this to just ResScale() when have 48x48 portraits
-	portrait.Init(game.renderer.GetRenderer(), por_info);
+	por_info.scale = game->GetResScale() * 2; //Set this to just ResScale() when have 48x48 portraits
+	portrait.Init(game->renderer.GetRenderer(), por_info);
 	//Portrait bbox
 	por_bbox.w = portrait.GetSprSize().x * 1.05f;
 	por_bbox.h = portrait.GetSprSize().y * 1.05f;
@@ -17,7 +17,7 @@ Creature::Creature(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init
 	//Nameplate
 	Text::Info np_info = {};
 	np_info.str = stats.name; np_info.max_width = por_bbox.w;
-	nameplate.Init(&game.default_fonts[36], np_info);
+	nameplate.Init(&game->default_fonts[36], np_info);
 
 	//Set base_spd
 	switch (stats.size) {
@@ -144,7 +144,7 @@ void Creature::DrawPath() {
 	Rect point_box = { {0, 0}, {4, 4} };
 	for (const auto& point : path_v) {
 		point_box.x = point.x - 2; point_box.y = point.y - 2;
-		game.renderer.DrawRect(point_box, Color(0, 0, 1, 1), Color(0, 0, 1, 1));
+		game->renderer.DrawRect(point_box, Color(0, 0, 1, 1), Color(0, 0, 1, 1));
 	}
 }
 

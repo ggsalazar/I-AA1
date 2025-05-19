@@ -1,16 +1,16 @@
 #include "Slider.h"
 #include "../../Core/Math.h"
 
-Slider::Slider(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+Slider::Slider(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
     const uint init_ui_layer)
     : UI(g, s, m, s_i, e, init_ui_layer),
-    knob_label(&game.default_fonts[36]) {
+    knob_label(&game->default_fonts[36]) {
 
     Sprite::Info knob_info = {}; knob_info.sheet = "UI/SliderKnob"; knob_info.frame_size = { 6, 18 };
     knob_info.scale = sprite.GetScale();
-    knob_spr.Init(game.renderer.GetRenderer(), knob_info);
+    knob_spr.Init(game->renderer.GetRenderer(), knob_info);
 
-    label_offset = game.GetResScale() * 6;
+    label_offset = game->GetResScale() * 6;
     label.MoveTo(Vector2i(pos.x, pos.y - label_offset));
     label.SetOrigin();
 
@@ -22,7 +22,7 @@ Slider::Slider(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElem
     //Setting knob position based on appropriate value
     string rounded_val = "";
     if (elem == UIElems::MUSIC_V or elem == UIElems::SFX_V) {
-        float vol = elem == UIElems::MUSIC_V ? game.GetMusicVolume() : game.GetSFXVolume();
+        float vol = elem == UIElems::MUSIC_V ? game->GetMusicVolume() : game->GetSFXVolume();
         knob_pos = (((knob_pos_max - knob_pos_min) * vol) * .01) + knob_pos_min;
 
         //Set the value
@@ -30,7 +30,7 @@ Slider::Slider(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElem
         rounded_val = rounded_val.substr(0, rounded_val.find('.') + 3);
     }
     else if (elem == UIElems::CAMSPD) {
-        knob_pos = ((((2 * game.cam_move_spd) - 10) * .05) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
+        knob_pos = ((((2 * game->cam_move_spd) - 10) * .05) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
         //Set the value
         rounded_val = to_string((round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 20) + 10) * .5);
@@ -59,16 +59,16 @@ void Slider::GetInput() {
             new_val = (knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 100;
 
             if (elem == UIElems::MUSIC_V)
-                game.SetMusicVolume(new_val);
+                game->SetMusicVolume(new_val);
             else if (elem == UIElems::SFX_V)
-                game.SetSFXVolume(new_val);
+                game->SetSFXVolume(new_val);
 
             dec_place = 3;
         }
         else if (elem == UIElems::CAMSPD) {
             //Camera speed goes from 5 to 15 and increments by .5
             new_val = (round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 20) + 10) * .5;
-            game.cam_move_spd = new_val;
+            game->cam_move_spd = new_val;
 
             dec_place = 2;
         }
@@ -82,9 +82,9 @@ void Slider::GetInput() {
 void Slider::Draw() {
     Entity::Draw();
 
-    game.renderer.DrawTxt(label);
-    game.renderer.DrawTxt(knob_label);
-    game.renderer.DrawSprite(knob_spr);
+    game->renderer.DrawTxt(label);
+    game->renderer.DrawTxt(knob_label);
+    game->renderer.DrawSprite(knob_spr);
 }
 
 void Slider::Move() {
@@ -101,7 +101,7 @@ void Slider::Move() {
     bbox.h = size.y;
 
     //Move everything else
-    label_offset = game.GetResScale() * 6;
+    label_offset = game->GetResScale() * 6;
     label.MoveTo({ pos.x, pos.y - label_offset });
 
     //Resize and move the knob
@@ -110,11 +110,11 @@ void Slider::Move() {
     knob_pos_min = bbox.x + bbox.w * .1f;
 
     if (elem == UIElems::MUSIC_V)
-        knob_pos = knob_pos_min + (game.GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
+        knob_pos = knob_pos_min + (game->GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
     else if (elem == UIElems::SFX_V)
-        knob_pos = knob_pos_min + (game.GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
+        knob_pos = knob_pos_min + (game->GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
     else if (elem == UIElems::CAMSPD)
-        knob_pos = ((((2 * game.cam_move_spd) - 10) * .05) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
+        knob_pos = ((((2 * game->cam_move_spd) - 10) * .05) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
     knob_spr.MoveTo({ (int)knob_pos, pos.y });
 

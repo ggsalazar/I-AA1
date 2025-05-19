@@ -1,9 +1,9 @@
 #pragma once
 #include <queue>
-#include "Game.h" //(<iostream>, <unordered_map>, Camera, Enums, Input (iostream), Math, Window, Renderer)
-#include "../Graphics/TileMap.h" //(nlohmann/json, Vector2 (vector))
+#include "Menu.h" //unordered_map, Aliases, Enums, Vector2 (vector), Text, using namespace std
+#include "../Graphics/TileMap.h" //nlohmann/json
 
-class Menu;
+class Game;
 class Entity;
 class PartyMember;
 
@@ -13,19 +13,15 @@ public:
     bool selecting = false;
     Interfaces interface_open = Interfaces::NONE;
 
-    Scene(Game& g, Scenes init_label) : game(g), label(init_label) {}
-    ~Scene() {
-        for (auto [_, m] : menus) { delete m; m = nullptr; }
-    }
+    Scene() = default;
+    Scene(Game* g, Scenes init_label) : game(g), label(init_label) {}
+    void Open(const bool o = true);
+    inline bool IsOpen() const { return open; }
 
     //Engine stuff
     void GetInput();
     void Update();
     void Draw();
-
-    //Scene handling
-    void Open(const bool o = true);
-    inline bool IsOpen() const { return open; }
 
     //Menu handling
     void OpenMenu(Menus menu, const bool o = true);
@@ -57,7 +53,7 @@ private:
 
     TileMap tilemap;
 
-    unordered_map<Menus, Menu*> menus;
+    unordered_map<Menus, Menu> menus;
     vector<s_ptr<Entity>> entities;
     vector<s_ptr<PartyMember>> party_mems;
 
@@ -70,5 +66,5 @@ private:
     Rect selec_box;
     queue<Vector2i> found_path;
 
-    Game& game;
+    Game* game;
 };

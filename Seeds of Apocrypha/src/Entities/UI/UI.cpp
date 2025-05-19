@@ -1,7 +1,7 @@
 #include "UI.h"
 
-UI::UI(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e, const uint init_ui_layer)
-    : Entity(g, s, s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(&game.default_fonts[36]) {
+UI::UI(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e, const uint init_ui_layer)
+    : Entity(g, s, s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(&game->default_fonts[36]) {
 
 
     //Label
@@ -166,7 +166,7 @@ UI::UI(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e, con
         return;
     }
     sound.setBuffer(sb);
-    sound.setVolume(engine.game.GetSFXVolume());
+    sound.setVolume(engine.game->GetSFXVolume());
     */
 
 }

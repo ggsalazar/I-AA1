@@ -1,10 +1,10 @@
 #include "Picker.h"
 
-Picker::Picker(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+Picker::Picker(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
     const uint init_ui_layer)
-    : UI(g, s, m, s_i, e, init_ui_layer), picking(&game.default_fonts[36]) {
+    : UI(g, s, m, s_i, e, init_ui_layer), picking(&game->default_fonts[36]) {
 
-    label_offset = game.GetResScale() * 6;
+    label_offset = game->GetResScale() * 6;
     label.MoveTo({ pos.x, pos.y - label_offset });
 
     //Set up bbox
@@ -56,7 +56,7 @@ Picker::Picker(Game& g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElem
         break;
 
     case UIElems::RESOLUTION:
-        picking_str = to_string(game.GetResScale());
+        picking_str = to_string(game->GetResScale());
         break;
 
     case UIElems::SEX:
@@ -98,18 +98,18 @@ void Picker::GetInput() {
 
 void Picker::Draw() {
     if (active and Selected())
-        game.renderer.DrawRect(bbox, Color(0, 1, 0));
+        game->renderer.DrawRect(bbox, Color(0, 1, 0));
 
     Entity::Draw();
 
-    game.renderer.DrawTxt(label);
-    game.renderer.DrawTxt(picking);
+    game->renderer.DrawTxt(label);
+    game->renderer.DrawTxt(picking);
 
     if (active) {
         if (LeftSelected())
-            game.renderer.DrawRect(l_bbox, Color(1, 0, 0, 0), Color(1, 0, 0, .5)); //Red, 50% opacity
+            game->renderer.DrawRect(l_bbox, Color(1, 0, 0, 0), Color(1, 0, 0, .5)); //Red, 50% opacity
         else if (RightSelected())
-            game.renderer.DrawRect(r_bbox, Color(0, 0, 1, 0), Color(0, 0, 1, .5)); //Blue, 50% opacity
+            game->renderer.DrawRect(r_bbox, Color(0, 0, 1, 0), Color(0, 0, 1, .5)); //Blue, 50% opacity
 
         if (elem == UIElems::SEX and picking.info.str == "-") {
             string new_sex = rand() % 2 ? "Male" : "Female";
@@ -144,7 +144,7 @@ void Picker::Move() {
 
 
     //Move everything else
-    label_offset = game.GetResScale() * 6;
+    label_offset = game->GetResScale() * 6;
     label.MoveTo({ pos.x, pos.y - label_offset });
 
     picking.MoveTo(pos);
@@ -203,7 +203,7 @@ void Picker::LeftReleased() {
         uint curr_res = stoi(p);
 
         if (--curr_res < 1)
-            curr_res = floor(game.window.ScreenSize().x / game.GetMinRes().x);
+            curr_res = floor(game->window.ScreenSize().x / game->GetMinRes().x);
 
         p = to_string(curr_res);
 
@@ -290,7 +290,7 @@ void Picker::RightReleased() {
     case UIElems::RESOLUTION: {
         uint curr_res = stoi(p);
 
-        if (++curr_res > floor(game.window.ScreenSize().x / game.GetMinRes().x))
+        if (++curr_res > floor(game->window.ScreenSize().x / game->GetMinRes().x))
             curr_res = 1;
 
         p = to_string(curr_res);
