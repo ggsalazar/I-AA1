@@ -3,7 +3,7 @@
 #include <vector>
 #include <nlohmann/json.hpp>
 #include "../Core/Enums.h"
-#include "../Core/Vector2.h"
+#include "../Core/Vector2.h" //iostream
 
 using json = nlohmann::json;
 using std::vector, std::cerr, std::cout, std::unordered_map, std::string;

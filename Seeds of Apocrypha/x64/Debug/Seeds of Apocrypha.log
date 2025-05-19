@@ -27,16 +27,16 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/Creatures/Creature.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Entities\Creatures\Creature.h(79,41): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
@@ -74,16 +74,16 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Entities\Creatures\Creature.h(79,41): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
@@ -123,16 +123,16 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/Entities/Entity.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Entity.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Entity.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Entities/Entity.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/Entity.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Entities\Entity.cpp(16,9): warning C4834: discarding return value of function with [[nodiscard]] attribute
@@ -175,16 +175,16 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/Entities/UI/Button.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Entities/UI/Button.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/UI/Button.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/UI/Button.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/UI/Button.cpp')
   
   Picker.cpp
@@ -215,16 +215,16 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/Entities/UI/Picker.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Picker.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Picker.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Entities/UI/Picker.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/UI/Picker.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/UI/Picker.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/UI/Picker.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Entities\UI\Picker.cpp(11,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
@@ -279,16 +279,16 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/Entities/UI/Slider.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Slider.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Slider.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Entities/UI/Slider.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/UI/Slider.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/UI/Slider.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/UI/Slider.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Entities\UI\Slider.cpp(26,66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -335,16 +335,16 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Toggle.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Toggle.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Entities/UI/Toggle.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/UI/Toggle.cpp')
   
   UI.cpp
@@ -375,16 +375,16 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/Entities/UI/UI.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/UI.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/UI.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Entities/UI/UI.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/UI/UI.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/UI/UI.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/UI/UI.cpp')
   
   Game.cpp
@@ -403,18 +403,6 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\C
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'src/Game/Game.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Sprite.h(70,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Sprite.h(71,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
-  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
   (compiling source file 'src/Game/Game.cpp')
   
@@ -425,6 +413,18 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
   (compiling source file 'src/Game/Game.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Game/Game.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Game/Game.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Game/Game.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Sprite.h(70,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Game/Game.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Sprite.h(71,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/Game/Game.cpp')
   
   Menu.cpp
@@ -775,6 +775,277 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Game\Scene.cpp(342,37): warning C4244:         ]
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Game\Scene.cpp(364,55): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Game\Scene.cpp(364,100): warning C4018: '<': signed/unsigned mismatch
+  Renderer.cpp
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Geometry.h(34,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Geometry.h(35,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Geometry.h(46,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Sprite.h(70,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Sprite.h(71,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Graphics/Renderer.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4838: conversion from 'const T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4244: 'initializing': conversion from 'const T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,35): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4838: conversion from 'const T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4244: 'initializing': conversion from 'const T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,42): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4838: conversion from 'const T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4838:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4244: 'initializing': conversion from 'const T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4244:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,67): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4838: conversion from 'const T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4838:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4244: 'initializing': conversion from 'const T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4244:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(20,92): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(29,46): warning C4838: conversion from 'uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(29,46): warning C4244: 'initializing': conversion from 'uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(30,24): warning C4838: conversion from 'uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(30,24): warning C4244: 'initializing': conversion from 'uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(31,44): warning C4838: conversion from 'uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(31,44): warning C4244: 'initializing': conversion from 'uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(32,43): warning C4838: conversion from 'uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(32,43): warning C4244: 'initializing': conversion from 'uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4838: conversion from 'const T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4838:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4244: 'initializing': conversion from 'const T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4244:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(37,23): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4838: conversion from 'const T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4838:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4244: 'initializing': conversion from 'const T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4244:             T=unsigned int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(38,23): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(41,85): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(41,67): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(41,49): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(42,49): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(62,114): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(62,88): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(102,38): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(102,38): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(102,50): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(102,50): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(123,88): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(123,73): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(123,58): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(123,43): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(125,141): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(125,107): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(125,73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(125,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(131,116): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(131,94): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(131,72): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(131,50): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(133,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(134,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(136,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(136,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(142,108): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(142,88): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(142,68): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(142,48): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(143,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(144,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(146,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(146,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(173,116): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(173,94): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(173,72): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(173,50): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(183,108): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(183,88): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(183,68): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(183,48): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4838: conversion from 'T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,33): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4838: conversion from 'T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,45): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,53): warning C4838: conversion from 'const int' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,53): warning C4244: 'initializing': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,61): warning C4838: conversion from 'const int' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(184,61): warning C4244: 'initializing': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(188,116): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(188,94): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(188,72): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(188,50): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4838: conversion from 'T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,28): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4838: conversion from 'T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,40): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,48): warning C4838: conversion from 'const int' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,48): warning C4244: 'initializing': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,52): warning C4838: conversion from 'const uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(190,52): warning C4244: 'initializing': conversion from 'const uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4838: conversion from 'T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,28): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,52): warning C4838: conversion from 'uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,52): warning C4244: 'initializing': conversion from 'uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,66): warning C4838: conversion from 'const int' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,66): warning C4244: 'initializing': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,70): warning C4838: conversion from 'const uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(193,70): warning C4244: 'initializing': conversion from 'const uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4838: conversion from 'T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,29): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4838: conversion from 'T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,41): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,45): warning C4838: conversion from 'const uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,45): warning C4244: 'initializing': conversion from 'const uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,57): warning C4838: conversion from 'const int' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(196,57): warning C4244: 'initializing': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,42): warning C4838: conversion from 'uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,42): warning C4244: 'initializing': conversion from 'uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4838: conversion from 'T' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4838:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4838:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4838:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4838:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4244:             T=int
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,60): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,64): warning C4838: conversion from 'const uint' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,64): warning C4244: 'initializing': conversion from 'const uint' to 'float', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,76): warning C4838: conversion from 'const int' to 'float' requires a narrowing conversion
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Renderer.cpp(199,76): warning C4244: 'initializing': conversion from 'const int' to 'float', possible loss of data
+  TileMap.cpp
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Graphics/TileMap.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Graphics/TileMap.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.cpp(112,24): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.cpp(112,24): warning C4244:         with
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.cpp(112,24): warning C4244:         [
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.cpp(112,24): warning C4244:             T=float
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.cpp(112,24): warning C4244:         ]
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.cpp(127,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   main.cpp
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/main.cpp')
@@ -791,6 +1062,18 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\C
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'src/main.cpp')
   
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\TileMap.h(35,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Core\Camera.h(16,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/main.cpp')
   
@@ -801,12 +1084,6 @@ C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\G
   (compiling source file 'src/main.cpp')
   
 C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Sprite.h(71,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\Slow Implement\Seeds of Apocrypha\src\Graphics\Text.h(38,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
   (compiling source file 'src/main.cpp')
   
   Generating Code...

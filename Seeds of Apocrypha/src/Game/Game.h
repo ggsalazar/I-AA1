@@ -1,17 +1,16 @@
 #pragma once
 #include <chrono>
 #include <unordered_map>
-#include "../Core/Aliases.h" //(memory)
-#include "../Core/Camera.h" //(Geometry (Vector2 (iostream)))
-#include "../Core/Enums.h"
+#include "Scene.h" //Menu (unordered_map, Aliases, Enums, Vector2 (iostream), Text (Font))
+#include "../Core/Camera.h" //Geometry
 #include "../Graphics/Window.h"
-#include "../Graphics/Renderer.h" //(SDL_render, Sprite (SDL_image), Font, Text)
+#include "../Graphics/Renderer.h" //SDL_render, Sprite (SDL_image)
 
 using Clock = std::chrono::high_resolution_clock;
 
 using namespace std;
 
-class Scene;
+//class Scene;
 
 class Game {
 public:
@@ -41,7 +40,7 @@ public:
     //Soundboard sb;
 
     //Scenes
-    unordered_map<Scenes, s_ptr<Scene>> scenes;
+    unordered_map<Scenes, Scene> scenes;
     Scene* active_scene = nullptr;
     Scene* old_scene = nullptr;
 

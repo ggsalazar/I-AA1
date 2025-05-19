@@ -1,7 +1,7 @@
 #include <thread>
 #include <string>
 #include "Game.h"
-#include "Scene.h"
+//#include "Scene.h"
 #include "../Core/Input.h"
 #include "../Core/Math.h"
 
@@ -36,9 +36,9 @@ Game::Game(const char* title, uint init_fps)
     //Play the title track - TO-DO
 
     //Initialize Scenes
-    scenes.insert({ Scenes::TITLE, make_s<Scene>(this, Scenes::TITLE) });
-    scenes.insert({ Scenes::CUTSCENE, make_s<Scene>(this, Scenes::CUTSCENE) });
-    scenes.insert({ Scenes::AREA, make_s<Scene>(this, Scenes::AREA) });
+    scenes.insert({ Scenes::TITLE, Scene(this, Scenes::TITLE) });
+    scenes.insert({ Scenes::CUTSCENE, Scene(this, Scenes::CUTSCENE) });
+    scenes.insert({ Scenes::AREA, Scene(this, Scenes::AREA) });
 
     //Initialize cursor
     //Cursor sprite info
@@ -138,7 +138,7 @@ void Game::SetScene(Scenes scn) {
         old_scene = active_scene;
 
         //Open the new scene
-        active_scene = scenes[scn].get();
+        active_scene = &scenes[scn];
         if (old_scene) {
             if (active_scene->label != Scenes::TITLE)
                 active_scene->SetPartyMems(old_scene->GetPartyMems());
