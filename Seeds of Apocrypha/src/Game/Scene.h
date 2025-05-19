@@ -1,9 +1,9 @@
 #pragma once
-#include <vector>
 #include <queue>
-#include "Menu.h" //(Game.h (<iostream>, <unordered_map>, Enums.h, Input.h, Math.h, Window.h, Renderer.h))
-#include "../Graphics/TileMap.h"
+#include "Game.h" //(<iostream>, <unordered_map>, Camera, Enums, Input, Math, Window, Renderer)
+#include "../Graphics/TileMap.h" //(vector, nlohmann/json, Vector2)
 
+class Menu;
 class Entity;
 class PartyMember;
 
@@ -14,6 +14,9 @@ public:
     Interfaces interface_open = Interfaces::NONE;
 
     Scene(Game& g, Scenes init_label) : game(g), label(init_label) {}
+    ~Scene() {
+        for (auto [_, m] : menus) { delete m; m = nullptr; }
+    }
 
     //Engine stuff
     void GetInput();
@@ -54,7 +57,7 @@ private:
 
     TileMap tilemap;
 
-    unordered_map<Menus, u_ptr<Menu>> menus;
+    unordered_map<Menus, Menu*> menus;
     vector<s_ptr<Entity>> entities;
     vector<s_ptr<PartyMember>> party_mems;
 
