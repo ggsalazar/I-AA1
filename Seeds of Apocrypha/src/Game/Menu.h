@@ -1,6 +1,8 @@
 #pragma once
 #include "Game.h" //(<unordered_map>, <iostream>, and aliases)
 
+//class Game;
+//class Scene;
 class UI;
 
 class Menu {
@@ -14,8 +16,8 @@ public:
     //Self and Sub-Menus
     void Open(const bool o = true);
     void Resize();
-    Menus GetLabel() const { return label; }
-    bool GetOpen() const { return open; }
+    inline Menus GetLabel() const { return label; }
+    inline bool GetOpen() const { return open; }
     void OpenSM(const Menus s_m);
 
     //UI Elements

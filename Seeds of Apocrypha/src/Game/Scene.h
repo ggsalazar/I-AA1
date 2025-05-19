@@ -1,8 +1,7 @@
 #pragma once
 #include <vector>
 #include <queue>
-#include "Game.h" //(<iostream>, <unordered_map>, Enums.h, Input.h, Math.h, Window.h, Renderer.h)
-#include "Menu.h"
+#include "Menu.h" //(Game.h (<iostream>, <unordered_map>, Enums.h, Input.h, Math.h, Window.h, Renderer.h))
 #include "../Graphics/TileMap.h"
 
 class Entity;
@@ -23,7 +22,7 @@ public:
 
     //Scene handling
     void Open(const bool o = true);
-    bool IsOpen() const { return open; }
+    inline bool IsOpen() const { return open; }
 
     //Menu handling
     void OpenMenu(Menus menu, const bool o = true);
@@ -38,7 +37,7 @@ public:
     void SetGameCursor(Actions action);
 
     //Entities
-    void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
+    inline void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
     void RemoveEntity(s_ptr<Entity> e);
     void RemoveEntity(const string ent_name);
     void SetEntitySFXVolume(const float new_volume);
@@ -46,8 +45,8 @@ public:
     //Party Members
     void CreatePartyMem();
     void CreatePreGen(PreGens p_g);
-    vector<s_ptr<PartyMember>> GetPartyMems() const { return party_mems; }
-    void SetPartyMems(vector<s_ptr<PartyMember>> p_ms) { party_mems = p_ms; }
+    inline vector<s_ptr<PartyMember>> GetPartyMems() const { return party_mems; }
+    inline void SetPartyMems(vector<s_ptr<PartyMember>> p_ms) { party_mems = p_ms; }
 
 private:
     bool open = false;

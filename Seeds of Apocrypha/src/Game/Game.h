@@ -2,20 +2,18 @@
 #include <iostream>
 #include <chrono>
 #include <unordered_map>
-#include <SDL3/SDL.h>
 #include "../Core/Camera.h"
 #include "../Core/Enums.h"
 #include "../Core/Input.h"
 #include "../Core/Math.h"
-#include "../Graphics/Window.h" //(<SDL_main.h>, <SDL_video.h>)
-#include "../Graphics/Renderer.h" //(<SDL.h>, <SDL_render.h>, Aliases.h (<memory>), Sprite.h (<SDL_image.h>), Font.h, Text.h)
+#include "../Graphics/Window.h" //(<SDL.h>, <SDL_main.h>, <SDL_video.h>)
+#include "../Graphics/Renderer.h" //(<SDL_render.h>, Aliases.h (<memory>), Sprite.h (<SDL_image.h>), Font.h, Text.h)
 
 using Clock = std::chrono::high_resolution_clock;
 
 using namespace std;
 
 class Scene;
-class Font; //Needs to be here despite Font.h being included in Renderer.h?
 
 class Game {
 public:

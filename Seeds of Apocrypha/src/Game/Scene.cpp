@@ -1,6 +1,5 @@
 #include "Scene.h"
-#include "../Entities/Entity.h"
-#include "../Entities/UI/UI.h"
+#include "../Entities/UI/UI.h" //(Entity.h)
 #include "../Entities/Creatures/PartyMember.h"
 //#include "../Core/Pathfinding.h"
 
@@ -112,15 +111,11 @@ void Scene::Open(const bool o) {
 			party_mems.clear();
 
 			game.camera.MoveTo({ 0, 0 });
-			auto menu = make_u<Menu>(game, *this, Menus::MAIN);
-			menu->Open();
-			menus.insert({ Menus::MAIN, move(menu) });
-			menu = make_u<Menu>(game, *this, Menus::CHARCREA);
-			menus.insert({ Menus::CHARCREA, move(menu) });
-			menu = make_u<Menu>(game, *this, Menus::LOAD);
-			menus.insert({ Menus::LOAD, move(menu) });
-			menu = make_u<Menu>(game, *this, Menus::OPTIONS);
-			menus.insert({ Menus::OPTIONS, move(menu) });
+			menus.insert({ Menus::MAIN, make_u<Menu>(game, *this, Menus::MAIN)});
+			menus[Menus::MAIN]->Open();
+			menus.insert({ Menus::CHARCREA, make_u<Menu>(game, *this, Menus::CHARCREA) });
+			menus.insert({ Menus::LOAD, make_u<Menu>(game, *this, Menus::LOAD) });
+			menus.insert({ Menus::OPTIONS, make_u<Menu>(game, *this, Menus::OPTIONS) });
 
 		}
 
@@ -172,8 +167,7 @@ void Scene::Open(const bool o) {
 			}
 
 			//Initialize our menus
-			auto menu = make_u<Menu>(game, *this, Menus::OPTIONS_G);
-			menus.insert({ Menus::OPTIONS_G, move(menu) });
+			menus.insert({ Menus::OPTIONS_G, make_u<Menu>(game, *this, Menus::OPTIONS_G) });
 		}
 	}
 
