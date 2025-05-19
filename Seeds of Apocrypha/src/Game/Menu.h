@@ -1,11 +1,20 @@
 #pragma once
-#include "Game.h" //(<unordered_map>, Aliases (memory), Camera (Vector2 (iostream)), Enums, Window, Renderer (Sprite, Text, Font))
+#include <unordered_map>
+#include "../Core/Aliases.h"
+#include "../Core/Enums.h"
+#include "../Core/Vector2.h"
+#include "../Graphics/Text.h"
 
+using namespace std;
+
+class Game;
+class Scene;
 class UI;
 
 class Menu {
 public:
     Menu(Game& g, Scene& s, const Menus init_label);
+    ~Menu();
 
     //Engine
     void Update();
@@ -35,7 +44,7 @@ protected:
     bool open = false;
     uint res_scalar;
 
-    unordered_map<Menus, u_ptr<Menu>> sub_menus;
+    unordered_map<Menus, Menu*> sub_menus;
     unordered_map<UIElems, s_ptr<UI>> ui_elems;
     Vector2f ui_ori = { .5f, .5f };
     Vector2i ui_scale = { 1, 1 };

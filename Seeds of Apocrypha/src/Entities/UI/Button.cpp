@@ -1,6 +1,5 @@
 #include "Button.h"
-#include "Confirm.h"
-#include "../../Game/Scene.h"
+//#include "Confirm.h"
 
 void Button::Draw() {
     if (active and Selected())

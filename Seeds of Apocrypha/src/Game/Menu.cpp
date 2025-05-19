@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "Scene.h"
+#include "Scene.h" //Game and all its BS
 #include "../Entities/UI/Button.h"
 #include "../Entities/UI/Slider.h"
 #include "../Entities/UI/Picker.h"
@@ -9,8 +9,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
     game(g), scene(s), label(init_label) {
 
     //Putting these here instead of the initializer list because for some reason it doesn't work when I put them there - Menu just doesn't seem to interface with Game very well?
-    menu_text = Text(&game.default_fonts[72]);
-    sup_text = Text(&game.default_fonts[48]);
+    menu_text.Init(&game.default_fonts[72]);
+    sup_text.Init(&game.default_fonts[48]);
     res_scalar = game.GetResScale();
     ui_scale = { (int)res_scalar };
     Text::Info* mti = &menu_text.info;
@@ -43,27 +43,27 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             e_y_buffer = round(game.resolution.y * .1f);
 
             ui_elems.insert({ UIElems::RACE_B, make_s<Button>(game, &scene, *this, elem_info, UIElems::RACE_B)});
-            sub_menus.insert({ Menus::CCRACE, make_u<Menu>(game, scene, Menus::CCRACE)});
+            sub_menus.insert({ Menus::CCRACE, new Menu(game, scene, Menus::CCRACE)});
 
             elem_info.pos.y += e_y_buffer; //.35
             ui_elems.insert({ UIElems::BACKGROUND_B, make_s<Button>(game, &scene, *this, elem_info, UIElems::BACKGROUND_B) });
-            sub_menus.insert({ Menus::CCBG, make_u<Menu>(game, scene, Menus::CCBG)});
+            sub_menus.insert({ Menus::CCBG, new Menu(game, scene, Menus::CCBG)});
 
             elem_info.pos.y += e_y_buffer; //.45
             ui_elems.insert({ UIElems::CLASS_B, make_s<Button>(game, &scene, *this, elem_info, UIElems::CLASS_B) });
-            sub_menus.insert({ Menus::CCCLASS, make_u<Menu>(game, scene, Menus::CCCLASS)});
+            sub_menus.insert({ Menus::CCCLASS, new Menu(game, scene, Menus::CCCLASS)});
 
             elem_info.pos.y += e_y_buffer; //.55
             ui_elems.insert({ UIElems::AS, make_s<Button>(game, &scene, *this, elem_info, UIElems::AS) });
-            sub_menus.insert({ Menus::CCAS, make_u<Menu>(game, scene, Menus::CCAS)});
+            sub_menus.insert({ Menus::CCAS, new Menu(game, scene, Menus::CCAS)});
 
             elem_info.pos.y += e_y_buffer; //.65
             ui_elems.insert({ UIElems::SKILLS, make_s<Button>(game, &scene, *this, elem_info, UIElems::SKILLS) });
-            sub_menus.insert({ Menus::CCSKILLS, make_u<Menu>(game, scene, Menus::CCSKILLS)});
+            sub_menus.insert({ Menus::CCSKILLS, new Menu(game, scene, Menus::CCSKILLS)});
 
             elem_info.pos.y += e_y_buffer; //.75
             ui_elems.insert({ UIElems::EQUIPMENT_CC, make_s<Button>(game, &scene, *this, elem_info, UIElems::EQUIPMENT_CC) });
-            sub_menus.insert({ Menus::CCEQUIP, make_u<Menu>(game, scene, Menus::CCEQUIP)});
+            sub_menus.insert({ Menus::CCEQUIP, new Menu(game, scene, Menus::CCEQUIP)});
 
 
             ui_elems.insert({ UIElems::CREATE, make_s<Button>(game, &scene, *this, elem_info, UIElems::CREATE) });
@@ -296,6 +296,13 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         scene.AddEntity(ui.second);
 }
 
+Menu::~Menu() {
+    for (auto [_, sm] : sub_menus) {
+        delete sm;
+        sm = nullptr;
+}
+}
+
 void Menu::Update() {
     if (open) {
         Vector2i m_t_pos = { 0, 0 };
@@ -425,7 +432,7 @@ void Menu::Resize() {
         Vector2i gr = Vector2i(game.resolution);
         switch (ui.first) {
             case UIElems::APPLY:
-                new_pos = Round(game.resolution.x * .5f, game.resolution.y * .66f);
+                new_pos = Round(gr.x * .5f, gr.y * .66f);
                 break;
 
             case UIElems::AS:
