@@ -1,9 +1,16 @@
 #pragma once
 #include <queue>
-#include "Menu.h" //unordered_map, Aliases, Enums, Vector2 (vector), Text, using namespace std
+#include <unordered_map>
+#include "../Core/Aliases.h"
+#include "../Core/Enums.h"
+#include "../Core/Vector2.h" //iostream
+#include "../Graphics/Text.h"
 #include "../Graphics/TileMap.h" //nlohmann/json
 
+using namespace std;
+
 class Game;
+class Menu;
 class Entity;
 class PartyMember;
 
@@ -15,6 +22,12 @@ public:
 
     Scene() = default;
     Scene(Game* g, Scenes init_label) : game(g), label(init_label) {}
+    ~Scene() {
+        for (auto [_, m] : menus) {
+            delete m;
+            m = nullptr;
+        }
+    }
     void Open(const bool o = true);
     inline bool IsOpen() const { return open; }
 
@@ -53,7 +66,7 @@ private:
 
     TileMap tilemap;
 
-    unordered_map<Menus, Menu> menus;
+    unordered_map<Menus, Menu*> menus;
     vector<s_ptr<Entity>> entities;
     vector<s_ptr<PartyMember>> party_mems;
 
@@ -66,5 +79,5 @@ private:
     Rect selec_box;
     queue<Vector2i> found_path;
 
-    Game* game;
+    Game* const game = nullptr;
 };

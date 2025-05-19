@@ -13,8 +13,13 @@ class UI;
 
 class Menu {
 public:
-    Menu() = default;
-    Menu(Game* g, Scene* s, const Menus init_label);
+    Menu(Game& g, Scene& s, const Menus init_label);
+    ~Menu() {
+        for (auto [_, sm] : sub_menus) {
+            delete sm;
+            sm = nullptr;
+        }
+    }
 
     //Engine
     void Update();
@@ -44,12 +49,12 @@ protected:
     bool open = false;
     uint res_scalar;
 
-    unordered_map<Menus, Menu> sub_menus;
+    unordered_map<Menus, Menu*> sub_menus;
     unordered_map<UIElems, s_ptr<UI>> ui_elems;
     Vector2f ui_ori = { .5f, .5f };
     Vector2i ui_scale = { 1, 1 };
 
     //Pointers
-    Game* game = nullptr;
-    Scene* scene = nullptr;
+    Game& game;
+    Scene& scene;
 };

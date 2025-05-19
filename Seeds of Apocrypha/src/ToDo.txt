@@ -1,12 +1,6 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-
-					-Will have to find wth the deal is with the sub-menus in Menu and Scene
-
-Reimplementation:	-Tilemapping
-						--swap rows and cols in your loops; col should be first, row should be second
-					-Pathfinding
-						--swap rows and cols in your loops; col should be first, row should be second
+Reimplementation:	-Pathfinding
 						--Need to be aware of:
 							---Tiles
 							---Entities
@@ -38,6 +32,7 @@ Tutorial:  -Add in NPCs (9 days)
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
 		- Portraits should be around 48x48ish, but absolutely no bigger than 60x60
+		- In the future, reduce the use of pointers whereever possible (especially vis-a-vis Menus)
 
 Main Menu
 	-Character creation

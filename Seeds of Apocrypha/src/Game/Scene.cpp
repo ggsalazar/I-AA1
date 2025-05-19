@@ -1,8 +1,9 @@
 #include "Scene.h"
 #include "Game.h"
-#include "../Core/Input.h" //(iostream, Window)
+#include "Menu.h"
+#include "../Core/Input.h" //Window
 #include "../Core/Math.h"
-#include "../Entities/UI/UI.h" //(Entity.h)
+#include "../Entities/UI/UI.h" //Entity.h
 #include "../Entities/Creatures/PartyMember.h"
 //#include "../Core/Pathfinding.h"
 
@@ -18,11 +19,11 @@ void Scene::Open(const bool o) {
 			party_mems.clear();
 
 			game->camera.MoveTo({ 0, 0 });
-			menus.insert({ Menus::MAIN, Menu(game, this, Menus::MAIN) });
-			menus[Menus::MAIN].Open();
-			//menus.insert({ Menus::CHARCREA, Menu(game, this, Menus::CHARCREA) });
-			//menus.insert({ Menus::LOAD, Menu(game, this, Menus::LOAD) });
-			//menus.insert({ Menus::OPTIONS, Menu(game, this, Menus::OPTIONS) });
+			menus.insert({ Menus::MAIN, new Menu(*game, *this, Menus::MAIN) });
+			menus[Menus::MAIN]->Open();
+			menus.insert({ Menus::CHARCREA, new Menu(*game, *this, Menus::CHARCREA) });
+			menus.insert({ Menus::LOAD, new Menu(*game, *this, Menus::LOAD) });
+			menus.insert({ Menus::OPTIONS, new Menu(*game, *this, Menus::OPTIONS) });
 
 		}
 
@@ -74,7 +75,7 @@ void Scene::Open(const bool o) {
 			}
 
 			//Initialize our menus
-			menus.insert({ Menus::OPTIONS_G, Menu(game, this, Menus::OPTIONS_G) });
+			menus.insert({ Menus::OPTIONS_G, new Menu(*game, *this, Menus::OPTIONS_G) });
 		}
 	}
 
@@ -82,7 +83,7 @@ void Scene::Open(const bool o) {
 	else {
 		//This also deletes the buttons that belong to each menu
 		for (auto& m : menus)
-			m.second.Open(false);
+			m.second->Open(false);
 		menus.clear();
 		//Deletes all the entities in the scene
 		entities.clear();
@@ -139,8 +140,8 @@ void Scene::GetInput() {
 
 void Scene::Update() {
 	//Update menus
-	for (auto& m : menus)
-		m.second.Update();
+	for (const auto& m : menus)
+		m.second->Update();
 
 	//Update entities
 	for (auto& e : entities)
@@ -185,34 +186,34 @@ void Scene::Draw() {
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
-	for (auto& m : menus)
-		m.second.Draw();
+	for (const auto& m : menus)
+		m.second->Draw();
 }
 
 void Scene::OpenMenu(Menus menu, const bool o) {
 	auto m = menus.find(menu);
 	if (o) {
 		if (m != menus.end())
-			m->second.Open();
+			m->second->Open();
 	}
 	else {
 		if (m != menus.end())
-			m->second.Open(false);
+			m->second->Open(false);
 	}
 }
 
 bool Scene::MenuOpen(Menus menu) {
 	auto m = menus.find(menu);
 	if (m != menus.end())
-		return m->second.GetOpen();
+		return m->second->GetOpen();
 
 	cout << "That Menu does not exist in this Scene" << endl;
 	return false;
 }
 
 void Scene::ResizeMenus() {
-	for (auto& m : menus)
-		m.second.Resize();
+	for (const auto& m : menus)
+		m.second->Resize();
 }
 
 void Scene::OpenInterface(Interfaces intrfc) {
