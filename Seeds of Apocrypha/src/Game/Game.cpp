@@ -2,6 +2,8 @@
 #include <string>
 #include "Game.h"
 #include "Scene.h"
+#include "../Core/Input.h" //(iostream, Window)
+#include "../Core/Math.h"
 
 Game::Game(const char* title, uint init_fps)
     : fps(init_fps), resolution(min_res * 2),

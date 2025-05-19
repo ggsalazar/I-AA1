@@ -1,4 +1,5 @@
 #include "PartyMember.h"
+#include "../../Core/Input.h" //Window
 
 PartyMember::PartyMember(Game& g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged)

@@ -1,7 +1,7 @@
 #pragma once
 #include <queue>
-#include "Game.h" //(<iostream>, <unordered_map>, Camera, Enums, Input, Math, Window, Renderer)
-#include "../Graphics/TileMap.h" //(vector, nlohmann/json, Vector2)
+#include "Game.h" //(<iostream>, <unordered_map>, Camera, Enums, Input (iostream), Math, Window, Renderer)
+#include "../Graphics/TileMap.h" //(nlohmann/json, Vector2 (vector))
 
 class Menu;
 class Entity;

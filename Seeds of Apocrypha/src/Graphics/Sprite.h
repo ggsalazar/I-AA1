@@ -1,11 +1,7 @@
 #pragma once
-#include <iostream>
 #include <string>
-#define SDL_MAIN_HANDLED
-#include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
-#include "../Core/Aliases.h"
-#include "../Core/Geometry.h"
+#include "../Core/Geometry.h" //(Vector2 (iostream))
 
 class Sprite {
     friend class Renderer;

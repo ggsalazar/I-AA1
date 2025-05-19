@@ -1,16 +1,9 @@
 #pragma once
-#include <iostream>
-#include "../Core/Aliases.h"
-#include "../Core/Collision.h"
-#include "../Core/Enums.h"
-#include "../Core/Geometry.h"
+#include "../Core/Collision.h" //Geometry (Vector2 (iostream))
 #include "../Graphics/Sprite.h"
 #include "../Graphics/Text.h"
 #include "../Game/Game.h"
 #include "../Game/Scene.h"
-
-class Game;
-class Scene;
 
 class Entity {
 public:

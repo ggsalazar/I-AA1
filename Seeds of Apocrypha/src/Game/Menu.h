@@ -1,8 +1,6 @@
 #pragma once
-#include "Game.h" //(<unordered_map>, <iostream>, and aliases)
+#include "Game.h" //(<unordered_map>, Aliases (memory), Camera (Vector2 (iostream)), Enums, Window, Renderer (Sprite, Text, Font))
 
-//class Game;
-//class Scene;
 class UI;
 
 class Menu {

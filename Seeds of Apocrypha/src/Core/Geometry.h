@@ -1,5 +1,5 @@
 #pragma once
-#include "Vector2.h"
+#include "Vector2.h" //iostream
 
 struct Color {
 	//Values between 0 and 1

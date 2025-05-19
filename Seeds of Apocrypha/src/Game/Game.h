@@ -1,13 +1,11 @@
 #pragma once
-#include <iostream>
 #include <chrono>
 #include <unordered_map>
-#include "../Core/Camera.h"
+#include "../Core/Aliases.h" //(memory)
+#include "../Core/Camera.h" //(Geometry (Vector2 (iostream)))
 #include "../Core/Enums.h"
-#include "../Core/Input.h"
-#include "../Core/Math.h"
-#include "../Graphics/Window.h" //(<SDL.h>, <SDL_main.h>, <SDL_video.h>)
-#include "../Graphics/Renderer.h" //(<SDL_render.h>, Aliases.h (<memory>), Sprite.h (<SDL_image.h>), Font.h, Text.h)
+#include "../Graphics/Window.h"
+#include "../Graphics/Renderer.h" //(SDL_render, Sprite (SDL_image), Font, Text)
 
 using Clock = std::chrono::high_resolution_clock;
 

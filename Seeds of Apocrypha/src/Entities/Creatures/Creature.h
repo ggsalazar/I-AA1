@@ -1,8 +1,7 @@
 #pragma once
 #include <queue>
-#include "../../Core/Vector3.h"
 #include "../Entity.h"
-//#include "../Items/Item.h"
+#include "../../Core/Vector3.h"
 
 class Creature : public Entity {
 public:

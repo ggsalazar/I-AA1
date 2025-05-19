@@ -1,6 +1,5 @@
 #pragma once
-#include <iostream>
-#include "Vector2.h"
+#include "Vector2.h" //iostream
 
 namespace Math {
     void Clamp(float& value, const float min, const float max);

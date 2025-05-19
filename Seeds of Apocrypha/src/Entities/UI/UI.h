@@ -1,7 +1,7 @@
 #pragma once
-#include "../Entity.h"
-#include "../../Game/Game.h"
+#include "../Entity.h" //Collision (Geometry (Vector2 (iostream))), Sprite, Text, Game, Scene
 #include "../../Game/Menu.h"
+#include "../../Core/Input.h" //(Window)
 
 class UI : public Entity {
 public:
@@ -29,7 +29,7 @@ protected:
     bool activated = false;
 
     //Functions
-    bool Selected() { return Collision::Point(Input::MousePos(), bbox); }
+    inline bool Selected() { return Collision::Point(Input::MousePos(), bbox); }
     virtual void Pressed();
     virtual void Released() {}
 };
