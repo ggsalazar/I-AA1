@@ -1,6 +1,7 @@
 #pragma once
 #include <fstream>
 #include <vector>
+#include <SDL3/SDL_render.h>
 #include <nlohmann/json.hpp>
 #include "../Core/Enums.h"
 #include "../Core/Vector2.h" //iostream

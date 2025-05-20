@@ -29,15 +29,13 @@ void Scene::Open(const bool o) {
 
 		else if (label == Scenes::AREA) {
 			//Initialize the edge rects
-			//Up - Inits to 0, 0
+			//Up
 			up_edge.w = game->camera.viewport.w; up_edge.h = TS;
-			//Down - only need to update y
-			down_edge.y = game->camera.viewport.y + game->camera.viewport.h - TS;
+			//Down
 			down_edge.w = up_edge.w; down_edge.h = TS;
-			//Left - Inits to 0, 0
+			//Left
 			left_edge.w = TS; left_edge.h = game->camera.viewport.h;
-			//Right - only need to update x
-			right_edge.x = game->camera.viewport.x + game->camera.viewport.w - TS;
+			//Right
 			right_edge.w = TS; right_edge.h = left_edge.h;
 
 			//Import the appropriate tilemap
@@ -98,9 +96,9 @@ void Scene::GetInput() {
 
 	if (label == Scenes::AREA) {
 		OpenInterface();
-		MoveCamera();
 
 		if (!game->paused) {
+			MoveCamera();
 			SelectPartyMems();
 
 			/*
@@ -125,7 +123,7 @@ void Scene::GetInput() {
 			}
 			*/
 		}
-		else game->cursor.SetSheetRow(0);
+
 	}
 	for (auto& e : entities) {
 		//Only get input for UI elements if the corresponding menu is open
@@ -147,15 +145,23 @@ void Scene::Update() {
 	for (auto& e : entities)
 		e->Update();
 
+	//Update the edge panning rects
+	if (label == Scenes::AREA) {
+		up_edge.x = game->camera.viewport.x; up_edge.y = game->camera.viewport.y;
+		down_edge.x = game->camera.viewport.x; down_edge.y = game->camera.viewport.y + game->camera.viewport.h - TS;
+		left_edge.x = game->camera.viewport.x; left_edge.y = game->camera.viewport.y;
+		right_edge.x = game->camera.viewport.x + game->camera.viewport.w - TS; right_edge.y = game->camera.viewport.y;
+	}
+
 	//Remove dead entities
-	entities.erase(remove_if(entities.begin(), entities.end(),
-		[](const s_ptr<Entity>& e) { return !e->alive;}),
-		entities.end());
+	entities.erase(remove_if(entities.begin(), entities.end(), 
+		[](const s_ptr<Entity>& e) { return !e->alive;}), entities.end());
 
 	//Sort the entities vector (and possibly Menus map) by dfc value every 6th of a second so that entities of a lower dfc value are drawn
 	// last (closest to the camera)
 	if (game->GetGameFrames() % 10 == 0) {
-		sort(entities.begin(), entities.end(), [](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite.GetDFC() > b->sprite.GetDFC(); });
+		sort(entities.begin(), entities.end(), 
+			[](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite.GetDFC() > b->sprite.GetDFC(); });
 
 		//Also taking this opportunity to repopulate/reset the node grid
 		//if (tilemap.Loaded())
@@ -218,7 +224,7 @@ void Scene::ResizeMenus() {
 
 void Scene::OpenInterface(Interfaces intrfc) {
 	//Options Interface
-	if (Input::BtnPressed(O_K)) {
+	if (Input::KeyPressed(O_K)) {
 		if (interface_open != Interfaces::OPTIONS) {
 			interface_open = Interfaces::OPTIONS;
 			game->paused = true;
@@ -231,6 +237,9 @@ void Scene::OpenInterface(Interfaces intrfc) {
 		//Open the options menu if it isn't already
 		OpenMenu(Menus::OPTIONS_G, !MenuOpen(Menus::OPTIONS_G));
 	}
+
+	if (interface_open != Interfaces::NONE)
+		game->cursor.SetSheetRow(0);
 }
 
 void Scene::MoveCamera() {
@@ -329,7 +338,7 @@ void Scene::SelectPartyMems() {
 		selecting = false;
 
 		for (auto& p_m : party_mems) {
-			if (Collision::Point(Vector2f(p_m->GetPos()), selec_box)) {
+			if (Collision::Point(p_m->GetPos(), selec_box)) {
 				if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT)) p_m->selected = true;
 				else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
 			}

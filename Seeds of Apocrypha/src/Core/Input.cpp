@@ -1,7 +1,8 @@
 #include "Input.h"
 
-void Input::Init(Window* win) {
+void Input::Init(Window* win, Camera* cam) {
 	window = win;
+	camera = cam;
 	curr_keys = SDL_GetKeyboardState(nullptr);
 }
 
@@ -26,8 +27,8 @@ bool Input::BtnReleased(int btn) {
 	return window->has_focus and !(curr_mouse_state & SDL_BUTTON_MASK(btn)) and prev_mouse_state & SDL_BUTTON_MASK(btn);
 }
 
-Vector2f Input::MousePos() {
-	return mouse_pos;
+Vector2i Input::MousePos() {
+	return Round(mouse_pos.x + camera->viewport.x, mouse_pos.y + camera->viewport.y);
 }
 
 bool Input::KeyDown(int key) {

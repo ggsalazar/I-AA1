@@ -8,7 +8,7 @@ public:
                 a.y + a.h >= b.y && b.y + b.h >= a.y);
     }
 
-    inline static bool Point(const Vector2f& p, const Rect& r) {
+    inline static bool Point(const Vector2i& p, const Rect& r) {
         return (r.x <= p.x and p.x <= r.x + r.w and
                 r.y <= p.y and p.y <= r.y + r.h);
     }

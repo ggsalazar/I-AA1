@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL3/SDL_scancode.h>
 #include "../Graphics/Window.h"
+#include "../Core/Camera.h"
 #include "Vector2.h" //iostream
 
 //Mouse buttons
@@ -32,6 +33,7 @@ constexpr int RSHIFT = SDL_SCANCODE_RSHIFT;
 namespace Input {
 
 	static Window* window = nullptr;
+	static Camera* camera = nullptr;
 
 	//State arrays
 	static bool prev_keys[SDL_SCANCODE_COUNT] = {0};
@@ -40,13 +42,13 @@ namespace Input {
 	static Uint32 curr_mouse_state = 0;
 	static Vector2f mouse_pos;
 
-	void Init(Window* win);
+	void Init(Window* win, Camera* cam);
 	void Update();
 
 	bool BtnDown(int btn);
 	bool BtnPressed(int btn);
 	bool BtnReleased(int btn);
-	Vector2f MousePos();
+	Vector2i MousePos();
 
 	bool KeyDown(int key);
 	bool KeyPressed(int key);

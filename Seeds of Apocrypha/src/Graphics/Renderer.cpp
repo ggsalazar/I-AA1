@@ -28,8 +28,7 @@ void Renderer::DrawSprite(const Sprite& spr) {
 
 	const SDL_FRect src_rect = { si->curr_frame * si->frame_size.x,
 								 si->sheet_row * si->frame_size.y,
-								 si->curr_frame * si->frame_size.x + si->frame_size.x,
-								 si->sheet_row * si->frame_size.y + si->frame_size.y };
+								 si->frame_size.x, si->frame_size.y };
 
 
 	const SDL_FRect dest_rect = { round(si->pos.x - (si->spr_size.x * si->origin.x)) - camera->viewport.x,
@@ -84,6 +83,8 @@ void Renderer::DrawTxt(Text& txt) {
 		std::cout << "Font is null\n";
 		return;
 	}
+	if (ti->str.length() == 0)
+		return;
 	surface = TTF_RenderText_Shaded_Wrapped(txt.font->GetFont(), ti->str.c_str(), ti->str.size(), c, SDL_Color{ 0,0,0,0 }, ti->max_width);
 
 	if (!surface) {

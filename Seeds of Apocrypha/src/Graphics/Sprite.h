@@ -35,7 +35,6 @@ public:
 
     void Init(SDL_Renderer* renderer, const Info& i = {});
 
-
     inline SDL_Texture* GetTexture() const { return texture; }
 
     void Update(const float dt);

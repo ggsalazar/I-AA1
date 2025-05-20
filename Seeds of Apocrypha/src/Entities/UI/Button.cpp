@@ -3,7 +3,7 @@
 
 void Button::Draw() {
     if (active and Selected())
-        game->renderer.DrawRect(bbox, Color(0, 1, 0));
+        game->renderer.DrawRect(bbox, Color(1, 0, 0));
 
     Entity::Draw();
 

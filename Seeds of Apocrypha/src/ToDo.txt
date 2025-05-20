@@ -7,9 +7,6 @@ Reimplementation:	-Pathfinding
 					-Dakn moving
 					-Cam following Dakn
 
-
-Change pointers to Menus and Scenes to actual object instances where possible
-
 Tutorial:  -Add in NPCs (9 days)
 				--Dialogue system/trees (4 days)
 				--Blacksmith (4 days)

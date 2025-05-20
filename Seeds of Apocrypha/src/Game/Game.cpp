@@ -25,7 +25,7 @@ Game::Game(const char* title, uint init_fps)
     camera.viewport.h = resolution.y;
 
     //Initialize the Input namespace
-    Input::Init(&window);
+    Input::Init(&window, &camera);
 
     //Initialize fonts
     for (int i = 12; i < 96; i += 12)
@@ -93,7 +93,7 @@ void Game::ProcessInput() {
         cerr << "ERROR: ACTIVE SCENE NOT PROCESSING INPUT!\n";
 
     //Update cursor position
-    cursor.MoveTo(Round(Input::MousePos()) + Vector2i{ camera.viewport.x, camera.viewport.y });
+    cursor.MoveTo(Input::MousePos());
 }
 
 //Update the game world

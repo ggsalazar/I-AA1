@@ -299,46 +299,42 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 void Menu::Update() {
     if (open) {
         Vector2i m_t_pos = { 0, 0 };
-        Vector2i s_t_pos = { 500, 0 };
+        Vector2i s_t_pos = { 0, 0 };
         Vector2i elem_pos = { 0, 0 };
         uint elem_y_buffer = 0;
-        /*
+        
 
         switch (label) {
             case Menus::OPTIONS_G:
-                //Vector2f cam_top_left = game.camera.getCenter() - (game.camera.getSize() * .5f);
-                //m_t_pos = Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .2));
-                //s_t_pos = Vector2i(game.camera.getCenter().x, cam_top_left.y + game.camera.getSize().y * .12);
-                //menu_text->info.pos = m_t_pos;
-                //sup_text->info.pos = s_t_pos;
+                menu_text.info.pos = Round((float)game.camera.GetCenter().x, game.camera.viewport.y + game.camera.viewport.h *.2f);
 
-                elem_pos = Vector2i(game.camera.getCenter().x, round(cam_top_left.y + game.camera.getSize().y * .28));
+                elem_pos = Round((float)game.camera.GetCenter().x, game.camera.viewport.y + game.camera.viewport.h * .25f);
 
                 //This would be easier to do with a vector, but switching from a u_map to a vector at this point would just be a pain in the ass
                 for (const auto& ui : ui_elems) {
                     switch (ui.first) {
                         case UIElems::MUSIC_V:
-                            elem_pos.y = round(cam_top_left.y + game.camera.getSize().y * .28);
+                            elem_pos.y = round(game.camera.viewport.y + game.camera.viewport.h * .25f);
                         break;
 
                         case UIElems::SFX_V:
-                            elem_pos.y = round(cam_top_left.y + game.camera.getSize().y * .37);
+                            elem_pos.y = round(game.camera.viewport.y + game.camera.viewport.h * .35f);
                         break;
 
                         case UIElems::CAMSPD:
-                            elem_pos.y = round(cam_top_left.y + game.camera.getSize().y * .46);
+                            elem_pos.y = round(game.camera.viewport.y + game.camera.viewport.h * .45f);
                         break;
 
                         case UIElems::CLOSE:
-                            elem_pos.y = round(cam_top_left.y + game.camera.getSize().y * .55);
+                            elem_pos.y = round(game.camera.viewport.y + game.camera.viewport.h * .55f);
                         break;
 
                         case UIElems::TITLE:
-                            elem_pos.y = round(cam_top_left.y + game.camera.getSize().y * .64);
+                            elem_pos.y = round(game.camera.viewport.y + game.camera.viewport.h * .65f);
                         break;
 
                         case UIElems::QUIT:
-                            elem_pos.y = round(cam_top_left.y + game.camera.getSize().y * .73);
+                            elem_pos.y = round(game.camera.viewport.y + game.camera.viewport.h * .75f);
                         break;
                     }
                     ui.second->MoveTo(elem_pos);
@@ -346,7 +342,6 @@ void Menu::Update() {
             break;
         }
 
-        */
         for (const auto& s_m : sub_menus)
             s_m.second->Update();
     }
@@ -361,7 +356,6 @@ void Menu::Draw() {
         for (auto& sm : sub_menus)
             sm.second->Draw();
     }
-
 }
 
 void Menu::Open(const bool o) {

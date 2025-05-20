@@ -70,7 +70,7 @@ void Sprite::MoveBy(const Vector2i& offset) {
 
 void Sprite::SetSheetRow(uint new_s_r, const uint new_n_f) {
     //Dividing the size of the sprite rect by the height of the spritesheet should ALWAYS produce a whole number
-    const uint num_rows = info.frame_size.y / info.sheet_size.y;
+    const uint num_rows = info.sheet_size.y / info.frame_size.y;
     while (0 > new_s_r or new_s_r >= num_rows) {
         if (new_s_r < 0) new_s_r += num_rows;
         else if (new_s_r >= num_rows) new_s_r -= num_rows;

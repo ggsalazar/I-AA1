@@ -2,9 +2,8 @@
 #include <queue>
 #include <unordered_map>
 #include "../Core/Aliases.h"
-#include "../Core/Enums.h"
-#include "../Core/Vector2.h" //iostream
-#include "../Graphics/Text.h"
+#include "../Core/Geometry.h"
+#include "../Core/Pathfinding.h"
 #include "../Graphics/TileMap.h" //nlohmann/json
 
 using namespace std;
@@ -65,6 +64,7 @@ private:
     Actions action = Actions::DEFAULT;
 
     TileMap tilemap;
+    Pathfinding grid;
 
     unordered_map<Menus, Menu*> menus;
     vector<s_ptr<Entity>> entities;
