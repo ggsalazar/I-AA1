@@ -96,8 +96,7 @@ void Creature::Draw() {
 
 	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
 
-	if (!path.empty())
-		DrawPath();
+	game->renderer.DrawPath(path);
 }
 
 void Creature::WalkPath() {
@@ -131,21 +130,6 @@ void Creature::WalkPath() {
 	}
 	else
 		moving = false;
-}
-
-void Creature::DrawPath() {
-	queue<Vector2i> temp_path = path;
-	vector<Vector2i> path_v;
-	while (!temp_path.empty()) {
-		path_v.push_back(temp_path.front());
-		temp_path.pop();
-	}
-
-	Rect point_box = { {0, 0}, {4, 4} };
-	for (const auto& point : path_v) {
-		point_box.x = point.x - 2; point_box.y = point.y - 2;
-		game->renderer.DrawRect(point_box, Color(0, 0, 1, 1), Color(0, 0, 1, 1));
-	}
 }
 
 

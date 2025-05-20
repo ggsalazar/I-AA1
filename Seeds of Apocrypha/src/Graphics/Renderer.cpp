@@ -1,7 +1,8 @@
 #include "Renderer.h"
+#include "TileMap.h"
 #include "../Core/Camera.h"
 #include "../Core/Collision.h"
-#include "TileMap.h"
+#include "../Core/Pathfinding.h"
 
 Renderer::Renderer(SDL_Window* window, Camera* cam)
 	: camera(cam) {
@@ -111,6 +112,20 @@ void Renderer::DrawTxt(Text& txt) {
 
 }
 
+void Renderer::DrawNodeGrid(const Pathfinding& grid) {
+	Rect node({0}, 4);
+	for (int x = 0;x < grid.grid.size(); ++x) {
+		for (int y = 0; y < grid.grid[x].size(); ++y) {
+			if (grid.grid[x][y].walkable) {
+				node.x = grid.grid[x][y].pos.x - 2;
+				node.y = grid.grid[x][y].pos.y - 2;
+
+				DrawRect(node, Color(0, 0, 1));
+			}
+		}
+	}
+}
+
 void Renderer::DrawGrid(const Vector2i& start, const Vector2i& end, const uint& tile_size) {
 	//Vertical Lines
 	for (int i = start.x; i < end.x; i += tile_size)
@@ -120,13 +135,31 @@ void Renderer::DrawGrid(const Vector2i& start, const Vector2i& end, const uint& 
 		DrawLine(Line{ {start.x, i}, {end.x, i} }, Color(1, 0, 0));
 }
 
+void Renderer::DrawPath(std::queue<Vector2i> path) {
+
+
+	std::cout << "Drawing path\n";
+
+	std::vector<Vector2i> path_v;
+	while (!path.empty()) {
+		path_v.push_back(path.front());
+		path.pop();
+	}
+
+	Rect point_box = { {0}, {4} };
+	for (const auto& point : path_v) {
+		point_box.x = point.x - 2; point_box.y = point.y - 2;
+		DrawRect(point_box, Color(0, 0, 1));
+	}
+}
+
 void Renderer::DrawLine(const Line& line, const Color& color, const uint edge_w) {
 	SDL_SetRenderDrawColor(renderer, color.r * 255, color.g * 255, color.b * 255, color.a * 255);
 
 	SDL_RenderLine(renderer, line.pos1.x - camera->viewport.x, line.pos1.y - camera->viewport.y, line.pos2.x - camera->viewport.x, line.pos2.y - camera->viewport.y);
 }
 
-void Renderer::DrawCircle(const Circle& circle, const Color& stroke_color, Color fill_color, const uint edge_w) {
+void Renderer::DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
 	Vector2i circle_pos = { circle.x - camera->viewport.x, circle.y - camera->viewport.y };
 
 	SDL_SetRenderDrawColor(renderer, stroke_color.r * 255, stroke_color.g * 255, stroke_color.b * 255, stroke_color.a * 255);
@@ -150,7 +183,7 @@ void Renderer::DrawCircle(const Circle& circle, const Color& stroke_color, Color
 
 }
 
-void Renderer::DrawTri(const Tri& tri, const Color& stroke_color, Color fill_color, const uint edge_w) {
+void Renderer::DrawTri(const Tri& tri, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
 	Vector2f tri_pos1 = { (float)(tri.pos1.x - camera->viewport.x), (float)(tri.pos1.y - camera->viewport.y) };
 	Vector2f tri_pos2 = { (float)(tri.pos2.x - camera->viewport.x), (float)(tri.pos2.y - camera->viewport.y) };
 	Vector2f tri_pos3 = { (float)(tri.pos3.x - camera->viewport.x), (float)(tri.pos3.y - camera->viewport.y) };
@@ -177,7 +210,7 @@ void Renderer::DrawTri(const Tri& tri, const Color& stroke_color, Color fill_col
 	SDL_RenderLine(renderer, tri_pos3.x, tri_pos3.y, tri_pos1.x, tri_pos1.y);
 }
 
-void Renderer::DrawRect(const Rect& rect, const Color& stroke_color, Color fill_color, const uint edge_w) {
+void Renderer::DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
 	Vector2i rect_pos = { rect.x - camera->viewport.x, rect.y - camera->viewport.y };
 
 	//Draw the fill

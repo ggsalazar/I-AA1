@@ -54,16 +54,17 @@ void PartyMember::Draw() {
 		//Party members draw their portraits and health bars at all times
 		//Draw the highlight if selected first, then the portrait
 		if (selected)
-			game->renderer.DrawRect(por_bbox, Color(1), Color(1));
+			game->renderer.DrawRect(por_bbox, Color(1));
 		game->renderer.DrawSprite(portrait);
 		game->renderer.DrawTxt(nameplate);
 
 		//Draw the missing health bar first, then the remaining health bar over it
-		game->renderer.DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {(uint)round(portrait.GetSprSize().x * .9f), (uint)hlth_bar.h} }, Color(0), Color(0, 0, 0, 1));
-		game->renderer.DrawRect(hlth_bar, Color(0), Color(0, 1, 0));
+		game->renderer.DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {(uint)hlth_bar.w, (uint)hlth_bar.h} }, Color(1,0,0));
+		game->renderer.DrawRect(hlth_bar, Color(0,1,0));
 
 		//Draw our remaining health numerically last
 		game->renderer.DrawTxt(hlth_txt);
+
 	}
 }
 

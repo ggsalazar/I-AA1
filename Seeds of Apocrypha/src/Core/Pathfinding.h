@@ -1,14 +1,16 @@
 #pragma once
 #include <vector>
 #include <queue>
-#include "../Graphics/TileMap.h"
+#include "Aliases.h"
 #include "Vector2.h"
 
 using std::queue, std::vector;
 
 class Entity;
+class TileMap;
 
 class Pathfinding {
+	friend class Renderer;
 public:
 	struct Node {
 		Vector2i pos = { 0, 0 };
@@ -21,7 +23,7 @@ public:
 	};
 
 	Pathfinding() = default;
-	void Init(TileMap* t) { tmp = t; grid.resize(tmp->GetMapSizeTiles().x); for (auto& row : grid) row.resize(tmp->GetMapSizeTiles().y); }
+	void Init(TileMap* t);
 	void PopulateNodeGrid(vector<s_ptr<Entity>>* ents);
 
 	queue<Vector2i> FindPath(const Vector2i& start, const Vector2i& goal);

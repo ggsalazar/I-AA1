@@ -1,13 +1,33 @@
 #include "Pathfinding.h"
+#include "Collision.h"
+#include "../Graphics/TileMap.h"
+#include "../Entities/Entity.h"
+
+void Pathfinding::Init(TileMap* t) {
+	tmp = t;
+	grid.resize(tmp->GetMapSizeTiles().x);
+	for (auto& row : grid) row.resize(tmp->GetMapSizeTiles().y);
+}
 
 void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
+	bool node_walk = false;
+	uint node_cost = 0;
 	for (int col = 0; col < tmp->GetMapSizeTiles().x; ++col) {
 		for (int row = 0; row < tmp->GetMapSizeTiles().y; ++row) {
-			bool node_walk = tmp->GetTileData({ col, row }).terrain != Terrains::WATER;
+			node_walk = tmp->GetTileData({ col, row }).terrain != Terrains::WATER;
+			//For now, we're going to say a node is not walkable if an entity is standing on that tile
+			// In the future, this should be *way* more nuanced (i.e. creature vs object, friend or foe, etc)
+			if (node_walk) {
+				for (const auto& e : *ents) {
+					node_walk = !(Collision::Point(e->GetPos(), Rect(Round(col * TS - TS * .5f, row * TS - TS * .5f), TS)));
+					
+					if (!node_walk) break;
+				}
+			}
 
-			uint node_cost = (tmp->GetTileData({col, row}).terrain == Terrains::ROUGH) + 1;
+			node_cost = (tmp->GetTileData({col, row}).terrain == Terrains::ROUGH) + 1;
 
-			grid[col][row] = { {row * TS + TS * .5, col * TS + TS * .5}, false, node_walk, node_cost };
+			grid[col][row] = { Round(col * TS + TS * .5f, row * TS + TS * .5f), false, node_walk, node_cost };
 		}
 	}
 }

@@ -4,6 +4,7 @@
 class PartyMember : public Creature {
 public:
 	bool selected = false;
+	uint party_position = 0;
 
 	PartyMember(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats = {},
 		const string por_name = "Placeholder", const bool init_biped = true, const bool init_winged = false);

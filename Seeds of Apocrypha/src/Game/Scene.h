@@ -1,9 +1,8 @@
 #pragma once
 #include <queue>
 #include <unordered_map>
-#include "../Core/Aliases.h"
 #include "../Core/Geometry.h"
-#include "../Core/Pathfinding.h"
+#include "../Core/Pathfinding.h" //Aliases
 #include "../Graphics/TileMap.h" //nlohmann/json
 
 using namespace std;

@@ -5,7 +5,6 @@
 #include "../Core/Math.h"
 #include "../Entities/UI/UI.h" //Entity.h
 #include "../Entities/Creatures/PartyMember.h"
-//#include "../Core/Pathfinding.h"
 
 
 void Scene::Open(const bool o) {
@@ -41,36 +40,55 @@ void Scene::Open(const bool o) {
 			//Import the appropriate tilemap
 			string json_file = "DEFAULT";
 			switch (game->area) {
-			case Areas::DEBUG:
-				json_file = "Debug_Room";
-				break;
+				case Areas::DEBUG:
+					json_file = "Debug_Room";
+					break;
 
-			case Areas::TUTTON:
-				json_file = "Tutton";
-				break;
+				case Areas::TUTTON:
+					json_file = "Tutton";
+					break;
 			}
 			//Load that bitch
 			tilemap.Load(game->renderer.GetRenderer(), json_file);
-
-			//Set the camera and party members
 			Vector2u area_size = tilemap.GetMapSizePixels();
+			Vector2u area_size_t = tilemap.GetMapSizeTiles();
 
-			game->camera.viewport.x = round(area_size.x * .5f - game->camera.viewport.w * .5f);
-			game->camera.viewport.y = round(area_size.y * .5f - game->camera.viewport.h * .5f);
+			//Init the grid
+			grid.Init(&tilemap);
+
+
+			//Set the party and camera
+			Vector2i party_ldr_pos;
+			switch (game->area) {
+				case Areas::DEBUG:
+					party_ldr_pos = Round(area_size_t * .5f * TS);
+					if (area_size_t.x * .5f == round(area_size_t.x * .5f))
+						party_ldr_pos.x += TS * .5f - 1;
+					if (area_size_t.y * .5f == round(area_size_t.y * .5f))
+						party_ldr_pos.y += TS * .5f - 1;
+				break;
+
+				case Areas::TUTTON:
+					party_ldr_pos = Round(area_size_t * .5f * TS);
+					if (area_size_t.x * .5f == round(area_size_t.x * .5f))
+						party_ldr_pos.x += TS * .5f - 1;
+					if (area_size_t.y * .5f == round(area_size_t.y * .5f))
+						party_ldr_pos.y += TS * .5f - 1;
+				break;
+			}
 
 			for (auto& p_m : party_mems) {
 				entities.push_back(p_m);
 				p_m->SetScene(this);
-				p_m->MoveTo(Round(area_size * .5f));
+				switch (p_m->party_position) {
+					case 0:
+						p_m->MoveTo(party_ldr_pos);
+					break;
+				}
 				p_m->selected = true;
 			}
-			switch (game->area) {
-			case Areas::DEBUG:
-				break;
 
-			case Areas::TUTTON:
-				break;
-			}
+			game->camera.MoveCenterTo(party_ldr_pos);
 
 			//Initialize our menus
 			menus.insert({ Menus::OPTIONS_G, new Menu(*game, *this, Menus::OPTIONS_G) });
@@ -101,27 +119,25 @@ void Scene::GetInput() {
 			MoveCamera();
 			SelectPartyMems();
 
-			/*
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing
 			// will depend on what it is pointing at
 			//Updating action every 6th of a second for performance reasons
-			//if (game->GetGameFrames() % 10 == 0)
-			//	action = LMBAction();
+			if (game->GetGameFrames() % 10 == 0)
+				action = LMBAction();
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
-			//SetGameCursor(action);
+			SetGameCursor(action);
 			if (Input::KeyPressed(LMB)) {
 				switch (action) {
-				case Actions::MOVE:
-					for (const auto& p_m : party_mems) {
-						if (p_m->selected) {
-							p_m->moving = true;
-							p_m->SetPath(found_path);
+					case Actions::MOVE:
+						for (const auto& p_m : party_mems) {
+							if (p_m->selected) {
+								p_m->moving = true;
+								p_m->SetPath(found_path);
+							}
 						}
-					}
 					break;
 				}
 			}
-			*/
 		}
 
 	}
@@ -164,8 +180,8 @@ void Scene::Update() {
 			[](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite.GetDFC() > b->sprite.GetDFC(); });
 
 		//Also taking this opportunity to repopulate/reset the node grid
-		//if (tilemap.Loaded())
-		//	Pathfinding::PopulateNodeGrid();
+		if (tilemap.Loaded())
+			grid.PopulateNodeGrid(&entities);
 	}
 }
 
@@ -384,7 +400,7 @@ Actions Scene::LMBAction() {
 	for (const auto& p_m : party_mems) {
 		if (p_m->selected) {
 
-			//found_path = Pathfinding::FindPath(p_m->GetPos(), MOUSEPOS_W, window);
+			found_path = grid.FindPath(p_m->GetPos(), Input::MousePos());
 
 			//If no path, return no action
 			if (found_path.empty())
@@ -429,16 +445,16 @@ void Scene::SetGameCursor(Actions action) {
 	//This method forces me to by personally familiar with where each cursor sprite is in the
 	// sheet, which is completely unscalable but works for now
 	switch (action) {
-	case Actions::DEFAULT:
-		new_row = 0;
+		case Actions::DEFAULT:
+			new_row = 0;
 		break;
 
-	case Actions::MOVE:
-		new_row = 1;
+		case Actions::MOVE:
+			new_row = 1;
 		break;
 
-	case Actions::NOACTION:
-		new_row = 2;
+		case Actions::NOACTION:
+			new_row = 2;
 		break;
 	}
 	game->cursor.SetSheetRow(new_row);

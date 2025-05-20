@@ -1,13 +1,12 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
 Reimplementation:	-Pathfinding
-						--Need to be aware of:
-							---Tiles
-							---Entities
+						--Path not currently being drawn or walked, possibly not found?
 					-Dakn moving
 					-Cam following Dakn
 
-Tutorial:  -Add in NPCs (9 days)
+Tutorial:  -Need to properly scale tiles for different resolutions
+			-Add in NPCs (9 days)
 				--Dialogue system/trees (4 days)
 				--Blacksmith (4 days)
 					---Shopping (after implementing inventory) (3 days)
@@ -23,6 +22,7 @@ Tutorial:  -Add in NPCs (9 days)
 			-multi-party member movement & cam locking (14 days)
 			-Total: 45 days
 				--Projected finish date: Late July
+			-Intro cutscene
 			-Combat
 			-Explain all this shit
 

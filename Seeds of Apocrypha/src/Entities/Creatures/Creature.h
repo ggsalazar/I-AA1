@@ -62,7 +62,6 @@ public:
 	//Path stuff
 	void SetPath(queue<Vector2i> new_path) { path = new_path; }
 	void WalkPath();
-	void DrawPath();
 
 	//Primary stats
 	void SetAbilityScore(Ab_Scores a_s, float new_score);
