@@ -1,25 +1,24 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Reimplementation:	-Pathfinding
-						--Path not currently being drawn or walked, possibly not found?
-					-Dakn moving
-					-Cam following Dakn
-
 Tutorial:  -Need to properly scale tiles for different resolutions
-			-Add in NPCs (9 days)
-				--Dialogue system/trees (4 days)
-				--Blacksmith (4 days)
-					---Shopping (after implementing inventory) (3 days)
-				--Quest Giver (1 day)
-			-Interfaces (24 days)
-				--Quest Journal (6 days)
-				--Map (6 days)
-					---Area Map (3 days)
-					---World Map (3 days)
-				--Character sheet/s (6 days)
-				--Inventory (6 days)
-			-area changing (3 days)
-			-multi-party member movement & cam locking (14 days)
+				--Being scaled, but looking blurry for some reason
+			-Dakn movement jittery for some reason - something to do with how next position is calculated?
+			-Node grid not being properly populated for some reason
+			-Adjustable zoom levels
+			-Add in NPCs
+				--Dialogue system/trees
+				--Blacksmith
+					---Shopping (after implementing inventory)
+				--Quest Giver
+			-Interfaces
+				--Quest Journal
+				--Map
+					---Area Map
+					---World Map
+				--Character sheet/s
+				--Inventory
+			-area changing
+			-multi-party member movement & cam locking
 			-Total: 45 days
 				--Projected finish date: Late July
 			-Intro cutscene

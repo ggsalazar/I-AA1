@@ -40,7 +40,7 @@ void PartyMember::Update() {
 	portrait.MoveTo(Round(portrait.GetSprSize().x * .25f + game->camera.viewport.x, game->resolution.y - portrait.GetSprSize().y * 1.25f + game->camera.viewport.y));
 	por_bbox.x = portrait.GetPos().x - round(portrait.GetSprSize().x * .025f);
 	por_bbox.y = portrait.GetPos().y - round(portrait.GetSprSize().y * .025f);
-	nameplate.MoveTo({ portrait.GetPos() });
+	nameplate.MoveTo(portrait.GetPos());
 	//Update hlth_bar size (TO-DO)
 	hlth_bar.x = portrait.GetPos().x + round(portrait.GetSprSize().x * .01f);
 	hlth_bar.y = portrait.GetPos().y + round(portrait.GetSprSize().y * .85f);
@@ -49,6 +49,13 @@ void PartyMember::Update() {
 }
 
 void PartyMember::Draw() {
+
+	//Draw the last step in their path so the player always knows where they're headed
+	if (!path.empty()) {
+		Rect last_step = { path.back() - 3, 6 };
+		game->renderer.DrawRect(last_step, Color(1, 0, 0));
+	}
+
 	Creature::Draw();
 	if (scene->label == Scenes::AREA) {
 		//Party members draw their portraits and health bars at all times

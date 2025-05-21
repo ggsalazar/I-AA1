@@ -58,10 +58,10 @@ void Scene::Open(const bool o) {
 
 
 			//Set the party and camera
-			Vector2i party_ldr_pos;
+			Vector2f party_ldr_pos;
 			switch (game->area) {
 				case Areas::DEBUG:
-					party_ldr_pos = Round(area_size_t * .5f * TS);
+					party_ldr_pos = area_size_t * .5f * TS;
 					if (area_size_t.x * .5f == round(area_size_t.x * .5f))
 						party_ldr_pos.x += TS * .5f - 1;
 					if (area_size_t.y * .5f == round(area_size_t.y * .5f))
@@ -69,7 +69,7 @@ void Scene::Open(const bool o) {
 				break;
 
 				case Areas::TUTTON:
-					party_ldr_pos = Round(area_size_t * .5f * TS);
+					party_ldr_pos = area_size_t * .5f * TS;
 					if (area_size_t.x * .5f == round(area_size_t.x * .5f))
 						party_ldr_pos.x += TS * .5f - 1;
 					if (area_size_t.y * .5f == round(area_size_t.y * .5f))
@@ -82,13 +82,13 @@ void Scene::Open(const bool o) {
 				p_m->SetScene(this);
 				switch (p_m->party_position) {
 					case 0:
-						p_m->MoveTo(party_ldr_pos);
+						p_m->MoveTo(Round(party_ldr_pos));
 					break;
 				}
 				p_m->selected = true;
 			}
 
-			game->camera.MoveCenterTo(party_ldr_pos);
+			game->camera.MoveCenterTo(Round(party_ldr_pos));
 
 			//Initialize our menus
 			menus.insert({ Menus::OPTIONS_G, new Menu(*game, *this, Menus::OPTIONS_G) });
@@ -126,7 +126,7 @@ void Scene::GetInput() {
 				action = LMBAction();
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			SetGameCursor(action);
-			if (Input::KeyPressed(LMB)) {
+			if (Input::BtnPressed(LMB)) {
 				switch (action) {
 					case Actions::MOVE:
 						for (const auto& p_m : party_mems) {
@@ -206,6 +206,14 @@ void Scene::Draw() {
 	if (selecting)
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
+
+
+	if (tilemap.Loaded()) {
+		game->renderer.DrawNodeGrid(grid);
+	}
+
+
+
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
 	for (const auto& m : menus)
@@ -265,7 +273,7 @@ void Scene::MoveCamera() {
 	Vector2i cam_pos = { game->camera.viewport.x, game->camera.viewport.y };
 	Vector2i cam_size = { game->camera.viewport.w, game->camera.viewport.h };
 	if (!game->cam_locked) {
-		Vector2i new_cam_offset = { 0, 0 };
+		Vector2f new_cam_offset = { 0 };
 		if (!cam_free) {
 			//Move the camera via arrow/WASD keys
 			if ((Input::KeyDown(UP) or Input::KeyDown(W_K)) and cam_pos.y > 0)
@@ -310,16 +318,19 @@ void Scene::MoveCamera() {
 		}
 
 		if (new_cam_offset.x != 0 and new_cam_offset.y != 0)
-			new_cam_offset *= 1.414f;
+			new_cam_offset /= sqrt2;
 
-		new_cam_offset = Round(new_cam_offset) * game->GetResScale();
-		game->camera.MoveBy(new_cam_offset);
+		new_cam_offset = new_cam_offset * game->GetResScale();
+		game->camera.MoveBy(Round(new_cam_offset));
+
+		
+
 	}
 	//If the camera is locked to the party members, follow them automatically
 	//Select which party members to lock the camera to - TO-DO
 	//Get the average of all of their positions and lerp the camera to there
 	else {
-		Vector2i pos_totals = { 0, 0 };
+		Vector2i pos_totals = { 0 };
 		uint selected_p_ms = 0;
 		for (const auto& p_m : party_mems) {
 			if (p_m->selected) {
@@ -327,17 +338,18 @@ void Scene::MoveCamera() {
 				pos_totals += p_m->GetPos();
 			}
 		}
-		Vector2f pos_avg = pos_totals / (float)selected_p_ms;
+		Vector2i pos_avg = Round(pos_totals / (float)selected_p_ms);
 
-		Math::Clamp(pos_avg.x, -cam_size.x * .5, tilemap.GetMapSizePixels().x + cam_size.x * .5);
-		Math::Clamp(pos_avg.y, -cam_size.y * .5, tilemap.GetMapSizePixels().y + cam_size.y * .5);
-
-		pos_avg = Vector2f(Round(pos_avg));
-
-		game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), pos_avg, .1f)));
+		//game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), Vector2f(pos_avg), .075f)));
+		game->camera.MoveCenterTo(pos_avg);
 	}
 
-	//Prevent cam from moving past the edges [TO-DO]
+
+	Vector2f c_p = { (float)game->camera.viewport.x, (float)game->camera.viewport.y };
+	Math::Clamp(c_p.x, 0, tilemap.GetMapSizePixels().y);
+	Math::Clamp(c_p.y, 0, tilemap.GetMapSizePixels().y);
+	game->camera.viewport.x = c_p.x;
+	game->camera.viewport.y = c_p.y;
 }
 
 void Scene::SelectPartyMems() {

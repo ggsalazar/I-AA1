@@ -1,5 +1,7 @@
 #pragma once
 
+constexpr float sqrt2 = 1.414f;
+
 //Skills & Scores
 enum class Ab_Scores {
 	STR,

@@ -38,7 +38,7 @@ public:
 	void DrawNodeGrid(const Pathfinding& grid);
 	void DrawGrid(const Vector2i& start = { 0, 0 }, const Vector2i& end = { 1920, 1080 }, const uint& tile_size = 32);
 
-	void DrawPath(std::queue<Vector2i> path);
+	void DrawPath(std::queue<Vector2i> path, const Color& path_color = Color(1));
 
 	//Drawing shapes
 	void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2);

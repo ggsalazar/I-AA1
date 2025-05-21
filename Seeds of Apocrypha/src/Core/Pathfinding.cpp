@@ -1,7 +1,7 @@
 #include "Pathfinding.h"
 #include "Collision.h"
 #include "../Graphics/TileMap.h"
-#include "../Entities/Entity.h"
+#include "../Entities/UI/UI.h" //Entity.h
 
 void Pathfinding::Init(TileMap* t) {
 	tmp = t;
@@ -17,14 +17,18 @@ void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
 		for (int row = 0; row < tmp->GetMapSizeTiles().y; ++row) {
 			node_walk = tmp->GetTileData({ col, row }).terrain != Terrains::WATER;
 			//For now, we're going to say a node is not walkable if an entity is standing on that tile
-			// In the future, this should be *way* more nuanced (i.e. creature vs object, friend or foe, etc)
+			// In the future, this should be *way* more nuanced (i.e. creature vs object, friend or foe, size of entity, etc)
+			
 			if (node_walk) {
 				for (const auto& e : *ents) {
-					node_walk = !(Collision::Point(e->GetPos(), Rect(Round(col * TS - TS * .5f, row * TS - TS * .5f), TS)));
+					auto ui = dynamic_cast<UI*>(e.get());
+					if (!ui)
+						node_walk = !(Collision::Point(e->GetPos(), Rect({ col * TS, row * TS }, TS)));
 					
 					if (!node_walk) break;
 				}
 			}
+			
 
 			node_cost = (tmp->GetTileData({col, row}).terrain == Terrains::ROUGH) + 1;
 
@@ -61,12 +65,12 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goa
 		//Path found
 		if (current->pos == goal_node->pos) {
 			vector<Vector2i> path;
-			path.push_back(Vector2i(goal));
-			//We don't need the start, second, or goal node
+			//path.push_back(goal); //Decided to remove the goal node (where the mouse clicked) for more grid-based movement
+			//We don't need the start or second
 			while (current->parent and current->parent->parent) { //Ensures we don't add the start node or the second node, which was itself causing weird behaviors
-				current = current->parent; //Putting this at the beginning skips the goal node
 				//current->debug = true;
 				path.push_back(current->pos);
+				current = current->parent; //Putting this at the beginning will skip the goal node
 			}
 
 			reverse(path.begin(), path.end());
@@ -109,5 +113,5 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goa
 float Pathfinding::Heuristic(const Vector2i& a, const Vector2i& b) {
 	uint dx = abs(a.x - b.x);
 	uint dy = abs(a.y - b.y);
-	return (dx + dy) + (1.414f - 2) * std::min(dx, dy);
+	return (dx + dy) + (sqrt2 - 2) * std::min(dx, dy);
 }

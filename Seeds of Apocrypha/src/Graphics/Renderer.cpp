@@ -103,7 +103,7 @@ void Renderer::DrawTxt(Text& txt) {
 		std::cout << "Failed to create text surface!\n";
 		return;
 	}
-	ti->str_size = { (uint)surface->w, (uint)surface->h };
+	ti->str_size = {(uint)surface->w, (uint)surface->h};
 
 	if (texture) SDL_DestroyTexture(texture);
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -146,7 +146,7 @@ void Renderer::DrawGrid(const Vector2i& start, const Vector2i& end, const uint& 
 		DrawLine(Line{ {start.x, i}, {end.x, i} }, Color(1, 0, 0));
 }
 
-void Renderer::DrawPath(std::queue<Vector2i> path) {
+void Renderer::DrawPath(std::queue<Vector2i> path, const Color& path_color) {
 
 	vector<Vector2i> path_v;
 	while (!path.empty()) {
@@ -157,7 +157,7 @@ void Renderer::DrawPath(std::queue<Vector2i> path) {
 	Rect point_box = { {0}, {4} };
 	for (const auto& point : path_v) {
 		point_box.x = point.x - 2; point_box.y = point.y - 2;
-		DrawRect(point_box, Color(0, 0, 1));
+		DrawRect(point_box, path_color);
 	}
 }
 
@@ -168,7 +168,7 @@ void Renderer::DrawLine(const Line& line, const Color& color, const uint edge_w)
 }
 
 void Renderer::DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
-	Vector2i circle_pos = { circle.x - camera->viewport.x, circle.y - camera->viewport.y };
+	Vector2f circle_pos = { (float)(circle.x - camera->viewport.x), (float)(circle.y - camera->viewport.y) };
 
 	SDL_SetRenderDrawColor(renderer, stroke_color.r * 255, stroke_color.g * 255, stroke_color.b * 255, stroke_color.a * 255);
 	for (float r = circle.r; r > circle.r - edge_w; --r) {
@@ -219,7 +219,7 @@ void Renderer::DrawTri(const Tri& tri, const Color& fill_color, const Color& str
 }
 
 void Renderer::DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
-	Vector2i rect_pos = { rect.x - camera->viewport.x, rect.y - camera->viewport.y };
+	Vector2f rect_pos = { (float)(rect.x - camera->viewport.x), (float)(rect.y - camera->viewport.y) };
 
 	//Draw the fill
 	SDL_SetRenderDrawColor(renderer, fill_color.r * 255, fill_color.g * 255, fill_color.b * 255, fill_color.a * 255);

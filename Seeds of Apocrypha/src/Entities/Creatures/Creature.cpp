@@ -7,8 +7,8 @@ Creature::Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init
 
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
-	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = { 32, 32 };
-	por_info.scale = game->GetResScale() * 2; //Set this to just ResScale() when have 48x48 portraits
+	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = { 48, 48 };
+	por_info.scale = game->GetResScale();
 	portrait.Init(game->renderer.GetRenderer(), por_info);
 	//Portrait bbox
 	por_bbox.w = portrait.GetSprSize().x * 1.05f;
@@ -60,6 +60,8 @@ Creature::Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init
 		dodge_penalty = -8;
 		break;
 	}
+	//Set move speed
+	mv_spd = game->GetResScale() * 1.5;
 
 	//Calculate the derived stats
 	//SetAbilityScore (also sets saves and ancillary stats)
@@ -86,7 +88,7 @@ void Creature::Update() {
 	por_bbox.y = portrait.GetPos().y - round(portrait.GetSprSize().y * .025f);
 
 	//Moving
-	if (moving) WalkPath();
+	if (moving and !game->paused) WalkPath();
 }
 
 void Creature::Draw() {
@@ -102,7 +104,7 @@ void Creature::WalkPath() {
 		Vector2i next_pos = path.front();
 		if (pos != next_pos) {
 
-			Vector2i offset = { 0, 0 };
+			Vector2f offset = { 0, 0 };
 
 			//Moving up
 			if (pos.y > next_pos.y)
@@ -119,9 +121,9 @@ void Creature::WalkPath() {
 
 			//Normalize diagonal movement
 			if (offset.x != 0 and offset.y != 0)
-				offset = Round(offset.x / 1.414f, offset.y / 1.414f);
+				offset /= sqrt2;
 
-			Entity::MoveBy(offset);
+			Entity::MoveBy(Round(offset));
 		}
 		else
 			path.pop();

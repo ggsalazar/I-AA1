@@ -8,8 +8,8 @@ public:
 
     void GetInput() override;
     void Draw() override;
-    void MoveBy(Vector2i offset) override { Entity::MoveBy(offset); Move(); }
-    void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
+    inline void MoveBy(Vector2i offset) override { Entity::MoveBy(offset); Move(); }
+    inline void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
 private:
     void Move() override;
@@ -17,7 +17,6 @@ private:
     //Knob stuff
     Sprite knob_spr;
     Text knob_label;
-    float knob_pos_max = 0;
-    float knob_pos_min = 0;
-    float knob_pos = 0;
+    int knob_pos_max = 0, knob_pos_min = 0;
+    float knob_pos = 0; //This is a float so it works with Clamp
 };

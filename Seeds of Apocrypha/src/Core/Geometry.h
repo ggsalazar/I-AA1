@@ -26,7 +26,7 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const Line& l) { return os << "p1: " << l.pos1 << " p2: " << l.pos2; }
 
 struct Circle {
-	int x=0, y=0;
+	int x = 0, y = 0;
 	float r = 0;
 
 	Circle(Vector2i p, float r) : x(p.x), y(p.y), r(r) {}
@@ -50,7 +50,7 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const Tri& t) { return os << "p1: " << t.pos1 << " p2: " << t.pos2 << " p3: " << t.pos3; }
 
 struct Rect {
-	int x=0, y=0, w=0, h=0;
+	int x = 0, y = 0, w = 0, h = 0;
 
 	Rect() = default;
 	Rect(Vector2i p, int s) : x(p.x), y(p.y), w(s), h(s) {}

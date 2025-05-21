@@ -11,7 +11,7 @@ Slider::Slider(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElem
     knob_spr.Init(game->renderer.GetRenderer(), knob_info);
 
     label_offset = game->GetResScale() * 6;
-    label.MoveTo(Vector2i(pos.x, pos.y - label_offset));
+    label.MoveTo({ pos.x, pos.y - label_offset });
     label.SetOrigin();
 
     //Set the origin/anchor, scale, and position
@@ -30,10 +30,10 @@ Slider::Slider(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElem
         rounded_val = rounded_val.substr(0, rounded_val.find('.') + 3);
     }
     else if (elem == UIElems::CAMSPD) {
-        knob_pos = ((((2 * game->cam_move_spd) - 10) * .05) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
+        knob_pos = ((((2 * game->cam_move_spd)-2) /18) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
         //Set the value
-        rounded_val = to_string((round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 20) + 10) * .5);
+        rounded_val = to_string((round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 18) + 2) * .5);
         rounded_val = rounded_val.substr(0, rounded_val.find('.') + 2);
     }
     knob_spr.MoveTo({ (int)knob_pos, pos.y });
@@ -66,8 +66,8 @@ void Slider::GetInput() {
             dec_place = 3;
         }
         else if (elem == UIElems::CAMSPD) {
-            //Camera speed goes from 5 to 15 and increments by .5
-            new_val = (round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 20) + 10) * .5;
+            //Camera speed goes from 1 to 10 in increments of .5
+            new_val = (round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 18) + 2) * .5;
             game->cam_move_spd = new_val;
 
             dec_place = 2;
@@ -114,7 +114,7 @@ void Slider::Move() {
     else if (elem == UIElems::SFX_V)
         knob_pos = knob_pos_min + (game->GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
     else if (elem == UIElems::CAMSPD)
-        knob_pos = ((((2 * game->cam_move_spd) - 10) * .05) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
+        knob_pos = ((round((2 * game->cam_move_spd)-2) /18) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
     knob_spr.MoveTo({ (int)knob_pos, pos.y });
 

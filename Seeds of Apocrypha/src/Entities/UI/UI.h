@@ -16,9 +16,9 @@ public:
     virtual void Resize(uint r_s);
 
     void SetActive(const bool new_active = true);
-    bool GetActive() const { return active; }
-    bool GetActivated() const { return activated; }
-    UIElems GetElem() const { return elem; }
+    inline bool GetActive() const { return active; }
+    inline bool GetActivated() const { return activated; }
+    inline UIElems GetElem() const { return elem; }
 
 protected:
     //Variables

@@ -60,7 +60,7 @@ public:
 	virtual void Draw() override;
 
 	//Path stuff
-	void SetPath(queue<Vector2i> new_path) { path = new_path; }
+	inline void SetPath(queue<Vector2i> new_path) { path = new_path; }
 	void WalkPath();
 
 	//Primary stats
@@ -69,42 +69,42 @@ public:
 
 	//Derived stats
 	void SetMaxHealth();
-	float GetMaxHealth() const { return stats.max_hlth; }
+	inline float GetMaxHealth() const { return stats.max_hlth; }
 
 	void SetHealth(float new_hlth);
-	float GetHealth() const { return stats.hlth; }
+	inline float GetHealth() const { return stats.hlth; }
 
 	void SetNatArmor(float n_a);
-	uint GetNatArmor() const { return stats.nat_armor; }
+	inline uint GetNatArmor() const { return stats.nat_armor; }
 
 	void SetWornArmor(float w_a);
-	float GetWornArmor() const { return stats.worn_armor; }
+	inline float GetWornArmor() const { return stats.worn_armor; }
 
-	void SetFlySpeed() { if (winged and can_fly) stats.f_spd = stats.base_spd + (.5f * stats.str); }
-	float GetFlySpeed() const { return stats.f_spd; }
+	inline void SetFlySpeed() { if (winged and can_fly) stats.f_spd = stats.base_spd + (.5f * stats.str); }
+	inline float GetFlySpeed() const { return stats.f_spd; }
 
 
 	//Functions that interact with protected members
-	string GetName() const { return stats.name; }
-	Vector2f GetDEF() const { return { stats.m_def, stats.r_def }; }
-	Vector3f GetSaves() const { return { stats.fort, stats.ref, stats.will }; }
+	inline string GetName() const { return stats.name; }
+	inline Vector2f GetDEF() const { return { stats.m_def, stats.r_def }; }
+	inline Vector3f GetSaves() const { return { stats.fort, stats.ref, stats.will }; }
 
-	void SetCanFly(bool c_f = true) { can_fly = c_f; SetFlySpeed(); }
+	inline void SetCanFly(bool c_f = true) { can_fly = c_f; SetFlySpeed(); }
 
 protected:
 	Stats stats;
 	bool biped = true;
 	bool winged = false;
 	bool can_fly = false;
-	int mv_spd = 4;
+	int mv_spd = 1;
 	float action_carryover = 0;
 	int dodge_penalty = 0;
 	bool encumbered = false;
 	bool in_combat = false;
 	Text nameplate;
 
-	//unordered_map<Items, unique_ptr<Item>> inv;
-	//unordered_map<Items, unique_ptr<Item>> equipment;
+	//unordered_map<Items, Item> inv;
+	//unordered_map<Items, Item> equipment;
 
 	queue<Vector2i> path;
 

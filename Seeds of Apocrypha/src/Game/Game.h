@@ -18,7 +18,7 @@ public:
 
     //Camera
     Camera camera;
-    float cam_move_spd = 10.f;
+    float cam_move_spd = 5.f; //1 - 10 by .5
     bool cam_locked = false;
 
     //Window + rendering target

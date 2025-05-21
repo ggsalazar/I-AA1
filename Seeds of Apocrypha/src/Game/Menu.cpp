@@ -18,24 +18,24 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 
     //Menu and Supp text variables
     menu_text.SetOrigin();
-    Vector2i m_t_pos = { 0, 0 };
+    Vector2i m_t_pos = { 0 };
     string m_t_str = "MENU DEFAULT";
 
     sup_text.SetOrigin();
-    Vector2i s_t_pos = { 0, 0 };
+    Vector2i s_t_pos = { 0 };
     string s_t_str = "SUPPLEMENTARY DEFAULT";
     float s_t_str_max_w = -1;
 
     Sprite::Info elem_info = {}; elem_info.origin = ui_ori; elem_info.scale = ui_scale;
-    float e_y_buffer = 0;
+    int e_y_buffer = 0;
     //What we do depends on our label
     switch (label) {
 
         //Menus
         case Menus::CHARCREA: {
             m_t_pos = Round(game.resolution.x * .5f, game.resolution.y * .1f); m_t_str = "Create Your Party";
-            s_t_pos = Round((float)m_t_pos.x, game.resolution.y * .13f); s_t_str = "Use the options below to create your party of 4 adventurers";
-            s_t_str_max_w = round(game.resolution.x * .33f);
+            s_t_pos = Round(m_t_pos.x, game.resolution.y * .13f); s_t_str = "Use the options below to create your party of 4 adventurers";
+            s_t_str_max_w = game.resolution.x * .33f;
 
             elem_info.pos = Round(game.resolution.x * .2f, game.resolution.y * .25f);
             elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
@@ -77,8 +77,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
             //Apparently need to decrease m_t & s_t font sizes (TO-DO)
             m_t_pos = Round(game.resolution.x * .5f, game.resolution.y * .2f); m_t_str = "Determine Your Ability Scores";
-            s_t_pos = Round((float)m_t_pos.x, game.resolution.y * .23f); s_t_str = "Your Ability Scores --";
-            s_t_str_max_w = round(game.resolution.x * .33f);
+            s_t_pos = Round(m_t_pos.x, game.resolution.y * .23f); s_t_str = "Your Ability Scores --";
+            s_t_str_max_w = game.resolution.x * .33f;
 
             elem_info.pos = Round(game.resolution.x * .5f, game.resolution.y * .2f);
             elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
@@ -123,8 +123,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             //Ability Scores: STR, CON, AGI, DEX, INT, WIS, CHA
             //Adjust font sizes - TO-DO
             m_t_pos = Round(game.resolution.x * .5f, game.resolution.y * .2f); m_t_str = "Pick Your Class";
-            s_t_pos = Round((float)m_t_pos.x, game.resolution.y * .23f); s_t_str = "Your Class determines your role in combat and the abilities you will learn as you progress";
-            s_t_str_max_w = round(game.resolution.x * .33f);
+            s_t_pos = Round(m_t_pos.x, game.resolution.y * .23f); s_t_str = "Your Class determines your role in combat and the abilities you will learn as you progress";
+            s_t_str_max_w = game.resolution.x * .33f;
 
             //Pickers
             elem_info.pos = Round(game.resolution.x * .5f, game.resolution.y * .2f);
@@ -150,8 +150,8 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             //Aesthetics have suggested features, but none are locked out from any aesthetics (except Automata)
             //Adjust font size - TO-DO
             m_t_pos = Round(game.resolution.x * .5f, game.resolution.y * .2f); m_t_str = "Pick Your Race";
-            s_t_pos = Round((float)m_t_pos.x, game.resolution.y * .23f); s_t_str = "Your Race influences your appearance, some of your capabilities, and how others react to you";
-            s_t_str_max_w = round(game.resolution.x * .33f);
+            s_t_pos = Round(m_t_pos.x, game.resolution.y * .23f); s_t_str = "Your Race influences your appearance, some of your capabilities, and how others react to you";
+            s_t_str_max_w = game.resolution.x * .33f;
 
             //Pickers
             elem_info.pos = Round(game.resolution.x * .5f, game.resolution.y * .4f);
@@ -181,10 +181,10 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         case Menus::MAIN: {
 
             m_t_pos = Round(game.resolution.x * .5f, game.resolution.y * .12f); m_t_str = m_t_str = "Seeds of Apocrypha";
-            s_t_pos = Round((float)m_t_pos.x, game.resolution.y * .15f); s_t_str = "An Iron & Aether Adventure";
+            s_t_pos = Round(m_t_pos.x, game.resolution.y * .15f); s_t_str = "An Iron & Aether Adventure";
 
             elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
-            elem_info.pos = Round((float)m_t_pos.x, game.resolution.y * .4f);
+            elem_info.pos = Round(m_t_pos.x, game.resolution.y * .4f);
 
             e_y_buffer = round(game.resolution.y * .1f);
 
@@ -210,9 +210,9 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 
         case Menus::OPTIONS: {
             m_t_pos = Round(game.resolution.x * .5f, game.resolution.y * .12f); m_t_str = "Seeds of Apocrypha";
-            s_t_pos = Round((float)m_t_pos.x, game.resolution.y * .15f); s_t_str = "Options";
+            s_t_pos = Round(m_t_pos.x, game.resolution.y * .15f); s_t_str = "Options";
 
-            elem_info.pos = Round((float)m_t_pos.x, game.resolution.y * .3f);
+            elem_info.pos = Round(m_t_pos.x, game.resolution.y * .3f);
             elem_info.sheet = "UI/Slider"; elem_info.frame_size = { 192, 27 };
 
             e_y_buffer = round(game.resolution.y * .09f);
@@ -249,20 +249,20 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
         }
         
         case Menus::OPTIONS_G: {
-            m_t_pos = Round((float)game.camera.GetCenter().x, game.camera.viewport.y + game.camera.viewport.h*.2f); m_t_str = "Options";
+            m_t_pos = Round(game.camera.GetCenter().x, game.camera.viewport.y + game.camera.viewport.h * .2f); m_t_str = "Options";
             s_t_pos = { 0 }; s_t_str = "";
 
-            Vector2i elem_pos = Round((float)m_t_pos.x, game.camera.viewport.y + game.camera.viewport.h * .28f);
-            uint elem_y_buffer = round(game.camera.viewport.y * .1f);
+            elem_info.pos = Round(m_t_pos.x, game.camera.viewport.y + game.camera.viewport.h * .28f);
+            e_y_buffer = round(game.camera.viewport.y * .1f);
             elem_info.sheet = "UI/Slider"; elem_info.frame_size = { 192, 27 };
 
             //Music, sfx, and cam speed sliders
             ui_elems.insert({ UIElems::MUSIC_V, make_s<Slider>(&game, &scene, *this, elem_info, UIElems::MUSIC_V) });
 
-            elem_pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElems::SFX_V, make_s<Slider>(&game, &scene, *this, elem_info, UIElems::SFX_V) });
 
-            elem_pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElems::CAMSPD, make_s<Slider>(&game, &scene, *this, elem_info, UIElems::CAMSPD) });
 
             //Edge Panning Toggle [TO-DO]
@@ -271,15 +271,15 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
             elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
 
             //Close button
-            elem_pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElems::CLOSE, make_s<Button>(&game, &scene, *this, elem_info, UIElems::CLOSE) });
 
             //Return to Title
-            elem_pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElems::TITLE, make_s<Button>(&game, &scene, *this, elem_info, UIElems::TITLE) });
 
             //Quit
-            elem_pos.y += elem_y_buffer;
+            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElems::QUIT, make_s<Button>(&game, &scene, *this, elem_info, UIElems::QUIT) });
             break;
         }
@@ -298,17 +298,17 @@ Menu::Menu(Game& g, Scene& s, const Menus init_label) :
 
 void Menu::Update() {
     if (open) {
-        Vector2i m_t_pos = { 0, 0 };
-        Vector2i s_t_pos = { 0, 0 };
-        Vector2i elem_pos = { 0, 0 };
-        uint elem_y_buffer = 0;
+        Vector2i m_t_pos = { 0 };
+        Vector2i s_t_pos = { 0 };
+        Vector2i elem_pos = { 0 };
+        int elem_y_buffer = 0.f;
         
 
         switch (label) {
             case Menus::OPTIONS_G:
-                menu_text.info.pos = Round((float)game.camera.GetCenter().x, game.camera.viewport.y + game.camera.viewport.h *.2f);
+                menu_text.info.pos = Round(game.camera.GetCenter().x, game.camera.viewport.y + game.camera.viewport.h * .2);
 
-                elem_pos = Round((float)game.camera.GetCenter().x, game.camera.viewport.y + game.camera.viewport.h * .25f);
+                elem_pos = Round(game.camera.GetCenter().x, game.camera.viewport.y + game.camera.viewport.h * .25f);
 
                 //This would be easier to do with a vector, but switching from a u_map to a vector at this point would just be a pain in the ass
                 for (const auto& ui : ui_elems) {
@@ -375,7 +375,7 @@ void Menu::OpenSM(const Menus s_m) {
 
 void Menu::Resize() {
     //Resize all text and UI elements according to the new res scalar and window dimensions
-    float res_scalar = game.GetResScale();
+    int res_scalar = game.GetResScale();
 
     //A more efficient way to do this would be to base the new size on the old size and do some funky math shit with the scalar, but this works for now
     Vector2i new_m_t_pos = Round(game.resolution.x * .5f, game.resolution.y * .5f);
@@ -409,7 +409,7 @@ void Menu::Resize() {
     sup_text.info.pos = new_s_t_pos;
 
     //UI Elements
-    Vector2i new_pos = Round(game.resolution.x * .5f, game.resolution.y * .5f);
+    Vector2i new_pos = Round(game.resolution * .5f);
 
     for (const auto& ui : ui_elems) {
         auto& u = ui.second;
@@ -417,7 +417,7 @@ void Menu::Resize() {
         u->Resize(res_scalar);
 
         //Adjust the positions - there has to be a more efficient goddamn way of doing this
-        Vector2i gr = Vector2i(game.resolution);
+        Vector2u gr = game.resolution;
         switch (ui.first) {
             case UIElems::APPLY:
                 new_pos = Round(gr.x * .5f, gr.y * .66f);
@@ -484,7 +484,7 @@ void Menu::Resize() {
                 break;
 
             case UIElems::FULLSCREEN: {
-                new_pos = Round(gr.x * (.5f + res_scalar * .01f), gr.y * .57f);
+                new_pos = Round(gr.x * (.5f + res_scalar * .01f), gr.y * .57f );
                 string new_status = "False";
                 if (game.resolution == game.window.ScreenSize())
                     new_status = "True";

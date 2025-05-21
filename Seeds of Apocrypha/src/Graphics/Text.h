@@ -22,9 +22,7 @@ public:
     Circle pos_debug;
 
     Text() : pos_debug({ 0 }, 4) {}
-    Text(Font* f, const Info& i = {}) :
-        font(f), info(i), pos_debug(info.pos, 4) {
-    }
+    Text(Font* f, const Info& i = {}) : font(f), info(i), pos_debug(info.pos, 4) {}
     ~Text() {}
 
     void Init(Font* f, const Info& i = {}) {

@@ -9,11 +9,11 @@ public:
 
     void GetInput() override;
     void Draw() override;
-    void MoveBy(Vector2i offset) override { Entity::MoveBy(offset); Move(); }
-    void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
+    inline void MoveBy(Vector2i offset) override { Entity::MoveBy(offset); Move(); }
+    inline void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
     void SetPicking(const string new_p);
-    string GetPicking() { return picking.info.str; }
+    inline string GetPicking() const { return picking.info.str; }
 
 private:
     //Variables
@@ -29,11 +29,11 @@ private:
     //Functions
     void Move() override;
 
-    bool LeftSelected() { return Collision::Point(Input::MousePos(), l_bbox); }
-    void LeftPressed() { l_primed = true; }
+    inline bool LeftSelected() { return Collision::Point(Input::MousePos(), l_bbox); }
+    inline void LeftPressed() { l_primed = true; }
     void LeftReleased();
 
-    bool RightSelected() { return Collision::Point(Input::MousePos(), r_bbox); }
-    void RightPressed() { r_primed = true; }
+    inline bool RightSelected() { return Collision::Point(Input::MousePos(), r_bbox); }
+    inline void RightPressed() { r_primed = true; }
     void RightReleased();
 };

@@ -41,7 +41,7 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 		tilesets["Water"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Water.png");
 	}
 	for (auto& [name, tex] : tilesets)
-		SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_PIXELART);
+		SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_LINEAR);
 
 
 	string ts_name;

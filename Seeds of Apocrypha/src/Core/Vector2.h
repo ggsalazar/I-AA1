@@ -99,6 +99,10 @@ template<typename T>
 Vector2<int> Round(const T x, const T y) {
     return { static_cast<int>(std::round(x)), static_cast<int>(std::round(y)) };
 }
+template<typename T, typename U>
+Vector2<int> Round(const T x, const U y) {
+    return { static_cast<int>(std::round(x)), static_cast<int>(std::round(y)) };
+}
 
 //Universal scalar multiplication & division
 template<typename T>
