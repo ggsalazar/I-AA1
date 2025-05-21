@@ -9,7 +9,7 @@ public:
     uint ui_layer;
     Text label;
 
-    UI(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+    UI(Menu& m, const Sprite::Info& s_i, const UIElems e,
         const uint init_ui_layer = 0);
 
     virtual void GetInput() override;

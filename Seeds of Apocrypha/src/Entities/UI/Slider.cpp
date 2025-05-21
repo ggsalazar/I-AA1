@@ -1,14 +1,14 @@
 #include "Slider.h"
 #include "../../Core/Math.h"
 
-Slider::Slider(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+Slider::Slider(Menu& m, const Sprite::Info& s_i, const UIElems e,
     const uint init_ui_layer)
-    : UI(g, s, m, s_i, e, init_ui_layer),
+    : UI(m, s_i, e, init_ui_layer),
     knob_label(&game->default_fonts[36]) {
 
     Sprite::Info knob_info = {}; knob_info.sheet = "UI/SliderKnob"; knob_info.frame_size = { 6, 18 };
     knob_info.scale = sprite.GetScale();
-    knob_spr.Init(game->renderer.GetRenderer(), knob_info);
+    knob_spr.Init(knob_info);
 
     label_offset = game->GetResScale() * 6;
     label.MoveTo({ pos.x, pos.y - label_offset });

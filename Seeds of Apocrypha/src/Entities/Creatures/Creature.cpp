@@ -1,15 +1,15 @@
 #include "Creature.h"
 
-Creature::Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats,
+Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged)
-	: Entity(g, s, s_i),
+	: Entity(s_i),
 	stats(init_stats), biped(init_biped), winged(init_winged) {
 
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
 	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = { 48, 48 };
 	por_info.scale = game->GetResScale();
-	portrait.Init(game->renderer.GetRenderer(), por_info);
+	portrait.Init(por_info);
 	//Portrait bbox
 	por_bbox.w = portrait.GetSprSize().x * 1.05f;
 	por_bbox.h = portrait.GetSprSize().y * 1.05f;
@@ -61,7 +61,7 @@ Creature::Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init
 		break;
 	}
 	//Set move speed
-	mv_spd = game->GetResScale() * 1.5;
+	mv_spd = TS *.25f;
 
 	//Calculate the derived stats
 	//SetAbilityScore (also sets saves and ancillary stats)
@@ -81,8 +81,14 @@ Creature::Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init
 	//Natural and worn armor will have to be set manually
 }
 
+void Creature::GetInput() {
+	if (Collision::Point(Input::MousePos(), por_bbox)) {
+		scene->lmb_action = false;
+	}
+}
+
 void Creature::Update() {
-	//Position of portrait will be updated here
+	//Position of portrait in combat will be updated here
 
 	por_bbox.x = portrait.GetPos().x - round(portrait.GetSprSize().x * .025f);
 	por_bbox.y = portrait.GetPos().y - round(portrait.GetSprSize().y * .025f);
@@ -94,9 +100,10 @@ void Creature::Update() {
 void Creature::Draw() {
 	Entity::Draw();
 
-	//Creatures will draw their portraits in combat at the proper location and sizing (currently acting combatant's frame will be slightly larger and have a special frame)
+	//Creatures will draw their portraits in combat at the proper location and sizing
+	// currently acting combatant's frame will be slightly larger and have a special frame
 
-	game->renderer.DrawPath(path);
+	//game->renderer.DrawPath(path);
 }
 
 void Creature::WalkPath() {
@@ -104,20 +111,20 @@ void Creature::WalkPath() {
 		Vector2i next_pos = path.front();
 		if (pos != next_pos) {
 
-			Vector2f offset = { 0, 0 };
+			Vector2f offset = { 0 };
 
 			//Moving up
 			if (pos.y > next_pos.y)
-				offset.y = -min(mv_spd, pos.y - next_pos.y);
+				offset.y = -min(mv_spd, (float)(pos.y - next_pos.y));
 			//Moving down
 			else if (pos.y < next_pos.y)
-				offset.y = min(mv_spd, next_pos.y - pos.y);
+				offset.y = min(mv_spd, (float)(next_pos.y - pos.y));
 			//Moving left
 			if (pos.x > next_pos.x)
-				offset.x = -min(mv_spd, pos.x - next_pos.x);
+				offset.x = -min(mv_spd, (float)(pos.x - next_pos.x));
 			//Moving right
-			if (pos.x < next_pos.x)
-				offset.x = min(mv_spd, next_pos.x - pos.x);
+			else if (pos.x < next_pos.x)
+				offset.x = min(mv_spd, (float)(next_pos.x - pos.x));
 
 			//Normalize diagonal movement
 			if (offset.x != 0 and offset.y != 0)

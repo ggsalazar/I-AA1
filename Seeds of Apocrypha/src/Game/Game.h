@@ -1,7 +1,6 @@
 #pragma once
 #include <chrono>
-#include <unordered_map>
-#include "Scene.h" //Menu (unordered_map, Aliases, Enums, Vector2 (iostream), Text (Font))
+#include "Scene.h" //unordered_map, Geometry, Pathfinding (Aliases), TileMap)
 #include "../Core/Camera.h" //Geometry
 #include "../Graphics/Window.h"
 #include "../Graphics/Renderer.h" //SDL_render, Sprite (SDL_image)
@@ -19,7 +18,6 @@ public:
     //Camera
     Camera camera;
     float cam_move_spd = 5.f; //1 - 10 by .5
-    bool cam_locked = false;
 
     //Window + rendering target
     Window window;

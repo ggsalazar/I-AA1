@@ -5,7 +5,7 @@ class Toggle : public UI {
 public:
     bool on = false;
 
-    Toggle(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+    Toggle(Menu& m, const Sprite::Info& s_i, const UIElems e,
         const uint init_ui_layer = 0);
 
     void Draw() override;

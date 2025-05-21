@@ -1,8 +1,10 @@
 #include <thread>
 #include <string>
 #include "Game.h"
+#include "Menu.h"
 #include "../Core/Input.h"
 #include "../Core/Math.h"
+#include "../Entities/Entity.h"
 
 Game::Game(const char* title, uint init_fps)
     : fps(init_fps), resolution(min_res * 2),
@@ -18,10 +20,14 @@ Game::Game(const char* title, uint init_fps)
 
     //Set the resolution, camera dimensions, and tile size
     resolution = window.WinSize();
+    Sprite::SetRenderer(renderer.GetRenderer());
     camera.viewport.w = resolution.x;
     camera.viewport.h = resolution.y;
     TS = GetResScale() * BASE_TS;
     METER = 2 * TS;
+
+    //Set the game pointer in Entity
+    Entity::SetGame(this);
 
     //Initialize the Input namespace
     Input::Init(&window, &camera);
@@ -35,15 +41,19 @@ Game::Game(const char* title, uint init_fps)
     //Play the title track - TO-DO
 
     //Initialize Scenes
-    scenes.insert({ Scenes::TITLE, Scene(this, Scenes::TITLE) });
-    scenes.insert({ Scenes::CUTSCENE, Scene(this, Scenes::CUTSCENE) });
-    scenes.insert({ Scenes::AREA, Scene(this, Scenes::AREA) });
+    Scene::SetGame(this);
+    scenes.insert({ Scenes::TITLE, Scene(Scenes::TITLE) });
+    scenes.insert({ Scenes::CUTSCENE, Scene(Scenes::CUTSCENE) });
+    scenes.insert({ Scenes::AREA, Scene(Scenes::AREA) });
+
+    //Menus
+    Menu::SetGame(this);
 
     //Initialize cursor
     //Cursor sprite info
     Sprite::Info csi = {};
     csi.sheet = "UI/Cursors"; csi.frame_size = { 16 }; csi.scale = resolution.x / min_res.x;
-    cursor.Init(renderer.GetRenderer(), csi);
+    cursor.Init(csi);
     //SDL_SetWindowRelativeMouseMode(); This will lock the cursor to the game window
     SDL_HideCursor();
 }

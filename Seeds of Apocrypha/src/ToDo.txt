@@ -2,14 +2,15 @@ SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
 Tutorial:  -Need to properly scale tiles for different resolutions
 				--Being scaled, but looking blurry for some reason
-			-Dakn movement jittery for some reason - something to do with how next position is calculated?
-			-Node grid not being properly populated for some reason
-			-Adjustable zoom levels
+			-In-game cam locking
+				--Polish
+					---Make cam sprite 12x12
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith
 					---Shopping (after implementing inventory)
 				--Quest Giver
+			-Fix camera clamping in Scene.cpp
 			-Interfaces
 				--Quest Journal
 				--Map
@@ -27,8 +28,6 @@ Tutorial:  -Need to properly scale tiles for different resolutions
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
-		- Portraits should be around 48x48ish, but absolutely no bigger than 60x60
-		- In the future, reduce the use of pointers whereever possible (especially vis-a-vis Menus)
 
 Main Menu
 	-Character creation
@@ -90,3 +89,8 @@ Game starts on train! Train heist
 	 all within first hour! Then expand on those two things throughout the rest of the game
 
 Portraits - use a single texture that contains all portraits?
+
+Future Improvements:
+	-Adjustable zoom (difficult to get right in a pixel art game)
+	-Reduce the use of smart pointers, ideally to 0
+	-Allow for custom UI arrangement

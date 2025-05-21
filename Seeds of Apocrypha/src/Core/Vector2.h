@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <cmath>
-#include <type_traits>
 
 #define VEC2_INLINE [[nodiscard]] constexpr inline
 
@@ -91,17 +90,27 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const Vector2<T>& v) { return os << v.x << ", " << v.y; }
 
 //Rounding
-template<typename T, std::enable_if_t<std::is_arithmetic_v<T>, int> = 0>
+template<typename T>
 [[nodiscard]] constexpr Vector2<int> Round(const Vector2<T>& v) {
     return { static_cast<int>(std::round(v.x)), static_cast<int>(std::round(v.y)) };
 }
 template<typename T>
-Vector2<int> Round(const T x, const T y) {
+[[nodiscard]] constexpr Vector2<int> Round(const T x, const T y) {
     return { static_cast<int>(std::round(x)), static_cast<int>(std::round(y)) };
 }
 template<typename T, typename U>
-Vector2<int> Round(const T x, const U y) {
+[[nodiscard]] constexpr Vector2<int> Round(const T x, const U y) {
     return { static_cast<int>(std::round(x)), static_cast<int>(std::round(y)) };
+}
+
+//Distance
+template<typename T>
+[[nodiscard]] constexpr float Distance(const Vector2<T>& v1, const Vector2<T>& v2) {
+    return sqrt((v2.x - v1.x) * (v2.x - v1.x) + (v2.y - v1.y) * (v2.y - v1.y));
+}
+template<typename T, typename U>
+[[nodiscard]] constexpr float Distance(const Vector2<T>& v1, const Vector2<U>& v2) {
+    return sqrt((v2.x - v1.x) * (v2.x - v1.x) + (v2.y - v1.y) * (v2.y - v1.y));
 }
 
 //Universal scalar multiplication & division

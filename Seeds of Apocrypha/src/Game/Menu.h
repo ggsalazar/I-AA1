@@ -13,13 +13,14 @@ class UI;
 
 class Menu {
 public:
-    Menu(Game& g, Scene& s, const Menus init_label);
+    Menu(const Menus init_label);
     ~Menu() {
         for (auto [_, sm] : sub_menus) {
             delete sm;
             sm = nullptr;
         }
     }
+    static inline void SetGame(Game* g) { game = g; }
 
     //Engine
     void Update();
@@ -55,6 +56,6 @@ protected:
     Vector2i ui_scale = { 1, 1 };
 
     //Pointers
-    Game& game;
+    static inline Game* game;
     Scene& scene;
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include <queue>
 #include "../Entity.h"
+#include "../../Core/Input.h" //Window
 #include "../../Core/Vector3.h"
 
 class Creature : public Entity {
@@ -52,10 +53,11 @@ public:
 	Sprite portrait;
 	Rect por_bbox;
 
-	Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats = {},
+	Creature(const Sprite::Info& s_i, const Stats& init_stats = {},
 		const string por_name = "Placeholder", const bool init_biped = true, const bool init_winged = false);
 
 	//Engine stuff
+	virtual void GetInput() override;
 	virtual void Update() override;
 	virtual void Draw() override;
 
@@ -96,7 +98,7 @@ protected:
 	bool biped = true;
 	bool winged = false;
 	bool can_fly = false;
-	int mv_spd = 1;
+	float mv_spd = 1;
 	float action_carryover = 0;
 	int dodge_penalty = 0;
 	bool encumbered = false;

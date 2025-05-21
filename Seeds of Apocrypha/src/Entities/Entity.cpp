@@ -2,9 +2,10 @@
 
 #undef PlaySound
 
-Entity::Entity(Game* g, Scene* s, const Sprite::Info& s_i)
-    : game(g), scene(s), pos(s_i.pos), pos_debug(pos, 4), bbox(pos, size) /*sound(sb)*/ {
-    sprite.Init(game->renderer.GetRenderer(), s_i);
+Entity::Entity(const Sprite::Info& s_i)
+    : scene(game->active_scene), pos(s_i.pos), pos_debug(pos, 4) /*sound(sb)*/ {
+    sprite.Init(s_i);
+    Entity::MoveTo(pos);
     Entity::Move();
 }
 

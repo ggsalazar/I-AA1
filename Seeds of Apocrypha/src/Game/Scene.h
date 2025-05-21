@@ -16,16 +16,22 @@ class Scene {
 public:
     Scenes label;
     bool selecting = false;
+    //Are we using the default action at the moment? We aren't when:
+    // -Clicking UI elements (including all creature portraits)
+    // -The game is paused
+    // -No party members are selected
+    bool lmb_action = true;
     Interfaces interface_open = Interfaces::NONE;
 
     Scene() = default;
-    Scene(Game* g, Scenes init_label) : game(g), label(init_label) {}
+    Scene(Scenes init_label) : label(init_label) {}
     ~Scene() {
         for (auto [_, m] : menus) {
             delete m;
             m = nullptr;
         }
     }
+    static inline void SetGame(Game* g) { game = g; }
     void Open(const bool o = true);
     inline bool IsOpen() const { return open; }
 
@@ -44,7 +50,7 @@ public:
     void MoveCamera();
     void SelectPartyMems();
     Actions LMBAction();
-    void SetGameCursor(Actions action);
+    void SetGameCursor(Actions action = Actions::DEFAULT);
 
     //Entities
     inline void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
@@ -57,6 +63,9 @@ public:
     void CreatePreGen(PreGens p_g);
     inline vector<s_ptr<PartyMember>> GetPartyMems() const { return party_mems; }
     inline void SetPartyMems(vector<s_ptr<PartyMember>> p_ms) { party_mems = p_ms; }
+
+    //NPCs
+    void CreateNPC();
 
 private:
     bool open = false;
@@ -78,5 +87,5 @@ private:
     Rect selec_box;
     queue<Vector2i> found_path;
 
-    Game* const game = nullptr;
+    inline static Game* game = nullptr;
 };

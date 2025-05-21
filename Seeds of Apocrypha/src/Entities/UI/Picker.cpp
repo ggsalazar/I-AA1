@@ -1,8 +1,8 @@
 #include "Picker.h"
 
-Picker::Picker(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+Picker::Picker(Menu& m, const Sprite::Info& s_i, const UIElems e,
     const uint init_ui_layer)
-    : UI(g, s, m, s_i, e, init_ui_layer), picking(&game->default_fonts[36]) {
+    : UI(m, s_i, e, init_ui_layer), picking(&game->default_fonts[36]) {
 
     label_offset = game->GetResScale() * 6;
     label.MoveTo({ pos.x, pos.y - label_offset });

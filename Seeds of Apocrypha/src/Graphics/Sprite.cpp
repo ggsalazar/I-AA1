@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-Sprite::Sprite(SDL_Renderer* renderer, const Info& i)
+Sprite::Sprite(const Info& i)
     : info(i), pos_debug(info.pos, 4) {
     SetSize();
     SetAnimFPS(info.anim_fps);
@@ -17,7 +17,7 @@ Sprite::Sprite(SDL_Renderer* renderer, const Info& i)
     SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
 }
 
-void Sprite::Init(SDL_Renderer* renderer, const Info& i) {
+void Sprite::Init(const Info& i) {
     info = i;
     SetSize();
     SetAnimFPS(info.anim_fps);

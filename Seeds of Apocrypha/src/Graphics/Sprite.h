@@ -30,20 +30,20 @@ public:
     Circle pos_debug;
 
     Sprite() : pos_debug({ 0 }, 4) {}
-    Sprite(SDL_Renderer* renderer, const Info& i = {});
+    Sprite(const Info& i);
     ~Sprite() { SDL_DestroyTexture(texture); }
 
-    void Init(SDL_Renderer* renderer, const Info& i = {});
+    void Init(const Info& i);
+
+    static inline void SetRenderer(SDL_Renderer* r) { renderer = r; }
 
     inline SDL_Texture* GetTexture() const { return texture; }
 
     void Update(const float dt);
 
 
-    //Spritesheet stuff
     inline Vector2i GetSheetSize() const { return info.sheet_size; }
 
-    //Sprite proper stuff
     inline Vector2i GetPos() const { return info.pos; }
     void MoveTo(const Vector2i& new_pos);
     void MoveBy(const Vector2i& offset);
@@ -97,4 +97,5 @@ public:
 private:
     Info info; //private because whenever a member is set, other ancillary functions must be performed
     SDL_Texture* texture = nullptr;
+    inline static SDL_Renderer* renderer;
 };

@@ -1,8 +1,8 @@
 #include "Toggle.h"
 
-Toggle::Toggle(Game* g, Scene* s, Menu& m, const Sprite::Info& s_i, const UIElems e,
+Toggle::Toggle(Menu& m, const Sprite::Info& s_i, const UIElems e,
 	const uint init_ui_layer)
-	: UI(g, s, m, s_i, e, init_ui_layer) {
+	: UI(m, s_i, e, init_ui_layer) {
 
 	label_offset = game->GetResScale() * 10;
 	label.SetOrigin({ 1.f, .5 });

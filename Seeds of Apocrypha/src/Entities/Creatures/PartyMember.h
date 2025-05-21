@@ -4,9 +4,10 @@
 class PartyMember : public Creature {
 public:
 	bool selected = false;
+	bool cam_locked = false;
 	uint party_position = 0;
 
-	PartyMember(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init_stats = {},
+	PartyMember(const Sprite::Info& s_i, const Stats& init_stats = {},
 		const string por_name = "Placeholder", const bool init_biped = true, const bool init_winged = false);
 
 	//Game stuff
@@ -18,4 +19,8 @@ private:
 	Rect hlth_bar;
 	Rect mssng_hlth_bar; //I don't think I need this
 	Text hlth_txt;
+	
+	//Cam locking
+	Sprite cam_sprite;
+	Rect cam_sprite_bbox;
 };
