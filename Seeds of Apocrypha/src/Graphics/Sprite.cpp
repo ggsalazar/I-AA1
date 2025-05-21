@@ -13,7 +13,7 @@ Sprite::Sprite(SDL_Renderer* renderer, const Info& i)
 
     Vector2f s_size;
     SDL_GetTextureSize(texture, &s_size.x, &s_size.y);
-    info.sheet_size = { (uint)s_size.x, (uint)s_size.y };
+    info.sheet_size = Round(s_size.x, s_size.y);
     SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
 }
 
@@ -30,7 +30,7 @@ void Sprite::Init(SDL_Renderer* renderer, const Info& i) {
 
     Vector2f s_size;
     SDL_GetTextureSize(texture, &s_size.x, &s_size.y);
-    info.sheet_size = { (uint)s_size.x, (uint)s_size.y };
+    info.sheet_size = Round(s_size.x, s_size.y);
     SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
 }
 

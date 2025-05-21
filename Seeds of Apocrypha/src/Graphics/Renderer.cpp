@@ -6,15 +6,14 @@
 
 Renderer::Renderer(SDL_Window* window, Camera* cam)
 	: camera(cam) {
-
+	
+	SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 	renderer = SDL_CreateRenderer(window, NULL);
 
 	surface = SDL_CreateSurface(2560, 1440, SDL_PIXELFORMAT_RGBA8888);
 
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-	if (!SDL_SetRenderVSync(renderer, 1))
-		std::cout << "Failed to set VSync: " << SDL_GetError() << "\n";
 }
 
 void Renderer::DrawSheet(const Sprite& sheet, const Vector2i& pos) {
@@ -48,24 +47,36 @@ void Renderer::DrawSprite(const Sprite& spr) {
 void Renderer::DrawTilemap(TileMap& tmp) {
 
 	SDL_Texture* ts_tex = nullptr;
-	vector<int> inds;
-	vector<SDL_Vertex> transformed_verts;
+	std::array<SDL_Vertex, 4> quad;
+	std::array<int, 6> tile_inds = { 0, 1, 2, 0, 2, 3 };
+	Vector2i tile_world_pos;
 
 	for (auto& [ts_name, verts] : tmp.verts_by_tileset) {
 		ts_tex = tmp.tilesets[ts_name];
-		inds = tmp.indices_by_tileset[ts_name];
-		transformed_verts = verts;
-		for (auto& v : transformed_verts) {
-			v.position.x -= camera->viewport.x;
-			v.position.y -= camera->viewport.y;
+
+		for (size_t i = 0; i < verts.size(); i += 4) {
+			// Get tile vertices
+			quad = {
+				verts[i + 0],
+				verts[i + 1],
+				verts[i + 2],
+				verts[i + 3]
+			};
+
+			// AABB cull in world space
+			if (!Collision::AABB(camera->viewport, Rect({(int)quad[0].position.x, (int)quad[0].position.y}, TS)))
+				continue;
+
+			// Now convert to screen space
+			for (auto& v : quad) {
+				v.position.x = round(v.position.x - camera->viewport.x);
+				v.position.y = round(v.position.y - camera->viewport.y);
+			}
+
+			// Draw visible tile
+			SDL_RenderGeometry(renderer, ts_tex, quad.data(), 4, tile_inds.data(), 6);
 		}
-		SDL_RenderGeometry(renderer, ts_tex, transformed_verts.data(), transformed_verts.size(), inds.data(), inds.size());
 	}
-
-	ts_tex = nullptr;
-
-	SDL_DestroyTexture(ts_tex);
-
 }
 
 void Renderer::DrawTxt(Text& txt) {
@@ -137,10 +148,7 @@ void Renderer::DrawGrid(const Vector2i& start, const Vector2i& end, const uint& 
 
 void Renderer::DrawPath(std::queue<Vector2i> path) {
 
-
-	std::cout << "Drawing path\n";
-
-	std::vector<Vector2i> path_v;
+	vector<Vector2i> path_v;
 	while (!path.empty()) {
 		path_v.push_back(path.front());
 		path.pop();

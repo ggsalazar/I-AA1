@@ -1,7 +1,6 @@
 #include <thread>
 #include <string>
 #include "Game.h"
-//#include "Scene.h"
 #include "../Core/Input.h"
 #include "../Core/Math.h"
 
@@ -17,12 +16,12 @@ Game::Game(const char* title, uint init_fps)
     target_frame_time = 1.f / fps;
     last_time = Clock::now();
 
-    //Set the resolution
+    //Set the resolution, camera dimensions, and tile size
     resolution = window.WinSize();
-
-    //Initialize the camera
     camera.viewport.w = resolution.x;
     camera.viewport.h = resolution.y;
+    TS = GetResScale() * BASE_TS;
+    METER = 2 * TS;
 
     //Initialize the Input namespace
     Input::Init(&window, &camera);
@@ -149,7 +148,6 @@ void Game::SetScene(Scenes scn) {
     }
     else
         cout << "That Scene does not exist!\n";
-
 }
 
 void Game::SetMusicVolume(float n_v) {
@@ -178,14 +176,8 @@ void Game::SetResolution(uint res_scalar) {
         res_scalar = 1;
         resolution = min_res;
     }
-    if (resolution == window.ScreenSize())
-        SDL_SetWindowFullscreen(window.GetWin(), true);
-    else {
-        SDL_SetWindowFullscreen(window.GetWin(), false);
-        SDL_SetWindowSize(window.GetWin(), resolution.x, resolution.y);
-    }
-    if (active_scene)
-        active_scene->ResizeMenus();
+
+    SetRes();
 }
 
 void Game::SetResolution(Vector2u n_r) {
@@ -196,14 +188,27 @@ void Game::SetResolution(Vector2u n_r) {
 
         resolution = n_r;
 
-        if (resolution == window.ScreenSize())
-            SDL_SetWindowFullscreen(window.GetWin(), true);
-        else {
-            SDL_SetWindowFullscreen(window.GetWin(), false);
-            SDL_SetWindowSize(window.GetWin(), resolution.x, resolution.y);
-        }
-        if (active_scene)
-            active_scene->ResizeMenus();
+        SetRes();
     }
 
+}
+
+void Game::SetRes() {
+    //Resize the window
+    if (resolution == window.ScreenSize())
+        SDL_SetWindowFullscreen(window.GetWin(), true);
+    else {
+        SDL_SetWindowFullscreen(window.GetWin(), false);
+        SDL_SetWindowSize(window.GetWin(), resolution.x, resolution.y);
+    }
+
+    //Resize the camera & tiles
+    camera.viewport.w = resolution.x;
+    camera.viewport.h = resolution.y;
+    TS = GetResScale() * BASE_TS;
+    METER = 2 * TS;
+
+    //Resize the menus
+    if (active_scene)
+        active_scene->ResizeMenus();
 }

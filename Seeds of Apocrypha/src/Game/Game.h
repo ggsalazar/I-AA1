@@ -7,10 +7,7 @@
 #include "../Graphics/Renderer.h" //SDL_render, Sprite (SDL_image)
 
 using Clock = std::chrono::high_resolution_clock;
-
 using namespace std;
-
-//class Scene;
 
 class Game {
 public:
@@ -75,7 +72,8 @@ public:
 
     void SetResolution(uint res_scalar);
     void SetResolution(Vector2u n_r);
-    uint GetResScale() const { return resolution.x / min_res.x; }
+    void SetRes();
+    int GetResScale() const { return resolution.x / min_res.x; }
 
     //Frame stuff
     uint GetFPS() const { return fps; }

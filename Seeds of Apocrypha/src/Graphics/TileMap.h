@@ -10,8 +10,10 @@ using json = nlohmann::json;
 using std::vector, std::cerr, std::cout, std::unordered_map, std::string;
 
 //Tile Size
-constexpr uint TS = 16;
-constexpr uint METER = 32;
+constexpr int BASE_TS = 16;
+constexpr int BASE_METER = 32;
+extern int TS;
+extern int METER;
 
 struct Tile {
 	Terrains terrain = Terrains::NORMAL;

@@ -1,6 +1,11 @@
 #include <string>
+#include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
+#include <SDL3/SDL_surface.h>
 #include "TileMap.h"
+
+int TS = 16;
+int METER = 32;
 
 bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 	//Unload the old tilemap, if there was one
@@ -36,7 +41,8 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 		tilesets["Water"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Water.png");
 	}
 	for (auto& [name, tex] : tilesets)
-		SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_NEAREST);
+		SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_PIXELART);
+
 
 	string ts_name;
 	SDL_Texture* ts_tex;
@@ -107,15 +113,14 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 					ts_tex = tilesets["Default"];
 				}
 				SDL_GetTextureSize(ts_tex, &tex_size.x, &tex_size.y);
-				//cout << tex_size << "\n";
-				t_p_r = tex_size.x / TS;
+				t_p_r = tex_size.x / BASE_TS;
 				tile_uv = { (float)(local_tile_id % t_p_r), (float)(local_tile_id / t_p_r) };
-				vert_uv = tile_uv * TS;
+				vert_uv = tile_uv * BASE_TS;
 
 				vert[0].tex_coord = { vert_uv.x / tex_size.x, vert_uv.y / tex_size.y };
-				vert[1].tex_coord = { (vert_uv.x + TS) / tex_size.x, vert_uv.y / tex_size.y };
-				vert[2].tex_coord = { (vert_uv.x + TS) / tex_size.x, (vert_uv.y + TS) / tex_size.y };
-				vert[3].tex_coord = { vert_uv.x / tex_size.x, (vert_uv.y + TS) / tex_size.y };
+				vert[1].tex_coord = { (vert_uv.x + BASE_TS) / tex_size.x, vert_uv.y / tex_size.y };
+				vert[2].tex_coord = { (vert_uv.x + BASE_TS) / tex_size.x, (vert_uv.y + BASE_TS) / tex_size.y };
+				vert[3].tex_coord = { vert_uv.x / tex_size.x, (vert_uv.y + BASE_TS) / tex_size.y };
 
 				SDL_FColor color = { 1.f, 1.f, 1.f, 1.f };
 				for (int i = 0; i < 4; ++i)

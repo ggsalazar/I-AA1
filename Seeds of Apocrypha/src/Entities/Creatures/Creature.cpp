@@ -77,8 +77,6 @@ Creature::Creature(Game* g, Scene* s, const Sprite::Info& s_i, const Stats& init
 	SetDEF();
 
 	//Natural and worn armor will have to be set manually
-
-
 }
 
 void Creature::Update() {

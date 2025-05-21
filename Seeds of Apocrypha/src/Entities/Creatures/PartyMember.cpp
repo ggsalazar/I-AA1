@@ -59,7 +59,7 @@ void PartyMember::Draw() {
 		game->renderer.DrawTxt(nameplate);
 
 		//Draw the missing health bar first, then the remaining health bar over it
-		game->renderer.DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {(uint)hlth_bar.w, (uint)hlth_bar.h} }, Color(1,0,0));
+		game->renderer.DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {hlth_bar.w, hlth_bar.h} }, Color(1,0,0));
 		game->renderer.DrawRect(hlth_bar, Color(0,1,0));
 
 		//Draw our remaining health numerically last

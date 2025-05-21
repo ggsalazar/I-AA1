@@ -12,6 +12,7 @@ void Pathfinding::Init(TileMap* t) {
 void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
 	bool node_walk = false;
 	uint node_cost = 0;
+
 	for (int col = 0; col < tmp->GetMapSizeTiles().x; ++col) {
 		for (int row = 0; row < tmp->GetMapSizeTiles().y; ++row) {
 			node_walk = tmp->GetTileData({ col, row }).terrain != Terrains::WATER;

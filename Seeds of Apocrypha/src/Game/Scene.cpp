@@ -204,7 +204,7 @@ void Scene::Draw() {
 
 	//Draw the selection box
 	if (selecting)
-		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .8), Color(0, 1, 0, .4));
+		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
@@ -260,7 +260,7 @@ void Scene::OpenInterface(Interfaces intrfc) {
 
 void Scene::MoveCamera() {
 	//Move the camera
-	bool cam_free = false;
+	bool cam_free = false; //This exists basically solely for debugging
 	//Can't move the camera if we are at or past the edge
 	Vector2i cam_pos = { game->camera.viewport.x, game->camera.viewport.y };
 	Vector2i cam_size = { game->camera.viewport.w, game->camera.viewport.h };
@@ -308,10 +308,11 @@ void Scene::MoveCamera() {
 			else if (Collision::Point(Input::MousePos(), right_edge))
 				new_cam_offset.x += game->cam_move_spd;
 		}
+
 		if (new_cam_offset.x != 0 and new_cam_offset.y != 0)
 			new_cam_offset *= 1.414f;
 
-		new_cam_offset = Round(new_cam_offset);
+		new_cam_offset = Round(new_cam_offset) * game->GetResScale();
 		game->camera.MoveBy(new_cam_offset);
 	}
 	//If the camera is locked to the party members, follow them automatically
@@ -335,6 +336,8 @@ void Scene::MoveCamera() {
 
 		game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), pos_avg, .1f)));
 	}
+
+	//Prevent cam from moving past the edges [TO-DO]
 }
 
 void Scene::SelectPartyMems() {
@@ -501,7 +504,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 	Sizes size = Sizes::MED;
 	Classes clss = Classes::WARRIOR;
 	string sprite = "Creatures/Sentients/PMPlaceholder";
-	Vector2u sprite_size = { METER, 2 * METER };
+	Vector2i sprite_size = { METER, 2 * METER };
 	uint level = 1;
 	bool sex = 0;
 	float str = 0;

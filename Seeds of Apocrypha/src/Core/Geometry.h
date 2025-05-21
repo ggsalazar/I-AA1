@@ -53,8 +53,8 @@ struct Rect {
 	int x=0, y=0, w=0, h=0;
 
 	Rect() = default;
-	Rect(Vector2i p, uint s) : x(p.x), y(p.y), w(s), h(s) {}
-	Rect(Vector2i p, Vector2u s) : x(p.x), y(p.y), w(s.x), h(s.y) {}
+	Rect(Vector2i p, int s) : x(p.x), y(p.y), w(s), h(s) {}
+	Rect(Vector2i p, Vector2i s) : x(p.x), y(p.y), w(s.x), h(s.y) {}
 
 	inline float Area() const { return w * h; }
 };

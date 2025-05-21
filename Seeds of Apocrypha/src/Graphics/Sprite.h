@@ -10,10 +10,10 @@ public:
         std::string sheet = "";
         Vector2i pos; //Worldspace position of the sprite
         Vector2f origin; //Anchor point of the sprite
-        Vector2u spr_size; //The size of the sprite in world space (i.e. after being scaled up/down)
-        Vector2u sheet_size; //The size of the sprite's spritesheet
+        Vector2i spr_size; //The size of the sprite in world space (i.e. after being scaled up/down)
+        Vector2i sheet_size; //The size of the sprite's spritesheet
         Vector2i scale{ 1 }; //The scale of the sprite - int BECAUSE this is a pixel art game!
-        Vector2u frame_size{ 1 }; //The literal, actual size of a single frame of the sprite
+        Vector2i frame_size{ 1 }; //The literal, actual size of a single frame of the sprite
         Color tint{ 1 }; //The color tint of the sprite
         float rot = 0.f; //Angle of rotation in degrees
         uint sheet_row = 0; //Which row of the sheet our current animation is on (each row should be a different animation)
@@ -41,7 +41,7 @@ public:
 
 
     //Spritesheet stuff
-    inline Vector2u GetSheetSize() const { return info.sheet_size; }
+    inline Vector2i GetSheetSize() const { return info.sheet_size; }
 
     //Sprite proper stuff
     inline Vector2i GetPos() const { return info.pos; }
@@ -49,12 +49,12 @@ public:
     void MoveBy(const Vector2i& offset);
 
     inline void SetSize() { info.spr_size = { info.scale.x * info.frame_size.x, info.scale.y * info.frame_size.y }; }
-    inline void SetSize(const Vector2u& s) {
+    inline void SetSize(const Vector2i& s) {
         info.spr_size = s;
         info.scale = { (int)(info.spr_size.x / info.frame_size.x), (int)(info.spr_size.y / info.frame_size.y) };
     }
-    inline Vector2u GetSprSize() const { return info.spr_size; }
-    inline Vector2u GetFrameSize() const { return info.frame_size; }
+    inline Vector2i GetSprSize() const { return info.spr_size; }
+    inline Vector2i GetFrameSize() const { return info.frame_size; }
 
     inline void SetScale(const Vector2i& s) {
         info.scale = s;
