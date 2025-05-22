@@ -1,0 +1,95 @@
+SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
+
+Tutorial:	-UI elements set their own sprites
+			-Print creature stats
+			-Base resolution is too small, maybe base should be 1280 x 720?
+			-Add in NPCs
+				--Dialogue system/trees
+				--Blacksmith
+					---Shopping (after implementing inventory)
+				--Quest Giver
+			-Fix camera clamping in Scene.cpp
+			-Interfaces
+				--Quest Journal
+				--Map
+					---Area Map
+					---World Map
+				--Character sheet/s
+				--Inventory
+			-area changing
+			-multi-party member movement & cam locking
+			-Total: 45 days
+				--Projected finish date: Late July
+			-Sentient creatures have separate head and body sprites (for customization)
+			-Intro cutscene
+			-Combat
+			-Explain all this shit
+
+General - Visual signifiers to show when an attack/action is at (dis)adv
+		- At some point going to have to adjust pathfinding to account for different elevations
+
+Main Menu
+	-Character creation
+		--In the middle, descriptive text of the thing being picked & the options the player can pick from
+		--Also in the middle(?), whatever sub-thing they are picking (aesthetics, features, skills, etc.)
+		--On the right, the character currently being made + characters already made
+		--Pre-Gen characters
+		--CreatePartyMember in Scene.cpp
+		--Automatic journalling
+		--Automatic dungeon mapping
+		--Back/Exit
+			---Confirm
+			---Delete created characters/wipe slate clean
+	-Continue/Load game
+		--Will require implementation of saving/loading
+Tutorial
+	-Town
+		--NPCs
+			---Blacksmith
+			---Troubled farmer
+	-Trow Mine
+		--Party Members
+			---Spark
+				----Outside the mine, scared to go in because of dead Trow
+				----Spells
+					-----Magic
+			---Essek
+				----Inside the mine, in a stalement with the last room of Trow
+		--Trow
+			---Melee
+				----AI
+				----2
+			---Ranged
+				----AI
+				----1
+In-game menus
+	-Interface sprite/bg
+	-Inventory
+	-Quest Journal
+	-Map
+	-Character Sheets
+	-How to arrange?
+
+Prologue
+	-Train
+		--Intro "Cutscene"
+		--NPCs
+		--Bad guys
+			---How many?
+			---Spacing?
+			---Boss?
+			---Motives?
+				----Connection to overarching plot?
+PartyMember
+	-SetPortraitPosition()
+
+Game starts on train! Train heist
+	-Establish magic and tech coexist, then illustrate that magic is going *wrong*, and how and why that's a problem
+	 all within first hour! Then expand on those two things throughout the rest of the game
+
+Portraits - use a single texture that contains all portraits?
+
+Future Improvements:
+	-Adjustable zoom (difficult to get right in a pixel art game)
+	-Reduce the use of smart pointers, ideally to 0
+	-Allow for custom UI arrangement
