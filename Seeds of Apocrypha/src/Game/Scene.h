@@ -71,6 +71,7 @@ public:
 private:
     bool open = false;
     Action action = Action::DEFAULT;
+    MouseTarget mouse_tar = MouseTarget::None;
 
     TileMap tilemap;
     Pathfinding grid;

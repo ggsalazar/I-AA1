@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+using std::string;
+
 constexpr float sqrt2 = 1.414f;
 
 //Skills & Scores
@@ -77,8 +79,18 @@ enum class Action {
 	Talk, //Mouth? Or speech bubble?
 	Throw_Item
 };
+inline string ActionToString(Action a) {
+	switch (a) {
+		case Action::DEFAULT: return "DEFAULT";
+		case Action::NOACTION: return "NO ACTION";
+		case Action::Move: return "Move";
+		case Action::Talk: return "Talk";
+		default: return "Unknown";
+	}
+}
 
 enum class Condition {
+	None,
 	Blind,
 	Charmed,
 	Deaf,
@@ -87,6 +99,12 @@ enum class Condition {
 	Stunned,
 	Unconscious
 };
+inline string CondToString(Condition c) {
+	switch (c) {
+		case Condition::None: return "None";\
+		default: return "Unknown";
+	}
+}
 
 enum class Class {
 	None,
@@ -94,12 +112,46 @@ enum class Class {
 	Rogue,
 	Warrior
 };
-/*inline Class StringToClass(std::string& s) {
+inline Class StringToClass(string s) {
 	if (s == "None") return Class::None;
 	else if (s == "Arcanist") return Class::Arcanist;
 	else if (s == "Rogue") return Class::Rogue;
 	else if (s == "Warrior") return Class::Warrior;
-}*/
+}
+inline string ClassToString(Class c) {
+	switch (c) {
+		case Class::None: return "None";
+		case Class::Arcanist: return "Arcanist";
+		case Class::Rogue: return "Rogue";
+		case Class::Warrior: return "Warrior";
+		default: return "Unknown";
+	}
+}
+
+enum class Disposition {
+	Friendly,
+	Amicable,
+	Neutral,
+	Testy,
+	Hostile
+};
+inline Disposition StringToDispo(string s) {
+	if (s == "Friendly") return Disposition::Friendly;
+	else if (s == "Amicable") return Disposition::Amicable;
+	else if (s == "Neutral") return Disposition::Neutral;
+	else if (s == "Testy") return Disposition::Testy;
+	else if (s == "Hostile") return Disposition::Hostile;
+}
+inline string DispoToString(Disposition d) {
+	switch (d) {
+		case Disposition::Friendly: return "Friendly";
+		case Disposition::Amicable: return "Amicable";
+		case Disposition::Neutral: return "Neutral";
+		case Disposition::Testy: return "Testy";
+		case Disposition::Hostile: return "Hostile";
+		default: return "Unknown";
+	}
+}
 
 enum class Genus {
 	Beast,
@@ -109,14 +161,25 @@ enum class Genus {
 	Sentient,
 	Undead
 };
-/*inline Genus StringToGenus(std::string& s) {
+inline Genus StringToGenus(string s) {
 	if (s == "Beast") return Genus::Beast;
 	else if (s == "Monstrosity") return Genus::Monstrosity;
 	else if (s == "Other") return Genus::Other;
 	else if (s == "Scorched") return Genus::Scorched;
 	else if (s == "Sentient") return Genus::Sentient;
 	else if (s == "Undead") return Genus::Undead;
-}*/
+}
+inline string GenusToString(Genus g) {
+	switch (g) {
+		case Genus::Beast: return "Beast";
+		case Genus::Monstrosity: return "Monstrosity";
+		case Genus::Other: return "Other";
+		case Genus::Scorched: return "Scorched";
+		case Genus::Sentient: return "Sentient";
+		case Genus::Undead: return "Undead";
+		default: return "Unknown";
+	}
+}
 
 enum class Race {
 	Automaton,
@@ -126,14 +189,25 @@ enum class Race {
 	Human,
 	Kobold
 };
-/*inline Race StringToRace(std::string& s) {
+inline Race StringToRace(string& s) {
 	if (s == "Automaton") return Race::Automaton;
 	else if (s == "Dwarf") return Race::Dwarf;
 	else if (s == "Elf") return Race::Elf;
 	else if (s == "Gnome") return Race::Gnome;
 	else if (s == "Human") return Race::Human;
 	else if (s == "Kobold") return Race::Kobold;
-}*/
+}
+inline string RaceToString(Race r) {
+	switch (r) {
+		case Race::Automaton: return "Automaton";
+		case Race::Dwarf: return "Dwarf";
+		case Race::Elf: return "Elf";
+		case Race::Gnome: return "Gnome";
+		case Race::Human: return "Human";
+		case Race::Kobold: return "Kobold";
+		default: return "Unknown";
+	}
+}
 
 enum class Size {
 	Tiny,
@@ -145,7 +219,7 @@ enum class Size {
 	Massive,
 	Colossal
 };
-/*inline Size StringToSize(std::string& s) {
+inline Size StringToSize(string& s) {
 	if (s == "Tiny") return Size::Tiny;
 	else if (s == "Small") return Size::Small;
 	else if (s == "Med") return Size::Med;
@@ -154,7 +228,20 @@ enum class Size {
 	else if (s == "Huge") return Size::Huge;
 	else if (s == "Massive") return Size::Massive;
 	else if (s == "Colossal") return Size::Colossal;
-}*/
+}
+inline string SizeToString(Size s) {
+	switch (s) {
+		case Size::Tiny: return "Tiny";
+		case Size::Small: return "Small";
+		case Size::Med: return "Med";
+		case Size::Big: return "Big";
+		case Size::Large: return "Large";
+		case Size::Huge: return "Huge";
+		case Size::Massive: return "Massive";
+		case Size::Colossal: return "Colossal";
+		default: return "Unknown";
+	}
+}
 
 enum class PreGens {
 	Spark, //Automaton Arcanist
@@ -167,6 +254,7 @@ enum class Item {
 };
 
 enum class Terrain {
+	None,
 	Normal,
 	Rough,
 	Water
@@ -184,7 +272,7 @@ enum class Area {
 	Tutton
 };
 
-enum class Cutscenes {
+enum class Cutscene {
 
 };
 
@@ -196,6 +284,17 @@ enum class Interface {
 	Map_Area,  //M
 	Map_World, 
 	Options    //O
+};
+
+enum class MouseTarget {
+	None,
+	Area_Edge,
+	Container,
+	Creature,
+	Door,
+	Item,
+	Passage,
+	Tile
 };
 
 

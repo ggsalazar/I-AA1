@@ -142,6 +142,9 @@ void Scene::GetInput() {
 			if (game->GetGameFrames() % 10 == 0 and lmb_action)
 				action = LMBAction();
 			if (!lmb_action) action = Action::DEFAULT;
+
+			cout << "Action: " << ActionToString(action) << "\n";
+
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			SetGameCursor(action);
 			if (Input::BtnPressed(LMB)) {
@@ -209,8 +212,11 @@ void Scene::Draw() {
 			if (ui->menu.GetOpen())
 				ui->Draw();
 		}
-		else
-			e->Draw();
+		else {
+			//Only draw entities if they can be seen by the camera
+			if (Collision::AABB(e->GetBBox(), game->camera.viewport))
+				e->Draw();
+		}
 	}
 
 	//Draw the selection box
@@ -408,34 +414,88 @@ Action Scene::LMBAction() {
 	//-Open a door
 	//-Speak to NPC
 
-	//Convert mouse coordinates from screen to world
-	//What tile are we currently pointing at?
-	Vector2i tile_pos = { (int)floor(Input::MousePos().x / TS), (int)floor(Input::MousePos().y / TS) };
-	//Current meter pos is tile_pos * 2
-	u_ptr<Tile> curr_tile;
-	if (tile_pos.x > 0 and tile_pos.y > 0 and tile_pos.x < tilemap.GetMapSizeTiles().x and tile_pos.y < tilemap.GetMapSizeTiles().y)
-		curr_tile = make_unique<Tile>(tilemap.GetTileData(tile_pos));
-
-	//If we're not looking at a tile, then there is no action to perform
-	if (!curr_tile) return Action::NOACTION;
-
-	//Move
-	//-For every currently selected party member, calculate a path to the current tile
-	//	--if every currently selected party member can reach the area around that tile, return MOVE
-	//	--else, return NOACTION
-	for (const auto& p_m : party_mems) {
-		if (p_m->selected) {
-
-			found_path = grid.FindPath(p_m->GetPos(), Input::MousePos());
-
-			//If no path, return no action
-			if (found_path.empty())
-				return Action::NOACTION;
-
-			//Else, report that we can move
-			return Action::Move;
+	//What is our current mouse target?
+	//Reset
+	mouse_tar = MouseTarget::None;
+	//Are we currently pointing at a creature?
+	Creature* c = nullptr;
+	for (const auto e : entities) {
+		if (c = dynamic_cast<Creature*>(e.get())) {
+			auto pm = dynamic_cast<PartyMember*>(c);
+			if (!pm and Collision::Point(Input::MousePos(), c->GetBBox()))
+				mouse_tar = MouseTarget::Creature;
 		}
 	}
+
+	//If not pointing at anything else, what tile are we currently pointing at?
+	if (mouse_tar == MouseTarget::None) {
+		Vector2i tile_pos = { (int)floor(Input::MousePos().x / TS), (int)floor(Input::MousePos().y / TS) };
+		Tile curr_tile = {};
+		if (tile_pos.x > 0 and tile_pos.y > 0 and tile_pos.x < tilemap.GetMapSizeTiles().x and tile_pos.y < tilemap.GetMapSizeTiles().y)
+			curr_tile = tilemap.GetTileData(tile_pos);
+
+		//If we're not looking at a tile, then there is no action to perform
+		if (curr_tile.terrain == Terrain::None) return Action::NOACTION;
+		mouse_tar = MouseTarget::Tile;
+	}
+
+	switch (mouse_tar) {
+		case MouseTarget::Area_Edge:
+		break;
+
+		case MouseTarget::Container:
+		break;
+
+		case MouseTarget::Creature: {
+			//First, we need to know the target creature's disposition to us
+			Disposition creature_dispo = c->party_dispo;
+			if (creature_dispo == Disposition::Hostile) {
+				//Attack actions (Melee/Ranged/Spell)
+			}
+			//If it isn't already outright hostile, default action is to talk to it
+			else {
+				//If we aren't within speaking range (3? meters), we need to get close enough to speak - TO-DO
+				//If we can't get to them, we cannot speak to them and must return NOACTION
+				//Else just speak
+				return Action::Talk;
+			}
+
+
+			break;
+		}
+
+		case MouseTarget::Door:
+		break;
+
+		case MouseTarget::Item:
+		break;
+
+		case MouseTarget::Passage:
+		break;
+
+		case MouseTarget::Tile:
+			//Move
+			//-For every currently selected party member, calculate a path to the current tile
+			//	--if every currently selected party member can reach the area around that tile, return MOVE
+			//	--else, return NOACTION
+			for (const auto& p_m : party_mems) {
+				if (p_m->selected) {
+
+					//Going to have to change the goal node depending on marching order and position of 
+					// party_member in said order - TO-DO
+					found_path = grid.FindPath(p_m->GetPos(), Input::MousePos());
+
+					//If no path, return no action
+					if (found_path.empty())
+						return Action::NOACTION;
+
+					//Else, report that we can move
+					return Action::Move;
+				}
+			}
+		break;
+	}
+	
 
 	//Melee Attack (LMB action in combat only)
 	//-When mouse is on an enemy...
@@ -459,9 +519,6 @@ Action Scene::LMBAction() {
 	//Open a door
 	//-When mouse is on an unlocked door
 
-	//Speak to NPC
-	//-When mouse is on non-hostile creature
-
 	return Action::NOACTION;
 }
 
@@ -479,11 +536,16 @@ void Scene::SetGameCursor(Action action) {
 			new_row = 1;
 		break;
 
-		case Action::NOACTION:
+		case Action::Talk:
 			new_row = 2;
+		break;
+
+		case Action::NOACTION:
+			new_row = 3;
 		break;
 	}
 	game->cursor.SetSheetRow(new_row);
+	if (new_row == 2) game->cursor.SetColor(Color(0, 1, 0));
 }
 
 void Scene::RemoveEntity(s_ptr<Entity> e) {
@@ -624,22 +686,21 @@ void Scene::LoadNPCs(Area area) {
 
 		//Sprite information
 		sprite_info.sheet = npc_info["Sprite"]; sprite_info.frame_size = { 32, 64 }; //TEMPORARY
-		por_name = npc_info["Portrait_Sprite"];
+		por_name = npc_info["Portrait_Sprite"]; sprite_info.pos = { npc_info["Spawn_Pos"]["x"] * TS, npc_info["Spawn_Pos"]["y"] * TS};
 		//Stats information
 		stats.name = npc_info["Name"]; 
-		//string genus_str = npc_info["Genus"]; stats.genus = StringToGenus(genus_str);
-		//string race_str = npc_info["Race"]; stats.race = StringToRace(race_str);
-		//string size_str = npc_info["Size"]; stats.size = StringToSize(size_str);
+		string genus_str = npc_info["Genus"]; stats.genus = StringToGenus(genus_str);
+		string race_str = npc_info["Race"]; stats.race = StringToRace(race_str);
+		string size_str = npc_info["Size"]; stats.size = StringToSize(size_str);
 		stats.sex = npc_info["Sex"];
-		//string class_str = npc_info["Class"]; stats.clss = StringToClass(class_str);
+		string class_str = npc_info["Class"]; stats.clss = StringToClass(class_str);
 		stats.level = npc_info["Level"];
-		stats.str = npc_info["Ability_Scores"][0]; stats.con = npc_info["Ability_Scores"][1]; stats.agi = npc_info["Ability_Scores"][2]; stats.dex = npc_info["Ability_Scores"][3];
-		stats.intl = npc_info["Ability_Scores"][4]; stats.wis = npc_info["Ability_Scores"][5]; stats.cha = npc_info["Ability_Scores"][6];
+		stats.str = npc_info["A_Scores"]["STR"]; stats.con = npc_info["A_Scores"]["CON"]; stats.agi = npc_info["A_Scores"]["AGI"]; stats.dex = npc_info["A_Scores"]["DEX"];
+		stats.intl = npc_info["A_Scores"]["INT"]; stats.wis = npc_info["A_Scores"]["WIS"]; stats.cha = npc_info["A_Scores"]["CHA"];
+		string dispo_str = npc_info["Disposition"]; Disposition npc_dispo = StringToDispo(dispo_str);
 
-		s_ptr<Creature> npc = make_s<Creature>(sprite_info, stats, por_name, npc_info["Biped"], npc_info["Winged"]);
-		npc->MoveTo({ npc_info["Spawn_Pos"][0] * TS, npc_info["Spawn_Pos"][1] * TS });
 
-		entities.push_back(npc);
+		entities.push_back(make_s<Creature>(sprite_info, stats, por_name, npc_dispo, npc_info["Biped"], npc_info["Winged"]));
 	}
 
 }

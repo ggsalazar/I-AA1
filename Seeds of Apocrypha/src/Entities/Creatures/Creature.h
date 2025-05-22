@@ -7,6 +7,7 @@
 class Creature : public Entity {
 public:
 	struct Stats {
+		//High-level details
 		string name = "Default";
 		Genus genus = Genus::Sentient;
 		Race race = Race::Human;
@@ -37,16 +38,16 @@ public:
 		float fort = 0;
 		float ref = 0;
 		float will = 0;
-		float base_spd = 0;
 		float w_spd = 0;
 		float f_spd = 0;
-		float self_weight = 0;
+		//To add: Swim speed!
 		float max_carry_weight = 0;
 		float carry_weight = 0;
 		float total_weight = 0;
 		float less_act_time = 0;
 	};
-	bool w_rsted = true;
+	bool well_rested = true;
+	Disposition party_dispo = Disposition::Neutral;
 
 	bool moving = false;
 
@@ -54,7 +55,8 @@ public:
 	Rect por_bbox;
 
 	Creature(const Sprite::Info& s_i, const Stats& init_stats = {},
-		const string por_name = "Placeholder", const bool init_biped = true, const bool init_winged = false);
+		const string por_name = "Placeholder", const Disposition init_dispo = Disposition::Neutral,
+		const bool init_biped = true, const bool init_winged = false);
 
 	//Engine stuff
 	virtual void GetInput() override;
@@ -65,7 +67,8 @@ public:
 	inline void SetPath(queue<Vector2i> new_path) { path = new_path; }
 	void WalkPath();
 
-	//Printing stats - TO-DO
+	//Printing stats
+	void PrintStats();
 
 	//Primary stats
 	void SetAbilityScores(array<float, 7> a_ss);
@@ -86,7 +89,7 @@ public:
 	void SetWornArmor(float w_a);
 	inline float GetWornArmor() const { return stats.worn_armor; }
 
-	inline void SetFlySpeed() { if (winged and can_fly) stats.f_spd = stats.base_spd + (.5f * stats.str); }
+	inline void SetFlySpeed() { if (can_fly) stats.f_spd = base_spd + (.5f * stats.str); }
 	inline float GetFlySpeed() const { return stats.f_spd; }
 
 
@@ -102,11 +105,15 @@ protected:
 	bool biped = true;
 	bool winged = false;
 	bool can_fly = false;
-	float mv_spd = 1;
+	float base_spd = 0;
+	float self_weight = 0;
 	float action_carryover = 0;
 	int dodge_penalty = 0;
 	bool encumbered = false;
 	bool in_combat = false;
+	float mv_spd = 1; //This is not a stat, this is the UTH movement speed!
+
+
 	Text nameplate;
 
 	//unordered_map<Items, Item> inv;

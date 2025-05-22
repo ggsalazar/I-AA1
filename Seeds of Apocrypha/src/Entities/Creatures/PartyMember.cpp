@@ -2,8 +2,8 @@
 
 PartyMember::PartyMember(const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged)
-	: Creature(s_i, init_stats, por_name, init_biped, init_winged) {
-
+	: Creature(s_i, init_stats, por_name, Disposition::Friendly, init_biped, init_winged) {
+	
 	//The health bar
 	hlth_bar.w = round(portrait.GetSprSize().x * .98f);
 	hlth_bar.h = round(portrait.GetSprSize().y * .14f);

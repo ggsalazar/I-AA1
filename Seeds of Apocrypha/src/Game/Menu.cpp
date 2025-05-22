@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "Scene.h" //Game and all its BS
+#include "Scene.h" //Game
 #include "../Entities/UI/Button.h"
 #include "../Entities/UI/Slider.h"
 #include "../Entities/UI/Picker.h"

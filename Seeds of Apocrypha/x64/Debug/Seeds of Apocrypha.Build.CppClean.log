@@ -2,8 +2,10 @@ c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\vc143.idb
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\main.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\window.obj
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\tilemap.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\sprite.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\renderer.obj
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\scene.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\menu.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\game.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\ui.obj
@@ -12,9 +14,19 @@ c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\picker.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\button.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\entity.obj
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\partymember.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\creature.obj
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\pathfinding.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\math.obj
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\input.obj
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\x64\debug\seeds of apocrypha.exe
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\x64\debug\seeds of apocrypha.pdb
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of apocrypha.ilk
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of.d0bfe6a1.tlog\cl.command.1.tlog
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of.d0bfe6a1.tlog\cl.items.tlog
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of.d0bfe6a1.tlog\cl.read.1.tlog
 c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of.d0bfe6a1.tlog\cl.write.1.tlog
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of.d0bfe6a1.tlog\link.command.1.tlog
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of.d0bfe6a1.tlog\link.read.1.tlog
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of.d0bfe6a1.tlog\link.secondary.1.tlog
+c:\users\gturoci\documents\visual studio 2022\projects\i&a1\seeds of apocrypha\x64\debug\seeds of.d0bfe6a1.tlog\link.write.1.tlog

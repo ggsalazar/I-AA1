@@ -1,8 +1,6 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Tutorial:	-UI elements set their own sprites
-			-Print creature stats
-			-Base resolution is too small, maybe base should be 1280 x 720?
+Tutorial:	-Base sprites are too big; maybe 48x24 instead of 64x32?
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith
@@ -89,7 +87,10 @@ Game starts on train! Train heist
 
 Portraits - use a single texture that contains all portraits?
 
-Future Improvements:
-	-Adjustable zoom (difficult to get right in a pixel art game)
+Future Improvements/Sequel ideas:
 	-Reduce the use of smart pointers, ideally to 0
+	-Have UI elements set their own Sprite
+	-Adjustable zoom (difficult to get right in a pixel art game)
 	-Allow for custom UI arrangement
+	-Swimming
+	-Pickpocketing

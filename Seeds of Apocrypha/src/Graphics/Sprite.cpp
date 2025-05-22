@@ -30,6 +30,10 @@ void Sprite::Init(const Info& i) {
 
     Vector2f s_size;
     SDL_GetTextureSize(texture, &s_size.x, &s_size.y);
+
+    if (info.sheet == "UI/Cursors")
+        std::cout << s_size << "\n";
+
     info.sheet_size = Round(s_size.x, s_size.y);
     SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
 }
