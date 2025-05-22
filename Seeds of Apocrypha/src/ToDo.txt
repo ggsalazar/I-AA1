@@ -15,7 +15,7 @@ Tutorial:	-Base sprites are too big; maybe 48x24 instead of 64x32?
 				--Character sheet/s
 				--Inventory
 			-area changing
-			-multi-party member movement & cam locking
+			-multi-party member spawning, movement, & cam locking
 			-Total: 45 days
 				--Projected finish date: Late July
 			-Sentient creatures have separate head and body sprites (for customization)
