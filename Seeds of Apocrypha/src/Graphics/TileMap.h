@@ -16,7 +16,7 @@ extern int TS;
 extern int METER;
 
 struct Tile {
-	Terrains terrain = Terrains::NORMAL;
+	Terrain terrain = Terrain::Normal;
 	float elevation = 0.f;
 };
 

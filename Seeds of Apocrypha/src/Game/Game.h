@@ -43,7 +43,7 @@ public:
     unordered_map<int, Font> default_fonts;
     Text debug_txt;
     Sprite cursor;
-    Areas area = Areas::DEFAULT;
+    Area area = Area::NONE;
 
     Game(const char* title, uint init_fps);
     ~Game() {

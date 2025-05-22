@@ -1,10 +1,8 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Tutorial:  -Need to properly scale tiles for different resolutions
-				--Being scaled, but looking blurry for some reason
-			-In-game cam locking
-				--Polish
-					---Make cam sprite 12x12
+Tutorial:	-UI elements set their own sprites
+			-Print creature stats
+			-Base resolution is too small, maybe base should be 1280 x 720?
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith
@@ -22,6 +20,7 @@ Tutorial:  -Need to properly scale tiles for different resolutions
 			-multi-party member movement & cam locking
 			-Total: 45 days
 				--Projected finish date: Late July
+			-Sentient creatures have separate head and body sprites (for customization)
 			-Intro cutscene
 			-Combat
 			-Explain all this shit

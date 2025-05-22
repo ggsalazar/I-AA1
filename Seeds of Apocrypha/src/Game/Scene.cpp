@@ -6,6 +6,7 @@
 #include "../Entities/UI/UI.h" //Entity.h
 #include "../Entities/Creatures/PartyMember.h"
 
+using json = nlohmann::json;
 
 void Scene::Open(const bool o) {
 	open = o;
@@ -18,11 +19,11 @@ void Scene::Open(const bool o) {
 			party_mems.clear();
 
 			game->camera.MoveTo({ 0, 0 });
-			menus.insert({ Menus::MAIN, new Menu(Menus::MAIN) });
-			menus[Menus::MAIN]->Open();
-			menus.insert({ Menus::CHARCREA, new Menu(Menus::CHARCREA) });
-			menus.insert({ Menus::LOAD, new Menu(Menus::LOAD) });
-			menus.insert({ Menus::OPTIONS, new Menu(Menus::OPTIONS) });
+			menus.insert({ Menus::Main, new Menu(Menus::Main) });
+			menus[Menus::Main]->Open();
+			menus.insert({ Menus::CharCrea, new Menu(Menus::CharCrea) });
+			menus.insert({ Menus::Load, new Menu(Menus::Load) });
+			menus.insert({ Menus::Options, new Menu(Menus::Options) });
 
 		}
 
@@ -40,11 +41,11 @@ void Scene::Open(const bool o) {
 			//Import the appropriate tilemap
 			string json_file = "DEFAULT";
 			switch (game->area) {
-				case Areas::DEBUG:
+				case Area::Debug:
 					json_file = "Debug_Room";
 					break;
 
-				case Areas::TUTTON:
+				case Area::Tutton:
 					json_file = "Tutton";
 					break;
 			}
@@ -56,11 +57,14 @@ void Scene::Open(const bool o) {
 			//Init the grid
 			grid.Init(&tilemap);
 
+			//Load NPCs
+			LoadNPCs(game->area);
+
 
 			//Set the party and camera
 			Vector2f party_ldr_pos;
 			switch (game->area) {
-				case Areas::DEBUG:
+				case Area::Debug:
 					party_ldr_pos = area_size_t * .5f * TS;
 					if (area_size_t.x * .5f == round(area_size_t.x * .5f))
 						party_ldr_pos.x += TS * .5f - 1;
@@ -68,7 +72,7 @@ void Scene::Open(const bool o) {
 						party_ldr_pos.y += TS * .5f - 1;
 				break;
 
-				case Areas::TUTTON:
+				case Area::Tutton:
 					party_ldr_pos = area_size_t * .5f * TS;
 					if (area_size_t.x * .5f == round(area_size_t.x * .5f))
 						party_ldr_pos.x += TS * .5f - 1;
@@ -91,7 +95,7 @@ void Scene::Open(const bool o) {
 			game->camera.MoveCenterTo(Round(party_ldr_pos));
 
 			//Initialize our menus
-			menus.insert({ Menus::OPTIONS_G, new Menu(Menus::OPTIONS_G) });
+			menus.insert({ Menus::Options_G, new Menu(Menus::Options_G) });
 		}
 	}
 
@@ -112,7 +116,7 @@ void Scene::Open(const bool o) {
 
 void Scene::GetInput() {
 	//Reset lmb_action to true if an interface is not open - the entities will determine if it is false
-	lmb_action = interface_open == Interfaces::NONE;
+	lmb_action = interface_open == Interface::NONE;
 
 	//Input for the entities
 	for (auto& e : entities) {
@@ -137,12 +141,12 @@ void Scene::GetInput() {
 			//Updating action every 6th of a second for performance reasons
 			if (game->GetGameFrames() % 10 == 0 and lmb_action)
 				action = LMBAction();
-			if (!lmb_action) action = Actions::DEFAULT;
+			if (!lmb_action) action = Action::DEFAULT;
 			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
 			SetGameCursor(action);
 			if (Input::BtnPressed(LMB)) {
 				switch (action) {
-					case Actions::MOVE:
+					case Action::Move:
 						for (const auto& p_m : party_mems) {
 							if (p_m->selected) {
 								p_m->moving = true;
@@ -249,23 +253,23 @@ void Scene::ResizeMenus() {
 		m.second->Resize();
 }
 
-void Scene::OpenInterface(Interfaces intrfc) {
+void Scene::OpenInterface(Interface intrfc) {
 	//Options Interface
 	if (Input::KeyPressed(O_K)) {
-		if (interface_open != Interfaces::OPTIONS) {
-			interface_open = Interfaces::OPTIONS;
+		if (interface_open != Interface::Options) {
+			interface_open = Interface::Options;
 			game->paused = true;
 			//Close whatever other menu was open - TO-DO
 		}
 		else {
-			interface_open = Interfaces::NONE;
+			interface_open = Interface::NONE;
 			game->paused = false;
 		}
 		//Open the options menu if it isn't already
-		OpenMenu(Menus::OPTIONS_G, !MenuOpen(Menus::OPTIONS_G));
+		OpenMenu(Menus::Options_G, !MenuOpen(Menus::Options_G));
 	}
 
-	if (interface_open != Interfaces::NONE) {
+	if (interface_open != Interface::NONE) {
 		game->cursor.SetSheetRow(0);
 	}
 }
@@ -393,7 +397,7 @@ void Scene::SelectPartyMems() {
 	}
 }
 
-Actions Scene::LMBAction() {
+Action Scene::LMBAction() {
 	//Possible actions:
 	//-Move
 	//-Melee Attack (Combat only)
@@ -413,7 +417,7 @@ Actions Scene::LMBAction() {
 		curr_tile = make_unique<Tile>(tilemap.GetTileData(tile_pos));
 
 	//If we're not looking at a tile, then there is no action to perform
-	if (!curr_tile) return Actions::NOACTION;
+	if (!curr_tile) return Action::NOACTION;
 
 	//Move
 	//-For every currently selected party member, calculate a path to the current tile
@@ -426,10 +430,10 @@ Actions Scene::LMBAction() {
 
 			//If no path, return no action
 			if (found_path.empty())
-				return Actions::NOACTION;
+				return Action::NOACTION;
 
 			//Else, report that we can move
-			return Actions::MOVE;
+			return Action::Move;
 		}
 	}
 
@@ -458,24 +462,24 @@ Actions Scene::LMBAction() {
 	//Speak to NPC
 	//-When mouse is on non-hostile creature
 
-	return Actions::NOACTION;
+	return Action::NOACTION;
 }
 
-void Scene::SetGameCursor(Actions action) {
+void Scene::SetGameCursor(Action action) {
 	uint new_row = 0;
 
 	//This method forces me to by personally familiar with where each cursor sprite is in the
 	// sheet, which is completely unscalable but works for now
 	switch (action) {
-		case Actions::DEFAULT:
+		case Action::DEFAULT:
 			new_row = 0;
 		break;
 
-		case Actions::MOVE:
+		case Action::Move:
 			new_row = 1;
 		break;
 
-		case Actions::NOACTION:
+		case Action::NOACTION:
 			new_row = 2;
 		break;
 	}
@@ -514,14 +518,13 @@ void Scene::CreatePartyMem() {
 }
 
 void Scene::CreatePreGen(PreGens p_g) {
-	uint res_scalar = game->GetResScale();
 	string name = "Default";
-	Genuses genus = Genuses::SENTIENT;
-	Races race = Races::HUMAN;
-	Sizes size = Sizes::MED;
-	Classes clss = Classes::WARRIOR;
+	Genus genus = Genus::Sentient;
+	Race race = Race::Human;
+	Size size = Size::Med;
+	Class clss = Class::Warrior;
 	string sprite = "Creatures/Sentients/PMPlaceholder";
-	Vector2i sprite_size = { METER, 2 * METER };
+	Vector2i sprite_size = { 32, 64 };
 	uint level = 1;
 	bool sex = 0;
 	float str = 0;
@@ -533,11 +536,11 @@ void Scene::CreatePreGen(PreGens p_g) {
 	float cha = 0;
 
 	switch (p_g) {
-	case PreGens::SPARK: //Automaton Arcanist
+	case PreGens::Spark: //Automaton Arcanist
 		//Don't forget to change sprite!
 		name = "Spark";
-		race = Races::AUTOMATON;
-		clss = Classes::ARCANIST;
+		race = Race::Automaton;
+		clss = Class::Arcanist;
 		str = 1.5;
 		con = 2.5;
 		dex = 3;
@@ -547,12 +550,12 @@ void Scene::CreatePreGen(PreGens p_g) {
 		cha = 1;
 		break;
 
-	case PreGens::ESSEK: //Female Kobold Rogue
+	case PreGens::Essek: //Female Kobold Rogue
 		//Don't forget to change sprite!
 		name = "Essek";
-		race = Races::KOBOLD;
-		size = Sizes::SMALL;
-		clss = Classes::ROGUE;
+		race = Race::Kobold;
+		size = Size::Small;
+		clss = Class::Rogue;
 		sex = 1;
 		str = 1;
 		con = 2;
@@ -563,10 +566,10 @@ void Scene::CreatePreGen(PreGens p_g) {
 		cha = 2.5;
 		break;
 
-	case PreGens::DAKN: //Male Dwarf Warrior
+	case PreGens::Dakn: //Male Dwarf Warrior
 		//Don't forget to change sprite!
 		name = "Dakn";
-		race = Races::DWARF;
+		race = Race::Dwarf;
 		sex = 1;
 		str = 4;
 		con = 4;
@@ -578,17 +581,67 @@ void Scene::CreatePreGen(PreGens p_g) {
 		break;
 	}
 	Sprite::Info info = {};
-	info.sheet = sprite; info.frame_size = sprite_size; info.origin = { .5f, .95f }; info.scale = { 1, 1 };
-	auto pre_gen = make_shared<PartyMember>(
-		info,
+	info.sheet = sprite; info.frame_size = sprite_size;
+
+	party_mems.push_back(make_s<PartyMember>(info,
 		Creature::Stats{ name, genus, race, size, clss, level, sex, str, con, dex, agi, intl, wis, cha } //The rest are defaults and handled in Initialization
-	);
-
-	party_mems.push_back(pre_gen);
+	));
 }
 
-void Scene::CreateNPC() {
-	//s_ptr<Creature> npc = make_s<Creature>();
+void Scene::LoadNPCs(Area area) {
+	string s_area = "";
+	switch (area) {
+		case Area::Tutton:
+		case Area::Debug:
+			s_area = "Tutton";
+		break;
+	}
 
-	//entities.push_back(npc);
+	//Get the names of all the NPCs for the area
+	ifstream names_file("data/NPCs/"+s_area+"/" + s_area + "_NPCs.json");
+	if (!names_file.is_open()) {
+		cerr << "Failed to open list of " << s_area << " NPCs!/n";
+		return;
+	}
+
+	json npc_names;
+	names_file >> npc_names;
+
+	//Load the data for each npc
+	json npc_info;
+	Sprite::Info sprite_info = {};
+	string por_name = "Placeholder";
+	Creature::Stats stats = {};
+
+	for (string name : npc_names["Names"]) {
+		ifstream npc_file("data/NPCs/" + s_area + "/" + name + "_info.json");
+		if (!npc_file.is_open()) {
+			cerr << "Failed to open file for NPC " + name + "!/n";
+			continue;
+		}
+		
+		npc_file >> npc_info;
+
+		//Sprite information
+		sprite_info.sheet = npc_info["Sprite"]; sprite_info.frame_size = { 32, 64 }; //TEMPORARY
+		por_name = npc_info["Portrait_Sprite"];
+		//Stats information
+		stats.name = npc_info["Name"]; 
+		//string genus_str = npc_info["Genus"]; stats.genus = StringToGenus(genus_str);
+		//string race_str = npc_info["Race"]; stats.race = StringToRace(race_str);
+		//string size_str = npc_info["Size"]; stats.size = StringToSize(size_str);
+		stats.sex = npc_info["Sex"];
+		//string class_str = npc_info["Class"]; stats.clss = StringToClass(class_str);
+		stats.level = npc_info["Level"];
+		stats.str = npc_info["Ability_Scores"][0]; stats.con = npc_info["Ability_Scores"][1]; stats.agi = npc_info["Ability_Scores"][2]; stats.dex = npc_info["Ability_Scores"][3];
+		stats.intl = npc_info["Ability_Scores"][4]; stats.wis = npc_info["Ability_Scores"][5]; stats.cha = npc_info["Ability_Scores"][6];
+
+		s_ptr<Creature> npc = make_s<Creature>(sprite_info, stats, por_name, npc_info["Biped"], npc_info["Winged"]);
+		npc->MoveTo({ npc_info["Spawn_Pos"][0] * TS, npc_info["Spawn_Pos"][1] * TS });
+
+		entities.push_back(npc);
+	}
+
 }
+
+//void Scene::CreateNPC(string name) {}

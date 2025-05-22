@@ -88,9 +88,9 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 				//Add the data of the current tile to the tile_data 2D vector
 				//Add the name of the tileset as a terrain type
 				if (ts_name == "Stone" or ts_name == "Wood" or ts_name == "Grass")
-					tile_data[col][row].terrain = Terrains::NORMAL;
+					tile_data[col][row].terrain = Terrain::Normal;
 				else if (ts_name == "Water")
-					tile_data[col][row].terrain = Terrains::WATER;
+					tile_data[col][row].terrain = Terrain::Water;
 
 				//Get the elevation from the name of the layer (e.g. "Elev 0")
 				string elev = layer["name"]; //Have to remove it from the JSON first

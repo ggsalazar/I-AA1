@@ -35,12 +35,12 @@ public:
 
     //UI Elements
     void AddUIElem(const s_ptr<UI> new_elem);
-    void RemoveUIElem(const UIElems ui);
-    bool CheckUIElem(const UIElems ui);
-    bool GetUIElemActive(const UIElems ui);
-    void SetUIElemActive(const UIElems ui, const bool a = true);
-    void SetUIElemStatus(const UIElems ui, const string new_status);
-    string GetUIElemStatus(const UIElems ui);
+    void RemoveUIElem(const UIElem ui);
+    bool CheckUIElem(const UIElem ui);
+    bool GetUIElemActive(const UIElem ui);
+    void SetUIElemActive(const UIElem ui, const bool a = true);
+    void SetUIElemStatus(const UIElem ui, const string new_status);
+    string GetUIElemStatus(const UIElem ui);
 
 protected:
     Menus label;
@@ -51,7 +51,7 @@ protected:
     uint res_scalar;
 
     unordered_map<Menus, Menu*> sub_menus;
-    unordered_map<UIElems, s_ptr<UI>> ui_elems;
+    unordered_map<UIElem, s_ptr<UI>> ui_elems;
     Vector2f ui_ori = { .5f, .5f };
     Vector2i ui_scale = { 1, 1 };
 

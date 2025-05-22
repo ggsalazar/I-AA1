@@ -3,7 +3,7 @@
 
 class Button : public UI {
 public:
-    Button(Menu& m, const Sprite::Info& s_i, const UIElems e,
+    Button(Menu& m, const Sprite::Info& s_i, const UIElem e,
         const uint init_ui_layer = 0)
         : UI(m, s_i, e, init_ui_layer) {
 

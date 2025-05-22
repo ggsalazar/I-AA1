@@ -22,13 +22,13 @@ void Button::Pressed() {
 void Button::Released() {
     activated = true;
     switch (elem) {
-    case UIElems::APPLY:
-        if (menu.GetLabel() == Menus::OPTIONS) {
+    case UIElem::Apply:
+        if (menu.GetLabel() == Menus::Options) {
             //Set the game's current resolution to the scale determined by the resolution picker OR set it to fullscreen if that toggle is clicked
-            if (menu.GetUIElemStatus(UIElems::FULLSCREEN) == "True" and game->resolution != game->window.ScreenSize())
+            if (menu.GetUIElemStatus(UIElem::Fullscreen) == "True" and game->resolution != game->window.ScreenSize())
                 game->SetResolution(game->window.ScreenSize());
             else {
-                uint new_scale = stoi(menu.GetUIElemStatus(UIElems::RESOLUTION));
+                uint new_scale = stoi(menu.GetUIElemStatus(UIElem::Resolution));
                 uint old_scale = game->GetResScale();
                 if (new_scale != old_scale)
                     game->SetResolution(new_scale);
@@ -37,20 +37,20 @@ void Button::Released() {
         }
         break;
 
-    case UIElems::AS:
+    case UIElem::AS:
         //Close whatever other sub-menu is open - TO-DO
         //Open Ability Score sub-menu
         break;
 
-    case UIElems::BACK:
+    case UIElem::Back:
         //If creating a character, ask to confirm and if yes, wipe party creation
-        if (menu.GetLabel() == Menus::CHARCREA) {
+        if (menu.GetLabel() == Menus::CharCrea) {
             /*
             auto c_box = make_s<Confirm>(
                 engine, menu,
                 AnimInfo{ "UI/ConfirmBox", 200, 100 },
                 Animation::Transform{ Vector2u(engine.game->camera.getCenter()), {.5f, .5f}, {engine.game->GetResScale(), engine.game->GetResScale()}},
-                UI::Style{ UIElems::CONFIRM, engine.game->GetResScale()*16},
+                UI::Style{ UIElem::CONFIRM, engine.game->GetResScale()*16},
                 "Exit Character Creation?", 1, -1);
             menu.AddUIElem(c_box); //Also adds to the current scene
             game->curr_ui_layer = 1;
@@ -58,84 +58,85 @@ void Button::Released() {
         }
         else {
             menu.Open(false);
-            scene->OpenMenu(Menus::MAIN);
+            scene->OpenMenu(Menus::Main);
         }
         break;
 
-    case UIElems::CHARCREA:
+    case UIElem::CharCrea:
         menu.Open(false);
 
         scene->CreatePartyMem();
-        scene->OpenMenu(Menus::CHARCREA);
+        scene->OpenMenu(Menus::CharCrea);
         break;
 
-    case UIElems::CLOSE:
+    case UIElem::Close:
         menu.Open(false);
-        scene->interface_open = Interfaces::NONE;
+        scene->interface_open = Interface::NONE;
         game->paused = false;
         break;
 
-    case UIElems::CREATE: {
+    case UIElem::Create: {
         //Spawn Name entry box and "Finish/OK" button - TO-DO
         break;
     }
 
-    case UIElems::DEBUG_ROOM:
-        scene->CreatePreGen(PreGens::DAKN);
-        game->area = Areas::DEBUG;
+    case UIElem::Debug_Room:
+        scene->CreatePreGen(PreGens::Dakn);
+        game->area = Area::Debug;
         game->SetScene(Scenes::AREA);
         break;
 
-    case UIElems::NO:
+    case UIElem::No:
         --game->curr_ui_layer;
-        menu.RemoveUIElem(UIElems::CONFIRM);
-        menu.RemoveUIElem(UIElems::YES);
+        menu.RemoveUIElem(UIElem::Confirm);
+        menu.RemoveUIElem(UIElem::Yes);
         alive = false;
         break;
 
-    case UIElems::OPTIONS:
+    case UIElem::Options:
         menu.Open(false);
-        scene->OpenMenu(Menus::OPTIONS);
+        scene->OpenMenu(Menus::Options);
         break;
 
-    case UIElems::QUIT:
+    case UIElem::Quit:
         game->window.open = false;
         break;
 
-    case UIElems::RACE_B:
+    case UIElem::Race_B:
         //Close whatever other sub-menu is open - TO-DO
         //Open Race sub-menu
-        menu.OpenSM(Menus::CCRACE);
+        menu.OpenSM(Menus::CCRace);
         break;
 
-    case UIElems::RESUME:
+    case UIElem::Resume:
         menu.Open(false);
         game->paused = false;
         break;
 
-    case UIElems::TITLE:
+    case UIElem::Title:
         menu.Open(false);
+        scene->interface_open = Interface::NONE;
         game->paused = false;
         game->SetScene(Scenes::TITLE);
         break;
 
-    case UIElems::TUTORIAL:
-        scene->CreatePreGen(PreGens::DAKN);
-        game->area = Areas::TUTTON;
+    case UIElem::Tutorial:
+        scene->CreatePreGen(PreGens::Dakn);
+        game->area = Area::Tutton;
         game->SetScene(Scenes::AREA);
         break;
 
-    case UIElems::YES:
-        if (menu.GetLabel() == Menus::CHARCREA) {
+    case UIElem::Yes:
+        if (menu.GetLabel() == Menus::CharCrea) {
             //Back to layer 0
             --game->curr_ui_layer;
             //Double-check to make sure this *destroys* confirm box and y/n buttons!!!!!!!! TO-DO
-            menu.RemoveUIElem(UIElems::CONFIRM);
-            menu.RemoveUIElem(UIElems::NO);
+            menu.RemoveUIElem(UIElem::Confirm);
+            menu.RemoveUIElem(UIElem::No);
             alive = false;
             menu.Open(false);
             scene->RemoveEntity("Default");
-            scene->OpenMenu(Menus::MAIN);
+            scene->OpenMenu(Menus::Main);
         }
         break;
     }

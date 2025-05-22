@@ -1,10 +1,12 @@
 #include "Slider.h"
 #include "../../Core/Math.h"
 
-Slider::Slider(Menu& m, const Sprite::Info& s_i, const UIElems e,
+Slider::Slider(Menu& m, const Sprite::Info& s_i, const UIElem e,
     const uint init_ui_layer)
     : UI(m, s_i, e, init_ui_layer),
     knob_label(&game->default_fonts[36]) {
+
+    
 
     Sprite::Info knob_info = {}; knob_info.sheet = "UI/SliderKnob"; knob_info.frame_size = { 6, 18 };
     knob_info.scale = sprite.GetScale();
@@ -21,15 +23,15 @@ Slider::Slider(Menu& m, const Sprite::Info& s_i, const UIElems e,
 
     //Setting knob position based on appropriate value
     string rounded_val = "";
-    if (elem == UIElems::MUSIC_V or elem == UIElems::SFX_V) {
-        float vol = elem == UIElems::MUSIC_V ? game->GetMusicVolume() : game->GetSFXVolume();
+    if (elem == UIElem::Music_V or elem == UIElem::SFX_V) {
+        float vol = elem == UIElem::Music_V ? game->GetMusicVolume() : game->GetSFXVolume();
         knob_pos = (((knob_pos_max - knob_pos_min) * vol) * .01) + knob_pos_min;
 
         //Set the value
         rounded_val = to_string((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 100);
         rounded_val = rounded_val.substr(0, rounded_val.find('.') + 3);
     }
-    else if (elem == UIElems::CAMSPD) {
+    else if (elem == UIElem::CAMSPD) {
         knob_pos = ((((2 * game->cam_move_spd)-2) /18) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
         //Set the value
@@ -55,17 +57,17 @@ void Slider::GetInput() {
 
         float new_val = 0;
         uint dec_place = 0;
-        if (elem == UIElems::MUSIC_V or elem == UIElems::SFX_V) {
+        if (elem == UIElem::Music_V or elem == UIElem::SFX_V) {
             new_val = (knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 100;
 
-            if (elem == UIElems::MUSIC_V)
+            if (elem == UIElem::Music_V)
                 game->SetMusicVolume(new_val);
-            else if (elem == UIElems::SFX_V)
+            else if (elem == UIElem::SFX_V)
                 game->SetSFXVolume(new_val);
 
             dec_place = 3;
         }
-        else if (elem == UIElems::CAMSPD) {
+        else if (elem == UIElem::CAMSPD) {
             //Camera speed goes from 1 to 10 in increments of .5
             new_val = (round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 18) + 2) * .5;
             game->cam_move_spd = new_val;
@@ -109,11 +111,11 @@ void Slider::Move() {
     knob_pos_max = bbox.x + bbox.w * .9f;
     knob_pos_min = bbox.x + bbox.w * .1f;
 
-    if (elem == UIElems::MUSIC_V)
+    if (elem == UIElem::Music_V)
         knob_pos = knob_pos_min + (game->GetMusicVolume() * .01 * (knob_pos_max - knob_pos_min));
-    else if (elem == UIElems::SFX_V)
+    else if (elem == UIElem::SFX_V)
         knob_pos = knob_pos_min + (game->GetSFXVolume() * .01 * (knob_pos_max - knob_pos_min));
-    else if (elem == UIElems::CAMSPD)
+    else if (elem == UIElem::CAMSPD)
         knob_pos = ((round((2 * game->cam_move_spd)-2) /18) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
     knob_spr.MoveTo({ (int)knob_pos, pos.y });

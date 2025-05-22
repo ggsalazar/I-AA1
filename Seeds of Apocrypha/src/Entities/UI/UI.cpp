@@ -1,156 +1,156 @@
 #include "UI.h"
 
-UI::UI(Menu& m, const Sprite::Info& s_i, const UIElems e, const uint init_ui_layer)
+UI::UI(Menu& m, const Sprite::Info& s_i, const UIElem e, const uint init_ui_layer)
     : Entity(s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(&game->default_fonts[36]) {
 
 
     //Label
     string l_str = "DEFAULT";
     switch (elem) {
-    case UIElems::APPLY:
+    case UIElem::Apply:
         l_str = "Apply";
         SetActive(false);
         break;
 
-    case UIElems::AS:
+    case UIElem::AS:
         l_str = "Ability Scores";
         break;
 
-    case UIElems::ASSTR:
+    case UIElem::ASSTR:
         l_str = "Strength";
         break;
 
-    case UIElems::ASCON:
+    case UIElem::ASCON:
         l_str = "Constitution";
         break;
 
-    case UIElems::ASAGI:
+    case UIElem::ASAGI:
         l_str = "Agility";
         break;
 
-    case UIElems::ASDEX:
+    case UIElem::ASDEX:
         l_str = "Dexterity";
         break;
 
-    case UIElems::ASINT:
+    case UIElem::ASINT:
         l_str = "Intelligence";
         break;
 
-    case UIElems::ASWIS:
+    case UIElem::ASWIS:
         l_str = "Wisdom";
         break;
 
-    case UIElems::ASCHA:
+    case UIElem::ASCHA:
         l_str = "Charisma";
         break;
 
-    case UIElems::BACK:
+    case UIElem::Back:
         l_str = "Back";
         break;
 
-    case UIElems::BACKGROUND_B:
+    case UIElem::BG_B:
         l_str = "Background";
         break;
 
-    case UIElems::CAMSPD:
+    case UIElem::CAMSPD:
         l_str = "Camera Speed";
         break;
 
-    case UIElems::CHARCREA:
+    case UIElem::CharCrea:
         l_str = "New Adventure";
         break;
 
-    case UIElems::CLASS_B:
+    case UIElem::Class_B:
         l_str = "Class";
         break;
 
-    case UIElems::CLASS_P:
+    case UIElem::Class_P:
         l_str = "Class";
         break;
 
-    case UIElems::CLOSE:
+    case UIElem::Close:
         l_str = "Close";
         break;
 
-    case UIElems::CREATE:
+    case UIElem::Create:
         l_str = "Create";
         break;
 
-    case UIElems::DEBUG_ROOM:
+    case UIElem::Debug_Room:
         l_str = "Debug Room";
         break;
 
-    case UIElems::EQUIPMENT_CC:
+    case UIElem::Equipment_CC:
         l_str = "Equipment";
         break;
 
-    case UIElems::FULLSCREEN:
+    case UIElem::Fullscreen:
         l_str = "Fullscreen";
         break;
 
-    case UIElems::LOAD:
+    case UIElem::Load:
         l_str = "Continue Adventure";
         //Check to see if an existing save files exists before setting (in)active - TO-DO
         SetActive(false);
         break;
 
-    case UIElems::MUSIC_V:
+    case UIElem::Music_V:
         l_str = "Music Volume";
         break;
 
-    case UIElems::NO:
+    case UIElem::No:
         l_str = "No";
         break;
 
-    case UIElems::OPTIONS:
+    case UIElem::Options:
         l_str = "Options";
         break;
 
-    case UIElems::QUIT:
+    case UIElem::Quit:
         l_str = "Quit";
         break;
 
-    case UIElems::RACE_B:
+    case UIElem::Race_B:
         l_str = "Race";
         break;
 
-    case UIElems::RACE_P:
+    case UIElem::Race_P:
         l_str = "Racial Appearance";
         break;
 
-    case UIElems::RESOLUTION:
+    case UIElem::Resolution:
         l_str = "Resolution";
         break;
 
-    case UIElems::RESUME:
+    case UIElem::Resume:
         l_str = "Resume";
         break;
 
-    case UIElems::SEX:
+    case UIElem::Sex:
         l_str = "Sex";
         break;
 
-    case UIElems::SFX_V:
+    case UIElem::SFX_V:
         l_str = "SFX Volume";
         break;
 
-    case UIElems::SIZE:
+    case UIElem::Size:
         l_str = "Size";
         break;
 
-    case UIElems::SKILLS:
+    case UIElem::Skills:
         l_str = "Skills";
         break;
 
-    case UIElems::TITLE:
+    case UIElem::Title:
         l_str = "Return to Title";
         break;
 
-    case UIElems::TUTORIAL:
+    case UIElem::Tutorial:
         l_str = "Tutorial";
         break;
 
-    case UIElems::YES:
+    case UIElem::Yes:
         l_str = "Yes";
         break;
     }

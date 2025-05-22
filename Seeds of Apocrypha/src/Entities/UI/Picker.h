@@ -4,7 +4,7 @@
 
 class Picker : public UI {
 public:
-    Picker(Menu& m, const Sprite::Info& s_i, const UIElems e,
+    Picker(Menu& m, const Sprite::Info& s_i, const UIElem e,
         const uint init_ui_layer = 0);
 
     void GetInput() override;

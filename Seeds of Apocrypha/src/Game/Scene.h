@@ -21,7 +21,7 @@ public:
     // -The game is paused
     // -No party members are selected
     bool lmb_action = true;
-    Interfaces interface_open = Interfaces::NONE;
+    Interface interface_open = Interface::NONE;
 
     Scene() = default;
     Scene(Scenes init_label) : label(init_label) {}
@@ -46,11 +46,11 @@ public:
     void ResizeMenus();
 
     //Gameplay functions
-    void OpenInterface(Interfaces intrfc = Interfaces::NONE);
+    void OpenInterface(Interface intrfc = Interface::NONE);
     void MoveCamera();
     void SelectPartyMems();
-    Actions LMBAction();
-    void SetGameCursor(Actions action = Actions::DEFAULT);
+    Action LMBAction();
+    void SetGameCursor(Action action = Action::DEFAULT);
 
     //Entities
     inline void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
@@ -65,11 +65,12 @@ public:
     inline void SetPartyMems(vector<s_ptr<PartyMember>> p_ms) { party_mems = p_ms; }
 
     //NPCs
-    void CreateNPC();
+    void LoadNPCs(Area area);
+    //void CreateNPC(string name);
 
 private:
     bool open = false;
-    Actions action = Actions::DEFAULT;
+    Action action = Action::DEFAULT;
 
     TileMap tilemap;
     Pathfinding grid;

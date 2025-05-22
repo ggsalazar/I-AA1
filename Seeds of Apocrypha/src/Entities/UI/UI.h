@@ -9,7 +9,7 @@ public:
     uint ui_layer;
     Text label;
 
-    UI(Menu& m, const Sprite::Info& s_i, const UIElems e,
+    UI(Menu& m, const Sprite::Info& s_i, const UIElem e,
         const uint init_ui_layer = 0);
 
     virtual void GetInput() override;
@@ -18,12 +18,12 @@ public:
     void SetActive(const bool new_active = true);
     inline bool GetActive() const { return active; }
     inline bool GetActivated() const { return activated; }
-    inline UIElems GetElem() const { return elem; }
+    inline UIElem GetElem() const { return elem; }
 
 protected:
     //Variables
     int label_offset = 0;
-    UIElems elem = UIElems::DEFAULT;
+    UIElem elem = UIElem::DEFAULT;
     bool active = true;
     bool primed = false;
     bool activated = false;

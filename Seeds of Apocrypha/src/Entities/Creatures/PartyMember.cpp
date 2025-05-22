@@ -16,7 +16,7 @@ PartyMember::PartyMember(const Sprite::Info& s_i, const Stats& init_stats,
 
 	//Camera sprite
 	Sprite::Info c_s_info = {};
-	c_s_info.sheet = "UI/Cam"; c_s_info.frame_size = { 6, 4 }; c_s_info.scale = game->GetResScale()*2;
+	c_s_info.sheet = "UI/Cam"; c_s_info.frame_size = { 12, 12 }; c_s_info.scale = game->GetResScale();
 	cam_sprite.Init(c_s_info);
 	cam_sprite_bbox = { {0}, cam_sprite.GetSprSize() };
 }

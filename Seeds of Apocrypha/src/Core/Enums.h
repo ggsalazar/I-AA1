@@ -1,9 +1,10 @@
 #pragma once
+#include <string>
 
 constexpr float sqrt2 = 1.414f;
 
 //Skills & Scores
-enum class Ab_Scores {
+enum class Ab_Score {
 	STR,
 	CON,
 	AGI,
@@ -13,156 +14,188 @@ enum class Ab_Scores {
 	CHA
 };
 
-enum class A_Skills {
-	APPRAISAL,
-	ARCANA,
-	BEAST_HANDLING,
-	BEGUILEMENT,
-	CLIMB,
-	INSIGHT,
-	INTIMIDATION,
-	LORE,
-	MECHANICS,
-	MEDICINE,
-	NATURE,
-	NAVIGATION,
-	PERCEPTION,
-	PERSUASION,
+enum class A_Skill {
+	Appraisal,
+	Arcana,
+	Beast_Handling,
+	Beguilement,
+	Climb,
+	Insight,
+	Intimidation,
+	Lore,
+	Mechanics,
+	Medicine,
+	Nature,
+	Navigation,
+	Perception,
+	Persuasion,
 	SOH,
-	STEALTH,
-	SURVIVAL,
-	SWIM
+	Stealth,
+	Survival,
+	Swim
 };
 
-enum class T_Skills {
-	MED_KITS,
-	THIEVING_KITS
+enum class T_Skill {
+	Med_Kits,
+	Theiving_Kits
 };
 
-enum class W_Skills {
-	ARCHERY,
-	FIREARM,
-	LARGE,
-	MED,
-	POLEARM,
-	SMALL,
-	THROWING,
-	UNARMED
+enum class W_Skill {
+	Archery,
+	Firearm,
+	Large,
+	Med,
+	Polearm,
+	Small,
+	Throwing,
+	Unarmed
 };
 
 
 //Mechanics
-enum class Actions {
+enum class Action {
 	DEFAULT,
 	NOACTION, //Slashed circle
-	ATTACK_M, //Sword
-	ATTACK_R, //Gun? Bow? Both?
+	Attack_M, //Sword
+	Attack_R, //Gun? Bow? Both?
 	AOO,
-	CHANGE_EQUIP,
-	CLOSE, //Closed door
-	DISENGAGE,
-	EVADE,
-	EXAMINE, //Eye
-	FALL_PRONE,
-	HELP,
-	HIDE,
-	JUMP,
-	LOOT, //Treasure Chest
-	MOVE, //Boot
-	OPEN, //Open door
-	PICKUP, //Hand
-	SHOVE,
-	STAND,
-	TALK, //Mouth? Or speech bubble?
-	THROW_ITEM
+	Change_Equip,
+	Close,	  //Closed door/container?
+	Disengage,
+	Evade,
+	Examine, //Eye
+	Fall_Prone,
+	Help,
+	Hide,
+	Jump,
+	Loot, //Treasure Chest
+	Move, //Boot
+	Open, //Open door
+	Pickup, //Hand
+	Shove,
+	Stand,
+	Talk, //Mouth? Or speech bubble?
+	Throw_Item
 };
 
-enum class Conditions {
-	BLIND,
-	CHARMED,
-	DEAF,
-	PRONE,
-	SICK,
-	STUNNED,
-	UNCONSCIOUS
+enum class Condition {
+	Blind,
+	Charmed,
+	Deaf,
+	Prone,
+	Sick,
+	Stunned,
+	Unconscious
 };
 
-enum class Classes {
-	NONE,
-	ARCANIST,
-	ROGUE,
-	WARRIOR
+enum class Class {
+	None,
+	Arcanist,
+	Rogue,
+	Warrior
 };
+/*inline Class StringToClass(std::string& s) {
+	if (s == "None") return Class::None;
+	else if (s == "Arcanist") return Class::Arcanist;
+	else if (s == "Rogue") return Class::Rogue;
+	else if (s == "Warrior") return Class::Warrior;
+}*/
 
-enum class Genuses {
-	BEAST,
-	MONSTROSITY,
-	OTHER,
-	SCORCHED,
-	SENTIENT,
-	UNDEAD
+enum class Genus {
+	Beast,
+	Monstrosity,
+	Other,
+	Scorched,
+	Sentient,
+	Undead
 };
+/*inline Genus StringToGenus(std::string& s) {
+	if (s == "Beast") return Genus::Beast;
+	else if (s == "Monstrosity") return Genus::Monstrosity;
+	else if (s == "Other") return Genus::Other;
+	else if (s == "Scorched") return Genus::Scorched;
+	else if (s == "Sentient") return Genus::Sentient;
+	else if (s == "Undead") return Genus::Undead;
+}*/
 
-enum class Items {
-
+enum class Race {
+	Automaton,
+	Dwarf,
+	Elf,
+	Gnome,
+	Human,
+	Kobold
 };
+/*inline Race StringToRace(std::string& s) {
+	if (s == "Automaton") return Race::Automaton;
+	else if (s == "Dwarf") return Race::Dwarf;
+	else if (s == "Elf") return Race::Elf;
+	else if (s == "Gnome") return Race::Gnome;
+	else if (s == "Human") return Race::Human;
+	else if (s == "Kobold") return Race::Kobold;
+}*/
+
+enum class Size {
+	Tiny,
+	Small,
+	Med,
+	Big,
+	Large,
+	Huge,
+	Massive,
+	Colossal
+};
+/*inline Size StringToSize(std::string& s) {
+	if (s == "Tiny") return Size::Tiny;
+	else if (s == "Small") return Size::Small;
+	else if (s == "Med") return Size::Med;
+	else if (s == "Big") return Size::Big;
+	else if (s == "Large") return Size::Large;
+	else if (s == "Huge") return Size::Huge;
+	else if (s == "Massive") return Size::Massive;
+	else if (s == "Colossal") return Size::Colossal;
+}*/
 
 enum class PreGens {
-	SPARK, //Automaton Arcanist
-	ESSEK, //Female Kobold Rogue
-	DAKN //Male Dwarf Warrior
+	Spark, //Automaton Arcanist
+	Essek, //Female Kobold Rogue
+	Dakn //Male Dwarf Warrior
 };
 
-enum class Races {
-	AUTOMATON,
-	DWARF,
-	ELF,
-	GNOME,
-	HUMAN,
-	KOBOLD
+enum class Item {
+
 };
 
-enum class Sizes {
-	TINY,
-	SMALL,
-	MED,
-	BIG,
-	LARGE,
-	HUGE,
-	MASSIVE,
-	COLOSSAL
+enum class Terrain {
+	Normal,
+	Rough,
+	Water
 };
 
-enum class Terrains {
-	NORMAL,
-	ROUGH,
-	WATER
-};
-
-enum class Weathers {
-	CLEAR
+enum class Weather {
+	Clear
 };
 
 
 //Game details
-enum class Areas {
-	DEFAULT,
-	DEBUG,
-	TUTTON
+enum class Area {
+	NONE,
+	Debug,
+	Tutton
 };
 
 enum class Cutscenes {
 
 };
 
-enum class Interfaces {
+enum class Interface {
 	NONE,
-	CHARSHEET, //C
-	INVENTORY, //I
-	JOURNAL,   //J
-	MAP_AREA,  //M
-	MAP_WORLD, 
-	OPTIONS    //O
+	CharSheet, //C
+	Inv,	   //I
+	Journal,   //J
+	Map_Area,  //M
+	Map_World, 
+	Options    //O
 };
 
 
@@ -175,50 +208,50 @@ enum class Scenes {
 };
 
 enum class Menus {
-	CHARCREA,
+	CharCrea,
 	GO,
-	INVENTORY,
-	LEVELUP,
-	LOAD,
-	MAIN,
-	OPTIONS,
-	OPTIONS_G,
-	PAUSE,
+	Inv,
+	LVLUp,
+	Load,
+	Main,
+	Options,
+	Options_G,
+	Pause,
 	//Sub-Menus
 	//CC
 	CCAS,
 	CCBG,
-	CCCLASS,
-	CCEQUIP,
-	CCRACE,
-	CCSKILLS
+	CCClass,
+	CCEquip,
+	CCRace,
+	CCSkills
 };
 
-enum class UIElems {
+enum class UIElem {
 	DEFAULT,
-	CONFIRM, //For Confirm Boxes
+	Confirm, //For Confirm Boxes
 	//Buttons
-	APPLY,
+	Apply,
 	AS,
-	BACK,
-	BACKGROUND_B,
-	CHARCREA,
-	CLASS_B,
-	CLOSE,
-	CREATE,
-	DEBUG_ROOM,
-	EQUIPMENT_CC,
-	FULLSCREEN,
-	LOAD,
-	NO,
-	OPTIONS,
-	QUIT,
-	RACE_B,
-	RESUME,
-	SKILLS,
-	TITLE,
-	TUTORIAL,
-	YES,
+	Back,
+	BG_B,
+	CharCrea,
+	Class_B,
+	Close,
+	Create,
+	Debug_Room,
+	Equipment_CC,
+	Fullscreen,
+	Load,
+	No,
+	Options,
+	Quit,
+	Race_B,
+	Resume,
+	Skills,
+	Title,
+	Tutorial,
+	Yes,
 	//Pickers
 	ASSTR,
 	ASCON,
@@ -227,14 +260,14 @@ enum class UIElems {
 	ASINT,
 	ASWIS,
 	ASCHA,
-	BACKGROUND_P,
-	CLASS_P,
-	RACE_P,
-	RESOLUTION,
-	SEX,
-	SIZE,
+	BG_P,
+	Class_P,
+	Race_P,
+	Resolution,
+	Sex,
+	Size,
 	//Sliders
 	CAMSPD,
-	MUSIC_V,
+	Music_V,
 	SFX_V
 };

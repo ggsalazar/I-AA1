@@ -1,2 +1,4 @@
 Yes/No buttons not removing elements like they should in character creation
-When going from Area scene to Title, game not always paused correctly; able to move when Options menu is open, for instance
+Movement is at different speeds on different computers?
+Tiles are scaled according to resolution, but very blurry for some reason
+	-Disabling LINEAR scalemode makes it worse, so that can't be it

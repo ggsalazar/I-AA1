@@ -1,6 +1,6 @@
 #include "Toggle.h"
 
-Toggle::Toggle(Menu& m, const Sprite::Info& s_i, const UIElems e,
+Toggle::Toggle(Menu& m, const Sprite::Info& s_i, const UIElem e,
 	const uint init_ui_layer)
 	: UI(m, s_i, e, init_ui_layer) {
 
@@ -32,7 +32,7 @@ void Toggle::Move() {
 void Toggle::Released() {
 	on = !on;
 	//Set the Apply button to active
-	menu.SetUIElemActive(UIElems::APPLY);
+	menu.SetUIElemActive(UIElem::Apply);
 
-	menu.SetUIElemActive(UIElems::RESOLUTION, !on);
+	menu.SetUIElemActive(UIElem::Resolution, !on);
 }

@@ -15,7 +15,7 @@ void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
 
 	for (int col = 0; col < tmp->GetMapSizeTiles().x; ++col) {
 		for (int row = 0; row < tmp->GetMapSizeTiles().y; ++row) {
-			node_walk = tmp->GetTileData({ col, row }).terrain != Terrains::WATER;
+			node_walk = tmp->GetTileData({ col, row }).terrain != Terrain::Water;
 			//For now, we're going to say a node is not walkable if an entity is standing on that tile
 			// In the future, this should be *way* more nuanced (i.e. creature vs object, friend or foe, size of entity, etc)
 			
@@ -30,7 +30,7 @@ void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
 			}
 			
 
-			node_cost = (tmp->GetTileData({col, row}).terrain == Terrains::ROUGH) + 1;
+			node_cost = (tmp->GetTileData({col, row}).terrain == Terrain::Rough) + 1;
 
 			grid[col][row] = { Round(col * TS + TS * .5f, row * TS + TS * .5f), false, node_walk, node_cost };
 		}

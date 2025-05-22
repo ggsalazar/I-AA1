@@ -8,17 +8,17 @@ class Creature : public Entity {
 public:
 	struct Stats {
 		string name = "Default";
-		Genuses genus = Genuses::SENTIENT;
-		Races race = Races::HUMAN;
-		Sizes size = Sizes::MED;
-		Classes clss = Classes::NONE;
+		Genus genus = Genus::Sentient;
+		Race race = Race::Human;
+		Size size = Size::Med;
+		Class clss = Class::None;
 		uint level = 0;
 		bool sex = 0; //0 = F, 1 = M
 		//Ability scores, or primary stats
 		float str = 0;
 		float con = 0;
-		float dex = 0;
 		float agi = 0;
+		float dex = 0;
 		float intl = 0;
 		float wis = 0;
 		float cha = 0;
@@ -65,9 +65,13 @@ public:
 	inline void SetPath(queue<Vector2i> new_path) { path = new_path; }
 	void WalkPath();
 
+	//Printing stats - TO-DO
+
 	//Primary stats
-	void SetAbilityScore(Ab_Scores a_s, float new_score);
-	float GetAbilityScore(Ab_Scores a_s);
+	void SetAbilityScores(array<float, 7> a_ss);
+	inline array<float, 7> GetAbilityScores() const { return { stats.str, stats.con, stats.agi, stats.dex, stats.intl, stats.wis, stats.cha }; }
+	void SetAbilityScore(Ab_Score a_s, float new_score);
+	float GetAbilityScore(Ab_Score a_s);
 
 	//Derived stats
 	void SetMaxHealth();
