@@ -38,7 +38,7 @@ Slider::Slider(Menu& m, const Sprite::Info& s_i, const UIElem e,
         rounded_val = to_string((round((knob_pos - knob_pos_min) / (knob_pos_max - knob_pos_min) * 18) + 2) * .5);
         rounded_val = rounded_val.substr(0, rounded_val.find('.') + 2);
     }
-    knob_spr.MoveTo({ (int)knob_pos, pos.y });
+    knob_spr.MoveTo({ knob_pos, pos.y });
 
     knob_label.SetOrigin();
     knob_label.info.str = rounded_val;
@@ -48,12 +48,12 @@ Slider::Slider(Menu& m, const Sprite::Info& s_i, const UIElem e,
 void Slider::GetInput() {
     UI::GetInput();
 
-    if (active and Selected() and Input::BtnDown(LMB)) {
+    if (Selected() and Input::BtnDown(LMB)) {
 
         //Adjust knob position
         knob_pos = Input::MousePos().x;
         Math::Clamp(knob_pos, knob_pos_min, knob_pos_max);
-        knob_spr.MoveTo({ (int)knob_pos, pos.y });
+        knob_spr.MoveTo({ knob_pos, pos.y });
 
         float new_val = 0;
         uint dec_place = 0;
@@ -118,7 +118,7 @@ void Slider::Move() {
     else if (elem == UIElem::CAMSPD)
         knob_pos = ((round((2 * game->cam_move_spd)-2) /18) * (knob_pos_max - knob_pos_min)) + knob_pos_min;
 
-    knob_spr.MoveTo({ (int)knob_pos, pos.y });
+    knob_spr.MoveTo({ knob_pos, pos.y });
 
     //Set the value
     knob_label.MoveTo({ pos.x, pos.y + label_offset });

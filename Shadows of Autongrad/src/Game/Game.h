@@ -18,6 +18,7 @@ public:
     //Camera
     Camera camera;
     float cam_move_spd = 5.f; //1 - 10 by .5
+    bool edge_panning = true;
 
     //Window + rendering target
     Window window;

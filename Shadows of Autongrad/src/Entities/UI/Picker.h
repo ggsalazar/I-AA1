@@ -29,11 +29,11 @@ private:
     //Functions
     void Move() override;
 
-    inline bool LeftSelected() { return Collision::Point(Input::MousePos(), l_bbox); }
+    inline bool LeftSelected() { return active and Collision::Point(Input::MousePos(), l_bbox); }
     inline void LeftPressed() { l_primed = true; }
     void LeftReleased();
 
-    inline bool RightSelected() { return Collision::Point(Input::MousePos(), r_bbox); }
+    inline bool RightSelected() { return active and Collision::Point(Input::MousePos(), r_bbox); }
     inline void RightPressed() { r_primed = true; }
     void RightReleased();
 };

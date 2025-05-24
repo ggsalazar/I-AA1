@@ -6,7 +6,6 @@ Entity::Entity(const Sprite::Info& s_i)
     : scene(game->active_scene), pos(s_i.pos), pos_debug(pos, 4) /*sound(sb)*/ {
     sprite.Init(s_i);
     Entity::MoveTo(pos);
-    Entity::Move();
 }
 
 void Entity::Draw() {

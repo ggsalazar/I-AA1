@@ -143,9 +143,7 @@ void Scene::GetInput() {
 				action = LMBAction();
 			if (!lmb_action) action = Action::DEFAULT;
 
-			cout << "Action: " << ActionToString(action) << "\n";
-
-			//Change the cursor according to current lmb action AND whether or not that action is valid (TO-DO)
+			//Change the cursor according to current lmb action
 			SetGameCursor(action);
 			if (Input::BtnPressed(LMB)) {
 				switch (action) {
@@ -160,9 +158,7 @@ void Scene::GetInput() {
 				}
 			}
 		}
-
 	}
-	
 }
 
 void Scene::Update() {
@@ -218,6 +214,13 @@ void Scene::Draw() {
 				e->Draw();
 		}
 	}
+
+	//Always draw the party member portraits
+	if (label == Scenes::AREA) {
+		for (const auto& pm : party_mems)
+			pm->DrawPortrait();
+	}
+
 
 	//Draw the selection box
 	if (selecting)
@@ -319,14 +322,16 @@ void Scene::MoveCamera() {
 				new_cam_offset.x += game->cam_move_spd;
 
 			//Move the camera via edge panning
-			if (Collision::Point(Input::MousePos(), up_edge) and cam_pos.y > 0)
-				new_cam_offset.y -= game->cam_move_spd;
-			else if (Collision::Point(Input::MousePos(), down_edge) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-				new_cam_offset.y += game->cam_move_spd;
-			if (Collision::Point(Input::MousePos(), left_edge) and cam_pos.x > 0)
-				new_cam_offset.x -= game->cam_move_spd;
-			else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-				new_cam_offset.x += game->cam_move_spd;
+			if (game->edge_panning) {
+				if (Collision::Point(Input::MousePos(), up_edge) and cam_pos.y > 0)
+					new_cam_offset.y -= game->cam_move_spd;
+				else if (Collision::Point(Input::MousePos(), down_edge) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+					new_cam_offset.y += game->cam_move_spd;
+				if (Collision::Point(Input::MousePos(), left_edge) and cam_pos.x > 0)
+					new_cam_offset.x -= game->cam_move_spd;
+				else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+					new_cam_offset.x += game->cam_move_spd;
+			}
 		}
 		else {
 			//Move the camera via arrow/WASD keys
@@ -340,14 +345,16 @@ void Scene::MoveCamera() {
 				new_cam_offset.x += game->cam_move_spd;
 
 			//Move the camera via edge panning
-			if (Collision::Point(Input::MousePos(), up_edge))
-				new_cam_offset.y -= game->cam_move_spd;
-			else if (Collision::Point(Input::MousePos(), down_edge))
-				new_cam_offset.y += game->cam_move_spd;
-			if (Collision::Point(Input::MousePos(), left_edge))
-				new_cam_offset.x -= game->cam_move_spd;
-			else if (Collision::Point(Input::MousePos(), right_edge))
-				new_cam_offset.x += game->cam_move_spd;
+			if (game->edge_panning) {
+				if (Collision::Point(Input::MousePos(), up_edge))
+					new_cam_offset.y -= game->cam_move_spd;
+				else if (Collision::Point(Input::MousePos(), down_edge))
+					new_cam_offset.y += game->cam_move_spd;
+				if (Collision::Point(Input::MousePos(), left_edge))
+					new_cam_offset.x -= game->cam_move_spd;
+				else if (Collision::Point(Input::MousePos(), right_edge))
+					new_cam_offset.x += game->cam_move_spd;
+			}
 		}
 
 		if (new_cam_offset.x != 0 and new_cam_offset.y != 0)
@@ -420,10 +427,13 @@ Action Scene::LMBAction() {
 	//Are we currently pointing at a creature?
 	Creature* c = nullptr;
 	for (const auto e : entities) {
-		if (c = dynamic_cast<Creature*>(e.get())) {
-			auto pm = dynamic_cast<PartyMember*>(c);
-			if (!pm and Collision::Point(Input::MousePos(), c->GetBBox()))
-				mouse_tar = MouseTarget::Creature;
+		c = dynamic_cast<Creature*>(e.get());
+		if (!c) continue;
+		if (dynamic_cast<PartyMember*>(c)) continue;
+		
+		if (Collision::Point(Input::MousePos(), c->GetBBox())) {
+			mouse_tar = MouseTarget::Creature;
+			break;
 		}
 	}
 
@@ -447,14 +457,16 @@ Action Scene::LMBAction() {
 		break;
 
 		case MouseTarget::Creature: {
-			//First, we need to know the target creature's disposition to us
-			Disposition creature_dispo = c->party_dispo;
-			if (creature_dispo == Disposition::Hostile) {
+			//First, we need to know the target creature's disposition to the party
+			int creature_dispo = 0;
+			if (c)
+				creature_dispo = c->GetDispo();
+			if (creature_dispo <= 20) {
 				//Attack actions (Melee/Ranged/Spell)
 			}
 			//If it isn't already outright hostile, default action is to talk to it
 			else {
-				//If we aren't within speaking range (3? meters), we need to get close enough to speak - TO-DO
+				//If we aren't within speaking range (2 meters), we need to get close enough to speak - TO-DO
 				//If we can't get to them, we cannot speak to them and must return NOACTION
 				//Else just speak
 				return Action::Talk;
@@ -546,6 +558,7 @@ void Scene::SetGameCursor(Action action) {
 	}
 	game->cursor.SetSheetRow(new_row);
 	if (new_row == 2) game->cursor.SetColor(Color(0, 1, 0));
+	else game->cursor.SetColor(Color(1));
 }
 
 void Scene::RemoveEntity(s_ptr<Entity> e) {
@@ -573,7 +586,7 @@ void Scene::SetEntitySFXVolume(const float new_volume) {
 void Scene::CreatePartyMem() {
 	Sprite::Info info = {};
 	info.sheet = "Creatures/Sentients/PMPlaceholder";
-	info.frame_size = { 32, 64 }; info.origin = { .5f }; info.scale = game->GetResScale();
+	info.frame_size = { 24, 48 }; info.origin = { .5f }; info.scale = game->GetResScale();
 	auto new_party_mem = make_s<PartyMember>(info); //The remaining arguments are the defaults
 	new_party_mem->MoveTo(Round(game->resolution.x * .75f, game->resolution.y * .5f));
 	entities.push_back(new_party_mem);
@@ -586,7 +599,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 	Size size = Size::Med;
 	Class clss = Class::Warrior;
 	string sprite = "Creatures/Sentients/PMPlaceholder";
-	Vector2i sprite_size = { 32, 64 };
+	Vector2i sprite_size = { 24, 48 };
 	uint level = 1;
 	bool sex = 0;
 	float str = 0;
@@ -685,7 +698,7 @@ void Scene::LoadNPCs(Area area) {
 		npc_file >> npc_info;
 
 		//Sprite information
-		sprite_info.sheet = npc_info["Sprite"]; sprite_info.frame_size = { 32, 64 }; //TEMPORARY
+		sprite_info.sheet = npc_info["Sprite"]; sprite_info.frame_size = { 24, 48 }; //TEMPORARY
 		por_name = npc_info["Portrait_Sprite"]; sprite_info.pos = { npc_info["Spawn_Pos"]["x"] * TS, npc_info["Spawn_Pos"]["y"] * TS};
 		//Stats information
 		stats.name = npc_info["Name"]; 
@@ -697,10 +710,11 @@ void Scene::LoadNPCs(Area area) {
 		stats.level = npc_info["Level"];
 		stats.str = npc_info["A_Scores"]["STR"]; stats.con = npc_info["A_Scores"]["CON"]; stats.agi = npc_info["A_Scores"]["AGI"]; stats.dex = npc_info["A_Scores"]["DEX"];
 		stats.intl = npc_info["A_Scores"]["INT"]; stats.wis = npc_info["A_Scores"]["WIS"]; stats.cha = npc_info["A_Scores"]["CHA"];
-		string dispo_str = npc_info["Disposition"]; Disposition npc_dispo = StringToDispo(dispo_str);
+		int npc_dispo = npc_info["Disposition"];
+		bool npc_biped = npc_info["Biped"];
+		bool npc_winged = npc_info["Winged"];
 
-
-		entities.push_back(make_s<Creature>(sprite_info, stats, por_name, npc_dispo, npc_info["Biped"], npc_info["Winged"]));
+		entities.push_back(make_s<Creature>(sprite_info, stats, por_name, npc_dispo, npc_biped, npc_winged));
 	}
 
 }

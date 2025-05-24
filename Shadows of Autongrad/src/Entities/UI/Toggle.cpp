@@ -8,13 +8,21 @@ Toggle::Toggle(Menu& m, const Sprite::Info& s_i, const UIElem e,
 	label.SetOrigin({ 1.f, .5 });
 	label.MoveTo({ pos.x - label_offset, pos.y });
 
-	on = game->resolution.x == game->window.ScreenSize().x;
-	active = !on;
+	switch (elem) {
+		case UIElem::Fullscreen:
+			on = game->resolution.x == game->window.ScreenSize().x;
+			SetActive(!on);
+		break;
+
+		case UIElem::Edge_Pan:
+			on = game->edge_panning;
+		break;
+	}
 }
 
 void Toggle::Draw() {
-	if (active and Selected())
-		game->renderer.DrawRect(bbox, Color(0, 1, 0));
+	if (Selected())
+		game->renderer.DrawRect(bbox, Color(1, 0, 0));
 
 	Entity::Draw();
 	game->renderer.DrawTxt(label);
@@ -31,8 +39,17 @@ void Toggle::Move() {
 
 void Toggle::Released() {
 	on = !on;
-	//Set the Apply button to active
-	menu.SetUIElemActive(UIElem::Apply);
 
-	menu.SetUIElemActive(UIElem::Resolution, !on);
+	switch (elem) {
+		case UIElem::Fullscreen:
+			//Set the Apply button to active
+			menu.SetUIElemActive(UIElem::Apply);
+
+			menu.SetUIElemActive(UIElem::Resolution, !on);
+		break;
+
+		case UIElem::Edge_Pan:
+			game->edge_panning = on;
+		break;
+	}
 }

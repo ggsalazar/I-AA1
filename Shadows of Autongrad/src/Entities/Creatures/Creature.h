@@ -1,6 +1,7 @@
 #pragma once
 #include <queue>
 #include "../Entity.h"
+#include "../../Core/Math.h"
 #include "../../Core/Input.h" //Window
 #include "../../Core/Vector3.h"
 
@@ -31,7 +32,7 @@ public:
 		float tn_per_hlth = 0;
 		float dodge = 0;
 		float armor = 0;
-		float nat_armor = 0;
+		float nat_armor = 1;
 		float worn_armor = 0;
 		float m_def = 0;
 		float r_def = 0;
@@ -47,7 +48,6 @@ public:
 		float less_act_time = 0;
 	};
 	bool well_rested = true;
-	Disposition party_dispo = Disposition::Neutral;
 
 	bool moving = false;
 
@@ -55,7 +55,7 @@ public:
 	Rect por_bbox;
 
 	Creature(const Sprite::Info& s_i, const Stats& init_stats = {},
-		const string por_name = "Placeholder", const Disposition init_dispo = Disposition::Neutral,
+		const string por_name = "Placeholder", const int init_dispo = 50,
 		const bool init_biped = true, const bool init_winged = false);
 
 	//Engine stuff
@@ -97,8 +97,15 @@ public:
 	inline string GetName() const { return stats.name; }
 	inline Vector2f GetDEF() const { return { stats.m_def, stats.r_def }; }
 	inline Vector3f GetSaves() const { return { stats.fort, stats.ref, stats.will }; }
+	inline int GetDispo() const { return party_dispo; }
+
 
 	inline void SetCanFly(bool c_f = true) { can_fly = c_f; SetFlySpeed(); }
+	void SetDispo(int new_dispo);
+
+	void AlterDispo(int offset);
+
+	void PrintDispo();
 
 protected:
 	Stats stats;
@@ -111,6 +118,7 @@ protected:
 	int dodge_penalty = 0;
 	bool encumbered = false;
 	bool in_combat = false;
+	int party_dispo = 50;
 	float mv_spd = 1; //This is not a stat, this is the UTH movement speed!
 
 

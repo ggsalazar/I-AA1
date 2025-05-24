@@ -80,6 +80,10 @@ UI::UI(Menu& m, const Sprite::Info& s_i, const UIElem e, const uint init_ui_laye
         l_str = "Debug Room";
         break;
 
+    case UIElem::Edge_Pan:
+        l_str = "Edge Panning";
+        break;
+
     case UIElem::Equipment_CC:
         l_str = "Equipment";
         break;
@@ -166,13 +170,13 @@ UI::UI(Menu& m, const Sprite::Info& s_i, const UIElem e, const uint init_ui_laye
         return;
     }
     sound.setBuffer(sb);
-    sound.setVolume(engine.game->GetSFXVolume());
+    sound.setVolume(game->GetSFXVolume());
     */
 
 }
 
 void UI::GetInput() {
-    if (active and Selected()) {
+    if (Selected()) { //Selected() accounts for current state of active
         if (Input::BtnPressed(LMB))
             Pressed();
 
@@ -182,11 +186,12 @@ void UI::GetInput() {
     else if (!Selected()) primed = false;
 }
 
+void UI::Draw() {
+}
+
 void UI::Resize(uint r_s) {
     //Set sprite w/h
     sprite.SetScale(Vector2i{ (int)r_s });
-    //Adjust label size
-    //label->info.char_size = r_s * 14;
     //Label offset and position are handled in children
 }
 
@@ -195,6 +200,10 @@ void UI::SetActive(const bool new_active) {
     Color new_color = sprite.GetColor();
     new_color.a = active ? 1.f : .5f;
     sprite.SetColor(new_color);
+
+    if (!active)
+        primed = false;
+
 }
 
 void UI::Pressed() {

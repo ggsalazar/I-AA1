@@ -1,13 +1,14 @@
 #include "Creature.h"
 
 Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
-	const string por_name, const Disposition init_dispo,
+	const string por_name, const int init_dispo,
 	const bool init_biped, const bool init_winged)
 	: Entity(s_i), stats(init_stats), party_dispo(init_dispo), biped(init_biped), winged(init_winged) {
 
 	//Set sprite origin (most likely {.5f, .95f} for all creatures)
 	sprite.SetOrigin({ .5f, .95f });
 	sprite.SetScale(game->GetResScale());
+	Entity::MoveTo(pos);
 
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
@@ -89,6 +90,8 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 		encumbered = false;
 		mv_spd = TS * .25f;
 	}
+
+
 
 	//PrintStats();
 }
@@ -175,7 +178,7 @@ void Creature::PrintStats() {
 	cout << "STR: " << stats.str << ", CON: " << stats.con << ", AGI: " << stats.agi << ", DEX: " << stats.dex << ", INT: " << stats.intl << ", WIS: " << stats.wis << ", CHA: " << stats.cha << "\n";
 	cout << "Health: " << stats.hlth << "/" << stats.max_hlth << "\n";
 	cout << "Health Threshholds: 30%: " << stats.th_per_hlth << "; 20%: " << stats.tw_per_hlth << "; 10%: " << stats.tn_per_hlth << "\n";
-	cout << "Defenses:\nM-DEF: " << stats.m_def << " (Dodge: " << stats.dodge << " (" << stats.ref << " + " << stats.dex << " + " << dodge_penalty << "), Armor: " << stats.armor << " (Nat : " << stats.nat_armor << ", Worn: " << stats.worn_armor << ")); R-DEF: " << stats.r_def << "\n";
+	cout << "Defenses:\nM-DEF: " << stats.m_def << " (Dodge: " << stats.dodge << " (AGI: " << stats.agi << " + DEX: " << stats.dex << " + Dodge Penalty: " << dodge_penalty << "), Armor: " << stats.armor << " (Nat: " << stats.nat_armor << ", Worn: " << stats.worn_armor << ")); R-DEF: " << stats.r_def << "\n";
 	cout << "Saves:\nFort: " << stats.fort << "; Ref: " << stats.ref << "; Will: " << stats.will << "\n";
 	cout << "Movement:\nWalking Speed: " << stats.w_spd << "m/s (" << base_spd << " + " << stats.agi*.5 <<"); Flying Speed: " << stats.f_spd << " (" << base_spd << " + " << stats.str * .5 << ")\n"; //To add: Swim Speed!
 	cout << "Weight:\nTotal Weight: " << stats.total_weight << "lbs. (Self Weight: " << self_weight << ", Carry Weight: " << stats.carry_weight << "/" << stats.max_carry_weight;
@@ -190,7 +193,7 @@ void Creature::PrintStats() {
 	cout << "Fly; ";
 	if (!well_rested) cout << "Not ";
 	cout << "Well-rested\n";
-	cout << "Party Disposition: " << DispoToString(party_dispo) << "\n";
+	PrintDispo();
 }
 
 
@@ -388,6 +391,28 @@ void Creature::SetWornArmor(float w_a) {
 	stats.worn_armor = w_a;
 	stats.armor = stats.nat_armor + stats.worn_armor;
 	SetDEF();
+}
+
+void Creature::SetDispo(int new_dispo) {
+	party_dispo = new_dispo;
+	Math::Clamp(party_dispo, 0, 100);
+}
+
+void Creature::AlterDispo(int offset) {
+	party_dispo += offset;
+	Math::Clamp(party_dispo, 0, 100);
+}
+
+void Creature::PrintDispo() {
+	cout << "Party Disposition: " << party_dispo;
+	if (0 == party_dispo) cout << " (True Enemy)\n";
+	else if (0 < party_dispo and party_dispo <= 20) cout << " (Hostile)\n";
+	else if (20 < party_dispo and party_dispo <= 40) cout << " (Testy)\n";
+	else if (40 < party_dispo and party_dispo < 60) cout << " (Neutral)\n";
+	else if (60 <= party_dispo and party_dispo < 80) cout << " (Amicable)\n";
+	else if (80 <= party_dispo and party_dispo < 100) cout << " (Friendly)\n";
+	else if (party_dispo == 100) cout << " (True Friend)\n";
+	else cout << "!!! Invalid Disposition!!!\n";
 }
 
 void Creature::SetDEF() {

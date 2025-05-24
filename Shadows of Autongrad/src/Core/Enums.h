@@ -128,31 +128,6 @@ inline string ClassToString(Class c) {
 	}
 }
 
-enum class Disposition {
-	Friendly,
-	Amicable,
-	Neutral,
-	Testy,
-	Hostile
-};
-inline Disposition StringToDispo(string s) {
-	if (s == "Friendly") return Disposition::Friendly;
-	else if (s == "Amicable") return Disposition::Amicable;
-	else if (s == "Neutral") return Disposition::Neutral;
-	else if (s == "Testy") return Disposition::Testy;
-	else if (s == "Hostile") return Disposition::Hostile;
-}
-inline string DispoToString(Disposition d) {
-	switch (d) {
-		case Disposition::Friendly: return "Friendly";
-		case Disposition::Amicable: return "Amicable";
-		case Disposition::Neutral: return "Neutral";
-		case Disposition::Testy: return "Testy";
-		case Disposition::Hostile: return "Hostile";
-		default: return "Unknown";
-	}
-}
-
 enum class Genus {
 	Beast,
 	Monstrosity,
@@ -340,7 +315,6 @@ enum class UIElem {
 	Create,
 	Debug_Room,
 	Equipment_CC,
-	Fullscreen,
 	Load,
 	No,
 	Options,
@@ -368,5 +342,8 @@ enum class UIElem {
 	//Sliders
 	CAMSPD,
 	Music_V,
-	SFX_V
+	SFX_V,
+	//Toggles
+	Fullscreen,
+	Edge_Pan
 };

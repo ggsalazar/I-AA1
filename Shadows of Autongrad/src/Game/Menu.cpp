@@ -265,7 +265,10 @@ Menu::Menu(const Menus init_label) :
             elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElem::CAMSPD, make_s<Slider>(*this, elem_info, UIElem::CAMSPD) });
 
-            //Edge Panning Toggle [TO-DO]
+            //Edge Panning Toggle
+            elem_info.sheet = "UI/Toggle"; elem_info.frame_size = { 24, 24 };
+            elem_info.pos.y += e_y_buffer;
+            ui_elems.insert({ UIElem::Edge_Pan, make_s<Toggle>(*this, elem_info, UIElem::Edge_Pan) });
 
             //Buttons
             elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
@@ -325,16 +328,20 @@ void Menu::Update() {
                             elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .45f);
                         break;
 
-                        case UIElem::Close:
+                        case UIElem::Edge_Pan:
                             elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .55f);
                         break;
 
-                        case UIElem::Title:
+                        case UIElem::Close:
                             elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .65f);
                         break;
 
-                        case UIElem::Quit:
+                        case UIElem::Title:
                             elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .75f);
+                        break;
+
+                        case UIElem::Quit:
+                            elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .85f);
                         break;
                     }
                     ui.second->MoveTo(elem_pos);

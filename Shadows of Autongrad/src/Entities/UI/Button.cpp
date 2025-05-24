@@ -2,7 +2,7 @@
 //#include "Confirm.h"
 
 void Button::Draw() {
-    if (active and Selected())
+    if (Selected())
         game->renderer.DrawRect(bbox, Color(1, 0, 0));
 
     Entity::Draw();

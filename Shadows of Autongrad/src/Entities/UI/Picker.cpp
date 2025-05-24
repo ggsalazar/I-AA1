@@ -97,7 +97,7 @@ void Picker::GetInput() {
 }
 
 void Picker::Draw() {
-    if (active and Selected())
+    if (Selected())
         game->renderer.DrawRect(bbox, Color(0, 1, 0));
 
     Entity::Draw();
@@ -105,16 +105,15 @@ void Picker::Draw() {
     game->renderer.DrawTxt(label);
     game->renderer.DrawTxt(picking);
 
-    if (active) {
-        if (LeftSelected())
-            game->renderer.DrawRect(l_bbox, Color(1, 0, 0, 0), Color(1, 0, 0, .5)); //Red, 50% opacity
-        else if (RightSelected())
-            game->renderer.DrawRect(r_bbox, Color(0, 0, 1, 0), Color(0, 0, 1, .5)); //Blue, 50% opacity
+    
+    if (LeftSelected())
+        game->renderer.DrawRect(l_bbox, Color(1, 0, 0, .5)); //Red, 50% opacity
+    else if (RightSelected())
+        game->renderer.DrawRect(r_bbox, Color(0, 0, 1, .5)); //Blue, 50% opacity
 
-        if (elem == UIElem::Sex and picking.info.str == "-") {
-            string new_sex = rand() % 2 ? "Male" : "Female";
-            picking.info.str = new_sex;
-        }
+    if (elem == UIElem::Sex and picking.info.str == "-") {
+        string new_sex = rand() % 2 ? "Male" : "Female";
+        picking.info.str = new_sex;
     }
 }
 

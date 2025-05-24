@@ -1,207 +1,47 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Game.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+  Toggle.cpp
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(34,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(34,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(35,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(35,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(46,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(46,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Scene.h(30,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
-  (compiling source file 'src/Game/Game.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Scene.h(11,7):
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
+  
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(30,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
+      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(11,7):
       see declaration of 'Menu'
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
+C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/UI/Toggle.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Game/Game.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Game/Game.cpp')
-  
-  Menu.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(34,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(35,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(46,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Game/Menu.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(43,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(86,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(133,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(160,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(189,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(218,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(245,36): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(245,36): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(245,36): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(245,36): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(245,36): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(256,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(292,26): warning C4244: '=': conversion from 'float' to 'uint', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(304,27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(317,47): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(317,47): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(317,47): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(317,47): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(317,47): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(321,47): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(321,47): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(321,47): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(321,47): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(321,47): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(325,47): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(325,47): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(325,47): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(325,47): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(325,47): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(329,47): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(329,47): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(329,47): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(329,47): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(329,47): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(333,47): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(333,47): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(333,47): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(333,47): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(333,47): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(337,47): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(337,47): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(337,47): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(337,47): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(337,47): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(385,30): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(385,30): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(385,30): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(385,30): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(385,30): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(386,30): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(386,30): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(386,30): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(386,30): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(386,30): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(395,30): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(395,30): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(395,30): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(395,30): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(395,30): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(396,30): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(396,30): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(396,30): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(396,30): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(396,30): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(401,30): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(401,30): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(401,30): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(401,30): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(401,30): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(402,30): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(402,30): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(402,30): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(402,30): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Menu.cpp(402,30): warning C4244:         ]
-  main.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(22,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(34,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(35,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(46,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Geometry.h(59,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Scene.h(30,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
-  (compiling source file 'src/main.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Game\Scene.h(11,7):
-      see declaration of 'Menu'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/main.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/main.cpp')
-  
-  Generating Code...
-  Shadows of Autongrad.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Seeds of Apocrypha\x64\Debug\Shadows of Autongrad.exe
+  Shadows of Autongrad.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\x64\Debug\Shadows of Autongrad.exe

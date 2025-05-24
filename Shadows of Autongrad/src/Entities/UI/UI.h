@@ -13,6 +13,8 @@ public:
         const uint init_ui_layer = 0);
 
     virtual void GetInput() override;
+    virtual void Draw() override;
+
     virtual void Resize(uint r_s);
 
     void SetActive(const bool new_active = true);
@@ -29,7 +31,7 @@ protected:
     bool activated = false;
 
     //Functions
-    inline bool Selected() { return Collision::Point(Input::MousePos(), bbox); }
+    inline bool Selected() { return active and Collision::Point(Input::MousePos(), bbox); }
     virtual void Pressed();
     virtual void Released() {}
 };

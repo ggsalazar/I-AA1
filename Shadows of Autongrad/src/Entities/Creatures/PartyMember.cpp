@@ -2,7 +2,7 @@
 
 PartyMember::PartyMember(const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const bool init_biped, const bool init_winged)
-	: Creature(s_i, init_stats, por_name, Disposition::Friendly, init_biped, init_winged) {
+	: Creature(s_i, init_stats, por_name, 100, init_biped, init_winged) {
 	
 	//The health bar
 	hlth_bar.w = round(portrait.GetSprSize().x * .98f);
@@ -84,26 +84,26 @@ void PartyMember::Draw() {
 	}
 
 	Creature::Draw();
-	if (scene->label == Scenes::AREA) {
-		//Camera locking sprite
-		game->renderer.DrawSprite(cam_sprite);
-		if (Collision::Point(Input::MousePos(), cam_sprite_bbox))
-			game->renderer.DrawRect(cam_sprite_bbox, Color(0,0,0,0), Color(1));
+}
 
-		//Party members draw their portraits and health bars at all times
-		//Draw the highlight if selected first, then the portrait
-		if (selected)
-			game->renderer.DrawRect(por_bbox, Color(1));
-		game->renderer.DrawSprite(portrait);
-		game->renderer.DrawTxt(nameplate);
+void PartyMember::DrawPortrait() {
+	//Camera locking sprite
+	game->renderer.DrawSprite(cam_sprite);
+	if (Collision::Point(Input::MousePos(), cam_sprite_bbox))
+		game->renderer.DrawRect(cam_sprite_bbox, Color(0, 0, 0, 0), Color(1));
 
-		//Draw the missing health bar first, then the remaining health bar over it
-		game->renderer.DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {hlth_bar.w, hlth_bar.h} }, Color(1,0,0));
-		game->renderer.DrawRect(hlth_bar, Color(0,1,0));
+	//Party members draw their portraits and health bars at all times
+	//Draw the highlight if selected first, then the portrait
+	if (selected)
+		game->renderer.DrawRect(por_bbox, Color(1));
+	game->renderer.DrawSprite(portrait);
+	game->renderer.DrawTxt(nameplate);
 
-		//Draw our remaining health numerically last
-		game->renderer.DrawTxt(hlth_txt);
+	//Draw the missing health bar first, then the remaining health bar over it
+	game->renderer.DrawRect(Rect{ {hlth_bar.x, hlth_bar.y}, {hlth_bar.w, hlth_bar.h} }, Color(1, 0, 0));
+	game->renderer.DrawRect(hlth_bar, Color(0, 1, 0));
 
-	}
+	//Draw our remaining health numerically last
+	game->renderer.DrawTxt(hlth_txt);
 }
 

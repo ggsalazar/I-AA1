@@ -15,9 +15,10 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	void DrawPortrait();
+
 private:
 	Rect hlth_bar;
-	Rect mssng_hlth_bar; //I don't think I need this
 	Text hlth_txt;
 	
 	//Cam locking

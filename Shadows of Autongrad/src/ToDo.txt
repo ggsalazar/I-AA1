@@ -1,6 +1,6 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Tutorial:	-Base sprites are too big; maybe 48x24 instead of 64x32?
+Tutorial:	-Move to node closest to target if possible
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith
@@ -15,13 +15,14 @@ Tutorial:	-Base sprites are too big; maybe 48x24 instead of 64x32?
 				--Character sheet/s
 				--Inventory
 			-area changing
+			-fog of war
 			-multi-party member spawning, movement, & cam locking
 			-Total: 45 days
 				--Projected finish date: Late July
 			-Sentient creatures have separate head and body sprites (for customization)
 			-Intro cutscene
 			-Combat
-			-Explain all this shit
+			-Tutorialization
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
