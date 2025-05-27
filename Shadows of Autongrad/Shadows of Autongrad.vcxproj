@@ -110,6 +110,7 @@
     <ClCompile Include="src\Entities\UI\Toggle.cpp" />
     <ClCompile Include="src\Entities\UI\UI.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
+    <ClCompile Include="src\Game\Interface.cpp" />
     <ClCompile Include="src\Game\Menu.cpp" />
     <ClCompile Include="src\Game\Scene.cpp" />
     <ClCompile Include="src\Graphics\Renderer.cpp" />

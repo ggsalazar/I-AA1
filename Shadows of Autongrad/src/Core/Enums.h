@@ -76,7 +76,7 @@ enum class Action {
 	Pickup, //Hand
 	Shove,
 	Stand,
-	Talk, //Mouth? Or speech bubble?
+	Talk, //Mouth? Or speech bubble? - Leave up to artist
 	Throw_Item
 };
 inline string ActionToString(Action a) {
@@ -251,16 +251,6 @@ enum class Cutscene {
 
 };
 
-enum class Interfaces {
-	NONE,
-	Char_Sheet, //C
-	Inv,	    //I
-	Journal,    //J
-	Map_Area,   //M
-	Map_World, 
-	Options     //O
-};
-
 enum class MouseTarget {
 	None,
 	Area_Edge,
@@ -271,8 +261,6 @@ enum class MouseTarget {
 	Passage,
 	Tile
 };
-
-
 
 //Engine
 enum class Scenes {
@@ -290,12 +278,13 @@ enum class Menus {
 	Options,
 	Pause,
 	//Interfaces/In-game menus
-	Char_Sheet,
-	Inventory,
-	Journal,
-	Map_Area,
+	NOINTRFC,
+	Char_Sheet, //C
+	Inv,	    //I
+	Journal,    //J
+	Map_Area,   //M
 	Map_World,
-	Options_I,
+	Options_I,     //O
 	//CC
 	CCAS,
 	CCBG,

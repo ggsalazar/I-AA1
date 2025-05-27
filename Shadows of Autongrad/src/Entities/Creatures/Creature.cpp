@@ -149,8 +149,7 @@ void Creature::WalkPath() {
 
 			Entity::MoveBy(offset);
 
-			//This works since mv_spd * game->delta_time is just over 2
-			if (Distance(pos, next_pos) < 3) Entity::MoveTo(Vector2f(next_pos));
+			if (Distance(pos, next_pos) < 5) Entity::MoveTo(Vector2f(next_pos));
 
 		}
 		else

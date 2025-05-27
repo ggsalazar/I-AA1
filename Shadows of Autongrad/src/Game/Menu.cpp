@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "Scene.h" //Game
+#include "Scene.h"
 #include "../Entities/UI/Button.h"
 #include "../Entities/UI/Slider.h"
 #include "../Entities/UI/Picker.h"
@@ -259,7 +259,7 @@ Menu::Menu(const Menus init_label) :
             break;
         }
         //Inventory
-        case Menus::Inventory: {
+        case Menus::Inv: {
             //No need to set position or y_buffer because each of those is set in Update()
             m_t_pos = { 0 }; m_t_str = "Inventory";
             s_t_pos = { 0 }; s_t_str = "";
@@ -338,67 +338,6 @@ Menu::Menu(const Menus init_label) :
 
 void Menu::Update() {
     if (open) {
-        menu_text.info.pos = Round(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .2);
-        Vector2f elem_pos = { 0 };
-        
-        switch (label) {
-            case Menus::Char_Sheet:
-            break;
-
-            case Menus::Inventory:
-            break;
-            
-            case Menus::Journal:
-            break;
-
-            case Menus::Map_Area:
-            break;
-            
-            case Menus::Map_World:
-            break;
-            
-            case Menus::Options_I:
-
-                elem_pos = { game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .25f };
-
-                //This would be easier to do with a vector, but switching from a u_map to a vector at this point would just be a pain in the ass
-                for (const auto& ui : ui_elems) {
-                    switch (ui.first) {
-                        case UIElem::Music_V:
-                            elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .25f);
-                        break;
-
-                        case UIElem::SFX_V:
-                            elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .35f);
-                        break;
-
-                        case UIElem::CAMSPD:
-                            elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .45f);
-                        break;
-
-                        case UIElem::Edge_Pan:
-                            elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .55f);
-                        break;
-
-                        case UIElem::Close:
-                            elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .65f);
-                        break;
-
-                        case UIElem::Title:
-                            elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .75f);
-                        break;
-
-                        case UIElem::Quit:
-                            elem_pos.y = round(game->camera.viewport.y + game->camera.viewport.h * .85f);
-                        break;
-                    }
-                    ui.second->MoveTo(elem_pos);
-                }
-            break;
-        }
-
-
-
         for (const auto& s_m : sub_menus)
             s_m.second->Update();
     }

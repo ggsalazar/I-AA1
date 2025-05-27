@@ -22,6 +22,7 @@ public:
     // -The game is paused
     // -No party members are selected
     bool lmb_action = true;
+    Menus interface_open = Menus::NOINTRFC;
 
     Scene() = default;
     Scene(Scenes init_label) : label(init_label) {}
@@ -46,7 +47,7 @@ public:
     void ResizeMenus();
 
     //Gameplay functions
-    void OpenInterface(Interfaces intrfc = Interfaces::NONE);
+    void OpenInterface();
     void MoveCamera();
     void SelectPartyMems();
     Action LMBAction();
@@ -77,7 +78,6 @@ private:
     Pathfinding grid;
 
     unordered_map<Menus, Menu*> menus;
-    Interface* interface = nullptr;
     vector<s_ptr<Entity>> entities;
     vector<s_ptr<PartyMember>> party_mems;
 

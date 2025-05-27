@@ -71,7 +71,7 @@ void Button::Released() {
 
     case UIElem::Close:
         menu.Open(false);
-        scene->interface_open = Interface::NONE;
+        scene->interface_open = Menus::NOINTRFC;
         game->paused = false;
         break;
 
@@ -115,7 +115,7 @@ void Button::Released() {
 
     case UIElem::Title:
         menu.Open(false);
-        scene->interface_open = Interface::NONE;
+        scene->interface_open = Menus::NOINTRFC;
         game->paused = false;
         game->SetScene(Scenes::TITLE);
         break;

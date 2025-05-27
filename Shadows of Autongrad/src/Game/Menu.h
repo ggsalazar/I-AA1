@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include "Game.h"
 #include "../Core/Aliases.h"
 #include "../Core/Enums.h"
 #include "../Core/Vector2.h"
@@ -7,25 +8,23 @@
 
 using namespace std;
 
-class Game;
 class Scene;
 class UI;
 
 class Menu {
 public:
     Menu(const Menus init_label);
-    ~Menu() {
+    virtual ~Menu() {
         for (auto [_, sm] : sub_menus) {
             delete sm;
             sm = nullptr;
         }
     }
-    virtual ~Menu() {}
     static inline void SetGame(Game* g) { game = g; }
 
     //Engine
-    void Update();
-    void Draw();
+    virtual void Update();
+    virtual void Draw();
 
     //Self and Sub-Menus
     void Open(const bool o = true);

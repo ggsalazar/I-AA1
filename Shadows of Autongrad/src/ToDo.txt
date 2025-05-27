@@ -1,7 +1,6 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
 Tutorial:	-Move to node closest to target if possible; if not return NOACTION
-			-Implementing Interface scaffolding
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith
@@ -87,7 +86,7 @@ Game starts on train! Train heist
 	-Establish magic and tech coexist, then illustrate that magic is going *wrong*, and how and why that's a problem
 	 all within first hour! Then expand on those two things throughout the rest of the game
 
-Portraits - use a single texture that contains all portraits?
+Portraits - use a single texture that contains all portraits? How to navigate easily?
 
 Future Improvements/Sequel ideas:
 	-Reduce the use of smart pointers, ideally to 0
@@ -96,3 +95,4 @@ Future Improvements/Sequel ideas:
 	-Allow for custom UI arrangement
 	-Swimming
 	-Pickpocketing
+	-Temporary party members/allies

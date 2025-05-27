@@ -1,7 +1,5 @@
 #include "Scene.h"
-#include "Game.h"
-#include "Menu.h"
-#include "Interface.h"
+#include "Interface.h" //Menu (Game)
 #include "../Core/Input.h" //Window
 #include "../Core/Math.h"
 #include "../Entities/UI/UI.h" //Entity.h
@@ -96,12 +94,16 @@ void Scene::Open(const bool o) {
 			game->camera.MoveCenterTo(Round(party_ldr_pos));
 
 			//Initialize our interfaces
-			menus.insert({ Menus::Char_Sheet, new Interface(Menus::Char_Sheet, Interfaces::Char_Sheet) });
-			menus.insert({ Menus::Inventory, new Interface(Menus::Inventory, Interfaces::Inv) });
-			menus.insert({ Menus::Journal, new Interface(Menus::Journal, Interfaces::Journal) });
-			menus.insert({ Menus::Map_Area, new Interface(Menus::Map_Area, Interfaces::Map_Area) });
-			menus.insert({ Menus::Map_World, new Interface(Menus::Map_World, Interfaces::Map_World) });
-			menus.insert({ Menus::Options_I, new Interface(Menus::Options_I, Interfaces::Options) });
+			menus.insert({ Menus::Char_Sheet, new Interface(Menus::Char_Sheet) });
+			menus.insert({ Menus::Inv, new Interface(Menus::Inv) });
+			menus.insert({ Menus::Journal, new Interface(Menus::Journal) });
+			menus.insert({ Menus::Map_Area, new Interface(Menus::Map_Area) });
+			menus.insert({ Menus::Map_World, new Interface(Menus::Map_World) });
+			menus.insert({ Menus::Options_I, new Interface(Menus::Options_I) });
+
+
+			//Populate the node grid
+			grid.PopulateNodeGrid(&entities);
 		}
 	}
 
@@ -122,7 +124,7 @@ void Scene::Open(const bool o) {
 
 void Scene::GetInput() {
 	//Reset lmb_action to true if an interface is not open - the entities will determine if it is false
-	lmb_action = !interface_open;
+	lmb_action = interface_open == Menus::NOINTRFC;
 
 	//Input for the entities
 	for (auto& e : entities) {
@@ -153,17 +155,19 @@ void Scene::GetInput() {
 			SetGameCursor(action);
 			if (Input::BtnPressed(LMB)) {
 				switch (action) {
-					case Action::Move:
-						for (const auto& p_m : party_mems) {
-							if (p_m->selected) {
-								p_m->moving = true;
-								p_m->SetPath(found_path);
-							}
+				case Action::Move:
+					for (const auto& p_m : party_mems) {
+						if (p_m->selected) {
+							p_m->moving = true;
+							p_m->SetPath(found_path);
 						}
+					}
 					break;
 				}
 			}
 		}
+		//If the game is paused, the game cursor is the default (at least for now)
+		else game->cursor.SetSheetRow(0);
 	}
 }
 
@@ -237,8 +241,6 @@ void Scene::Draw() {
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
 	//This is here for debugging
-	if (!found_path.empty() and lmb_action)
-		game->renderer.DrawRect(Rect({ found_path.back() }, { 4 }), Color(1));
 	//if (tilemap.Loaded())
 	//	game->renderer.DrawNodeGrid(grid);
 
@@ -269,70 +271,33 @@ void Scene::ResizeMenus() {
 		m.second->Resize();
 }
 
-void Scene::OpenInterface(Interfaces intrfc) {
-	//Character Sheet
-	if (Input::KeyPressed(C_K)) {
-		if (interface != Interface::Char_Sheet) {
-			//Close currently open interface - TO-DO
-			OpenMenu()
-			interface_open = Interface::Char_Sheet;
+void Scene::OpenInterface() {
+	Menus i = Menus::NOINTRFC;
+	if (Input::KeyPressed(C_K)) i = Menus::Char_Sheet;
+	else if (Input::KeyPressed(I_K)) i = Menus::Inv;
+	else if (Input::KeyPressed(J_K)) i = Menus::Journal;
+	else if (Input::KeyPressed(M_K)) i = Menus::Map_Area;
+	else if (Input::KeyPressed(O_K)) i = Menus::Options_I;
+
+
+	if (i != Menus::NOINTRFC) {
+		//Is the interface already open?
+		bool i_was_open = MenuOpen(i);
+
+		//Close currently open interface
+		for (auto& m : menus) {
+			if (dynamic_cast<Interface*>(m.second))
+				OpenMenu(m.first, false);
 		}
-		else interface_open = Interface::NONE;
 
-		//Open the Char_Sheet menu if it isn't already
-		OpenMenu(Menus::Char_Sheet, !MenuOpen(Menus::Char_Sheet));
-	}
-	//Inventory
-	else if (Input::KeyPressed(I_K)) {
-		if (interface_open != Interface::Inv) {
-			//Close whatever other interface was open - TO-DO
-			interface_open = Interface::Inv;
-		}
-		else interface_open = Interface::NONE;
+		//Open the interface if it wasn't already
+		OpenMenu(i, !i_was_open);
 
-		//Open the Inventory menu if it isn't already
-		OpenMenu(Menus::Inventory, !MenuOpen(Menus::Inventory));
+		//Set interface_open & paused
+		//If i was open, then it is now closed, therefore interface_open should be NOINTRFC
+		interface_open = i_was_open ? Menus::NOINTRFC : i;
+		game->paused = !i_was_open;
 	}
-	//Journal
-	else if (Input::KeyPressed(J_K)) {
-		if (interface_open != Interface::Journal) {
-			//Close whatever other interface was open - TO-DO
-			interface_open = Interface::Journal;
-		}
-		else interface_open = Interface::NONE;
-
-		//Open the Journal menu if it isn't already
-		OpenMenu(Menus::Journal, !MenuOpen(Menus::Journal));
-	}
-	//Map (Area)
-	else if (Input::KeyPressed(M_K)) {
-		if (interface_open != Interface::Map_Area) {
-			//Close whatever other interface was open - TO-DO
-			interface_open = Interface::Map_Area;
-		}
-		else interface_open = Interface::NONE;
-
-		//Open the Map_Area menu if it isn't already
-		OpenMenu(Menus::Map_Area, !MenuOpen(Menus::Map_Area));
-	}
-	//Map (World)
-	//Options
-	else if (Input::KeyPressed(O_K)) {
-		if (interface_open != Interface::Options) {
-			//Close whatever other menu was open - TO-DO
-			interface_open = Interface::Options;
-		}
-		else interface_open = Interface::NONE;
-
-		//Open the Options_I menu if it isn't already
-		OpenMenu(Menus::Options_I, !MenuOpen(Menus::Options_I));
-	}
-
-	if (interface_open != Interface::NONE) {
-		game->paused = true;
-		game->cursor.SetSheetRow(0);
-	}
-	else game->paused = false;
 }
 
 void Scene::MoveCamera() {
@@ -516,8 +481,8 @@ Action Scene::LMBAction() {
 		case MouseTarget::Creature: {
 			//First, we need to know the target creature's disposition to the party
 			int creature_dispo = 0;
-			if (c)
-				creature_dispo = c->GetDispo();
+			if (c) creature_dispo = c->GetDispo();
+
 			if (creature_dispo <= 20) {
 				//Attack actions (Melee/Ranged/Spell)
 			}
