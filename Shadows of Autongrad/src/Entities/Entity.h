@@ -25,10 +25,11 @@ public:
     virtual void GetInput() {}
     inline virtual void Update() {}
     virtual void Draw();
-    virtual void MoveBy(Vector2i offset);
-    virtual void MoveTo(Vector2i new_pos);
+    virtual void MoveBy(Vector2f offset);
+    virtual void MoveTo(Vector2f new_pos);
 
     inline Vector2i GetPos() const { return pos; }
+    inline Vector2f GetFloatPos() const { return float_pos; }
     inline Rect GetBBox() const { return bbox; }
 
     inline void SetScene(Scene* new_scn) { scene = new_scn; }
@@ -37,6 +38,7 @@ public:
 
 protected:
     Vector2i pos;
+    Vector2f float_pos;
     Circle pos_debug;
     Rect bbox;
 

@@ -3,23 +3,23 @@
 #undef PlaySound
 
 Entity::Entity(const Sprite::Info& s_i)
-    : scene(game->active_scene), pos(s_i.pos), pos_debug(pos, 4) /*sound(sb)*/ {
+    : scene(game->active_scene), pos(s_i.pos), float_pos(pos), pos_debug(pos, 4) /*sound(sb)*/ {
     sprite.Init(s_i);
-    Entity::MoveTo(pos);
+    Entity::MoveTo(float_pos);
 }
 
 void Entity::Draw() {
     game->renderer.DrawSprite(sprite);
 }
 
-void Entity::MoveBy(Vector2i offset) {
-    pos += offset;
+void Entity::MoveBy(Vector2f offset) {
+    float_pos += offset;
 
     Entity::Move();
 }
 
-void Entity::MoveTo(Vector2i new_pos) {
-    pos = new_pos;
+void Entity::MoveTo(Vector2f new_pos) {
+    float_pos = new_pos;
 
     Entity::Move();
 }
@@ -36,6 +36,8 @@ void Entity::PlaySound() {
 }
 
 void Entity::Move() {
+    pos = Round(float_pos);
+
     sprite.MoveTo(pos);
     size = sprite.GetSprSize();
 

@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Game.h"
 #include "Menu.h"
+#include "Interface.h"
 #include "../Core/Input.h" //Window
 #include "../Core/Math.h"
 #include "../Entities/UI/UI.h" //Entity.h
@@ -86,7 +87,7 @@ void Scene::Open(const bool o) {
 				p_m->SetScene(this);
 				switch (p_m->party_position) {
 					case 0:
-						p_m->MoveTo(Round(party_ldr_pos));
+						p_m->MoveTo(party_ldr_pos);
 					break;
 				}
 				p_m->selected = true;
@@ -94,8 +95,13 @@ void Scene::Open(const bool o) {
 
 			game->camera.MoveCenterTo(Round(party_ldr_pos));
 
-			//Initialize our menus
-			menus.insert({ Menus::Options_G, new Menu(Menus::Options_G) });
+			//Initialize our interfaces
+			menus.insert({ Menus::Char_Sheet, new Interface(Menus::Char_Sheet, Interfaces::Char_Sheet) });
+			menus.insert({ Menus::Inventory, new Interface(Menus::Inventory, Interfaces::Inv) });
+			menus.insert({ Menus::Journal, new Interface(Menus::Journal, Interfaces::Journal) });
+			menus.insert({ Menus::Map_Area, new Interface(Menus::Map_Area, Interfaces::Map_Area) });
+			menus.insert({ Menus::Map_World, new Interface(Menus::Map_World, Interfaces::Map_World) });
+			menus.insert({ Menus::Options_I, new Interface(Menus::Options_I, Interfaces::Options) });
 		}
 	}
 
@@ -116,7 +122,7 @@ void Scene::Open(const bool o) {
 
 void Scene::GetInput() {
 	//Reset lmb_action to true if an interface is not open - the entities will determine if it is false
-	lmb_action = interface_open == Interface::NONE;
+	lmb_action = !interface_open;
 
 	//Input for the entities
 	for (auto& e : entities) {
@@ -138,8 +144,8 @@ void Scene::GetInput() {
 
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing
 			// will depend on what it is pointing at
-			//Updating action every 6th of a second for performance reasons
-			if (game->GetGameFrames() % 10 == 0 and lmb_action)
+			//Updating action every 10th of a second for performance reasons
+			if (game->GetGameFrames() % 6 == 0 and lmb_action)
 				action = LMBAction();
 			if (!lmb_action) action = Action::DEFAULT;
 
@@ -163,6 +169,7 @@ void Scene::GetInput() {
 
 void Scene::Update() {
 	
+	//Every frame:
 	//Update menus
 	for (const auto& m : menus)
 		m.second->Update();
@@ -179,19 +186,22 @@ void Scene::Update() {
 		right_edge.x = game->camera.viewport.x + game->camera.viewport.w - TS; right_edge.y = game->camera.viewport.y;
 	}
 
-	//Remove dead entities
-	entities.erase(remove_if(entities.begin(), entities.end(), 
-		[](const s_ptr<Entity>& e) { return !e->alive;}), entities.end());
 
-	//Sort the entities vector (and possibly Menus map) by dfc value every 6th of a second so that entities of a lower dfc value are drawn
+	//Remove dead entities every 15th of a second (every 4 game frames)
+	if (game->GetGameFrames() % 4 == 0) {
+		entities.erase(remove_if(entities.begin(), entities.end(),
+			[](const s_ptr<Entity>& e) { return !e->alive;}), entities.end());
+	}
+
+	//Repopulate the node grid every 10th of a second (every 6 game frames)
+	if (game->GetGameFrames() % 6 == 0 and tilemap.Loaded())
+		grid.PopulateNodeGrid(&entities);
+
+	//Sort the entities vector (and possibly Menus map) by dfc value every 6th of a second (every 10 game frames) so that entities of a lower dfc value are drawn
 	// last (closest to the camera)
 	if (game->GetGameFrames() % 10 == 0) {
-		sort(entities.begin(), entities.end(), 
+		sort(entities.begin(), entities.end(),
 			[](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite.GetDFC() > b->sprite.GetDFC(); });
-
-		//Also taking this opportunity to repopulate/reset the node grid
-		if (tilemap.Loaded())
-			grid.PopulateNodeGrid(&entities);
 	}
 }
 
@@ -227,6 +237,8 @@ void Scene::Draw() {
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
 	//This is here for debugging
+	if (!found_path.empty() and lmb_action)
+		game->renderer.DrawRect(Rect({ found_path.back() }, { 4 }), Color(1));
 	//if (tilemap.Loaded())
 	//	game->renderer.DrawNodeGrid(grid);
 
@@ -238,14 +250,9 @@ void Scene::Draw() {
 
 void Scene::OpenMenu(Menus menu, const bool o) {
 	auto m = menus.find(menu);
-	if (o) {
-		if (m != menus.end())
-			m->second->Open();
-	}
-	else {
-		if (m != menus.end())
-			m->second->Open(false);
-	}
+	if (m != menus.end())
+		m->second->Open(o);
+	else cout << "Cannot open/close that Menu\n";
 }
 
 bool Scene::MenuOpen(Menus menu) {
@@ -253,7 +260,7 @@ bool Scene::MenuOpen(Menus menu) {
 	if (m != menus.end())
 		return m->second->GetOpen();
 
-	cout << "That Menu does not exist in this Scene" << endl;
+	cout << "That Menu does not exist in this Scene\n";
 	return false;
 }
 
@@ -262,25 +269,70 @@ void Scene::ResizeMenus() {
 		m.second->Resize();
 }
 
-void Scene::OpenInterface(Interface intrfc) {
-	//Options Interface
-	if (Input::KeyPressed(O_K)) {
+void Scene::OpenInterface(Interfaces intrfc) {
+	//Character Sheet
+	if (Input::KeyPressed(C_K)) {
+		if (interface != Interface::Char_Sheet) {
+			//Close currently open interface - TO-DO
+			OpenMenu()
+			interface_open = Interface::Char_Sheet;
+		}
+		else interface_open = Interface::NONE;
+
+		//Open the Char_Sheet menu if it isn't already
+		OpenMenu(Menus::Char_Sheet, !MenuOpen(Menus::Char_Sheet));
+	}
+	//Inventory
+	else if (Input::KeyPressed(I_K)) {
+		if (interface_open != Interface::Inv) {
+			//Close whatever other interface was open - TO-DO
+			interface_open = Interface::Inv;
+		}
+		else interface_open = Interface::NONE;
+
+		//Open the Inventory menu if it isn't already
+		OpenMenu(Menus::Inventory, !MenuOpen(Menus::Inventory));
+	}
+	//Journal
+	else if (Input::KeyPressed(J_K)) {
+		if (interface_open != Interface::Journal) {
+			//Close whatever other interface was open - TO-DO
+			interface_open = Interface::Journal;
+		}
+		else interface_open = Interface::NONE;
+
+		//Open the Journal menu if it isn't already
+		OpenMenu(Menus::Journal, !MenuOpen(Menus::Journal));
+	}
+	//Map (Area)
+	else if (Input::KeyPressed(M_K)) {
+		if (interface_open != Interface::Map_Area) {
+			//Close whatever other interface was open - TO-DO
+			interface_open = Interface::Map_Area;
+		}
+		else interface_open = Interface::NONE;
+
+		//Open the Map_Area menu if it isn't already
+		OpenMenu(Menus::Map_Area, !MenuOpen(Menus::Map_Area));
+	}
+	//Map (World)
+	//Options
+	else if (Input::KeyPressed(O_K)) {
 		if (interface_open != Interface::Options) {
-			interface_open = Interface::Options;
-			game->paused = true;
 			//Close whatever other menu was open - TO-DO
+			interface_open = Interface::Options;
 		}
-		else {
-			interface_open = Interface::NONE;
-			game->paused = false;
-		}
-		//Open the options menu if it isn't already
-		OpenMenu(Menus::Options_G, !MenuOpen(Menus::Options_G));
+		else interface_open = Interface::NONE;
+
+		//Open the Options_I menu if it isn't already
+		OpenMenu(Menus::Options_I, !MenuOpen(Menus::Options_I));
 	}
 
 	if (interface_open != Interface::NONE) {
+		game->paused = true;
 		game->cursor.SetSheetRow(0);
 	}
+	else game->paused = false;
 }
 
 void Scene::MoveCamera() {
@@ -446,6 +498,11 @@ Action Scene::LMBAction() {
 
 		//If we're not looking at a tile, then there is no action to perform
 		if (curr_tile.terrain == Terrain::None) return Action::NOACTION;
+		
+		
+		
+		game->renderer.DrawRect(Rect({ tile_pos * TS }, { 4 }), Color(1));
+
 		mouse_tar = MouseTarget::Tile;
 	}
 
@@ -588,7 +645,7 @@ void Scene::CreatePartyMem() {
 	info.sheet = "Creatures/Sentients/PMPlaceholder";
 	info.frame_size = { 24, 48 }; info.origin = { .5f }; info.scale = game->GetResScale();
 	auto new_party_mem = make_s<PartyMember>(info); //The remaining arguments are the defaults
-	new_party_mem->MoveTo(Round(game->resolution.x * .75f, game->resolution.y * .5f));
+	new_party_mem->MoveTo({ game->resolution.x * .75f, game->resolution.y * .5f });
 	entities.push_back(new_party_mem);
 }
 

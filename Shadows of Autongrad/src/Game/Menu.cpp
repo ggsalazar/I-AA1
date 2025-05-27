@@ -248,41 +248,78 @@ Menu::Menu(const Menus init_label) :
             break;
         }
         
-        case Menus::Options_G: {
-            m_t_pos = Round(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .2f); m_t_str = "Options";
+
+        //Interfaces, or in-game menus
+        //Char_Sheet
+        case Menus::Char_Sheet: {
+            //No need to set position or y_buffer because each of those is set in Update()
+            m_t_pos = { 0 }; m_t_str = "Character Sheet";
             s_t_pos = { 0 }; s_t_str = "";
 
-            elem_info.pos = Round(m_t_pos.x, game->camera.viewport.y + game->camera.viewport.h * .28f);
-            e_y_buffer = round(game->camera.viewport.y * .1f);
+            break;
+        }
+        //Inventory
+        case Menus::Inventory: {
+            //No need to set position or y_buffer because each of those is set in Update()
+            m_t_pos = { 0 }; m_t_str = "Inventory";
+            s_t_pos = { 0 }; s_t_str = "";
+
+            break;
+        }
+        //Journal
+        case Menus::Journal: {
+            //No need to set position or y_buffer because each of those is set in Update()
+            m_t_pos = { 0 }; m_t_str = "Journal";
+            s_t_pos = { 0 }; s_t_str = "";
+
+            break;
+        }
+        //Map_Area
+        case Menus::Map_Area: {
+            //No need to set position or y_buffer because each of those is set in Update()
+            m_t_pos = { 0 }; m_t_str = "Area Map";
+            s_t_pos = { 0 }; s_t_str = "";
+
+            break;
+        }
+        //Map_World
+        case Menus::Map_World: {
+            //No need to set position or y_buffer because each of those is set in Update()
+            m_t_pos = { 0 }; m_t_str = "World Map";
+            s_t_pos = { 0 }; s_t_str = "";
+
+            break;
+        }
+        //Options
+        case Menus::Options_I: {
+            //No need to set position or y_buffer because each of those is set in Update()
+            m_t_pos = { 0 }; m_t_str = "Options";
+            s_t_pos = { 0 }; s_t_str = "";
+
+            elem_info.pos = { 0 };
             elem_info.sheet = "UI/Slider"; elem_info.frame_size = { 192, 27 };
 
             //Music, sfx, and cam speed sliders
             ui_elems.insert({ UIElem::Music_V, make_s<Slider>(*this, elem_info, UIElem::Music_V) });
 
-            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElem::SFX_V, make_s<Slider>(*this, elem_info, UIElem::SFX_V) });
 
-            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElem::CAMSPD, make_s<Slider>(*this, elem_info, UIElem::CAMSPD) });
 
             //Edge Panning Toggle
             elem_info.sheet = "UI/Toggle"; elem_info.frame_size = { 24, 24 };
-            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElem::Edge_Pan, make_s<Toggle>(*this, elem_info, UIElem::Edge_Pan) });
 
             //Buttons
             elem_info.sheet = "UI/Button"; elem_info.frame_size = { 93, 26 };
 
             //Close button
-            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElem::Close, make_s<Button>(*this, elem_info, UIElem::Close) });
 
             //Return to Title
-            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElem::Title, make_s<Button>(*this, elem_info, UIElem::Title) });
 
             //Quit
-            elem_info.pos.y += e_y_buffer;
             ui_elems.insert({ UIElem::Quit, make_s<Button>(*this, elem_info, UIElem::Quit) });
             break;
         }
@@ -301,17 +338,28 @@ Menu::Menu(const Menus init_label) :
 
 void Menu::Update() {
     if (open) {
-        Vector2i m_t_pos = { 0 };
-        Vector2i s_t_pos = { 0 };
-        Vector2i elem_pos = { 0 };
-        int elem_y_buffer = 0.f;
+        menu_text.info.pos = Round(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .2);
+        Vector2f elem_pos = { 0 };
         
-
         switch (label) {
-            case Menus::Options_G:
-                menu_text.info.pos = Round(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .2);
+            case Menus::Char_Sheet:
+            break;
 
-                elem_pos = Round(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .25f);
+            case Menus::Inventory:
+            break;
+            
+            case Menus::Journal:
+            break;
+
+            case Menus::Map_Area:
+            break;
+            
+            case Menus::Map_World:
+            break;
+            
+            case Menus::Options_I:
+
+                elem_pos = { game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .25f };
 
                 //This would be easier to do with a vector, but switching from a u_map to a vector at this point would just be a pain in the ass
                 for (const auto& ui : ui_elems) {
@@ -348,6 +396,8 @@ void Menu::Update() {
                 }
             break;
         }
+
+
 
         for (const auto& s_m : sub_menus)
             s_m.second->Update();
@@ -416,7 +466,7 @@ void Menu::Resize() {
     sup_text.info.pos = new_s_t_pos;
 
     //UI Elements
-    Vector2i new_pos = Round(game->resolution * .5f);
+    Vector2f new_pos = game->resolution * .5f;
 
     for (const auto& ui : ui_elems) {
         auto& u = ui.second;
@@ -427,71 +477,71 @@ void Menu::Resize() {
         Vector2u gr = game->resolution;
         switch (ui.first) {
             case UIElem::Apply:
-                new_pos = Round(gr.x * .5f, gr.y * .66f);
+                new_pos = gr.x * .5f, gr.y * .66f;
                 break;
 
             case UIElem::AS:
-                new_pos = Round(gr.x * .2f, gr.y * .55f);
+                new_pos = gr.x * .2f, gr.y * .55f;
                 break;
 
             case UIElem::ASAGI:
-                new_pos = Round(gr.x * .5f, gr.y * .36f);
+                new_pos = gr.x * .5f, gr.y * .36f;
                 break;
 
             case UIElem::ASCHA:
-                new_pos = Round(gr.x * .5f, gr.y * .68f);
+                new_pos = gr.x * .5f, gr.y * .68f;
                 break;
 
             case UIElem::ASCON:
-                new_pos = Round(gr.x * .5f, gr.y * .28f);
+                new_pos = gr.x * .5f, gr.y * .28f;
                 break;
 
             case UIElem::ASDEX:
-                new_pos = Round(gr.x * .5f, gr.y * .44f);
+                new_pos = gr.x * .5f, gr.y * .44f;
                 break;
 
             case UIElem::ASINT:
-                new_pos = Round(gr.x * .5f, gr.y * .52f);
+                new_pos = gr.x * .5f, gr.y * .52f;
                 break;
 
             case UIElem::ASSTR:
-                new_pos = Round(gr.x * .5f, gr.y * .2f);
+                new_pos = gr.x * .5f, gr.y * .2f;
                 break;
 
             case UIElem::ASWIS:
-                new_pos = Round(gr.x * .5f, gr.y * .6f);
+                new_pos = gr.x * .5f, gr.y * .6f;
                 break;
 
             case UIElem::Back:
-                new_pos = Round(gr.x * .5f, gr.y * .9f);
+                new_pos = gr.x * .5f, gr.y * .9f;
                 break;
 
             case UIElem::BG_B:
-                new_pos = Round(gr.x * .2f, gr.y * .35f);
+                new_pos = gr.x * .2f, gr.y * .35f;
                 break;
 
             case UIElem::CharCrea:
-                new_pos = Round(gr.x * .5f, gr.y * .4f);
+                new_pos = gr.x * .5f, gr.y * .4f;
                 break;
 
             case UIElem::Class_B:
-                new_pos = Round(gr.x * .2f, gr.y * .45f);
+                new_pos = gr.x * .2f, gr.y * .45f;
                 break;
 
             case UIElem::Create:
-                new_pos = Round(gr.x * .5f, gr.y * .8f);
+                new_pos = gr.x * .5f, gr.y * .8f;
                 break;
 
             case UIElem::Debug_Room:
-                new_pos = Round(gr.x * .75f, gr.y * .5f);
+                new_pos = gr.x * .75f, gr.y * .5f;
                 break;
 
             case UIElem::Equipment_CC:
-                new_pos = Round(gr.x * .2f, gr.y * .75f);
+                new_pos = gr.x * .2f, gr.y * .75f;
                 break;
 
             case UIElem::Fullscreen: {
-                new_pos = Round(gr.x * (.5f + res_scalar * .01f), gr.y * .57f );
+                new_pos = gr.x * (.5f + res_scalar * .01f), gr.y * .57f;
                 string new_status = "False";
                 if (game->resolution == game->window.ScreenSize())
                     new_status = "True";
@@ -500,39 +550,39 @@ void Menu::Resize() {
             } break;
 
             case UIElem::Load:
-                new_pos = Round(gr.x * .5f, gr.y * .5f);
+                new_pos = gr.x * .5f, gr.y * .5f;
                 break;
 
             case UIElem::Music_V:
-                new_pos = Round(gr.x * .5f, gr.y * .3f);
+                new_pos = gr.x * .5f, gr.y * .3f;
                 break;
 
             case UIElem::Options:
-                new_pos = Round(gr.x * .5f, gr.y * .7f);
+                new_pos = gr.x * .5f, gr.y * .7f;
                 break;
 
             case UIElem::Quit:
-                new_pos = Round(gr.x * .5f, gr.y * .8f);
+                new_pos = gr.x * .5f, gr.y * .8f;
                 break;
 
             case UIElem::Race_B:
-                new_pos = Round(gr.x * .2f, gr.y * .25f);
+                new_pos = gr.x * .2f, gr.y * .25f;
                 break;
 
             case UIElem::Resolution:
-                new_pos = Round(gr.x * .5f, gr.y * .48f);
+                new_pos = gr.x * .5f, gr.y * .48f;
                 break;
 
             case UIElem::SFX_V:
-                new_pos = Round(gr.x * .5f, gr.y * .39f);
+                new_pos = gr.x * .5f, gr.y * .39f;
                 break;
 
             case UIElem::Skills:
-                new_pos = Round(gr.x * .2f, gr.y * .65f);
+                new_pos = gr.x * .2f, gr.y * .65f;
                 break;
 
             case UIElem::Tutorial:
-                new_pos = Round(gr.x * .5f, gr.y * .6f);
+                new_pos = gr.x * .5f, gr.y * .6f;
                 break;
         }
 

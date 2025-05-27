@@ -8,8 +8,8 @@ public:
 
     void GetInput() override;
     void Draw() override;
-    inline void MoveBy(Vector2i offset) override { Entity::MoveBy(offset); Move(); }
-    inline void MoveTo(Vector2i new_pos) override { Entity::MoveTo(new_pos); Move(); }
+    inline void MoveBy(Vector2f offset) override { Entity::MoveBy(offset); Move(); }
+    inline void MoveTo(Vector2f new_pos) override { Entity::MoveTo(new_pos); Move(); }
 
 private:
     void Move() override;

@@ -9,6 +9,7 @@ using namespace std;
 
 class Game;
 class Menu;
+class Interface;
 class Entity;
 class PartyMember;
 
@@ -21,7 +22,6 @@ public:
     // -The game is paused
     // -No party members are selected
     bool lmb_action = true;
-    Interface interface_open = Interface::NONE;
 
     Scene() = default;
     Scene(Scenes init_label) : label(init_label) {}
@@ -46,7 +46,7 @@ public:
     void ResizeMenus();
 
     //Gameplay functions
-    void OpenInterface(Interface intrfc = Interface::NONE);
+    void OpenInterface(Interfaces intrfc = Interfaces::NONE);
     void MoveCamera();
     void SelectPartyMems();
     Action LMBAction();
@@ -77,6 +77,7 @@ private:
     Pathfinding grid;
 
     unordered_map<Menus, Menu*> menus;
+    Interface* interface = nullptr;
     vector<s_ptr<Entity>> entities;
     vector<s_ptr<PartyMember>> party_mems;
 

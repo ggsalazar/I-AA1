@@ -119,6 +119,7 @@ protected:
 	bool encumbered = false;
 	bool in_combat = false;
 	int party_dispo = 50;
+	float base_mv_spd = 1;
 	float mv_spd = 1; //This is not a stat, this is the UTH movement speed!
 
 

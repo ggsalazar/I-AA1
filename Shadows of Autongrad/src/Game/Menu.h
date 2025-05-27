@@ -20,6 +20,7 @@ public:
             sm = nullptr;
         }
     }
+    virtual ~Menu() {}
     static inline void SetGame(Game* g) { game = g; }
 
     //Engine

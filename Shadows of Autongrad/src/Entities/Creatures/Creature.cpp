@@ -8,7 +8,7 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 	//Set sprite origin (most likely {.5f, .95f} for all creatures)
 	sprite.SetOrigin({ .5f, .95f });
 	sprite.SetScale(game->GetResScale());
-	Entity::MoveTo(pos);
+	Entity::MoveTo(float_pos);
 
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
@@ -66,7 +66,7 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 		break;
 	}
 	//Set UTH move speed
-	mv_spd = TS *.25f;
+	base_mv_spd = 400.f;
 	//Factor in whether or not the creature is bipedal (if not, they get 2 extra m/s)
 	base_spd += !biped * 2;
 
@@ -82,15 +82,8 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 
 
 	stats.total_weight = self_weight + stats.carry_weight;
-	if (stats.carry_weight > stats.max_carry_weight) {
-		encumbered = true;
-		mv_spd = TS * .125f;
-	}
-	else {
-		encumbered = false;
-		mv_spd = TS * .25f;
-	}
-
+	encumbered = stats.carry_weight > stats.max_carry_weight;
+	mv_spd = encumbered ? base_mv_spd * .5f : base_mv_spd;
 
 
 	//PrintStats();
@@ -105,14 +98,8 @@ void Creature::GetInput() {
 void Creature::Update() {
 	//I probably don't need to be setting this every frame, but this works for now
 	stats.total_weight = self_weight + stats.carry_weight;
-	if (stats.carry_weight > stats.max_carry_weight) {
-		encumbered = true;
-		mv_spd = TS * .125f;
-	}
-	else {
-		encumbered = false;
-		mv_spd = TS * .25f;
-	}
+	encumbered = stats.carry_weight > stats.max_carry_weight;
+	mv_spd = encumbered ? base_mv_spd * .5f : base_mv_spd;
 
 	//Position of portrait in combat will be updated here
 
@@ -141,22 +128,30 @@ void Creature::WalkPath() {
 
 			//Moving up
 			if (pos.y > next_pos.y)
-				offset.y = -min(mv_spd, (float)(pos.y - next_pos.y));
+				offset.y = -mv_spd;
 			//Moving down
 			else if (pos.y < next_pos.y)
-				offset.y = min(mv_spd, (float)(next_pos.y - pos.y));
+				offset.y = mv_spd;
 			//Moving left
 			if (pos.x > next_pos.x)
-				offset.x = -min(mv_spd, (float)(pos.x - next_pos.x));
+				offset.x = -mv_spd;
 			//Moving right
 			else if (pos.x < next_pos.x)
-				offset.x = min(mv_spd, (float)(next_pos.x - pos.x));
+				offset.x = mv_spd;
 
 			//Normalize diagonal movement
 			if (offset.x != 0 and offset.y != 0)
 				offset /= sqrt2;
 
-			Entity::MoveBy(Round(offset));
+			offset *= game->delta_time;
+
+			cout << mv_spd * game->delta_time << "\n";
+
+			Entity::MoveBy(offset);
+
+			//This works since mv_spd * game->delta_time is just over 2
+			if (Distance(pos, next_pos) < 3) Entity::MoveTo(Vector2f(next_pos));
+
 		}
 		else
 			path.pop();
@@ -214,129 +209,129 @@ void Creature::SetAbilityScore(Ab_Score a_s, float new_score) {
 	}
 	switch (a_s) {
 		//Derived stats: fort, self_weight, max_carry_weight, f_spd, and possibly m_def
-	case Ab_Score::STR:
-		stats.str = new_score;
-		stats.fort = (stats.str + stats.con) * .5f;
-		switch (stats.size) {
-		case Size::Tiny:
-			self_weight = 1 + (stats.str);
-			stats.max_carry_weight = max(3.f, stats.str * 10);
-			break;
+		case Ab_Score::STR:
+			stats.str = new_score;
+			stats.fort = (stats.str + stats.con) * .5f;
+			switch (stats.size) {
+			case Size::Tiny:
+				self_weight = 1 + (stats.str);
+				stats.max_carry_weight = max(3.f, stats.str * 10);
+				break;
 
-		case Size::Small:
-			self_weight = 75 + (stats.str * 10);
-			stats.max_carry_weight = max(12.5f, stats.str * 50);
-			break;
+			case Size::Small:
+				self_weight = 75 + (stats.str * 10);
+				stats.max_carry_weight = max(12.5f, stats.str * 50);
+				break;
 
-		case Size::Med:
-			self_weight = 150 + (stats.str * 10);
-			stats.max_carry_weight = max(15.f, stats.str * 50);
-			break;
+			case Size::Med:
+				self_weight = 150 + (stats.str * 10);
+				stats.max_carry_weight = max(15.f, stats.str * 50);
+				break;
 
-		case Size::Big:
-			self_weight = 190 + (stats.str * 10);
-			stats.max_carry_weight = max(17.5f, stats.str * 50);
-			break;
+			case Size::Big:
+				self_weight = 190 + (stats.str * 10);
+				stats.max_carry_weight = max(17.5f, stats.str * 50);
+				break;
 
-		case Size::Large:
-			self_weight = 400 + (stats.str * 25);
-			stats.max_carry_weight = max(25.f, stats.str * 100);
-			break;
+			case Size::Large:
+				self_weight = 400 + (stats.str * 25);
+				stats.max_carry_weight = max(25.f, stats.str * 100);
+				break;
 
-		case Size::Huge:
-			self_weight = 1000 + (stats.str * 100);
-			stats.max_carry_weight = max(50.f, stats.str * 150);
-			break;
+			case Size::Huge:
+				self_weight = 1000 + (stats.str * 100);
+				stats.max_carry_weight = max(50.f, stats.str * 150);
+				break;
 
-		case Size::Massive:
-			self_weight = 2500 + (stats.str * 250);
-			stats.max_carry_weight = max(75.f, stats.str * 200);
-			break;
+			case Size::Massive:
+				self_weight = 2500 + (stats.str * 250);
+				stats.max_carry_weight = max(75.f, stats.str * 200);
+				break;
 
-		case Size::Colossal:
-			self_weight = 10000 + (stats.str * 1000);
-			stats.max_carry_weight = max(100.f, stats.str * 250);
-			break;
-		}
-		//Determine flying speed
-		SetFlySpeed();
+			case Size::Colossal:
+				self_weight = 10000 + (stats.str * 1000);
+				stats.max_carry_weight = max(100.f, stats.str * 250);
+				break;
+			}
+			//Determine flying speed
+			SetFlySpeed();
 		break;
 
 		//Derived stats: fort, max_hlth, th_per_hlth, tw_per_hlth, tn_per_health
 		//Setting Health is a special case, and is handled in SetMaxHealth()
-	case Ab_Score::CON:
-		stats.con = new_score;
-		stats.fort = (stats.str + stats.con) * .5f;
+		case Ab_Score::CON:
+			stats.con = new_score;
+			stats.fort = (stats.str + stats.con) * .5f;
 		break;
 
 		//Derived stats: Ref, w_spd, dodge
-	case Ab_Score::AGI:
-		stats.agi = new_score;
-		stats.ref = (stats.agi + stats.dex) * .5f;
-		stats.w_spd = base_spd + (.5f * stats.agi);
-		stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty); //Remember this is modified by armor!
+		case Ab_Score::AGI:
+			stats.agi = new_score;
+			stats.ref = (stats.agi + stats.dex) * .5f;
+			stats.w_spd = base_spd + (.5f * stats.agi);
+			stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty); //Remember this is modified by armor!
 		break;
 
 		//Derived stats: Ref, less_action_time, dodge
-	case Ab_Score::DEX:
-		stats.dex = new_score;
-		stats.ref = (stats.agi + stats.dex) * .5f;
-		stats.less_act_time = stats.dex * .25f; //Need to round this to the nearest half (or quarter?)
-		stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty); //Remember this is modified by armor!
+		case Ab_Score::DEX:
+			stats.dex = new_score;
+			stats.ref = (stats.agi + stats.dex) * .5f;
+			stats.less_act_time = stats.dex * .25f; //Need to round this to the nearest half (or quarter?)
+			stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty); //Remember this is modified by armor!
 		break;
 
-		//No derived stats
-	case Ab_Score::INT:
-		stats.intl = new_score;
-		break;
-
-		//Derived stats: Will
-	case Ab_Score::WIS:
-		stats.wis = new_score;
-		stats.will = (stats.wis + stats.cha) * .5f;
+		//No derived stats, but can get more skill points/languages
+		case Ab_Score::INT:
+			stats.intl = new_score;
 		break;
 
 		//Derived stats: Will
-	case Ab_Score::CHA:
-		stats.cha = new_score;
-		stats.will = (stats.wis + stats.cha) * .5f;
+		case Ab_Score::WIS:
+			stats.wis = new_score;
+			stats.will = (stats.wis + stats.cha) * .5f;
+		break;
+
+		//Derived stats: Will
+		case Ab_Score::CHA:
+			stats.cha = new_score;
+			stats.will = (stats.wis + stats.cha) * .5f;
 		break;
 	}
 }
 
 float Creature::GetAbilityScore(Ab_Score a_s) {
 	switch (a_s) {
-	case Ab_Score::STR:
-		return stats.str;
-		break;
+		case Ab_Score::STR:
+			return stats.str;
+			break;
 
-	case Ab_Score::CON:
-		return stats.con;
-		break;
+		case Ab_Score::CON:
+			return stats.con;
+			break;
 
-	case Ab_Score::AGI:
-		return stats.agi;
-		break;
+		case Ab_Score::AGI:
+			return stats.agi;
+			break;
 
-	case Ab_Score::DEX:
-		return stats.dex;
-		break;
+		case Ab_Score::DEX:
+			return stats.dex;
+			break;
 
-	case Ab_Score::INT:
-		return stats.intl;
-		break;
+		case Ab_Score::INT:
+			return stats.intl;
+			break;
 
-	case Ab_Score::WIS:
-		return stats.wis;
-		break;
+		case Ab_Score::WIS:
+			return stats.wis;
+			break;
 
-	case Ab_Score::CHA:
-		return stats.cha;
-		break;
+		case Ab_Score::CHA:
+			return stats.cha;
+			break;
 	}
 
 	cout << "You done goofed" << endl;
-	return 0.0f;
+	return 0.f;
 }
 
 void Creature::SetMaxHealth() {
@@ -344,26 +339,32 @@ void Creature::SetMaxHealth() {
 	//For sentients, max health depends on class and level
 	if (stats.genus == Genus::Sentient) {
 		switch (stats.clss) {
-		case Class::None:
-			stats.max_hlth = 5;
-			break;
+			case Class::None:
+				stats.max_hlth = 5;
+				break;
 
-		case Class::Arcanist:
-			stats.max_hlth = (stats.level * 6) + (stats.con * stats.level);
-			break;
+			case Class::Arcanist:
+				stats.max_hlth = (stats.level * 6) + (stats.con * stats.level);
+				break;
 
-		case Class::Rogue:
-			stats.max_hlth = (stats.level * 8) + (stats.con * stats.level);
-			break;
+			case Class::Rogue:
+				stats.max_hlth = (stats.level * 8) + (stats.con * stats.level);
+				break;
 
-		case Class::Warrior:
-			stats.max_hlth = (stats.level * 10) + (stats.con * stats.level);
-			break;
+			case Class::Warrior:
+				stats.max_hlth = (stats.level * 10) + (stats.con * stats.level);
+				break;
 		}
 	}
 
 	//For non-Sentients, max health partially depends on size but is mostly arbitrary
-	else {}
+	else {
+		switch (stats.size) {
+			default:
+
+			break;
+		}
+	}
 
 	//Set the 30/20/10% health threshholds
 	stats.th_per_hlth = stats.max_hlth * .3f;

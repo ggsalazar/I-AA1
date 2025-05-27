@@ -12,8 +12,11 @@ constexpr int MMB = SDL_BUTTON_MIDDLE;
 //Keys
 //Letters
 constexpr int A_K = SDL_SCANCODE_A;
+constexpr int C_K = SDL_SCANCODE_C;
 constexpr int D_K = SDL_SCANCODE_D;
 constexpr int I_K = SDL_SCANCODE_I;
+constexpr int J_K = SDL_SCANCODE_J;
+constexpr int M_K = SDL_SCANCODE_M;
 constexpr int O_K = SDL_SCANCODE_O;
 constexpr int S_K = SDL_SCANCODE_S;
 constexpr int W_K = SDL_SCANCODE_W;

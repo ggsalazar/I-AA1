@@ -1,6 +1,7 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Tutorial:	-Move to node closest to target if possible
+Tutorial:	-Move to node closest to target if possible; if not return NOACTION
+			-Implementing Interface scaffolding
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith

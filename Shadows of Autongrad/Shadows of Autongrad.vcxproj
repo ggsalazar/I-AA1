@@ -138,6 +138,7 @@
     <ClInclude Include="src\Entities\UI\Toggle.h" />
     <ClInclude Include="src\Entities\UI\UI.h" />
     <ClInclude Include="src\Game\Game.h" />
+    <ClInclude Include="src\Game\Interface.h" />
     <ClInclude Include="src\Game\Menu.h" />
     <ClInclude Include="src\Game\Scene.h" />
     <ClInclude Include="src\Graphics\Font.h" />

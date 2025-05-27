@@ -251,14 +251,14 @@ enum class Cutscene {
 
 };
 
-enum class Interface {
+enum class Interfaces {
 	NONE,
-	CharSheet, //C
-	Inv,	   //I
-	Journal,   //J
-	Map_Area,  //M
+	Char_Sheet, //C
+	Inv,	    //I
+	Journal,    //J
+	Map_Area,   //M
 	Map_World, 
-	Options    //O
+	Options     //O
 };
 
 enum class MouseTarget {
@@ -284,14 +284,18 @@ enum class Scenes {
 enum class Menus {
 	CharCrea,
 	GO,
-	Inv,
 	LVLUp,
 	Load,
 	Main,
 	Options,
-	Options_G,
 	Pause,
-	//Sub-Menus
+	//Interfaces/In-game menus
+	Char_Sheet,
+	Inventory,
+	Journal,
+	Map_Area,
+	Map_World,
+	Options_I,
 	//CC
 	CCAS,
 	CCBG,
