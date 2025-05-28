@@ -79,7 +79,7 @@ private:
 
     unordered_map<Menus, Menu*> menus;
     vector<s_ptr<Entity>> entities;
-    vector<s_ptr<PartyMember>> party_mems;
+    array<s_ptr<PartyMember>, 4> party_mems;
 
     //Edge panning rects
     Rect up_edge;
@@ -88,7 +88,7 @@ private:
     Rect right_edge;
 
     Rect selec_box;
-    queue<Vector2i> found_path;
+    array<queue<Vector2i>, 4> found_paths;
 
     inline static Game* game = nullptr;
 };

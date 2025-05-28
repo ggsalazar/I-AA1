@@ -437,10 +437,13 @@ Action Scene::LMBAction() {
 	//-Pick/unlock a lock
 	//-Open a door
 	//-Speak to NPC
+	Action action = Action::NOACTION;
 
 	//What is our current mouse target?
 	//Reset
 	mouse_tar = MouseTarget::None;
+	bool finding_path = false;
+	Vector2i path_goal;
 	//Are we currently pointing at a creature?
 	Creature* c = nullptr;
 	for (const auto e : entities) {
@@ -462,7 +465,7 @@ Action Scene::LMBAction() {
 			curr_tile = tilemap.GetTileData(tile_pos);
 
 		//If we're not looking at a tile, then there is no action to perform
-		if (curr_tile.terrain == Terrain::None) return Action::NOACTION;
+		if (curr_tile.terrain == Terrain::None) return action;
 		
 		
 		
@@ -473,9 +476,17 @@ Action Scene::LMBAction() {
 
 	switch (mouse_tar) {
 		case MouseTarget::Area_Edge:
+			//Move to area edge
+			//"You must gather your party before venturing forth"
+			//Open world_map interface
 		break;
 
 		case MouseTarget::Container:
+			//Move to container
+			//Picking lock
+			//	Open lockpicking interface
+			//Opening container
+			//	Open container interface
 		break;
 
 		case MouseTarget::Creature: {
@@ -489,22 +500,31 @@ Action Scene::LMBAction() {
 			//If it isn't already outright hostile, default action is to talk to it
 			else {
 				//If we aren't within speaking range (2 meters), we need to get close enough to speak - TO-DO
+				
 				//If we can't get to them, we cannot speak to them and must return NOACTION
 				//Else just speak
-				return Action::Talk;
+				action = Action::Talk;
 			}
-
-
 			break;
 		}
 
 		case MouseTarget::Door:
+			//Move to door
+			//Picking lock
+			//	Open lockpicking interface
+			//Opening door
+			//	Open the door (change sprite)
 		break;
 
 		case MouseTarget::Item:
+			//Move to item
+			//Pick it up (add it to inventory, destroy entity)
 		break;
 
 		case MouseTarget::Passage:
+			//Move to passage
+			//"You must gather your party before venturing forth"
+			//Change area
 		break;
 
 		case MouseTarget::Tile:
@@ -512,23 +532,34 @@ Action Scene::LMBAction() {
 			//-For every currently selected party member, calculate a path to the current tile
 			//	--if every currently selected party member can reach the area around that tile, return MOVE
 			//	--else, return NOACTION
-			for (const auto& p_m : party_mems) {
-				if (p_m->selected) {
-
-					//Going to have to change the goal node depending on marching order and position of 
-					// party_member in said order - TO-DO
-					found_path = grid.FindPath(p_m->GetPos(), Input::MousePos());
-
-					//If no path, return no action
-					if (found_path.empty())
-						return Action::NOACTION;
-
-					//Else, report that we can move
-					return Action::Move;
-				}
-			}
+			finding_path = true;
+			path_goal = Input::MousePos();
+			action = Action::Move;
 		break;
 	}
+
+	//Reset the found_paths array
+	for ()
+
+	if (finding_path) {
+		for (const auto& p_m : party_mems) {
+			if (p_m->selected) {
+
+				//Going to have to change the goal node depending on marching order and position of 
+				// party_member in said order - TO-DO
+				found_paths = grid.FindPath(p_m->GetPos(), path_goal);
+
+				//If no path, return no action
+				if (found_path.empty())
+					return Action::NOACTION;
+
+				//Else, report that we can do the thing
+				return action;
+			}
+		}
+	}
+
+	return action;
 	
 
 	//Melee Attack (LMB action in combat only)
