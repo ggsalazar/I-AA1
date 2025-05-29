@@ -79,7 +79,7 @@ enum class Action {
 	Talk, //Mouth? Or speech bubble? - Leave up to artist
 	Throw_Item
 };
-inline string ActionToString(Action a) {
+inline string ActionToString(const Action a) {
 	switch (a) {
 		case Action::DEFAULT: return "DEFAULT";
 		case Action::NOACTION: return "NO ACTION";
@@ -99,9 +99,9 @@ enum class Condition {
 	Stunned,
 	Unconscious
 };
-inline string CondToString(Condition c) {
+inline string CondToString(const Condition c) {
 	switch (c) {
-		case Condition::None: return "None";\
+		case Condition::None: return "None";
 		default: return "Unknown";
 	}
 }
@@ -112,13 +112,13 @@ enum class Class {
 	Rogue,
 	Warrior
 };
-inline Class StringToClass(string s) {
+inline Class StringToClass(const string s) {
 	if (s == "None") return Class::None;
 	else if (s == "Arcanist") return Class::Arcanist;
 	else if (s == "Rogue") return Class::Rogue;
 	else if (s == "Warrior") return Class::Warrior;
 }
-inline string ClassToString(Class c) {
+inline string ClassToString(const Class c) {
 	switch (c) {
 		case Class::None: return "None";
 		case Class::Arcanist: return "Arcanist";
@@ -136,7 +136,7 @@ enum class Genus {
 	Sentient,
 	Undead
 };
-inline Genus StringToGenus(string s) {
+inline Genus StringToGenus(const string s) {
 	if (s == "Beast") return Genus::Beast;
 	else if (s == "Monstrosity") return Genus::Monstrosity;
 	else if (s == "Other") return Genus::Other;
@@ -144,7 +144,7 @@ inline Genus StringToGenus(string s) {
 	else if (s == "Sentient") return Genus::Sentient;
 	else if (s == "Undead") return Genus::Undead;
 }
-inline string GenusToString(Genus g) {
+inline string GenusToString(const Genus g) {
 	switch (g) {
 		case Genus::Beast: return "Beast";
 		case Genus::Monstrosity: return "Monstrosity";
@@ -164,7 +164,7 @@ enum class Race {
 	Human,
 	Kobold
 };
-inline Race StringToRace(string& s) {
+inline Race StringToRace(const string& s) {
 	if (s == "Automaton") return Race::Automaton;
 	else if (s == "Dwarf") return Race::Dwarf;
 	else if (s == "Elf") return Race::Elf;
@@ -172,7 +172,7 @@ inline Race StringToRace(string& s) {
 	else if (s == "Human") return Race::Human;
 	else if (s == "Kobold") return Race::Kobold;
 }
-inline string RaceToString(Race r) {
+inline string RaceToString(const Race r) {
 	switch (r) {
 		case Race::Automaton: return "Automaton";
 		case Race::Dwarf: return "Dwarf";
@@ -194,7 +194,7 @@ enum class Size {
 	Massive,
 	Colossal
 };
-inline Size StringToSize(string& s) {
+inline Size StringToSize(const string& s) {
 	if (s == "Tiny") return Size::Tiny;
 	else if (s == "Small") return Size::Small;
 	else if (s == "Med") return Size::Med;
@@ -204,7 +204,7 @@ inline Size StringToSize(string& s) {
 	else if (s == "Massive") return Size::Massive;
 	else if (s == "Colossal") return Size::Colossal;
 }
-inline string SizeToString(Size s) {
+inline string SizeToString(const Size s) {
 	switch (s) {
 		case Size::Tiny: return "Tiny";
 		case Size::Small: return "Small";
@@ -246,6 +246,19 @@ enum class Area {
 	Debug,
 	Tutton
 };
+inline Area StringToArea(const string& s) {
+	if (s == "Debug") return Area::Debug;
+	else if (s == "Tutton") return Area::Tutton;
+	return Area::NONE;
+}
+inline string AreaToString(const Area a) {
+	switch (a) {
+		case Area::NONE: return "NONE";
+		case Area::Debug: return "Debug";
+		case Area::Tutton: return "Tutton";
+		default: return "Unknown";
+	}
+}
 
 enum class Cutscene {
 

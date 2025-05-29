@@ -32,8 +32,7 @@ void PartyMember::GetInput() {
 
 		//If we aren't holding shift, deselect all party members before selecting this one
 		if (!(Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT))) {
-			vector<s_ptr<PartyMember>> p_ms = scene->GetPartyMems();
-			for (auto& p_m : p_ms) p_m->selected = false;
+			for (auto& p_m : scene->GetPartyMems()) p_m->selected = false;
 		}
 		selected = !(Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL));
 	}

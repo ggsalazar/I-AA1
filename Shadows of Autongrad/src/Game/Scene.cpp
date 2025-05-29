@@ -57,8 +57,9 @@ void Scene::Open(const bool o) {
 			grid.Init(&tilemap);
 
 			//Load NPCs
-			LoadNPCs(game->area);
-
+			if (game->area == Area::Debug)
+				LoadNPCs("Tutton");
+			else LoadNPCs(AreaToString(game->area));
 
 			//Set the party and camera
 			Vector2f party_ldr_pos;
@@ -144,24 +145,32 @@ void Scene::GetInput() {
 			MoveCamera();
 			SelectPartyMems();
 
+			//How many selected party mems do we have?
+			vector<PartyMember*> selected_pms;
+			for (int i = 0; i < party_mems.size(); ++i) {
+				if (party_mems[i]->selected)
+					selected_pms.push_back(party_mems[i].get());
+			}
+
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing
 			// will depend on what it is pointing at
-			//Updating action every 10th of a second for performance reasons
-			if (game->GetGameFrames() % 6 == 0 and lmb_action)
-				action = LMBAction();
-			if (!lmb_action) action = Action::DEFAULT;
-
+			//Updating action every 10th of a second for performance
+			if (!selected_pms.empty() and lmb_action and game->GetGameFrames() % 6 == 0)
+				action = LMBAction(selected_pms);
+			else if (selected_pms.empty() or !lmb_action) action = Action::DEFAULT;
 			//Change the cursor according to current lmb action
 			SetGameCursor(action);
+
+			//Perform the action
 			if (Input::BtnPressed(LMB)) {
 				switch (action) {
-				case Action::Move:
-					for (const auto& p_m : party_mems) {
-						if (p_m->selected) {
-							p_m->moving = true;
-							p_m->SetPath(found_path);
+					case Action::Move:
+						for (int i = 0; i < party_mems.size(); ++i) {
+							if (party_mems[i]->selected) {
+								party_mems[i]->moving = true;
+								party_mems[i]->SetPath(found_paths[i]);
+							}
 						}
-					}
 					break;
 				}
 			}
@@ -410,12 +419,14 @@ void Scene::SelectPartyMems() {
 
 		for (auto& p_m : party_mems) {
 			if (Collision::Point(p_m->GetPos(), selec_box)) {
-				if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT)) p_m->selected = true;
-				else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
+				if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT))
+					p_m->selected = true;
+				else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL))
+					p_m->selected = false;
 			}
 			else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
 		}
-
+		
 	}
 	if (selecting) {
 		lmb_action = false;
@@ -427,7 +438,7 @@ void Scene::SelectPartyMems() {
 	}
 }
 
-Action Scene::LMBAction() {
+Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 	//Possible actions:
 	//-Move
 	//-Melee Attack (Combat only)
@@ -442,16 +453,15 @@ Action Scene::LMBAction() {
 	//What is our current mouse target?
 	//Reset
 	mouse_tar = MouseTarget::None;
-	bool finding_path = false;
-	Vector2i path_goal;
+	Vector2i path_goal = { -1 };
 	//Are we currently pointing at a creature?
-	Creature* c = nullptr;
+	Creature* creature = nullptr;
 	for (const auto e : entities) {
-		c = dynamic_cast<Creature*>(e.get());
-		if (!c) continue;
-		if (dynamic_cast<PartyMember*>(c)) continue;
+		creature = dynamic_cast<Creature*>(e.get());
+		if (!creature) continue;
+		if (dynamic_cast<PartyMember*>(creature)) continue;
 		
-		if (Collision::Point(Input::MousePos(), c->GetBBox())) {
+		if (Collision::Point(Input::MousePos(), creature->GetBBox())) {
 			mouse_tar = MouseTarget::Creature;
 			break;
 		}
@@ -467,10 +477,6 @@ Action Scene::LMBAction() {
 		//If we're not looking at a tile, then there is no action to perform
 		if (curr_tile.terrain == Terrain::None) return action;
 		
-		
-		
-		game->renderer.DrawRect(Rect({ tile_pos * TS }, { 4 }), Color(1));
-
 		mouse_tar = MouseTarget::Tile;
 	}
 
@@ -492,16 +498,27 @@ Action Scene::LMBAction() {
 		case MouseTarget::Creature: {
 			//First, we need to know the target creature's disposition to the party
 			int creature_dispo = 0;
-			if (c) creature_dispo = c->GetDispo();
+			if (creature) creature_dispo = creature->GetDispo();
 
+			//Outright Hostile - Attack it
 			if (creature_dispo <= 20) {
 				//Attack actions (Melee/Ranged/Spell)
 			}
-			//If it isn't already outright hostile, default action is to talk to it
+			//Testy or better - Speak
 			else {
-				//If we aren't within speaking range (2 meters), we need to get close enough to speak - TO-DO
-				
-				//If we can't get to them, we cannot speak to them and must return NOACTION
+				//If no selected party mems are within speaking range (2 meters), we need to move all selected
+				// party members close enough to speak
+				for (const auto& spm : s_pms) {
+					if (Distance(spm->GetPos(), creature->GetPos()) > 2 * METER) {
+						//The creature is now our goal
+						path_goal = creature->GetPos();
+
+						//If one of the selected p_ms can't get to them, we cannot speak to them
+						// and must return NOACTION
+						//Am I sure about this? Will have to test
+					}
+				}
+
 				//Else just speak
 				action = Action::Talk;
 			}
@@ -532,30 +549,18 @@ Action Scene::LMBAction() {
 			//-For every currently selected party member, calculate a path to the current tile
 			//	--if every currently selected party member can reach the area around that tile, return MOVE
 			//	--else, return NOACTION
-			finding_path = true;
 			path_goal = Input::MousePos();
 			action = Action::Move;
 		break;
 	}
 
-	//Reset the found_paths array
-	for ()
+	if (path_goal != Vector2i(-1)) {
+		for (int i = 0; i < s_pms.size(); ++i) {
+			//The actual goal node for each individual p_m is determined inside FindPath (TO-DO)
+			found_paths[i] = grid.FindPath(s_pms[i]->GetPos(), path_goal);
 
-	if (finding_path) {
-		for (const auto& p_m : party_mems) {
-			if (p_m->selected) {
-
-				//Going to have to change the goal node depending on marching order and position of 
-				// party_member in said order - TO-DO
-				found_paths = grid.FindPath(p_m->GetPos(), path_goal);
-
-				//If no path, return no action
-				if (found_path.empty())
-					return Action::NOACTION;
-
-				//Else, report that we can do the thing
-				return action;
-			}
+			//If no path, return no action
+			if (found_paths[i].empty()) return Action::NOACTION;
 		}
 	}
 
@@ -622,7 +627,7 @@ void Scene::RemoveEntity(s_ptr<Entity> e) {
 	}
 }
 
-void Scene::RemoveEntity(const string ent_name) {
+void Scene::RemoveEntity(const string& ent_name) {
 	for (const auto& e : entities) {
 		if (auto c = dynamic_cast<Creature*>(e.get())) {
 			if (c->GetName() == ent_name)
@@ -716,56 +721,43 @@ void Scene::CreatePreGen(PreGens p_g) {
 	));
 }
 
-void Scene::LoadNPCs(Area area) {
-	string s_area = "";
-	switch (area) {
-		case Area::Tutton:
-		case Area::Debug:
-			s_area = "Tutton";
-		break;
-	}
+void Scene::LoadNPCs(const string& area) {
 
 	//Get the names of all the NPCs for the area
-	ifstream names_file("data/NPCs/"+s_area+"/" + s_area + "_NPCs.json");
-	if (!names_file.is_open()) {
-		cerr << "Failed to open list of " << s_area << " NPCs!/n";
+	ifstream info_file("data/NPCs/"+area+"/" + area + "_NPC_info.json");
+	if (!info_file.is_open()) {
+		cerr << "Failed to open list of " << area << " NPCs!\n";
 		return;
 	}
 
-	json npc_names;
-	names_file >> npc_names;
+	json npc_info;
+	info_file >> npc_info;
 
 	//Load the data for each npc
-	json npc_info;
 	Sprite::Info sprite_info = {};
 	string por_name = "Placeholder";
 	Creature::Stats stats = {};
 
-	for (string name : npc_names["Names"]) {
-		ifstream npc_file("data/NPCs/" + s_area + "/" + name + "_info.json");
-		if (!npc_file.is_open()) {
-			cerr << "Failed to open file for NPC " + name + "!/n";
-			continue;
-		}
-		
-		npc_file >> npc_info;
+	for (auto npc : npc_info["NPCs"]) {
+		stats.name = npc["Name"];
 
 		//Sprite information
-		sprite_info.sheet = npc_info["Sprite"]; sprite_info.frame_size = { 24, 48 }; //TEMPORARY
-		por_name = npc_info["Portrait_Sprite"]; sprite_info.pos = { npc_info["Spawn_Pos"]["x"] * TS, npc_info["Spawn_Pos"]["y"] * TS};
+		sprite_info.sheet = npc["Sprite"]; sprite_info.frame_size = { 24, 48 }; //TEMPORARY
+		por_name = npc["Portrait_Sprite"]; sprite_info.pos = { npc["Spawn_Pos"]["x"] * TS, npc["Spawn_Pos"]["y"] * TS};
 		//Stats information
-		stats.name = npc_info["Name"]; 
-		string genus_str = npc_info["Genus"]; stats.genus = StringToGenus(genus_str);
-		string race_str = npc_info["Race"]; stats.race = StringToRace(race_str);
-		string size_str = npc_info["Size"]; stats.size = StringToSize(size_str);
-		stats.sex = npc_info["Sex"];
-		string class_str = npc_info["Class"]; stats.clss = StringToClass(class_str);
-		stats.level = npc_info["Level"];
-		stats.str = npc_info["A_Scores"]["STR"]; stats.con = npc_info["A_Scores"]["CON"]; stats.agi = npc_info["A_Scores"]["AGI"]; stats.dex = npc_info["A_Scores"]["DEX"];
-		stats.intl = npc_info["A_Scores"]["INT"]; stats.wis = npc_info["A_Scores"]["WIS"]; stats.cha = npc_info["A_Scores"]["CHA"];
-		int npc_dispo = npc_info["Disposition"];
-		bool npc_biped = npc_info["Biped"];
-		bool npc_winged = npc_info["Winged"];
+		string genus_str = npc["Genus"]; stats.genus = StringToGenus(genus_str);
+		string race_str = npc["Race"]; stats.race = StringToRace(race_str);
+		string size_str = npc["Size"]; stats.size = StringToSize(size_str);
+		stats.sex = npc["Sex"];
+		string class_str = npc["Class"]; stats.clss = StringToClass(class_str);
+		stats.level = npc["Level"];
+		stats.str = npc["A_Scores"]["STR"]; stats.con = npc["A_Scores"]["CON"]; stats.agi = npc["A_Scores"]["AGI"]; stats.dex = npc["A_Scores"]["DEX"];
+		stats.intl = npc["A_Scores"]["INT"]; stats.wis = npc["A_Scores"]["WIS"]; stats.cha = npc["A_Scores"]["CHA"];
+		
+		//These have to be explicitly extracted from the json
+		int npc_dispo = npc["Disposition"];
+		bool npc_biped = npc["Biped"];
+		bool npc_winged = npc["Winged"];
 
 		entities.push_back(make_s<Creature>(sprite_info, stats, por_name, npc_dispo, npc_biped, npc_winged));
 	}

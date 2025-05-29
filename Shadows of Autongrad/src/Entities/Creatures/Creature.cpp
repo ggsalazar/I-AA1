@@ -145,8 +145,6 @@ void Creature::WalkPath() {
 
 			offset *= game->delta_time;
 
-			cout << mv_spd * game->delta_time << "\n";
-
 			Entity::MoveBy(offset);
 
 			if (Distance(pos, next_pos) < 5) Entity::MoveTo(Vector2f(next_pos));

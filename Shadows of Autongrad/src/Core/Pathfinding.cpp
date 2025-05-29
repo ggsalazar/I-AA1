@@ -44,6 +44,8 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goa
 
 	//Get the grid coords closest to the start and goal
 	Vector2i grid_start = Round((start.x - TS * .5f) / TS, (start.y - TS * .5f) / TS);
+	//Think I might need to modify this to account for different circumstances, i.e. selecting the closest
+	// unoccupied node to a given party member/creature
 	Vector2i grid_goal = Round((goal.x - TS * .5f) / TS, (goal.y - TS * .5f) / TS);
 
 	// Initialize start node

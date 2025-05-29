@@ -50,13 +50,13 @@ public:
     void OpenInterface();
     void MoveCamera();
     void SelectPartyMems();
-    Action LMBAction();
+    Action LMBAction(vector<PartyMember*>& s_pms);
     void SetGameCursor(Action action = Action::DEFAULT);
 
     //Entities
     inline void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
     void RemoveEntity(s_ptr<Entity> e);
-    void RemoveEntity(const string ent_name);
+    void RemoveEntity(const string& ent_name);
     void SetEntitySFXVolume(const float new_volume);
 
     //Party Members
@@ -66,7 +66,7 @@ public:
     inline void SetPartyMems(vector<s_ptr<PartyMember>> p_ms) { party_mems = p_ms; }
 
     //NPCs
-    void LoadNPCs(Area area);
+    void LoadNPCs(const string& area);
     //void CreateNPC(string name);
 
 private:
@@ -79,7 +79,7 @@ private:
 
     unordered_map<Menus, Menu*> menus;
     vector<s_ptr<Entity>> entities;
-    array<s_ptr<PartyMember>, 4> party_mems;
+    vector<s_ptr<PartyMember>> party_mems;
 
     //Edge panning rects
     Rect up_edge;
