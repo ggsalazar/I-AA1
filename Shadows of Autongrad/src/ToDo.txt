@@ -19,15 +19,14 @@ Tutorial:	-Move to node closest to target if possible; if not return NOACTION
 			-area changing
 			-fog of war
 			-multi-party member spawning, movement, & cam locking
-			-Total: 45 days
-				--Projected finish date: Late July
-			-Sentient creatures have separate head and body sprites (for customization)
 			-Intro cutscene
 			-Combat
 			-Tutorialization
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
+		- Sentient creatures have separate head and body sprites (for customization)
+		- Change from nodes to NavMesh?
 
 Main Menu
 	-Character creation
@@ -63,13 +62,6 @@ Tutorial
 			---Ranged
 				----AI
 				----1
-In-game menus
-	-Interface sprite/bg
-	-Inventory
-	-Quest Journal
-	-Map
-	-Character Sheets
-	-How to arrange?
 
 Prologue
 	-Train
@@ -81,8 +73,6 @@ Prologue
 			---Boss?
 			---Motives?
 				----Connection to overarching plot?
-PartyMember
-	-SetPortraitPosition()
 
 Game starts on train! Train heist
 	-Establish magic and tech coexist, then illustrate that magic is going *wrong*, and how and why that's a problem

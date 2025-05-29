@@ -724,7 +724,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 void Scene::LoadNPCs(const string& area) {
 
 	//Get the names of all the NPCs for the area
-	ifstream info_file("data/NPCs/"+area+"/" + area + "_NPC_info.json");
+	ifstream info_file("data/NPC Info/"+area+ "_npc_info.json");
 	if (!info_file.is_open()) {
 		cerr << "Failed to open list of " << area << " NPCs!\n";
 		return;
