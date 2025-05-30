@@ -1,6 +1,5 @@
 #include "Pathfinding.h"
 #include "Collision.h"
-#include "../Graphics/TileMap.h"
 #include "../Entities/UI/UI.h" //Entity.h
 
 void Pathfinding::Init(TileMap* t) {
@@ -32,21 +31,44 @@ void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
 
 			node_cost = (tmp->GetTileData({col, row}).terrain == Terrain::Rough) + 1;
 
-			grid[col][row] = { Round(col * TS + TS * .5f, row * TS + TS * .5f), false, node_walk, node_cost };
+			grid[col][row] = { Round(col * TS + TS * .5f, row * TS + TS * .5f), false, node_walk, false, node_cost };
 		}
 	}
 }
 
-queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goal) {
+queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goal, MouseTarget target) {
+	
+	//If the target is sufficiently close to the goal and the goal is not a tile,
+	// there is no need to find a path - TO-DO
+	if (target != MouseTarget::Tile and Distance(start, goal) <= 1.5 * METER) return {};
+	
 	//Create our lists
 	std::priority_queue<Node*, vector<Node*>, CompareNodes> open_list;
 	unordered_map<Node*, bool> closed_list;
 
 	//Get the grid coords closest to the start and goal
 	Vector2i grid_start = Round((start.x - TS * .5f) / TS, (start.y - TS * .5f) / TS);
-	//Think I might need to modify this to account for different circumstances, i.e. selecting the closest
-	// unoccupied node to a given party member/creature
+	//Select the closest unoccupied and unclaimed node to the start node
 	Vector2i grid_goal = Round((goal.x - TS * .5f) / TS, (goal.y - TS * .5f) / TS);
+	Vector2i closest_node = grid_goal;
+	if (target != MouseTarget::Tile) {
+		for (int i = grid_goal.x - 1; i <= grid_goal.x + 1; ++i) {
+			for (int j = grid_goal.y - 1; j <= grid_goal.y + 1; ++j) {
+				Node* n = &grid[i][j];
+
+				
+				cout << "Node grid coords: " << Vector2i{ i, j } << "\n";
+				cout << "Distance from start: " << Distance(n->pos, grid[grid_start.x][grid_start.y].pos) << "\n";
+				cout << "Distance from closest: " << Distance(grid[closest_node.x][closest_node.y].pos, grid[grid_start.x][grid_start.y].pos) << "\n";
+				
+				if (n and n->walkable and !n->claimed and Distance(n->pos, grid[grid_start.x][grid_start.y].pos) < Distance(grid[closest_node.x][closest_node.y].pos, grid[grid_start.x][grid_start.y].pos))
+					closest_node = { i, j };
+
+				cout << "Closest node: " << closest_node << "\n";
+
+			}
+		}
+	}
 
 	// Initialize start node
 	Node* start_node = &grid[grid_start.x][grid_start.y];
@@ -55,7 +77,7 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goa
 	start_node->f = start_node->h;
 	open_list.push(start_node);
 
-	Node* goal_node = &grid[grid_goal.x][grid_goal.y];
+	Node* goal_node = &grid[closest_node.x][closest_node.y];
 
 	// Define possible movements      N        NE       E       SE      S        SW       W        NW
 	const Vector2i directions[] = { {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1} };
@@ -66,11 +88,14 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goa
 
 		//Path found
 		if (current->pos == goal_node->pos) {
+			//This node is claimed
+			current->claimed = true;
+
 			vector<Vector2i> path;
 			//path.push_back(goal); //Decided to remove the goal node (where the mouse clicked) for more grid-based movement
 			//We don't need the start or second
-			while (current->parent and current->parent->parent) { //Ensures we don't add the start node or the second node, which was itself causing weird behaviors
-				//current->debug = true;
+			while (current->parent and current->parent->parent) { //Ensures we don't add the start node or the second node, which was causing weird behaviors
+				current->debug = true;
 				path.push_back(current->pos);
 				current = current->parent; //Putting this at the beginning will skip the goal node
 			}

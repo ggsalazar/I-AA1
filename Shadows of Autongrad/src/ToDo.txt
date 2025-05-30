@@ -2,7 +2,8 @@ SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
 Tutorial:	-Move to node closest to target if possible; if not return NOACTION
 				--Modify FindPath() to find closest target node to goal from given creature's position;
-				  if target is too far from goal (> 2M), return empty V2i
+				  if target is too far from goal (> 1.5M) return empty V2i
+					---This only needs to be done if target is NOT a tile
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith
@@ -30,10 +31,11 @@ General - Visual signifiers to show when an attack/action is at (dis)adv
 
 Main Menu
 	-Character creation
-		--In the middle, descriptive text of the thing being picked & the options the player can pick from
-		--Also in the middle(?), whatever sub-thing they are picking (aesthetics, features, skills, etc.)
+		--On the left, list of traits to pick (Race, Ability Scores, class features, etc.)
+		--When one of these is selected and sub-menu is opened, sub-menu replaces and hides list
+		--In the center, in the same (general) layout as the in-game char sheet, is their in-progress build
 		--On the right, the character currently being made + characters already made
-		--Pre-Gen characters
+		--Pre-Gen characters set stats but can still be modified
 		--CreatePartyMember in Scene.cpp
 		--Automatic journalling
 		--Automatic dungeon mapping
@@ -88,3 +90,4 @@ Future Improvements/Sequel ideas:
 	-Swimming
 	-Pickpocketing
 	-Temporary party members/allies
+	-NavMesh instead of grid

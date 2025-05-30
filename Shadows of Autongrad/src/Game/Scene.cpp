@@ -250,8 +250,8 @@ void Scene::Draw() {
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
 	//This is here for debugging
-	//if (tilemap.Loaded())
-	//	game->renderer.DrawNodeGrid(grid);
+	if (tilemap.Loaded())
+		game->renderer.DrawNodeGrid(grid);
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
@@ -506,20 +506,10 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 			}
 			//Testy or better - Speak
 			else {
-				//If no selected party mems are within speaking range (2 meters), we need to move all selected
-				// party members close enough to speak
-				for (const auto& spm : s_pms) {
-					if (Distance(spm->GetPos(), creature->GetPos()) > 2 * METER) {
-						//The creature is now our goal
-						path_goal = creature->GetPos();
+				//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
+				// unable to find a path for any reason
+				path_goal = creature->GetPos();
 
-						//If one of the selected p_ms can't get to them, we cannot speak to them
-						// and must return NOACTION
-						//Am I sure about this? Will have to test
-					}
-				}
-
-				//Else just speak
 				action = Action::Talk;
 			}
 			break;
@@ -557,10 +547,10 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 	if (path_goal != Vector2i(-1)) {
 		for (int i = 0; i < s_pms.size(); ++i) {
 			//The actual goal node for each individual p_m is determined inside FindPath (TO-DO)
-			found_paths[i] = grid.FindPath(s_pms[i]->GetPos(), path_goal);
+			found_paths[i] = grid.FindPath(s_pms[i]->GetPos(), path_goal, mouse_tar);
 
-			//If no path, return no action
-			if (found_paths[i].empty()) return Action::NOACTION;
+			//If a path could not be found and we are not too close, return no action
+			if (found_paths[i].empty() and Distance(s_pms[i]->GetPos(), path_goal) > 1.5 * METER) return Action::NOACTION;
 		}
 	}
 
@@ -743,7 +733,7 @@ void Scene::LoadNPCs(const string& area) {
 
 		//Sprite information
 		sprite_info.sheet = npc["Sprite"]; sprite_info.frame_size = { 24, 48 }; //TEMPORARY
-		por_name = npc["Portrait_Sprite"]; sprite_info.pos = { npc["Spawn_Pos"]["x"] * TS, npc["Spawn_Pos"]["y"] * TS};
+		por_name = npc["Portrait_Sprite"]; sprite_info.pos = Round(npc["Spawn_Pos"]["x"] * TS - TS*.5f, npc["Spawn_Pos"]["y"] * TS - TS*.5f);
 		//Stats information
 		string genus_str = npc["Genus"]; stats.genus = StringToGenus(genus_str);
 		string race_str = npc["Race"]; stats.race = StringToRace(race_str);

@@ -3,6 +3,7 @@
 #include <queue>
 #include "Aliases.h"
 #include "Vector2.h"
+#include "../Graphics/TileMap.h"
 
 using std::queue, std::vector;
 
@@ -17,6 +18,7 @@ public:
 		bool debug = false; //Activate if in the closed list
 		bool walkable = false;
 		//TO-DO: flyable, swimmable
+		bool claimed = false; //True when a creature has this node as a goal; doesn't affect pathfinding, just goal setting
 		uint cost = 1; //1 for normal ground, 2 for rough terrain, 3 for slightly dangerous, 4 for moderately dangerous, 5 for highly dangerous
 		float g = 0.f, h = 0.f, f = 0.f; //For A* calculations
 		Node* parent = nullptr;
@@ -26,7 +28,7 @@ public:
 	void Init(TileMap* t);
 	void PopulateNodeGrid(vector<s_ptr<Entity>>* ents);
 
-	queue<Vector2i> FindPath(const Vector2i& start, const Vector2i& goal);
+	queue<Vector2i> FindPath(const Vector2i& start, const Vector2i& goal, MouseTarget target);
 
 private:
 	vector<vector<Node>> grid;
