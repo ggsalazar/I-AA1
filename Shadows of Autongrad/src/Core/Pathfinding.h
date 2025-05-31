@@ -28,7 +28,7 @@ public:
 	void Init(TileMap* t);
 	void PopulateNodeGrid(vector<s_ptr<Entity>>* ents);
 
-	queue<Vector2i> FindPath(const Vector2i& start, const Vector2i& goal, MouseTarget target);
+	queue<Vector2i> FindPath(const Vector2i& start, Vector2i& goal, MouseTarget target);
 
 private:
 	vector<vector<Node>> grid;

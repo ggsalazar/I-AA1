@@ -36,7 +36,7 @@ void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
 	}
 }
 
-queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goal, MouseTarget target) {
+queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, MouseTarget target) {
 	
 	//If the target is sufficiently close to the goal and the goal is not a tile,
 	// there is no need to find a path - TO-DO
@@ -56,18 +56,12 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, const Vector2i& goa
 			for (int j = grid_goal.y - 1; j <= grid_goal.y + 1; ++j) {
 				Node* n = &grid[i][j];
 
-				
-				cout << "Node grid coords: " << Vector2i{ i, j } << "\n";
-				cout << "Distance from start: " << Distance(n->pos, grid[grid_start.x][grid_start.y].pos) << "\n";
-				cout << "Distance from closest: " << Distance(grid[closest_node.x][closest_node.y].pos, grid[grid_start.x][grid_start.y].pos) << "\n";
-				
 				if (n and n->walkable and !n->claimed and Distance(n->pos, grid[grid_start.x][grid_start.y].pos) < Distance(grid[closest_node.x][closest_node.y].pos, grid[grid_start.x][grid_start.y].pos))
 					closest_node = { i, j };
-
-				cout << "Closest node: " << closest_node << "\n";
-
 			}
 		}
+
+		goal = (closest_node + TS * .5f) * TS;
 	}
 
 	// Initialize start node

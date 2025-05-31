@@ -138,6 +138,8 @@ void Scene::GetInput() {
 			e->GetInput();
 	}
 
+
+
 	if (label == Scenes::AREA) {
 		OpenInterface();
 
@@ -162,16 +164,15 @@ void Scene::GetInput() {
 			SetGameCursor(action);
 
 			//Perform the action
-			if (Input::BtnPressed(LMB)) {
-				switch (action) {
-					case Action::Move:
-						for (int i = 0; i < party_mems.size(); ++i) {
-							if (party_mems[i]->selected) {
-								party_mems[i]->moving = true;
-								party_mems[i]->SetPath(found_paths[i]);
-							}
-						}
-					break;
+			//Need to check if lmb_action is valid because this can still refer to the last stored action, even if one was not stored this frame
+			if (Input::BtnPressed(LMB) and lmb_action) {
+
+				//If we found a path, walk that bitch
+				if (!found_paths[0].empty()) {
+					for (int i = 0; i < selected_pms.size(); ++i) {
+						selected_pms[i]->moving = true;
+						selected_pms[i]->SetPath(found_paths[i]);
+					}
 				}
 			}
 		}
@@ -250,8 +251,8 @@ void Scene::Draw() {
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
 	//This is here for debugging
-	if (tilemap.Loaded())
-		game->renderer.DrawNodeGrid(grid);
+	//if (tilemap.Loaded())
+		//game->renderer.DrawNodeGrid(grid);
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
@@ -329,7 +330,7 @@ void Scene::MoveCamera() {
 	//If the camera is locked to certain party members,
 	// get the average of all of their positions and lerp the camera to there
 	if (cam_locked_pms) {
-		Vector2i pos_avg = Round(pos_totals / (float)cam_locked_pms);
+		Vector2i pos_avg = Round(pos_totals / cam_locked_pms);
 
 		game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), Vector2f(pos_avg), .075f)));
 	}
@@ -393,8 +394,8 @@ void Scene::MoveCamera() {
 
 	//Prevent the camera from moving past the edges of the world (not working for some reason?)
 	Vector2f c_p = { (float)game->camera.viewport.x, (float)game->camera.viewport.y };
-	Math::Clamp(c_p.x, 0, tilemap.GetMapSizePixels().y);
-	Math::Clamp(c_p.y, 0, tilemap.GetMapSizePixels().y);
+	Math::Clamp(c_p.x, 0, tilemap.GetMapSizePixels().x - game->camera.viewport.w);
+	Math::Clamp(c_p.y, 0, tilemap.GetMapSizePixels().y - game->camera.viewport.h);
 	game->camera.viewport.x = c_p.x;
 	game->camera.viewport.y = c_p.y;
 }
@@ -421,8 +422,6 @@ void Scene::SelectPartyMems() {
 			if (Collision::Point(p_m->GetPos(), selec_box)) {
 				if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT))
 					p_m->selected = true;
-				else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL))
-					p_m->selected = false;
 			}
 			else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
 		}
@@ -578,8 +577,6 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 
 	//Open a door
 	//-When mouse is on an unlocked door
-
-	return Action::NOACTION;
 }
 
 void Scene::SetGameCursor(Action action) {
