@@ -96,6 +96,8 @@ void Creature::GetInput() {
 }
 
 void Creature::Update() {
+	Entity::Update();
+
 	//I probably don't need to be setting this every frame, but this works for now
 	stats.total_weight = self_weight + stats.carry_weight;
 	encumbered = stats.carry_weight > stats.max_carry_weight;

@@ -4,7 +4,4 @@ Tiles are scaled according to resolution, but very blurry for some reason
 
 cam_mv_spd should account for delta_time
 	-Multiplying by 100 should work?
-Destination rect being drawn over other creatures
-Resizing not working
-Tile immediately beneath NPC not viable to click on when should be
-	-Have tile store pointer to occupant?
+When switching resolutions back and forth, getting strange tiledrawing bugs

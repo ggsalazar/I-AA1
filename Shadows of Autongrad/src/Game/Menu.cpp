@@ -405,8 +405,6 @@ void Menu::Resize() {
     sup_text.info.pos = new_s_t_pos;
 
     //UI Elements
-    Vector2f new_pos = game->resolution * .5f;
-
     for (const auto& ui : ui_elems) {
         auto& u = ui.second;
 
@@ -416,71 +414,71 @@ void Menu::Resize() {
         Vector2u gr = game->resolution;
         switch (ui.first) {
             case UIElem::Apply:
-                new_pos = gr.x * .5f, gr.y * .66f;
+                u->MoveTo({ gr.x * .5f, gr.y * .66f });
                 break;
 
             case UIElem::AS:
-                new_pos = gr.x * .2f, gr.y * .55f;
+                u->MoveTo({ gr.x * .2f, gr.y * .55f });
                 break;
 
             case UIElem::ASAGI:
-                new_pos = gr.x * .5f, gr.y * .36f;
+                u->MoveTo({ gr.x * .5f, gr.y * .36f });
                 break;
 
             case UIElem::ASCHA:
-                new_pos = gr.x * .5f, gr.y * .68f;
+                u->MoveTo({ gr.x * .5f, gr.y * .68f });
                 break;
 
             case UIElem::ASCON:
-                new_pos = gr.x * .5f, gr.y * .28f;
+                u->MoveTo({ gr.x * .5f, gr.y * .28f });
                 break;
 
             case UIElem::ASDEX:
-                new_pos = gr.x * .5f, gr.y * .44f;
+                u->MoveTo({ gr.x * .5f, gr.y * .44f });
                 break;
 
             case UIElem::ASINT:
-                new_pos = gr.x * .5f, gr.y * .52f;
+                u->MoveTo({ gr.x * .5f, gr.y * .52f });
                 break;
 
             case UIElem::ASSTR:
-                new_pos = gr.x * .5f, gr.y * .2f;
+                u->MoveTo({ gr.x * .5f, gr.y * .2f });
                 break;
 
             case UIElem::ASWIS:
-                new_pos = gr.x * .5f, gr.y * .6f;
+                u->MoveTo({ gr.x * .5f, gr.y * .6f });
                 break;
 
             case UIElem::Back:
-                new_pos = gr.x * .5f, gr.y * .9f;
+                u->MoveTo({ gr.x * .5f, gr.y * .9f });
                 break;
 
             case UIElem::BG_B:
-                new_pos = gr.x * .2f, gr.y * .35f;
+                u->MoveTo({ gr.x * .2f, gr.y * .35f });
                 break;
 
             case UIElem::CharCrea:
-                new_pos = gr.x * .5f, gr.y * .4f;
+                u->MoveTo({ gr.x * .5f, gr.y * .4f });
                 break;
 
             case UIElem::Class_B:
-                new_pos = gr.x * .2f, gr.y * .45f;
+                u->MoveTo({ gr.x * .2f, gr.y * .45f });
                 break;
 
             case UIElem::Create:
-                new_pos = gr.x * .5f, gr.y * .8f;
+                u->MoveTo({ gr.x * .5f, gr.y * .8f });
                 break;
 
             case UIElem::Debug_Room:
-                new_pos = gr.x * .75f, gr.y * .5f;
+                u->MoveTo({ gr.x * .75f, gr.y * .5f });
                 break;
 
             case UIElem::Equipment_CC:
-                new_pos = gr.x * .2f, gr.y * .75f;
+                u->MoveTo({ gr.x * .2f, gr.y * .75f });
                 break;
 
             case UIElem::Fullscreen: {
-                new_pos = gr.x * (.5f + res_scalar * .01f), gr.y * .57f;
+                u->MoveTo({ gr.x * (.5f + res_scalar * .01f), gr.y * .57f });
                 string new_status = "False";
                 if (game->resolution == game->window.ScreenSize())
                     new_status = "True";
@@ -489,43 +487,41 @@ void Menu::Resize() {
             } break;
 
             case UIElem::Load:
-                new_pos = gr.x * .5f, gr.y * .5f;
+                u->MoveTo({ gr.x * .5f, gr.y * .5f });
                 break;
 
             case UIElem::Music_V:
-                new_pos = gr.x * .5f, gr.y * .3f;
+                u->MoveTo({ gr.x * .5f, gr.y * .3f });
                 break;
 
             case UIElem::Options:
-                new_pos = gr.x * .5f, gr.y * .7f;
+                u->MoveTo({ gr.x * .5f, gr.y * .7f });
                 break;
 
             case UIElem::Quit:
-                new_pos = gr.x * .5f, gr.y * .8f;
+                u->MoveTo({ gr.x * .5f, gr.y * .8f });
                 break;
 
             case UIElem::Race_B:
-                new_pos = gr.x * .2f, gr.y * .25f;
+                u->MoveTo({ gr.x * .2f, gr.y * .25f });
                 break;
 
             case UIElem::Resolution:
-                new_pos = gr.x * .5f, gr.y * .48f;
+                u->MoveTo({ gr.x * .5f, gr.y * .48f });
                 break;
 
             case UIElem::SFX_V:
-                new_pos = gr.x * .5f, gr.y * .39f;
+                u->MoveTo({ gr.x * .5f, gr.y * .39f });
                 break;
 
             case UIElem::Skills:
-                new_pos = gr.x * .2f, gr.y * .65f;
+                u->MoveTo({ gr.x * .2f, gr.y * .65f });
                 break;
 
             case UIElem::Tutorial:
-                new_pos = gr.x * .5f, gr.y * .6f;
+                u->MoveTo({ gr.x * .5f, gr.y * .6f });
                 break;
         }
-
-        u->MoveTo(new_pos);
     }
 }
 

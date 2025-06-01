@@ -23,7 +23,7 @@ public:
     static inline void SetGame(Game* g) { game = g; }
 
     virtual void GetInput() {}
-    inline virtual void Update() {}
+    inline virtual void Update() { sprite.SetDFC(-pos.y); }
     virtual void Draw();
     virtual void MoveBy(Vector2f offset);
     virtual void MoveTo(Vector2f new_pos);

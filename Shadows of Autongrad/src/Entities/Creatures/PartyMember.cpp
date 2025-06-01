@@ -79,14 +79,10 @@ void PartyMember::Draw() {
 	//Draw the last step in their path so the player always knows where they're headed
 	if (!path.empty()) {
 		Rect last_step = { path.back() - TS*.5, TS };
-		game->renderer.DrawRect(last_step, Color(0,0,0,0), Color(1,0,0));
+		game->renderer.DrawRect(last_step, Color(0,0,0,0), Color(1,0,0, .35f));
 	}
 
 	Creature::Draw();
-
-
-	//Debug circle
-	//game->renderer.DrawCircle(Circle(pos, 1.5*METER), Color(1, 0, 0, .5));
 }
 
 void PartyMember::DrawPortrait() {

@@ -235,9 +235,9 @@ void Renderer::DrawRect(const Rect& rect, const Color& fill_color, const Color& 
 	SDL_FRect bot = { rect_pos.x, rect_pos.y + rect.h - edge_w, rect.w, edge_w };
 	SDL_RenderFillRect(renderer, &bot);
 	//Left
-	SDL_FRect left = { rect_pos.x, rect_pos.y, edge_w, rect.h };
+	SDL_FRect left = { rect_pos.x, rect_pos.y+edge_w, edge_w, rect.h-edge_w*2 };
 	SDL_RenderFillRect(renderer, &left);
 	//Right
-	SDL_FRect right = { rect_pos.x + rect.w - edge_w, rect_pos.y, edge_w, rect.h };
+	SDL_FRect right = { rect_pos.x + rect.w - edge_w, rect_pos.y+edge_w, edge_w, rect.h-edge_w*2 };
 	SDL_RenderFillRect(renderer, &right);
 }

@@ -2,14 +2,13 @@ SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
 Tutorial:	-Move to node closest to target if possible; if not return NOACTION
 				--Modify FindPath() to find closest target node to goal from given creature's position;
-				  if target is too far from goal (> 1.5M) return empty V2i
+				  if target is too far from goal (> 2 Tiles) return empty V2i
 					---This only needs to be done if target is NOT a tile
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith
 					---Shopping (after implementing inventory)
 				--Quest Giver
-			-Fix camera clamping in Scene.cpp
 			-Interfaces
 				--Quest Journal
 				--Map
@@ -17,11 +16,11 @@ Tutorial:	-Move to node closest to target if possible; if not return NOACTION
 					---World Map
 				--Character sheet/s
 				--Inventory
+			-Combat
 			-area changing
 			-fog of war
 			-multi-party member spawning, movement, & cam locking
 			-Intro cutscene
-			-Combat
 			-Tutorialization
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
@@ -32,31 +31,37 @@ General - Visual signifiers to show when an attack/action is at (dis)adv
 Main Menu
 	-Character creation
 		--On the left, list of traits to pick (Race, Ability Scores, class features, etc.)
-		--When one of these is selected and sub-menu is opened, sub-menu replaces and hides list
+			---When one of these is selected and sub-menu is opened, sub-menu replaces and hides list
 		--In the center, in the same (general) layout as the in-game char sheet, is their in-progress build
 		--On the right, the character currently being made + characters already made
 		--Pre-Gen characters set stats but can still be modified
 		--CreatePartyMember in Scene.cpp
 		--Automatic journalling
+			---Inform player of intention and ask them if they are certain (Confirm box)
 		--Automatic dungeon mapping
+			---Inform player of intention and ask them if they are certain (Confirm box)
 		--Back/Exit
 			---Confirm
 			---Delete created characters/wipe slate clean
 	-Continue/Load game
-		--Will require implementation of saving/loading
+		--Saving/loading
 Tutorial
 	-Town
 		--NPCs
-			---Blacksmith
-			---Troubled farmer
+			---Orv the Blacksmith
+			---Kennan the troubled farmer
+			---Others?
 	-Trow Mine
 		--Party Members
 			---Spark
 				----Outside the mine, scared to go in because of dead Trow
 				----Spells
 					-----Magic
+						------I&A Arcanist
 			---Essek
 				----Inside the mine, in a stalement with the last room of Trow
+				----Traps
+					-----Probably just hunting traps
 		--Trow
 			---Melee
 				----AI
@@ -85,9 +90,9 @@ Portraits - use a single texture that contains all portraits? How to navigate ea
 Future Improvements/Sequel ideas:
 	-Reduce the use of smart pointers, ideally to 0
 	-Have UI elements set their own Sprite
-	-Adjustable zoom (difficult to get right in a pixel art game)
 	-Allow for custom UI arrangement
 	-Swimming
 	-Pickpocketing
 	-Temporary party members/allies
 	-NavMesh instead of grid
+	-More traps
