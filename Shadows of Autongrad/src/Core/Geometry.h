@@ -6,9 +6,8 @@ struct Color {
 	float r = 0.f, g = 0.f, b = 0.f, a = 0.f;
 
 	Color() = default;
-	Color(float rgb) : r(rgb), g(rgb), b(rgb), a(1) {}
-	Color(float r, float g, float b) : r(r), g(g), b(b), a(1) {}
-	Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) {}
+	Color(float rgb, float a = 1) : r(rgb), g(rgb), b(rgb), a(a) {}
+	Color(float r, float g, float b, float a = 1) : r(r), g(g), b(b), a(a) {}
 };
 //ostream operator
 template <typename T>

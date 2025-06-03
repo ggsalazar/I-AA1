@@ -23,6 +23,7 @@ public:
     static inline void SetGame(Game* g) { game = g; }
 
     //Engine
+    //virtual void GetInput(); - TO-DO
     virtual void Update();
     virtual void Draw();
 

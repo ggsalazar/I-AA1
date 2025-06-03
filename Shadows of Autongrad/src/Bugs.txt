@@ -1,7 +1,7 @@
 Yes/No buttons not removing elements like they should in character creation
-Tiles are scaled according to resolution, but very blurry for some reason
-	-Disabling LINEAR scalemode makes it worse, so that can't be it
 
-cam_mv_spd should account for delta_time
-	-Multiplying by 100 should work?
-When switching resolutions back and forth, getting strange tiledrawing bugs
+Sliders are broken
+
+Interface being drawn over buttons because menus are drawn after sprites
+	-Do ALL of the entities really need to be drawn by Scene? Does Scene even really need to keep track of all the entities? 
+	 Why not let menus handle their own entities holistically (this would also make reducing reliance on smart pointers easier)?

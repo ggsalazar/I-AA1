@@ -42,9 +42,9 @@ public:
 
 	//Drawing shapes
 	void DrawLine(const Line& line, const Color& color = Color(1), const uint edge_w = 2);
-	void DrawCircle(const Circle& circle, const Color& fill_color = Color(1), const Color& stroke_color = Color(0,0,0,0), const uint edge_w = 2);
-	void DrawTri(const Tri& tri, const Color& fill_color = Color(1), const Color& stroke_color = Color(0,0,0,0), const uint edge_w = 2);
-	void DrawRect(const Rect& rect, const Color& fill_color = Color(1), const Color& stroke_color = Color(0,0,0,0), const uint edge_w = 2);
+	void DrawCircle(const Circle& circle, const Color& fill_color = Color(1), const Color& stroke_color = Color(0,0), const uint edge_w = 2);
+	void DrawTri(const Tri& tri, const Color& fill_color = Color(1), const Color& stroke_color = Color(0,0), const uint edge_w = 2);
+	void DrawRect(const Rect& rect, const Color& fill_color = Color(1), const Color& stroke_color = Color(0,0), const uint edge_w = 2);
 
 private:
 	SDL_Renderer* renderer = nullptr;

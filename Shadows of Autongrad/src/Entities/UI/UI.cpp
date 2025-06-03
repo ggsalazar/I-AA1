@@ -3,7 +3,6 @@
 UI::UI(Menu& m, const Sprite::Info& s_i, const UIElem e, const uint init_ui_layer)
     : Entity(s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(&game->default_fonts[36]) {
 
-
     //Label
     string l_str = "DEFAULT";
     switch (elem) {
@@ -162,6 +161,8 @@ UI::UI(Menu& m, const Sprite::Info& s_i, const UIElem e, const uint init_ui_laye
     label.info.pos = pos;
     label.info.str = l_str;
     label.SetOrigin();
+
+    sprite.SetDFC(-10);
 
     //Sound
     /*

@@ -27,7 +27,7 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 	//Resize tile_data to be the size of the map
 	tile_data.resize(map_size_t.x, vector<Tile>(map_size_t.y));
 
-	//Load all of our needed textures only once
+	//Load all of our needed textures
 	tilesets["Default"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Default.png");
 	if (json_file == "Tutton") {
 		tilesets["Grass"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Grass.png");
@@ -41,14 +41,14 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 		tilesets["Water"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Water.png");
 	}
 	for (auto& [name, tex] : tilesets)
-		SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_LINEAR);
+		SDL_SetTextureScaleMode(tex, SDL_SCALEMODE_NEAREST);
 
 
 	string ts_name;
 	SDL_Texture* ts_tex;
 	Vector2f tile_pos;
-	Vector2f tile_uv;
-	Vector2f vert_uv;
+	Vector2u tile_uv;
+	Vector2u vert_uv;
 	Vector2f tex_size;
 	SDL_Vertex vert[4];
 	int t_p_r;
@@ -114,13 +114,14 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 				}
 				SDL_GetTextureSize(ts_tex, &tex_size.x, &tex_size.y);
 				t_p_r = tex_size.x / BASE_TS;
-				tile_uv = { (float)(local_tile_id % t_p_r), (float)(local_tile_id / t_p_r) };
+				tile_uv = { local_tile_id % t_p_r, local_tile_id / t_p_r };
 				vert_uv = tile_uv * BASE_TS;
 
-				vert[0].tex_coord = { vert_uv.x / tex_size.x, vert_uv.y / tex_size.y };
+				vert[0].tex_coord = {vert_uv.x / tex_size.x, vert_uv.y / tex_size.y};
 				vert[1].tex_coord = { (vert_uv.x + BASE_TS) / tex_size.x, vert_uv.y / tex_size.y };
 				vert[2].tex_coord = { (vert_uv.x + BASE_TS) / tex_size.x, (vert_uv.y + BASE_TS) / tex_size.y };
 				vert[3].tex_coord = { vert_uv.x / tex_size.x, (vert_uv.y + BASE_TS) / tex_size.y };
+
 
 				SDL_FColor color = { 1.f, 1.f, 1.f, 1.f };
 				for (int i = 0; i < 4; ++i)
@@ -136,9 +137,6 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 		}
 	}
 
-	ts_tex = nullptr;
-	SDL_DestroyTexture(ts_tex);
-
 	map_loaded = true;
 	return true;
 }
@@ -147,6 +145,9 @@ void TileMap::Unload() {
 	for (const auto& [ts_name, ts_tex] : tilesets)
 		SDL_DestroyTexture(ts_tex);
 
+
+	verts_by_tileset.clear();
+	indices_by_tileset.clear();
 	tilesets.clear();
 	tile_data.clear();
 }

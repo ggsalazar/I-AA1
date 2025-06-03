@@ -3,7 +3,6 @@ SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 Tutorial:	-Move to node closest to target if possible; if not return NOACTION
 				--Modify FindPath() to find closest target node to goal from given creature's position;
 				  if target is too far from goal (> 2 Tiles) return empty V2i
-					---This only needs to be done if target is NOT a tile
 			-Add in NPCs
 				--Dialogue system/trees
 				--Blacksmith

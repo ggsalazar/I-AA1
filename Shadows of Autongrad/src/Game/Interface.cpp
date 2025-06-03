@@ -34,6 +34,7 @@ Interface::Interface(Menus init_label)
 
 	Sprite::Info i = {};
 	i.sheet = "UI/Interfaces/" + sheet; i.frame_size = { 480, 270 }; i.origin = { .5f }; i.scale = { game->GetResScale() };
+    i.dfc = 0;
 	sprite.Init(i);
 }
 

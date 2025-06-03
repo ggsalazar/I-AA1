@@ -17,21 +17,21 @@ Renderer::Renderer(SDL_Window* window, Camera* cam)
 }
 
 void Renderer::DrawSheet(const Sprite& sheet, const Vector2i& pos) {
-	const SDL_FRect dest_rect = { pos.x, pos.y, sheet.info.sheet_size.x, sheet.info.sheet_size.y };
+	const SDL_FRect dest = { pos.x, pos.y, sheet.info.sheet_size.x, sheet.info.sheet_size.y };
 
-	SDL_RenderTexture(renderer, sheet.texture, NULL, &dest_rect);
+	SDL_RenderTexture(renderer, sheet.texture, NULL, &dest);
 }
 
 void Renderer::DrawSprite(const Sprite& spr) {
 	//Cast to SDL
 	const Sprite::Info* si = &spr.info;
 
-	const SDL_FRect src_rect = { si->curr_frame * si->frame_size.x,
+	const SDL_FRect src = { si->curr_frame * si->frame_size.x,
 								 si->sheet_row * si->frame_size.y,
 								 si->frame_size.x, si->frame_size.y };
 
 
-	const SDL_FRect dest_rect = { round(si->pos.x - (si->spr_size.x * si->origin.x)) - camera->viewport.x,
+	const SDL_FRect dest = { round(si->pos.x - (si->spr_size.x * si->origin.x)) - camera->viewport.x,
 								  round(si->pos.y - (si->spr_size.y * si->origin.y)) - camera->viewport.y,
 								  si->spr_size.x,
 								  si->spr_size.y };
@@ -40,7 +40,7 @@ void Renderer::DrawSprite(const Sprite& spr) {
 	SDL_SetTextureColorMod(spr.texture, si->tint.r * 255, si->tint.g * 255, si->tint.b * 255);
 	SDL_SetTextureAlphaMod(spr.texture, si->tint.a * 255);
 
-	SDL_RenderTexture(renderer, spr.texture, &src_rect, &dest_rect);
+	SDL_RenderTexture(renderer, spr.texture, &src, &dest);
 
 }
 
@@ -69,18 +69,20 @@ void Renderer::DrawTilemap(TileMap& tmp) {
 
 			// Now convert to screen space
 			for (auto& v : quad) {
-				v.position.x = round(v.position.x - camera->viewport.x);
-				v.position.y = round(v.position.y - camera->viewport.y);
+				v.position.x = roundf(v.position.x - camera->viewport.x);
+				v.position.y = roundf(v.position.y - camera->viewport.y);
 			}
 
 			// Draw visible tile
 			SDL_RenderGeometry(renderer, ts_tex, quad.data(), 4, tile_inds.data(), 6);
+
+		
+
 		}
 	}
 }
 
 void Renderer::DrawTxt(Text& txt) {
-	//Cast to SDL
 	Text::Info* ti = &txt.info;
 
 	SDL_Color c = {

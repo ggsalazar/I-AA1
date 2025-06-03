@@ -311,13 +311,17 @@ void Scene::OpenInterface() {
 }
 
 void Scene::MoveCamera() {
-	//Move the camera
 	bool cam_free = false; //This exists basically solely for debugging
-	//Can't move the camera if we are at or past the edge
 	Vector2i cam_pos = { game->camera.viewport.x, game->camera.viewport.y };
 	Vector2i cam_size = { game->camera.viewport.w, game->camera.viewport.h };
 
-	//How many party mems is the cam locked to?
+
+
+
+
+	//If the camera is locked to certain party members,
+	// get the average of all of their positions and lerp the camera to there
+	//How many party mems is the cam locked to (if any)?
 	uint cam_locked_pms = 0;
 	Vector2i pos_totals = { 0 };
 	for (const auto& p_m : party_mems) {
@@ -326,9 +330,6 @@ void Scene::MoveCamera() {
 			pos_totals += p_m->GetPos();
 		}
 	}
-
-	//If the camera is locked to certain party members,
-	// get the average of all of their positions and lerp the camera to there
 	if (cam_locked_pms) {
 		Vector2i pos_avg = Round(pos_totals / cam_locked_pms);
 

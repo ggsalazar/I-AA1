@@ -79,7 +79,7 @@ void PartyMember::Draw() {
 	//Draw the last step in their path so the player always knows where they're headed
 	if (!path.empty()) {
 		Rect last_step = { path.back() - TS*.5, TS };
-		game->renderer.DrawRect(last_step, Color(0,0,0,0), Color(1,0,0, .35f));
+		game->renderer.DrawRect(last_step, Color(0,0), Color(1,0,0, .4f));
 	}
 
 	Creature::Draw();
@@ -89,7 +89,7 @@ void PartyMember::DrawPortrait() {
 	//Camera locking sprite
 	game->renderer.DrawSprite(cam_sprite);
 	if (Collision::Point(Input::MousePos(), cam_sprite_bbox))
-		game->renderer.DrawRect(cam_sprite_bbox, Color(0, 0, 0, 0), Color(1));
+		game->renderer.DrawRect(cam_sprite_bbox, Color(0,0), Color(1));
 
 	//Party members draw their portraits and health bars at all times
 	//Draw the highlight if selected first, then the portrait
