@@ -90,7 +90,6 @@ void Button::Released() {
         --game->curr_ui_layer;
         menu.RemoveUIElem(UIElem::Confirm);
         menu.RemoveUIElem(UIElem::Yes);
-        alive = false;
         break;
 
     case UIElem::Options:
@@ -133,9 +132,7 @@ void Button::Released() {
             //Double-check to make sure this *destroys* confirm box and y/n buttons!!!!!!!! TO-DO
             menu.RemoveUIElem(UIElem::Confirm);
             menu.RemoveUIElem(UIElem::No);
-            alive = false;
             menu.Open(false);
-            scene->RemoveEntity("Default");
             scene->OpenMenu(Menus::Main);
         }
         break;

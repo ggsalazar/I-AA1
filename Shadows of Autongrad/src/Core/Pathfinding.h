@@ -26,7 +26,7 @@ public:
 
 	Pathfinding() = default;
 	void Init(TileMap* t);
-	void PopulateNodeGrid(vector<s_ptr<Entity>>* ents);
+	void PopulateNodeGrid(vector<Entity*>* ents);
 
 	queue<Vector2i> FindPath(const Vector2i& start, Vector2i& goal, MouseTarget target);
 

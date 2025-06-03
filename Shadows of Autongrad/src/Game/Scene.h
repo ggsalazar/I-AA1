@@ -27,6 +27,12 @@ public:
     Scene() = default;
     Scene(Scenes init_label) : label(init_label) {}
     ~Scene() {
+        for (auto e : entities) {
+            delete e;
+            e = nullptr;
+        }
+        entities.clear();
+
         for (auto [_, m] : menus) {
             delete m;
             m = nullptr;
@@ -54,16 +60,15 @@ public:
     void SetGameCursor(Action action = Action::DEFAULT);
 
     //Entities
-    inline void AddEntity(s_ptr<Entity> e) { entities.push_back(e); }
-    void RemoveEntity(s_ptr<Entity> e);
-    void RemoveEntity(const string& ent_name);
+    inline void AddEntity(Entity* e) { entities.push_back(e); }
+    void RemoveEntity(Entity* e);
     void SetEntitySFXVolume(const float new_volume);
 
     //Party Members
     void CreatePartyMem();
     void CreatePreGen(PreGens p_g);
-    inline vector<s_ptr<PartyMember>> GetPartyMems() const { return party_mems; }
-    inline void SetPartyMems(vector<s_ptr<PartyMember>> p_ms) { party_mems = p_ms; }
+    inline vector<PartyMember*> GetPartyMems() const { return party_mems; }
+    inline void SetPartyMems(vector<PartyMember*> p_ms) { party_mems = p_ms; }
 
     //NPCs
     void LoadNPCs(const string& area);
@@ -78,8 +83,8 @@ private:
     Pathfinding grid;
 
     unordered_map<Menus, Menu*> menus;
-    vector<s_ptr<Entity>> entities;
-    vector<s_ptr<PartyMember>> party_mems;
+    vector<Entity*> entities;
+    vector<PartyMember*> party_mems;
 
     //Edge panning rects
     Rect up_edge;

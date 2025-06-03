@@ -38,7 +38,7 @@ void Entity::PlaySound() {
 void Entity::Move() {
     pos = Round(float_pos);
 
-    sprite.MoveTo(pos);
+    sprite.MoveTo(float_pos);
     size = sprite.GetSprSize();
 
     pos_debug.x = pos.x;

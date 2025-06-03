@@ -41,7 +41,7 @@ Interface::Interface(Menus init_label)
 void Interface::Update() {
     Menu::Update();
 	if (open) {
-        sprite.MoveTo(game->camera.GetCenter());
+        sprite.MoveTo(Vector2f(game->camera.GetCenter()));
         menu_text.info.pos = Round(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .2);
         Vector2f elem_pos = { 0 };
 

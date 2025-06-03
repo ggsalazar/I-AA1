@@ -9,7 +9,6 @@ class Entity {
 public:
     //Variables
     Vector2i size = { 0, 0 };
-    bool alive = true;
 
     Sprite sprite;
 

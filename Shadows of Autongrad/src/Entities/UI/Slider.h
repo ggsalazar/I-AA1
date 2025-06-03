@@ -18,5 +18,5 @@ private:
     Sprite knob_spr;
     Text knob_label;
     int knob_pos_max = 0, knob_pos_min = 0;
-    int knob_pos = 0;
+    float knob_pos = 0;
 };

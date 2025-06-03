@@ -45,8 +45,8 @@ public:
     inline Vector2i GetSheetSize() const { return info.sheet_size; }
 
     inline Vector2i GetPos() const { return info.pos; }
-    void MoveTo(const Vector2i& new_pos);
-    void MoveBy(const Vector2i& offset);
+    void MoveTo(const Vector2f& new_pos);
+    void MoveBy(const Vector2f& offset);
 
     inline void SetSize() { info.spr_size = { info.scale.x * info.frame_size.x, info.scale.y * info.frame_size.y }; }
     inline void SetSize(const Vector2i& s) {

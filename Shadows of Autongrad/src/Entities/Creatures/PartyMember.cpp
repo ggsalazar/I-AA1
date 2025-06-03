@@ -56,12 +56,12 @@ void PartyMember::Update() {
 	//Update portrait and related details position
 	//Position is just the bottom left
 	//Portrait
-	portrait.MoveTo(Round(portrait.GetSprSize().x * .25f + game->camera.viewport.x, game->resolution.y - portrait.GetSprSize().y * 1.25f + game->camera.viewport.y));
+	portrait.MoveTo({ portrait.GetSprSize().x * .25f + game->camera.viewport.x, game->resolution.y - portrait.GetSprSize().y * 1.25f + game->camera.viewport.y });
 	por_bbox.x = portrait.GetPos().x - round(portrait.GetSprSize().x * .025f);
 	por_bbox.y = portrait.GetPos().y - round(portrait.GetSprSize().y * .025f);
 	//Cam locking sprite
 	//This assumes the origin for both sprites is top-left; should rewrite to account for all possible origins eventually
-	cam_sprite.MoveTo({ portrait.GetPos().x, portrait.GetPos().y - cam_sprite.GetSprSize().y - game->GetResScale()*2});
+	cam_sprite.MoveTo({ (float)portrait.GetPos().x, (float)(portrait.GetPos().y - cam_sprite.GetSprSize().y - game->GetResScale()*2)});
 	cam_sprite_bbox.x = cam_sprite.GetPos().x;
 	cam_sprite_bbox.y = cam_sprite.GetPos().y;
 	//Nameplate

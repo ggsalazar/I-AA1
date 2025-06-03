@@ -102,7 +102,7 @@ void Game::ProcessInput() {
         cerr << "ERROR: ACTIVE SCENE NOT PROCESSING INPUT!\n";
 
     //Update cursor position
-    cursor.MoveTo(Input::MousePos());
+    cursor.MoveTo(Vector2f(Input::MousePos()));
 }
 
 //Update the game world

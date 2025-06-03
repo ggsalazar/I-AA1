@@ -87,7 +87,6 @@ Game starts on train! Train heist
 Portraits - use a single texture that contains all portraits? How to navigate easily?
 
 Future Improvements/Sequel ideas:
-	-Reduce the use of smart pointers, ideally to 0
 	-Have UI elements set their own Sprite
 	-Allow for custom UI arrangement
 	-Swimming

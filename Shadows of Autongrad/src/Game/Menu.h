@@ -15,6 +15,11 @@ class Menu {
 public:
     Menu(const Menus init_label);
     virtual ~Menu() {
+        for (auto [_, e] : ui_elems) {
+            delete e;
+            e = nullptr;
+        }
+
         for (auto [_, sm] : sub_menus) {
             delete sm;
             sm = nullptr;
@@ -23,7 +28,7 @@ public:
     static inline void SetGame(Game* g) { game = g; }
 
     //Engine
-    //virtual void GetInput(); - TO-DO
+    virtual void GetInput();
     virtual void Update();
     virtual void Draw();
 
@@ -35,7 +40,6 @@ public:
     void OpenSM(const Menus s_m);
 
     //UI Elements
-    void AddUIElem(const s_ptr<UI> new_elem);
     void RemoveUIElem(const UIElem ui);
     bool CheckUIElem(const UIElem ui);
     bool GetUIElemActive(const UIElem ui);
@@ -52,7 +56,7 @@ protected:
     uint res_scalar;
 
     unordered_map<Menus, Menu*> sub_menus;
-    unordered_map<UIElem, s_ptr<UI>> ui_elems;
+    unordered_map<UIElem, UI*> ui_elems;
     Vector2f ui_ori = { .5f, .5f };
     Vector2i ui_scale = { 1, 1 };
 

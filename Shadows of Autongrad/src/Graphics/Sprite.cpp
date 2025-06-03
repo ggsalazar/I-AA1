@@ -57,14 +57,14 @@ void Sprite::Update(const float dt) {
     }
 }
 
-void Sprite::MoveTo(const Vector2i& new_pos) {
-    info.pos = new_pos;
+void Sprite::MoveTo(const Vector2f& new_pos) {
+    info.pos = Round(new_pos);
     pos_debug.x = info.pos.x;
     pos_debug.y = info.pos.y;
 }
 
-void Sprite::MoveBy(const Vector2i& offset) {
-    info.pos += offset;
+void Sprite::MoveBy(const Vector2f& offset) {
+    info.pos += Round(offset);
     pos_debug.x = info.pos.x;
     pos_debug.y = info.pos.y;
 }

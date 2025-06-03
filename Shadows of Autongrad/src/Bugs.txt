@@ -1,7 +1,1 @@
 Yes/No buttons not removing elements like they should in character creation
-
-Sliders are broken
-
-Interface being drawn over buttons because menus are drawn after sprites
-	-Do ALL of the entities really need to be drawn by Scene? Does Scene even really need to keep track of all the entities? 
-	 Why not let menus handle their own entities holistically (this would also make reducing reliance on smart pointers easier)?

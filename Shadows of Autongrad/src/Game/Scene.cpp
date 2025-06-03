@@ -128,16 +128,12 @@ void Scene::GetInput() {
 	lmb_action = interface_open == Menus::NOINTRFC;
 
 	//Input for the entities
-	for (auto& e : entities) {
-		//Only get input for UI elements if the corresponding menu is open
-		if (auto ui = dynamic_cast<UI*>(e.get())) {
-			if (ui->menu.GetOpen())
-				ui->GetInput();
-		}
-		else
+	for (auto& e : entities)
 			e->GetInput();
-	}
 
+	//Input for the menus
+	for (auto& m : menus)
+		m.second->GetInput();
 
 
 	if (label == Scenes::AREA) {
@@ -151,7 +147,7 @@ void Scene::GetInput() {
 			vector<PartyMember*> selected_pms;
 			for (int i = 0; i < party_mems.size(); ++i) {
 				if (party_mems[i]->selected)
-					selected_pms.push_back(party_mems[i].get());
+					selected_pms.push_back(party_mems[i]);
 			}
 
 			//The LMB, when clicked, performs a variety of functions; which function it ends up performing
@@ -184,13 +180,13 @@ void Scene::GetInput() {
 void Scene::Update() {
 	
 	//Every frame:
-	//Update menus
-	for (const auto& m : menus)
-		m.second->Update();
-
 	//Update entities
 	for (auto& e : entities)
 		e->Update();
+
+	//Update menus
+	for (const auto& m : menus)
+		m.second->Update();
 
 	//Update the edge panning rects
 	if (label == Scenes::AREA) {
@@ -198,13 +194,6 @@ void Scene::Update() {
 		down_edge.x = game->camera.viewport.x; down_edge.y = game->camera.viewport.y + game->camera.viewport.h - TS;
 		left_edge.x = game->camera.viewport.x; left_edge.y = game->camera.viewport.y;
 		right_edge.x = game->camera.viewport.x + game->camera.viewport.w - TS; right_edge.y = game->camera.viewport.y;
-	}
-
-
-	//Remove dead entities every 15th of a second (every 4 game frames)
-	if (game->GetGameFrames() % 4 == 0) {
-		entities.erase(remove_if(entities.begin(), entities.end(),
-			[](const s_ptr<Entity>& e) { return !e->alive;}), entities.end());
 	}
 
 	//Repopulate the node grid every 10th of a second (every 6 game frames)
@@ -215,7 +204,7 @@ void Scene::Update() {
 	// last (closest to the camera)
 	if (game->GetGameFrames() % 10 == 0) {
 		sort(entities.begin(), entities.end(),
-			[](const s_ptr<Entity>& a, const s_ptr<Entity>& b) { return a->sprite.GetDFC() > b->sprite.GetDFC(); });
+			[](const Entity* a, const Entity* b) { return a->sprite.GetDFC() > b->sprite.GetDFC(); });
 	}
 }
 
@@ -225,18 +214,10 @@ void Scene::Draw() {
 	if (tilemap.Loaded())
 		game->renderer.DrawTilemap(tilemap);
 
-	//Then draw entities
+	//Then draw entities if they can be seen by the camera
 	for (auto& e : entities) {
-		//Only draw UI elements if the corresponding menu is open
-		if (auto ui = dynamic_cast<UI*>(e.get())) {
-			if (ui->menu.GetOpen())
-				ui->Draw();
-		}
-		else {
-			//Only draw entities if they can be seen by the camera
-			if (Collision::AABB(e->GetBBox(), game->camera.viewport))
-				e->Draw();
-		}
+		if (Collision::AABB(e->GetBBox(), game->camera.viewport))
+			e->Draw();
 	}
 
 	//Always draw the party member portraits
@@ -457,7 +438,7 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 	//Are we currently pointing at a creature?
 	Creature* creature = nullptr;
 	for (const auto e : entities) {
-		creature = dynamic_cast<Creature*>(e.get());
+		creature = dynamic_cast<Creature*>(e);
 		if (!creature) continue;
 		if (dynamic_cast<PartyMember*>(creature)) continue;
 		
@@ -607,22 +588,16 @@ void Scene::SetGameCursor(Action action) {
 	else game->cursor.SetColor(Color(1));
 }
 
-void Scene::RemoveEntity(s_ptr<Entity> e) {
-	auto dead_e = e.get();
-	for (const auto& ent : entities) {
-		if (ent.get() == dead_e)
-			ent.get()->alive = false;
-	}
-}
-
-void Scene::RemoveEntity(const string& ent_name) {
-	for (const auto& e : entities) {
-		if (auto c = dynamic_cast<Creature*>(e.get())) {
-			if (c->GetName() == ent_name)
-				c->alive = false;
+void Scene::RemoveEntity(Entity* e) {
+	for (auto it = entities.begin();it != entities.end(); ++it) {
+		if (*it == e) {
+			delete* it;
+			it = entities.erase(it);
+			break;
 		}
 	}
 }
+
 
 void Scene::SetEntitySFXVolume(const float new_volume) {
 	//for (auto& e : entities)
@@ -633,7 +608,7 @@ void Scene::CreatePartyMem() {
 	Sprite::Info info = {};
 	info.sheet = "Creatures/Sentients/PMPlaceholder";
 	info.frame_size = { 24, 48 }; info.origin = { .5f }; info.scale = game->GetResScale();
-	auto new_party_mem = make_s<PartyMember>(info); //The remaining arguments are the defaults
+	auto new_party_mem = new PartyMember(info); //The remaining arguments are the defaults
 	new_party_mem->MoveTo({ game->resolution.x * .75f, game->resolution.y * .5f });
 	entities.push_back(new_party_mem);
 }
@@ -704,7 +679,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 	Sprite::Info info = {};
 	info.sheet = sprite; info.frame_size = sprite_size;
 
-	party_mems.push_back(make_s<PartyMember>(info,
+	party_mems.push_back(new PartyMember(info,
 		Creature::Stats{ name, genus, race, size, clss, level, sex, str, con, dex, agi, intl, wis, cha } //The rest are defaults and handled in Initialization
 	));
 }
@@ -747,7 +722,7 @@ void Scene::LoadNPCs(const string& area) {
 		bool npc_biped = npc["Biped"];
 		bool npc_winged = npc["Winged"];
 
-		entities.push_back(make_s<Creature>(sprite_info, stats, por_name, npc_dispo, npc_biped, npc_winged));
+		entities.push_back(new Creature(sprite_info, stats, por_name, npc_dispo, npc_biped, npc_winged));
 	}
 
 }

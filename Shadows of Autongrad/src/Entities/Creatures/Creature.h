@@ -51,6 +51,8 @@ public:
 
 	bool moving = false;
 
+	bool alive = true;
+
 	Sprite portrait;
 	Rect por_bbox;
 

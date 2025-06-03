@@ -8,7 +8,7 @@ void Pathfinding::Init(TileMap* t) {
 	for (auto& row : grid) row.resize(tmp->GetMapSizeTiles().y);
 }
 
-void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
+void Pathfinding::PopulateNodeGrid(vector<Entity*>* ents) {
 	bool node_walk = false;
 	uint node_cost = 0;
 
@@ -20,7 +20,7 @@ void Pathfinding::PopulateNodeGrid(vector<s_ptr<Entity>>* ents) {
 			
 			if (node_walk) {
 				for (const auto& e : *ents) {
-					auto ui = dynamic_cast<UI*>(e.get());
+					auto ui = dynamic_cast<UI*>(e);
 					if (!ui)
 						node_walk = !(Collision::Point(e->GetPos(), Rect({ col * TS, row * TS }, TS)));
 					
