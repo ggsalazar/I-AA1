@@ -111,7 +111,7 @@ void Creature::Update() {
 	por_bbox.y = portrait.GetPos().y - round(portrait.GetSprSize().y * .025f);
 
 	//Moving
-	if (moving and !game->paused) WalkPath();
+	if (!path.empty() and !game->paused) WalkPath();
 }
 
 void Creature::Draw() {
@@ -157,8 +157,6 @@ void Creature::WalkPath() {
 		else
 			path.pop();
 	}
-	else
-		moving = false;
 }
 
 void Creature::PrintStats() {

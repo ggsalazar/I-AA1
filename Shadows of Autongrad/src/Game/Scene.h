@@ -16,12 +16,8 @@ class PartyMember;
 class Scene {
 public:
     Scenes label;
-    bool selecting = false;
-    //Are we using the default action at the moment? We aren't when:
-    // -Clicking UI elements (including all creature portraits)
-    // -The game is paused
-    // -No party members are selected
-    bool lmb_action = true;
+    bool selecting = false; //Whether we are selecting party members
+    bool lmb_action = true; //Whether we are using the default action
     Menus interface_open = Menus::NOINTRFC;
 
     Scene() = default;
@@ -32,10 +28,6 @@ public:
             e = nullptr;
         }
         entities.clear();
-        delete mouse_tar;
-        mouse_tar = nullptr;
-        delete held_tar;
-        held_tar = nullptr;
 
         for (auto [_, m] : menus) {
             delete m;

@@ -15,6 +15,7 @@ Tutorial:	-Move to node closest to target if possible; if not return NOACTION
 							-----Effect(s)
 							-----Progresses dialogue or not
 						----Effect(s)
+					---How to set dialogue node each time character is spoken to?
 				--Blacksmith
 					---Shopping (after implementing inventory)
 				--Quest Giver

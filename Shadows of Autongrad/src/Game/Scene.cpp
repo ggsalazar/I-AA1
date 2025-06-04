@@ -124,8 +124,10 @@ void Scene::GetInput() {
 		m.second->GetInput();
 
 	//If we're in dialogue, we need to get input for said dialogue (making choices, basically)
-	if (in_dlg) {}
-
+	if (in_dlg) {
+		game->cursor.SetSheetRow(0); //This is probably temporary
+		game->cursor.SetColor(1);
+	}
 	else {
 		if (label == Scenes::AREA) {
 			OpenInterface();
@@ -158,10 +160,8 @@ void Scene::GetInput() {
 
 					//If we found a path, walk that bitch
 					if (!found_paths[0].empty()) {
-						for (int i = 0; i < selected_pms.size(); ++i) {
-							selected_pms[i]->moving = true;
+						for (int i = 0; i < selected_pms.size(); ++i)
 							selected_pms[i]->SetPath(found_paths[i]);
-						}
 
 						//If we have an action to perform but can't do it because we aren't close enough yet,
 						// hold that action
@@ -173,7 +173,10 @@ void Scene::GetInput() {
 				}
 			}
 			//If the game is paused, the game cursor is the default (at least for now)
-			else game->cursor.SetSheetRow(0);
+			else {
+				game->cursor.SetSheetRow(0);
+				game->cursor.SetColor(1);
+			}
 		}
 	}
 }
@@ -196,6 +199,17 @@ void Scene::Update() {
 		left_edge.x = game->camera.viewport.x; left_edge.y = game->camera.viewport.y;
 		right_edge.x = game->camera.viewport.x + game->camera.viewport.w - TS; right_edge.y = game->camera.viewport.y;
 	}
+
+	//If we have a held action and the selected party members aren't moving, that must mean we've reached our target, right?
+	//This doesn't work because it will call Perform Action every frame, whereas we only need it to be called once
+	if (!game->paused and !in_dlg) {
+		uint moving_pms = 0;
+		for (const auto& pm : party_mems) {
+			if (!pm->GetPath().empty()) ++moving_pms;
+		}
+		if (held_action != Action::NOACTION and !moving_pms) PerformAction();
+	}
+
 
 	//Repopulate the node grid every 10th of a second (every 6 game frames)
 	if (game->GetGameFrames() % 6 == 0 and tilemap.Loaded())
@@ -232,13 +246,10 @@ void Scene::Draw() {
 	if (selecting)
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
-	//This is here for debugging
-	//if (tilemap.Loaded())
-		//game->renderer.DrawNodeGrid(grid);
-
 	//Draw dialogue
 	if (in_dlg) {
 		//game->dlg_mngr.DrawDialogue();
+		cout << "In dialogue\n";
 	}
 
 	//Menus are drawn last since UI will always be closest to the camera
@@ -304,7 +315,7 @@ void Scene::MoveCamera() {
 
 	//If we are in dialogue, move the camera to the speaker - TO-DO
 	if (in_dlg) {
-
+		
 	}
 	//Otherwise move it around as normal
 	else {
@@ -468,49 +479,36 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 
 	//If pointing at a creature...
 	else if (Creature* c = dynamic_cast<Creature*>(mouse_tar)) {
-		//First, we need to know the target creature's disposition to the party
-		int creature_dispo = 0;
-		creature_dispo = c->GetDispo();
+		if (!dynamic_cast<PartyMember*>(c)) {
+			//First, we need to know the target creature's disposition to the party
+			int creature_dispo = 0;
+			creature_dispo = c->GetDispo();
 
-		//Outright Hostile - Attack it
-		if (creature_dispo <= 20) {
-			//Attack actions (Melee/Ranged/Spell)
-		}
-		//Testy or better - Speak
-		else {
-			//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
-			// unable to find a path for any reason
-			path_goal = c->GetPos();
+			//Outright Hostile - Attack it
+			if (creature_dispo <= 20) {
+				//Attack actions (Melee/Ranged/Spell)
+				//Melee Attack (LMB action in combat only)
+				//-When mouse is on an enemy...
+				//	--in melee range OR
+				//	--acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
+				//		---If > 1 melee weapon equipped, will have to ask which weapon to attack with
 
-			action = Action::Talk;
+				//Ranged Attack (LMB action in combat only)
+				//-When mouse is on an enemy...
+				//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
+			}
+			//Testy or better - Speak
+			else {
+				//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
+				// unable to find a path for any reason
+				path_goal = c->GetPos();
+
+				action = Action::Talk;
+			}
 		}
 	}
 
 	//Else if pointing at an item/container/door/passage... TO-DO
-
-	if (path_goal != Vector2i(-1)) {
-		for (int i = 0; i < s_pms.size(); ++i) {
-			//The actual goal node for each individual p_m is determined inside FindPath
-			found_paths[i] = grid.FindPath(s_pms[i]->GetPos(), path_goal, mouse_tar);
-
-			//If a path could not be found and we are not too close, return NOACTION
-			if (found_paths[i].empty() and Distance(s_pms[i]->GetPos(), path_goal) > 1.5 * METER) return Action::NOACTION;
-		}
-	}
-
-	return action;
-	
-
-	//Melee Attack (LMB action in combat only)
-	//-When mouse is on an enemy...
-	//	--in melee range OR
-	//	--acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
-	//		---If > 1 melee weapon equipped, will have to ask which weapon to attack with
-
-	//Ranged Attack (LMB action in combat only)
-	//-When mouse is on an enemy...
-	//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
-
 	//Pick up an object
 	//-When mouse is on an object that can be picked up
 
@@ -522,6 +520,20 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 
 	//Open a door
 	//-When mouse is on an unlocked door
+
+
+	//Set the paths to the target
+	if (path_goal != Vector2i(-1)) {
+		for (int i = 0; i < s_pms.size(); ++i) {
+			//The actual goal node for each individual p_m is determined inside FindPath
+			found_paths[i] = grid.FindPath(s_pms[i]->GetPos(), path_goal, mouse_tar);
+
+			//If a path could not be found and we are not too close, return NOACTION
+			if (found_paths[i].empty() and Distance(s_pms[i]->GetPos(), path_goal) > 1.5 * METER) return Action::NOACTION;
+		}
+	}
+
+	return action;
 }
 
 void Scene::SetGameCursor(Action action) {
