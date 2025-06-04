@@ -1,7 +1,6 @@
 #pragma once
 #include <unordered_map>
 #include "Game.h"
-#include "../Core/Aliases.h"
 #include "../Core/Enums.h"
 #include "../Core/Vector2.h"
 #include "../Graphics/Text.h"
@@ -19,11 +18,13 @@ public:
             delete e;
             e = nullptr;
         }
+        ui_elems.clear();
 
         for (auto [_, sm] : sub_menus) {
             delete sm;
             sm = nullptr;
         }
+        sub_menus.clear();
     }
     static inline void SetGame(Game* g) { game = g; }
 

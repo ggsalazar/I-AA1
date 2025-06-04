@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <queue>
-#include "Aliases.h"
 #include "Vector2.h"
 #include "../Graphics/TileMap.h"
 
@@ -28,7 +27,7 @@ public:
 	void Init(TileMap* t);
 	void PopulateNodeGrid(vector<Entity*>* ents);
 
-	queue<Vector2i> FindPath(const Vector2i& start, Vector2i& goal, MouseTarget target);
+	queue<Vector2i> FindPath(const Vector2i& start, Vector2i& goal, Entity* target);
 
 private:
 	vector<vector<Node>> grid;

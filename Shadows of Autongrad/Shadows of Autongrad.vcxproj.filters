@@ -75,11 +75,11 @@
     <ClCompile Include="src\Game\Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Dialogue\Yggdrasil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core\Aliases.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Core\Collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -159,6 +159,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Game\Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dialogue\Yggdrasil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

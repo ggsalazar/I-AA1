@@ -36,11 +36,11 @@ void Pathfinding::PopulateNodeGrid(vector<Entity*>* ents) {
 	}
 }
 
-queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, MouseTarget target) {
+queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Entity* target) {
 	
 	//If the target is sufficiently close to the goal and the goal is not a tile,
 	// there is no need to find a path - TO-DO
-	if (target != MouseTarget::Tile and Distance(start, goal) <= 1.5 * METER) return {};
+	if (target and Distance(start, goal) <= 1.5 * METER) return {};
 	
 	//Create our lists
 	std::priority_queue<Node*, vector<Node*>, CompareNodes> open_list;
@@ -51,7 +51,7 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Mou
 	//Select the closest unoccupied and unclaimed node to the start node
 	Vector2i grid_goal = Round((goal.x - TS * .5f) / TS, (goal.y - TS * .5f) / TS);
 	Vector2i closest_node = grid_goal;
-	if (target != MouseTarget::Tile) {
+	if (target) {
 		for (int i = grid_goal.x - 1; i <= grid_goal.x + 1; ++i) {
 			for (int j = grid_goal.y - 1; j <= grid_goal.y + 1; ++j) {
 				Node* n = &grid[i][j];
@@ -60,6 +60,10 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Mou
 					closest_node = { i, j };
 			}
 		}
+
+		//If the closest node we found was the goal node, that means we didn't find a closer tile to stand on,
+		// which means we have no path to the target
+		if (closest_node == grid_goal) return {};
 
 		goal = (closest_node + TS * .5f) * TS;
 	}

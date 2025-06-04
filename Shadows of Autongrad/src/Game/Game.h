@@ -1,9 +1,10 @@
 #pragma once
 #include <chrono>
-#include "Scene.h" //unordered_map, Geometry, Pathfinding (Aliases), TileMap)
+#include "Scene.h" //unordered_map, Geometry, Pathfinding, TileMap
 #include "../Core/Camera.h" //Geometry
 #include "../Graphics/Window.h"
 #include "../Graphics/Renderer.h" //SDL_render, Sprite (SDL_image)
+#include "../Dialogue/Yggdrasil.h"
 
 using Clock = std::chrono::high_resolution_clock;
 using namespace std;
@@ -29,6 +30,7 @@ public:
     float delta_time = 0.f;
     bool paused = false;
     uint curr_ui_layer = 0;
+    Yggdrasil dlg_mngr;
 
 
     //Music & SFX - waiting for SDL_mixer 3.0

@@ -1,10 +1,20 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
 Tutorial:	-Move to node closest to target if possible; if not return NOACTION
-				--Modify FindPath() to find closest target node to goal from given creature's position;
-				  if target is too far from goal (> 2 Tiles) return empty V2i
+				--Test this when you get home (bisect map with unwalkable tiles)
+			-Place spawn points in maps in Tiled so they don't have to manually be set in Scene
+			 (can be pulled from TileMap after area is fully loaded)
 			-Add in NPCs
 				--Dialogue system/trees
+					---Each piece of text CAN have:
+						----Speaker
+						----The string
+						----Condition(s)
+						----Choices
+							-----Condition(s)
+							-----Effect(s)
+							-----Progresses dialogue or not
+						----Effect(s)
 				--Blacksmith
 					---Shopping (after implementing inventory)
 				--Quest Giver

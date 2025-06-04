@@ -1,0 +1,18 @@
+{
+    "Orv": {
+        "Test": {
+            "1": {
+                "Text": "Greetings Player.",
+                "Choices": [ "Continue" ]
+            },
+            "2": {
+                "Text": "This is a dialogue test.",
+                "Choices": [ "Continue" ]
+            },
+            "3": {
+                "Text": "Thank you for running this test.",
+                "Choices": ["Finish"]
+            }
+        }
+    }
+}

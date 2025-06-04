@@ -2,7 +2,7 @@
 #include <queue>
 #include <unordered_map>
 #include "../Core/Geometry.h"
-#include "../Core/Pathfinding.h" //Aliases
+#include "../Core/Pathfinding.h"
 #include "../Graphics/TileMap.h" //nlohmann/json
 
 using namespace std;
@@ -32,11 +32,16 @@ public:
             e = nullptr;
         }
         entities.clear();
+        delete mouse_tar;
+        mouse_tar = nullptr;
+        delete held_tar;
+        held_tar = nullptr;
 
         for (auto [_, m] : menus) {
             delete m;
             m = nullptr;
         }
+        menus.clear();
     }
     static inline void SetGame(Game* g) { game = g; }
     void Open(const bool o = true);
@@ -58,6 +63,7 @@ public:
     void SelectPartyMems();
     Action LMBAction(vector<PartyMember*>& s_pms);
     void SetGameCursor(Action action = Action::DEFAULT);
+    void PerformAction();
 
     //Entities
     inline void AddEntity(Entity* e) { entities.push_back(e); }
@@ -71,13 +77,19 @@ public:
     inline void SetPartyMems(vector<PartyMember*> p_ms) { party_mems = p_ms; }
 
     //NPCs
-    void LoadNPCs(const string& area);
-    //void CreateNPC(string name);
+    void LoadNPCs();
+
+    //Dialogue
+    void LoadDialogue();
 
 private:
     bool open = false;
     Action action = Action::DEFAULT;
-    MouseTarget mouse_tar = MouseTarget::None;
+    Action held_action = Action::NOACTION;
+    Entity* mouse_tar = nullptr;
+    Entity* held_tar = nullptr;
+
+    bool in_dlg = false;
 
     TileMap tilemap;
     Pathfinding grid;

@@ -2,8 +2,10 @@
 
 Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const int init_dispo,
-	const bool init_biped, const bool init_winged)
-	: Entity(s_i), stats(init_stats), party_dispo(init_dispo), biped(init_biped), winged(init_winged) {
+	const bool init_biped, const bool init_winged,
+	const string init_dlg_node)
+	: Entity(s_i), stats(init_stats), party_dispo(init_dispo), biped(init_biped), winged(init_winged),
+		dlg_node(init_dlg_node) {
 
 	//Set sprite origin (most likely {.5f, .95f} for all creatures)
 	sprite.SetOrigin({ .5f, .95f });

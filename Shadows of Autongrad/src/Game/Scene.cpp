@@ -23,7 +23,6 @@ void Scene::Open(const bool o) {
 			menus.insert({ Menus::CharCrea, new Menu(Menus::CharCrea) });
 			menus.insert({ Menus::Load, new Menu(Menus::Load) });
 			menus.insert({ Menus::Options, new Menu(Menus::Options) });
-
 		}
 
 		else if (label == Scenes::AREA) {
@@ -37,29 +36,18 @@ void Scene::Open(const bool o) {
 			//Right
 			right_edge.w = TS; right_edge.h = left_edge.h;
 
-			//Import the appropriate tilemap
-			string json_file = "DEFAULT";
-			switch (game->area) {
-				case Area::Debug:
-					json_file = "Debug_Room";
-					break;
+			//Load area stuff
+			//Tilemap
+			tilemap.Load(game->renderer.GetRenderer(), AreaToString(game->area));
+			Vector2u area_size = tilemap.GetMapSizePixels(), area_size_t = tilemap.GetMapSizeTiles();
+			//NPCs
+			LoadNPCs();
+			//Dialogue
+			LoadDialogue();
 
-				case Area::Tutton:
-					json_file = "Tutton";
-					break;
-			}
-			//Load that bitch
-			tilemap.Load(game->renderer.GetRenderer(), json_file);
-			Vector2u area_size = tilemap.GetMapSizePixels();
-			Vector2u area_size_t = tilemap.GetMapSizeTiles();
 
 			//Init the grid
 			grid.Init(&tilemap);
-
-			//Load NPCs
-			if (game->area == Area::Debug)
-				LoadNPCs("Tutton");
-			else LoadNPCs(AreaToString(game->area));
 
 			//Set the party and camera
 			Vector2f party_ldr_pos;
@@ -102,8 +90,7 @@ void Scene::Open(const bool o) {
 			menus.insert({ Menus::Map_World, new Interface(Menus::Map_World) });
 			menus.insert({ Menus::Options_I, new Interface(Menus::Options_I) });
 
-
-			//Populate the node grid
+			//Populate the node grid for pathfinding
 			grid.PopulateNodeGrid(&entities);
 		}
 	}
@@ -124,56 +111,70 @@ void Scene::Open(const bool o) {
 }
 
 void Scene::GetInput() {
-	//Reset lmb_action to true if an interface is not open - the entities will determine if it is false
-	lmb_action = interface_open == Menus::NOINTRFC;
+	//Reset lmb_action to true if an interface is not open and we are not in dialogue
+	// - the entities will determine if it is false
+	lmb_action = interface_open == Menus::NOINTRFC and !in_dlg;
 
 	//Input for the entities
 	for (auto& e : entities)
-			e->GetInput();
+		e->GetInput();
 
 	//Input for the menus
 	for (auto& m : menus)
 		m.second->GetInput();
 
+	//If we're in dialogue, we need to get input for said dialogue (making choices, basically)
+	if (in_dlg) {}
 
-	if (label == Scenes::AREA) {
-		OpenInterface();
+	else {
+		if (label == Scenes::AREA) {
+			OpenInterface();
 
-		if (!game->paused) {
-			MoveCamera();
-			SelectPartyMems();
+			if (!game->paused) {
+				MoveCamera();
+				SelectPartyMems();
 
-			//How many selected party mems do we have?
-			vector<PartyMember*> selected_pms;
-			for (int i = 0; i < party_mems.size(); ++i) {
-				if (party_mems[i]->selected)
-					selected_pms.push_back(party_mems[i]);
-			}
+				//How many selected party mems do we have?
+				vector<PartyMember*> selected_pms;
+				for (int i = 0; i < party_mems.size(); ++i) {
+					if (party_mems[i]->selected)
+						selected_pms.push_back(party_mems[i]);
+				}
 
-			//The LMB, when clicked, performs a variety of functions; which function it ends up performing
-			// will depend on what it is pointing at
-			//Updating action every 10th of a second for performance
-			if (!selected_pms.empty() and lmb_action and game->GetGameFrames() % 6 == 0)
-				action = LMBAction(selected_pms);
-			else if (selected_pms.empty() or !lmb_action) action = Action::DEFAULT;
-			//Change the cursor according to current lmb action
-			SetGameCursor(action);
+				//The LMB, when clicked, performs a variety of functions; which function it ends up performing
+				// will depend on what it is pointing at
+				//Updating action every 10th of a second for performance
+				if (!selected_pms.empty() and lmb_action and game->GetGameFrames() % 6 == 0)
+					action = LMBAction(selected_pms);
+				else if (selected_pms.empty() or !lmb_action) action = Action::DEFAULT;
+				//Change the cursor according to current lmb action
+				SetGameCursor(action);
 
-			//Perform the action
-			//Need to check if lmb_action is valid because this can still refer to the last stored action, even if one was not stored this frame
-			if (Input::BtnPressed(LMB) and lmb_action) {
+				//Perform the action
+				//Need to check if lmb_action is valid because this can still refer to the last stored action, even if one was not stored this frame
+				if (Input::BtnPressed(LMB) and lmb_action) {
+					//Reset our held action
+					held_action = Action::NOACTION;
 
-				//If we found a path, walk that bitch
-				if (!found_paths[0].empty()) {
-					for (int i = 0; i < selected_pms.size(); ++i) {
-						selected_pms[i]->moving = true;
-						selected_pms[i]->SetPath(found_paths[i]);
+					//If we found a path, walk that bitch
+					if (!found_paths[0].empty()) {
+						for (int i = 0; i < selected_pms.size(); ++i) {
+							selected_pms[i]->moving = true;
+							selected_pms[i]->SetPath(found_paths[i]);
+						}
+
+						//If we have an action to perform but can't do it because we aren't close enough yet,
+						// hold that action
+						held_action = action;
+						held_tar = mouse_tar;
 					}
+					//Else perform the action
+					else PerformAction();
 				}
 			}
+			//If the game is paused, the game cursor is the default (at least for now)
+			else game->cursor.SetSheetRow(0);
 		}
-		//If the game is paused, the game cursor is the default (at least for now)
-		else game->cursor.SetSheetRow(0);
 	}
 }
 
@@ -220,8 +221,8 @@ void Scene::Draw() {
 			e->Draw();
 	}
 
-	//Always draw the party member portraits
-	if (label == Scenes::AREA) {
+	//Always draw the party member portraits?
+	if (label == Scenes::AREA and !in_dlg) {
 		for (const auto& pm : party_mems)
 			pm->DrawPortrait();
 	}
@@ -234,6 +235,11 @@ void Scene::Draw() {
 	//This is here for debugging
 	//if (tilemap.Loaded())
 		//game->renderer.DrawNodeGrid(grid);
+
+	//Draw dialogue
+	if (in_dlg) {
+		//game->dlg_mngr.DrawDialogue();
+	}
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc
@@ -296,84 +302,86 @@ void Scene::MoveCamera() {
 	Vector2i cam_pos = { game->camera.viewport.x, game->camera.viewport.y };
 	Vector2i cam_size = { game->camera.viewport.w, game->camera.viewport.h };
 
+	//If we are in dialogue, move the camera to the speaker - TO-DO
+	if (in_dlg) {
 
-
-
-
-	//If the camera is locked to certain party members,
-	// get the average of all of their positions and lerp the camera to there
-	//How many party mems is the cam locked to (if any)?
-	uint cam_locked_pms = 0;
-	Vector2i pos_totals = { 0 };
-	for (const auto& p_m : party_mems) {
-		if (p_m->cam_locked) {
-			++cam_locked_pms;
-			pos_totals += p_m->GetPos();
-		}
 	}
-	if (cam_locked_pms) {
-		Vector2i pos_avg = Round(pos_totals / cam_locked_pms);
-
-		game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), Vector2f(pos_avg), .075f)));
-	}
-	//Cam not locked to party mems
+	//Otherwise move it around as normal
 	else {
-		Vector2f new_cam_offset = { 0 };
-		if (!cam_free) {
-			//Move the camera via arrow/WASD keys
-			if ((Input::KeyDown(UP) or Input::KeyDown(W_K)) and cam_pos.y > 0)
-				new_cam_offset.y -= game->cam_move_spd;
-			else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-				new_cam_offset.y += game->cam_move_spd;
-			if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)) and cam_pos.x > 0)
-				new_cam_offset.x -= game->cam_move_spd;
-			else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-				new_cam_offset.x += game->cam_move_spd;
-
-			//Move the camera via edge panning
-			if (game->edge_panning) {
-				if (Collision::Point(Input::MousePos(), up_edge) and cam_pos.y > 0)
-					new_cam_offset.y -= game->cam_move_spd;
-				else if (Collision::Point(Input::MousePos(), down_edge) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
-					new_cam_offset.y += game->cam_move_spd;
-				if (Collision::Point(Input::MousePos(), left_edge) and cam_pos.x > 0)
-					new_cam_offset.x -= game->cam_move_spd;
-				else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
-					new_cam_offset.x += game->cam_move_spd;
+		//If the camera is locked to certain party members,
+		// get the average of all of their positions and lerp the camera to there
+		//How many party mems is the cam locked to (if any)?
+		uint cam_locked_pms = 0;
+		Vector2i pos_totals = { 0 };
+		for (const auto& p_m : party_mems) {
+			if (p_m->cam_locked) {
+				++cam_locked_pms;
+				pos_totals += p_m->GetPos();
 			}
 		}
+		if (cam_locked_pms) {
+			Vector2i pos_avg = Round(pos_totals / cam_locked_pms);
+
+			game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), Vector2f(pos_avg), .075f)));
+		}
+		//Cam not locked to party mems
 		else {
-			//Move the camera via arrow/WASD keys
-			if ((Input::KeyDown(UP) or Input::KeyDown(W_K)))
-				new_cam_offset.y -= game->cam_move_spd;
-			else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)))
-				new_cam_offset.y += game->cam_move_spd;
-			if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)))
-				new_cam_offset.x -= game->cam_move_spd;
-			else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)))
-				new_cam_offset.x += game->cam_move_spd;
-
-			//Move the camera via edge panning
-			if (game->edge_panning) {
-				if (Collision::Point(Input::MousePos(), up_edge))
+			Vector2f new_cam_offset = { 0 };
+			if (!cam_free) {
+				//Move the camera via arrow/WASD keys
+				if ((Input::KeyDown(UP) or Input::KeyDown(W_K)) and cam_pos.y > 0)
 					new_cam_offset.y -= game->cam_move_spd;
-				else if (Collision::Point(Input::MousePos(), down_edge))
+				else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
 					new_cam_offset.y += game->cam_move_spd;
-				if (Collision::Point(Input::MousePos(), left_edge))
+				if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)) and cam_pos.x > 0)
 					new_cam_offset.x -= game->cam_move_spd;
-				else if (Collision::Point(Input::MousePos(), right_edge))
+				else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
 					new_cam_offset.x += game->cam_move_spd;
+
+				//Move the camera via edge panning
+				if (game->edge_panning) {
+					if (Collision::Point(Input::MousePos(), up_edge) and cam_pos.y > 0)
+						new_cam_offset.y -= game->cam_move_spd;
+					else if (Collision::Point(Input::MousePos(), down_edge) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+						new_cam_offset.y += game->cam_move_spd;
+					if (Collision::Point(Input::MousePos(), left_edge) and cam_pos.x > 0)
+						new_cam_offset.x -= game->cam_move_spd;
+					else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+						new_cam_offset.x += game->cam_move_spd;
+				}
 			}
+			else {
+				//Move the camera via arrow/WASD keys
+				if ((Input::KeyDown(UP) or Input::KeyDown(W_K)))
+					new_cam_offset.y -= game->cam_move_spd;
+				else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)))
+					new_cam_offset.y += game->cam_move_spd;
+				if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)))
+					new_cam_offset.x -= game->cam_move_spd;
+				else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)))
+					new_cam_offset.x += game->cam_move_spd;
+
+				//Move the camera via edge panning
+				if (game->edge_panning) {
+					if (Collision::Point(Input::MousePos(), up_edge))
+						new_cam_offset.y -= game->cam_move_spd;
+					else if (Collision::Point(Input::MousePos(), down_edge))
+						new_cam_offset.y += game->cam_move_spd;
+					if (Collision::Point(Input::MousePos(), left_edge))
+						new_cam_offset.x -= game->cam_move_spd;
+					else if (Collision::Point(Input::MousePos(), right_edge))
+						new_cam_offset.x += game->cam_move_spd;
+				}
+			}
+
+			if (new_cam_offset.x != 0 and new_cam_offset.y != 0)
+				new_cam_offset /= sqrt2;
+
+			new_cam_offset = new_cam_offset * game->GetResScale();
+			game->camera.MoveBy(Round(new_cam_offset));
+
 		}
-
-		if (new_cam_offset.x != 0 and new_cam_offset.y != 0)
-			new_cam_offset /= sqrt2;
-
-		new_cam_offset = new_cam_offset * game->GetResScale();
-		game->camera.MoveBy(Round(new_cam_offset));
-
 	}
-
 	//Prevent the camera from moving past the edges of the world (not working for some reason?)
 	Vector2f c_p = { (float)game->camera.viewport.x, (float)game->camera.viewport.y };
 	Math::Clamp(c_p.x, 0, tilemap.GetMapSizePixels().x - game->camera.viewport.w);
@@ -388,34 +396,35 @@ void Scene::SelectPartyMems() {
 	//Click and drag (selection box/area) while holding SHIFT or CTRL
 	//	 -SHIFT selects all party mems inside the selection area
 	//	 -CTRL deselects all party mems inside the selection area
-
-	if (Input::BtnPressed(LMB) and (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT) or Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL))) {
-		selec_box.x = Input::MousePos().x;
-		selec_box.y = Input::MousePos().y;
-		selecting = true;
-		lmb_action = false;
-		//Change cursor sprite to indicate we are now selecting - TO-DO
-	}
-	else if (Input::BtnReleased(LMB) and selecting) {
-		selecting = false;
-		lmb_action = true;
-
-		for (auto& p_m : party_mems) {
-			if (Collision::Point(p_m->GetPos(), selec_box)) {
-				if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT))
-					p_m->selected = true;
-			}
-			else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
+	if (!in_dlg) {
+		if (Input::BtnPressed(LMB) and (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT) or Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL))) {
+			selec_box.x = Input::MousePos().x;
+			selec_box.y = Input::MousePos().y;
+			selecting = true;
+			lmb_action = false;
+			//Change cursor sprite to indicate we are now selecting - TO-DO
 		}
-		
-	}
-	if (selecting) {
-		lmb_action = false;
-		//Selection area w/h
-		selec_box.w = Input::MousePos().x - selec_box.x;
-		selec_box.h = Input::MousePos().y - selec_box.y;
+		else if (Input::BtnReleased(LMB) and selecting) {
+			selecting = false;
+			lmb_action = true;
 
-		//Use visual signifiers to indicate which party members are about to be selected - TO-DO
+			for (auto& p_m : party_mems) {
+				if (Collision::Point(p_m->GetPos(), selec_box)) {
+					if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT))
+						p_m->selected = true;
+				}
+				else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
+			}
+
+		}
+		if (selecting) {
+			lmb_action = false;
+			//Selection area w/h
+			selec_box.w = Input::MousePos().x - selec_box.x;
+			selec_box.h = Input::MousePos().y - selec_box.y;
+
+			//Use visual signifiers to indicate which party members are about to be selected - TO-DO
+		}
 	}
 }
 
@@ -433,104 +442,58 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 
 	//What is our current mouse target?
 	//Reset
-	mouse_tar = MouseTarget::None;
+	mouse_tar = nullptr;
 	Vector2i path_goal = { -1 };
-	//Are we currently pointing at a creature?
-	Creature* creature = nullptr;
 	for (const auto e : entities) {
-		creature = dynamic_cast<Creature*>(e);
-		if (!creature) continue;
-		if (dynamic_cast<PartyMember*>(creature)) continue;
-		
-		if (Collision::Point(Input::MousePos(), creature->GetBBox())) {
-			mouse_tar = MouseTarget::Creature;
+		if (Collision::Point(Input::MousePos(), e->GetBBox())) {
+			mouse_tar = e;
 			break;
 		}
 	}
 
-	//If not pointing at anything else, what tile are we currently pointing at?
-	if (mouse_tar == MouseTarget::None) {
+	//If not pointing at anything, what tile are we currently pointing at?
+	if (!mouse_tar) {
 		Vector2i tile_pos = { (int)floor(Input::MousePos().x / TS), (int)floor(Input::MousePos().y / TS) };
 		Tile curr_tile = {};
 		if (tile_pos.x > 0 and tile_pos.y > 0 and tile_pos.x < tilemap.GetMapSizeTiles().x and tile_pos.y < tilemap.GetMapSizeTiles().y)
 			curr_tile = tilemap.GetTileData(tile_pos);
 
 		//If we're not looking at a tile, then there is no action to perform
-		if (curr_tile.terrain == Terrain::None) return action;
+		if (curr_tile.terrain == Terrain::None) return Action::NOACTION;
 		
-		mouse_tar = MouseTarget::Tile;
+		//Set our goal to the current tile
+		path_goal = Input::MousePos();
+		action = Action::Move;
 	}
 
-	switch (mouse_tar) {
-		case MouseTarget::Area_Edge:
-			//Move to area edge
-			//"You must gather your party before venturing forth"
-			//Open world_map interface
-		break;
+	//If pointing at a creature...
+	else if (Creature* c = dynamic_cast<Creature*>(mouse_tar)) {
+		//First, we need to know the target creature's disposition to the party
+		int creature_dispo = 0;
+		creature_dispo = c->GetDispo();
 
-		case MouseTarget::Container:
-			//Move to container
-			//Picking lock
-			//	Open lockpicking interface
-			//Opening container
-			//	Open container interface
-		break;
-
-		case MouseTarget::Creature: {
-			//First, we need to know the target creature's disposition to the party
-			int creature_dispo = 0;
-			if (creature) creature_dispo = creature->GetDispo();
-
-			//Outright Hostile - Attack it
-			if (creature_dispo <= 20) {
-				//Attack actions (Melee/Ranged/Spell)
-			}
-			//Testy or better - Speak
-			else {
-				//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
-				// unable to find a path for any reason
-				path_goal = creature->GetPos();
-
-				action = Action::Talk;
-			}
-			break;
+		//Outright Hostile - Attack it
+		if (creature_dispo <= 20) {
+			//Attack actions (Melee/Ranged/Spell)
 		}
+		//Testy or better - Speak
+		else {
+			//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
+			// unable to find a path for any reason
+			path_goal = c->GetPos();
 
-		case MouseTarget::Door:
-			//Move to door
-			//Picking lock
-			//	Open lockpicking interface
-			//Opening door
-			//	Open the door (change sprite)
-		break;
-
-		case MouseTarget::Item:
-			//Move to item
-			//Pick it up (add it to inventory, destroy entity)
-		break;
-
-		case MouseTarget::Passage:
-			//Move to passage
-			//"You must gather your party before venturing forth"
-			//Change area
-		break;
-
-		case MouseTarget::Tile:
-			//Move
-			//-For every currently selected party member, calculate a path to the current tile
-			//	--if every currently selected party member can reach the area around that tile, return MOVE
-			//	--else, return NOACTION
-			path_goal = Input::MousePos();
-			action = Action::Move;
-		break;
+			action = Action::Talk;
+		}
 	}
+
+	//Else if pointing at an item/container/door/passage... TO-DO
 
 	if (path_goal != Vector2i(-1)) {
 		for (int i = 0; i < s_pms.size(); ++i) {
-			//The actual goal node for each individual p_m is determined inside FindPath (TO-DO)
+			//The actual goal node for each individual p_m is determined inside FindPath
 			found_paths[i] = grid.FindPath(s_pms[i]->GetPos(), path_goal, mouse_tar);
 
-			//If a path could not be found and we are not too close, return no action
+			//If a path could not be found and we are not too close, return NOACTION
 			if (found_paths[i].empty() and Distance(s_pms[i]->GetPos(), path_goal) > 1.5 * METER) return Action::NOACTION;
 		}
 	}
@@ -586,6 +549,22 @@ void Scene::SetGameCursor(Action action) {
 	game->cursor.SetSheetRow(new_row);
 	if (new_row == 2) game->cursor.SetColor(Color(0, 1, 0));
 	else game->cursor.SetColor(Color(1));
+}
+
+void Scene::PerformAction() {
+	Action a = held_action == Action::NOACTION ? action : held_action;
+	Entity* t = !held_tar ? mouse_tar : held_tar;
+
+	switch (a) {
+		case Action::Talk:
+			if (Creature* c = dynamic_cast<Creature*>(t)) {
+				//What node are we calling?
+				game->dlg_mngr.LoadNPCDialogue(c);
+				//We are now in dialogue
+				in_dlg = true;
+			}
+		break;
+	}
 }
 
 void Scene::RemoveEntity(Entity* e) {
@@ -684,7 +663,8 @@ void Scene::CreatePreGen(PreGens p_g) {
 	));
 }
 
-void Scene::LoadNPCs(const string& area) {
+void Scene::LoadNPCs() {
+	string area = AreaToString(game->area);
 
 	//Get the names of all the NPCs for the area
 	ifstream info_file("data/NPC Info/"+area+ "_npc_info.json");
@@ -727,4 +707,6 @@ void Scene::LoadNPCs(const string& area) {
 
 }
 
-//void Scene::CreateNPC(string name) {}
+void Scene::LoadDialogue() {
+	game->dlg_mngr.LoadAreaDialogue(AreaToString(game->area));
+}

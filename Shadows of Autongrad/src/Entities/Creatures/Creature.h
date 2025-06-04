@@ -48,17 +48,18 @@ public:
 		float less_act_time = 0;
 	};
 	bool well_rested = true;
-
 	bool moving = false;
-
 	bool alive = true;
+
+	string dlg_node = "DEFAULT";
 
 	Sprite portrait;
 	Rect por_bbox;
 
 	Creature(const Sprite::Info& s_i, const Stats& init_stats = {},
 		const string por_name = "Placeholder", const int init_dispo = 50,
-		const bool init_biped = true, const bool init_winged = false);
+		const bool init_biped = true, const bool init_winged = false,
+		const string init_dlg_node = "DEFAULT");
 
 	//Engine stuff
 	virtual void GetInput() override;

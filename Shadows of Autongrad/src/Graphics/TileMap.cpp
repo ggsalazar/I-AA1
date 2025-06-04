@@ -35,7 +35,7 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 		tilesets["Water"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Water.png");
 		tilesets["Wood"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Wood.png");
 	}
-	else if (json_file == "Debug_Room") {
+	else if (json_file == "Debug") {
 		tilesets["Grass"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Grass.png");
 		tilesets["Stone"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Stone.png");
 		tilesets["Water"] = IMG_LoadTexture(renderer, "assets/Sprites/Environments/TileSets/Water.png");
@@ -46,31 +46,26 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 
 	string ts_name;
 	SDL_Texture* ts_tex;
-	Vector2f tile_pos;
-	Vector2u tile_uv;
-	Vector2u vert_uv;
-	Vector2f tex_size;
+	Vector2f tile_pos, tex_size;
+	Vector2u tile_uv, vert_uv;
 	SDL_Vertex vert[4];
-	int t_p_r;
-	int base;
-
-	uint global_tile_id;
-	uint local_tile_id;
+	int t_p_r, base;
+	uint global_tile_id, local_tile_id, firstgid;
+	uint col = 0, row = 0;
 
 	//Populate tile_data
 	for (const auto& layer : tilemap_data["layers"]) {
-		for (uint col = 0; col < map_size_t.x; ++col) {
-			for (uint row = 0; row < map_size_t.y; ++row) {
+		for (col = 0; col < map_size_t.x; ++col) {
+			for (row = 0; row < map_size_t.y; ++row) {
 				//Get current tile ID number
 				global_tile_id = layer["data"][col + row * map_size_t.x];
 
 				//Skip empty tiles
 				if (!global_tile_id) continue;
 
-
 				//Get the name of the tileset
 				for (const auto& tileset : tilemap_data["tilesets"]) {
-					const uint firstgid = tileset["firstgid"];
+					firstgid = tileset["firstgid"];
 					if (global_tile_id >= firstgid) {
 						ts_name = tileset["source"].get<string>();
 						//Ensure a tileset was found
@@ -122,10 +117,8 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 				vert[2].tex_coord = { (vert_uv.x + BASE_TS) / tex_size.x, (vert_uv.y + BASE_TS) / tex_size.y };
 				vert[3].tex_coord = { vert_uv.x / tex_size.x, (vert_uv.y + BASE_TS) / tex_size.y };
 
-
-				SDL_FColor color = { 1.f, 1.f, 1.f, 1.f };
 				for (int i = 0; i < 4; ++i)
-					vert[i].color = color;
+					vert[i].color = { 1.f, 1.f, 1.f, 1.f };
 
 				auto& verts = verts_by_tileset[ts_name];
 				auto& inds = indices_by_tileset[ts_name];

@@ -2,8 +2,8 @@
 #include <queue>
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_render.h>
-#include "Sprite.h" //(Aliases.h, Geometry.h)
-#include "Text.h" //(Font.h)
+#include "Sprite.h" //Geometry.h
+#include "Text.h" //Font.h
 
 class Camera;
 class TileMap;

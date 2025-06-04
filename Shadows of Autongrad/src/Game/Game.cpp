@@ -49,6 +49,9 @@ Game::Game(const char* title, uint init_fps)
     //Menus
     Menu::SetGame(this);
 
+    //Dialogue Manager
+    dlg_mngr.Init(this);
+
     //Initialize cursor
     //Cursor sprite info
     Sprite::Info csi = {};

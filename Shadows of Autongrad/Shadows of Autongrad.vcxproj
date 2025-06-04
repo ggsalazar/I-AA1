@@ -101,6 +101,7 @@
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Core\Math.cpp" />
     <ClCompile Include="src\Core\Pathfinding.cpp" />
+    <ClCompile Include="src\Dialogue\Yggdrasil.cpp" />
     <ClCompile Include="src\Entities\Creatures\Creature.cpp" />
     <ClCompile Include="src\Entities\Creatures\PartyMember.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
@@ -120,7 +121,6 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core\Aliases.h" />
     <ClInclude Include="src\Core\Camera.h" />
     <ClInclude Include="src\Core\Collision.h" />
     <ClInclude Include="src\Core\Enums.h" />
@@ -130,6 +130,7 @@
     <ClInclude Include="src\Core\Pathfinding.h" />
     <ClInclude Include="src\Core\Vector2.h" />
     <ClInclude Include="src\Core\Vector3.h" />
+    <ClInclude Include="src\Dialogue\Yggdrasil.h" />
     <ClInclude Include="src\Entities\Creatures\Creature.h" />
     <ClInclude Include="src\Entities\Creatures\PartyMember.h" />
     <ClInclude Include="src\Entities\Entity.h" />
