@@ -351,13 +351,13 @@ void Scene::MoveCamera() {
 
 				//Move the camera via edge panning
 				if (game->edge_panning) {
-					if (Collision::Point(Input::MousePos(), up_edge) and cam_pos.y > 0)
+					if (Collision::RectPoint(up_edge, Input::MousePos()) and cam_pos.y > 0)
 						new_cam_offset.y -= game->cam_move_spd;
-					else if (Collision::Point(Input::MousePos(), down_edge) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+					else if (Collision::RectPoint(down_edge, Input::MousePos()) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
 						new_cam_offset.y += game->cam_move_spd;
-					if (Collision::Point(Input::MousePos(), left_edge) and cam_pos.x > 0)
+					if (Collision::RectPoint(left_edge, Input::MousePos()) and cam_pos.x > 0)
 						new_cam_offset.x -= game->cam_move_spd;
-					else if (Collision::Point(Input::MousePos(), right_edge) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+					else if (Collision::RectPoint(right_edge, Input::MousePos()) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
 						new_cam_offset.x += game->cam_move_spd;
 				}
 			}
@@ -374,13 +374,13 @@ void Scene::MoveCamera() {
 
 				//Move the camera via edge panning
 				if (game->edge_panning) {
-					if (Collision::Point(Input::MousePos(), up_edge))
+					if (Collision::RectPoint(up_edge, Input::MousePos()))
 						new_cam_offset.y -= game->cam_move_spd;
-					else if (Collision::Point(Input::MousePos(), down_edge))
+					else if (Collision::RectPoint(down_edge, Input::MousePos()))
 						new_cam_offset.y += game->cam_move_spd;
-					if (Collision::Point(Input::MousePos(), left_edge))
+					if (Collision::RectPoint(left_edge, Input::MousePos()))
 						new_cam_offset.x -= game->cam_move_spd;
-					else if (Collision::Point(Input::MousePos(), right_edge))
+					else if (Collision::RectPoint(right_edge, Input::MousePos()))
 						new_cam_offset.x += game->cam_move_spd;
 				}
 			}
@@ -420,7 +420,7 @@ void Scene::SelectPartyMems() {
 			lmb_action = true;
 
 			for (auto& p_m : party_mems) {
-				if (Collision::Point(p_m->GetPos(), selec_box)) {
+				if (Collision::RectPoint(selec_box, p_m->GetPos())) {
 					if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT))
 						p_m->selected = true;
 				}
@@ -456,7 +456,7 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 	mouse_tar = nullptr;
 	Vector2i path_goal = { -1 };
 	for (const auto e : entities) {
-		if (Collision::Point(Input::MousePos(), e->GetBBox())) {
+		if (Collision::RectPoint(e->GetBBox(), Input::MousePos())) {
 			mouse_tar = e;
 			break;
 		}

@@ -31,7 +31,7 @@ protected:
     bool activated = false;
 
     //Functions
-    inline bool Selected() { return active and Collision::Point(Input::MousePos(), bbox); }
+    inline bool Selected() { return active and Collision::RectPoint(bbox, Input::MousePos()); }
     virtual void Pressed();
     virtual void Released() {}
 };

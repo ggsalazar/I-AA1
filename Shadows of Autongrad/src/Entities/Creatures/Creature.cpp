@@ -92,7 +92,7 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 }
 
 void Creature::GetInput() {
-	if (Collision::Point(Input::MousePos(), por_bbox)) {
+	if (Collision::RectPoint(por_bbox, Input::MousePos())) {
 		scene->lmb_action = false;
 	}
 }

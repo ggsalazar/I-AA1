@@ -25,7 +25,7 @@ void PartyMember::GetInput() {
 	Creature::GetInput();
 	//Become selected if our bounding box or portrait is clicked on
 	//Bbox uses world mouse coordinates, portrait uses screen mouse coordinates
-	if ((Collision::Point(Input::MousePos(), bbox) or Collision::Point(Input::MousePos(), por_bbox)) and Input::BtnPressed(LMB)) {
+	if ((Collision::RectPoint(bbox, Input::MousePos()) or Collision::RectPoint(por_bbox, Input::MousePos())) and Input::BtnPressed(LMB)) {
 		//We are not using the area selection function or the default lmb action
 		scene->selecting = false;
 		scene->lmb_action = false;
@@ -38,7 +38,7 @@ void PartyMember::GetInput() {
 	}
 
 	//Become part of the cam_locked gang
-	if (!scene->selecting and Collision::Point(Input::MousePos(), cam_sprite_bbox)) {
+	if (!scene->selecting and Collision::RectPoint(cam_sprite_bbox, Input::MousePos())) {
 		scene->lmb_action = false;
 		if (Input::BtnPressed(LMB)) {
 			cam_locked = !cam_locked;
@@ -88,7 +88,7 @@ void PartyMember::Draw() {
 void PartyMember::DrawPortrait() {
 	//Camera locking sprite
 	game->renderer.DrawSprite(cam_sprite);
-	if (Collision::Point(Input::MousePos(), cam_sprite_bbox))
+	if (Collision::RectPoint(cam_sprite_bbox, Input::MousePos()))
 		game->renderer.DrawRect(cam_sprite_bbox, Color(0,0), Color(1));
 
 	//Party members draw their portraits and health bars at all times

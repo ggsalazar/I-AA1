@@ -1,21 +1,25 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Tutorial:	-Move to node closest to target if possible; if not return NOACTION
-				--Test this when you get home (bisect map with unwalkable tiles)
+Tutorial:	-Fix RectPoint collision to use min/max
+			-Fix Renderer.cpp so all the shapes are only drawn if they can be seen by the camera
+			-Implement path smoothing
+			-Dialogue system/trees
+				--Draw the text to screen
+				--Each piece of text MUST have:
+					---Speaker
+					---The string
+					---Choices
+						----Condition(s)
+						----Effect(s)
+						----Progresses dialogue or not
+				--Each piece of text CAN have:
+					---Condition(s)
+					---Effects(s)
+				--How to set dialogue node each time character is spoken to?
+					---Needs to be saved and then loaded?
 			-Place spawn points in maps in Tiled so they don't have to manually be set in Scene
 			 (can be pulled from TileMap after area is fully loaded)
-			-Add in NPCs
-				--Dialogue system/trees
-					---Each piece of text CAN have:
-						----Speaker
-						----The string
-						----Condition(s)
-						----Choices
-							-----Condition(s)
-							-----Effect(s)
-							-----Progresses dialogue or not
-						----Effect(s)
-					---How to set dialogue node each time character is spoken to?
+			-NPCs
 				--Blacksmith
 					---Shopping (after implementing inventory)
 				--Quest Giver
@@ -30,13 +34,14 @@ Tutorial:	-Move to node closest to target if possible; if not return NOACTION
 			-area changing
 			-fog of war
 			-multi-party member spawning, movement, & cam locking
+				--Party formations
+					---Grid, but what size?
 			-Intro cutscene
 			-Tutorialization
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
 		- Sentient creatures have separate head and body sprites (for customization)
-		- Change from nodes to NavMesh?
 
 Main Menu
 	-Character creation
@@ -92,8 +97,13 @@ Prologue
 				----Connection to overarching plot?
 
 Game starts on train! Train heist
-	-Establish magic and tech coexist, then illustrate that magic is going *wrong*, and how and why that's a problem
-	 all within first hour! Then expand on those two things throughout the rest of the game
+	-Establish magic and tech coexist
+	-Establish central conflict
+		--Alchemist distributing new drug
+			---Why?
+			---Connection to larget plot/sequel
+			---Who is s/he working for?
+			---BG1 Iron Crisis for inspiration
 
 Portraits - use a single texture that contains all portraits? How to navigate easily?
 

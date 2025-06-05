@@ -26,22 +26,26 @@ void Renderer::DrawSprite(const Sprite& spr) {
 	//Cast to SDL
 	const Sprite::Info* si = &spr.info;
 
-	const SDL_FRect src = { si->curr_frame * si->frame_size.x,
-								 si->sheet_row * si->frame_size.y,
-								 si->frame_size.x, si->frame_size.y };
+	//Only draw sprites if they will be seen by the camera
+	Vector2i sprite_pos = Round(si->pos.x - (si->spr_size.x * si->origin.x),
+								si->pos.y - (si->spr_size.y * si->origin.y));
+	if (Collision::AABB(camera->viewport, Rect(sprite_pos, si->spr_size))) {
+		const SDL_FRect src = { si->curr_frame * si->frame_size.x,
+									 si->sheet_row * si->frame_size.y,
+									 si->frame_size.x, si->frame_size.y };
 
 
-	const SDL_FRect dest = { round(si->pos.x - (si->spr_size.x * si->origin.x)) - camera->viewport.x,
-								  round(si->pos.y - (si->spr_size.y * si->origin.y)) - camera->viewport.y,
-								  si->spr_size.x,
-								  si->spr_size.y };
+		const SDL_FRect dest = { sprite_pos.x - camera->viewport.x,
+								sprite_pos.y - camera->viewport.y,
+								si->spr_size.x,
+								si->spr_size.y };
 
-	//Set the tine
-	SDL_SetTextureColorMod(spr.texture, si->tint.r * 255, si->tint.g * 255, si->tint.b * 255);
-	SDL_SetTextureAlphaMod(spr.texture, si->tint.a * 255);
+		//Set the tine
+		SDL_SetTextureColorMod(spr.texture, si->tint.r * 255, si->tint.g * 255, si->tint.b * 255);
+		SDL_SetTextureAlphaMod(spr.texture, si->tint.a * 255);
 
-	SDL_RenderTexture(renderer, spr.texture, &src, &dest);
-
+		SDL_RenderTexture(renderer, spr.texture, &src, &dest);
+	}
 }
 
 void Renderer::DrawTilemap(TileMap& tmp) {
@@ -166,7 +170,7 @@ void Renderer::DrawPath(std::queue<Vector2i> path, const Color& path_color) {
 void Renderer::DrawLine(const Line& line, const Color& color, const uint edge_w) {
 	SDL_SetRenderDrawColor(renderer, color.r * 255, color.g * 255, color.b * 255, color.a * 255);
 
-	SDL_RenderLine(renderer, line.pos1.x - camera->viewport.x, line.pos1.y - camera->viewport.y, line.pos2.x - camera->viewport.x, line.pos2.y - camera->viewport.y);
+	SDL_RenderLine(renderer, line.x1 - camera->viewport.x, line.y1 - camera->viewport.y, line.x2 - camera->viewport.x, line.y2 - camera->viewport.y);
 }
 
 void Renderer::DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color, const uint edge_w) {

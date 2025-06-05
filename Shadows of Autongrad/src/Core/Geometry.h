@@ -14,15 +14,17 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const Color& c) { return os << "r: " << c.r << " g: " << c.g << " b: " << c.b << " a: " << c.a; }
 
 struct Line {
-	Vector2i pos1, pos2;
+	int x1 = 0, x2 = 0, y1 = 0, y2 = 0;
 
 	Line() = default;
-	Line(Vector2i p1, Vector2i p2) : pos1(p1), pos2(p2) {}
-	inline float Length() const { return sqrt((pos2.x - pos1.x) * (pos2.x - pos1.x) + (pos2.y - pos1.y) * (pos2.y - pos1.y)); }
+
+	Line(int x_1, int x_2, int y_1, int y_2) : x1(x_1), x2(x_2), y1(y_1), y2(y_2) {}
+	Line(Vector2i p1, Vector2i p2) : x1(p1.x), x2(p2.x), y1(p1.y), y2(p2.y) {}
+	inline float Length() const { return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)); }
 };
 //ostream operator
 template <typename T>
-std::ostream& operator<<(std::ostream& os, const Line& l) { return os << "p1: " << l.pos1 << " p2: " << l.pos2; }
+std::ostream& operator<<(std::ostream& os, const Line& l) { return os << "p1: " << Vector2i(l.x1, l.y1) << " p2: " << Vector2i(l.x2, l.y2); }
 
 struct Circle {
 	int x = 0, y = 0;

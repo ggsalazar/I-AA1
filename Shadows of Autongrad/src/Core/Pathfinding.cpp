@@ -20,9 +20,8 @@ void Pathfinding::PopulateNodeGrid(vector<Entity*>* ents) {
 			
 			if (node_walk) {
 				for (const auto& e : *ents) {
-					auto ui = dynamic_cast<UI*>(e);
-					if (!ui)
-						node_walk = !(Collision::Point(e->GetPos(), Rect({ col * TS, row * TS }, TS)));
+					if (!dynamic_cast<UI*>(e))
+						node_walk = !(Collision::RectPoint(Rect({ col * TS, row * TS }, TS), e->GetPos()));
 					
 					if (!node_walk) break;
 				}
