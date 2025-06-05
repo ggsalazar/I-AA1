@@ -11,6 +11,7 @@ class Game;
 class Menu;
 class Interface;
 class Entity;
+class Creature;
 class PartyMember;
 
 class Scene {
@@ -80,6 +81,7 @@ private:
     Action held_action = Action::NOACTION;
     Entity* mouse_tar = nullptr;
     Entity* held_tar = nullptr;
+    Creature* cam_tar = nullptr;
 
     bool in_dlg = false;
 
@@ -97,7 +99,7 @@ private:
     Rect right_edge;
 
     Rect selec_box;
-    array<queue<Vector2i>, 4> found_paths;
+    array<vector<Vector2i>, 4> found_paths;
 
     inline static Game* game = nullptr;
 };

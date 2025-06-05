@@ -9,7 +9,9 @@ Entity::Entity(const Sprite::Info& s_i)
 }
 
 void Entity::Draw() {
-    game->renderer.DrawSprite(sprite);
+    //Only draw ourselves if we can be seen by the camera
+    if (Collision::AABB(game->camera.viewport, bbox))
+        game->renderer.DrawSprite(sprite);
 }
 
 void Entity::MoveBy(Vector2f offset) {

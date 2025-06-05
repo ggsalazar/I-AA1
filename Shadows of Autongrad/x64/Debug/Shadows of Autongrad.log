@@ -1,285 +1,110 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Yggdrasil.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(21,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+  Pathfinding.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(33,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(34,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(21,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(45,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(33,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(58,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(34,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(45,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(58,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(27,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(28,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
+  (compiling source file 'src/Core/Pathfinding.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
       see declaration of 'Entity'
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(33,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(11,7):
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(34,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
+  (compiling source file 'src/Core/Pathfinding.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(11,7):
       see declaration of 'Menu'
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.h(91,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
-  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
-  
-  Creature.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(21,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(33,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(34,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(45,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(58,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(27,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
-      see declaration of 'Entity'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(33,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(11,7):
-      see declaration of 'Menu'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.h(91,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(21,39): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(22,39): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(110,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(111,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(148,12): warning C4834: discarding return value of function with [[nodiscard]] attribute
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(150,11): warning C4834: discarding return value of function with [[nodiscard]] attribute
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(365,3): warning C4065: switch statement contains 'default' but no 'case' labels
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Vector2.h(109,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/Creature.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Vector2.h(109,16):
-      the template instantiation context (the oldest one first) is
-          C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(154,8):
-          see reference to function template instantiation 'float Distance<int>(const Vector2<int> &,const Vector2<int> &)' being compiled
-  
-  PartyMember.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(21,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(33,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(34,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(45,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(58,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(27,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
-      see declaration of 'Entity'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(33,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(11,7):
-      see declaration of 'Menu'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.h(91,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
-  (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(8,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(9,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(60,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(61,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(71,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(72,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(81,38): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(81,38): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(81,38): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(81,38): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(81,38): warning C4244:         ]
-  Scene.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(21,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(33,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(34,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(45,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(58,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(27,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
-  (compiling source file 'src/Game/Scene.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
-      see declaration of 'Entity'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(33,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
-  (compiling source file 'src/Game/Scene.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(11,7):
-      see declaration of 'Menu'
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Menu.h(18,13): warning C4150: deletion of pointer to incomplete type 'UI'; no destructor called
-  (compiling source file 'src/Game/Scene.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Menu.h(11,7):
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Menu.h(18,13): warning C4150: deletion of pointer to incomplete type 'UI'; no destructor called
+  (compiling source file 'src/Core/Pathfinding.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Menu.h(11,7):
       see declaration of 'UI'
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Entities\Creatures\Creature.h(91,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-  
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(247,53): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(330,16): warning C4834: discarding return value of function with [[nodiscard]] attribute
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(345,87): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(349,88): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(356,89): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(360,90): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(389,20): warning C4834: discarding return value of function with [[nodiscard]] attribute
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(398,53): warning C4244: 'argument': conversion from 'T' to 'const float', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(398,53): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(398,53): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(398,53): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(398,53): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(399,53): warning C4244: 'argument': conversion from 'T' to 'const float', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(399,53): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(399,53): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(399,53): warning C4244:             T=unsigned int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(399,53): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(400,31): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(400,31): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(400,31): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(400,31): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(400,31): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(401,31): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(401,31): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(401,31): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(401,31): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(401,31): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(469,56): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(469,101): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Vector2.h(109,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Game/Scene.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Vector2.h(109,16):
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(15,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(16,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(68,29): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(68,29): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(68,29): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(68,29): warning C4244:             T=int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(68,29): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(115,69): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(115,116): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(141,16): warning C4267: 'initializing': conversion from 'size_t' to 'uint', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244:             T=int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,40): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244:             T=int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(172,31): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244: 'argument': conversion from 'const T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244:             T=int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,32): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244: 'argument': conversion from 'const T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244:             T=int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(177,24): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Vector2.h(109,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Core/Pathfinding.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Vector2.h(109,16):
       the template instantiation context (the oldest one first) is
-          C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.cpp(532,35):
+          C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.cpp(43,17):
           see reference to function template instantiation 'float Distance<int>(const Vector2<int> &,const Vector2<int> &)' being compiled
   
-  Generating Code...
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Enums.h(174,1): warning C4715: 'StringToRace': not all control paths return a value
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Enums.h(146,1): warning C4715: 'StringToGenus': not all control paths return a value
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Enums.h(206,1): warning C4715: 'StringToSize': not all control paths return a value
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Enums.h(120,1): warning C4715: 'StringToClass': not all control paths return a value
-  Shadows of Autongrad.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\x64\Debug\Shadows of Autongrad.exe
+  Shadows of Autongrad.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\x64\Debug\Shadows of Autongrad.exe

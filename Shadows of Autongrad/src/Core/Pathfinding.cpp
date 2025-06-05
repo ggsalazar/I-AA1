@@ -36,7 +36,7 @@ void Pathfinding::PopulateNodeGrid(vector<Entity*>* ents) {
 	}
 }
 
-queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Entity* target) {
+vector<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Entity* target) {
 	
 	//If the target is sufficiently close to the goal and the goal is not a tile,
 	// there is no need to find a path - TO-DO
@@ -77,9 +77,10 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Ent
 
 	Node* goal_node = &grid[closest_node.x][closest_node.y];
 
-	// Define possible movements      N        NE       E       SE      S        SW       W        NW
+	//Define possible movements       N        NE       E       SE      S        SW       W        NW
 	const Vector2i directions[] = { {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1} };
 
+	//Find the path
 	while (!open_list.empty()) {
 		Node* current = open_list.top();
 		open_list.pop();
@@ -99,10 +100,10 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Ent
 			}
 
 			reverse(path.begin(), path.end());
-			queue<Vector2i> path_q;
-			for (const auto& p : path)
-				path_q.push(p);
-			return path_q;
+			//vector<Vector2i> path_q;
+			//for (const auto& p : path)
+				//path_q.push_back(p);
+			return path;
 		}
 
 		//Add the current node position to the closed list
@@ -135,8 +136,51 @@ queue<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Ent
 	return {};
 }
 
+queue<Vector2i> Pathfinding::SmoothPath(const vector<Vector2i>& raw) {
+	queue<Vector2i> smoothed;
+	smoothed.push(raw[0]);
+	uint i = 1, j;
+
+	while (i < raw.size()) {
+		j = raw.size() - 1;
+		//Find the farthest node we can reach directly
+		while (j > i + 1) {
+			if (LineOfSight(raw[i], raw[j]))
+				break;
+			--j;
+		}
+		smoothed.push(raw[i]);
+		i = j;
+	}
+
+	return smoothed;
+}
+
 float Pathfinding::Heuristic(const Vector2i& a, const Vector2i& b) {
 	uint dx = abs(a.x - b.x);
 	uint dy = abs(a.y - b.y);
 	return (dx + dy) + (sqrt2 - 2) * std::min(dx, dy);
+}
+
+bool Pathfinding::LineOfSight(const Vector2i& from, const Vector2i& to) {
+	//Bresenham’s Line Algorithm or DDA
+	//Return false if any tile along the line is unwalkable
+	//Simplified version for now (assumes TS-based grid):
+	cout << "LOS 168\n";
+
+	Vector2i delta = to - from;
+	int steps = std::max(abs(delta.x), abs(delta.y)) / TS;
+	Vector2f dir = Vector2f(delta.x, delta.y) / (float)steps;
+
+	int x, y;
+	Vector2f point;
+	for (int i = 1; i < steps; ++i) {
+		point = Vector2f(from.x, from.y) + dir * (float)i;
+		x = (int)(point.x / TS);
+		y = (int)(point.y / TS);
+		if (!grid[x][y].walkable)
+			return false;
+	}
+
+	return true;
 }

@@ -123,6 +123,9 @@ void Scene::GetInput() {
 	for (auto& m : menus)
 		m.second->GetInput();
 
+	//Always be moving the camera
+	MoveCamera();
+
 	//If we're in dialogue, we need to get input for said dialogue (making choices, basically)
 	if (in_dlg) {
 		game->cursor.SetSheetRow(0); //This is probably temporary
@@ -133,7 +136,6 @@ void Scene::GetInput() {
 			OpenInterface();
 
 			if (!game->paused) {
-				MoveCamera();
 				SelectPartyMems();
 
 				//How many selected party mems do we have?
@@ -158,10 +160,10 @@ void Scene::GetInput() {
 					//Reset our held action
 					held_action = Action::NOACTION;
 
-					//If we found a path, walk that bitch
+					//If we found a path, walk the smoothed version of that bitch
 					if (!found_paths[0].empty()) {
 						for (int i = 0; i < selected_pms.size(); ++i)
-							selected_pms[i]->SetPath(found_paths[i]);
+							selected_pms[i]->SetPath(grid.SmoothPath(found_paths[i]));
 
 						//If we have an action to perform but can't do it because we aren't close enough yet,
 						// hold that action
@@ -230,10 +232,8 @@ void Scene::Draw() {
 		game->renderer.DrawTilemap(tilemap);
 
 	//Then draw entities if they can be seen by the camera
-	for (auto& e : entities) {
-		if (Collision::AABB(e->GetBBox(), game->camera.viewport))
-			e->Draw();
-	}
+	for (auto& e : entities)
+		e->Draw();
 
 	//Always draw the party member portraits?
 	if (label == Scenes::AREA and !in_dlg) {
@@ -313,27 +313,27 @@ void Scene::MoveCamera() {
 	Vector2i cam_pos = { game->camera.viewport.x, game->camera.viewport.y };
 	Vector2i cam_size = { game->camera.viewport.w, game->camera.viewport.h };
 
-	//If we are in dialogue, move the camera to the speaker - TO-DO
-	if (in_dlg) {
-		
-	}
+	//If we are in dialogue, move the camera to the speaker
+	if (in_dlg)
+		game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), cam_tar->GetFloatPos(), .075f)));
+	
 	//Otherwise move it around as normal
-	else {
+	else if (!game->paused) {
 		//If the camera is locked to certain party members,
 		// get the average of all of their positions and lerp the camera to there
 		//How many party mems is the cam locked to (if any)?
 		uint cam_locked_pms = 0;
-		Vector2i pos_totals = { 0 };
+		Vector2f pos_totals = { 0 };
 		for (const auto& p_m : party_mems) {
 			if (p_m->cam_locked) {
 				++cam_locked_pms;
-				pos_totals += p_m->GetPos();
+				pos_totals += p_m->GetFloatPos();
 			}
 		}
 		if (cam_locked_pms) {
-			Vector2i pos_avg = Round(pos_totals / cam_locked_pms);
+			Vector2f pos_avg = pos_totals / cam_locked_pms;
 
-			game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), Vector2f(pos_avg), .075f)));
+			game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), pos_avg, .075f)));
 		}
 		//Cam not locked to party mems
 		else {
@@ -527,7 +527,6 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 		for (int i = 0; i < s_pms.size(); ++i) {
 			//The actual goal node for each individual p_m is determined inside FindPath
 			found_paths[i] = grid.FindPath(s_pms[i]->GetPos(), path_goal, mouse_tar);
-
 			//If a path could not be found and we are not too close, return NOACTION
 			if (found_paths[i].empty() and Distance(s_pms[i]->GetPos(), path_goal) > 1.5 * METER) return Action::NOACTION;
 		}
@@ -574,6 +573,8 @@ void Scene::PerformAction() {
 				game->dlg_mngr.LoadNPCDialogue(c);
 				//We are now in dialogue
 				in_dlg = true;
+				//Set our camera target
+				cam_tar = c;
 			}
 		break;
 	}

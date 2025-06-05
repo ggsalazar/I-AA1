@@ -1,11 +1,10 @@
 Yes/No buttons not removing elements like they should in character creation
 
-Destination rect not being drawn when corresponding party mem is off-screen
-
 Pathfinding when crossing obstacles is... not correct
-	-Goes to edge of obstacle as if walking straight there instead of to the nearest corner, then resumes from that point as if it never had to go around the obstacle in the first place
-	-Waypoints?
-
-Camera not being properly set when in dialogue
+	-Goes to edge of obstacle as if walking straight there instead of to the nearest corner, then resumes
+	 from that point as if it never had to go around the obstacle in the first place
+	-Implement path smoothing
+		--Currently stuck in infinite loop when doing this
+			---Review the code and see where the logic fails; rewrite it yourself
 
 What to set cursor to when pointing at Party Member? Not a bug per se, moreso just a question that needs answering

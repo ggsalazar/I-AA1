@@ -126,6 +126,7 @@ void Creature::Draw() {
 void Creature::WalkPath() {
 	if (!path.empty()) {
 		Vector2i next_pos = path.front();
+
 		if (pos != next_pos) {
 
 			Vector2f offset = { 0 };

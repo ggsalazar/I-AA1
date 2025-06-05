@@ -25,9 +25,12 @@ public:
 
 	Pathfinding() = default;
 	void Init(TileMap* t);
+
 	void PopulateNodeGrid(vector<Entity*>* ents);
 
-	queue<Vector2i> FindPath(const Vector2i& start, Vector2i& goal, Entity* target);
+	vector<Vector2i> FindPath(const Vector2i& start, Vector2i& goal, Entity* target);
+
+	queue<Vector2i> SmoothPath(const vector<Vector2i>& raw);
 
 private:
 	vector<vector<Node>> grid;
@@ -41,4 +44,6 @@ private:
 	};
 
 	float Heuristic(const Vector2i& a, const Vector2i& b);
+
+	bool LineOfSight(const Vector2i& from, const Vector2i& to);
 };
