@@ -41,19 +41,8 @@ public:
 
     inline static bool RectPoint(const Rect& r, const Vector2i& p) {
 
-        //Refactor this to use min & max - TO-DO
-        bool cond_x = false, cond_y = false;
-        if (r.x <= p.x)
-            cond_x = p.x <= r.x + r.w;
-        else
-            cond_x = r.x + r.w <= p.x;
-
-        if (r.y <= p.y)
-            cond_y = p.y <= r.y + r.h;
-        else
-            cond_y = r.y + r.h <= p.y;
-
-        return cond_x and cond_y;
+        return min(r.x, r.x + r.w) <= p.x and p.x <= max(r.x, r.x + r.w) and
+               min(r.y, r.y + r.h) <= p.y and p.y <= max(r.y, r.y + r.h);
     }
 
     inline static bool RectLine(const Rect& r, const Line& l) {

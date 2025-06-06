@@ -138,17 +138,18 @@ vector<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, En
 queue<Vector2i> Pathfinding::SmoothPath(const vector<Vector2i>& raw) {
 	queue<Vector2i> smoothed;
 	smoothed.push(raw[0]);
-	uint i = 1, j;
+	uint i = 1, j; //Should i start at 0?
 
-	while (i < raw.size()) {
+	while (i < raw.size() - 1) {
 		j = raw.size() - 1;
 		//Find the farthest node we can reach directly
+		//Of course the next point in the raw path can be reached, but if that is the point we reach, then we can just smooth directly to that... right?
 		while (j > i + 1) {
 			if (LineOfSight(raw[i], raw[j]))
 				break;
 			--j;
 		}
-		smoothed.push(raw[i]);
+		smoothed.push(raw[j]);
 		i = j;
 	}
 
@@ -169,11 +170,12 @@ bool Pathfinding::LineOfSight(const Vector2i& from, const Vector2i& to) {
 
 	Vector2i delta = to - from;
 	int steps = std::max(abs(delta.x), abs(delta.y)) / TS;
-	Vector2f dir = Vector2f(delta.x, delta.y) / (float)steps;
+	Vector2f dir = Vector2f(delta.x, delta.y) / (float)steps; //SHOULD dir be V2i? Should all of this be V2i?
 
-	int x, y;
+	int x, y; //x and y unnecessary?
 	Vector2f point;
 	for (int i = 1; i < steps; ++i) {
+		cout << "LOS 177\n";
 		point = Vector2f(from.x, from.y) + dir * (float)i;
 		x = (int)(point.x / TS);
 		y = (int)(point.y / TS);

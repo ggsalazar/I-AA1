@@ -168,12 +168,14 @@ void Renderer::DrawPath(std::queue<Vector2i> path, const Color& path_color) {
 }
 
 void Renderer::DrawLine(const Line& line, const Color& color, const uint edge_w) {
+	//SHOULD only draw if colliding with the camera but that requires implementing Collision::LineRect
 	SDL_SetRenderDrawColor(renderer, color.r * 255, color.g * 255, color.b * 255, color.a * 255);
 
 	SDL_RenderLine(renderer, line.x1 - camera->viewport.x, line.y1 - camera->viewport.y, line.x2 - camera->viewport.x, line.y2 - camera->viewport.y);
 }
 
 void Renderer::DrawCircle(const Circle& circle, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
+	//SHOULD only draw if colliding with the camera but that requires implementing Collision::CircleRect
 	Vector2f circle_pos = { (float)(circle.x - camera->viewport.x), (float)(circle.y - camera->viewport.y) };
 
 	SDL_SetRenderDrawColor(renderer, stroke_color.r * 255, stroke_color.g * 255, stroke_color.b * 255, stroke_color.a * 255);
@@ -198,6 +200,7 @@ void Renderer::DrawCircle(const Circle& circle, const Color& fill_color, const C
 }
 
 void Renderer::DrawTri(const Tri& tri, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
+	//SHOULD only draw if colliding with the camera but that requires implementing triangle collisions so fuck that
 	Vector2f tri_pos1 = { (float)(tri.pos1.x - camera->viewport.x), (float)(tri.pos1.y - camera->viewport.y) };
 	Vector2f tri_pos2 = { (float)(tri.pos2.x - camera->viewport.x), (float)(tri.pos2.y - camera->viewport.y) };
 	Vector2f tri_pos3 = { (float)(tri.pos3.x - camera->viewport.x), (float)(tri.pos3.y - camera->viewport.y) };
@@ -225,25 +228,38 @@ void Renderer::DrawTri(const Tri& tri, const Color& fill_color, const Color& str
 }
 
 void Renderer::DrawRect(const Rect& rect, const Color& fill_color, const Color& stroke_color, const uint edge_w) {
-	Vector2f rect_pos = { (float)(rect.x - camera->viewport.x), (float)(rect.y - camera->viewport.y) };
+	//Only draw if colliding with the camera
+	if (Collision::AABB(rect, camera->viewport)) {
+		Vector2f rect_pos = { (float)(rect.x - camera->viewport.x), (float)(rect.y - camera->viewport.y) };
+		float w = rect.w;
+		float h = rect.h;
+		//Normalize w/h
+		if (w < 0) {
+			rect_pos.x += w;
+			w = -w;
+		}
+		if (h < 0) {
+			rect_pos.y += h;
+			h = -h;
+		}
+		//Draw the fill
+		SDL_SetRenderDrawColor(renderer, fill_color.r * 255, fill_color.g * 255, fill_color.b * 255, fill_color.a * 255);
+		SDL_FRect sdl_rect = { rect_pos.x, rect_pos.y, w, h };
+		SDL_RenderFillRect(renderer, &sdl_rect);
 
-	//Draw the fill
-	SDL_SetRenderDrawColor(renderer, fill_color.r * 255, fill_color.g * 255, fill_color.b * 255, fill_color.a * 255);
-	SDL_FRect sdl_rect = { rect_pos.x, rect_pos.y, rect.w, rect.h };
-	SDL_RenderFillRect(renderer, &sdl_rect);
-
-	//Have to draw the edges manually, unfortunately
-	SDL_SetRenderDrawColor(renderer, stroke_color.r * 255, stroke_color.g * 255, stroke_color.b * 255, stroke_color.a * 255);
-	//Top
-	SDL_FRect top = { rect_pos.x, rect_pos.y, rect.w, edge_w };
-	SDL_RenderFillRect(renderer, &top);
-	//Bottom
-	SDL_FRect bot = { rect_pos.x, rect_pos.y + rect.h - edge_w, rect.w, edge_w };
-	SDL_RenderFillRect(renderer, &bot);
-	//Left
-	SDL_FRect left = { rect_pos.x, rect_pos.y+edge_w, edge_w, rect.h-edge_w*2 };
-	SDL_RenderFillRect(renderer, &left);
-	//Right
-	SDL_FRect right = { rect_pos.x + rect.w - edge_w, rect_pos.y+edge_w, edge_w, rect.h-edge_w*2 };
-	SDL_RenderFillRect(renderer, &right);
+		//Draw the edges
+		SDL_SetRenderDrawColor(renderer, stroke_color.r * 255, stroke_color.g * 255, stroke_color.b * 255, stroke_color.a * 255);
+		//Top
+		SDL_FRect top = { rect_pos.x, rect_pos.y, w, edge_w };
+		SDL_RenderFillRect(renderer, &top);
+		//Bottom
+		SDL_FRect bot = { rect_pos.x, (rect_pos.y + h) - edge_w, w, edge_w };
+		SDL_RenderFillRect(renderer, &bot);
+		//Left
+		SDL_FRect left = { rect_pos.x, rect_pos.y + edge_w, edge_w, h - (edge_w * 2) };
+		SDL_RenderFillRect(renderer, &left);
+		//Right
+		SDL_FRect right = { rect_pos.x + w - edge_w, rect_pos.y + edge_w, edge_w, h - edge_w * 2 };
+		SDL_RenderFillRect(renderer, &right);
+	}
 }

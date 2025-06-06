@@ -246,6 +246,10 @@ void Scene::Draw() {
 	if (selecting)
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
+	if (tilemap.Loaded())
+		game->renderer.DrawRect(Rect({ 1500, 300 }, -250), Color(1, 0, 0, .6), Color(1, 0, 0, .8));
+
+
 	//Draw dialogue
 	if (in_dlg) {
 		//game->dlg_mngr.DrawDialogue();
@@ -403,11 +407,12 @@ void Scene::MoveCamera() {
 
 void Scene::SelectPartyMems() {
 
-	//Select party members
-	//Click and drag (selection box/area) while holding SHIFT or CTRL
-	//	 -SHIFT selects all party mems inside the selection area
-	//	 -CTRL deselects all party mems inside the selection area
+	
 	if (!in_dlg) {
+		//Select party members
+		//Click and drag (selection box/area) while holding SHIFT or CTRL
+		//	 -SHIFT selects all party mems inside the selection area
+		//	 -CTRL deselects all party mems inside the selection area
 		if (Input::BtnPressed(LMB) and (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT) or Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL))) {
 			selec_box.x = Input::MousePos().x;
 			selec_box.y = Input::MousePos().y;
@@ -423,6 +428,8 @@ void Scene::SelectPartyMems() {
 				if (Collision::RectPoint(selec_box, p_m->GetPos())) {
 					if (Input::KeyDown(LSHIFT) or Input::KeyDown(RSHIFT))
 						p_m->selected = true;
+					else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL))
+						p_m->selected = false;
 				}
 				else if (Input::KeyDown(LCTRL) or Input::KeyDown(RCTRL)) p_m->selected = false;
 			}

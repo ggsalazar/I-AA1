@@ -1,8 +1,7 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Tutorial:	-Fix RectPoint collision to use min/max
-			-Fix Renderer.cpp so all the shapes are only drawn if they can be seen by the camera
-			-Implement path smoothing
+Tutorial:	-Implement path smoothing
+				--Compare current implementation to strictly Vector2i implementation (use actual coords!)
 			-Dialogue system/trees
 				--Draw the text to screen
 				--Each piece of text MUST have:
