@@ -3,13 +3,7 @@ Yes/No buttons not removing elements like they should in character creation
 DrawRect collision check isn't working right
 
 Path smoothing working, but not quite registering unwalkable tiles quite right
-	-Because I'm only inserting the *last* node into the smoothed path, it isn't checking the tiles inbetween
-
-Pathfinding when crossing obstacles is... not correct
-	-Goes to edge of obstacle as if walking straight there instead of to the nearest corner, then resumes
-	 from that point as if it never had to go around the obstacle in the first place
-	-Implement path smoothing
-		--Currently stuck in infinite loop when doing this
-			---Review the code and see where the logic fails; rewrite it yourself
+	-Issue is not easily replicable
+	-Movement jitter sometimes
 
 What to set cursor to when pointing at Party Member? Not a bug per se, moreso just a question that needs answering

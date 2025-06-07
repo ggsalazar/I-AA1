@@ -137,13 +137,11 @@ vector<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, En
 
 queue<Vector2i> Pathfinding::SmoothPath(const vector<Vector2i>& raw) {
 	queue<Vector2i> smoothed;
-	smoothed.push(raw[0]);
-	uint i = 1, j; //Should i start at 0?
+	uint i = 0, j;
 
 	while (i < raw.size() - 1) {
 		j = raw.size() - 1;
 		//Find the farthest node we can reach directly
-		//Of course the next point in the raw path can be reached, but if that is the point we reach, then we can just smooth directly to that... right?
 		while (j > i + 1) {
 			if (LineOfSight(raw[i], raw[j]))
 				break;
@@ -165,23 +163,29 @@ float Pathfinding::Heuristic(const Vector2i& a, const Vector2i& b) {
 bool Pathfinding::LineOfSight(const Vector2i& from, const Vector2i& to) {
 	//Bresenham’s Line Algorithm or DDA
 	//Return false if any tile along the line is unwalkable
-	//Simplified version for now (assumes TS-based grid):
-	cout << "LOS 168\n";
+	//Simplified version for now (assumes TS-based grid)
 
 	Vector2i delta = to - from;
 	int steps = std::max(abs(delta.x), abs(delta.y)) / TS;
-	Vector2f dir = Vector2f(delta.x, delta.y) / (float)steps; //SHOULD dir be V2i? Should all of this be V2i?
+	Vector2f dir = Vector2f(delta.x, delta.y) / (float)steps; 
 
-	int x, y; //x and y unnecessary?
-	Vector2f point;
+	Vector2i point;
 	for (int i = 1; i < steps; ++i) {
-		cout << "LOS 177\n";
-		point = Vector2f(from.x, from.y) + dir * (float)i;
-		x = (int)(point.x / TS);
-		y = (int)(point.y / TS);
-		if (!grid[x][y].walkable)
+		point = { (int)(from.x + dir.x * i) / TS, (int)(from.y + dir.y * i) / TS };
+		if (!grid[point.x][point.y].walkable)
 			return false;
 	}
+
+
+	/*Vector2i pointi;
+	Vector2f point;
+	for (int i = 1; i < steps; ++i) {
+		point = Vector2f(from.x, from.y) + dir * (float)i;
+		pointi.x = (int)(point.x / TS);
+		pointi.y = (int)(point.y / TS);
+		if (!grid[pointi.x][pointi.y].walkable)
+			return false;
+	}*/
 
 	return true;
 }

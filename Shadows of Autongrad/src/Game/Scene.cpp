@@ -246,6 +246,7 @@ void Scene::Draw() {
 	if (selecting)
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
+	//Test rect
 	if (tilemap.Loaded())
 		game->renderer.DrawRect(Rect({ 1500, 300 }, -250), Color(1, 0, 0, .6), Color(1, 0, 0, .8));
 

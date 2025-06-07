@@ -6,6 +6,8 @@ using std::min, std::max;
 class Collision {
 public:
     inline static bool AABB(const Rect& a, const Rect& b) {
+        Rect a_norm = a;
+        Rect b_norm = b;
         return (a.x + a.w >= b.x && b.x + b.w >= a.x &&
                 a.y + a.h >= b.y && b.y + b.h >= a.y);
     }

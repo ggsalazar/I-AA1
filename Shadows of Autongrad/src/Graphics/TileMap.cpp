@@ -12,7 +12,7 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 	Unload();
 
 	//Load json file
-	std::ifstream file("assets/Sprites/Environments/TileMaps/" + json_file + ".json");
+	std::ifstream file("assets/Maps/" + json_file + ".json");
 	if (!file.is_open()) {
 		cerr << "Failed to open " << json_file << " map!/n";
 		return false;

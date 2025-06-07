@@ -36,8 +36,9 @@ public:
         }
         menus.clear();
     }
-    static inline void SetGame(Game* g) { game = g; }
     void Open(const bool o = true);
+
+    static inline void SetGame(Game* g) { game = g; }
     inline bool IsOpen() const { return open; }
 
     //Engine stuff

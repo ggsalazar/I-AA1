@@ -120,7 +120,9 @@ void Creature::Draw() {
 	//Creatures will draw their portraits in combat at the proper location and sizing
 	// currently acting combatant's frame will be slightly larger and have a special frame
 
-	//game->renderer.DrawPath(path);
+	//if (!path.empty())
+	cout << path.size() << "\n";
+	game->renderer.DrawPath(path);
 }
 
 void Creature::WalkPath() {

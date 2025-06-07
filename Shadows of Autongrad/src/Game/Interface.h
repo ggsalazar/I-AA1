@@ -7,7 +7,7 @@ public:
 
 	void Update() override;
 	void Draw() override {
-		if (open) game->renderer.DrawSprite(sprite);
+		//if (open) game->renderer.DrawSprite(sprite);
 		Menu::Draw();
 	}
 private:

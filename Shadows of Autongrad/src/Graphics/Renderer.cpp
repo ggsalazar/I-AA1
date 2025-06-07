@@ -159,6 +159,7 @@ void Renderer::DrawPath(std::queue<Vector2i> path, const Color& path_color) {
 		path_v.push_back(path.front());
 		path.pop();
 	}
+	cout << "path_v size: " << path_v.size() << "\n";
 
 	Rect point_box = { {0}, {4} };
 	for (const auto& point : path_v) {
