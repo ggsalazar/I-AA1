@@ -120,8 +120,6 @@ void Creature::Draw() {
 	//Creatures will draw their portraits in combat at the proper location and sizing
 	// currently acting combatant's frame will be slightly larger and have a special frame
 
-	//if (!path.empty())
-	cout << path.size() << "\n";
 	game->renderer.DrawPath(path);
 }
 
@@ -154,7 +152,8 @@ void Creature::WalkPath() {
 
 			Entity::MoveBy(offset);
 
-			if (Distance(pos, next_pos) < 5) Entity::MoveTo(Vector2f(next_pos));
+			if (abs(pos.x - next_pos.x) < 5) Entity::MoveTo(Vector2f(next_pos.x, pos.y));
+			if (abs(pos.y - next_pos.y) < 5) Entity::MoveTo(Vector2f(pos.x, next_pos.y));
 
 		}
 		else

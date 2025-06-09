@@ -8,9 +8,13 @@ Tutorial:	-Implement path smoothing
 					---Speaker
 					---The string
 					---Choices
+						----The string (inherently states if doesn't progress dialogue via ending *)
 						----Condition(s)
 						----Effect(s)
-						----Progresses dialogue or not
+						----Color changes when moused over/condition not met
+							-----1. Draw all choices
+								------Include their condition(s) if applicable
+							-----2. Gray out and strike through the ones for which the condition is not met
 				--Each piece of text CAN have:
 					---Condition(s)
 					---Effects(s)

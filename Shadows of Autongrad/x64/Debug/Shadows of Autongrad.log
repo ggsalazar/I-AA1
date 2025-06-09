@@ -1,92 +1,69 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Pathfinding.cpp
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+  Yggdrasil.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(60,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Geometry.h(60,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(28,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
-  (compiling source file 'src/Core/Pathfinding.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(28,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
       see declaration of 'Entity'
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(34,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
-  (compiling source file 'src/Core/Pathfinding.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Scene.h(11,7):
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(34,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(11,7):
       see declaration of 'Menu'
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Menu.h(18,13): warning C4150: deletion of pointer to incomplete type 'UI'; no destructor called
-  (compiling source file 'src/Core/Pathfinding.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Game\Menu.h(11,7):
-      see declaration of 'UI'
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(91,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
+  (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(15,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(16,25): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(67,29): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(67,29): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(67,29): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(67,29): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(67,29): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(114,69): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(114,116): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(143,18): warning C4267: '=': conversion from 'size_t' to 'uint', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244:         and
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,40): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244:         with
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244:             T=int
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244:         and
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244:         [
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244:             T=float
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(170,31): warning C4244:         ]
-C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Vector2.h(109,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Pathfinding.cpp')
-      C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Vector2.h(109,16):
-      the template instantiation context (the oldest one first) is
-          C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\Shadows of Autongrad\src\Core\Pathfinding.cpp(42,17):
-          see reference to function template instantiation 'float Distance<int>(const Vector2<int> &,const Vector2<int> &)' being compiled
-  
-  Shadows of Autongrad.vcxproj -> C:\Users\Griffin G. Salazar\Cpp Projects\I&AA1 - Shadows of Autongrad\x64\Debug\Shadows of Autongrad.exe
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,78): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,78): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,78): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,78): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,78): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244:             T=int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(64,50): warning C4244:         ]
+  Shadows of Autongrad.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\x64\Debug\Shadows of Autongrad.exe

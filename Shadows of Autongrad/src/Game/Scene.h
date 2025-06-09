@@ -75,6 +75,7 @@ public:
 
     //Dialogue
     void LoadDialogue();
+    void inline EndDialogue() { in_dlg = false; }
 
 private:
     bool open = false;

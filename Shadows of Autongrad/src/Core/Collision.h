@@ -8,8 +8,14 @@ public:
     inline static bool AABB(const Rect& a, const Rect& b) {
         Rect a_norm = a;
         Rect b_norm = b;
-        return (a.x + a.w >= b.x && b.x + b.w >= a.x &&
-                a.y + a.h >= b.y && b.y + b.h >= a.y);
+
+        if (a_norm.w < 0) { a_norm.x += a.w; a_norm.w = -a.w; }
+        if (a_norm.h < 0) { a_norm.y += a.h; a_norm.h = -a.h; }
+        if (b_norm.w < 0) { b_norm.x += b.w; b_norm.w = -b.w; }
+        if (b_norm.h < 0) { b_norm.y += b.h; b_norm.h = -b.h; }
+
+        return (a_norm.x + a_norm.w >= b_norm.x && b_norm.x + b_norm.w >= a_norm.x &&
+                a_norm.y + a_norm.h >= b_norm.y && b_norm.y + b_norm.h >= a_norm.y);
     }
 
     inline static bool LinePoint(const Line& l, const Vector2i& p) {

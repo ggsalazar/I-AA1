@@ -1,9 +1,6 @@
 Yes/No buttons not removing elements like they should in character creation
 
-DrawRect collision check isn't working right
-
 Path smoothing working, but not quite registering unwalkable tiles quite right
 	-Issue is not easily replicable
-	-Movement jitter sometimes
 
 What to set cursor to when pointing at Party Member? Not a bug per se, moreso just a question that needs answering

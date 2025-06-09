@@ -3,15 +3,34 @@
         "Test": {
             "1": {
                 "Text": "Greetings Player.",
-                "Choices": [ "Continue" ]
+                "Choices": {
+                    "1": {
+                        "Text": "Continue ABC",
+                        "Index": 2
+                    },
+                    "2": {
+                        "Text": "Continue XYZ",
+                        "Index": 3
+                    }
+                }
             },
             "2": {
                 "Text": "This is a dialogue test.",
-                "Choices": [ "Continue" ]
+                "Choices": {
+                    "1": {
+                        "Text": "Continue",
+                        "Index": 3
+                    }
+                }
             },
             "3": {
                 "Text": "Thank you for running this test.",
-                "Choices": ["Finish"]
+                "Choices": {
+                    "1": {
+                        "Text": "Finish",
+                        "Index": 0
+                    }
+                }
             }
         }
     }

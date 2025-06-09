@@ -130,6 +130,10 @@ void Scene::GetInput() {
 	if (in_dlg) {
 		game->cursor.SetSheetRow(0); //This is probably temporary
 		game->cursor.SetColor(1);
+
+		game->dlg_mngr.ChooseDialogue();
+
+		if (Input::KeyPressed(A_K)) in_dlg = false;
 	}
 	else {
 		if (label == Scenes::AREA) {
@@ -246,15 +250,10 @@ void Scene::Draw() {
 	if (selecting)
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
 
-	//Test rect
-	if (tilemap.Loaded())
-		game->renderer.DrawRect(Rect({ 1500, 300 }, -250), Color(1, 0, 0, .6), Color(1, 0, 0, .8));
-
 
 	//Draw dialogue
 	if (in_dlg) {
-		//game->dlg_mngr.DrawDialogue();
-		cout << "In dialogue\n";
+		game->dlg_mngr.DrawDialogue();
 	}
 
 	//Menus are drawn last since UI will always be closest to the camera
@@ -573,6 +572,9 @@ void Scene::SetGameCursor(Action action) {
 void Scene::PerformAction() {
 	Action a = held_action == Action::NOACTION ? action : held_action;
 	Entity* t = !held_tar ? mouse_tar : held_tar;
+	//reset action & held_action
+	action = Action::NOACTION; held_action = Action::NOACTION;
+	mouse_tar = nullptr; held_tar = nullptr;
 
 	switch (a) {
 		case Action::Talk:
