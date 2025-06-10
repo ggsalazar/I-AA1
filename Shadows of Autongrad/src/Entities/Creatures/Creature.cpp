@@ -74,7 +74,7 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 
 	//Calculate the derived stats
 	//Set Ability Scores (also sets saves and ancillary stats)
-	SetAbilityScores({ stats.str, stats.con, stats.agi, stats.dex, stats.intl, stats.wis, stats.cha });
+	SetAbilityScores(stats.a_scores);
 	//Set Health and defenses (based on size, genus, level, and class; also sets 30/20/10% thresholds)
 	SetMaxHealth();
 	SetHealth(stats.max_hlth);
@@ -92,9 +92,8 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 }
 
 void Creature::GetInput() {
-	if (Collision::RectPoint(por_bbox, Input::MousePos())) {
+	if (Collision::RectPoint(por_bbox, Input::MousePos()))
 		scene->lmb_action = false;
-	}
 }
 
 void Creature::Update() {
@@ -166,17 +165,17 @@ void Creature::PrintStats() {
 	cout << "Genus: " << GenusToString(stats.genus) << "\n";
 	cout << "Race: " << RaceToString(stats.race) << "\n";
 	cout << "Size: " << SizeToString(stats.size) << "\n";
-	cout << "Class: " << ClassToString(stats.clss) << "\n";
-	cout << "Level: " << stats.level << "\n";
 	cout << "Sex: ";
 	if (stats.sex) cout << "M\n";
 	else cout << "F\n";
-	cout << "STR: " << stats.str << ", CON: " << stats.con << ", AGI: " << stats.agi << ", DEX: " << stats.dex << ", INT: " << stats.intl << ", WIS: " << stats.wis << ", CHA: " << stats.cha << "\n";
+	cout << "Levels: ";
+	cout << "Arcanist: " << stats.levels[0] << "; Rogue: " << stats.levels[1] << "; Warrior: " << stats.levels[2] << "; Other: " << stats.levels[3] << "\n";
+	cout << "STR: " << stats.a_scores[0] << ", CON: " << stats.a_scores[1] << ", AGI: " << stats.a_scores[2] << ", DEX: " << stats.a_scores[3] << ", INT: " << stats.a_scores[4] << ", WIS: " << stats.a_scores[5] << ", CHA: " << stats.a_scores[6] << "\n";
 	cout << "Health: " << stats.hlth << "/" << stats.max_hlth << "\n";
 	cout << "Health Threshholds: 30%: " << stats.th_per_hlth << "; 20%: " << stats.tw_per_hlth << "; 10%: " << stats.tn_per_hlth << "\n";
-	cout << "Defenses:\nM-DEF: " << stats.m_def << " (Dodge: " << stats.dodge << " (AGI: " << stats.agi << " + DEX: " << stats.dex << " + Dodge Penalty: " << dodge_penalty << "), Armor: " << stats.armor << " (Nat: " << stats.nat_armor << ", Worn: " << stats.worn_armor << ")); R-DEF: " << stats.r_def << "\n";
+	cout << "Defenses:\nM-DEF: " << stats.m_def << " (Dodge: " << stats.dodge << " (AGI: " << stats.a_scores[2] << " + DEX: " << stats.a_scores[3] << " + Dodge Penalty: " << dodge_penalty << "), Armor: " << stats.armor << " (Nat: " << stats.nat_armor << ", Worn: " << stats.worn_armor << ")); R-DEF: " << stats.r_def << "\n";
 	cout << "Saves:\nFort: " << stats.fort << "; Ref: " << stats.ref << "; Will: " << stats.will << "\n";
-	cout << "Movement:\nWalking Speed: " << stats.w_spd << "m/s (" << base_spd << " + " << stats.agi*.5 <<"); Flying Speed: " << stats.f_spd << " (" << base_spd << " + " << stats.str * .5 << ")\n"; //To add: Swim Speed!
+	cout << "Movement:\nWalking Speed: " << stats.w_spd << "m/s (" << base_spd << " + " << stats.a_scores[2]*.5 <<"); Flying Speed: " << stats.f_spd << " (" << base_spd << " + " << stats.a_scores[0] * .5 << ")\n"; //To add: Swim Speed!
 	cout << "Weight:\nTotal Weight: " << stats.total_weight << "lbs. (Self Weight: " << self_weight << ", Carry Weight: " << stats.carry_weight << "/" << stats.max_carry_weight;
 	if (encumbered) cout << "(Encumbered!)";
 	cout << ")\n";
@@ -211,47 +210,47 @@ void Creature::SetAbilityScore(Ab_Score a_s, float new_score) {
 	switch (a_s) {
 		//Derived stats: fort, self_weight, max_carry_weight, f_spd, and possibly m_def
 		case Ab_Score::STR:
-			stats.str = new_score;
-			stats.fort = (stats.str + stats.con) * .5f;
+			stats.a_scores[0] = new_score;
+			stats.fort = (stats.a_scores[0] + stats.a_scores[1]) * .5f;
 			switch (stats.size) {
 			case Size::Tiny:
-				self_weight = 1 + (stats.str);
-				stats.max_carry_weight = max(3.f, stats.str * 10);
+				self_weight = 1 + (stats.a_scores[0]);
+				stats.max_carry_weight = max(3.f, stats.a_scores[0] * 10);
 				break;
 
 			case Size::Small:
-				self_weight = 75 + (stats.str * 10);
-				stats.max_carry_weight = max(12.5f, stats.str * 50);
+				self_weight = 75 + (stats.a_scores[0] * 10);
+				stats.max_carry_weight = max(12.5f, stats.a_scores[0] * 50);
 				break;
 
 			case Size::Med:
-				self_weight = 150 + (stats.str * 10);
-				stats.max_carry_weight = max(15.f, stats.str * 50);
+				self_weight = 150 + (stats.a_scores[0] * 10);
+				stats.max_carry_weight = max(15.f, stats.a_scores[0] * 50);
 				break;
 
 			case Size::Big:
-				self_weight = 190 + (stats.str * 10);
-				stats.max_carry_weight = max(17.5f, stats.str * 50);
+				self_weight = 190 + (stats.a_scores[0] * 10);
+				stats.max_carry_weight = max(17.5f, stats.a_scores[0] * 50);
 				break;
 
 			case Size::Large:
-				self_weight = 400 + (stats.str * 25);
-				stats.max_carry_weight = max(25.f, stats.str * 100);
+				self_weight = 400 + (stats.a_scores[0] * 25);
+				stats.max_carry_weight = max(25.f, stats.a_scores[0] * 100);
 				break;
 
 			case Size::Huge:
-				self_weight = 1000 + (stats.str * 100);
-				stats.max_carry_weight = max(50.f, stats.str * 150);
+				self_weight = 1000 + (stats.a_scores[0] * 100);
+				stats.max_carry_weight = max(50.f, stats.a_scores[0] * 150);
 				break;
 
 			case Size::Massive:
-				self_weight = 2500 + (stats.str * 250);
-				stats.max_carry_weight = max(75.f, stats.str * 200);
+				self_weight = 2500 + (stats.a_scores[0] * 250);
+				stats.max_carry_weight = max(75.f, stats.a_scores[0] * 200);
 				break;
 
 			case Size::Colossal:
-				self_weight = 10000 + (stats.str * 1000);
-				stats.max_carry_weight = max(100.f, stats.str * 250);
+				self_weight = 10000 + (stats.a_scores[0] * 1000);
+				stats.max_carry_weight = max(100.f, stats.a_scores[0] * 250);
 				break;
 			}
 			//Determine flying speed
@@ -261,41 +260,41 @@ void Creature::SetAbilityScore(Ab_Score a_s, float new_score) {
 		//Derived stats: fort, max_hlth, th_per_hlth, tw_per_hlth, tn_per_health
 		//Setting Health is a special case, and is handled in SetMaxHealth()
 		case Ab_Score::CON:
-			stats.con = new_score;
-			stats.fort = (stats.str + stats.con) * .5f;
+			stats.a_scores[1] = new_score;
+			stats.fort = (stats.a_scores[0] + stats.a_scores[1]) * .5f;
 		break;
 
 		//Derived stats: Ref, w_spd, dodge
 		case Ab_Score::AGI:
-			stats.agi = new_score;
-			stats.ref = (stats.agi + stats.dex) * .5f;
-			stats.w_spd = base_spd + (.5f * stats.agi);
-			stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty); //Remember this is modified by armor!
+			stats.a_scores[2] = new_score;
+			stats.ref = (stats.a_scores[2] + stats.a_scores[3]) * .5f;
+			stats.w_spd = base_spd + (.5f * stats.a_scores[2]);
+			stats.dodge = max(0.f, stats.a_scores[3] + stats.a_scores[2] + dodge_penalty); //Remember this is modified by armor!
 		break;
 
 		//Derived stats: Ref, less_action_time, dodge
 		case Ab_Score::DEX:
-			stats.dex = new_score;
-			stats.ref = (stats.agi + stats.dex) * .5f;
-			stats.less_act_time = stats.dex * .25f; //Need to round this to the nearest half (or quarter?)
-			stats.dodge = max(0.f, stats.dex + stats.agi + dodge_penalty); //Remember this is modified by armor!
+			stats.a_scores[3] = new_score;
+			stats.ref = (stats.a_scores[2] + stats.a_scores[3]) * .5f;
+			stats.less_act_time = stats.a_scores[3] * .25f; //Need to round this to the nearest half (or quarter?)
+			stats.dodge = max(0.f, stats.a_scores[3] + stats.a_scores[2] + dodge_penalty); //Remember this is modified by armor!
 		break;
 
 		//No derived stats, but can get more skill points/languages
 		case Ab_Score::INT:
-			stats.intl = new_score;
+			stats.a_scores[4] = new_score;
 		break;
 
 		//Derived stats: Will
 		case Ab_Score::WIS:
-			stats.wis = new_score;
-			stats.will = (stats.wis + stats.cha) * .5f;
+			stats.a_scores[5] = new_score;
+			stats.will = (stats.a_scores[5] + stats.a_scores[6]) * .5f;
 		break;
 
 		//Derived stats: Will
 		case Ab_Score::CHA:
-			stats.cha = new_score;
-			stats.will = (stats.wis + stats.cha) * .5f;
+			stats.a_scores[6] = new_score;
+			stats.will = (stats.a_scores[5] + stats.a_scores[6]) * .5f;
 		break;
 	}
 }
@@ -303,31 +302,31 @@ void Creature::SetAbilityScore(Ab_Score a_s, float new_score) {
 float Creature::GetAbilityScore(Ab_Score a_s) {
 	switch (a_s) {
 		case Ab_Score::STR:
-			return stats.str;
+			return stats.a_scores[0];
 			break;
 
 		case Ab_Score::CON:
-			return stats.con;
+			return stats.a_scores[1];
 			break;
 
 		case Ab_Score::AGI:
-			return stats.agi;
+			return stats.a_scores[2];
 			break;
 
 		case Ab_Score::DEX:
-			return stats.dex;
+			return stats.a_scores[3];
 			break;
 
 		case Ab_Score::INT:
-			return stats.intl;
+			return stats.a_scores[4];
 			break;
 
 		case Ab_Score::WIS:
-			return stats.wis;
+			return stats.a_scores[5];
 			break;
 
 		case Ab_Score::CHA:
-			return stats.cha;
+			return stats.a_scores[6];
 			break;
 	}
 
@@ -339,23 +338,12 @@ void Creature::SetMaxHealth() {
 	float old_max = stats.max_hlth;
 	//For sentients, max health depends on class and level
 	if (stats.genus == Genus::Sentient) {
-		switch (stats.clss) {
-			case Class::None:
-				stats.max_hlth = 5;
-				break;
+		uint total_level = 0;
+		for (int l : stats.levels)
+			total_level = stats.levels[l];
 
-			case Class::Arcanist:
-				stats.max_hlth = (stats.level * 6) + (stats.con * stats.level);
-				break;
-
-			case Class::Rogue:
-				stats.max_hlth = (stats.level * 8) + (stats.con * stats.level);
-				break;
-
-			case Class::Warrior:
-				stats.max_hlth = (stats.level * 10) + (stats.con * stats.level);
-				break;
-		}
+		//Temporary as FUCK
+		if (stats.levels[0]) stats.max_hlth = (stats.levels[0] * 6) + (stats.levels[1] * 8) + (stats.levels[2] * 10) + (stats.a_scores[1] * total_level);
 	}
 
 	//For non-Sentients, max health partially depends on size but is mostly arbitrary

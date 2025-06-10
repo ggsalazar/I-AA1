@@ -1,14 +1,25 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
 
-Tutorial:	-Implement path smoothing
-				--Compare current implementation to strictly Vector2i implementation (use actual coords!)
+
+Devlog: -Pathfinding (w + w/o smoothing)
+		-Dialogue/Yggdrasil
+
+Tutorial:	-Yggdrasil:
+				--Visual feedback when selecting a choice
+				--Visual feedback for unavailable choices
+				--Each choice should also display its number
+				--Number can also be pressed to pick a choice, not just clicking on it
+					---Yggdrasil will need its own GetInput()
+				--CONDITIONS
+				--Skill checks :)
+				--Changing nodes based on flags
+			-Skills struct in Creature
 			-Dialogue system/trees
-				--Draw the text to screen
 				--Each piece of text MUST have:
 					---Speaker
 					---The string
 					---Choices
-						----The string (inherently states if doesn't progress dialogue via ending *)
+						----The string (inherently states if doesn't progress dialogue via ?)
 						----Condition(s)
 						----Effect(s)
 						----Color changes when moused over/condition not met
@@ -20,8 +31,11 @@ Tutorial:	-Implement path smoothing
 					---Effects(s)
 				--How to set dialogue node each time character is spoken to?
 					---Needs to be saved and then loaded?
+					---Determined dynamically via location and flags
 			-Place spawn points in maps in Tiled so they don't have to manually be set in Scene
 			 (can be pulled from TileMap after area is fully loaded)
+			-Combat
+				--Just a quick lil sum'sum - 1 melee-only creature against the 1 party member
 			-NPCs
 				--Blacksmith
 					---Shopping (after implementing inventory)
@@ -33,7 +47,8 @@ Tutorial:	-Implement path smoothing
 					---World Map
 				--Character sheet/s
 				--Inventory
-			-Combat
+			-More Combat
+				--A creature with ranged options
 			-area changing
 			-fog of war
 			-multi-party member spawning, movement, & cam locking

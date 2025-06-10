@@ -13,17 +13,11 @@ public:
 		Genus genus = Genus::Sentient;
 		Race race = Race::Human;
 		Size size = Size::Med;
-		Class clss = Class::None;
-		uint level = 0;
 		bool sex = 0; //0 = F, 1 = M
-		//Ability scores, or primary stats
-		float str = 0;
-		float con = 0;
-		float agi = 0;
-		float dex = 0;
-		float intl = 0;
-		float wis = 0;
-		float cha = 0;
+		//Levels - Arcanist, Rogue, Warrior, Other
+		array<uint, 4> levels = {0};
+		//Ability scores - SCADIWC
+		array<float, 7> a_scores = { 0 };
 		//Derived stats
 		float max_hlth = 0;
 		float hlth = 0;
@@ -47,6 +41,9 @@ public:
 		float total_weight = 0;
 		float less_act_time = 0;
 	};
+	
+	struct Skills {};
+
 	bool well_rested = true;
 	bool alive = true;
 
@@ -74,9 +71,11 @@ public:
 	//Printing stats
 	void PrintStats();
 
+	inline array<uint, 4> GetLevels() const { return stats.levels; }
+
 	//Primary stats
 	void SetAbilityScores(array<float, 7> a_ss);
-	inline array<float, 7> GetAbilityScores() const { return { stats.str, stats.con, stats.agi, stats.dex, stats.intl, stats.wis, stats.cha }; }
+	inline array<float, 7> GetAbilityScores() const { return stats.a_scores; }
 	void SetAbilityScore(Ab_Score a_s, float new_score);
 	float GetAbilityScore(Ab_Score a_s);
 
@@ -93,7 +92,7 @@ public:
 	void SetWornArmor(float w_a);
 	inline float GetWornArmor() const { return stats.worn_armor; }
 
-	inline void SetFlySpeed() { if (can_fly) stats.f_spd = base_spd + (.5f * stats.str); }
+	inline void SetFlySpeed() { if (can_fly) stats.f_spd = base_spd + (.5f * stats.a_scores[0]); }
 	inline float GetFlySpeed() const { return stats.f_spd; }
 
 

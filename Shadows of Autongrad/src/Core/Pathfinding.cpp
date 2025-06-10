@@ -150,7 +150,7 @@ queue<Vector2i> Pathfinding::SmoothPath(const vector<Vector2i>& raw) {
 		smoothed.push(raw[j]);
 		i = j;
 	}
-
+	
 	return smoothed;
 }
 
@@ -175,17 +175,5 @@ bool Pathfinding::LineOfSight(const Vector2i& from, const Vector2i& to) {
 		if (!grid[point.x][point.y].walkable)
 			return false;
 	}
-
-
-	/*Vector2i pointi;
-	Vector2f point;
-	for (int i = 1; i < steps; ++i) {
-		point = Vector2f(from.x, from.y) + dir * (float)i;
-		pointi.x = (int)(point.x / TS);
-		pointi.y = (int)(point.y / TS);
-		if (!grid[pointi.x][pointi.y].walkable)
-			return false;
-	}*/
-
 	return true;
 }

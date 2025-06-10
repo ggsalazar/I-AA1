@@ -5,21 +5,21 @@
                 "Text": "Greetings Player.",
                 "Choices": {
                     "1": {
-                        "Text": "Continue ABC",
-                        "Index": 2
+                        "Text": "Greetings yourself",
+                        "Index": 3
                     },
                     "2": {
-                        "Text": "Continue XYZ",
-                        "Index": 3
+                        "Text": "More information?",
+                        "Index": 2
                     }
                 }
             },
             "2": {
-                "Text": "This is a dialogue test.",
+                "Text": "You have requested more information.",
                 "Choices": {
                     "1": {
                         "Text": "Continue",
-                        "Index": 3
+                        "Index": 1
                     }
                 }
             },

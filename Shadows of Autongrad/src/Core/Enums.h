@@ -106,28 +106,6 @@ inline string CondToString(const Condition c) {
 	}
 }
 
-enum class Class {
-	None,
-	Arcanist,
-	Rogue,
-	Warrior
-};
-inline Class StringToClass(const string s) {
-	if (s == "None") return Class::None;
-	else if (s == "Arcanist") return Class::Arcanist;
-	else if (s == "Rogue") return Class::Rogue;
-	else if (s == "Warrior") return Class::Warrior;
-}
-inline string ClassToString(const Class c) {
-	switch (c) {
-		case Class::None: return "None";
-		case Class::Arcanist: return "Arcanist";
-		case Class::Rogue: return "Rogue";
-		case Class::Warrior: return "Warrior";
-		default: return "Unknown";
-	}
-}
-
 enum class Genus {
 	Beast,
 	Monstrosity,

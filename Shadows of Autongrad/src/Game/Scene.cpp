@@ -620,32 +620,19 @@ void Scene::CreatePreGen(PreGens p_g) {
 	Genus genus = Genus::Sentient;
 	Race race = Race::Human;
 	Size size = Size::Med;
-	Class clss = Class::Warrior;
+	bool sex = 0;
+	array<uint, 4> levels = { 0 };
+	array<float, 7> a_scores = { 0 };
 	string sprite = "Creatures/Sentients/PMPlaceholder";
 	Vector2i sprite_size = { 24, 48 };
-	uint level = 1;
-	bool sex = 0;
-	float str = 0;
-	float con = 0;
-	float dex = 0;
-	float agi = 0;
-	float intl = 0;
-	float wis = 0;
-	float cha = 0;
 
 	switch (p_g) {
 	case PreGens::Spark: //Automaton Arcanist
 		//Don't forget to change sprite!
 		name = "Spark";
 		race = Race::Automaton;
-		clss = Class::Arcanist;
-		str = 1.5;
-		con = 2.5;
-		dex = 3;
-		agi = 2;
-		intl = 4;
-		wis = 3;
-		cha = 1;
+		levels[0] = 1;
+		a_scores = { 1.5, 2.5, 3, 2, 4, 3, 1 };
 		break;
 
 	case PreGens::Essek: //Female Kobold Rogue
@@ -653,15 +640,9 @@ void Scene::CreatePreGen(PreGens p_g) {
 		name = "Essek";
 		race = Race::Kobold;
 		size = Size::Small;
-		clss = Class::Rogue;
 		sex = 1;
-		str = 1;
-		con = 2;
-		dex = 4;
-		agi = 3;
-		intl = 2;
-		wis = 2.5;
-		cha = 2.5;
+		levels[1] = 1;
+		a_scores = { 1, 2, 4, 3, 2, 2.5, 2.5 };
 		break;
 
 	case PreGens::Dakn: //Male Dwarf Warrior
@@ -669,20 +650,15 @@ void Scene::CreatePreGen(PreGens p_g) {
 		name = "Dakn";
 		race = Race::Dwarf;
 		sex = 1;
-		str = 4;
-		con = 4;
-		dex = 2.5;
-		agi = 3;
-		intl = 1;
-		wis = 1;
-		cha = 1.5;
+		levels[2] = 1;
+		a_scores = { 4, 4, 2.5, 3, 1, 1, 1.5 };
 		break;
 	}
 	Sprite::Info info = {};
 	info.sheet = sprite; info.frame_size = sprite_size;
 
 	party_mems.push_back(new PartyMember(info,
-		Creature::Stats{ name, genus, race, size, clss, level, sex, str, con, dex, agi, intl, wis, cha } //The rest are defaults and handled in Initialization
+		Creature::Stats{ name, genus, race, size, sex, levels, a_scores } //The rest are defaults and handled in Initialization
 	));
 }
 
@@ -715,10 +691,8 @@ void Scene::LoadNPCs() {
 		string race_str = npc["Race"]; stats.race = StringToRace(race_str);
 		string size_str = npc["Size"]; stats.size = StringToSize(size_str);
 		stats.sex = npc["Sex"];
-		string class_str = npc["Class"]; stats.clss = StringToClass(class_str);
-		stats.level = npc["Level"];
-		stats.str = npc["A_Scores"]["STR"]; stats.con = npc["A_Scores"]["CON"]; stats.agi = npc["A_Scores"]["AGI"]; stats.dex = npc["A_Scores"]["DEX"];
-		stats.intl = npc["A_Scores"]["INT"]; stats.wis = npc["A_Scores"]["WIS"]; stats.cha = npc["A_Scores"]["CHA"];
+		stats.levels = npc["Levels"];
+		stats.a_scores = npc["A_Scores"];
 		
 		//These have to be explicitly extracted from the json
 		int npc_dispo = npc["Disposition"];

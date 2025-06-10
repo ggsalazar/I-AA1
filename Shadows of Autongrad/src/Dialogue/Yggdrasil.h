@@ -17,6 +17,7 @@ public:
 	int dlg_index = 1;
 	Text dlg_text;
 	std::vector<Text> dlg_choices;
+	string dlg_speaker;
 
 	Sprite dlg_box;
 

@@ -12,17 +12,8 @@
             "Race": "Dwarf",
             "Size": "Med",
             "Sex": true,
-            "A_Scores": {
-                "STR": 4,
-                "CON": 3,
-                "AGI": 2,
-                "DEX": 3,
-                "INT": 2,
-                "WIS": 2,
-                "CHA": 2
-            },
-            "Class": "None",
-            "Level": 0,
+            "A_Scores": [4, 3, 2, 3, 2, 2, 2],
+            "Levels": [ 0, 0, 0, 0 ],
             "Biped": true,
             "Winged": false,
             "Disposition": 50
