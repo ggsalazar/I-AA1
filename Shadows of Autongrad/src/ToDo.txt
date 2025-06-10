@@ -1,13 +1,12 @@
 SDL:	-Waiting to implement Music & SFX until SDL_mixer 3.0 releases
-
-
 Devlog: -Pathfinding (w + w/o smoothing)
 		-Dialogue/Yggdrasil
 
+
 Tutorial:	-Yggdrasil:
 				--Visual feedback when selecting a choice
+					---Make background of dialogue box more opaque (.8)
 				--Visual feedback for unavailable choices
-				--Each choice should also display its number
 				--Number can also be pressed to pick a choice, not just clicking on it
 					---Yggdrasil will need its own GetInput()
 				--CONDITIONS

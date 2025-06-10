@@ -98,6 +98,9 @@ void Game::Run() {
 //Process input
 void Game::ProcessInput() {
 
+
+    if (Input::KeyPressed(1)) cout << "1 Pressed\n";
+
     //Get input for the active scene
     if (active_scene)
         active_scene->GetInput();

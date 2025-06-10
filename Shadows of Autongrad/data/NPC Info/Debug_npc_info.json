@@ -5,8 +5,8 @@
             "Sprite": "Creatures/Sentients/NPCPlaceholder",
             "Portrait_Sprite": "Placeholder",
             "Spawn_Pos": {
-                "x": 10,
-                "y": 10
+                "x": 45,
+                "y": 15
             },
             "Genus": "Sentient",
             "Race": "Dwarf",

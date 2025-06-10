@@ -48,8 +48,10 @@ void Yggdrasil::LoadNPCDialogue(Creature* npc) {
 void Yggdrasil::LoadChoices() {
 	Text::Info choices_info = {};
 	choices_info.max_width = dlg_text.info.max_width;
+	choices_info.color = Color(1, .72);
 	for (int i = 0; i < dlg_leaf["Choices"].size(); ++i) {
-		choices_info.str = dlg_leaf["Choices"][to_string(i + 1)]["Text"];
+		choices_info.str = to_string(i + 1) + ": ";
+		choices_info.str += dlg_leaf["Choices"][to_string(i + 1)]["Text"];
 
 		dlg_choices.push_back(Text(&game->default_fonts[(game->GetResScale() + 1) * 12], choices_info));
 	}
@@ -58,8 +60,16 @@ void Yggdrasil::LoadChoices() {
 void Yggdrasil::ChooseDialogue() {
 	for (int i = 0; i < dlg_choices.size(); ++i) {
 		Rect choice_bbox = Rect(dlg_choices[i].info.pos, Vector2i(dlg_choices[i].info.str_size));
-		if (Collision::RectPoint(choice_bbox, Input::MousePos()) and Input::BtnReleased(LMB))
-			SetIndex(dlg_leaf["Choices"][to_string(i + 1)]["Index"]);
+		if (Collision::RectPoint(choice_bbox, Input::MousePos())) {
+			//Set the alpha for the choice to 1
+			dlg_choices[i].info.color = Color(1);
+			if (Input::BtnReleased(LMB)) {
+				SetIndex(dlg_leaf["Choices"][to_string(i + 1)]["Index"]);
+				break;
+			}
+		}
+		else
+			dlg_choices[i].info.color = Color(1, .72);
 	}
 }
 
