@@ -83,7 +83,9 @@ void Scene::Open(const bool o) {
 			game->camera.MoveCenterTo(Round(party_ldr_pos));
 
 			//Initialize our interfaces
+			menus.insert({ Menus::Bestiary, new Interface(Menus::Bestiary) });
 			menus.insert({ Menus::Char_Sheet, new Interface(Menus::Char_Sheet) });
+			menus.insert({ Menus::Grimoire, new Interface(Menus::Grimoire) });
 			menus.insert({ Menus::Inv, new Interface(Menus::Inv) });
 			menus.insert({ Menus::Journal, new Interface(Menus::Journal) });
 			menus.insert({ Menus::Map_Area, new Interface(Menus::Map_Area) });
@@ -285,7 +287,9 @@ void Scene::ResizeMenus() {
 
 void Scene::OpenInterface() {
 	Menus i = Menus::NOINTRFC;
-	if (Input::KeyPressed(C_K)) i = Menus::Char_Sheet;
+	if (Input::KeyPressed(B_K)) i = Menus::Bestiary;
+	else if (Input::KeyPressed(C_K)) i = Menus::Char_Sheet;
+	else if (Input::KeyPressed(G_K)) i = Menus::Grimoire;
 	else if (Input::KeyPressed(I_K)) i = Menus::Inv;
 	else if (Input::KeyPressed(J_K)) i = Menus::Journal;
 	else if (Input::KeyPressed(M_K)) i = Menus::Map_Area;

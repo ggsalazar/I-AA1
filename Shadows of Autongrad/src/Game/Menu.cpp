@@ -250,7 +250,13 @@ Menu::Menu(const Menus init_label) :
         
 
         //Interfaces, or in-game menus
-        //Char_Sheet
+        case Menus::Bestiary: {
+            //No need to set position or y_buffer because each of those is set in Update()
+            m_t_pos = { 0 }; m_t_str = "Bestiary";
+            s_t_pos = { 0 }; s_t_str = "";
+            break;
+        }
+
         case Menus::Char_Sheet: {
             //No need to set position or y_buffer because each of those is set in Update()
             m_t_pos = { 0 }; m_t_str = "Character Sheet";
@@ -258,7 +264,15 @@ Menu::Menu(const Menus init_label) :
 
             break;
         }
-        //Inventory
+        
+        case Menus::Grimoire: {
+            //No need to set position or y_buffer because each of those is set in Update()
+            m_t_pos = { 0 }; m_t_str = "Grimoire";
+            s_t_pos = { 0 }; s_t_str = "";
+
+            break;
+        }
+
         case Menus::Inv: {
             //No need to set position or y_buffer because each of those is set in Update()
             m_t_pos = { 0 }; m_t_str = "Inventory";
@@ -266,7 +280,7 @@ Menu::Menu(const Menus init_label) :
 
             break;
         }
-        //Journal
+        
         case Menus::Journal: {
             //No need to set position or y_buffer because each of those is set in Update()
             m_t_pos = { 0 }; m_t_str = "Journal";
@@ -274,7 +288,7 @@ Menu::Menu(const Menus init_label) :
 
             break;
         }
-        //Map_Area
+        
         case Menus::Map_Area: {
             //No need to set position or y_buffer because each of those is set in Update()
             m_t_pos = { 0 }; m_t_str = "Area Map";
@@ -282,7 +296,7 @@ Menu::Menu(const Menus init_label) :
 
             break;
         }
-        //Map_World
+        
         case Menus::Map_World: {
             //No need to set position or y_buffer because each of those is set in Update()
             m_t_pos = { 0 }; m_t_str = "World Map";
@@ -290,7 +304,7 @@ Menu::Menu(const Menus init_label) :
 
             break;
         }
-        //Options
+        
         case Menus::Options_I: {
             //No need to set position or y_buffer because each of those is set in Update()
             m_t_pos = { 0 }; m_t_str = "Options";

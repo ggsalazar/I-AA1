@@ -270,12 +270,14 @@ enum class Menus {
 	Pause,
 	//Interfaces/In-game menus
 	NOINTRFC,
+	Bestiary,	//B
 	Char_Sheet, //C
+	Grimoire,	//G
 	Inv,	    //I
 	Journal,    //J
 	Map_Area,   //M
 	Map_World,
-	Options_I,     //O
+	Options_I,  //O
 	//CC
 	CCAS,
 	CCBG,

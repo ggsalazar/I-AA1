@@ -6,8 +6,6 @@ Devlog: -Pathfinding (w + w/o smoothing)
 Tutorial:	-Left off dicking around with Debug_dialogue
 			-May need to build GUI Yggdrasil...
 			-Yggdrasil:
-				--Visual feedback when selecting a choice
-					---Make background of dialogue box more opaque (.8)
 				--CONDITIONS
 					---Checks for:
 						----Money
