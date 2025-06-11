@@ -662,6 +662,14 @@ void Scene::CreatePreGen(PreGens p_g) {
 	));
 }
 
+float Scene::CalcPartyAeons() {
+	float aeons_sum = 0.0f;
+	for (auto p_m : party_mems)
+		aeons_sum += p_m->GetAeons();
+
+	return aeons_sum;
+}
+
 void Scene::LoadNPCs() {
 	string area = AreaToString(game->area);
 

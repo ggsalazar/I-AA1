@@ -1,26 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Input.cpp
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Input.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Input.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Input.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Core/Input.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(60,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Core/Input.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Core/Input.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Core/Input.cpp')
-  
   Pathfinding.cpp
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
   (compiling source file 'src/Core/Pathfinding.cpp')
@@ -161,25 +139,24 @@ C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(90,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(144,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
   (compiling source file 'src/Dialogue/Yggdrasil.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(51,32): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(72,41): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,78): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,78): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,78): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,78): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,78): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244:             T=int
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244:         and
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(78,50): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(56,101): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,78): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,78): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,78): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,78): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,78): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244:             T=int
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244:         and
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Dialogue\Yggdrasil.cpp(96,50): warning C4244:         ]
   Creature.cpp
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/Entities/Creatures/Creature.cpp')
@@ -230,7 +207,7 @@ C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(90,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(144,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
   (compiling source file 'src/Entities/Creatures/Creature.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(21,39): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
@@ -275,7 +252,7 @@ C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(155,64): warning C4244:         [
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(155,64): warning C4244:             T=float
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(155,64): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(355,3): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.cpp(408,3): warning C4065: switch statement contains 'default' but no 'case' labels
   PartyMember.cpp
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
@@ -326,7 +303,7 @@ C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(90,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(144,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
   (compiling source file 'src/Entities/Creatures/PartyMember.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(8,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
@@ -340,6 +317,68 @@ C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(81,38): warning C4244:         [
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(81,38): warning C4244:             T=int
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\PartyMember.cpp(81,38): warning C4244:         ]
+  Entity.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(60,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(28,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
+  (compiling source file 'src/Entities/Entity.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
+      see declaration of 'Entity'
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(34,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
+  (compiling source file 'src/Entities/Entity.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(11,7):
+      see declaration of 'Menu'
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/Entities/Entity.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(16,15): warning C4834: discarding return value of function with [[nodiscard]] attribute
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(29,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(48,20): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(48,20): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(48,20): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(48,20): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(48,20): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(49,20): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(49,20): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(49,20): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(49,20): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Entity.cpp(49,20): warning C4244:         ]
   Button.cpp
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'src/Entities/UI/Button.cpp')
@@ -926,7 +965,7 @@ C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad
       C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Menu.h(11,7):
       see declaration of 'UI'
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(90,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\Creatures\Creature.h(144,48): warning C4244: 'return': conversion from 'const float' to 'uint', possible loss of data
   (compiling source file 'src/Game/Scene.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.cpp(251,53): warning C4305: 'argument': truncation from 'double' to 'float'
@@ -965,8 +1004,58 @@ C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad
           C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.cpp(538,35):
           see reference to function template instantiation 'float Distance<int>(const Vector2<int> &,const Vector2<int> &)' being compiled
   
+  main.cpp
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(60,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,69): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,88): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(28,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
+  (compiling source file 'src/main.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
+      see declaration of 'Entity'
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(34,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
+  (compiling source file 'src/main.cpp')
+      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(11,7):
+      see declaration of 'Menu'
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(69,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(70,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
+  (compiling source file 'src/main.cpp')
+  
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  (compiling source file 'src/main.cpp')
+  
   Generating Code...
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Enums.h(124,1): warning C4715: 'StringToGenus': not all control paths return a value
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Enums.h(184,1): warning C4715: 'StringToSize': not all control paths return a value
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Enums.h(152,1): warning C4715: 'StringToRace': not all control paths return a value
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Enums.h(124,1): warning C4715: 'StringToGenus': not all control paths return a value
   Shadows of Autongrad.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\x64\Debug\Shadows of Autongrad.exe

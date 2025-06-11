@@ -48,10 +48,19 @@ void Yggdrasil::LoadNPCDialogue(Creature* npc) {
 void Yggdrasil::LoadChoices() {
 	Text::Info choices_info = {};
 	choices_info.max_width = dlg_text.info.max_width;
-	choices_info.color = Color(1, .72);
 	for (int i = 0; i < dlg_leaf["Choices"].size(); ++i) {
+		json leaf_choices = dlg_leaf["Choices"][to_string(i + 1)];
+		
+		float alpha = 1;
+		if (leaf_choices.contains("Conditions")) {
+			alpha = CheckCondition(leaf_choices["Conditions"]["Check"], leaf_choices["Conditions"]["Value"]) ? 1 : .5;
+		}
+		choices_info.color = Color(1, alpha);
+		
 		choices_info.str = to_string(i + 1) + ": ";
 		choices_info.str += dlg_leaf["Choices"][to_string(i + 1)]["Text"];
+
+
 
 		dlg_choices.push_back(Text(&game->default_fonts[(game->GetResScale() + 1) * 12], choices_info));
 	}
@@ -59,18 +68,27 @@ void Yggdrasil::LoadChoices() {
 
 void Yggdrasil::ChooseDialogue() {
 	for (int i = 0; i < dlg_choices.size(); ++i) {
-		Rect choice_bbox = Rect(dlg_choices[i].info.pos, Vector2i(dlg_choices[i].info.str_size));
-		if (Collision::RectPoint(choice_bbox, Input::MousePos())) {
-			//Set the alpha for the choice to 1
-			dlg_choices[i].info.color = Color(1);
-			if (Input::BtnReleased(LMB)) {
-				SetIndex(dlg_leaf["Choices"][to_string(i + 1)]["Index"]);
-				break;
+		//Can only select valid choices
+		if (dlg_choices[i].info.color.a == 1) {
+			Rect choice_bbox = Rect(dlg_choices[i].info.pos, Vector2i(dlg_box.GetSprSize().x - TS * 2, dlg_choices[i].info.str_size.y));
+			if (Collision::RectPoint(choice_bbox, Input::MousePos())) {
+				//Set the color for the selected choice to yellow
+				dlg_choices[i].info.color = Color(1, 1, 0);
+				if (Input::BtnReleased(LMB)) {
+					SetIndex(dlg_leaf["Choices"][to_string(i + 1)]["Index"]);
+					break;
+				}
 			}
+			else
+				dlg_choices[i].info.color = Color(1);
 		}
-		else
-			dlg_choices[i].info.color = Color(1, .72);
 	}
+
+	if (Input::KeyPressed(SC_1) and dlg_choices[0].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["1"]["Index"]);
+	else if (Input::KeyPressed(SC_2) and dlg_choices.size() >= 2 and dlg_choices[1].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["2"]["Index"]);
+	else if (Input::KeyPressed(SC_3) and dlg_choices.size() >= 3 and dlg_choices[2].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["3"]["Index"]);
+	else if (Input::KeyPressed(SC_4) and dlg_choices.size() >= 4 and dlg_choices[3].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["4"]["Index"]);
+	else if (Input::KeyPressed(SC_5) and dlg_choices.size() >= 5 and dlg_choices[4].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["5"]["Index"]);
 }
 
 void Yggdrasil::DrawDialogue() {
@@ -97,6 +115,30 @@ void Yggdrasil::DrawDialogue() {
 			dlg_choices[i].MoveTo(Round(txt_x, dlg_choices[i-1].info.pos.y + dlg_choices[i - 1].info.str_size.y));
 		game->renderer.DrawTxt(dlg_choices[i]);
 	}
+}
+
+bool Yggdrasil::CheckCondition(string check, float val) {
+	//Different types of checks:
+	//-Money (Aeons, float)
+	//-Item (Inv, bool)
+	//-Disposition (Dispo, int)
+	//-Quest flags (Flags, bool)
+
+	if (check == "Aeons") {
+		return game->active_scene->CalcPartyAeons() > val;
+	}
+	else if (check == "Inv") {
+		//Check the party's inventory to see if they have the requisite item
+	}
+	else if (check == "Dispo") {
+		//Check if the speaker's disposition is >= val
+	}
+	else if (check == "Flags") {
+		//Check if all flags have been met
+		//This will be... interesting to implement
+	}
+
+	return false;
 }
 
 void Yggdrasil::SetIndex(int new_index) {

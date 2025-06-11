@@ -20,6 +20,17 @@ constexpr int M_K = SDL_SCANCODE_M;
 constexpr int O_K = SDL_SCANCODE_O;
 constexpr int S_K = SDL_SCANCODE_S;
 constexpr int W_K = SDL_SCANCODE_W;
+//Numbers
+constexpr int SC_0 = SDL_SCANCODE_0;
+constexpr int SC_1 = SDL_SCANCODE_1;
+constexpr int SC_2 = SDL_SCANCODE_2;
+constexpr int SC_3 = SDL_SCANCODE_3;
+constexpr int SC_4 = SDL_SCANCODE_4;
+constexpr int SC_5 = SDL_SCANCODE_5;
+constexpr int SC_6 = SDL_SCANCODE_6;
+constexpr int SC_7 = SDL_SCANCODE_7;
+constexpr int SC_8 = SDL_SCANCODE_8;
+constexpr int SC_9 = SDL_SCANCODE_9;
 //Arrows
 constexpr int UP = SDL_SCANCODE_UP;
 constexpr int DOWN = SDL_SCANCODE_DOWN;

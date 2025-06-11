@@ -191,6 +191,59 @@ void Creature::PrintStats() {
 	PrintDispo();
 }
 
+void Creature::PrintSkills() {
+	cout << "Action Skills:\n";
+	cout << "Arcana: " << skills.arcana << "/" << skills.arcana_max << "\n";
+	cout << "Appraisal: " << skills.appraisal << "/" << skills.appraisal_max << "\n";
+	cout << "Beast Handling: " << skills.beast_handling << "/" << skills.beast_handling_max << "\n";
+	cout << "Beguilement: " << skills.beguilement << "/" << skills.beguilement_max << "\n";
+	cout << "Climb: " << skills.climb << "/" << skills.climb_max << "\n";
+	cout << "Insight: " << skills.insight << "/" << skills.insight_max << "\n";
+	cout << "Intimidation: " << skills.intimidation << "/" << skills.intimidation_max << "\n";
+	cout << "Lore: " << skills.lore << "/" << skills.lore_max << "\n";
+	cout << "Mechanics: " << skills.mechanics << "/" << skills.mechanics_max << "\n";
+	cout << "Medicine: " << skills.medicine << "/" << skills.medicine_max << "\n";
+	cout << "Nature: " << skills.nature << "/" << skills.nature_max << "\n";
+	cout << "Navigation: " << skills.navigation << "/" << skills.navigation_max << "\n";
+	cout << "Perception: " << skills.perception << "/" << skills.perception_max << "\n";
+	cout << "Persuasion: " << skills.persuasion << "/" << skills.persuasion_max << "\n";
+	cout << "Sleight of Hand: " << skills.soh << "/" << skills.soh_max << "\n";
+	cout << "Stealth: " << skills.stealth << "/" << skills.stealth_max << "\n";
+	cout << "Survival: " << skills.survival << "/" << skills.survival_max << "\n";
+	cout << "Swim: " << skills.swim << "/" << skills.swim_max << "\n";
+	
+	cout << "Weapon Skills:\n";
+	cout << "Archery: " << skills.archery << "/" << skills.archery_max << "\n";
+	cout << "Exotic: " << skills.exotic << "/" << skills.exotic_max << "\n";
+	cout << "Firearm: " << skills.firearm << "/" << skills.firearm_max << "\n";
+	cout << "Large: " << skills.large << "/" << skills.large_max << "\n";
+	cout << "Medium: " << skills.medium << "/" << skills.medium_max << "\n";
+	cout << "Polearm: " << skills.polearm << "/" << skills.polearm_max << "\n";
+	cout << "Small: " << skills.small << "/" << skills.small_max << "\n";
+	cout << "Throwing: " << skills.throwing << "/" << skills.throwing_max << "\n";
+	cout << "Unarmed: " << skills.unarmed << "/" << skills.unarmed_max << "\n";
+
+	cout << "Tool Skills:\n";
+	cout << "Thieving Tools: " << skills.thieving_tools << "/" << skills.thieving_tools_max << "\n";
+	cout << "Medicine Kits: " << skills.medicine_kits << "/" << skills.medicine_kits_max << "\n";
+}
+
+void Creature::PrintInv() {
+	cout << "Inventory:\n";
+	cout << "Aeons: " << inv.aeons << "\n";
+}
+
+void Creature::PrintDispo() {
+	cout << "Party Disposition: " << party_dispo;
+	if (0 == party_dispo) cout << " (True Enemy)\n";
+	else if (0 < party_dispo and party_dispo <= 20) cout << " (Hostile)\n";
+	else if (20 < party_dispo and party_dispo <= 40) cout << " (Testy)\n";
+	else if (40 < party_dispo and party_dispo < 60) cout << " (Neutral)\n";
+	else if (60 <= party_dispo and party_dispo < 80) cout << " (Amicable)\n";
+	else if (80 <= party_dispo and party_dispo < 100) cout << " (Friendly)\n";
+	else if (party_dispo == 100) cout << " (True Friend)\n";
+	else cout << "!!! Invalid Disposition!!!\n";
+}
 
 void Creature::SetAbilityScores(array<float, 7> a_ss) {
 	SetAbilityScore(Ab_Score::STR, a_ss[0]);
@@ -383,6 +436,16 @@ void Creature::SetWornArmor(float w_a) {
 	SetDEF();
 }
 
+void Creature::SetAeons(float new_aeons) {
+	if (new_aeons >= 0) inv.aeons = new_aeons;
+	else cout << "Error! Cannot set negative Aeons.\n";
+}
+
+void Creature::AlterAeons(float offset) {
+	if (offset >= 0) inv.aeons += offset;
+	else if (offset < 0 and (inv.aeons + offset) < 0) cout << "Error! Cannot reduce Aeons to < 0.\n";
+}
+
 void Creature::SetDispo(int new_dispo) {
 	party_dispo = new_dispo;
 	Math::Clamp(party_dispo, 0, 100);
@@ -391,18 +454,6 @@ void Creature::SetDispo(int new_dispo) {
 void Creature::AlterDispo(int offset) {
 	party_dispo += offset;
 	Math::Clamp(party_dispo, 0, 100);
-}
-
-void Creature::PrintDispo() {
-	cout << "Party Disposition: " << party_dispo;
-	if (0 == party_dispo) cout << " (True Enemy)\n";
-	else if (0 < party_dispo and party_dispo <= 20) cout << " (Hostile)\n";
-	else if (20 < party_dispo and party_dispo <= 40) cout << " (Testy)\n";
-	else if (40 < party_dispo and party_dispo < 60) cout << " (Neutral)\n";
-	else if (60 <= party_dispo and party_dispo < 80) cout << " (Amicable)\n";
-	else if (80 <= party_dispo and party_dispo < 100) cout << " (Friendly)\n";
-	else if (party_dispo == 100) cout << " (True Friend)\n";
-	else cout << "!!! Invalid Disposition!!!\n";
 }
 
 void Creature::SetDEF() {

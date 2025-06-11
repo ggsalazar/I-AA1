@@ -3,16 +3,21 @@ Devlog: -Pathfinding (w + w/o smoothing)
 		-Dialogue/Yggdrasil
 
 
-Tutorial:	-Yggdrasil:
+Tutorial:	-Left off dicking around with Debug_dialogue
+			-May need to build GUI Yggdrasil...
+			-Yggdrasil:
 				--Visual feedback when selecting a choice
 					---Make background of dialogue box more opaque (.8)
-				--Visual feedback for unavailable choices
-				--Number can also be pressed to pick a choice, not just clicking on it
-					---Yggdrasil will need its own GetInput()
 				--CONDITIONS
-				--Skill checks :)
+					---Checks for:
+						----Money
+						----Disposition
+						----Reputation?
+						----Not least of all, flags
+					---Skill checks :)
 				--Changing nodes based on flags
-			-Skills struct in Creature
+					---Do simple test quest
+				--How to store/display old text?
 			-Dialogue system/trees
 				--Each piece of text MUST have:
 					---Speaker
@@ -59,6 +64,7 @@ Tutorial:	-Yggdrasil:
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
 		- Sentient creatures have separate head and body sprites (for customization)
+		- Difficulty for now is restricted to # of party members; future installments may have more granular difficulty settings
 
 Main Menu
 	-Character creation

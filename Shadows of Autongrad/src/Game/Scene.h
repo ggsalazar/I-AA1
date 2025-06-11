@@ -69,6 +69,7 @@ public:
     void CreatePreGen(PreGens p_g);
     inline vector<PartyMember*> GetPartyMems() const { return party_mems; }
     inline void SetPartyMems(vector<PartyMember*> p_ms) { party_mems = p_ms; }
+    float CalcPartyAeons();
 
     //NPCs
     void LoadNPCs();

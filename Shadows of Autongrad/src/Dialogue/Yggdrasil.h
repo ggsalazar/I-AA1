@@ -34,7 +34,8 @@ public:
 
 	void ChooseDialogue();
 	void DrawDialogue();
-
+	
+	bool CheckCondition(std::string check, float val);
 
 private:
 	void SetIndex(int new_index);
