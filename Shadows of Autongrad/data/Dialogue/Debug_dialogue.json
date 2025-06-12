@@ -1,199 +1,238 @@
 {
-    "Orv": {
-        "Test": {
-            "1": {
-                "Texts": {
-                    "1": {
-                        "Text": "Greetings Player."
-                    }
-                },
-                "Choices": {
-                    "1": {
-                        "Text": "Greetings yourself",
-                        "Index": 5
-                    },
-                    "2": {
-                        "Text": "Fuck you",
-                        "Effects": {
-                            "1": {
-                                "Effect": "Disposition",
-                                "Value": -20
-                            }
-                        },
-                        "Index": 7
-                    },
-                    "3": {
-                        "Text": "Give Aeons",
-                        "Condition": {
-                            "Check": "Aeons",
-                            "Value": 1
-                        },
-                        "Index": 3
-                    },
-                    "4": {
-                        "Text": "More information?",
-                        "Index": 2
-                    }
-                }
+  "Orv": {
+    "Test": {
+      "1": {
+        "Texts": {
+          "1": {
+            "Text": "Greetings Player."
+          }
+        },
+        "Choices": {
+          "1": {
+            "Text": "Greetings yourself",
+            "Index": 5
+          },
+          "2": {
+            "Text": "Fuck you",
+            "Effects": {
+              "1": {
+                "Effect": "Disposition",
+                "Value": -20
+              },
+              "2": {
+                "Effect": "Jump",
+                "Value": "Pissed Off"
+              }
             },
-            "2": {
-                "Texts": {
-                    "1": {
-                        "Text": "You have requested more information.",
-                        "Condition": {
-                            "Check": "Disposition",
-                            "Value": 30,
-                            "Comparison": "GE"
-                        }
-                    },
-                    "2": {
-                        "Text": "Eat shit.",
-                        "Condition": {
-                            "Check": "Disposition",
-                            "Value": 30,
-                            "Comparison": "L"
-                        }
-                    }
-                },
-                "Choices": {
-                    "1": {
-                        "Text": "Continue",
-                        "Index": 1
-                    }
-                }
+            "Index": 1
+          },
+          "3": {
+            "Text": "Give Aeons",
+            "Condition": {
+              "Check": "Aeons",
+              "Value": 1,
+              "Comparison": "GE"
             },
-            "3": {
-                "Texts": {
-                    "1": {
-                        "Text": "You wish to give me money? Excellent! How much do you wish to give?"
-                    }
-                },
-                "Choices": {
-                    "1": {
-                        "Text": "10 Aeons",
-                        "Condition": {
-                            "Check": "Aeons",
-                            "Value": 10
-                        },
-                        "Effects": {
-                            "1": {
-                                "Effect": "Aeons",
-                                "Value": -10
-                            },
-                            "2": {
-                                "Effect": "Disposition",
-                                "Value": 10,
-                                "ValueMod": "Fourth"
-                            }
-                        },
-                        "Index": 4
-                    },
-                    "2": {
-                        "Text": "5 Aeons",
-                        "Condition": {
-                            "Check": "Aeons",
-                            "Value": 5
-                        },
-                        "Effects": {
-                            "1": {
-                                "Effect": "Aeons",
-                                "Value": -5
-                            },
-                            "2": {
-                                "Effect": "Disposition",
-                                "Value": 5,
-                                "ValueMod": "Fourth"
-                            }
-                        },
-                        "Index": 4
-                    },
-                    "3": {
-                        "Text": "1 Aeon",
-                        "Condition": {
-                            "Check": "Aeons",
-                            "Value": 1
-                        },
-                        "Effects": {
-                            "1": {
-                                "Effect": "Aeons",
-                                "Value": -1
-                            },
-                            "2": {
-                                "Effect": "Disposition",
-                                "Value": 1,
-                                "ValueMod": "Fourth"
-                            }
-                        },
-                        "Index": 4
-                    }
-                }
-            },
-            "4": {
-                "Texts": {
-                    "1": {
-                        "Text": "Thank you"
-                    },
-                    "2": {
-                        "Text": " so much",
-                        "Condition": {
-                            "Check": "Disposition",
-                            "Value": 55,
-                            "Comparison": "GE"
-                        }
-                    },
-                    "3": {
-                        "Text": "!"
-                    }
-                },
-                "Choices": {
-                    "1": {
-                        "Text": "Give more",
-                        "Condition": {
-                            "Check": "Aeons",
-                            "Value": 1
-                        },
-                        "Index": 3
-                    },
-                    "2": {
-                        "Text": "That's enough",
-                        "Index": 1
-                    }
-                }
-            },
-            "5": {
-                "Texts": {
-                    "1": {
-                        "Text": "Thank you so much, friend!",
-                        "Condition": {
-                            "Check": "Disposition",
-                            "Value": 52,
-                            "Comparison": "GE"
-                        }
-                    },
-                    "2": {
-                        "Text": "Well fuck you too then!",
-                        "Condition": {
-                            "Check": "Disposition",
-                            "Value": 30,
-                            "Comparison": "LE"
-                        }
-                    },
-                    "3": {
-                        "Text": "Thank you for running this test.",
-                        "Condition": {
-                            "Check": "Disposition",
-                            "Value": 50,
-                            "Comparison": "E"
-                        }
-                    }
-                },
-                "Choices": {
-                    "1": {
-                        "Text": "Finish",
-                        "Index": 0
-                    }
-                }
-            }
+            "Index": 3
+          },
+          "4": {
+            "Text": "More information?",
+            "Index": 2
+          }
         }
+      },
+      "2": {
+        "Texts": {
+          "1": {
+            "Text": "You have requested more information.",
+            "Condition": {
+              "Check": "Disposition",
+              "Value": 30,
+              "Comparison": "GE"
+            }
+          },
+          "2": {
+            "Text": "Eat shit.",
+            "Condition": {
+              "Check": "Disposition",
+              "Value": 30,
+              "Comparison": "L"
+            }
+          }
+        },
+        "Choices": {
+          "1": {
+            "Text": "Continue",
+            "Index": 1
+          }
+        }
+      },
+      "3": {
+        "Texts": {
+          "1": {
+            "Text": "You wish to give me money? Excellent! How much do you wish to give?"
+          }
+        },
+        "Choices": {
+          "1": {
+            "Text": "10 Aeons",
+            "Condition": {
+              "Check": "Aeons",
+              "Value": 10,
+              "Comparison": "GE"
+            },
+            "Effects": {
+              "1": {
+                "Effect": "Aeons",
+                "Value": -10
+              },
+              "2": {
+                "Effect": "Disposition",
+                "Value": 2.5
+              },
+              "3": {
+                "Effect": "Jump",
+                "Value": "Gave Aeons"
+              }
+            },
+            "Index": 1
+          },
+          "2": {
+            "Text": "5 Aeons",
+            "Condition": {
+              "Check": "Aeons",
+              "Value": 5,
+              "Comparison": "GE"
+            },
+            "Effects": {
+              "1": {
+                "Effect": "Aeons",
+                "Value": -5
+              },
+              "2": {
+                "Effect": "Disposition",
+                "Value": 1.25
+              }
+            },
+            "Index": 4
+          },
+          "3": {
+            "Text": "1 Aeon",
+            "Condition": {
+              "Check": "Aeons",
+              "Value": 1,
+              "Comparison": "GE"
+            },
+            "Effects": {
+              "1": {
+                "Effect": "Aeons",
+                "Value": -1
+              },
+              "2": {
+                "Effect": "Disposition",
+                "Value": 0.25
+              }
+            },
+            "Index": 4
+          }
+        }
+      },
+      "4": {
+        "Texts": {
+          "1": {
+            "Text": "Thank you"
+          },
+          "2": {
+            "Text": " so much",
+            "Condition": {
+              "Check": "Disposition",
+              "Value": 55,
+              "Comparison": "GE"
+            }
+          },
+          "3": {
+            "Text": "!"
+          }
+        },
+        "Choices": {
+          "1": {
+            "Text": "Give more",
+            "Condition": {
+              "Check": "Aeons",
+              "Value": 1,
+              "Comparison": "GE"
+            },
+            "Index": 3
+          },
+          "2": {
+            "Text": "That's enough",
+            "Index": 1
+          }
+        }
+      },
+      "5": {
+        "Texts": {
+          "1": {
+            "Text": "Thank you so much, friend!",
+            "Condition": {
+              "Check": "Disposition",
+              "Value": 52,
+              "Comparison": "GE"
+            }
+          },
+          "2": {
+            "Text": "Thank you for running this test.",
+            "Condition": {
+              "Check": "Disposition",
+              "Value": [ 30, 52 ]
+            }
+          },
+          "3": {
+            "Text": "Fuck off!",
+            "Condition": {
+              "Check": "Disposition",
+              "Value": 30,
+              "Comparison": "LE"
+            }
+          }
+        },
+        "Choices": {
+          "1": {
+            "Text": "Finish",
+            "Index": 0
+          }
+        }
+      }
+    },
+    "Gave Aeons": {
+      "1": {
+        "Texts": {
+          "1": {
+            "Text": "You are truly generous!"
+          }
+        },
+        "Choices": {
+          "1": {
+            "Text": "Don't sweat it homeslice.",
+            "Index": 0
+          }
+        }
+      }
+    },
+    "Pissed Off": {
+      "1": {
+        "Texts": {
+          "1": {
+            "Text": "Piss off!"
+          }
+        },
+        "Choices": {
+          "1": {
+            "Text": "Fuck you too.",
+            "Index": 0
+          }
+        }
+      }
     }
+  }
 }

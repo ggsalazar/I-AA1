@@ -84,7 +84,6 @@ public:
 	};
 
 	struct Inventory {
-		float aeons = 10;
 		//unordered_map<Items, Item> equipment;
 		//unordered_map<Items, Item> equipment;
 	};
@@ -92,8 +91,7 @@ public:
 	bool well_rested = true;
 	bool alive = true;
 
-	//string dlg_node = "DEFAULT";
-	string dlg_node = "Test";
+	string dlg_branch = "Test";
 
 	Sprite portrait;
 	Rect por_bbox;
@@ -155,10 +153,8 @@ public:
 
 
 	//Inventory
-	void SetAeons(float new_aeons);
-	void AlterAeons(float offset);
-	inline float GetAeons() const { return inv.aeons; }
 
+	//Party Disposition
 	void SetDispo(float new_dispo);
 	void AlterDispo(float offset);
 	inline float GetDispo() const { return party_dispo; }

@@ -21,6 +21,7 @@ public:
     bool lmb_action = true; //Whether we are using the default action
     Menus interface_open = Menus::NOINTRFC;
 
+
     Scene() = default;
     Scene(Scenes init_label) : label(init_label) {}
     ~Scene() {
@@ -69,7 +70,9 @@ public:
     void CreatePreGen(PreGens p_g);
     inline vector<PartyMember*> GetPartyMems() const { return party_mems; }
     inline void SetPartyMems(vector<PartyMember*> p_ms) { party_mems = p_ms; }
-    float CalcPartyAeons();
+    void SetPartyAeons(float new_aeons);
+    void AlterPartyAeons(float offset);
+    inline float GetPartyAeons() const { return party_aeons; }
 
     //NPCs
     void LoadNPCs();
@@ -94,6 +97,7 @@ private:
     unordered_map<Menus, Menu*> menus;
     vector<Entity*> entities;
     vector<PartyMember*> party_mems;
+    float party_aeons = 10;
 
     //Edge panning rects
     Rect up_edge;

@@ -7,7 +7,7 @@ Tutorial:	-Left off dicking around with Debug_dialogue
 				--Implement:
 					---Comparison (Text Condition, Choice Condition)
 					---Effects (Choice)
-			-GUI Yggdrasil...
+			-GUI Yggdrasil
 			-Yggdrasil:
 				--CONDITIONS
 					---Checks for:

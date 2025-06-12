@@ -3,9 +3,9 @@
 Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 	const string por_name, const int init_dispo,
 	const bool init_biped, const bool init_winged,
-	const string init_dlg_node)
+	const string init_dlg_branch)
 	: Entity(s_i), stats(init_stats), party_dispo(init_dispo), biped(init_biped), winged(init_winged),
-		dlg_node(init_dlg_node) {
+		dlg_branch(init_dlg_branch) {
 
 	//Set sprite origin (most likely {.5f, .95f} for all creatures)
 	sprite.SetOrigin({ .5f, .95f });
@@ -230,7 +230,6 @@ void Creature::PrintSkills() {
 
 void Creature::PrintInv() {
 	cout << "Inventory:\n";
-	cout << "Aeons: " << inv.aeons << "\n";
 }
 
 void Creature::PrintDispo() {
@@ -434,16 +433,6 @@ void Creature::SetWornArmor(float w_a) {
 	stats.worn_armor = w_a;
 	stats.armor = stats.nat_armor + stats.worn_armor;
 	SetDEF();
-}
-
-void Creature::SetAeons(float new_aeons) {
-	if (new_aeons >= 0) inv.aeons = new_aeons;
-	else cout << "Error! Cannot set negative Aeons.\n";
-}
-
-void Creature::AlterAeons(float offset) {
-	if (offset >= 0) inv.aeons += offset;
-	else if (offset < 0 and (inv.aeons + offset) < 0) cout << "Error! Cannot reduce Aeons to < 0.\n";
 }
 
 void Creature::SetDispo(float new_dispo) {

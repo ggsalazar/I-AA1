@@ -666,12 +666,14 @@ void Scene::CreatePreGen(PreGens p_g) {
 	));
 }
 
-float Scene::CalcPartyAeons() {
-	float aeons_sum = 0.0f;
-	for (auto p_m : party_mems)
-		aeons_sum += p_m->GetAeons();
+void Scene::SetPartyAeons(float new_aeons) {
+	if (new_aeons >= 0) party_aeons = new_aeons;
+	else cout << "Error! Cannot set negative Aeons.\n";
+}
 
-	return aeons_sum;
+void Scene::AlterPartyAeons(float offset) {
+	if (offset < 0 and (party_aeons + offset) < 0) cout << "Error! Cannot reduce Aeons to < 0.\n";
+	else party_aeons += offset;
 }
 
 void Scene::LoadNPCs() {
