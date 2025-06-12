@@ -446,12 +446,12 @@ void Creature::AlterAeons(float offset) {
 	else if (offset < 0 and (inv.aeons + offset) < 0) cout << "Error! Cannot reduce Aeons to < 0.\n";
 }
 
-void Creature::SetDispo(int new_dispo) {
+void Creature::SetDispo(float new_dispo) {
 	party_dispo = new_dispo;
 	Math::Clamp(party_dispo, 0, 100);
 }
 
-void Creature::AlterDispo(int offset) {
+void Creature::AlterDispo(float offset) {
 	party_dispo += offset;
 	Math::Clamp(party_dispo, 0, 100);
 }

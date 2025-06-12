@@ -10,14 +10,41 @@ void Yggdrasil::Init(Game* g) {
 
 	Text::Info ti = {};
 	ti.max_width = dlg_box.GetSprSize().x - TS*4;
-	//Size of font is dependent on ResScale - TO-DO
-	dlg_text.Init(&game->default_fonts[(game->GetResScale()+1)*12], ti);
+	text.Init(&game->default_fonts[(game->GetResScale() + 1) * 12], ti);
+	old_text.Init(&game->default_fonts[(game->GetResScale() + 1) * 12], ti);
+}
+
+void Yggdrasil::DrawDialogue() {
+	//Render the dialogue box
+	dlg_box.MoveTo(Vector2f(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h));
+	game->renderer.DrawSprite(dlg_box);
+
+	//Load, move, and draw the dialogue
+	int txt_x = game->camera.viewport.x + TS * 2;
+	leaf = branch[to_string(dlg_index)];
+	string dlg_txt = leaf["Text"];
+	text.info.str = dlg_speaker + dlg_txt;
+	text.MoveTo({ txt_x, dlg_box.GetPos().y - dlg_box.GetSprSize().y + TS });
+	game->renderer.DrawTxt(text);
+
+	//Load, move, and draw the choices
+	if (!choices.size())
+		LoadChoices();
+
+	for (int i = 0; i < choices.size(); ++i) {
+		if (!i)
+			choices[i].MoveTo(Round(txt_x, dlg_box.GetPos().y - dlg_box.GetSprSize().y * .5));
+		else
+			choices[i].MoveTo(Round(txt_x, choices[i - 1].info.pos.y + choices[i - 1].info.str_size.y));
+		game->renderer.DrawTxt(choices[i]);
+	}
 }
 
 void Yggdrasil::LoadAreaDialogue(const string& area) {
 	//Set dialogue box size
 	dlg_box.SetScale(Vector2i(game->GetResScale()));
-	dlg_text.font = &game->default_fonts[(game->GetResScale() + 1) * 12];
+	text.font = &game->default_fonts[(game->GetResScale() + 1) * 12];
+	old_text.font = &game->default_fonts[(game->GetResScale() + 1) * 12];
 
 	//Load json file
 	ifstream file("data/Dialogue/"+area+"_dialogue.json");
@@ -30,91 +57,69 @@ void Yggdrasil::LoadAreaDialogue(const string& area) {
 }
 
 void Yggdrasil::LoadNPCDialogue(Creature* npc) {
-	dlg_speaker = npc->GetName();
-	dlg_branch = area_dlg[dlg_speaker];
-	if (dlg_branch.empty()) {
-		cerr << "Failed to open dialogue branch for character " << dlg_speaker << "\n";
+	speaker = npc->GetName();
+	branch = area_dlg[speaker];
+	if (branch.empty()) {
+		cerr << "Failed to open dialogue branch for character " << speaker << "\n";
 		return;
 	}
 
-	dlg_branch = dlg_branch[npc->dlg_node];
-	if (dlg_branch.empty()) {
-		cerr << "Failed to open dialogue node " << npc->dlg_node << " for character " << dlg_speaker << "\n";
+	branch = branch[npc->dlg_node];
+	if (branch.empty()) {
+		cerr << "Failed to open dialogue node " << npc->dlg_node << " for character " << speaker << "\n";
 		return;
 	}
-	dlg_speaker += ": ";
+	speaker += ": ";
+}
+
+void Yggdrasil::LoadText() {
+
 }
 
 void Yggdrasil::LoadChoices() {
 	Text::Info choices_info = {};
-	choices_info.max_width = dlg_text.info.max_width;
-	for (int i = 0; i < dlg_leaf["Choices"].size(); ++i) {
-		json leaf_choices = dlg_leaf["Choices"][to_string(i + 1)];
+	choices_info.max_width = text.info.max_width;
+	for (int i = 0; i < leaf["Choices"].size(); ++i) {
+		json leaf_choices = leaf["Choices"][to_string(i + 1)];
 		
 		float alpha = 1;
-		if (leaf_choices.contains("Conditions")) {
-			alpha = CheckCondition(leaf_choices["Conditions"]["Check"], leaf_choices["Conditions"]["Value"]) ? 1 : .5;
+		if (leaf_choices.contains("Condition")) {
+			alpha = CheckCondition(leaf_choices["Condition"]["Check"], leaf_choices["Condition"]["Value"]) ? 1 : .5;
 		}
 		choices_info.color = Color(1, alpha);
 		
 		choices_info.str = to_string(i + 1) + ": ";
-		choices_info.str += dlg_leaf["Choices"][to_string(i + 1)]["Text"];
+		choices_info.str += leaf["Choices"][to_string(i + 1)]["Text"];
 
 
 
-		dlg_choices.push_back(Text(&game->default_fonts[(game->GetResScale() + 1) * 12], choices_info));
+		choices.push_back(Text(&game->default_fonts[(game->GetResScale() + 1) * 12], choices_info));
 	}
 }
 
 void Yggdrasil::ChooseDialogue() {
-	for (int i = 0; i < dlg_choices.size(); ++i) {
+	for (int i = 0; i < choices.size(); ++i) {
 		//Can only select valid choices
-		if (dlg_choices[i].info.color.a == 1) {
-			Rect choice_bbox = Rect(dlg_choices[i].info.pos, Vector2i(dlg_box.GetSprSize().x - TS * 2, dlg_choices[i].info.str_size.y));
+		if (choices[i].info.color.a == 1) {
+			Rect choice_bbox = Rect(choices[i].info.pos, Vector2i(dlg_box.GetSprSize().x - TS * 2, choices[i].info.str_size.y));
 			if (Collision::RectPoint(choice_bbox, Input::MousePos())) {
 				//Set the color for the selected choice to yellow
-				dlg_choices[i].info.color = Color(1, 1, 0);
+				choices[i].info.color = Color(1, 1, 0);
 				if (Input::BtnReleased(LMB)) {
-					SetIndex(dlg_leaf["Choices"][to_string(i + 1)]["Index"]);
+					SetIndex(leaf["Choices"][to_string(i + 1)]["Index"]);
 					break;
 				}
 			}
 			else
-				dlg_choices[i].info.color = Color(1);
+				choices[i].info.color = Color(1);
 		}
 	}
 
-	if (Input::KeyPressed(SC_1) and dlg_choices[0].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["1"]["Index"]);
-	else if (Input::KeyPressed(SC_2) and dlg_choices.size() >= 2 and dlg_choices[1].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["2"]["Index"]);
-	else if (Input::KeyPressed(SC_3) and dlg_choices.size() >= 3 and dlg_choices[2].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["3"]["Index"]);
-	else if (Input::KeyPressed(SC_4) and dlg_choices.size() >= 4 and dlg_choices[3].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["4"]["Index"]);
-	else if (Input::KeyPressed(SC_5) and dlg_choices.size() >= 5 and dlg_choices[4].info.color.a == 1) SetIndex(dlg_leaf["Choices"]["5"]["Index"]);
-}
-
-void Yggdrasil::DrawDialogue() {
-	//Render the dialogue box
-	dlg_box.MoveTo(Vector2f(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h));
-	game->renderer.DrawSprite(dlg_box);
-
-	//Load, move, and draw the dialogue
-	int txt_x = game->camera.viewport.x + TS * 2;
-	dlg_leaf = dlg_branch[to_string(dlg_index)];
-	string dlg_txt = dlg_leaf["Text"];
-	dlg_text.info.str = dlg_speaker + dlg_txt;
-	dlg_text.MoveTo({ txt_x, dlg_box.GetPos().y - dlg_box.GetSprSize().y + TS});
-	game->renderer.DrawTxt(dlg_text);
-
-	//Load, move, and draw the choices
-	if (!dlg_choices.size())
-		LoadChoices();
-
-	for (int i = 0; i < dlg_choices.size(); ++i) {
-		if (!i)
-			dlg_choices[i].MoveTo(Round(txt_x, dlg_box.GetPos().y - dlg_box.GetSprSize().y * .5));
-		else
-			dlg_choices[i].MoveTo(Round(txt_x, dlg_choices[i-1].info.pos.y + dlg_choices[i - 1].info.str_size.y));
-		game->renderer.DrawTxt(dlg_choices[i]);
-	}
+	if (Input::KeyPressed(SC_1) and choices[0].info.color.a == 1) SetIndex(leaf["Choices"]["1"]["Index"]);
+	else if (Input::KeyPressed(SC_2) and choices.size() >= 2 and choices[1].info.color.a == 1) SetIndex(leaf["Choices"]["2"]["Index"]);
+	else if (Input::KeyPressed(SC_3) and choices.size() >= 3 and choices[2].info.color.a == 1) SetIndex(leaf["Choices"]["3"]["Index"]);
+	else if (Input::KeyPressed(SC_4) and choices.size() >= 4 and choices[3].info.color.a == 1) SetIndex(leaf["Choices"]["4"]["Index"]);
+	else if (Input::KeyPressed(SC_5) and choices.size() >= 5 and choices[4].info.color.a == 1) SetIndex(leaf["Choices"]["5"]["Index"]);
 }
 
 bool Yggdrasil::CheckCondition(string check, float val) {
@@ -125,7 +130,7 @@ bool Yggdrasil::CheckCondition(string check, float val) {
 	//-Quest flags (Flags, bool)
 
 	if (check == "Aeons") {
-		return game->active_scene->CalcPartyAeons() > val;
+		return game->active_scene->CalcPartyAeons() >= val;
 	}
 	else if (check == "Inv") {
 		//Check the party's inventory to see if they have the requisite item
@@ -141,9 +146,18 @@ bool Yggdrasil::CheckCondition(string check, float val) {
 	return false;
 }
 
+void Yggdrasil::CauseEffect(array<string, 3> effects, float val) {
+	//Different types of effects:
+	//-Alter Party Aeons
+	//-Alter Speaker Disposition
+	//-Set Quest flags
+	
+	if (effects[0] == "Aeons") {}
+}
+
 void Yggdrasil::SetIndex(int new_index) {
 	dlg_index = new_index;
-	dlg_choices.clear();
+	choices.clear();
 
 	if (!dlg_index) {
 		dlg_index = 1;

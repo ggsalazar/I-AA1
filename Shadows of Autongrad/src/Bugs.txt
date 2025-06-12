@@ -5,6 +5,8 @@ Path smoothing working, but not quite registering unwalkable tiles quite right
 
 Player SHOULD BE ABLE TO move a small amount if they want to
 
+Move window when resizing
+
 Pathfinding - currently getting goal node closest to start, need goal node closest to second-to-last node
 
 What to set cursor to when pointing at Party Member? Not a bug per se, moreso just a question that needs answering

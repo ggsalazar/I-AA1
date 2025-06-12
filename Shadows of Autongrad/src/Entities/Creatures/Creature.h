@@ -159,9 +159,9 @@ public:
 	void AlterAeons(float offset);
 	inline float GetAeons() const { return inv.aeons; }
 
-	void SetDispo(int new_dispo);
-	void AlterDispo(int offset);
-	inline int GetDispo() const { return party_dispo; }
+	void SetDispo(float new_dispo);
+	void AlterDispo(float offset);
+	inline float GetDispo() const { return party_dispo; }
 
 protected:
 	Stats stats;
@@ -177,7 +177,7 @@ protected:
 	int dodge_penalty = 0;
 	bool encumbered = false;
 	bool in_combat = false;
-	int party_dispo = 50;
+	float party_dispo = 50;
 	float base_mv_spd = 1;
 	float mv_spd = 1; //This is not a stat, this is the UTH movement speed!
 

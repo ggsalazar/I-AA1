@@ -4,7 +4,10 @@ Devlog: -Pathfinding (w + w/o smoothing)
 
 
 Tutorial:	-Left off dicking around with Debug_dialogue
-			-May need to build GUI Yggdrasil...
+				--Implement:
+					---Comparison (Text Condition, Choice Condition)
+					---Effects (Choice)
+			-GUI Yggdrasil...
 			-Yggdrasil:
 				--CONDITIONS
 					---Checks for:
@@ -16,6 +19,8 @@ Tutorial:	-Left off dicking around with Debug_dialogue
 				--Changing nodes based on flags
 					---Do simple test quest
 				--How to store/display old text?
+					---Add to a continuously growing string that is hidden/displayed with a button above the dialogue box
+						----How to scroll?
 			-Dialogue system/trees
 				--Each piece of text MUST have:
 					---Speaker
@@ -30,7 +35,6 @@ Tutorial:	-Left off dicking around with Debug_dialogue
 							-----2. Gray out and strike through the ones for which the condition is not met
 				--Each piece of text CAN have:
 					---Condition(s)
-					---Effects(s)
 				--How to set dialogue node each time character is spoken to?
 					---Needs to be saved and then loaded?
 					---Determined dynamically via location and flags
@@ -38,6 +42,8 @@ Tutorial:	-Left off dicking around with Debug_dialogue
 			 (can be pulled from TileMap after area is fully loaded)
 			-Combat
 				--Just a quick lil sum'sum - 1 melee-only creature against the 1 party member
+			-Roll Log
+				--Bottom right
 			-NPCs
 				--Blacksmith
 					---Shopping (after implementing inventory)
@@ -136,3 +142,4 @@ Future Improvements/Sequel ideas:
 	-Temporary party members/allies
 	-NavMesh instead of grid
 	-More traps
+	-Yggdrasil: Display value of variables in string

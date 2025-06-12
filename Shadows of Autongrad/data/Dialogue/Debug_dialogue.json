@@ -2,27 +2,59 @@
     "Orv": {
         "Test": {
             "1": {
-                "Text": "Greetings Player.",
+                "Texts": {
+                    "1": {
+                        "Text": "Greetings Player."
+                    }
+                },
                 "Choices": {
                     "1": {
                         "Text": "Greetings yourself",
-                        "Index": 3
+                        "Index": 5
                     },
                     "2": {
-                        "Text": "Give Aeons",
-                        "Conditions": {
-                            "Check": "Aeons",
-                            "Value": 1
-                        }
+                        "Text": "Fuck you",
+                        "Effects": {
+                            "1": {
+                                "Effect": "Disposition",
+                                "Value": -20
+                            }
+                        },
+                        "Index": 7
                     },
                     "3": {
+                        "Text": "Give Aeons",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 1
+                        },
+                        "Index": 3
+                    },
+                    "4": {
                         "Text": "More information?",
                         "Index": 2
                     }
                 }
             },
             "2": {
-                "Text": "You have requested more information.",
+                "Texts": {
+                    "1": {
+                        "Text": "You have requested more information.",
+                        "Condition": {
+                            "Check": "Disposition",
+                            "Value": 30,
+                            "Comparison": "GE"
+                        }
+                    },
+                    "2": {
+                        "Text": "Eat shit.",
+                        "Condition": {
+                            "Check": "Disposition",
+                            "Value": 30,
+                            "Comparison": "L"
+                        }
+                    }
+                },
                 "Choices": {
                     "1": {
                         "Text": "Continue",
@@ -31,33 +63,130 @@
                 }
             },
             "3": {
-                "Text": "You wish to give me money? Excellent! How much do you wish to give?",
+                "Texts": {
+                    "1": {
+                        "Text": "You wish to give me money? Excellent! How much do you wish to give?"
+                    }
+                },
                 "Choices": {
                     "1": {
                         "Text": "10 Aeons",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 10
+                        },
+                        "Effects": {
+                            "1": {
+                                "Effect": "Aeons",
+                                "Value": -10
+                            },
+                            "2": {
+                                "Effect": "Disposition",
+                                "Value": 10,
+                                "ValueMod": "Fourth"
+                            }
+                        },
+                        "Index": 4
+                    },
+                    "2": {
+                        "Text": "5 Aeons",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 5
+                        },
+                        "Effects": {
+                            "1": {
+                                "Effect": "Aeons",
+                                "Value": -5
+                            },
+                            "2": {
+                                "Effect": "Disposition",
+                                "Value": 5,
+                                "ValueMod": "Fourth"
+                            }
+                        },
+                        "Index": 4
+                    },
+                    "3": {
+                        "Text": "1 Aeon",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 1
+                        },
+                        "Effects": {
+                            "1": {
+                                "Effect": "Aeons",
+                                "Value": -1
+                            },
+                            "2": {
+                                "Effect": "Disposition",
+                                "Value": 1,
+                                "ValueMod": "Fourth"
+                            }
+                        },
                         "Index": 4
                     }
                 }
             },
             "4": {
-                "Text": "Thank you!",
+                "Texts": {
+                    "1": {
+                        "Text": "Thank you"
+                    },
+                    "2": {
+                        "Text": " so much",
+                        "Condition": {
+                            "Check": "Disposition",
+                            "Value": 55,
+                            "Comparison": "GE"
+                        }
+                    },
+                    "3": {
+                        "Text": "!"
+                    }
+                },
                 "Choices": {
                     "1": {
                         "Text": "Give more",
-                        "Conditions": {
+                        "Condition": {
                             "Check": "Aeons",
-                            "Value": 0
-                        }
+                            "Value": 1
+                        },
                         "Index": 3
-                    }
+                    },
                     "2": {
                         "Text": "That's enough",
                         "Index": 1
                     }
                 }
-            }
+            },
             "5": {
-                "Text": "Thank you for running this test.",
+                "Texts": {
+                    "1": {
+                        "Text": "Thank you so much, friend!",
+                        "Condition": {
+                            "Check": "Disposition",
+                            "Value": 52,
+                            "Comparison": "GE"
+                        }
+                    },
+                    "2": {
+                        "Text": "Well fuck you too then!",
+                        "Condition": {
+                            "Check": "Disposition",
+                            "Value": 30,
+                            "Comparison": "LE"
+                        }
+                    },
+                    "3": {
+                        "Text": "Thank you for running this test.",
+                        "Condition": {
+                            "Check": "Disposition",
+                            "Value": 50,
+                            "Comparison": "E"
+                        }
+                    }
+                },
                 "Choices": {
                     "1": {
                         "Text": "Finish",
