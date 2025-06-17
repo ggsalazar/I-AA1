@@ -183,7 +183,6 @@ protected:
 	float base_mv_spd = 1;
 	float mv_spd = 1; //This is not a stat, this is the UTH movement speed!
 
-
 	Text nameplate;
 
 	queue<Vector2i> path;

@@ -1,16 +1,5 @@
 Yes/No buttons not removing elements like they should in character creation
 
-Path smoothing working, but not quite registering unwalkable tiles quite right
-	-Issue is not easily replicable
-
-Player SHOULD BE ABLE TO move a small amount if they want to
-
-Why does Dakn have 0 Health?
-
-Don't edgepan if mouse is over a UI element
-
-Move window when resizing
+Path smoothing working, but due to how nodes are moved to, will sometimes walk over unwalkable nodes
 
 Pathfinding - currently getting goal node closest to start, need goal node closest to second-to-last node
-
-What to set cursor to when pointing at Party Member? Not a bug per se, moreso just a question that needs answering

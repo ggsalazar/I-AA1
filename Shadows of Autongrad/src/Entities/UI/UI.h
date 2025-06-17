@@ -17,6 +17,8 @@ public:
 
     virtual void Resize(uint r_s);
 
+    inline bool Selected() { return active and Collision::RectPoint(bbox, Input::MousePos()); }
+
     void SetActive(const bool new_active = true);
     inline bool GetActive() const { return active; }
     inline bool GetActivated() const { return activated; }
@@ -31,7 +33,6 @@ protected:
     bool activated = false;
 
     //Functions
-    inline bool Selected() { return active and Collision::RectPoint(bbox, Input::MousePos()); }
     virtual void Pressed();
     virtual void Released() {}
 };

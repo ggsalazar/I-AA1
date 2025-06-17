@@ -11,6 +11,7 @@ class Game;
 class Menu;
 class Interface;
 class Entity;
+class UI;
 class Creature;
 class PartyMember;
 
@@ -53,7 +54,8 @@ public:
     void ResizeMenus();
 
     //Gameplay functions
-    void OpenInterface();
+    void OpenInterfaces();
+    void OpenInterface(Menus intrfc);
     void MoveCamera();
     void SelectPartyMems();
     Action LMBAction(vector<PartyMember*>& s_pms);
@@ -99,6 +101,7 @@ private:
 
     unordered_map<Menus, Menu*> menus;
     vector<Entity*> entities;
+    vector<UI*> ui_elems;
     vector<PartyMember*> party_mems;
     float party_aeons = 10;
 

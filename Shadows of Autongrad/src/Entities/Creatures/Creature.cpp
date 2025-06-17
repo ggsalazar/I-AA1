@@ -87,7 +87,6 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 	encumbered = stats.carry_weight > stats.max_carry_weight;
 	mv_spd = encumbered ? base_mv_spd * .5f : base_mv_spd;
 
-
 	//PrintStats();
 }
 
@@ -175,7 +174,10 @@ void Creature::PrintStats() {
 	cout << "Health Threshholds: 30%: " << stats.th_per_hlth << "; 20%: " << stats.tw_per_hlth << "; 10%: " << stats.tn_per_hlth << "\n";
 	cout << "Defenses:\nM-DEF: " << stats.m_def << " (Dodge: " << stats.dodge << " (AGI: " << stats.a_scores[2] << " + DEX: " << stats.a_scores[3] << " + Dodge Penalty: " << dodge_penalty << "), Armor: " << stats.armor << " (Nat: " << stats.nat_armor << ", Worn: " << stats.worn_armor << ")); R-DEF: " << stats.r_def << "\n";
 	cout << "Saves:\nFort: " << stats.fort << "; Ref: " << stats.ref << "; Will: " << stats.will << "\n";
-	cout << "Movement:\nWalking Speed: " << stats.w_spd << "m/s (" << base_spd << " + " << stats.a_scores[2]*.5 <<"); Flying Speed: " << stats.f_spd << " (" << base_spd << " + " << stats.a_scores[0] * .5 << ")\n"; //To add: Swim Speed!
+	cout << "Movement:\nWalking Speed: " << stats.w_spd << "m/s (" << base_spd << " + " << stats.a_scores[2] * .5 << "); Flying Speed: " << stats.f_spd;
+	if (stats.f_spd != 0)
+		cout << " (" << base_spd << " + " << stats.a_scores[0] * .5 << ")"; //To add: Swim Speed!
+	cout << "\n";
 	cout << "Weight:\nTotal Weight: " << stats.total_weight << "lbs. (Self Weight: " << self_weight << ", Carry Weight: " << stats.carry_weight << "/" << stats.max_carry_weight;
 	if (encumbered) cout << "(Encumbered!)";
 	cout << ")\n";
@@ -189,6 +191,7 @@ void Creature::PrintStats() {
 	if (!well_rested) cout << "Not ";
 	cout << "Well-rested\n";
 	PrintDispo();
+	cout << "\n";
 }
 
 void Creature::PrintSkills() {
@@ -382,7 +385,7 @@ float Creature::GetAbilityScore(Ab_Score a_s) {
 			break;
 	}
 
-	cout << "You done goofed" << endl;
+	cout << "You done goofed\n";
 	return 0.f;
 }
 
@@ -391,11 +394,13 @@ void Creature::SetMaxHealth() {
 	//For sentients, max health depends on class and level
 	if (stats.genus == Genus::Sentient) {
 		uint total_level = 0;
-		for (int l : stats.levels)
-			total_level = stats.levels[l];
+		
+		for (uint l : stats.levels)
+			total_level += l;
 
 		//Temporary as FUCK
-		if (stats.levels[0]) stats.max_hlth = (stats.levels[0] * 6) + (stats.levels[1] * 8) + (stats.levels[2] * 10) + (stats.a_scores[1] * total_level);
+		if (total_level) stats.max_hlth = (stats.levels[0] * 6) + (stats.levels[1] * 8) + (stats.levels[2] * 10) + (stats.a_scores[1] * total_level);
+		else stats.max_hlth = 5;
 	}
 
 	//For non-Sentients, max health partially depends on size but is mostly arbitrary

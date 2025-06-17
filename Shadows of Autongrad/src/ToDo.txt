@@ -4,6 +4,7 @@ Devlog: -Pathfinding (w + w/o smoothing)
 
 
 Foundations:-Replace m5x7
+			-Re-find and re-smooth the path to the target whenever the next position in the queue is reached
 			-Update Yggdrasil:
 				--Quests/Quest flags!!!
 				--Checks for:
@@ -13,8 +14,6 @@ Foundations:-Replace m5x7
 					---Button to display
 				--Scroll dialogue/scroll choices
 			-GUI Yggdrasil
-			-The rest of the fucking UI
-				--Open/Close the interfaces
 			-Combat
 				--Just a quick lil sum'sum - 1 melee-only creature against the 1 party member
 			-Tooltips

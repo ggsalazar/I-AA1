@@ -45,9 +45,6 @@ void Scene::Open(const bool o) {
 			//Dialogue
 			LoadDialogue();
 
-
-			
-
 			//Set the party and camera
 			//Later will have to determine which point to pick when coming in from N/S/E/W/Other
 			Vector2i party_ldr_pos = tilemap.GetSpawnPoint("Party Leader");
@@ -83,21 +80,21 @@ void Scene::Open(const bool o) {
 			//Interface buttons
 			Sprite::Info info = {};
 			info.sheet = "UI/Interfaces/CharSheetBtn"; info.frame_size = { 24, 24 }; info.scale = game->GetResScale(); info.dfc = -1; info.origin = { .5f };
-			entities.push_back(new Button(*menus[Menus::Char_Sheet], info, UIElem::CharSheet));
+			ui_elems.push_back(new Button(*menus[Menus::Char_Sheet], info, UIElem::CharSheet));
 			info.sheet = "UI/Interfaces/InvBtn";
-			entities.push_back(new Button(*menus[Menus::Inv], info, UIElem::Inv));
+			ui_elems.push_back(new Button(*menus[Menus::Inv], info, UIElem::Inv));
 			info.sheet = "UI/Interfaces/GrimoireBtn";
-			entities.push_back(new Button(*menus[Menus::Grimoire], info, UIElem::Grimoire));
+			ui_elems.push_back(new Button(*menus[Menus::Grimoire], info, UIElem::Grimoire));
 			info.sheet = "UI/Interfaces/JournalBtn";
-			entities.push_back(new Button(*menus[Menus::Journal], info, UIElem::Journal));
+			ui_elems.push_back(new Button(*menus[Menus::Journal], info, UIElem::Journal));
 			info.sheet = "UI/Interfaces/MapBtn";
-			entities.push_back(new Button(*menus[Menus::Map_Area], info, UIElem::Map));
+			ui_elems.push_back(new Button(*menus[Menus::Map_Area], info, UIElem::Map));
 			info.sheet = "UI/Interfaces/BestiaryBtn";
-			entities.push_back(new Button(*menus[Menus::Bestiary], info, UIElem::Bestiary));
+			ui_elems.push_back(new Button(*menus[Menus::Bestiary], info, UIElem::Bestiary));
 			info.sheet = "UI/Interfaces/OptionsBtn";
-			entities.push_back(new Button(*menus[Menus::Options_I], info, UIElem::Options_I));
+			ui_elems.push_back(new Button(*menus[Menus::Options_I], info, UIElem::Options_I));
 			info.sheet = "UI/Interfaces/CloseBtn"; info.frame_size = { 12, 12 };
-			entities.push_back(new Button(*menus[Menus::Char_Sheet], info, UIElem::Close_I));
+			ui_elems.push_back(new Button(*menus[Menus::Char_Sheet], info, UIElem::Close_I));
 
 			//Pathfinding grid
 			grid.Init(&tilemap);
@@ -112,6 +109,7 @@ void Scene::Open(const bool o) {
 			m.second->Open(false);
 		menus.clear();
 		//Deletes all the entities in the scene
+		ui_elems.clear();
 		entities.clear();
 		party_mems.clear();
 
@@ -122,12 +120,17 @@ void Scene::Open(const bool o) {
 
 void Scene::GetInput() {
 	//Reset lmb_action to true if an interface is not open and we are not in dialogue
-	// - the entities will determine if it is false
+	// - the entities and ui elems will determine if it is false
 	lmb_action = interface_open == Menus::NOINTRFC and !in_dlg;
 
 	//Input for the entities
 	for (auto& e : entities)
 		e->GetInput();
+
+	for (auto& ui : ui_elems) {
+		ui->GetInput();
+		if (ui->Selected()) lmb_action = false;
+	}
 
 	//Input for the menus
 	for (auto& m : menus)
@@ -145,7 +148,7 @@ void Scene::GetInput() {
 	}
 	else {
 		if (label == Scenes::AREA) {
-			OpenInterface();
+			OpenInterfaces();
 
 			if (!game->paused) {
 				SelectPartyMems();
@@ -167,8 +170,9 @@ void Scene::GetInput() {
 				SetGameCursor(action);
 
 				//Perform the action
-				//Need to check if lmb_action is valid because this can still refer to the last stored action, even if one was not stored this frame
+				//Check if lmb_action is valid because this can still refer to the last stored action, even if one was not stored this frame
 				if (Input::BtnPressed(LMB) and lmb_action) {
+
 					//Reset our held action
 					held_action = Action::NOACTION;
 
@@ -198,11 +202,11 @@ void Scene::GetInput() {
 void Scene::Update() {
 	
 	//Every frame:
-	//Update entities
+	//Update entities, ui elems, & menus
 	for (auto& e : entities)
 		e->Update();
-
-	//Update menus
+	for (auto& ui : ui_elems)
+		ui->Update();
 	for (const auto& m : menus)
 		m.second->Update();
 
@@ -243,21 +247,19 @@ void Scene::Draw() {
 	if (tilemap.Loaded())
 		game->renderer.DrawTilemap(tilemap);
 
-	//Then draw entities if they can be seen by the camera
-	for (auto& e : entities)
-		e->Draw();
+	for (const auto& e : entities) e->Draw();
 
-	//Always draw the party member portraits?
+	//Draw party member portraits
 	if (label == Scenes::AREA and !in_dlg) {
 		for (const auto& pm : party_mems)
 			pm->DrawPortrait();
 	}
 
+	for (const auto& ui : ui_elems) ui->Draw();
 
 	//Draw the selection box
 	if (selecting)
 		game->renderer.DrawRect(selec_box, Color(0, 1, 0, .3), Color(0, 1, 0, .75));
-
 
 	//Draw dialogue
 	if (in_dlg)
@@ -290,7 +292,7 @@ void Scene::ResizeMenus() {
 		m.second->Resize();
 }
 
-void Scene::OpenInterface() {
+void Scene::OpenInterfaces() {
 	Menus i = Menus::NOINTRFC;
 	if (Input::KeyPressed(SCB)) i = Menus::Bestiary;
 	else if (Input::KeyPressed(SCC)) i = Menus::Char_Sheet;
@@ -300,6 +302,11 @@ void Scene::OpenInterface() {
 	else if (Input::KeyPressed(SCM)) i = Menus::Map_Area;
 	else if (Input::KeyPressed(SCO)) i = Menus::Options_I;
 
+	if (i != Menus::NOINTRFC)
+		OpenInterface(i);
+}
+
+void Scene::OpenInterface(Menus intrfc) {
 	uint selected_pms = 0;
 	uint lowest_selected = 0;
 	for (const auto& p_m : party_mems) {
@@ -309,9 +316,9 @@ void Scene::OpenInterface() {
 		}
 	}
 
-	if (i != Menus::NOINTRFC) {
+	if (intrfc != Menus::NOINTRFC) {
 		//Is the interface already open?
-		bool i_was_open = MenuOpen(i);
+		bool i_was_open = MenuOpen(intrfc);
 
 		//Close currently open interface
 		for (auto& m : menus) {
@@ -320,15 +327,15 @@ void Scene::OpenInterface() {
 		}
 
 		//Open the interface if it wasn't already
-		OpenMenu(i, !i_was_open);
+		OpenMenu(intrfc, !i_was_open);
 
 		//Set interface_open & paused
 		//If i was open, then it is now closed, therefore interface_open should be NOINTRFC
-		interface_open = i_was_open ? Menus::NOINTRFC : i;
+		interface_open = i_was_open ? Menus::NOINTRFC : intrfc;
 		game->paused = !i_was_open;
 
 		//Set the supplementary string of the interface
-		if (menus.find(i) != menus.end() and (interface_open == Menus::Char_Sheet or interface_open == Menus::Grimoire or interface_open == Menus::Inv)) {
+		if (menus.find(intrfc) != menus.end() and (interface_open == Menus::Char_Sheet or interface_open == Menus::Grimoire or interface_open == Menus::Inv)) {
 			string sup_str = "";
 
 			for (const auto& p_m : party_mems) {
@@ -336,8 +343,17 @@ void Scene::OpenInterface() {
 					sup_str = p_m->GetName();
 			}
 
-			menus[i]->SetSupStr(sup_str);
+			menus[intrfc]->SetSupStr(sup_str);
 		}
+	}
+	else {
+		//Close currently open interface
+		for (auto& m : menus) {
+			if (dynamic_cast<Interface*>(m.second))
+				OpenMenu(m.first, false);
+		}
+		interface_open = Menus::NOINTRFC;
+		game->paused = false;
 	}
 }
 
@@ -368,8 +384,9 @@ void Scene::MoveCamera() {
 
 			game->camera.MoveCenterTo(Round(Math::Lerp(Vector2f(game->camera.GetCenter()), pos_avg, .075f)));
 		}
+
 		//Cam not locked to party mems
-		else {
+		else if (!cam_locked_pms and lmb_action) {
 			Vector2f new_cam_offset = { 0 };
 			if (!cam_free) {
 				//Move the camera via arrow/WASD keys
@@ -435,8 +452,6 @@ void Scene::MoveCamera() {
 }
 
 void Scene::SelectPartyMems() {
-
-	
 	if (!in_dlg) {
 		//Select party members
 		//Click and drag (selection box/area) while holding SHIFT or CTRL
@@ -515,32 +530,35 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 
 	//If pointing at a creature...
 	else if (Creature* c = dynamic_cast<Creature*>(mouse_tar)) {
-		if (!dynamic_cast<PartyMember*>(c)) {
-			//First, we need to know the target creature's disposition to the party
-			int creature_dispo = 0;
-			creature_dispo = c->GetDispo();
+		if (dynamic_cast<PartyMember*>(c))
+			return Action::DEFAULT;
 
-			//Outright Hostile - Attack it
-			if (creature_dispo <= 20) {
-				//Attack actions (Melee/Ranged/Spell)
-				//Melee Attack (LMB action in combat only)
-				//-When mouse is on an enemy...
-				//	--in melee range OR
-				//	--acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
-				//		---If > 1 melee weapon equipped, will have to ask which weapon to attack with
+		//Not a party member
+		
+		//First, we need to know the target creature's disposition to the party
+		int creature_dispo = 0;
+		creature_dispo = c->GetDispo();
 
-				//Ranged Attack (LMB action in combat only)
-				//-When mouse is on an enemy...
-				//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
-			}
-			//Testy or better - Speak
-			else {
-				//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
-				// unable to find a path for any reason
-				path_goal = c->GetPos();
+		//Outright Hostile - Attack it
+		if (creature_dispo <= 20) {
+			//Attack actions (Melee/Ranged/Spell)
+			//Melee Attack (LMB action in combat only)
+			//-When mouse is on an enemy...
+			//	--in melee range OR
+			//	--acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
+			//		---If > 1 melee weapon equipped, will have to ask which weapon to attack with
 
-				action = Action::Talk;
-			}
+			//Ranged Attack (LMB action in combat only)
+			//-When mouse is on an enemy...
+			//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
+		}
+		//Testy or better - Speak
+		else {
+			//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
+			// unable to find a path for any reason
+			path_goal = c->GetPos();
+
+			action = Action::Talk;
 		}
 	}
 
@@ -564,7 +582,8 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 			//The actual goal node for each individual p_m is determined inside FindPath
 			found_paths[i] = grid.FindPath(s_pms[i]->GetPos(), path_goal, mouse_tar);
 			//If a path could not be found and we are not too close, return NOACTION
-			if (found_paths[i].empty() and Distance(s_pms[i]->GetPos(), path_goal) > 1.5 * METER) return Action::NOACTION;
+			if (found_paths[i].empty() and Distance(s_pms[i]->GetPos(), path_goal) > 1.5 * METER)
+				return Action::NOACTION;
 		}
 	}
 
@@ -661,6 +680,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 		//Don't forget to change sprite!
 		name = "Spark";
 		race = Race::Automaton;
+		//Arcanist
 		levels[0] = 1;
 		a_scores = { 1.5, 2.5, 3, 2, 4, 3, 1 };
 		break;
@@ -670,7 +690,8 @@ void Scene::CreatePreGen(PreGens p_g) {
 		name = "Essek";
 		race = Race::Kobold;
 		size = Size::Small;
-		sex = 1;
+		sex = 0;
+		//Rogue
 		levels[1] = 1;
 		a_scores = { 1, 2, 4, 3, 2, 2.5, 2.5 };
 		break;
@@ -680,6 +701,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 		name = "Dakn";
 		race = Race::Dwarf;
 		sex = 1;
+		//Warrior
 		levels[2] = 1;
 		a_scores = { 4, 4, 2.5, 3, 1, 1, 1.5 };
 		break;
@@ -688,7 +710,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 	info.sheet = sprite; info.frame_size = sprite_size;
 
 	party_mems.push_back(new PartyMember(info,
-		Creature::Stats{ name, genus, race, size, sex, background, levels, a_scores } //The rest are defaults and handled in Initialization
+		Creature::Stats{ name, genus, race, size, sex, background, levels, a_scores }
 	));
 }
 

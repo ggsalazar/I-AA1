@@ -1,6 +1,5 @@
 #include "Pathfinding.h"
 #include "Collision.h"
-#include "../Entities/UI/UI.h" //Entity.h
 
 void Pathfinding::Init(TileMap* t) {
 	tmp = t;
@@ -17,17 +16,6 @@ void Pathfinding::PopulateNodeGrid(vector<Entity*>* ents) {
 			node_walk = tmp->GetTileData({ col, row }).terrain != Terrain::Water;
 			//For now, we're going to say a node is not walkable if an entity is standing on that tile
 			// In the future, this should be *way* more nuanced (i.e. creature vs object, friend or foe, size of entity, etc)
-			
-			if (node_walk) {
-				for (const auto& e : *ents) {
-					if (!dynamic_cast<UI*>(e))
-						node_walk = !(Collision::RectPoint(Rect({ col * TS, row * TS }, TS), e->GetPos()));
-					
-					if (!node_walk) break;
-				}
-			}
-			
-
 			node_cost = (tmp->GetTileData({col, row}).terrain == Terrain::Rough) + 1;
 
 			grid[col][row] = { Round(col * TS + TS * .5f, row * TS + TS * .5f), false, node_walk, false, node_cost };
@@ -38,7 +26,7 @@ void Pathfinding::PopulateNodeGrid(vector<Entity*>* ents) {
 vector<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, Entity* target) {
 	
 	//If the target is sufficiently close to the goal and the goal is not a tile,
-	// there is no need to find a path - TO-DO
+	// there is no need to find a path
 	if (target and Distance(start, goal) <= 1.5 * METER) return {};
 	
 	//Create our lists
@@ -89,19 +77,15 @@ vector<Vector2i> Pathfinding::FindPath(const Vector2i& start, Vector2i& goal, En
 			//This node is claimed
 			current->claimed = true;
 
+			//Build the path
 			vector<Vector2i> path;
-			//path.push_back(goal); //Decided to remove the goal node (where the mouse clicked) for more grid-based movement
-			//We don't need the start or second
-			while (current->parent and current->parent->parent) { //Ensures we don't add the start node or the second node, which was causing weird behaviors
+			while (current->parent) {
 				current->debug = true;
 				path.push_back(current->pos);
-				current = current->parent; //Putting this at the beginning will skip the goal node
+				current = current->parent;
 			}
-
+			//Will be sent to path smoothing to become a queue
 			reverse(path.begin(), path.end());
-			//vector<Vector2i> path_q;
-			//for (const auto& p : path)
-				//path_q.push_back(p);
 			return path;
 		}
 
@@ -139,6 +123,8 @@ queue<Vector2i> Pathfinding::SmoothPath(const vector<Vector2i>& raw) {
 	queue<Vector2i> smoothed;
 	uint i = 0, j;
 
+	if (raw.size() == 1) smoothed.push(raw[0]);
+	
 	while (i < raw.size() - 1) {
 		j = raw.size() - 1;
 		//Find the farthest node we can reach directly

@@ -58,6 +58,22 @@ void Button::Pressed() {
 void Button::Released() {
     activated = true;
     switch (elem) {
+        //In-Game Interfaces
+    case UIElem::Bestiary:
+    case UIElem::CharSheet:
+    case UIElem::Grimoire:
+    case UIElem::Inv:
+    case UIElem::Journal:
+    case UIElem::Map:
+    case UIElem::Options_I:
+        scene->OpenInterface(menu.GetLabel());
+        break;
+
+    case UIElem::Close_I:
+        scene->OpenInterface(Menus::NOINTRFC);
+        break;
+
+
     case UIElem::Apply:
         if (menu.GetLabel() == Menus::Options) {
             //Set the game's current resolution to the scale determined by the resolution picker OR set it to fullscreen if that toggle is clicked

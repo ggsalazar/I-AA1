@@ -219,6 +219,12 @@ void Game::SetRes() {
     else {
         SDL_SetWindowFullscreen(window.GetWin(), false);
         SDL_SetWindowSize(window.GetWin(), resolution.x, resolution.y);
+
+        //Move the window
+        SDL_Rect screen_bounds;
+        SDL_DisplayID dID = SDL_GetDisplayForWindow(window.GetWin());
+        SDL_GetDisplayBounds(dID, &screen_bounds);
+        SDL_SetWindowPosition(window.GetWin(), (int)(screen_bounds.w * .5f - resolution.x * .5f), (int)(screen_bounds.h * .5f - resolution.y * .5f));
     }
 
     //Resize the camera & tiles
