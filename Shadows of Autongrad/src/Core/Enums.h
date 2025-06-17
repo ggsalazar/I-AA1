@@ -253,6 +253,11 @@ enum class MouseTarget {
 	Tile
 };
 
+enum class Quest {
+	Test
+};
+
+
 //Engine
 enum class Scenes {
 	CUTSCENE,

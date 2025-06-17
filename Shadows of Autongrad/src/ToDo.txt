@@ -5,10 +5,10 @@ Devlog: -Pathfinding (w + w/o smoothing)
 
 Foundations:-Replace m5x7
 			-Update Yggdrasil:
+				--Quests/Quest flags!!!
 				--Checks for:
 					---Skill checks
 						----Mechanics
-				--Quests/Quest flags!!!
 				--old_text
 					---Button to display
 				--Scroll dialogue/scroll choices

@@ -6,7 +6,7 @@
 #include "../Core/Math.h"
 #include "../Entities/Entity.h"
 
-Game::Game(const char* title, uint init_fps)
+Game::Game(const char* title, const uint init_fps)
     : fps(init_fps), resolution(min_res * 2),
     window("Shadows of Autongrad", resolution), renderer(window.GetWin(), &camera) {
 
@@ -143,7 +143,7 @@ void Game::Render() {
     renderer.EndFrame();
 }
 
-void Game::SetScene(Scenes scn) {
+void Game::SetScene(const Scenes scn) {
 
     if (scenes.find(scn) != scenes.end()) {
 
@@ -161,6 +161,12 @@ void Game::SetScene(Scenes scn) {
     }
     else
         cout << "That Scene does not exist!\n";
+}
+
+void Game::SetQuest(const Quest quest, const byte status) {
+    switch (quest) {
+        case Quest::Test: quest_log.test = status;
+    }
 }
 
 void Game::SetMusicVolume(float n_v) {
