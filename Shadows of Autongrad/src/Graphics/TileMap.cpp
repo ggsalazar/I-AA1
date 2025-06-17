@@ -139,7 +139,8 @@ bool TileMap::Load(SDL_Renderer* renderer, const string& json_file) {
 				string name = spawn["name"];
 				
 				//Get the position and place it on the nearest grid point
-				Vector2i spawn_pos = Round(floor(spawn["x"] / BASE_TS) * TS + TS*.5f, floor(spawn["y"] / BASE_TS) * TS + TS*.5f);
+				//Temporary measure!!!!
+				Vector2i spawn_pos = Round(floor(spawn["x"] / BASE_TS) * TS + TS * .5f, floor(spawn["y"] / BASE_TS) * TS + TS * .5f);
 
 				//Add it to the map
 				spawn_points[name] = spawn_pos;
@@ -166,6 +167,7 @@ Vector2i TileMap::GetSpawnPoint(const string& to_spawn) const {
 	if (spawn_points.find(to_spawn) != spawn_points.end()) return spawn_points.at(to_spawn);
 	else {
 		cout << "Error! Nothing by that name spawns on this map!\n";
-		return { 0, 0 };
+		return Round((map_size_t.x - 6) * TS + TS * .5f, (map_size_t.y - 40) * TS + TS * .5f);
+		//return { 0, 0 };
 	}
 }

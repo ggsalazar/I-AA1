@@ -3,16 +3,36 @@
         {
             "Name": "Orv",
             "Sprite": "Creatures/Sentients/NPCPlaceholder",
-            "Portrait_Sprite": "Placeholder",
-            "Genus": "Sentient",
-            "Race": "Dwarf",
-            "Size": "Med",
-            "Sex": true,
-            "A_Scores": [4, 3, 2, 3, 2, 2, 2],
-            "Levels": [ 0, 0, 0, 0 ],
+            "Portrait Sprite": "Placeholder",
+            "Stats": {
+                "Genus": "Sentient",
+                "Race": "Dwarf",
+                "Size": "Med",
+                "Sex": true,
+                "A_Scores": [ 4, 3, 2, 3, 2, 2, 2 ],
+                "Levels": [ 0, 0, 0, 0 ]
+            },
+            "Skills": {},
             "Biped": true,
             "Winged": false,
             "Disposition": 50
+        },
+        {
+            "Name": "Trow",
+            "Sprite": "Creatures/Monstrosities/TrowPlaceholder",
+            "Portrait Sprite": "EnemyPlaceholder",
+            "Stats": {
+                "Genus": "Monstrosity",
+                "Race": "Trow",
+                "Size": "Small",
+                "Sex": true,
+                "A_Scores": [ 2, 2, 2, 3, 1, 1, 1 ],
+                "Levels": [ 0, 0, 0, 1 ]
+            },
+            "Skills": {},
+            "Biped": true,
+            "Winged": false,
+            "Disposition": 0
         }
     ]
 }

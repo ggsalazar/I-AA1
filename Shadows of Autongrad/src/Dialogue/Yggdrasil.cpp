@@ -242,7 +242,7 @@ void Yggdrasil::CauseEffect(string effect, float val) {
 	//-Set stem_index (where we are in current branch)
 	//-Alter Party Aeons
 	//-Alter Speaker Disposition
-	//-Set Quest flags
+	//-Set Quest values
 	
 
 	if (effect == "Index") SetIndex(val);
@@ -251,7 +251,7 @@ void Yggdrasil::CauseEffect(string effect, float val) {
 		else game->active_scene->AlterPartyAeons(val);
 	}
 	else if (effect == "Disposition") speaker->AlterDispo(val);
-	else if (effect == "Flags") {}
+	else if (effect == "Quest") {}
 }
 
 void Yggdrasil::JumpBranch(string val) {

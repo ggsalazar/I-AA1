@@ -1,109 +1,15 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Seeds of Apocrypha.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Button.cpp
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(23,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(35,43): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(36,45): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(47,124): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Geometry.h(60,39): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(68,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Sprite.h(69,52): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Font.h(11,41): warning C4244: 'argument': conversion from 'uint' to 'float', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\Text.h(36,52): warning C4834: discarding return value of function with [[nodiscard]] attribute
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
+  TileMap.cpp
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,75): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
+  (compiling source file 'src/Graphics/TileMap.cpp')
   
 C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.h(38,94): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
+  (compiling source file 'src/Graphics/TileMap.cpp')
   
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(30,13): warning C4150: deletion of pointer to incomplete type 'Entity'; no destructor called
-  (compiling source file 'src/Entities/UI/Button.cpp')
-      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Pathfinding.h(9,7):
-      see declaration of 'Entity'
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(36,13): warning C4150: deletion of pointer to incomplete type 'Menu'; no destructor called
-  (compiling source file 'src/Entities/UI/Button.cpp')
-      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(11,7):
-      see declaration of 'Menu'
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,70): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Core\Camera.h(14,113): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'src/Entities/UI/Button.cpp')
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Menu.h(18,13): warning C4150: deletion of pointer to incomplete type 'UI'; no destructor called
-  (compiling source file 'src/Entities/UI/Button.cpp')
-      C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Game\Scene.h(14,7):
-      see declaration of 'UI'
-  
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(7,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(7,56): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(7,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(7,56): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(7,56): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(11,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(11,56): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(11,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(11,56): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(11,56): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244:             T=int
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244:         and
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(15,56): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244:             T=int
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244:         and
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(19,53): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244:             T=int
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244:         and
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(23,56): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(27,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(27,56): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(27,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(27,56): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(27,56): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(31,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(31,56): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(31,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(31,56): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(31,56): warning C4244:         ]
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(35,56): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(35,56): warning C4244:         with
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(35,56): warning C4244:         [
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(35,56): warning C4244:             T=float
-C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Entities\UI\Button.cpp(35,56): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.cpp(113,25): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.cpp(113,25): warning C4244:         with
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.cpp(113,25): warning C4244:         [
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.cpp(113,25): warning C4244:             T=float
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.cpp(113,25): warning C4244:         ]
+C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\Shadows of Autongrad\src\Graphics\TileMap.cpp(127,23): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Shadows of Autongrad.vcxproj -> C:\Users\gturoci\Documents\Visual Studio 2022\Projects\I&A1\x64\Debug\Shadows of Autongrad.exe

@@ -14,6 +14,9 @@ PartyMember::PartyMember(const Sprite::Info& s_i, const Stats& init_stats,
 	h_t_info.max_width = hlth_bar.w;
 	hlth_txt.Init(&game->default_fonts[36], h_t_info);
 
+	//Set aeons to 0 since Scene handles party aeons
+	inv.aeons = 0;
+
 	//Camera sprite
 	Sprite::Info c_s_info = {};
 	c_s_info.sheet = "UI/Cam"; c_s_info.frame_size = { 12, 12 }; c_s_info.scale = game->GetResScale();

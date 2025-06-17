@@ -14,7 +14,7 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 
 	//Portrait + portrait bbox
 	Sprite::Info por_info = {};
-	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = { 48, 48 };
+	por_info.sheet = "Creatures/Portraits/" + por_name; por_info.frame_size = { 32 };
 	por_info.scale = game->GetResScale();
 	portrait.Init(por_info);
 	//Portrait bbox
@@ -76,7 +76,6 @@ Creature::Creature(const Sprite::Info& s_i, const Stats& init_stats,
 	//Set Ability Scores (also sets saves and ancillary stats)
 	SetAbilityScores(stats.a_scores);
 	//Set Health and defenses (based on size, genus, level, and class; also sets 30/20/10% thresholds)
-	SetMaxHealth();
 	SetHealth(stats.max_hlth);
 	SetDEF();
 
@@ -196,39 +195,39 @@ void Creature::PrintStats() {
 
 void Creature::PrintSkills() {
 	cout << "Action Skills:\n";
-	cout << "Arcana: " << skills.arcana << "/" << skills.arcana_max << "\n";
-	cout << "Appraisal: " << skills.appraisal << "/" << skills.appraisal_max << "\n";
-	cout << "Beast Handling: " << skills.beast_handling << "/" << skills.beast_handling_max << "\n";
-	cout << "Beguilement: " << skills.beguilement << "/" << skills.beguilement_max << "\n";
-	cout << "Climb: " << skills.climb << "/" << skills.climb_max << "\n";
-	cout << "Insight: " << skills.insight << "/" << skills.insight_max << "\n";
-	cout << "Intimidation: " << skills.intimidation << "/" << skills.intimidation_max << "\n";
-	cout << "Lore: " << skills.lore << "/" << skills.lore_max << "\n";
-	cout << "Mechanics: " << skills.mechanics << "/" << skills.mechanics_max << "\n";
-	cout << "Medicine: " << skills.medicine << "/" << skills.medicine_max << "\n";
-	cout << "Nature: " << skills.nature << "/" << skills.nature_max << "\n";
-	cout << "Navigation: " << skills.navigation << "/" << skills.navigation_max << "\n";
-	cout << "Perception: " << skills.perception << "/" << skills.perception_max << "\n";
-	cout << "Persuasion: " << skills.persuasion << "/" << skills.persuasion_max << "\n";
-	cout << "Sleight of Hand: " << skills.soh << "/" << skills.soh_max << "\n";
-	cout << "Stealth: " << skills.stealth << "/" << skills.stealth_max << "\n";
-	cout << "Survival: " << skills.survival << "/" << skills.survival_max << "\n";
-	cout << "Swim: " << skills.swim << "/" << skills.swim_max << "\n";
+	cout << "Arcana: " << (int)skills.arcana << "/" << (int)skills.arcana_max << "\n";
+	cout << "Appraisal: " << (int)skills.appraisal << "/" << (int)skills.appraisal_max << "\n";
+	cout << "Beast Handling: " << (int)skills.beast_handling << "/" << (int)skills.beast_handling_max << "\n";
+	cout << "Beguilement: " << (int)skills.beguilement << "/" << (int)skills.beguilement_max << "\n";
+	cout << "Climb: " << (int)skills.climb << "/" << (int)skills.climb_max << "\n";
+	cout << "Insight: " << (int)skills.insight << "/" << (int)skills.insight_max << "\n";
+	cout << "Intimidation: " << (int)skills.intimidation << "/" << (int)skills.intimidation_max << "\n";
+	cout << "Lore: " << (int)skills.lore << "/" << (int)skills.lore_max << "\n";
+	cout << "Mechanics: " << (int)skills.mechanics << "/" << (int)skills.mechanics_max << "\n";
+	cout << "Medicine: " << (int)skills.medicine << "/" << (int)skills.medicine_max << "\n";
+	cout << "Nature: " << (int)skills.nature << "/" << (int)skills.nature_max << "\n";
+	cout << "Navigation: " << (int)skills.navigation << "/" << (int)skills.navigation_max << "\n";
+	cout << "Perception: " << (int)skills.perception << "/" << (int)skills.perception_max << "\n";
+	cout << "Persuasion: " << (int)skills.persuasion << "/" << (int)skills.persuasion_max << "\n";
+	cout << "Sleight of Hand: " << (int)skills.soh << "/" << (int)skills.soh_max << "\n";
+	cout << "Stealth: " << (int)skills.stealth << "/" << (int)skills.stealth_max << "\n";
+	cout << "Survival: " << (int)skills.survival << "/" << (int)skills.survival_max << "\n";
+	cout << "Swim: " << (int)skills.swim << "/" << (int)skills.swim_max << "\n";
 	
 	cout << "Weapon Skills:\n";
-	cout << "Archery: " << skills.archery << "/" << skills.archery_max << "\n";
-	cout << "Exotic: " << skills.exotic << "/" << skills.exotic_max << "\n";
-	cout << "Firearm: " << skills.firearm << "/" << skills.firearm_max << "\n";
-	cout << "Large: " << skills.large << "/" << skills.large_max << "\n";
-	cout << "Medium: " << skills.medium << "/" << skills.medium_max << "\n";
-	cout << "Polearm: " << skills.polearm << "/" << skills.polearm_max << "\n";
-	cout << "Small: " << skills.small << "/" << skills.small_max << "\n";
-	cout << "Throwing: " << skills.throwing << "/" << skills.throwing_max << "\n";
-	cout << "Unarmed: " << skills.unarmed << "/" << skills.unarmed_max << "\n";
+	cout << "Archery: " << (int)skills.archery << "/" << (int)skills.archery_max << "\n";
+	cout << "Exotic: " << (int)skills.exotic << "/" << (int)skills.exotic_max << "\n";
+	cout << "Firearm: " << (int)skills.firearm << "/" << (int)skills.firearm_max << "\n";
+	cout << "Large: " << (int)skills.large << "/" << (int)skills.large_max << "\n";
+	cout << "Medium: " << (int)skills.medium << "/" << (int)skills.medium_max << "\n";
+	cout << "Polearm: " << (int)skills.polearm << "/" << (int)skills.polearm_max << "\n";
+	cout << "Small: " << (int)skills.small << "/" << (int)skills.small_max << "\n";
+	cout << "Throwing: " << (int)skills.throwing << "/" << (int)skills.throwing_max << "\n";
+	cout << "Unarmed: " << (int)skills.unarmed << "/" << (int)skills.unarmed_max << "\n";
 
 	cout << "Tool Skills:\n";
-	cout << "Thieving Tools: " << skills.thieving_tools << "/" << skills.thieving_tools_max << "\n";
-	cout << "Medicine Kits: " << skills.medicine_kits << "/" << skills.medicine_kits_max << "\n";
+	cout << "Thieving Tools: " << (int)skills.thieving_tools << "/" << (int)skills.thieving_tools_max << "\n";
+	cout << "Medicine Kits: " << (int)skills.med_kits << "/" << (int)skills.med_kits_max << "\n";
 }
 
 void Creature::PrintInv() {
@@ -317,6 +316,7 @@ void Creature::SetAbilityScore(Ab_Score a_s, float new_score) {
 		case Ab_Score::CON:
 			stats.a_scores[1] = new_score;
 			stats.fort = (stats.a_scores[0] + stats.a_scores[1]) * .5f;
+			SetMaxHealth();
 		break;
 
 		//Derived stats: Ref, w_spd, dodge
@@ -438,6 +438,160 @@ void Creature::SetWornArmor(float w_a) {
 	stats.worn_armor = w_a;
 	stats.armor = stats.nat_armor + stats.worn_armor;
 	SetDEF();
+}
+
+void Creature::SetSkills(Skills new_skills) {
+	//Action skills
+	SetSkill(Skill::Appraisal, new_skills.appraisal);
+	SetSkill(Skill::Arcana, new_skills.arcana);
+	SetSkill(Skill::Beast_Handling, new_skills.beast_handling);
+	SetSkill(Skill::Beguilement, new_skills.beguilement);
+	SetSkill(Skill::Climb, new_skills.climb);
+	SetSkill(Skill::Insight, new_skills.insight);
+	SetSkill(Skill::Intimidation, new_skills.intimidation);
+	SetSkill(Skill::Lore, new_skills.lore);
+	SetSkill(Skill::Mechanics, new_skills.mechanics);
+	SetSkill(Skill::Medicine, new_skills.medicine);
+	SetSkill(Skill::Nature, new_skills.nature);
+	SetSkill(Skill::Navigation, new_skills.navigation);
+	SetSkill(Skill::Perception, new_skills.perception);
+	SetSkill(Skill::Persuasion, new_skills.persuasion);
+	SetSkill(Skill::SOH, new_skills.soh);
+	SetSkill(Skill::Stealth, new_skills.stealth);
+	SetSkill(Skill::Survival, new_skills.survival);
+	SetSkill(Skill::Swim, new_skills.swim);
+
+	//Tool skills
+	SetSkill(Skill::Med_Kits, new_skills.med_kits);
+	SetSkill(Skill::Thieving_Tools, new_skills.thieving_tools);
+
+	//Weapon skills
+	SetSkill(Skill::Archery, new_skills.archery);
+	SetSkill(Skill::Firearm, new_skills.firearm);
+	SetSkill(Skill::Large, new_skills.large);
+	SetSkill(Skill::Med, new_skills.medium);
+	SetSkill(Skill::Polearm, new_skills.polearm);
+	SetSkill(Skill::Small, new_skills.small);
+	SetSkill(Skill::Throwing, new_skills.throwing);
+	SetSkill(Skill::Unarmed, new_skills.unarmed);
+}
+
+void Creature::SetSkill(Skill skill, byte new_prof) {
+	switch (skill) {
+		case Skill::Appraisal:
+
+		break;
+
+		case Skill::Arcana:
+
+			break;
+
+		case Skill::Beast_Handling:
+
+			break;
+
+		case Skill::Beguilement:
+
+			break;
+
+		case Skill::Climb:
+
+			break;
+
+		case Skill::Insight:
+
+			break;
+
+		case Skill::Intimidation:
+
+			break;
+
+		case Skill::Lore:
+
+			break;
+
+		case Skill::Mechanics:
+
+			break;
+
+		case Skill::Medicine:
+			//Also set medicine kits!
+			break;
+
+		case Skill::Nature:
+
+			break;
+
+		case Skill::Navigation:
+
+			break;
+
+		case Skill::Perception:
+
+			break;
+
+		case Skill::Persuasion:
+
+			break;
+
+		case Skill::SOH:
+
+			break;
+
+		case Skill::Stealth:
+
+			break;
+
+		case Skill::Survival:
+
+			break;
+
+		case Skill::Swim:
+
+			break;
+
+		//Tool Skills
+		case Skill::Med_Kits:
+
+			break;
+
+		case Skill::Thieving_Tools:
+
+			break;
+
+		//Weapon Skills
+		case Skill::Archery:
+
+			break;
+
+		case Skill::Firearm:
+
+			break;
+
+		case Skill::Large:
+
+			break;
+
+		case Skill::Med:
+
+			break;
+
+		case Skill::Polearm:
+
+			break;
+
+		case Skill::Small:
+
+			break;
+
+		case Skill::Throwing:
+
+			break;
+
+		case Skill::Unarmed:
+
+			break;
+	}
 }
 
 void Creature::SetDispo(float new_dispo) {

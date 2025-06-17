@@ -1,291 +1,396 @@
 {
-  "Orv": {
-    "Test": [
-      {
-        "Text": "Sup bitch.",
-        "Condition": {
-          "Check": "Disposition",
-          "Value": [ 49, 55 ],
-          "Effect": "Jump",
-          "Place": "Gave Aeons"
-        },
-        "Choices": [
-          {
-            "Text": "Greetings yourself.",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 4
-              }
-            ]
-          },
-          {
-            "Text": "Fuck you",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 0
-              },
-              {
-                "Effect": "Disposition",
-                "Value": -20
-              },
-              {
-                "Effect": "Jump",
-                "Value": "Pissed Off"
-              }
-            ]
-          },
-          {
-            "Text": "Give Aeons",
-            "Condition": {
-              "Check": "Aeons",
-              "Value": 1,
-              "Comparison": "GE"
+    "Orv": {
+        "Test": [
+            {
+                "Text": "I've a quest for you!",
+                "Condition": {
+                    "Check": "Disposition",
+                    "Value": [ 49, 55 ],
+                    "Effect": "Jump",
+                    "Place": "Gave Aeons"
+                },
+                "Choices": [
+                    {
+                        "Text": "Greetings yourself.",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 4
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "Fuck you",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 0
+                            },
+                            {
+                                "Effect": "Disposition",
+                                "Value": -20
+                            },
+                            {
+                                "Effect": "Jump",
+                                "Value": "Pissed Off"
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "Give Aeons",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 1,
+                            "Comparison": "GE"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 2
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "What's this about a quest?",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 1
+                            }
+                        ]
+                    }
+                ]
             },
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 2
-              }
-            ]
-          },
-          {
-            "Text": "More information?",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 1
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Text": "You have requested more information.",
-        "Choices": [
-          {
-            "Text": "I am an Elf.",
-            "Condition": {
-              "Check": "Race",
-              "Value": "Elf"
+            {
+                "Text": "I need you to go to the southwest corner and grab what you find there.",
+                "Choices": [
+                    {
+                        "Text": "Sure thing!",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 6
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "I am an Elf.",
+                        "Condition": {
+                            "Check": "Race",
+                            "Value": "Elf"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "I am a Rogue.",
+                        "Condition": {
+                            "Check": "Class",
+                            "Value": "Rogue"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "I am a Mechanic.",
+                        "Condition": {
+                            "Check": "Background",
+                            "Value": "Mechanic"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "Go back",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 0
+                            }
+                        ]
+                    }
+                ]
             },
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 5
-              }
-            ]
-          },
-          {
-            "Text": "I am a Rogue.",
-            "Condition": {
-              "Check": "Class",
-              "Value": "Rogue"
+            {
+                "Text": "You wish to give me money? Excellent! How much do you wish to give?",
+                "Choices": [
+                    {
+                        "Text": "10 Aeons",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 10,
+                            "Comparison": "GE"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 0
+                            },
+                            {
+                                "Effect": "Aeons",
+                                "Value": -10
+                            },
+                            {
+                                "Effect": "Disposition",
+                                "Value": 2.5
+                            },
+                            {
+                                "Effect": "Jump",
+                                "Value": "Gave Aeons"
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "5 Aeons",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 5,
+                            "Comparison": "GE"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 3
+                            },
+                            {
+                                "Effect": "Aeons",
+                                "Value": -5
+                            },
+                            {
+                                "Effect": "Disposition",
+                                "Value": 1.25
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "1 Aeon",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 1,
+                            "Comparison": "GE"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 3
+                            },
+                            {
+                                "Effect": "Aeons",
+                                "Value": -1
+                            },
+                            {
+                                "Effect": "Disposition",
+                                "Value": 0.25
+                            }
+                        ]
+                    }
+                ]
             },
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 5
-              }
-            ]
-          },
-          {
-            "Text": "I am a Mechanic.",
-            "Condition": {
-              "Check": "Background",
-              "Value": "Mechanic"
+            {
+                "Text": "Thank you!",
+                "Condition": {
+                    "Check": "Disposition",
+                    "Value": 52.5,
+                    "Comparison": "L",
+                    "Effect": "Jump",
+                    "Place": "Gave Aeons"
+                },
+                "Choices": [
+                    {
+                        "Text": "Give more",
+                        "Condition": {
+                            "Check": "Aeons",
+                            "Value": 1,
+                            "Comparison": "GE"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 2
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "That's enough",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 0
+                            }
+                        ]
+                    }
+                ]
             },
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 5
-              }
-            ]
-          },
-          {
-            "Text": "Go back",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Text": "You wish to give me money? Excellent! How much do you wish to give?",
-        "Choices": [
-          {
-            "Text": "10 Aeons",
-            "Condition": {
-              "Check": "Aeons",
-              "Value": 10,
-              "Comparison": "GE"
+            {
+                "Text": "Test complete",
+                "Choices": [
+                    {
+                        "Text": "Finish",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": -1
+                            }
+                        ]
+                    }
+                ]
             },
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 0
-              },
-              {
-                "Effect": "Aeons",
-                "Value": -10
-              },
-              {
-                "Effect": "Disposition",
-                "Value": 2.5
-              },
-              {
-                "Effect": "Jump",
-                "Value": "Gave Aeons"
-              }
-            ]
-          },
-          {
-            "Text": "5 Aeons",
-            "Condition": {
-              "Check": "Aeons",
-              "Value": 5,
-              "Comparison": "GE"
+            {
+                "Text": "Indeed you are.",
+                "Choices": [
+                    {
+                        "Text": "Go back",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 0
+                            }
+                        ]
+                    }
+                ]
             },
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 3
-              },
-              {
-                "Effect": "Aeons",
-                "Value": -5
-              },
-              {
-                "Effect": "Disposition",
-                "Value": 1.25
-              }
-            ]
-          },
-          {
-            "Text": "1 Aeon",
-            "Condition": {
-              "Check": "Aeons",
-              "Value": 1,
-              "Comparison": "GE"
-            },
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 3
-              },
-              {
-                "Effect": "Aeons",
-                "Value": -1
-              },
-              {
-                "Effect": "Disposition",
-                "Value": 0.25
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Text": "Thank you!",
-        "Condition": {
-          "Check": "Disposition",
-          "Value": 52.5,
-          "Comparison": "L",
-          "Effect": "Jump",
-          "Place": "Gave Aeons"
-        },
-        "Choices": [
-          {
-            "Text": "Give more",
-            "Condition": {
-              "Check": "Aeons",
-              "Value": 1,
-              "Comparison": "GE"
-            },
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 2
-              }
-            ]
-          },
-          {
-            "Text": "That's enough",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Text": "Test complete",
-        "Choices": [
-          {
-            "Text": "Finish",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": -1
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Text": "Indeed you are.",
-        "Choices": [
-          {
-            "Text": "Go back",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": 0
-              }
-            ]
-          }
-        ]
-      }
-    ],
+            {
+                "Text": "Thank you!",
+                "Choices": [
+                    {
+                        "Text": "See you soon!",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": -1
+                            },
+                            {
+                                "Effect": "Quest",
+                                "Name": "Test",
+                                "Value": 1
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
 
-    "Gave Aeons": [
-      {
-        "Text": "You are truly generous!",
-        "Choices": [
-          {
-            "Text": "Don't sweat it homeslice.",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": -1
-              }
-            ]
-          }
-        ]
-      }
-    ],
+        "Gave Aeons": [
+            {
+                "Text": "You are truly generous!",
+                "Choices": [
+                    {
+                        "Text": "Don't sweat it homeslice.",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": -1
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
 
-    "Pissed Off": [
-      {
-        "Text": "Piss off!",
-        "Choices": [
-          {
-            "Text": "Fuck you too.",
-            "Effects": [
-              {
-                "Effect": "Index",
-                "Value": -1
-              }
-            ]
-          }
+        "Pissed Off": [
+            {
+                "Text": "Piss off!",
+                "Choices": [
+                    {
+                        "Text": "Fuck you too.",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": -1
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+
+        "Test Quest": [
+            {
+                "Text": "Still looking?",
+                "Condition": {
+                    "Check": "Quest Status",
+                    "Value": 1,
+                    "Effect": "Index",
+                    "Place": 2
+                },
+                "Choices": [
+                    {
+                        "Text": "Yep!",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": -1
+                            }
+                        ]
+                    },
+                    {
+                        "Text": "I've got it right here.",
+                        "Condition": {
+                            "Check": "Item",
+                            "Value": "Quest Item"
+                        },
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": 1
+                            },
+                            {
+                                "Effect": "Quest Status",
+                                "Value": 2
+                            },
+                            {
+                                "Effect": "Item",
+                                "Name": "Quest Item",
+                                "Value": -1
+                            },
+                            {
+                                "Effect": "Disposition",
+                                "Value": 5
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Text": "You've found it! You're the best!",
+                "Choices": [
+                    {
+                        "Text": "No problem!",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": -1
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Text": "Thanks again!",
+                "Choices": [
+                    {
+                        "Text": "Always happy to be of service :)",
+                        "Effects": [
+                            {
+                                "Effect": "Index",
+                                "Value": -1
+                            }
+                        ]
+                    }
+                ]
+            }
         ]
-      }
-    ]
-  }
+    }
 }

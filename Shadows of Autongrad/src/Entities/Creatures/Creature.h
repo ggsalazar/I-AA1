@@ -46,53 +46,59 @@ public:
 	struct Skills {
 		//Action Skills
 			//STR
-		uint climb = 1, climb_max = 5,
-			swim = 1, swim_max = 5,
+		byte climb{ 1 }, climb_max{5},
+			swim{1}, swim_max{5},
 			//DEX
-			soh = 1, soh_max = 5,//Sleight of Hand
-			stealth = 1, stealth_max = 5,
+			soh{1}, soh_max{5},//Sleight of Hand
+			stealth{1}, stealth_max{5},
 			//INT
-			arcana = 1, arcana_max = 5,
-			lore = 1, lore_max = 5,
-			mechanics = 1, mechanics_max = 5,
-			medicine = 1, medicine_max = 5,
-			nature = 1, nature_max = 5,
+			arcana{1}, arcana_max{5},
+			lore{1}, lore_max{5},
+			mechanics{1}, mechanics_max{5},
+			medicine{1}, medicine_max{5},
+			nature{1}, nature_max{5},
 			//WIS
-			appraisal = 1, appraisal_max = 5,
-			beast_handling = 1, beast_handling_max = 5,
-			insight = 1, insight_max = 5,
-			navigation = 1, navigation_max = 5,
-			perception = 1, perception_max = 5,
-			survival = 1, survival_max = 5,
+			appraisal{1}, appraisal_max{5},
+			beast_handling{1}, beast_handling_max{5},
+			insight{1}, insight_max{5},
+			navigation{1}, navigation_max{5},
+			perception{1}, perception_max{5},
+			survival{1}, survival_max{5},
 			//CHA
-			beguilement = 1, beguilement_max = 5,
-			intimidation = 1, intimidation_max = 5,
-			persuasion = 1, persuasion_max = 5,
+			beguilement{1}, beguilement_max{5},
+			intimidation{1}, intimidation_max{5},
+			persuasion{1}, persuasion_max{5},
 			//Tool Skills
-			thieving_tools = 0, thieving_tools_max = 5,
-			medicine_kits = 0, medicine_kits_max = 5,
+			thieving_tools{0}, thieving_tools_max{5},
+			med_kits{0}, med_kits_max{5},
 			//Weapon Skills
 			//WHAT TO CALL ARCANIST SPECIAL WEAPON SKILL????? ARCANE????
-			archery = 0, archery_max = 5,
-			exotic = 0, exotic_max = 5,
-			firearm = 0, firearm_max = 5,
-			large = 0, large_max = 5,
-			medium = 0, medium_max = 5,
-			polearm = 0, polearm_max = 5,
-			small = 0, small_max = 5,
-			throwing = 0, throwing_max = 5,
-			unarmed = 0, unarmed_max = 5;
+			archery{0}, archery_max{5},
+			exotic{0}, exotic_max{5},
+			firearm{0}, firearm_max{5},
+			large{0}, large_max{5},
+			medium{0}, medium_max{5},
+			polearm{0}, polearm_max{5},
+			small{0}, small_max{5},
+			throwing{0}, throwing_max{5},
+			unarmed{0}, unarmed_max{5};
+
+		bool med_kit_prof = false;
 	};
 
 	struct Inventory {
 		//unordered_map<Items, Item> equipment;
+		float aeons = 10;
 	};
 
 	struct Spells {
 
 	};
 
+	float detection_rad = 0.f;
+	float initiative = 0.f;
 	bool well_rested = true;
+	bool enduring = false;
 	bool alive = true;
 
 	string dlg_branch = "Test";
@@ -156,9 +162,12 @@ public:
 	inline float GetFlySpeed() const { return stats.f_spd; }
 	
 	//Skills
+	void SetSkills(Skills new_skills);
+	void SetSkill(Skill skill, byte new_prof);
+	void SetSkillMax(Skill skill, byte new_max);
 
+	//Inventory/Equipment
 
-	//Inventory
 
 	//Party Disposition
 	void SetDispo(float new_dispo);

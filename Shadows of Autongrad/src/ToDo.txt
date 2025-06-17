@@ -4,33 +4,34 @@ Devlog: -Pathfinding (w + w/o smoothing)
 
 
 Foundations:-Replace m5x7
+			-Perhaps always be highlighting selected tile? In addition to destination tile
 			-Re-find and re-smooth the path to the target whenever the next position in the queue is reached
 			-Update Yggdrasil:
-				--Quests/Quest flags!!!
-				--Checks for:
-					---Skill checks
-						----Mechanics
+				--Quests
+				--Skill checks
 				--old_text
 					---Button to display
-				--Scroll dialogue/scroll choices
+					---Scroll
+						----Rect
+				--Dynamically resize dialogue box to display all choices/text at once? Or scroll?
 			-GUI Yggdrasil
 			-Combat
 				--Just a quick lil sum'sum - 1 melee-only creature against the 1 party member
-			-Tooltips
 			-Non-dialogue Skill checks
+			-Tooltips
 			-Containers
+				--Not locked
+				--Locked
 			-Roll Log
 				--Bottom right
-			-NPCs
-				--Blacksmith
-					---Shopping (after implementing inventory)
-				--Quest Giver
+			-Right-click action menu
+			-Shopping (after implementing inventory)
 			-Interfaces
 				--Quest Journal
 				--Map
 					---Area Map
 					---World Map
-				--Character sheet/s
+				--Character sheet
 				--Bestiary
 				--Grimoire
 				--Inventory
@@ -40,11 +41,12 @@ Foundations:-Replace m5x7
 			-fog of war
 			-multi-party member spawning, movement, & cam locking
 				--Marching order
-					---5x5 grid
+					---5x5? 6x6? grid
 					---Set in Options_I
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
+		- Stealth???
 		- Sentient creatures have separate head and body sprites (for customization)
 		- Difficulty for now is restricted to # of party members; future installments may have more granular difficulty settings
 

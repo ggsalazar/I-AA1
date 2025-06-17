@@ -16,7 +16,8 @@ enum class Ab_Score {
 	CHA
 };
 
-enum class A_Skill {
+enum class Skill {
+	//Action Skills
 	Appraisal,
 	Arcana,
 	Beast_Handling,
@@ -34,15 +35,13 @@ enum class A_Skill {
 	SOH,
 	Stealth,
 	Survival,
-	Swim
-};
+	Swim,
 
-enum class T_Skill {
+	//Tool Skills
 	Med_Kits,
-	Theiving_Kits
-};
+	Thieving_Tools,
 
-enum class W_Skill {
+	//Weapon Skills
 	Archery,
 	Firearm,
 	Large,
@@ -52,7 +51,6 @@ enum class W_Skill {
 	Throwing,
 	Unarmed
 };
-
 
 //Mechanics
 enum class Action {
@@ -135,29 +133,43 @@ inline string GenusToString(const Genus g) {
 }
 
 enum class Race {
+	//Sentients
 	Automaton,
 	Dwarf,
 	Elf,
 	Gnome,
 	Human,
-	Kobold
+	Kobold,
+
+	//Monstrosity
+	Trow
 };
 inline Race StringToRace(const string& s) {
+	//Sentients
 	if (s == "Automaton") return Race::Automaton;
 	else if (s == "Dwarf") return Race::Dwarf;
 	else if (s == "Elf") return Race::Elf;
 	else if (s == "Gnome") return Race::Gnome;
 	else if (s == "Human") return Race::Human;
 	else if (s == "Kobold") return Race::Kobold;
+
+	//Monstrosity
+	if (s == "Trow") return Race::Trow;
 }
 inline string RaceToString(const Race r) {
 	switch (r) {
+		//Sentients
 		case Race::Automaton: return "Automaton";
 		case Race::Dwarf: return "Dwarf";
 		case Race::Elf: return "Elf";
 		case Race::Gnome: return "Gnome";
 		case Race::Human: return "Human";
 		case Race::Kobold: return "Kobold";
+
+		//Monstrosities
+		case Race::Trow: return "Trow";
+
+
 		default: return "Unknown";
 	}
 }

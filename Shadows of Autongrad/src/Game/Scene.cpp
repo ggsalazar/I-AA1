@@ -44,6 +44,9 @@ void Scene::Open(const bool o) {
 			LoadNPCs();
 			//Dialogue
 			LoadDialogue();
+			//Enemies
+
+
 
 			//Set the party and camera
 			//Later will have to determine which point to pick when coming in from N/S/E/W/Other
@@ -533,30 +536,33 @@ Action Scene::LMBAction(vector<PartyMember*>& s_pms) {
 		if (dynamic_cast<PartyMember*>(c))
 			return Action::DEFAULT;
 
-		//Not a party member
+		//Not a party member - proceed
 		
 		//First, we need to know the target creature's disposition to the party
 		int creature_dispo = 0;
 		creature_dispo = c->GetDispo();
 
+		//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
+		// unable to find a path for any reason
+		path_goal = c->GetPos();
+
 		//Outright Hostile - Attack it
 		if (creature_dispo <= 20) {
-			//Attack actions (Melee/Ranged/Spell)
-			//Melee Attack (LMB action in combat only)
+			//Attack actions (Melee/Ranged - Spell will have to be selected manually via RMB)
+			//Melee Attack
 			//-When mouse is on an enemy...
 			//	--in melee range OR
 			//	--acting party member ONLY has melee weapon(s) equipped AND can reach chosen enemy (if either condition not met, use visual signifier to show that)
-			//		---If > 1 melee weapon equipped, will have to ask which weapon to attack with
+			//		---If > 1 melee weapon equipped, will default to first one
+			action = Action::Attack_M;
 
 			//Ranged Attack (LMB action in combat only)
 			//-When mouse is on an enemy...
-			//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will have to choose which weapon to use)
+			//	--Outside of melee range AND acting party member has >= 1 ranged weapon equipped (will default to first ranged weapon)
 		}
 		//Testy or better - Speak
 		else {
-			//Set the creature's position as our goal; the pathfinding algorithm will determine if we are
-			// unable to find a path for any reason
-			path_goal = c->GetPos();
+			
 
 			action = Action::Talk;
 		}
@@ -607,13 +613,17 @@ void Scene::SetGameCursor(Action action) {
 		case Action::Talk:
 			new_row = 2;
 		break;
+		
+		case Action::Attack_M:
+			new_row = 3;
+		break;
 
 		case Action::NOACTION:
-			new_row = 3;
+			new_row = 4;
 		break;
 	}
 	game->cursor.SetSheetRow(new_row);
-	if (new_row == 2) game->cursor.SetColor(Color(0, 1, 0));
+	if (action == Action::Talk) game->cursor.SetColor(Color(0, 1, 0));
 	else game->cursor.SetColor(Color(1));
 }
 
@@ -776,15 +786,23 @@ void Scene::LoadNPCs() {
 		stats.name = npc["Name"];
 
 		//Sprite information
-		sprite_info.sheet = npc["Sprite"]; sprite_info.frame_size = { 24, 48 }; //TEMPORARY
-		por_name = npc["Portrait_Sprite"];
+		sprite_info.sheet = npc["Sprite"];
+		por_name = npc["Portrait Sprite"];
 		
 		sprite_info.pos = tilemap.GetSpawnPoint(stats.name);
-		//sprite_info.pos = Round(npc["Spawn_Pos"]["x"] * TS - TS*.5f, npc["Spawn_Pos"]["y"] * TS - TS*.5f); //REPLACE WITH DATA FROM MAP
 		//Stats information
 		string genus_str = npc["Genus"]; stats.genus = StringToGenus(genus_str);
 		string race_str = npc["Race"]; stats.race = StringToRace(race_str);
 		string size_str = npc["Size"]; stats.size = StringToSize(size_str);
+		switch (stats.size) {
+			case Size::Small:
+				sprite_info.frame_size = { 18, 36 };
+			break;
+
+			case Size::Med:
+				sprite_info.frame_size = { 24, 48 };
+			break;
+		}
 		stats.sex = npc["Sex"];
 		stats.levels = npc["Levels"];
 		stats.a_scores = npc["A_Scores"];
