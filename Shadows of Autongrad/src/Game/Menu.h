@@ -35,6 +35,7 @@ public:
 
     //Self and Sub-Menus
     void Open(const bool o = true);
+    inline void SetSupStr(const string& new_str) { sup_text.info.str = new_str; }
     void Resize();
     inline Menus GetLabel() const { return label; }
     inline bool GetOpen() const { return open; }

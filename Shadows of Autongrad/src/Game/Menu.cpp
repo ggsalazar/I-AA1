@@ -337,6 +337,10 @@ Menu::Menu(const Menus init_label) :
             ui_elems.insert({ UIElem::Quit, new Button(*this, elem_info, UIElem::Quit) });
             break;
         }
+
+        case Menus::Skill_Check: {
+            m_t_pos = { 0 }; m_t_str = "Skill Check";
+        }
     }
 
     //Set our texts (not strictly necessary but keeping for now)

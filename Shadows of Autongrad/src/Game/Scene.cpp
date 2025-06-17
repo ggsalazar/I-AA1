@@ -50,37 +50,24 @@ void Scene::Open(const bool o) {
 			grid.Init(&tilemap);
 
 			//Set the party and camera
-			Vector2f party_ldr_pos;
-			switch (game->area) {
-				case Area::Debug:
-					party_ldr_pos = area_size_t * .5f * TS;
-					if (area_size_t.x * .5f == round(area_size_t.x * .5f))
-						party_ldr_pos.x += TS * .5f - 1;
-					if (area_size_t.y * .5f == round(area_size_t.y * .5f))
-						party_ldr_pos.y += TS * .5f - 1;
-				break;
-
-				case Area::Tutton:
-					party_ldr_pos = area_size_t * .5f * TS;
-					if (area_size_t.x * .5f == round(area_size_t.x * .5f))
-						party_ldr_pos.x += TS * .5f - 1;
-					if (area_size_t.y * .5f == round(area_size_t.y * .5f))
-						party_ldr_pos.y += TS * .5f - 1;
-				break;
-			}
+			//Later will have to determine which point to pick when coming in from N/S/E/W/Other
+			Vector2i party_ldr_pos = tilemap.GetSpawnPoint("Party Leader");
 
 			for (auto& p_m : party_mems) {
 				entities.push_back(p_m);
 				p_m->SetScene(this);
+
+				//Using this because party positions will have to be set dynamically based on marching order
 				switch (p_m->party_position) {
 					case 0:
-						p_m->MoveTo(party_ldr_pos);
+						p_m->MoveTo(Vector2f(party_ldr_pos));
 					break;
 				}
+
 				p_m->selected = true;
 			}
 
-			game->camera.MoveCenterTo(Round(party_ldr_pos));
+			game->camera.MoveCenterTo(party_ldr_pos);
 
 			//Initialize our interfaces
 			menus.insert({ Menus::Bestiary, new Interface(Menus::Bestiary) });
@@ -91,6 +78,7 @@ void Scene::Open(const bool o) {
 			menus.insert({ Menus::Map_Area, new Interface(Menus::Map_Area) });
 			menus.insert({ Menus::Map_World, new Interface(Menus::Map_World) });
 			menus.insert({ Menus::Options_I, new Interface(Menus::Options_I) });
+			menus.insert({ Menus::Skill_Check, new Interface(Menus::Skill_Check) });
 
 			//Populate the node grid for pathfinding
 			grid.PopulateNodeGrid(&entities);
@@ -133,9 +121,7 @@ void Scene::GetInput() {
 		game->cursor.SetSheetRow(0); //This is probably temporary
 		game->cursor.SetColor(1);
 
-		game->dlg_mngr.ChooseDialogue();
-
-		if (Input::KeyPressed(A_K)) in_dlg = false;
+		game->dlg_mngr.MakeChoice();
 	}
 	else {
 		if (label == Scenes::AREA) {
@@ -287,14 +273,22 @@ void Scene::ResizeMenus() {
 
 void Scene::OpenInterface() {
 	Menus i = Menus::NOINTRFC;
-	if (Input::KeyPressed(B_K)) i = Menus::Bestiary;
-	else if (Input::KeyPressed(C_K)) i = Menus::Char_Sheet;
-	else if (Input::KeyPressed(G_K)) i = Menus::Grimoire;
-	else if (Input::KeyPressed(I_K)) i = Menus::Inv;
-	else if (Input::KeyPressed(J_K)) i = Menus::Journal;
-	else if (Input::KeyPressed(M_K)) i = Menus::Map_Area;
-	else if (Input::KeyPressed(O_K)) i = Menus::Options_I;
+	if (Input::KeyPressed(SCB)) i = Menus::Bestiary;
+	else if (Input::KeyPressed(SCC)) i = Menus::Char_Sheet;
+	else if (Input::KeyPressed(SCG)) i = Menus::Grimoire;
+	else if (Input::KeyPressed(SCI)) i = Menus::Inv;
+	else if (Input::KeyPressed(SCJ)) i = Menus::Journal;
+	else if (Input::KeyPressed(SCM)) i = Menus::Map_Area;
+	else if (Input::KeyPressed(SCO)) i = Menus::Options_I;
 
+	uint selected_pms = 0;
+	uint lowest_selected = 0;
+	for (const auto& p_m : party_mems) {
+		if (p_m->selected) {
+			++selected_pms;
+			lowest_selected = p_m->party_position < lowest_selected ? p_m->party_position : lowest_selected;
+		}
+	}
 
 	if (i != Menus::NOINTRFC) {
 		//Is the interface already open?
@@ -313,6 +307,18 @@ void Scene::OpenInterface() {
 		//If i was open, then it is now closed, therefore interface_open should be NOINTRFC
 		interface_open = i_was_open ? Menus::NOINTRFC : i;
 		game->paused = !i_was_open;
+
+		//Set the supplementary string of the interface
+		if (menus.find(i) != menus.end() and (interface_open == Menus::Char_Sheet or interface_open == Menus::Grimoire or interface_open == Menus::Inv)) {
+			string sup_str = "";
+
+			for (const auto& p_m : party_mems) {
+				if (p_m->party_position == lowest_selected or selected_pms == 0)
+					sup_str = p_m->GetName();
+			}
+
+			menus[i]->SetSupStr(sup_str);
+		}
 	}
 }
 
@@ -348,13 +354,13 @@ void Scene::MoveCamera() {
 			Vector2f new_cam_offset = { 0 };
 			if (!cam_free) {
 				//Move the camera via arrow/WASD keys
-				if ((Input::KeyDown(UP) or Input::KeyDown(W_K)) and cam_pos.y > 0)
+				if ((Input::KeyDown(UP) or Input::KeyDown(SCW)) and cam_pos.y > 0)
 					new_cam_offset.y -= game->cam_move_spd;
-				else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
+				else if ((Input::KeyDown(DOWN) or Input::KeyDown(SCS)) and cam_pos.y + cam_size.y < tilemap.GetMapSizePixels().y)
 					new_cam_offset.y += game->cam_move_spd;
-				if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)) and cam_pos.x > 0)
+				if ((Input::KeyDown(LEFT) or Input::KeyDown(SCA)) and cam_pos.x > 0)
 					new_cam_offset.x -= game->cam_move_spd;
-				else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
+				else if ((Input::KeyDown(RIGHT) or Input::KeyDown(SCD)) and cam_pos.x + cam_size.x < tilemap.GetMapSizePixels().x)
 					new_cam_offset.x += game->cam_move_spd;
 
 				//Move the camera via edge panning
@@ -371,13 +377,13 @@ void Scene::MoveCamera() {
 			}
 			else {
 				//Move the camera via arrow/WASD keys
-				if ((Input::KeyDown(UP) or Input::KeyDown(W_K)))
+				if ((Input::KeyDown(UP) or Input::KeyDown(SCW)))
 					new_cam_offset.y -= game->cam_move_spd;
-				else if ((Input::KeyDown(DOWN) or Input::KeyDown(S_K)))
+				else if ((Input::KeyDown(DOWN) or Input::KeyDown(SCS)))
 					new_cam_offset.y += game->cam_move_spd;
-				if ((Input::KeyDown(LEFT) or Input::KeyDown(A_K)))
+				if ((Input::KeyDown(LEFT) or Input::KeyDown(SCA)))
 					new_cam_offset.x -= game->cam_move_spd;
-				else if ((Input::KeyDown(RIGHT) or Input::KeyDown(D_K)))
+				else if ((Input::KeyDown(RIGHT) or Input::KeyDown(SCD)))
 					new_cam_offset.x += game->cam_move_spd;
 
 				//Move the camera via edge panning
@@ -625,6 +631,7 @@ void Scene::CreatePreGen(PreGens p_g) {
 	Race race = Race::Human;
 	Size size = Size::Med;
 	bool sex = 0;
+	string background = "Farmer";
 	array<uint, 4> levels = { 0 };
 	array<float, 7> a_scores = { 0 };
 	string sprite = "Creatures/Sentients/PMPlaceholder";
@@ -662,8 +669,38 @@ void Scene::CreatePreGen(PreGens p_g) {
 	info.sheet = sprite; info.frame_size = sprite_size;
 
 	party_mems.push_back(new PartyMember(info,
-		Creature::Stats{ name, genus, race, size, sex, levels, a_scores } //The rest are defaults and handled in Initialization
+		Creature::Stats{ name, genus, race, size, sex, background, levels, a_scores } //The rest are defaults and handled in Initialization
 	));
+}
+
+array<uint, 4> Scene::GetPartyClasses() const {
+	array<uint, 4> classes = { 0 };
+
+	for (const auto& p_m : party_mems) {
+		array<uint, 4> pm_levels = p_m->GetLevels();
+		for (int l = 0; l < 4; ++l)
+			classes[l] += pm_levels[l];
+	}
+
+	return classes;
+}
+
+vector<Race> Scene::GetPartyRaces() const {
+	vector<Race> races;
+
+	for (const auto& p_m : party_mems)
+		races.push_back(p_m->GetRace());
+
+	return races;
+}
+
+vector<string> Scene::GetPartyBackgrounds() const {
+	vector<string> backgrounds;
+
+	for (const auto& p_m : party_mems)
+		backgrounds.push_back(p_m->GetBackground());
+
+	return backgrounds;
 }
 
 void Scene::SetPartyAeons(float new_aeons) {
@@ -692,14 +729,17 @@ void Scene::LoadNPCs() {
 	//Load the data for each npc
 	Sprite::Info sprite_info = {};
 	string por_name = "Placeholder";
-	Creature::Stats stats = {};
+	Creature::Stats stats = {};	
 
 	for (auto npc : npc_info["NPCs"]) {
 		stats.name = npc["Name"];
 
 		//Sprite information
 		sprite_info.sheet = npc["Sprite"]; sprite_info.frame_size = { 24, 48 }; //TEMPORARY
-		por_name = npc["Portrait_Sprite"]; sprite_info.pos = Round(npc["Spawn_Pos"]["x"] * TS - TS*.5f, npc["Spawn_Pos"]["y"] * TS - TS*.5f);
+		por_name = npc["Portrait_Sprite"];
+		
+		sprite_info.pos = tilemap.GetSpawnPoint(stats.name);
+		//sprite_info.pos = Round(npc["Spawn_Pos"]["x"] * TS - TS*.5f, npc["Spawn_Pos"]["y"] * TS - TS*.5f); //REPLACE WITH DATA FROM MAP
 		//Stats information
 		string genus_str = npc["Genus"]; stats.genus = StringToGenus(genus_str);
 		string race_str = npc["Race"]; stats.race = StringToRace(race_str);

@@ -70,6 +70,9 @@ public:
     void CreatePreGen(PreGens p_g);
     inline vector<PartyMember*> GetPartyMems() const { return party_mems; }
     inline void SetPartyMems(vector<PartyMember*> p_ms) { party_mems = p_ms; }
+    array<uint, 4> GetPartyClasses() const;
+    vector<Race> GetPartyRaces() const;
+    vector<string> GetPartyBackgrounds() const;
     void SetPartyAeons(float new_aeons);
     void AlterPartyAeons(float offset);
     inline float GetPartyAeons() const { return party_aeons; }

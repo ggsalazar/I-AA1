@@ -4,10 +4,6 @@
             "Name": "Orv",
             "Sprite": "Creatures/Sentients/NPCPlaceholder",
             "Portrait_Sprite": "Placeholder",
-            "Spawn_Pos": {
-                "x": 45,
-                "y": 20
-            },
             "Genus": "Sentient",
             "Race": "Dwarf",
             "Size": "Med",

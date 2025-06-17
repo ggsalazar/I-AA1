@@ -278,6 +278,7 @@ enum class Menus {
 	Map_Area,   //M
 	Map_World,
 	Options_I,  //O
+	Skill_Check,
 	//CC
 	CCAS,
 	CCBG,

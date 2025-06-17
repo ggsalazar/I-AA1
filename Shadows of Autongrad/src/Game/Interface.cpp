@@ -9,31 +9,44 @@ Interface::Interface(Menus init_label)
 	switch (label) {
         case Menus::Bestiary:
             sheet = "IntrfcPlaceholder";
+
+            menu_text.info.str = "Bestiary";
         break;
 
 		case Menus::Char_Sheet:
 			sheet = "IntrfcPlaceholder";
+            menu_text.info.str = "Character Sheet";
 			break;
 
 		case Menus::Inv:
 			sheet = "IntrfcPlaceholder";
+            menu_text.info.str = "Inventory";
 			break;
 
 		case Menus::Journal:
 			sheet = "IntrfcPlaceholder";
+            menu_text.info.str = "Journal";
 			break;
 
 		case Menus::Map_Area:
 			sheet = "IntrfcPlaceholder";
+            menu_text.info.str = "Area Map";
 			break;
 
 		case Menus::Map_World:
 			sheet = "IntrfcPlaceholder";
+            menu_text.info.str = "World Map";
 			break;
 
 		case Menus::Options:
 			sheet = "IntrfcPlaceholder";
+            menu_text.info.str = "Options";
 			break;
+
+        case Menus::Skill_Check:
+            sheet = "IntrfcPlaceholder";
+            menu_text.info.str = "Skill Check:";
+            break;
 
         default:
             sheet = "IntrfcPlaceholder";
@@ -50,7 +63,8 @@ void Interface::Update() {
     Menu::Update();
 	if (open) {
         sprite.MoveTo(Vector2f(game->camera.GetCenter()));
-        menu_text.info.pos = Round(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .2);
+        menu_text.MoveTo(Round(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h * .2));
+        sup_text.MoveTo({ menu_text.info.pos.x, menu_text.info.pos.y + 16 * game->GetResScale() });
         Vector2f elem_pos = { 0 };
 
         switch (label) {

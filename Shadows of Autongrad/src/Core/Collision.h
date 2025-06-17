@@ -31,6 +31,7 @@ public:
         return on_line and within_segment;
     }
 
+    /*
     inline static bool Lines(const Line& a, const Line& b) {
         return false;
     }
@@ -46,19 +47,20 @@ public:
     inline static bool Circles(const Circle& a, const Circle& b) {
         return false;
     }
+    */
 
     inline static bool RectPoint(const Rect& r, const Vector2i& p) {
-
         return min(r.x, r.x + r.w) <= p.x and p.x <= max(r.x, r.x + r.w) and
                min(r.y, r.y + r.h) <= p.y and p.y <= max(r.y, r.y + r.h);
     }
 
+    /*
     inline static bool RectLine(const Rect& r, const Line& l) {
-
         return false;
     }
 
     inline static bool RectCircle(const Rect& r, const Circle& c) {
         return false;
     }
+    */
 };

@@ -3,45 +3,30 @@ Devlog: -Pathfinding (w + w/o smoothing)
 		-Dialogue/Yggdrasil
 
 
-Tutorial:	-Left off dicking around with Debug_dialogue
-				--Implement:
-					---Comparison (Text Condition, Choice Condition)
-					---Effects (Choice)
+Foundations:-Replace m5x7
+			-Update Yggdrasil:
+				--Checks for:
+					---Skill checks
+						----Mechanics
+				--Quests/Quest flags!!!
+				--old_text
+					---Button to display
+				--Scroll dialogue/scroll choices
 			-GUI Yggdrasil
-			-Yggdrasil:
-				--CONDITIONS
-					---Checks for:
-						----Money
-						----Disposition
-						----Reputation?
-						----Not least of all, flags
-					---Skill checks :)
-				--Changing nodes based on flags
-					---Do simple test quest
-				--How to store/display old text?
-					---Add to a continuously growing string that is hidden/displayed with a button above the dialogue box
-						----How to scroll?
-			-Dialogue system/trees
-				--Each piece of text MUST have:
-					---Speaker
-					---The string
-					---Choices
-						----The string (inherently states if doesn't progress dialogue via ?)
-						----Condition(s)
-						----Effect(s)
-						----Color changes when moused over/condition not met
-							-----1. Draw all choices
-								------Include their condition(s) if applicable
-							-----2. Gray out and strike through the ones for which the condition is not met
-				--Each piece of text CAN have:
-					---Condition(s)
-				--How to set dialogue node each time character is spoken to?
-					---Needs to be saved and then loaded?
-					---Determined dynamically via location and flags
-			-Place spawn points in maps in Tiled so they don't have to manually be set in Scene
-			 (can be pulled from TileMap after area is fully loaded)
+			-The rest of the fucking UI
+				--Map
+				--Inventory
+				--Quest Journal
+				--Character sheet
+				--Grimoire
+				--Bestiary
+				--Options (far right)
+				--Close/return to game button (small x, far right, half the size of the other buttons)
 			-Combat
 				--Just a quick lil sum'sum - 1 melee-only creature against the 1 party member
+			-Tooltips
+			-Non-dialogue Skill checks
+			-Containers
 			-Roll Log
 				--Bottom right
 			-NPCs
@@ -54,6 +39,8 @@ Tutorial:	-Left off dicking around with Debug_dialogue
 					---Area Map
 					---World Map
 				--Character sheet/s
+				--Bestiary
+				--Grimoire
 				--Inventory
 			-More Combat
 				--A creature with ranged options
@@ -71,22 +58,24 @@ General - Visual signifiers to show when an attack/action is at (dis)adv
 		- Difficulty for now is restricted to # of party members; future installments may have more granular difficulty settings
 
 Main Menu
-	-Character creation
-		--On the left, list of traits to pick (Race, Ability Scores, class features, etc.)
-			---When one of these is selected and sub-menu is opened, sub-menu replaces and hides list
-		--In the center, in the same (general) layout as the in-game char sheet, is their in-progress build
-		--On the right, the character currently being made + characters already made
-		--Pre-Gen characters set stats but can still be modified
-		--CreatePartyMember in Scene.cpp
-		--Automatic journalling
-			---Inform player of intention and ask them if they are certain (Confirm box)
-		--Automatic dungeon mapping
-			---Inform player of intention and ask them if they are certain (Confirm box)
-		--Back/Exit
-			---Confirm
-			---Delete created characters/wipe slate clean
-	-Continue/Load game
-		--Saving/loading
+	-Loading
+		--Saving
+
+Character creation
+	-On the left, list of traits to pick (Race, Ability Scores, class features, etc.)
+		--When one of these is selected and sub-menu is opened, sub-menu replaces and hides list
+	-In the center, in the same (general) layout as the in-game char sheet, is their in-progress build
+	-On the right, the character currently being made + characters already made
+	-Pre-Gen characters set stats but can still be modified
+	-CreatePartyMember in Scene.cpp
+	-Automatic journalling
+		--Inform player of intention and ask them if they are certain (Confirm box)
+	-Automatic dungeon mapping
+		--Inform player of intention and ask them if they are certain (Confirm box)
+	-Back/Exit
+		--Confirm
+		--Delete created characters/wipe slate clean
+
 Tutorial
 	-Town
 		--NPCs
@@ -140,6 +129,5 @@ Future Improvements/Sequel ideas:
 	-Swimming
 	-Pickpocketing
 	-Temporary party members/allies
-	-NavMesh instead of grid
 	-More traps
 	-Yggdrasil: Display value of variables in string

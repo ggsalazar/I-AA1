@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <SDL3/SDL_render.h>
-#include <nlohmann/json.hpp>
+#include "../../packages/json-3.12.0/single_include/nlohmann/json.hpp"
 #include "../Core/Enums.h"
 #include "../Core/Vector2.h" //iostream
 
@@ -35,7 +35,9 @@ public:
 	inline Vector2u GetMapSizeTiles() const { return map_size_t; }
 	inline Vector2u GetMapSizePixels() const { return map_size_p; }
 
-	inline Tile GetTileData(Vector2i tile_pos) { return tile_data[floor(tile_pos.x)][floor(tile_pos.y)]; }
+	inline Tile GetTileData(Vector2i tile_pos) const { return tile_data[floor(tile_pos.x)][floor(tile_pos.y)]; }
+	inline unordered_map<string, Vector2i> GetSpawnPoints() const { return spawn_points; }
+	Vector2i GetSpawnPoint(const string& to_spawn) const;
 
 private:
 	unordered_map<string, vector<SDL_Vertex>> verts_by_tileset;
@@ -43,6 +45,7 @@ private:
 	unordered_map<string, SDL_Texture*> tilesets;
 
 	vector<vector<Tile>> tile_data;
+	unordered_map<string, Vector2i> spawn_points;
 	json tilemap_data;
 
 	Vector2u map_size_t = { 0, 0 };

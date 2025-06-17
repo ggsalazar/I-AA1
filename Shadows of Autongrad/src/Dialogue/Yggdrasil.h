@@ -1,6 +1,6 @@
 #pragma once
 #include <fstream>
-#include <nlohmann/json.hpp>
+#include "../../packages/json-3.12.0/single_include/nlohmann/json.hpp"
 #include "../Graphics/Sprite.h"
 #include "../Graphics/Text.h"
 
@@ -16,9 +16,10 @@ public:
 	json trunk;
 	Creature* speaker;
 	json branch;
-	int stem_index = 1;
+	int stem_index = 0;
 	json stem;
 	json leaf;
+	json choice;
 	Text text;
 	string dlg_text;
 	Text old_text;
@@ -47,16 +48,20 @@ public:
 	void LoadText();
 	void LoadChoices();
 
-	void ChooseDialogue();
+	void MakeChoice();
 	
+	//Condition checking
 	bool CheckCondition(const string& check, const float val, const string& comp);
+	bool CheckChar(const string& check, const string& val);
 	bool CheckBetween(string check, std::array<float, 2> vals);
 
+	//Effect causing
 	void CauseEffect(string effect, float val);
 	void JumpBranch(string val);
 
-
 private:
+	void MakeChoiceNums(int choice_num);
+
 	void SetIndex(int new_index);
 
 };

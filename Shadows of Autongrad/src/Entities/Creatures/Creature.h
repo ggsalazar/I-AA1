@@ -14,6 +14,7 @@ public:
 		Race race = Race::Human;
 		Size size = Size::Med;
 		bool sex = 0; //0 = F, 1 = M
+		string background = "NPC";
 		//Levels - Arcanist, Rogue, Warrior, Other
 		array<uint, 4> levels = {0};
 		//Ability scores - SCADIWC
@@ -85,7 +86,10 @@ public:
 
 	struct Inventory {
 		//unordered_map<Items, Item> equipment;
-		//unordered_map<Items, Item> equipment;
+	};
+
+	struct Spells {
+
 	};
 
 	bool well_rested = true;
@@ -120,6 +124,8 @@ public:
 
 	//High-level info
 	inline string GetName() const { return stats.name; }
+	inline Race GetRace() const { return stats.race; }
+	inline string GetBackground() const { return stats.background; }
 	inline array<uint, 4> GetLevels() const { return stats.levels; }
 
 	//Primary stats

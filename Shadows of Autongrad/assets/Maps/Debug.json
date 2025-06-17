@@ -123,9 +123,45 @@
          "width":80,
          "x":0,
          "y":0
+        }, 
+        {
+         "color":"#ff0000",
+         "draworder":"topdown",
+         "id":3,
+         "name":"Spawn Points",
+         "objects":[
+                {
+                 "height":0,
+                 "id":1,
+                 "name":"Orv",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Spawn Point",
+                 "visible":true,
+                 "width":0,
+                 "x":711.666666666667,
+                 "y":188.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":2,
+                 "name":"Party Leader",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Spawn Point",
+                 "visible":true,
+                 "width":0,
+                 "x":712,
+                 "y":298
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":1,
+ "nextlayerid":4,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

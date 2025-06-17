@@ -11,28 +11,28 @@ constexpr int MMB = SDL_BUTTON_MIDDLE;
 
 //Keys
 //Letters
-constexpr int A_K = SDL_SCANCODE_A;
-constexpr int B_K = SDL_SCANCODE_B;
-constexpr int C_K = SDL_SCANCODE_C;
-constexpr int D_K = SDL_SCANCODE_D;
-constexpr int G_K = SDL_SCANCODE_G;
-constexpr int I_K = SDL_SCANCODE_I;
-constexpr int J_K = SDL_SCANCODE_J;
-constexpr int M_K = SDL_SCANCODE_M;
-constexpr int O_K = SDL_SCANCODE_O;
-constexpr int S_K = SDL_SCANCODE_S;
-constexpr int W_K = SDL_SCANCODE_W;
+constexpr int SCA = SDL_SCANCODE_A;
+constexpr int SCB = SDL_SCANCODE_B;
+constexpr int SCC = SDL_SCANCODE_C;
+constexpr int SCD = SDL_SCANCODE_D;
+constexpr int SCG = SDL_SCANCODE_G;
+constexpr int SCI = SDL_SCANCODE_I;
+constexpr int SCJ = SDL_SCANCODE_J;
+constexpr int SCM = SDL_SCANCODE_M;
+constexpr int SCO = SDL_SCANCODE_O;
+constexpr int SCS = SDL_SCANCODE_S;
+constexpr int SCW = SDL_SCANCODE_W;
 //Numbers
-constexpr int SC_0 = SDL_SCANCODE_0;
-constexpr int SC_1 = SDL_SCANCODE_1;
-constexpr int SC_2 = SDL_SCANCODE_2;
-constexpr int SC_3 = SDL_SCANCODE_3;
-constexpr int SC_4 = SDL_SCANCODE_4;
-constexpr int SC_5 = SDL_SCANCODE_5;
-constexpr int SC_6 = SDL_SCANCODE_6;
-constexpr int SC_7 = SDL_SCANCODE_7;
-constexpr int SC_8 = SDL_SCANCODE_8;
-constexpr int SC_9 = SDL_SCANCODE_9;
+constexpr int SC0 = SDL_SCANCODE_0;
+constexpr int SC1 = SDL_SCANCODE_1;
+constexpr int SC2 = SDL_SCANCODE_2;
+constexpr int SC3 = SDL_SCANCODE_3;
+constexpr int SC4 = SDL_SCANCODE_4;
+constexpr int SC5 = SDL_SCANCODE_5;
+constexpr int SC6 = SDL_SCANCODE_6;
+constexpr int SC7 = SDL_SCANCODE_7;
+constexpr int SC8 = SDL_SCANCODE_8;
+constexpr int SC9 = SDL_SCANCODE_9;
 //Arrows
 constexpr int UP = SDL_SCANCODE_UP;
 constexpr int DOWN = SDL_SCANCODE_DOWN;
