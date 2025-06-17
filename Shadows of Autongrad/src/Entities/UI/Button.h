@@ -10,7 +10,8 @@ public:
         label_offset = game->GetResScale();
         label.MoveTo({ pos.x, pos.y - label_offset });
     }
-
+    
+    void Update() override;
     void Draw() override;
     inline void MoveBy(Vector2f offset) override { Entity::MoveBy(offset); Move(); }
     inline void MoveTo(Vector2f new_pos) override { Entity::MoveTo(new_pos); Move(); }

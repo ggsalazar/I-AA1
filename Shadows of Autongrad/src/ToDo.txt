@@ -14,14 +14,7 @@ Foundations:-Replace m5x7
 				--Scroll dialogue/scroll choices
 			-GUI Yggdrasil
 			-The rest of the fucking UI
-				--Map
-				--Inventory
-				--Quest Journal
-				--Character sheet
-				--Grimoire
-				--Bestiary
-				--Options (far right)
-				--Close/return to game button (small x, far right, half the size of the other buttons)
+				--Open/Close the interfaces
 			-Combat
 				--Just a quick lil sum'sum - 1 melee-only creature against the 1 party member
 			-Tooltips
@@ -47,10 +40,9 @@ Foundations:-Replace m5x7
 			-area changing
 			-fog of war
 			-multi-party member spawning, movement, & cam locking
-				--Party formations
-					---Grid, but what size?
-			-Intro cutscene
-			-Tutorialization
+				--Marching order
+					---5x5 grid
+					---Set in Options_I
 
 General - Visual signifiers to show when an attack/action is at (dis)adv
 		- At some point going to have to adjust pathfinding to account for different elevations
@@ -77,7 +69,7 @@ Character creation
 		--Delete created characters/wipe slate clean
 
 Tutorial
-	-Town
+	-Tutton
 		--NPCs
 			---Orv the Blacksmith
 			---Kennan the troubled farmer
@@ -100,10 +92,12 @@ Tutorial
 			---Ranged
 				----AI
 				----1
+	-Intro cutscene
+	-Tutorialization
 
 Prologue
 	-Train
-		--Intro "Cutscene"
+		--Intro "Cutscene""
 		--NPCs
 		--Bad guys
 			---How many?

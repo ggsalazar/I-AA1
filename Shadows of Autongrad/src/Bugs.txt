@@ -5,6 +5,10 @@ Path smoothing working, but not quite registering unwalkable tiles quite right
 
 Player SHOULD BE ABLE TO move a small amount if they want to
 
+Why does Dakn have 0 Health?
+
+Don't edgepan if mouse is over a UI element
+
 Move window when resizing
 
 Pathfinding - currently getting goal node closest to start, need goal node closest to second-to-last node

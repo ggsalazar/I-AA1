@@ -291,20 +291,29 @@ enum class Menus {
 enum class UIElem {
 	DEFAULT,
 	Confirm, //For Confirm Boxes
+
 	//Buttons
 	Apply,
 	AS,
 	Back,
+	Bestiary,
 	BG_B,
 	CharCrea,
+	CharSheet,
 	Class_B,
 	Close,
+	Close_I,
 	Create,
 	Debug_Room,
 	Equipment_CC,
+	Grimoire,
+	Inv,
+	Journal,
 	Load,
+	Map,
 	No,
 	Options,
+	Options_I,
 	Quit,
 	Race_B,
 	Resume,
@@ -312,6 +321,7 @@ enum class UIElem {
 	Title,
 	Tutorial,
 	Yes,
+
 	//Pickers
 	ASSTR,
 	ASCON,
@@ -326,10 +336,12 @@ enum class UIElem {
 	Resolution,
 	Sex,
 	Size,
+
 	//Sliders
 	CAMSPD,
 	Music_V,
 	SFX_V,
+	
 	//Toggles
 	Fullscreen,
 	Edge_Pan

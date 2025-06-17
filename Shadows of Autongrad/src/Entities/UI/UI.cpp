@@ -4,7 +4,7 @@ UI::UI(Menu& m, const Sprite::Info& s_i, const UIElem e, const uint init_ui_laye
     : Entity(s_i), menu(m), elem(e), ui_layer(init_ui_layer), label(&game->default_fonts[36]) {
 
     //Label
-    string l_str = "DEFAULT";
+    string l_str = "";
     switch (elem) {
     case UIElem::Apply:
         l_str = "Apply";
@@ -185,9 +185,6 @@ void UI::GetInput() {
             Released();
     }
     else if (!Selected()) primed = false;
-}
-
-void UI::Draw() {
 }
 
 void UI::Resize(uint r_s) {

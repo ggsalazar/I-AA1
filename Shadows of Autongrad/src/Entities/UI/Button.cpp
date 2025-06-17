@@ -1,9 +1,45 @@
 #include "Button.h"
 //#include "Confirm.h"
 
+void Button::Update() {
+    switch (elem) {
+        case UIElem::CharSheet:
+            MoveTo(Vector2f(game->camera.GetCenter().x - sprite.GetSprSize().x * 3, game->camera.viewport.y + (game->camera.viewport.h - sprite.GetSprSize().y * .55f)));
+        break;
+
+        case UIElem::Inv:
+            MoveTo(Vector2f(game->camera.GetCenter().x - sprite.GetSprSize().x * 2, game->camera.viewport.y + (game->camera.viewport.h - sprite.GetSprSize().y * .55f)));
+            break;
+
+        case UIElem::Grimoire:
+            MoveTo(Vector2f(game->camera.GetCenter().x - sprite.GetSprSize().x, game->camera.viewport.y + (game->camera.viewport.h - sprite.GetSprSize().y * .55f)));
+            break;
+
+        case UIElem::Journal:
+            MoveTo(Vector2f(game->camera.GetCenter().x, game->camera.viewport.y + (game->camera.viewport.h - sprite.GetSprSize().y * .55f)));
+            break;
+
+        case UIElem::Map:
+            MoveTo(Vector2f(game->camera.GetCenter().x + sprite.GetSprSize().x, game->camera.viewport.y + (game->camera.viewport.h - sprite.GetSprSize().y * .55f)));
+            break;
+
+        case UIElem::Bestiary:
+            MoveTo(Vector2f(game->camera.GetCenter().x + sprite.GetSprSize().x * 2, game->camera.viewport.y + (game->camera.viewport.h - sprite.GetSprSize().y * .55f)));
+            break;
+
+        case UIElem::Options_I:
+            MoveTo(Vector2f(game->camera.GetCenter().x + sprite.GetSprSize().x * 3, game->camera.viewport.y + (game->camera.viewport.h - sprite.GetSprSize().y * .55f)));
+            break;
+
+        case UIElem::Close_I:
+            MoveTo(Vector2f(game->camera.GetCenter().x + sprite.GetSprSize().x * 7.5, game->camera.viewport.y + (game->camera.viewport.h - sprite.GetSprSize().y * 1.1f)));
+            break;
+    }
+}
+
 void Button::Draw() {
     if (Selected())
-        game->renderer.DrawRect(bbox, Color(1, 0, 0));
+        game->renderer.DrawRect(bbox, Color(1, 0, 0)); //THIS IS A TEMPORARY MEASURE
 
     Entity::Draw();
 

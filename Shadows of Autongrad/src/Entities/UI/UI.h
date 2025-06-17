@@ -13,7 +13,7 @@ public:
         const uint init_ui_layer = 0);
 
     virtual void GetInput() override;
-    virtual void Draw() override;
+    inline virtual void Draw() override {};
 
     virtual void Resize(uint r_s);
 

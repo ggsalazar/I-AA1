@@ -2,7 +2,7 @@
 #include "Interface.h" //Menu (Game)
 #include "../Core/Input.h" //Window
 #include "../Core/Math.h"
-#include "../Entities/UI/UI.h" //Entity.h
+#include "../Entities/UI/Button.h" //Entity.h, UI.h
 #include "../Entities/Creatures/PartyMember.h"
 
 using json = nlohmann::json;
@@ -26,7 +26,7 @@ void Scene::Open(const bool o) {
 		}
 
 		else if (label == Scenes::AREA) {
-			//Initialize the edge rects
+			//The edge rects
 			//Up
 			up_edge.w = game->camera.viewport.w; up_edge.h = TS;
 			//Down
@@ -36,7 +36,7 @@ void Scene::Open(const bool o) {
 			//Right
 			right_edge.w = TS; right_edge.h = left_edge.h;
 
-			//Load area stuff
+			//Area stuff
 			//Tilemap
 			tilemap.Load(game->renderer.GetRenderer(), AreaToString(game->area));
 			Vector2u area_size = tilemap.GetMapSizePixels(), area_size_t = tilemap.GetMapSizeTiles();
@@ -46,8 +46,7 @@ void Scene::Open(const bool o) {
 			LoadDialogue();
 
 
-			//Init the grid
-			grid.Init(&tilemap);
+			
 
 			//Set the party and camera
 			//Later will have to determine which point to pick when coming in from N/S/E/W/Other
@@ -70,17 +69,38 @@ void Scene::Open(const bool o) {
 			game->camera.MoveCenterTo(party_ldr_pos);
 
 			//Initialize our interfaces
-			menus.insert({ Menus::Bestiary, new Interface(Menus::Bestiary) });
 			menus.insert({ Menus::Char_Sheet, new Interface(Menus::Char_Sheet) });
-			menus.insert({ Menus::Grimoire, new Interface(Menus::Grimoire) });
 			menus.insert({ Menus::Inv, new Interface(Menus::Inv) });
+			menus.insert({ Menus::Grimoire, new Interface(Menus::Grimoire) });
 			menus.insert({ Menus::Journal, new Interface(Menus::Journal) });
 			menus.insert({ Menus::Map_Area, new Interface(Menus::Map_Area) });
 			menus.insert({ Menus::Map_World, new Interface(Menus::Map_World) });
+			menus.insert({ Menus::Bestiary, new Interface(Menus::Bestiary) });
 			menus.insert({ Menus::Options_I, new Interface(Menus::Options_I) });
+
 			menus.insert({ Menus::Skill_Check, new Interface(Menus::Skill_Check) });
 
-			//Populate the node grid for pathfinding
+			//Interface buttons
+			Sprite::Info info = {};
+			info.sheet = "UI/Interfaces/CharSheetBtn"; info.frame_size = { 24, 24 }; info.scale = game->GetResScale(); info.dfc = -1; info.origin = { .5f };
+			entities.push_back(new Button(*menus[Menus::Char_Sheet], info, UIElem::CharSheet));
+			info.sheet = "UI/Interfaces/InvBtn";
+			entities.push_back(new Button(*menus[Menus::Inv], info, UIElem::Inv));
+			info.sheet = "UI/Interfaces/GrimoireBtn";
+			entities.push_back(new Button(*menus[Menus::Grimoire], info, UIElem::Grimoire));
+			info.sheet = "UI/Interfaces/JournalBtn";
+			entities.push_back(new Button(*menus[Menus::Journal], info, UIElem::Journal));
+			info.sheet = "UI/Interfaces/MapBtn";
+			entities.push_back(new Button(*menus[Menus::Map_Area], info, UIElem::Map));
+			info.sheet = "UI/Interfaces/BestiaryBtn";
+			entities.push_back(new Button(*menus[Menus::Bestiary], info, UIElem::Bestiary));
+			info.sheet = "UI/Interfaces/OptionsBtn";
+			entities.push_back(new Button(*menus[Menus::Options_I], info, UIElem::Options_I));
+			info.sheet = "UI/Interfaces/CloseBtn"; info.frame_size = { 12, 12 };
+			entities.push_back(new Button(*menus[Menus::Char_Sheet], info, UIElem::Close_I));
+
+			//Pathfinding grid
+			grid.Init(&tilemap);
 			grid.PopulateNodeGrid(&entities);
 		}
 	}
@@ -240,9 +260,8 @@ void Scene::Draw() {
 
 
 	//Draw dialogue
-	if (in_dlg) {
+	if (in_dlg)
 		game->dlg_mngr.DrawDialogue();
-	}
 
 	//Menus are drawn last since UI will always be closest to the camera
 	//To solve dfc problem, may have to just give Menus their own dfc

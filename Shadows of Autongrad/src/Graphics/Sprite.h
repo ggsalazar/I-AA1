@@ -32,7 +32,6 @@ public:
     Sprite() : pos_debug({ 0 }, 4) {}
     Sprite(const Info& i);
     ~Sprite() { SDL_DestroyTexture(texture); }
-
     void Init(const Info& i);
 
     static inline void SetRenderer(SDL_Renderer* r) { renderer = r; }
