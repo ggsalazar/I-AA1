@@ -9,6 +9,10 @@ void Yggdrasil::Init(Game* g) {
 	Sprite::Info i = {};
 	i.sheet = "UI/DialogueBox"; i.origin = { .5f, 1.f }; i.scale = game->GetResScale(); i.frame_size = {600, 120};
 	dlg_box.Init(i);
+	old_dlg_box.Init(i);
+
+	i.sheet = "UI/OldDialogueBtn"; i.origin = { .0f, 1.f }; i.frame_size = { 12, 10 };
+	old_dlg_btn.Init(i);
 
 	Text::Info ti = {};
 	ti.max_width = dlg_box.GetSprSize().x - TS*4;
@@ -17,9 +21,20 @@ void Yggdrasil::Init(Game* g) {
 }
 
 void Yggdrasil::DrawDialogue() {
-	//Render the dialogue box
+	//Render the dialogue box and old dialogue "button"
 	dlg_box.MoveTo(Vector2f(game->camera.GetCenter().x, game->camera.viewport.y + game->camera.viewport.h));
 	game->renderer.DrawSprite(dlg_box);
+	
+	
+	if (!show_old_dlg)
+		old_dlg_btn.MoveTo(Vector2f(dlg_box.GetPos().x - dlg_box.GetSprSize().x * .5f, dlg_box.GetPos().y - dlg_box.GetSprSize().y - game->GetResScale()));
+	else {
+		old_dlg_box.MoveTo(Vector2f(dlg_box.GetPos().x, dlg_box.GetPos().y - dlg_box.GetSprSize().y - game->GetResScale()));
+		game->renderer.DrawSprite(old_dlg_box);
+
+		old_dlg_btn.MoveTo(Vector2f(old_dlg_box.GetPos().x - old_dlg_box.GetSprSize().x * .5f, old_dlg_box.GetPos().y - old_dlg_box.GetSprSize().y - game->GetResScale() * 2));
+	}
+	game->renderer.DrawSprite(old_dlg_btn);
 
 	//Load, move, and draw the dialogue
 	while (text.info.str == speaker->GetName() + ": ")
@@ -129,12 +144,13 @@ void Yggdrasil::LoadChoices() {
 }
 
 void Yggdrasil::MakeChoice() {
+	//Choose a dialogue option
 	for (int i = 0; i < choices.size(); ++i) {
 
 		//Can only select valid choices
 		if (choices[i].info.color.a == 1) {
 			
-			Rect choice_bbox = Rect(choices[i].info.pos, Vector2i(dlg_box.GetSprSize().x - TS * 2, choices[i].info.str_size.y-9));
+			Rect choice_bbox = Rect(Vector2i(choices[i].info.pos.x, choices[i].info.pos.y + 5), Vector2i(dlg_box.GetSprSize().x - TS * 2, choices[i].info.str_size.y - 9));
 			
 			if (Collision::RectPoint(choice_bbox, Input::MousePos())) {
 				
@@ -166,6 +182,13 @@ void Yggdrasil::MakeChoice() {
 	else if (Input::KeyPressed(SC4)) choice_num = 3;
 	else if (Input::KeyPressed(SC5)) choice_num = 4;
 	if (choice_num != -1) MakeChoiceNums(choice_num);
+
+
+
+	//Show old dialogue
+	Rect old_dlg_rect = Rect(Vector2i(old_dlg_btn.GetPos().x, old_dlg_btn.GetPos().y - old_dlg_btn.GetSprSize().y), old_dlg_btn.GetSprSize());
+	if (Collision::RectPoint(old_dlg_rect, Input::MousePos()) and Input::BtnReleased(LMB))
+		show_old_dlg = !show_old_dlg;
 }
 
 bool Yggdrasil::CheckCondition(const string& check, const float val, const string& comp) {

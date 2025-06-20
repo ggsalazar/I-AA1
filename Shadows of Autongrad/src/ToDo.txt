@@ -3,17 +3,16 @@ Devlog: -Pathfinding (w + w/o smoothing)
 		-Dialogue/Yggdrasil
 
 
-Foundations:-Replace m5x7
-			-Perhaps always be highlighting selected tile? In addition to destination tile
+Foundations:-Always be highlighting selected tile (white) in addition to destination tile (red?)
 			-Re-find and re-smooth the path to the target whenever the next position in the queue is reached
-			-Update Yggdrasil:
+			-Yggdrasil:
 				--Quests
 				--Skill checks
 				--old_text
-					---Button to display
+					---Display the text
 					---Scroll
 						----Rect
-				--Dynamically resize dialogue box to display all choices/text at once? Or scroll?
+				--Scroll dialogue + choices
 			-GUI Yggdrasil
 			-Combat
 				--Just a quick lil sum'sum - 1 melee-only creature against the 1 party member

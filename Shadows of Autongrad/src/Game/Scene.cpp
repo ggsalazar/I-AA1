@@ -791,9 +791,9 @@ void Scene::LoadNPCs() {
 		
 		sprite_info.pos = tilemap.GetSpawnPoint(stats.name);
 		//Stats information
-		string genus_str = npc["Genus"]; stats.genus = StringToGenus(genus_str);
-		string race_str = npc["Race"]; stats.race = StringToRace(race_str);
-		string size_str = npc["Size"]; stats.size = StringToSize(size_str);
+		string genus_str = npc["Stats"]["Genus"]; stats.genus = StringToGenus(genus_str);
+		string race_str = npc["Stats"]["Race"]; stats.race = StringToRace(race_str);
+		string size_str = npc["Stats"]["Size"]; stats.size = StringToSize(size_str);
 		switch (stats.size) {
 			case Size::Small:
 				sprite_info.frame_size = { 18, 36 };
@@ -803,9 +803,9 @@ void Scene::LoadNPCs() {
 				sprite_info.frame_size = { 24, 48 };
 			break;
 		}
-		stats.sex = npc["Sex"];
-		stats.levels = npc["Levels"];
-		stats.a_scores = npc["A_Scores"];
+		stats.sex = npc["Stats"]["Sex"];
+		stats.levels = npc["Stats"]["Levels"];
+		stats.a_scores = npc["Stats"]["A_Scores"];
 		
 		//These have to be explicitly extracted from the json
 		int npc_dispo = npc["Disposition"];

@@ -6,15 +6,21 @@
 class Font {
 public:
 	Font() = default;
-	Font(const std::string& path, uint size) {
-		std::string path_ttf = "assets/Fonts/" + path + ".ttf";
-		font = TTF_OpenFont(path_ttf.c_str(), size);
+	Font(const std::string& file, uint size) {
+		std::string path = "assets/Fonts/" + file + ".ttf";
+		font = TTF_OpenFont(path.c_str(), size);
+
+		if (!font) {
+			path = "assets/Fonts/" + file + ".otf";
+			font = TTF_OpenFont(path.c_str(), size);
+		}
 
 		if (!font)
 			std::cout << "Could not load font from file: " << path << "! SDL Error: " << SDL_GetError() << "\n";
+
 	}
 	~Font() {
-		//TTF_DestroyFont(font);
+		//TTF_CloseFont(font);
 	}
 
 	inline TTF_Font* GetFont() const { if (font) return font; return nullptr; }

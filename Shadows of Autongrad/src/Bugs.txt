@@ -3,3 +3,5 @@ Yes/No buttons not removing elements like they should in character creation
 Path smoothing working, but due to how nodes are moved to, will sometimes walk over unwalkable nodes
 
 Pathfinding - currently getting goal node closest to start, need goal node closest to second-to-last node
+
+Currently able to occupy the same tile as another creature

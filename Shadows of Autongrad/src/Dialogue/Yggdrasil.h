@@ -22,11 +22,17 @@ public:
 	json choice;
 	Text text;
 	string dlg_text;
-	Text old_text;
 	std::vector<Text> choices;
 	Text::Info choices_info = {};
 
 	Sprite dlg_box;
+
+
+	Text old_text;
+	Sprite old_dlg_btn;
+	Sprite old_dlg_box;
+	bool show_old_dlg = false;
+
 
 	static inline Game* game = nullptr;
 
